@@ -25,6 +25,8 @@ wget -P repository/api --no-parent --no-host-directories --cut-dirs=8 --no-check
 wget -P repository/api --no-parent --no-host-directories --cut-dirs=8 --no-check-certificate https://cvs.khronos.org/svn/repos/ogl/trunk/doc/registry/public/api/registry.rnc
 wget -P repository/api --no-parent --no-host-directories --cut-dirs=8 --no-check-certificate https://cvs.khronos.org/svn/repos/ogl/trunk/doc/registry/public/api/wgl.xml
 
+# Don't attempt re-generating headers if python isn't installed.
+if hash python 2>/dev/null; then
 cd repository/api
 
 genheaders.py -registry gl.xml GL/glcorearb.h
@@ -49,4 +51,4 @@ genheaders.py -registry egl.xml EGL/egl.h
 genheaders.py -registry egl.xml EGL/eglext.h
 
 cd ..
-
+fi
