@@ -1,0 +1,4 @@
+Prerequisite tools:
+
+Python 2.7/3.2 and LXML extension
+  https://pypi.python.org/pypi/lxml/3.4.4
