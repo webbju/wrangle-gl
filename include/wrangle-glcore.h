@@ -2,15 +2,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include <GLES3/gl3.h>
-
-#include <GLES3/gl31.h>
+#include <GL/glcorearb.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class GLESCapabilities
+class GLCORECapabilities
 {
 public:
 
@@ -20,989 +18,756 @@ public:
 
   bool IsSupported (const char *extension);
 
-  bool
-    __GL_VERSION_ES_CM_1_0,
-    __GL_ES_VERSION_2_0,
-    __GL_ES_VERSION_3_0,
-    __GL_ES_VERSION_3_1;
 
   bool
-    __GL_AMD_compressed_3DC_texture,
-    __GL_AMD_compressed_ATC_texture,
-    __GL_AMD_performance_monitor,
-    __GL_AMD_program_binary_Z400,
-    __GL_ANDROID_extension_pack_es31a,
-    __GL_ANGLE_depth_texture,
-    __GL_ANGLE_framebuffer_blit,
-    __GL_ANGLE_framebuffer_multisample,
-    __GL_ANGLE_instanced_arrays,
-    __GL_ANGLE_pack_reverse_row_order,
-    __GL_ANGLE_program_binary,
-    __GL_ANGLE_texture_compression_dxt3,
-    __GL_ANGLE_texture_compression_dxt5,
-    __GL_ANGLE_texture_usage,
-    __GL_ANGLE_translated_shader_source,
-    __GL_APPLE_clip_distance,
-    __GL_APPLE_color_buffer_packed_float,
-    __GL_APPLE_copy_texture_levels,
-    __GL_APPLE_framebuffer_multisample,
-    __GL_APPLE_rgb_422,
-    __GL_APPLE_sync,
-    __GL_APPLE_texture_2D_limited_npot,
-    __GL_APPLE_texture_format_BGRA8888,
-    __GL_APPLE_texture_max_level,
-    __GL_APPLE_texture_packed_float,
-    __GL_ARM_mali_program_binary,
-    __GL_ARM_mali_shader_binary,
-    __GL_ARM_rgba8,
-    __GL_ARM_shader_framebuffer_fetch,
-    __GL_ARM_shader_framebuffer_fetch_depth_stencil,
-    __GL_DMP_program_binary,
-    __GL_DMP_shader_binary,
-    __GL_EXT_base_instance,
-    __GL_EXT_blend_minmax,
-    __GL_EXT_buffer_storage,
-    __GL_EXT_color_buffer_half_float,
-    __GL_EXT_copy_image,
-    __GL_EXT_debug_label,
-    __GL_EXT_debug_marker,
-    __GL_EXT_discard_framebuffer,
-    __GL_EXT_disjoint_timer_query,
-    __GL_EXT_draw_buffers,
-    __GL_EXT_draw_buffers_indexed,
-    __GL_EXT_draw_elements_base_vertex,
-    __GL_EXT_draw_instanced,
-    __GL_EXT_float_blend,
-    __GL_EXT_geometry_point_size,
-    __GL_EXT_geometry_shader,
-    __GL_EXT_gpu_shader5,
-    __GL_EXT_instanced_arrays,
-    __GL_EXT_map_buffer_range,
-    __GL_EXT_multi_draw_arrays,
-    __GL_EXT_multi_draw_indirect,
-    __GL_EXT_multisampled_render_to_texture,
-    __GL_EXT_multiview_draw_buffers,
-    __GL_EXT_occlusion_query_boolean,
-    __GL_EXT_post_depth_coverage,
-    __GL_EXT_primitive_bounding_box,
-    __GL_EXT_pvrtc_sRGB,
-    __GL_EXT_raster_multisample,
-    __GL_EXT_read_format_bgra,
-    __GL_EXT_render_snorm,
-    __GL_EXT_robustness,
-    __GL_EXT_sRGB,
-    __GL_EXT_sRGB_write_control,
-    __GL_EXT_separate_shader_objects,
-    __GL_EXT_shader_framebuffer_fetch,
-    __GL_EXT_shader_implicit_conversions,
-    __GL_EXT_shader_integer_mix,
-    __GL_EXT_shader_io_blocks,
-    __GL_EXT_shader_pixel_local_storage,
-    __GL_EXT_shader_texture_lod,
-    __GL_EXT_shadow_samplers,
-    __GL_EXT_sparse_texture,
-    __GL_EXT_tessellation_point_size,
-    __GL_EXT_tessellation_shader,
-    __GL_EXT_texture_border_clamp,
-    __GL_EXT_texture_buffer,
-    __GL_EXT_texture_compression_dxt1,
-    __GL_EXT_texture_compression_s3tc,
-    __GL_EXT_texture_cube_map_array,
-    __GL_EXT_texture_filter_anisotropic,
-    __GL_EXT_texture_filter_minmax,
-    __GL_EXT_texture_format_BGRA8888,
-    __GL_EXT_texture_lod_bias,
-    __GL_EXT_texture_norm16,
-    __GL_EXT_texture_rg,
-    __GL_EXT_texture_sRGB_decode,
-    __GL_EXT_texture_sRGB_R8,
-    __GL_EXT_texture_sRGB_RG8,
-    __GL_EXT_texture_storage,
-    __GL_EXT_texture_type_2_10_10_10_REV,
-    __GL_EXT_texture_view,
-    __GL_EXT_unpack_subimage,
-    __GL_EXT_YUV_target,
-    __GL_FJ_shader_binary_GCCSO,
-    __GL_IMG_multisampled_render_to_texture,
-    __GL_IMG_program_binary,
-    __GL_IMG_read_format,
-    __GL_IMG_shader_binary,
-    __GL_IMG_texture_compression_pvrtc,
-    __GL_IMG_texture_compression_pvrtc2,
-    __GL_IMG_texture_env_enhanced_fixed_function,
-    __GL_IMG_user_clip_plane,
-    __GL_INTEL_performance_query,
-    __GL_KHR_blend_equation_advanced,
-    __GL_KHR_blend_equation_advanced_coherent,
+    __GL_ARB_ES2_compatibility,
+    __GL_ARB_ES3_1_compatibility,
+    __GL_ARB_ES3_compatibility,
+    __GL_ARB_arrays_of_arrays,
+    __GL_ARB_base_instance,
+    __GL_ARB_bindless_texture,
+    __GL_ARB_blend_func_extended,
+    __GL_ARB_buffer_storage,
+    __GL_ARB_cl_event,
+    __GL_ARB_clear_buffer_object,
+    __GL_ARB_clear_texture,
+    __GL_ARB_clip_control,
+    __GL_ARB_compressed_texture_pixel_storage,
+    __GL_ARB_compute_shader,
+    __GL_ARB_compute_variable_group_size,
+    __GL_ARB_conditional_render_inverted,
+    __GL_ARB_conservative_depth,
+    __GL_ARB_copy_buffer,
+    __GL_ARB_copy_image,
+    __GL_ARB_cull_distance,
+    __GL_ARB_debug_output,
+    __GL_ARB_depth_buffer_float,
+    __GL_ARB_depth_clamp,
+    __GL_ARB_derivative_control,
+    __GL_ARB_direct_state_access,
+    __GL_ARB_draw_buffers_blend,
+    __GL_ARB_draw_elements_base_vertex,
+    __GL_ARB_draw_indirect,
+    __GL_ARB_enhanced_layouts,
+    __GL_ARB_explicit_attrib_location,
+    __GL_ARB_explicit_uniform_location,
+    __GL_ARB_fragment_coord_conventions,
+    __GL_ARB_fragment_layer_viewport,
+    __GL_ARB_framebuffer_no_attachments,
+    __GL_ARB_framebuffer_object,
+    __GL_ARB_framebuffer_sRGB,
+    __GL_ARB_get_program_binary,
+    __GL_ARB_get_texture_sub_image,
+    __GL_ARB_gpu_shader5,
+    __GL_ARB_gpu_shader_fp64,
+    __GL_ARB_half_float_vertex,
+    __GL_ARB_imaging,
+    __GL_ARB_indirect_parameters,
+    __GL_ARB_internalformat_query,
+    __GL_ARB_internalformat_query2,
+    __GL_ARB_invalidate_subdata,
+    __GL_ARB_map_buffer_alignment,
+    __GL_ARB_map_buffer_range,
+    __GL_ARB_multi_bind,
+    __GL_ARB_multi_draw_indirect,
+    __GL_ARB_occlusion_query2,
+    __GL_ARB_pipeline_statistics_query,
+    __GL_ARB_program_interface_query,
+    __GL_ARB_provoking_vertex,
+    __GL_ARB_query_buffer_object,
+    __GL_ARB_robust_buffer_access_behavior,
+    __GL_ARB_robustness,
+    __GL_ARB_robustness_isolation,
+    __GL_ARB_sample_shading,
+    __GL_ARB_sampler_objects,
+    __GL_ARB_seamless_cube_map,
+    __GL_ARB_seamless_cubemap_per_texture,
+    __GL_ARB_separate_shader_objects,
+    __GL_ARB_shader_atomic_counters,
+    __GL_ARB_shader_bit_encoding,
+    __GL_ARB_shader_draw_parameters,
+    __GL_ARB_shader_group_vote,
+    __GL_ARB_shader_image_load_store,
+    __GL_ARB_shader_image_size,
+    __GL_ARB_shader_precision,
+    __GL_ARB_shader_stencil_export,
+    __GL_ARB_shader_storage_buffer_object,
+    __GL_ARB_shader_subroutine,
+    __GL_ARB_shader_texture_image_samples,
+    __GL_ARB_shading_language_420pack,
+    __GL_ARB_shading_language_include,
+    __GL_ARB_shading_language_packing,
+    __GL_ARB_sparse_buffer,
+    __GL_ARB_sparse_texture,
+    __GL_ARB_stencil_texturing,
+    __GL_ARB_sync,
+    __GL_ARB_tessellation_shader,
+    __GL_ARB_texture_barrier,
+    __GL_ARB_texture_buffer_object_rgb32,
+    __GL_ARB_texture_buffer_range,
+    __GL_ARB_texture_compression_bptc,
+    __GL_ARB_texture_compression_rgtc,
+    __GL_ARB_texture_cube_map_array,
+    __GL_ARB_texture_gather,
+    __GL_ARB_texture_mirror_clamp_to_edge,
+    __GL_ARB_texture_multisample,
+    __GL_ARB_texture_query_levels,
+    __GL_ARB_texture_query_lod,
+    __GL_ARB_texture_rg,
+    __GL_ARB_texture_rgb10_a2ui,
+    __GL_ARB_texture_stencil8,
+    __GL_ARB_texture_storage,
+    __GL_ARB_texture_storage_multisample,
+    __GL_ARB_texture_swizzle,
+    __GL_ARB_texture_view,
+    __GL_ARB_timer_query,
+    __GL_ARB_transform_feedback2,
+    __GL_ARB_transform_feedback3,
+    __GL_ARB_transform_feedback_instanced,
+    __GL_ARB_transform_feedback_overflow_query,
+    __GL_ARB_uniform_buffer_object,
+    __GL_ARB_vertex_array_bgra,
+    __GL_ARB_vertex_array_object,
+    __GL_ARB_vertex_attrib_64bit,
+    __GL_ARB_vertex_attrib_binding,
+    __GL_ARB_vertex_type_10f_11f_11f_rev,
+    __GL_ARB_vertex_type_2_10_10_10_rev,
+    __GL_ARB_viewport_array,
     __GL_KHR_context_flush_control,
     __GL_KHR_debug,
     __GL_KHR_no_error,
     __GL_KHR_robust_buffer_access_behavior,
     __GL_KHR_robustness,
     __GL_KHR_texture_compression_astc_hdr,
-    __GL_KHR_texture_compression_astc_ldr,
-    __GL_NV_bindless_texture,
-    __GL_NV_blend_equation_advanced,
-    __GL_NV_blend_equation_advanced_coherent,
-    __GL_NV_conditional_render,
-    __GL_NV_conservative_raster,
-    __GL_NV_copy_buffer,
-    __GL_NV_coverage_sample,
-    __GL_NV_depth_nonlinear,
-    __GL_NV_draw_buffers,
-    __GL_NV_draw_instanced,
-    __GL_NV_explicit_attrib_location,
-    __GL_NV_fbo_color_attachments,
-    __GL_NV_fence,
-    __GL_NV_fill_rectangle,
-    __GL_NV_fragment_coverage_to_color,
-    __GL_NV_fragment_shader_interlock,
-    __GL_NV_framebuffer_blit,
-    __GL_NV_framebuffer_mixed_samples,
-    __GL_NV_framebuffer_multisample,
-    __GL_NV_generate_mipmap_sRGB,
-    __GL_NV_geometry_shader_passthrough,
-    __GL_NV_image_formats,
-    __GL_NV_instanced_arrays,
-    __GL_NV_internalformat_sample_query,
-    __GL_NV_non_square_matrices,
-    __GL_NV_path_rendering,
-    __GL_NV_polygon_mode,
-    __GL_NV_read_buffer,
-    __GL_NV_read_buffer_front,
-    __GL_NV_read_depth,
-    __GL_NV_read_depth_stencil,
-    __GL_NV_read_stencil,
-    __GL_NV_path_rendering_shared_edge,
-    __GL_NV_sRGB_formats,
-    __GL_NV_sample_locations,
-    __GL_NV_sample_mask_override_coverage,
-    __GL_NV_shader_noperspective_interpolation,
-    __GL_NV_shadow_samplers_array,
-    __GL_NV_shadow_samplers_cube,
-    __GL_NV_texture_border_clamp,
-    __GL_NV_texture_compression_s3tc_update,
-    __GL_NV_texture_npot_2D_mipmap,
-    __GL_NV_viewport_array,
-    __GL_NV_viewport_array2,
-    __GL_OES_EGL_image,
-    __GL_OES_EGL_image_external,
-    __GL_OES_EGL_image_external_essl3,
-    __GL_OES_blend_equation_separate,
-    __GL_OES_blend_func_separate,
-    __GL_OES_blend_subtract,
-    __GL_OES_byte_coordinates,
-    __GL_OES_compressed_ETC1_RGB8_sub_texture,
-    __GL_OES_compressed_ETC1_RGB8_texture,
-    __GL_OES_compressed_paletted_texture,
-    __GL_OES_copy_image,
-    __GL_OES_depth24,
-    __GL_OES_depth32,
-    __GL_OES_depth_texture,
-    __GL_OES_draw_buffers_indexed,
-    __GL_OES_draw_elements_base_vertex,
-    __GL_OES_draw_texture,
-    __GL_OES_element_index_uint,
-    __GL_OES_extended_matrix_palette,
-    __GL_OES_fbo_render_mipmap,
-    __GL_OES_fixed_point,
-    __GL_OES_fragment_precision_high,
-    __GL_OES_framebuffer_object,
-    __GL_OES_geometry_shader,
-    __GL_OES_geometry_point_size,
-    __GL_OES_get_program_binary,
-    __GL_OES_gpu_shader5,
-    __GL_OES_mapbuffer,
-    __GL_OES_matrix_get,
-    __GL_OES_matrix_palette,
-    __GL_OES_packed_depth_stencil,
-    __GL_OES_point_size_array,
-    __GL_OES_point_sprite,
-    __GL_OES_primitive_bounding_box,
-    __GL_OES_query_matrix,
-    __GL_OES_read_format,
-    __GL_OES_required_internalformat,
-    __GL_OES_rgb8_rgba8,
-    __GL_OES_sample_shading,
-    __GL_OES_sample_variables,
-    __GL_OES_shader_image_atomic,
-    __GL_OES_shader_io_blocks,
-    __GL_OES_shader_multisample_interpolation,
-    __GL_OES_single_precision,
-    __GL_OES_standard_derivatives,
-    __GL_OES_stencil1,
-    __GL_OES_stencil4,
-    __GL_OES_stencil8,
-    __GL_OES_stencil_wrap,
-    __GL_OES_surfaceless_context,
-    __GL_OES_tessellation_shader,
-    __GL_OES_tessellation_point_size,
-    __GL_OES_texture_3D,
-    __GL_OES_texture_border_clamp,
-    __GL_OES_texture_buffer,
-    __GL_OES_texture_compression_astc,
-    __GL_OES_texture_cube_map,
-    __GL_OES_texture_cube_map_array,
-    __GL_OES_texture_env_crossbar,
-    __GL_OES_texture_float,
-    __GL_OES_texture_float_linear,
-    __GL_OES_texture_half_float,
-    __GL_OES_texture_half_float_linear,
-    __GL_OES_texture_mirrored_repeat,
-    __GL_OES_texture_npot,
-    __GL_OES_texture_stencil8,
-    __GL_OES_texture_storage_multisample_2d_array,
-    __GL_OES_texture_view,
-    __GL_OES_vertex_array_object,
-    __GL_OES_vertex_half_float,
-    __GL_OES_vertex_type_10_10_10_2,
-    __GL_OVR_multiview,
-    __GL_OVR_multiview2,
-    __GL_QCOM_alpha_test,
-    __GL_QCOM_binning_control,
-    __GL_QCOM_driver_control,
-    __GL_QCOM_extended_get,
-    __GL_QCOM_extended_get2,
-    __GL_QCOM_perfmon_global_mode,
-    __GL_QCOM_tiled_rendering,
-    __GL_QCOM_writeonly_rendering,
-    __GL_VIV_shader_binary;
+    __GL_KHR_texture_compression_astc_ldr;
 
-  // GL_VERSION_ES_CM_1_0
-  PFNGLALPHAFUNCPROC
-    glAlphaFunc;
-  PFNGLCLEARCOLORPROC
-    glClearColor;
-  PFNGLCLEARDEPTHFPROC
-    glClearDepthf;
-  PFNGLCLIPPLANEFPROC
-    glClipPlanef;
-  PFNGLCOLOR4FPROC
-    glColor4f;
-  PFNGLDEPTHRANGEFPROC
-    glDepthRangef;
-  PFNGLFOGFPROC
-    glFogf;
-  PFNGLFOGFVPROC
-    glFogfv;
-  PFNGLFRUSTUMFPROC
-    glFrustumf;
-  PFNGLGETCLIPPLANEFPROC
-    glGetClipPlanef;
-  PFNGLGETFLOATVPROC
-    glGetFloatv;
-  PFNGLGETLIGHTFVPROC
-    glGetLightfv;
-  PFNGLGETMATERIALFVPROC
-    glGetMaterialfv;
-  PFNGLGETTEXENVFVPROC
-    glGetTexEnvfv;
-  PFNGLGETTEXPARAMETERFVPROC
-    glGetTexParameterfv;
-  PFNGLLIGHTMODELFPROC
-    glLightModelf;
-  PFNGLLIGHTMODELFVPROC
-    glLightModelfv;
-  PFNGLLIGHTFPROC
-    glLightf;
-  PFNGLLIGHTFVPROC
-    glLightfv;
-  PFNGLLINEWIDTHPROC
-    glLineWidth;
-  PFNGLLOADMATRIXFPROC
-    glLoadMatrixf;
-  PFNGLMATERIALFPROC
-    glMaterialf;
-  PFNGLMATERIALFVPROC
-    glMaterialfv;
-  PFNGLMULTMATRIXFPROC
-    glMultMatrixf;
-  PFNGLMULTITEXCOORD4FPROC
-    glMultiTexCoord4f;
-  PFNGLNORMAL3FPROC
-    glNormal3f;
-  PFNGLORTHOFPROC
-    glOrthof;
-  PFNGLPOINTPARAMETERFPROC
-    glPointParameterf;
-  PFNGLPOINTPARAMETERFVPROC
-    glPointParameterfv;
-  PFNGLPOINTSIZEPROC
-    glPointSize;
-  PFNGLPOLYGONOFFSETPROC
-    glPolygonOffset;
-  PFNGLROTATEFPROC
-    glRotatef;
-  PFNGLSCALEFPROC
-    glScalef;
-  PFNGLTEXENVFPROC
-    glTexEnvf;
-  PFNGLTEXENVFVPROC
-    glTexEnvfv;
-  PFNGLTEXPARAMETERFPROC
-    glTexParameterf;
-  PFNGLTEXPARAMETERFVPROC
-    glTexParameterfv;
-  PFNGLTRANSLATEFPROC
-    glTranslatef;
-  PFNGLACTIVETEXTUREPROC
-    glActiveTexture;
-  PFNGLALPHAFUNCXPROC
-    glAlphaFuncx;
-  PFNGLBINDBUFFERPROC
-    glBindBuffer;
-  PFNGLBINDTEXTUREPROC
-    glBindTexture;
-  PFNGLBLENDFUNCPROC
-    glBlendFunc;
-  PFNGLBUFFERDATAPROC
-    glBufferData;
-  PFNGLBUFFERSUBDATAPROC
-    glBufferSubData;
-  PFNGLCLEARPROC
-    glClear;
-  PFNGLCLEARCOLORXPROC
-    glClearColorx;
-  PFNGLCLEARDEPTHXPROC
-    glClearDepthx;
-  PFNGLCLEARSTENCILPROC
-    glClearStencil;
-  PFNGLCLIENTACTIVETEXTUREPROC
-    glClientActiveTexture;
-  PFNGLCLIPPLANEXPROC
-    glClipPlanex;
-  PFNGLCOLOR4UBPROC
-    glColor4ub;
-  PFNGLCOLOR4XPROC
-    glColor4x;
-  PFNGLCOLORMASKPROC
-    glColorMask;
-  PFNGLCOLORPOINTERPROC
-    glColorPointer;
-  PFNGLCOMPRESSEDTEXIMAGE2DPROC
-    glCompressedTexImage2D;
-  PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC
-    glCompressedTexSubImage2D;
-  PFNGLCOPYTEXIMAGE2DPROC
-    glCopyTexImage2D;
-  PFNGLCOPYTEXSUBIMAGE2DPROC
-    glCopyTexSubImage2D;
-  PFNGLCULLFACEPROC
-    glCullFace;
-  PFNGLDELETEBUFFERSPROC
-    glDeleteBuffers;
-  PFNGLDELETETEXTURESPROC
-    glDeleteTextures;
-  PFNGLDEPTHFUNCPROC
-    glDepthFunc;
-  PFNGLDEPTHMASKPROC
-    glDepthMask;
-  PFNGLDEPTHRANGEXPROC
-    glDepthRangex;
-  PFNGLDISABLEPROC
-    glDisable;
-  PFNGLDISABLECLIENTSTATEPROC
-    glDisableClientState;
-  PFNGLDRAWARRAYSPROC
-    glDrawArrays;
-  PFNGLDRAWELEMENTSPROC
-    glDrawElements;
-  PFNGLENABLEPROC
-    glEnable;
-  PFNGLENABLECLIENTSTATEPROC
-    glEnableClientState;
-  PFNGLFINISHPROC
-    glFinish;
-  PFNGLFLUSHPROC
-    glFlush;
-  PFNGLFOGXPROC
-    glFogx;
-  PFNGLFOGXVPROC
-    glFogxv;
-  PFNGLFRONTFACEPROC
-    glFrontFace;
-  PFNGLFRUSTUMXPROC
-    glFrustumx;
-  PFNGLGETBOOLEANVPROC
-    glGetBooleanv;
-  PFNGLGETBUFFERPARAMETERIVPROC
-    glGetBufferParameteriv;
-  PFNGLGETCLIPPLANEXPROC
-    glGetClipPlanex;
-  PFNGLGENBUFFERSPROC
-    glGenBuffers;
-  PFNGLGENTEXTURESPROC
-    glGenTextures;
-  PFNGLGETERRORPROC
-    glGetError;
-  PFNGLGETFIXEDVPROC
-    glGetFixedv;
-  PFNGLGETINTEGERVPROC
-    glGetIntegerv;
-  PFNGLGETLIGHTXVPROC
-    glGetLightxv;
-  PFNGLGETMATERIALXVPROC
-    glGetMaterialxv;
-  PFNGLGETPOINTERVPROC
-    glGetPointerv;
-  PFNGLGETSTRINGPROC
-    glGetString;
-  PFNGLGETTEXENVIVPROC
-    glGetTexEnviv;
-  PFNGLGETTEXENVXVPROC
-    glGetTexEnvxv;
-  PFNGLGETTEXPARAMETERIVPROC
-    glGetTexParameteriv;
-  PFNGLGETTEXPARAMETERXVPROC
-    glGetTexParameterxv;
-  PFNGLHINTPROC
-    glHint;
-  PFNGLISBUFFERPROC
-    glIsBuffer;
-  PFNGLISENABLEDPROC
-    glIsEnabled;
-  PFNGLISTEXTUREPROC
-    glIsTexture;
-  PFNGLLIGHTMODELXPROC
-    glLightModelx;
-  PFNGLLIGHTMODELXVPROC
-    glLightModelxv;
-  PFNGLLIGHTXPROC
-    glLightx;
-  PFNGLLIGHTXVPROC
-    glLightxv;
-  PFNGLLINEWIDTHXPROC
-    glLineWidthx;
-  PFNGLLOADIDENTITYPROC
-    glLoadIdentity;
-  PFNGLLOADMATRIXXPROC
-    glLoadMatrixx;
-  PFNGLLOGICOPPROC
-    glLogicOp;
-  PFNGLMATERIALXPROC
-    glMaterialx;
-  PFNGLMATERIALXVPROC
-    glMaterialxv;
-  PFNGLMATRIXMODEPROC
-    glMatrixMode;
-  PFNGLMULTMATRIXXPROC
-    glMultMatrixx;
-  PFNGLMULTITEXCOORD4XPROC
-    glMultiTexCoord4x;
-  PFNGLNORMAL3XPROC
-    glNormal3x;
-  PFNGLNORMALPOINTERPROC
-    glNormalPointer;
-  PFNGLORTHOXPROC
-    glOrthox;
-  PFNGLPIXELSTOREIPROC
-    glPixelStorei;
-  PFNGLPOINTPARAMETERXPROC
-    glPointParameterx;
-  PFNGLPOINTPARAMETERXVPROC
-    glPointParameterxv;
-  PFNGLPOINTSIZEXPROC
-    glPointSizex;
-  PFNGLPOLYGONOFFSETXPROC
-    glPolygonOffsetx;
-  PFNGLPOPMATRIXPROC
-    glPopMatrix;
-  PFNGLPUSHMATRIXPROC
-    glPushMatrix;
-  PFNGLREADPIXELSPROC
-    glReadPixels;
-  PFNGLROTATEXPROC
-    glRotatex;
-  PFNGLSAMPLECOVERAGEPROC
-    glSampleCoverage;
-  PFNGLSAMPLECOVERAGEXPROC
-    glSampleCoveragex;
-  PFNGLSCALEXPROC
-    glScalex;
-  PFNGLSCISSORPROC
-    glScissor;
-  PFNGLSHADEMODELPROC
-    glShadeModel;
-  PFNGLSTENCILFUNCPROC
-    glStencilFunc;
-  PFNGLSTENCILMASKPROC
-    glStencilMask;
-  PFNGLSTENCILOPPROC
-    glStencilOp;
-  PFNGLTEXCOORDPOINTERPROC
-    glTexCoordPointer;
-  PFNGLTEXENVIPROC
-    glTexEnvi;
-  PFNGLTEXENVXPROC
-    glTexEnvx;
-  PFNGLTEXENVIVPROC
-    glTexEnviv;
-  PFNGLTEXENVXVPROC
-    glTexEnvxv;
-  PFNGLTEXIMAGE2DPROC
-    glTexImage2D;
-  PFNGLTEXPARAMETERIPROC
-    glTexParameteri;
-  PFNGLTEXPARAMETERXPROC
-    glTexParameterx;
-  PFNGLTEXPARAMETERIVPROC
-    glTexParameteriv;
-  PFNGLTEXPARAMETERXVPROC
-    glTexParameterxv;
-  PFNGLTEXSUBIMAGE2DPROC
-    glTexSubImage2D;
-  PFNGLTRANSLATEXPROC
-    glTranslatex;
-  PFNGLVERTEXPOINTERPROC
-    glVertexPointer;
-  PFNGLVIEWPORTPROC
-    glViewport;
-
-  // GL_ES_VERSION_2_0
-  PFNGLACTIVETEXTUREPROC
-    glActiveTexture;
-  PFNGLATTACHSHADERPROC
-    glAttachShader;
-  PFNGLBINDATTRIBLOCATIONPROC
-    glBindAttribLocation;
-  PFNGLBINDBUFFERPROC
-    glBindBuffer;
-  PFNGLBINDFRAMEBUFFERPROC
-    glBindFramebuffer;
-  PFNGLBINDRENDERBUFFERPROC
-    glBindRenderbuffer;
-  PFNGLBINDTEXTUREPROC
-    glBindTexture;
-  PFNGLBLENDCOLORPROC
-    glBlendColor;
-  PFNGLBLENDEQUATIONPROC
-    glBlendEquation;
-  PFNGLBLENDEQUATIONSEPARATEPROC
-    glBlendEquationSeparate;
-  PFNGLBLENDFUNCPROC
-    glBlendFunc;
-  PFNGLBLENDFUNCSEPARATEPROC
-    glBlendFuncSeparate;
-  PFNGLBUFFERDATAPROC
-    glBufferData;
-  PFNGLBUFFERSUBDATAPROC
-    glBufferSubData;
-  PFNGLCHECKFRAMEBUFFERSTATUSPROC
-    glCheckFramebufferStatus;
-  PFNGLCLEARPROC
-    glClear;
-  PFNGLCLEARCOLORPROC
-    glClearColor;
-  PFNGLCLEARDEPTHFPROC
-    glClearDepthf;
-  PFNGLCLEARSTENCILPROC
-    glClearStencil;
-  PFNGLCOLORMASKPROC
-    glColorMask;
-  PFNGLCOMPILESHADERPROC
-    glCompileShader;
-  PFNGLCOMPRESSEDTEXIMAGE2DPROC
-    glCompressedTexImage2D;
-  PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC
-    glCompressedTexSubImage2D;
-  PFNGLCOPYTEXIMAGE2DPROC
-    glCopyTexImage2D;
-  PFNGLCOPYTEXSUBIMAGE2DPROC
-    glCopyTexSubImage2D;
-  PFNGLCREATEPROGRAMPROC
-    glCreateProgram;
-  PFNGLCREATESHADERPROC
-    glCreateShader;
-  PFNGLCULLFACEPROC
-    glCullFace;
-  PFNGLDELETEBUFFERSPROC
-    glDeleteBuffers;
-  PFNGLDELETEFRAMEBUFFERSPROC
-    glDeleteFramebuffers;
-  PFNGLDELETEPROGRAMPROC
-    glDeleteProgram;
-  PFNGLDELETERENDERBUFFERSPROC
-    glDeleteRenderbuffers;
-  PFNGLDELETESHADERPROC
-    glDeleteShader;
-  PFNGLDELETETEXTURESPROC
-    glDeleteTextures;
-  PFNGLDEPTHFUNCPROC
-    glDepthFunc;
-  PFNGLDEPTHMASKPROC
-    glDepthMask;
-  PFNGLDEPTHRANGEFPROC
-    glDepthRangef;
-  PFNGLDETACHSHADERPROC
-    glDetachShader;
-  PFNGLDISABLEPROC
-    glDisable;
-  PFNGLDISABLEVERTEXATTRIBARRAYPROC
-    glDisableVertexAttribArray;
-  PFNGLDRAWARRAYSPROC
-    glDrawArrays;
-  PFNGLDRAWELEMENTSPROC
-    glDrawElements;
-  PFNGLENABLEPROC
-    glEnable;
-  PFNGLENABLEVERTEXATTRIBARRAYPROC
-    glEnableVertexAttribArray;
-  PFNGLFINISHPROC
-    glFinish;
-  PFNGLFLUSHPROC
-    glFlush;
-  PFNGLFRAMEBUFFERRENDERBUFFERPROC
-    glFramebufferRenderbuffer;
-  PFNGLFRAMEBUFFERTEXTURE2DPROC
-    glFramebufferTexture2D;
-  PFNGLFRONTFACEPROC
-    glFrontFace;
-  PFNGLGENBUFFERSPROC
-    glGenBuffers;
-  PFNGLGENERATEMIPMAPPROC
-    glGenerateMipmap;
-  PFNGLGENFRAMEBUFFERSPROC
-    glGenFramebuffers;
-  PFNGLGENRENDERBUFFERSPROC
-    glGenRenderbuffers;
-  PFNGLGENTEXTURESPROC
-    glGenTextures;
-  PFNGLGETACTIVEATTRIBPROC
-    glGetActiveAttrib;
-  PFNGLGETACTIVEUNIFORMPROC
-    glGetActiveUniform;
-  PFNGLGETATTACHEDSHADERSPROC
-    glGetAttachedShaders;
-  PFNGLGETATTRIBLOCATIONPROC
-    glGetAttribLocation;
-  PFNGLGETBOOLEANVPROC
-    glGetBooleanv;
-  PFNGLGETBUFFERPARAMETERIVPROC
-    glGetBufferParameteriv;
-  PFNGLGETERRORPROC
-    glGetError;
-  PFNGLGETFLOATVPROC
-    glGetFloatv;
-  PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC
-    glGetFramebufferAttachmentParameteriv;
-  PFNGLGETINTEGERVPROC
-    glGetIntegerv;
-  PFNGLGETPROGRAMIVPROC
-    glGetProgramiv;
-  PFNGLGETPROGRAMINFOLOGPROC
-    glGetProgramInfoLog;
-  PFNGLGETRENDERBUFFERPARAMETERIVPROC
-    glGetRenderbufferParameteriv;
-  PFNGLGETSHADERIVPROC
-    glGetShaderiv;
-  PFNGLGETSHADERINFOLOGPROC
-    glGetShaderInfoLog;
-  PFNGLGETSHADERPRECISIONFORMATPROC
-    glGetShaderPrecisionFormat;
-  PFNGLGETSHADERSOURCEPROC
-    glGetShaderSource;
-  PFNGLGETSTRINGPROC
-    glGetString;
-  PFNGLGETTEXPARAMETERFVPROC
-    glGetTexParameterfv;
-  PFNGLGETTEXPARAMETERIVPROC
-    glGetTexParameteriv;
-  PFNGLGETUNIFORMFVPROC
-    glGetUniformfv;
-  PFNGLGETUNIFORMIVPROC
-    glGetUniformiv;
-  PFNGLGETUNIFORMLOCATIONPROC
-    glGetUniformLocation;
-  PFNGLGETVERTEXATTRIBFVPROC
-    glGetVertexAttribfv;
-  PFNGLGETVERTEXATTRIBIVPROC
-    glGetVertexAttribiv;
-  PFNGLGETVERTEXATTRIBPOINTERVPROC
-    glGetVertexAttribPointerv;
-  PFNGLHINTPROC
-    glHint;
-  PFNGLISBUFFERPROC
-    glIsBuffer;
-  PFNGLISENABLEDPROC
-    glIsEnabled;
-  PFNGLISFRAMEBUFFERPROC
-    glIsFramebuffer;
-  PFNGLISPROGRAMPROC
-    glIsProgram;
-  PFNGLISRENDERBUFFERPROC
-    glIsRenderbuffer;
-  PFNGLISSHADERPROC
-    glIsShader;
-  PFNGLISTEXTUREPROC
-    glIsTexture;
-  PFNGLLINEWIDTHPROC
-    glLineWidth;
-  PFNGLLINKPROGRAMPROC
-    glLinkProgram;
-  PFNGLPIXELSTOREIPROC
-    glPixelStorei;
-  PFNGLPOLYGONOFFSETPROC
-    glPolygonOffset;
-  PFNGLREADPIXELSPROC
-    glReadPixels;
+  // GL_ARB_ES2_compatibility
   PFNGLRELEASESHADERCOMPILERPROC
     glReleaseShaderCompiler;
-  PFNGLRENDERBUFFERSTORAGEPROC
-    glRenderbufferStorage;
-  PFNGLSAMPLECOVERAGEPROC
-    glSampleCoverage;
-  PFNGLSCISSORPROC
-    glScissor;
   PFNGLSHADERBINARYPROC
     glShaderBinary;
-  PFNGLSHADERSOURCEPROC
-    glShaderSource;
-  PFNGLSTENCILFUNCPROC
-    glStencilFunc;
-  PFNGLSTENCILFUNCSEPARATEPROC
-    glStencilFuncSeparate;
-  PFNGLSTENCILMASKPROC
-    glStencilMask;
-  PFNGLSTENCILMASKSEPARATEPROC
-    glStencilMaskSeparate;
-  PFNGLSTENCILOPPROC
-    glStencilOp;
-  PFNGLSTENCILOPSEPARATEPROC
-    glStencilOpSeparate;
-  PFNGLTEXIMAGE2DPROC
-    glTexImage2D;
-  PFNGLTEXPARAMETERFPROC
-    glTexParameterf;
-  PFNGLTEXPARAMETERFVPROC
-    glTexParameterfv;
-  PFNGLTEXPARAMETERIPROC
-    glTexParameteri;
-  PFNGLTEXPARAMETERIVPROC
-    glTexParameteriv;
-  PFNGLTEXSUBIMAGE2DPROC
-    glTexSubImage2D;
-  PFNGLUNIFORM1FPROC
-    glUniform1f;
-  PFNGLUNIFORM1FVPROC
-    glUniform1fv;
-  PFNGLUNIFORM1IPROC
-    glUniform1i;
-  PFNGLUNIFORM1IVPROC
-    glUniform1iv;
-  PFNGLUNIFORM2FPROC
-    glUniform2f;
-  PFNGLUNIFORM2FVPROC
-    glUniform2fv;
-  PFNGLUNIFORM2IPROC
-    glUniform2i;
-  PFNGLUNIFORM2IVPROC
-    glUniform2iv;
-  PFNGLUNIFORM3FPROC
-    glUniform3f;
-  PFNGLUNIFORM3FVPROC
-    glUniform3fv;
-  PFNGLUNIFORM3IPROC
-    glUniform3i;
-  PFNGLUNIFORM3IVPROC
-    glUniform3iv;
-  PFNGLUNIFORM4FPROC
-    glUniform4f;
-  PFNGLUNIFORM4FVPROC
-    glUniform4fv;
-  PFNGLUNIFORM4IPROC
-    glUniform4i;
-  PFNGLUNIFORM4IVPROC
-    glUniform4iv;
-  PFNGLUNIFORMMATRIX2FVPROC
-    glUniformMatrix2fv;
-  PFNGLUNIFORMMATRIX3FVPROC
-    glUniformMatrix3fv;
-  PFNGLUNIFORMMATRIX4FVPROC
-    glUniformMatrix4fv;
-  PFNGLUSEPROGRAMPROC
-    glUseProgram;
-  PFNGLVALIDATEPROGRAMPROC
-    glValidateProgram;
-  PFNGLVERTEXATTRIB1FPROC
-    glVertexAttrib1f;
-  PFNGLVERTEXATTRIB1FVPROC
-    glVertexAttrib1fv;
-  PFNGLVERTEXATTRIB2FPROC
-    glVertexAttrib2f;
-  PFNGLVERTEXATTRIB2FVPROC
-    glVertexAttrib2fv;
-  PFNGLVERTEXATTRIB3FPROC
-    glVertexAttrib3f;
-  PFNGLVERTEXATTRIB3FVPROC
-    glVertexAttrib3fv;
-  PFNGLVERTEXATTRIB4FPROC
-    glVertexAttrib4f;
-  PFNGLVERTEXATTRIB4FVPROC
-    glVertexAttrib4fv;
-  PFNGLVERTEXATTRIBPOINTERPROC
-    glVertexAttribPointer;
-  PFNGLVIEWPORTPROC
-    glViewport;
+  PFNGLGETSHADERPRECISIONFORMATPROC
+    glGetShaderPrecisionFormat;
+  PFNGLDEPTHRANGEFPROC
+    glDepthRangef;
+  PFNGLCLEARDEPTHFPROC
+    glClearDepthf;
 
-  // GL_ES_VERSION_3_0
-  PFNGLREADBUFFERPROC
-    glReadBuffer;
-  PFNGLDRAWRANGEELEMENTSPROC
-    glDrawRangeElements;
-  PFNGLTEXIMAGE3DPROC
-    glTexImage3D;
-  PFNGLTEXSUBIMAGE3DPROC
-    glTexSubImage3D;
-  PFNGLCOPYTEXSUBIMAGE3DPROC
-    glCopyTexSubImage3D;
-  PFNGLCOMPRESSEDTEXIMAGE3DPROC
-    glCompressedTexImage3D;
-  PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC
-    glCompressedTexSubImage3D;
-  PFNGLGENQUERIESPROC
-    glGenQueries;
-  PFNGLDELETEQUERIESPROC
-    glDeleteQueries;
-  PFNGLISQUERYPROC
-    glIsQuery;
-  PFNGLBEGINQUERYPROC
-    glBeginQuery;
-  PFNGLENDQUERYPROC
-    glEndQuery;
-  PFNGLGETQUERYIVPROC
-    glGetQueryiv;
-  PFNGLGETQUERYOBJECTUIVPROC
-    glGetQueryObjectuiv;
-  PFNGLUNMAPBUFFERPROC
-    glUnmapBuffer;
-  PFNGLGETBUFFERPOINTERVPROC
-    glGetBufferPointerv;
-  PFNGLDRAWBUFFERSPROC
-    glDrawBuffers;
-  PFNGLUNIFORMMATRIX2X3FVPROC
-    glUniformMatrix2x3fv;
-  PFNGLUNIFORMMATRIX3X2FVPROC
-    glUniformMatrix3x2fv;
-  PFNGLUNIFORMMATRIX2X4FVPROC
-    glUniformMatrix2x4fv;
-  PFNGLUNIFORMMATRIX4X2FVPROC
-    glUniformMatrix4x2fv;
-  PFNGLUNIFORMMATRIX3X4FVPROC
-    glUniformMatrix3x4fv;
-  PFNGLUNIFORMMATRIX4X3FVPROC
-    glUniformMatrix4x3fv;
+  // GL_ARB_ES3_1_compatibility
+  PFNGLMEMORYBARRIERBYREGIONPROC
+    glMemoryBarrierByRegion;
+
+  // GL_ARB_base_instance
+  PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC
+    glDrawArraysInstancedBaseInstance;
+  PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC
+    glDrawElementsInstancedBaseInstance;
+  PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC
+    glDrawElementsInstancedBaseVertexBaseInstance;
+
+  // GL_ARB_bindless_texture
+  PFNGLGETTEXTUREHANDLEARBPROC
+    glGetTextureHandleARB;
+  PFNGLGETTEXTURESAMPLERHANDLEARBPROC
+    glGetTextureSamplerHandleARB;
+  PFNGLMAKETEXTUREHANDLERESIDENTARBPROC
+    glMakeTextureHandleResidentARB;
+  PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC
+    glMakeTextureHandleNonResidentARB;
+  PFNGLGETIMAGEHANDLEARBPROC
+    glGetImageHandleARB;
+  PFNGLMAKEIMAGEHANDLERESIDENTARBPROC
+    glMakeImageHandleResidentARB;
+  PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC
+    glMakeImageHandleNonResidentARB;
+  PFNGLUNIFORMHANDLEUI64ARBPROC
+    glUniformHandleui64ARB;
+  PFNGLUNIFORMHANDLEUI64VARBPROC
+    glUniformHandleui64vARB;
+  PFNGLPROGRAMUNIFORMHANDLEUI64ARBPROC
+    glProgramUniformHandleui64ARB;
+  PFNGLPROGRAMUNIFORMHANDLEUI64VARBPROC
+    glProgramUniformHandleui64vARB;
+  PFNGLISTEXTUREHANDLERESIDENTARBPROC
+    glIsTextureHandleResidentARB;
+  PFNGLISIMAGEHANDLERESIDENTARBPROC
+    glIsImageHandleResidentARB;
+  PFNGLVERTEXATTRIBL1UI64ARBPROC
+    glVertexAttribL1ui64ARB;
+  PFNGLVERTEXATTRIBL1UI64VARBPROC
+    glVertexAttribL1ui64vARB;
+  PFNGLGETVERTEXATTRIBLUI64VARBPROC
+    glGetVertexAttribLui64vARB;
+
+  // GL_ARB_blend_func_extended
+  PFNGLBINDFRAGDATALOCATIONINDEXEDPROC
+    glBindFragDataLocationIndexed;
+  PFNGLGETFRAGDATAINDEXPROC
+    glGetFragDataIndex;
+
+  // GL_ARB_buffer_storage
+  PFNGLBUFFERSTORAGEPROC
+    glBufferStorage;
+
+  // GL_ARB_cl_event
+  PFNGLCREATESYNCFROMCLEVENTARBPROC
+    glCreateSyncFromCLeventARB;
+
+  // GL_ARB_clear_buffer_object
+  PFNGLCLEARBUFFERDATAPROC
+    glClearBufferData;
+  PFNGLCLEARBUFFERSUBDATAPROC
+    glClearBufferSubData;
+
+  // GL_ARB_clear_texture
+  PFNGLCLEARTEXIMAGEPROC
+    glClearTexImage;
+  PFNGLCLEARTEXSUBIMAGEPROC
+    glClearTexSubImage;
+
+  // GL_ARB_clip_control
+  PFNGLCLIPCONTROLPROC
+    glClipControl;
+
+  // GL_ARB_compute_shader
+  PFNGLDISPATCHCOMPUTEPROC
+    glDispatchCompute;
+  PFNGLDISPATCHCOMPUTEINDIRECTPROC
+    glDispatchComputeIndirect;
+
+  // GL_ARB_compute_variable_group_size
+  PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC
+    glDispatchComputeGroupSizeARB;
+
+  // GL_ARB_copy_buffer
+  PFNGLCOPYBUFFERSUBDATAPROC
+    glCopyBufferSubData;
+
+  // GL_ARB_copy_image
+  PFNGLCOPYIMAGESUBDATAPROC
+    glCopyImageSubData;
+
+  // GL_ARB_debug_output
+  PFNGLDEBUGMESSAGECONTROLARBPROC
+    glDebugMessageControlARB;
+  PFNGLDEBUGMESSAGEINSERTARBPROC
+    glDebugMessageInsertARB;
+  PFNGLDEBUGMESSAGECALLBACKARBPROC
+    glDebugMessageCallbackARB;
+  PFNGLGETDEBUGMESSAGELOGARBPROC
+    glGetDebugMessageLogARB;
+
+  // GL_ARB_direct_state_access
+  PFNGLCREATETRANSFORMFEEDBACKSPROC
+    glCreateTransformFeedbacks;
+  PFNGLTRANSFORMFEEDBACKBUFFERBASEPROC
+    glTransformFeedbackBufferBase;
+  PFNGLTRANSFORMFEEDBACKBUFFERRANGEPROC
+    glTransformFeedbackBufferRange;
+  PFNGLGETTRANSFORMFEEDBACKIVPROC
+    glGetTransformFeedbackiv;
+  PFNGLGETTRANSFORMFEEDBACKI_VPROC
+    glGetTransformFeedbacki_v;
+  PFNGLGETTRANSFORMFEEDBACKI64_VPROC
+    glGetTransformFeedbacki64_v;
+  PFNGLCREATEBUFFERSPROC
+    glCreateBuffers;
+  PFNGLNAMEDBUFFERSTORAGEPROC
+    glNamedBufferStorage;
+  PFNGLNAMEDBUFFERDATAPROC
+    glNamedBufferData;
+  PFNGLNAMEDBUFFERSUBDATAPROC
+    glNamedBufferSubData;
+  PFNGLCOPYNAMEDBUFFERSUBDATAPROC
+    glCopyNamedBufferSubData;
+  PFNGLCLEARNAMEDBUFFERDATAPROC
+    glClearNamedBufferData;
+  PFNGLCLEARNAMEDBUFFERSUBDATAPROC
+    glClearNamedBufferSubData;
+  PFNGLMAPNAMEDBUFFERPROC
+    glMapNamedBuffer;
+  PFNGLMAPNAMEDBUFFERRANGEPROC
+    glMapNamedBufferRange;
+  PFNGLUNMAPNAMEDBUFFERPROC
+    glUnmapNamedBuffer;
+  PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC
+    glFlushMappedNamedBufferRange;
+  PFNGLGETNAMEDBUFFERPARAMETERIVPROC
+    glGetNamedBufferParameteriv;
+  PFNGLGETNAMEDBUFFERPARAMETERI64VPROC
+    glGetNamedBufferParameteri64v;
+  PFNGLGETNAMEDBUFFERPOINTERVPROC
+    glGetNamedBufferPointerv;
+  PFNGLGETNAMEDBUFFERSUBDATAPROC
+    glGetNamedBufferSubData;
+  PFNGLCREATEFRAMEBUFFERSPROC
+    glCreateFramebuffers;
+  PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC
+    glNamedFramebufferRenderbuffer;
+  PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC
+    glNamedFramebufferParameteri;
+  PFNGLNAMEDFRAMEBUFFERTEXTUREPROC
+    glNamedFramebufferTexture;
+  PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC
+    glNamedFramebufferTextureLayer;
+  PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC
+    glNamedFramebufferDrawBuffer;
+  PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC
+    glNamedFramebufferDrawBuffers;
+  PFNGLNAMEDFRAMEBUFFERREADBUFFERPROC
+    glNamedFramebufferReadBuffer;
+  PFNGLINVALIDATENAMEDFRAMEBUFFERDATAPROC
+    glInvalidateNamedFramebufferData;
+  PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC
+    glInvalidateNamedFramebufferSubData;
+  PFNGLCLEARNAMEDFRAMEBUFFERIVPROC
+    glClearNamedFramebufferiv;
+  PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC
+    glClearNamedFramebufferuiv;
+  PFNGLCLEARNAMEDFRAMEBUFFERFVPROC
+    glClearNamedFramebufferfv;
+  PFNGLCLEARNAMEDFRAMEBUFFERFIPROC
+    glClearNamedFramebufferfi;
+  PFNGLBLITNAMEDFRAMEBUFFERPROC
+    glBlitNamedFramebuffer;
+  PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC
+    glCheckNamedFramebufferStatus;
+  PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC
+    glGetNamedFramebufferParameteriv;
+  PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC
+    glGetNamedFramebufferAttachmentParameteriv;
+  PFNGLCREATERENDERBUFFERSPROC
+    glCreateRenderbuffers;
+  PFNGLNAMEDRENDERBUFFERSTORAGEPROC
+    glNamedRenderbufferStorage;
+  PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC
+    glNamedRenderbufferStorageMultisample;
+  PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC
+    glGetNamedRenderbufferParameteriv;
+  PFNGLCREATETEXTURESPROC
+    glCreateTextures;
+  PFNGLTEXTUREBUFFERPROC
+    glTextureBuffer;
+  PFNGLTEXTUREBUFFERRANGEPROC
+    glTextureBufferRange;
+  PFNGLTEXTURESTORAGE1DPROC
+    glTextureStorage1D;
+  PFNGLTEXTURESTORAGE2DPROC
+    glTextureStorage2D;
+  PFNGLTEXTURESTORAGE3DPROC
+    glTextureStorage3D;
+  PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC
+    glTextureStorage2DMultisample;
+  PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC
+    glTextureStorage3DMultisample;
+  PFNGLTEXTURESUBIMAGE1DPROC
+    glTextureSubImage1D;
+  PFNGLTEXTURESUBIMAGE2DPROC
+    glTextureSubImage2D;
+  PFNGLTEXTURESUBIMAGE3DPROC
+    glTextureSubImage3D;
+  PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC
+    glCompressedTextureSubImage1D;
+  PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC
+    glCompressedTextureSubImage2D;
+  PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC
+    glCompressedTextureSubImage3D;
+  PFNGLCOPYTEXTURESUBIMAGE1DPROC
+    glCopyTextureSubImage1D;
+  PFNGLCOPYTEXTURESUBIMAGE2DPROC
+    glCopyTextureSubImage2D;
+  PFNGLCOPYTEXTURESUBIMAGE3DPROC
+    glCopyTextureSubImage3D;
+  PFNGLTEXTUREPARAMETERFPROC
+    glTextureParameterf;
+  PFNGLTEXTUREPARAMETERFVPROC
+    glTextureParameterfv;
+  PFNGLTEXTUREPARAMETERIPROC
+    glTextureParameteri;
+  PFNGLTEXTUREPARAMETERIIVPROC
+    glTextureParameterIiv;
+  PFNGLTEXTUREPARAMETERIUIVPROC
+    glTextureParameterIuiv;
+  PFNGLTEXTUREPARAMETERIVPROC
+    glTextureParameteriv;
+  PFNGLGENERATETEXTUREMIPMAPPROC
+    glGenerateTextureMipmap;
+  PFNGLBINDTEXTUREUNITPROC
+    glBindTextureUnit;
+  PFNGLGETTEXTUREIMAGEPROC
+    glGetTextureImage;
+  PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC
+    glGetCompressedTextureImage;
+  PFNGLGETTEXTURELEVELPARAMETERFVPROC
+    glGetTextureLevelParameterfv;
+  PFNGLGETTEXTURELEVELPARAMETERIVPROC
+    glGetTextureLevelParameteriv;
+  PFNGLGETTEXTUREPARAMETERFVPROC
+    glGetTextureParameterfv;
+  PFNGLGETTEXTUREPARAMETERIIVPROC
+    glGetTextureParameterIiv;
+  PFNGLGETTEXTUREPARAMETERIUIVPROC
+    glGetTextureParameterIuiv;
+  PFNGLGETTEXTUREPARAMETERIVPROC
+    glGetTextureParameteriv;
+  PFNGLCREATEVERTEXARRAYSPROC
+    glCreateVertexArrays;
+  PFNGLDISABLEVERTEXARRAYATTRIBPROC
+    glDisableVertexArrayAttrib;
+  PFNGLENABLEVERTEXARRAYATTRIBPROC
+    glEnableVertexArrayAttrib;
+  PFNGLVERTEXARRAYELEMENTBUFFERPROC
+    glVertexArrayElementBuffer;
+  PFNGLVERTEXARRAYVERTEXBUFFERPROC
+    glVertexArrayVertexBuffer;
+  PFNGLVERTEXARRAYVERTEXBUFFERSPROC
+    glVertexArrayVertexBuffers;
+  PFNGLVERTEXARRAYATTRIBBINDINGPROC
+    glVertexArrayAttribBinding;
+  PFNGLVERTEXARRAYATTRIBFORMATPROC
+    glVertexArrayAttribFormat;
+  PFNGLVERTEXARRAYATTRIBIFORMATPROC
+    glVertexArrayAttribIFormat;
+  PFNGLVERTEXARRAYATTRIBLFORMATPROC
+    glVertexArrayAttribLFormat;
+  PFNGLVERTEXARRAYBINDINGDIVISORPROC
+    glVertexArrayBindingDivisor;
+  PFNGLGETVERTEXARRAYIVPROC
+    glGetVertexArrayiv;
+  PFNGLGETVERTEXARRAYINDEXEDIVPROC
+    glGetVertexArrayIndexediv;
+  PFNGLGETVERTEXARRAYINDEXED64IVPROC
+    glGetVertexArrayIndexed64iv;
+  PFNGLCREATESAMPLERSPROC
+    glCreateSamplers;
+  PFNGLCREATEPROGRAMPIPELINESPROC
+    glCreateProgramPipelines;
+  PFNGLCREATEQUERIESPROC
+    glCreateQueries;
+  PFNGLGETQUERYBUFFEROBJECTI64VPROC
+    glGetQueryBufferObjecti64v;
+  PFNGLGETQUERYBUFFEROBJECTIVPROC
+    glGetQueryBufferObjectiv;
+  PFNGLGETQUERYBUFFEROBJECTUI64VPROC
+    glGetQueryBufferObjectui64v;
+  PFNGLGETQUERYBUFFEROBJECTUIVPROC
+    glGetQueryBufferObjectuiv;
+
+  // GL_ARB_draw_buffers_blend
+  PFNGLBLENDEQUATIONIARBPROC
+    glBlendEquationiARB;
+  PFNGLBLENDEQUATIONSEPARATEIARBPROC
+    glBlendEquationSeparateiARB;
+  PFNGLBLENDFUNCIARBPROC
+    glBlendFunciARB;
+  PFNGLBLENDFUNCSEPARATEIARBPROC
+    glBlendFuncSeparateiARB;
+
+  // GL_ARB_draw_elements_base_vertex
+  PFNGLDRAWELEMENTSBASEVERTEXPROC
+    glDrawElementsBaseVertex;
+  PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC
+    glDrawRangeElementsBaseVertex;
+  PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC
+    glDrawElementsInstancedBaseVertex;
+  PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC
+    glMultiDrawElementsBaseVertex;
+
+  // GL_ARB_draw_indirect
+  PFNGLDRAWARRAYSINDIRECTPROC
+    glDrawArraysIndirect;
+  PFNGLDRAWELEMENTSINDIRECTPROC
+    glDrawElementsIndirect;
+
+  // GL_ARB_framebuffer_no_attachments
+  PFNGLFRAMEBUFFERPARAMETERIPROC
+    glFramebufferParameteri;
+  PFNGLGETFRAMEBUFFERPARAMETERIVPROC
+    glGetFramebufferParameteriv;
+
+  // GL_ARB_framebuffer_object
+  PFNGLISRENDERBUFFERPROC
+    glIsRenderbuffer;
+  PFNGLBINDRENDERBUFFERPROC
+    glBindRenderbuffer;
+  PFNGLDELETERENDERBUFFERSPROC
+    glDeleteRenderbuffers;
+  PFNGLGENRENDERBUFFERSPROC
+    glGenRenderbuffers;
+  PFNGLRENDERBUFFERSTORAGEPROC
+    glRenderbufferStorage;
+  PFNGLGETRENDERBUFFERPARAMETERIVPROC
+    glGetRenderbufferParameteriv;
+  PFNGLISFRAMEBUFFERPROC
+    glIsFramebuffer;
+  PFNGLBINDFRAMEBUFFERPROC
+    glBindFramebuffer;
+  PFNGLDELETEFRAMEBUFFERSPROC
+    glDeleteFramebuffers;
+  PFNGLGENFRAMEBUFFERSPROC
+    glGenFramebuffers;
+  PFNGLCHECKFRAMEBUFFERSTATUSPROC
+    glCheckFramebufferStatus;
+  PFNGLFRAMEBUFFERTEXTURE1DPROC
+    glFramebufferTexture1D;
+  PFNGLFRAMEBUFFERTEXTURE2DPROC
+    glFramebufferTexture2D;
+  PFNGLFRAMEBUFFERTEXTURE3DPROC
+    glFramebufferTexture3D;
+  PFNGLFRAMEBUFFERRENDERBUFFERPROC
+    glFramebufferRenderbuffer;
+  PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC
+    glGetFramebufferAttachmentParameteriv;
+  PFNGLGENERATEMIPMAPPROC
+    glGenerateMipmap;
   PFNGLBLITFRAMEBUFFERPROC
     glBlitFramebuffer;
   PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC
     glRenderbufferStorageMultisample;
   PFNGLFRAMEBUFFERTEXTURELAYERPROC
     glFramebufferTextureLayer;
+
+  // GL_ARB_get_program_binary
+  PFNGLGETPROGRAMBINARYPROC
+    glGetProgramBinary;
+  PFNGLPROGRAMBINARYPROC
+    glProgramBinary;
+  PFNGLPROGRAMPARAMETERIPROC
+    glProgramParameteri;
+
+  // GL_ARB_get_texture_sub_image
+  PFNGLGETTEXTURESUBIMAGEPROC
+    glGetTextureSubImage;
+  PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC
+    glGetCompressedTextureSubImage;
+
+  // GL_ARB_gpu_shader_fp64
+  PFNGLUNIFORM1DPROC
+    glUniform1d;
+  PFNGLUNIFORM2DPROC
+    glUniform2d;
+  PFNGLUNIFORM3DPROC
+    glUniform3d;
+  PFNGLUNIFORM4DPROC
+    glUniform4d;
+  PFNGLUNIFORM1DVPROC
+    glUniform1dv;
+  PFNGLUNIFORM2DVPROC
+    glUniform2dv;
+  PFNGLUNIFORM3DVPROC
+    glUniform3dv;
+  PFNGLUNIFORM4DVPROC
+    glUniform4dv;
+  PFNGLUNIFORMMATRIX2DVPROC
+    glUniformMatrix2dv;
+  PFNGLUNIFORMMATRIX3DVPROC
+    glUniformMatrix3dv;
+  PFNGLUNIFORMMATRIX4DVPROC
+    glUniformMatrix4dv;
+  PFNGLUNIFORMMATRIX2X3DVPROC
+    glUniformMatrix2x3dv;
+  PFNGLUNIFORMMATRIX2X4DVPROC
+    glUniformMatrix2x4dv;
+  PFNGLUNIFORMMATRIX3X2DVPROC
+    glUniformMatrix3x2dv;
+  PFNGLUNIFORMMATRIX3X4DVPROC
+    glUniformMatrix3x4dv;
+  PFNGLUNIFORMMATRIX4X2DVPROC
+    glUniformMatrix4x2dv;
+  PFNGLUNIFORMMATRIX4X3DVPROC
+    glUniformMatrix4x3dv;
+  PFNGLGETUNIFORMDVPROC
+    glGetUniformdv;
+
+  // GL_ARB_imaging
+  PFNGLBLENDCOLORPROC
+    glBlendColor;
+  PFNGLBLENDEQUATIONPROC
+    glBlendEquation;
+  PFNGLCOLORTABLEPROC
+    glColorTable;
+  PFNGLCOLORTABLEPARAMETERFVPROC
+    glColorTableParameterfv;
+  PFNGLCOLORTABLEPARAMETERIVPROC
+    glColorTableParameteriv;
+  PFNGLCOPYCOLORTABLEPROC
+    glCopyColorTable;
+  PFNGLGETCOLORTABLEPROC
+    glGetColorTable;
+  PFNGLGETCOLORTABLEPARAMETERFVPROC
+    glGetColorTableParameterfv;
+  PFNGLGETCOLORTABLEPARAMETERIVPROC
+    glGetColorTableParameteriv;
+  PFNGLCOLORSUBTABLEPROC
+    glColorSubTable;
+  PFNGLCOPYCOLORSUBTABLEPROC
+    glCopyColorSubTable;
+  PFNGLCONVOLUTIONFILTER1DPROC
+    glConvolutionFilter1D;
+  PFNGLCONVOLUTIONFILTER2DPROC
+    glConvolutionFilter2D;
+  PFNGLCONVOLUTIONPARAMETERFPROC
+    glConvolutionParameterf;
+  PFNGLCONVOLUTIONPARAMETERFVPROC
+    glConvolutionParameterfv;
+  PFNGLCONVOLUTIONPARAMETERIPROC
+    glConvolutionParameteri;
+  PFNGLCONVOLUTIONPARAMETERIVPROC
+    glConvolutionParameteriv;
+  PFNGLCOPYCONVOLUTIONFILTER1DPROC
+    glCopyConvolutionFilter1D;
+  PFNGLCOPYCONVOLUTIONFILTER2DPROC
+    glCopyConvolutionFilter2D;
+  PFNGLGETCONVOLUTIONFILTERPROC
+    glGetConvolutionFilter;
+  PFNGLGETCONVOLUTIONPARAMETERFVPROC
+    glGetConvolutionParameterfv;
+  PFNGLGETCONVOLUTIONPARAMETERIVPROC
+    glGetConvolutionParameteriv;
+  PFNGLGETSEPARABLEFILTERPROC
+    glGetSeparableFilter;
+  PFNGLSEPARABLEFILTER2DPROC
+    glSeparableFilter2D;
+  PFNGLGETHISTOGRAMPROC
+    glGetHistogram;
+  PFNGLGETHISTOGRAMPARAMETERFVPROC
+    glGetHistogramParameterfv;
+  PFNGLGETHISTOGRAMPARAMETERIVPROC
+    glGetHistogramParameteriv;
+  PFNGLGETMINMAXPROC
+    glGetMinmax;
+  PFNGLGETMINMAXPARAMETERFVPROC
+    glGetMinmaxParameterfv;
+  PFNGLGETMINMAXPARAMETERIVPROC
+    glGetMinmaxParameteriv;
+  PFNGLHISTOGRAMPROC
+    glHistogram;
+  PFNGLMINMAXPROC
+    glMinmax;
+  PFNGLRESETHISTOGRAMPROC
+    glResetHistogram;
+  PFNGLRESETMINMAXPROC
+    glResetMinmax;
+
+  // GL_ARB_indirect_parameters
+  PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC
+    glMultiDrawArraysIndirectCountARB;
+  PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC
+    glMultiDrawElementsIndirectCountARB;
+
+  // GL_ARB_internalformat_query
+  PFNGLGETINTERNALFORMATIVPROC
+    glGetInternalformativ;
+
+  // GL_ARB_internalformat_query2
+  PFNGLGETINTERNALFORMATI64VPROC
+    glGetInternalformati64v;
+
+  // GL_ARB_invalidate_subdata
+  PFNGLINVALIDATETEXSUBIMAGEPROC
+    glInvalidateTexSubImage;
+  PFNGLINVALIDATETEXIMAGEPROC
+    glInvalidateTexImage;
+  PFNGLINVALIDATEBUFFERSUBDATAPROC
+    glInvalidateBufferSubData;
+  PFNGLINVALIDATEBUFFERDATAPROC
+    glInvalidateBufferData;
+  PFNGLINVALIDATEFRAMEBUFFERPROC
+    glInvalidateFramebuffer;
+  PFNGLINVALIDATESUBFRAMEBUFFERPROC
+    glInvalidateSubFramebuffer;
+
+  // GL_ARB_map_buffer_range
   PFNGLMAPBUFFERRANGEPROC
     glMapBufferRange;
   PFNGLFLUSHMAPPEDBUFFERRANGEPROC
     glFlushMappedBufferRange;
-  PFNGLBINDVERTEXARRAYPROC
-    glBindVertexArray;
-  PFNGLDELETEVERTEXARRAYSPROC
-    glDeleteVertexArrays;
-  PFNGLGENVERTEXARRAYSPROC
-    glGenVertexArrays;
-  PFNGLISVERTEXARRAYPROC
-    glIsVertexArray;
-  PFNGLGETINTEGERI_VPROC
-    glGetIntegeri_v;
-  PFNGLBEGINTRANSFORMFEEDBACKPROC
-    glBeginTransformFeedback;
-  PFNGLENDTRANSFORMFEEDBACKPROC
-    glEndTransformFeedback;
-  PFNGLBINDBUFFERRANGEPROC
-    glBindBufferRange;
-  PFNGLBINDBUFFERBASEPROC
-    glBindBufferBase;
-  PFNGLTRANSFORMFEEDBACKVARYINGSPROC
-    glTransformFeedbackVaryings;
-  PFNGLGETTRANSFORMFEEDBACKVARYINGPROC
-    glGetTransformFeedbackVarying;
-  PFNGLVERTEXATTRIBIPOINTERPROC
-    glVertexAttribIPointer;
-  PFNGLGETVERTEXATTRIBIIVPROC
-    glGetVertexAttribIiv;
-  PFNGLGETVERTEXATTRIBIUIVPROC
-    glGetVertexAttribIuiv;
-  PFNGLVERTEXATTRIBI4IPROC
-    glVertexAttribI4i;
-  PFNGLVERTEXATTRIBI4UIPROC
-    glVertexAttribI4ui;
-  PFNGLVERTEXATTRIBI4IVPROC
-    glVertexAttribI4iv;
-  PFNGLVERTEXATTRIBI4UIVPROC
-    glVertexAttribI4uiv;
-  PFNGLGETUNIFORMUIVPROC
-    glGetUniformuiv;
-  PFNGLGETFRAGDATALOCATIONPROC
-    glGetFragDataLocation;
-  PFNGLUNIFORM1UIPROC
-    glUniform1ui;
-  PFNGLUNIFORM2UIPROC
-    glUniform2ui;
-  PFNGLUNIFORM3UIPROC
-    glUniform3ui;
-  PFNGLUNIFORM4UIPROC
-    glUniform4ui;
-  PFNGLUNIFORM1UIVPROC
-    glUniform1uiv;
-  PFNGLUNIFORM2UIVPROC
-    glUniform2uiv;
-  PFNGLUNIFORM3UIVPROC
-    glUniform3uiv;
-  PFNGLUNIFORM4UIVPROC
-    glUniform4uiv;
-  PFNGLCLEARBUFFERIVPROC
-    glClearBufferiv;
-  PFNGLCLEARBUFFERUIVPROC
-    glClearBufferuiv;
-  PFNGLCLEARBUFFERFVPROC
-    glClearBufferfv;
-  PFNGLCLEARBUFFERFIPROC
-    glClearBufferfi;
-  PFNGLGETSTRINGIPROC
-    glGetStringi;
-  PFNGLCOPYBUFFERSUBDATAPROC
-    glCopyBufferSubData;
-  PFNGLGETUNIFORMINDICESPROC
-    glGetUniformIndices;
-  PFNGLGETACTIVEUNIFORMSIVPROC
-    glGetActiveUniformsiv;
-  PFNGLGETUNIFORMBLOCKINDEXPROC
-    glGetUniformBlockIndex;
-  PFNGLGETACTIVEUNIFORMBLOCKIVPROC
-    glGetActiveUniformBlockiv;
-  PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC
-    glGetActiveUniformBlockName;
-  PFNGLUNIFORMBLOCKBINDINGPROC
-    glUniformBlockBinding;
-  PFNGLDRAWARRAYSINSTANCEDPROC
-    glDrawArraysInstanced;
-  PFNGLDRAWELEMENTSINSTANCEDPROC
-    glDrawElementsInstanced;
-  PFNGLFENCESYNCPROC
-    glFenceSync;
-  PFNGLISSYNCPROC
-    glIsSync;
-  PFNGLDELETESYNCPROC
-    glDeleteSync;
-  PFNGLCLIENTWAITSYNCPROC
-    glClientWaitSync;
-  PFNGLWAITSYNCPROC
-    glWaitSync;
-  PFNGLGETINTEGER64VPROC
-    glGetInteger64v;
-  PFNGLGETSYNCIVPROC
-    glGetSynciv;
-  PFNGLGETINTEGER64I_VPROC
-    glGetInteger64i_v;
-  PFNGLGETBUFFERPARAMETERI64VPROC
-    glGetBufferParameteri64v;
+
+  // GL_ARB_multi_bind
+  PFNGLBINDBUFFERSBASEPROC
+    glBindBuffersBase;
+  PFNGLBINDBUFFERSRANGEPROC
+    glBindBuffersRange;
+  PFNGLBINDTEXTURESPROC
+    glBindTextures;
+  PFNGLBINDSAMPLERSPROC
+    glBindSamplers;
+  PFNGLBINDIMAGETEXTURESPROC
+    glBindImageTextures;
+  PFNGLBINDVERTEXBUFFERSPROC
+    glBindVertexBuffers;
+
+  // GL_ARB_multi_draw_indirect
+  PFNGLMULTIDRAWARRAYSINDIRECTPROC
+    glMultiDrawArraysIndirect;
+  PFNGLMULTIDRAWELEMENTSINDIRECTPROC
+    glMultiDrawElementsIndirect;
+
+  // GL_ARB_program_interface_query
+  PFNGLGETPROGRAMINTERFACEIVPROC
+    glGetProgramInterfaceiv;
+  PFNGLGETPROGRAMRESOURCEINDEXPROC
+    glGetProgramResourceIndex;
+  PFNGLGETPROGRAMRESOURCENAMEPROC
+    glGetProgramResourceName;
+  PFNGLGETPROGRAMRESOURCEIVPROC
+    glGetProgramResourceiv;
+  PFNGLGETPROGRAMRESOURCELOCATIONPROC
+    glGetProgramResourceLocation;
+  PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC
+    glGetProgramResourceLocationIndex;
+
+  // GL_ARB_provoking_vertex
+  PFNGLPROVOKINGVERTEXPROC
+    glProvokingVertex;
+
+  // GL_ARB_robustness
+  PFNGLGETGRAPHICSRESETSTATUSARBPROC
+    glGetGraphicsResetStatusARB;
+  PFNGLGETNTEXIMAGEARBPROC
+    glGetnTexImageARB;
+  PFNGLREADNPIXELSARBPROC
+    glReadnPixelsARB;
+  PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC
+    glGetnCompressedTexImageARB;
+  PFNGLGETNUNIFORMFVARBPROC
+    glGetnUniformfvARB;
+  PFNGLGETNUNIFORMIVARBPROC
+    glGetnUniformivARB;
+  PFNGLGETNUNIFORMUIVARBPROC
+    glGetnUniformuivARB;
+  PFNGLGETNUNIFORMDVARBPROC
+    glGetnUniformdvARB;
+  PFNGLGETNMAPDVARBPROC
+    glGetnMapdvARB;
+  PFNGLGETNMAPFVARBPROC
+    glGetnMapfvARB;
+  PFNGLGETNMAPIVARBPROC
+    glGetnMapivARB;
+  PFNGLGETNPIXELMAPFVARBPROC
+    glGetnPixelMapfvARB;
+  PFNGLGETNPIXELMAPUIVARBPROC
+    glGetnPixelMapuivARB;
+  PFNGLGETNPIXELMAPUSVARBPROC
+    glGetnPixelMapusvARB;
+  PFNGLGETNPOLYGONSTIPPLEARBPROC
+    glGetnPolygonStippleARB;
+  PFNGLGETNCOLORTABLEARBPROC
+    glGetnColorTableARB;
+  PFNGLGETNCONVOLUTIONFILTERARBPROC
+    glGetnConvolutionFilterARB;
+  PFNGLGETNSEPARABLEFILTERARBPROC
+    glGetnSeparableFilterARB;
+  PFNGLGETNHISTOGRAMARBPROC
+    glGetnHistogramARB;
+  PFNGLGETNMINMAXARBPROC
+    glGetnMinmaxARB;
+
+  // GL_ARB_sample_shading
+  PFNGLMINSAMPLESHADINGARBPROC
+    glMinSampleShadingARB;
+
+  // GL_ARB_sampler_objects
   PFNGLGENSAMPLERSPROC
     glGenSamplers;
   PFNGLDELETESAMPLERSPROC
@@ -1019,64 +784,20 @@ public:
     glSamplerParameterf;
   PFNGLSAMPLERPARAMETERFVPROC
     glSamplerParameterfv;
+  PFNGLSAMPLERPARAMETERIIVPROC
+    glSamplerParameterIiv;
+  PFNGLSAMPLERPARAMETERIUIVPROC
+    glSamplerParameterIuiv;
   PFNGLGETSAMPLERPARAMETERIVPROC
     glGetSamplerParameteriv;
+  PFNGLGETSAMPLERPARAMETERIIVPROC
+    glGetSamplerParameterIiv;
   PFNGLGETSAMPLERPARAMETERFVPROC
     glGetSamplerParameterfv;
-  PFNGLVERTEXATTRIBDIVISORPROC
-    glVertexAttribDivisor;
-  PFNGLBINDTRANSFORMFEEDBACKPROC
-    glBindTransformFeedback;
-  PFNGLDELETETRANSFORMFEEDBACKSPROC
-    glDeleteTransformFeedbacks;
-  PFNGLGENTRANSFORMFEEDBACKSPROC
-    glGenTransformFeedbacks;
-  PFNGLISTRANSFORMFEEDBACKPROC
-    glIsTransformFeedback;
-  PFNGLPAUSETRANSFORMFEEDBACKPROC
-    glPauseTransformFeedback;
-  PFNGLRESUMETRANSFORMFEEDBACKPROC
-    glResumeTransformFeedback;
-  PFNGLGETPROGRAMBINARYPROC
-    glGetProgramBinary;
-  PFNGLPROGRAMBINARYPROC
-    glProgramBinary;
-  PFNGLPROGRAMPARAMETERIPROC
-    glProgramParameteri;
-  PFNGLINVALIDATEFRAMEBUFFERPROC
-    glInvalidateFramebuffer;
-  PFNGLINVALIDATESUBFRAMEBUFFERPROC
-    glInvalidateSubFramebuffer;
-  PFNGLTEXSTORAGE2DPROC
-    glTexStorage2D;
-  PFNGLTEXSTORAGE3DPROC
-    glTexStorage3D;
-  PFNGLGETINTERNALFORMATIVPROC
-    glGetInternalformativ;
+  PFNGLGETSAMPLERPARAMETERIUIVPROC
+    glGetSamplerParameterIuiv;
 
-  // GL_ES_VERSION_3_1
-  PFNGLDISPATCHCOMPUTEPROC
-    glDispatchCompute;
-  PFNGLDISPATCHCOMPUTEINDIRECTPROC
-    glDispatchComputeIndirect;
-  PFNGLDRAWARRAYSINDIRECTPROC
-    glDrawArraysIndirect;
-  PFNGLDRAWELEMENTSINDIRECTPROC
-    glDrawElementsIndirect;
-  PFNGLFRAMEBUFFERPARAMETERIPROC
-    glFramebufferParameteri;
-  PFNGLGETFRAMEBUFFERPARAMETERIVPROC
-    glGetFramebufferParameteriv;
-  PFNGLGETPROGRAMINTERFACEIVPROC
-    glGetProgramInterfaceiv;
-  PFNGLGETPROGRAMRESOURCEINDEXPROC
-    glGetProgramResourceIndex;
-  PFNGLGETPROGRAMRESOURCENAMEPROC
-    glGetProgramResourceName;
-  PFNGLGETPROGRAMRESOURCEIVPROC
-    glGetProgramResourceiv;
-  PFNGLGETPROGRAMRESOURCELOCATIONPROC
-    glGetProgramResourceLocation;
+  // GL_ARB_separate_shader_objects
   PFNGLUSEPROGRAMSTAGESPROC
     glUseProgramStages;
   PFNGLACTIVESHADERPROGRAMPROC
@@ -1095,58 +816,80 @@ public:
     glGetProgramPipelineiv;
   PFNGLPROGRAMUNIFORM1IPROC
     glProgramUniform1i;
-  PFNGLPROGRAMUNIFORM2IPROC
-    glProgramUniform2i;
-  PFNGLPROGRAMUNIFORM3IPROC
-    glProgramUniform3i;
-  PFNGLPROGRAMUNIFORM4IPROC
-    glProgramUniform4i;
-  PFNGLPROGRAMUNIFORM1UIPROC
-    glProgramUniform1ui;
-  PFNGLPROGRAMUNIFORM2UIPROC
-    glProgramUniform2ui;
-  PFNGLPROGRAMUNIFORM3UIPROC
-    glProgramUniform3ui;
-  PFNGLPROGRAMUNIFORM4UIPROC
-    glProgramUniform4ui;
-  PFNGLPROGRAMUNIFORM1FPROC
-    glProgramUniform1f;
-  PFNGLPROGRAMUNIFORM2FPROC
-    glProgramUniform2f;
-  PFNGLPROGRAMUNIFORM3FPROC
-    glProgramUniform3f;
-  PFNGLPROGRAMUNIFORM4FPROC
-    glProgramUniform4f;
   PFNGLPROGRAMUNIFORM1IVPROC
     glProgramUniform1iv;
-  PFNGLPROGRAMUNIFORM2IVPROC
-    glProgramUniform2iv;
-  PFNGLPROGRAMUNIFORM3IVPROC
-    glProgramUniform3iv;
-  PFNGLPROGRAMUNIFORM4IVPROC
-    glProgramUniform4iv;
-  PFNGLPROGRAMUNIFORM1UIVPROC
-    glProgramUniform1uiv;
-  PFNGLPROGRAMUNIFORM2UIVPROC
-    glProgramUniform2uiv;
-  PFNGLPROGRAMUNIFORM3UIVPROC
-    glProgramUniform3uiv;
-  PFNGLPROGRAMUNIFORM4UIVPROC
-    glProgramUniform4uiv;
+  PFNGLPROGRAMUNIFORM1FPROC
+    glProgramUniform1f;
   PFNGLPROGRAMUNIFORM1FVPROC
     glProgramUniform1fv;
+  PFNGLPROGRAMUNIFORM1DPROC
+    glProgramUniform1d;
+  PFNGLPROGRAMUNIFORM1DVPROC
+    glProgramUniform1dv;
+  PFNGLPROGRAMUNIFORM1UIPROC
+    glProgramUniform1ui;
+  PFNGLPROGRAMUNIFORM1UIVPROC
+    glProgramUniform1uiv;
+  PFNGLPROGRAMUNIFORM2IPROC
+    glProgramUniform2i;
+  PFNGLPROGRAMUNIFORM2IVPROC
+    glProgramUniform2iv;
+  PFNGLPROGRAMUNIFORM2FPROC
+    glProgramUniform2f;
   PFNGLPROGRAMUNIFORM2FVPROC
     glProgramUniform2fv;
+  PFNGLPROGRAMUNIFORM2DPROC
+    glProgramUniform2d;
+  PFNGLPROGRAMUNIFORM2DVPROC
+    glProgramUniform2dv;
+  PFNGLPROGRAMUNIFORM2UIPROC
+    glProgramUniform2ui;
+  PFNGLPROGRAMUNIFORM2UIVPROC
+    glProgramUniform2uiv;
+  PFNGLPROGRAMUNIFORM3IPROC
+    glProgramUniform3i;
+  PFNGLPROGRAMUNIFORM3IVPROC
+    glProgramUniform3iv;
+  PFNGLPROGRAMUNIFORM3FPROC
+    glProgramUniform3f;
   PFNGLPROGRAMUNIFORM3FVPROC
     glProgramUniform3fv;
+  PFNGLPROGRAMUNIFORM3DPROC
+    glProgramUniform3d;
+  PFNGLPROGRAMUNIFORM3DVPROC
+    glProgramUniform3dv;
+  PFNGLPROGRAMUNIFORM3UIPROC
+    glProgramUniform3ui;
+  PFNGLPROGRAMUNIFORM3UIVPROC
+    glProgramUniform3uiv;
+  PFNGLPROGRAMUNIFORM4IPROC
+    glProgramUniform4i;
+  PFNGLPROGRAMUNIFORM4IVPROC
+    glProgramUniform4iv;
+  PFNGLPROGRAMUNIFORM4FPROC
+    glProgramUniform4f;
   PFNGLPROGRAMUNIFORM4FVPROC
     glProgramUniform4fv;
+  PFNGLPROGRAMUNIFORM4DPROC
+    glProgramUniform4d;
+  PFNGLPROGRAMUNIFORM4DVPROC
+    glProgramUniform4dv;
+  PFNGLPROGRAMUNIFORM4UIPROC
+    glProgramUniform4ui;
+  PFNGLPROGRAMUNIFORM4UIVPROC
+    glProgramUniform4uiv;
   PFNGLPROGRAMUNIFORMMATRIX2FVPROC
     glProgramUniformMatrix2fv;
   PFNGLPROGRAMUNIFORMMATRIX3FVPROC
     glProgramUniformMatrix3fv;
   PFNGLPROGRAMUNIFORMMATRIX4FVPROC
     glProgramUniformMatrix4fv;
+  PFNGLPROGRAMUNIFORMMATRIX2DVPROC
+    glProgramUniformMatrix2dv;
+  PFNGLPROGRAMUNIFORMMATRIX3DVPROC
+    glProgramUniformMatrix3dv;
+  PFNGLPROGRAMUNIFORMMATRIX4DVPROC
+    glProgramUniformMatrix4dv;
   PFNGLPROGRAMUNIFORMMATRIX2X3FVPROC
     glProgramUniformMatrix2x3fv;
   PFNGLPROGRAMUNIFORMMATRIX3X2FVPROC
@@ -1159,476 +902,346 @@ public:
     glProgramUniformMatrix3x4fv;
   PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC
     glProgramUniformMatrix4x3fv;
+  PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC
+    glProgramUniformMatrix2x3dv;
+  PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC
+    glProgramUniformMatrix3x2dv;
+  PFNGLPROGRAMUNIFORMMATRIX2X4DVPROC
+    glProgramUniformMatrix2x4dv;
+  PFNGLPROGRAMUNIFORMMATRIX4X2DVPROC
+    glProgramUniformMatrix4x2dv;
+  PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC
+    glProgramUniformMatrix3x4dv;
+  PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC
+    glProgramUniformMatrix4x3dv;
   PFNGLVALIDATEPROGRAMPIPELINEPROC
     glValidateProgramPipeline;
   PFNGLGETPROGRAMPIPELINEINFOLOGPROC
     glGetProgramPipelineInfoLog;
+
+  // GL_ARB_shader_atomic_counters
+  PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC
+    glGetActiveAtomicCounterBufferiv;
+
+  // GL_ARB_shader_image_load_store
   PFNGLBINDIMAGETEXTUREPROC
     glBindImageTexture;
-  PFNGLGETBOOLEANI_VPROC
-    glGetBooleani_v;
   PFNGLMEMORYBARRIERPROC
     glMemoryBarrier;
-  PFNGLMEMORYBARRIERBYREGIONPROC
-    glMemoryBarrierByRegion;
-  PFNGLTEXSTORAGE2DMULTISAMPLEPROC
-    glTexStorage2DMultisample;
+
+  // GL_ARB_shader_storage_buffer_object
+  PFNGLSHADERSTORAGEBLOCKBINDINGPROC
+    glShaderStorageBlockBinding;
+
+  // GL_ARB_shader_subroutine
+  PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC
+    glGetSubroutineUniformLocation;
+  PFNGLGETSUBROUTINEINDEXPROC
+    glGetSubroutineIndex;
+  PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC
+    glGetActiveSubroutineUniformiv;
+  PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC
+    glGetActiveSubroutineUniformName;
+  PFNGLGETACTIVESUBROUTINENAMEPROC
+    glGetActiveSubroutineName;
+  PFNGLUNIFORMSUBROUTINESUIVPROC
+    glUniformSubroutinesuiv;
+  PFNGLGETUNIFORMSUBROUTINEUIVPROC
+    glGetUniformSubroutineuiv;
+  PFNGLGETPROGRAMSTAGEIVPROC
+    glGetProgramStageiv;
+
+  // GL_ARB_shading_language_include
+  PFNGLNAMEDSTRINGARBPROC
+    glNamedStringARB;
+  PFNGLDELETENAMEDSTRINGARBPROC
+    glDeleteNamedStringARB;
+  PFNGLCOMPILESHADERINCLUDEARBPROC
+    glCompileShaderIncludeARB;
+  PFNGLISNAMEDSTRINGARBPROC
+    glIsNamedStringARB;
+  PFNGLGETNAMEDSTRINGARBPROC
+    glGetNamedStringARB;
+  PFNGLGETNAMEDSTRINGIVARBPROC
+    glGetNamedStringivARB;
+
+  // GL_ARB_sparse_buffer
+  PFNGLBUFFERPAGECOMMITMENTARBPROC
+    glBufferPageCommitmentARB;
+  PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC
+    glNamedBufferPageCommitmentEXT;
+  PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC
+    glNamedBufferPageCommitmentARB;
+
+  // GL_ARB_sparse_texture
+  PFNGLTEXPAGECOMMITMENTARBPROC
+    glTexPageCommitmentARB;
+
+  // GL_ARB_sync
+  PFNGLFENCESYNCPROC
+    glFenceSync;
+  PFNGLISSYNCPROC
+    glIsSync;
+  PFNGLDELETESYNCPROC
+    glDeleteSync;
+  PFNGLCLIENTWAITSYNCPROC
+    glClientWaitSync;
+  PFNGLWAITSYNCPROC
+    glWaitSync;
+  PFNGLGETINTEGER64VPROC
+    glGetInteger64v;
+  PFNGLGETSYNCIVPROC
+    glGetSynciv;
+
+  // GL_ARB_tessellation_shader
+  PFNGLPATCHPARAMETERIPROC
+    glPatchParameteri;
+  PFNGLPATCHPARAMETERFVPROC
+    glPatchParameterfv;
+
+  // GL_ARB_texture_barrier
+  PFNGLTEXTUREBARRIERPROC
+    glTextureBarrier;
+
+  // GL_ARB_texture_buffer_range
+  PFNGLTEXBUFFERRANGEPROC
+    glTexBufferRange;
+
+  // GL_ARB_texture_multisample
+  PFNGLTEXIMAGE2DMULTISAMPLEPROC
+    glTexImage2DMultisample;
+  PFNGLTEXIMAGE3DMULTISAMPLEPROC
+    glTexImage3DMultisample;
   PFNGLGETMULTISAMPLEFVPROC
     glGetMultisamplefv;
   PFNGLSAMPLEMASKIPROC
     glSampleMaski;
-  PFNGLGETTEXLEVELPARAMETERIVPROC
-    glGetTexLevelParameteriv;
-  PFNGLGETTEXLEVELPARAMETERFVPROC
-    glGetTexLevelParameterfv;
+
+  // GL_ARB_texture_storage
+  PFNGLTEXSTORAGE1DPROC
+    glTexStorage1D;
+  PFNGLTEXSTORAGE2DPROC
+    glTexStorage2D;
+  PFNGLTEXSTORAGE3DPROC
+    glTexStorage3D;
+
+  // GL_ARB_texture_storage_multisample
+  PFNGLTEXSTORAGE2DMULTISAMPLEPROC
+    glTexStorage2DMultisample;
+  PFNGLTEXSTORAGE3DMULTISAMPLEPROC
+    glTexStorage3DMultisample;
+
+  // GL_ARB_texture_view
+  PFNGLTEXTUREVIEWPROC
+    glTextureView;
+
+  // GL_ARB_timer_query
+  PFNGLQUERYCOUNTERPROC
+    glQueryCounter;
+  PFNGLGETQUERYOBJECTI64VPROC
+    glGetQueryObjecti64v;
+  PFNGLGETQUERYOBJECTUI64VPROC
+    glGetQueryObjectui64v;
+
+  // GL_ARB_transform_feedback2
+  PFNGLBINDTRANSFORMFEEDBACKPROC
+    glBindTransformFeedback;
+  PFNGLDELETETRANSFORMFEEDBACKSPROC
+    glDeleteTransformFeedbacks;
+  PFNGLGENTRANSFORMFEEDBACKSPROC
+    glGenTransformFeedbacks;
+  PFNGLISTRANSFORMFEEDBACKPROC
+    glIsTransformFeedback;
+  PFNGLPAUSETRANSFORMFEEDBACKPROC
+    glPauseTransformFeedback;
+  PFNGLRESUMETRANSFORMFEEDBACKPROC
+    glResumeTransformFeedback;
+  PFNGLDRAWTRANSFORMFEEDBACKPROC
+    glDrawTransformFeedback;
+
+  // GL_ARB_transform_feedback3
+  PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC
+    glDrawTransformFeedbackStream;
+  PFNGLBEGINQUERYINDEXEDPROC
+    glBeginQueryIndexed;
+  PFNGLENDQUERYINDEXEDPROC
+    glEndQueryIndexed;
+  PFNGLGETQUERYINDEXEDIVPROC
+    glGetQueryIndexediv;
+
+  // GL_ARB_transform_feedback_instanced
+  PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC
+    glDrawTransformFeedbackInstanced;
+  PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC
+    glDrawTransformFeedbackStreamInstanced;
+
+  // GL_ARB_uniform_buffer_object
+  PFNGLGETUNIFORMINDICESPROC
+    glGetUniformIndices;
+  PFNGLGETACTIVEUNIFORMSIVPROC
+    glGetActiveUniformsiv;
+  PFNGLGETACTIVEUNIFORMNAMEPROC
+    glGetActiveUniformName;
+  PFNGLGETUNIFORMBLOCKINDEXPROC
+    glGetUniformBlockIndex;
+  PFNGLGETACTIVEUNIFORMBLOCKIVPROC
+    glGetActiveUniformBlockiv;
+  PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC
+    glGetActiveUniformBlockName;
+  PFNGLUNIFORMBLOCKBINDINGPROC
+    glUniformBlockBinding;
+  PFNGLBINDBUFFERRANGEPROC
+    glBindBufferRange;
+  PFNGLBINDBUFFERBASEPROC
+    glBindBufferBase;
+  PFNGLGETINTEGERI_VPROC
+    glGetIntegeri_v;
+
+  // GL_ARB_vertex_array_object
+  PFNGLBINDVERTEXARRAYPROC
+    glBindVertexArray;
+  PFNGLDELETEVERTEXARRAYSPROC
+    glDeleteVertexArrays;
+  PFNGLGENVERTEXARRAYSPROC
+    glGenVertexArrays;
+  PFNGLISVERTEXARRAYPROC
+    glIsVertexArray;
+
+  // GL_ARB_vertex_attrib_64bit
+  PFNGLVERTEXATTRIBL1DPROC
+    glVertexAttribL1d;
+  PFNGLVERTEXATTRIBL2DPROC
+    glVertexAttribL2d;
+  PFNGLVERTEXATTRIBL3DPROC
+    glVertexAttribL3d;
+  PFNGLVERTEXATTRIBL4DPROC
+    glVertexAttribL4d;
+  PFNGLVERTEXATTRIBL1DVPROC
+    glVertexAttribL1dv;
+  PFNGLVERTEXATTRIBL2DVPROC
+    glVertexAttribL2dv;
+  PFNGLVERTEXATTRIBL3DVPROC
+    glVertexAttribL3dv;
+  PFNGLVERTEXATTRIBL4DVPROC
+    glVertexAttribL4dv;
+  PFNGLVERTEXATTRIBLPOINTERPROC
+    glVertexAttribLPointer;
+  PFNGLGETVERTEXATTRIBLDVPROC
+    glGetVertexAttribLdv;
+
+  // GL_ARB_vertex_attrib_binding
   PFNGLBINDVERTEXBUFFERPROC
     glBindVertexBuffer;
   PFNGLVERTEXATTRIBFORMATPROC
     glVertexAttribFormat;
   PFNGLVERTEXATTRIBIFORMATPROC
     glVertexAttribIFormat;
+  PFNGLVERTEXATTRIBLFORMATPROC
+    glVertexAttribLFormat;
   PFNGLVERTEXATTRIBBINDINGPROC
     glVertexAttribBinding;
   PFNGLVERTEXBINDINGDIVISORPROC
     glVertexBindingDivisor;
 
-  // GL_AMD_performance_monitor
-  PFNGLGETPERFMONITORGROUPSAMDPROC
-    glGetPerfMonitorGroupsAMD;
-  PFNGLGETPERFMONITORCOUNTERSAMDPROC
-    glGetPerfMonitorCountersAMD;
-  PFNGLGETPERFMONITORGROUPSTRINGAMDPROC
-    glGetPerfMonitorGroupStringAMD;
-  PFNGLGETPERFMONITORCOUNTERSTRINGAMDPROC
-    glGetPerfMonitorCounterStringAMD;
-  PFNGLGETPERFMONITORCOUNTERINFOAMDPROC
-    glGetPerfMonitorCounterInfoAMD;
-  PFNGLGENPERFMONITORSAMDPROC
-    glGenPerfMonitorsAMD;
-  PFNGLDELETEPERFMONITORSAMDPROC
-    glDeletePerfMonitorsAMD;
-  PFNGLSELECTPERFMONITORCOUNTERSAMDPROC
-    glSelectPerfMonitorCountersAMD;
-  PFNGLBEGINPERFMONITORAMDPROC
-    glBeginPerfMonitorAMD;
-  PFNGLENDPERFMONITORAMDPROC
-    glEndPerfMonitorAMD;
-  PFNGLGETPERFMONITORCOUNTERDATAAMDPROC
-    glGetPerfMonitorCounterDataAMD;
+  // GL_ARB_vertex_type_2_10_10_10_rev
+  PFNGLVERTEXATTRIBP1UIPROC
+    glVertexAttribP1ui;
+  PFNGLVERTEXATTRIBP1UIVPROC
+    glVertexAttribP1uiv;
+  PFNGLVERTEXATTRIBP2UIPROC
+    glVertexAttribP2ui;
+  PFNGLVERTEXATTRIBP2UIVPROC
+    glVertexAttribP2uiv;
+  PFNGLVERTEXATTRIBP3UIPROC
+    glVertexAttribP3ui;
+  PFNGLVERTEXATTRIBP3UIVPROC
+    glVertexAttribP3uiv;
+  PFNGLVERTEXATTRIBP4UIPROC
+    glVertexAttribP4ui;
+  PFNGLVERTEXATTRIBP4UIVPROC
+    glVertexAttribP4uiv;
+  PFNGLVERTEXP2UIPROC
+    glVertexP2ui;
+  PFNGLVERTEXP2UIVPROC
+    glVertexP2uiv;
+  PFNGLVERTEXP3UIPROC
+    glVertexP3ui;
+  PFNGLVERTEXP3UIVPROC
+    glVertexP3uiv;
+  PFNGLVERTEXP4UIPROC
+    glVertexP4ui;
+  PFNGLVERTEXP4UIVPROC
+    glVertexP4uiv;
+  PFNGLTEXCOORDP1UIPROC
+    glTexCoordP1ui;
+  PFNGLTEXCOORDP1UIVPROC
+    glTexCoordP1uiv;
+  PFNGLTEXCOORDP2UIPROC
+    glTexCoordP2ui;
+  PFNGLTEXCOORDP2UIVPROC
+    glTexCoordP2uiv;
+  PFNGLTEXCOORDP3UIPROC
+    glTexCoordP3ui;
+  PFNGLTEXCOORDP3UIVPROC
+    glTexCoordP3uiv;
+  PFNGLTEXCOORDP4UIPROC
+    glTexCoordP4ui;
+  PFNGLTEXCOORDP4UIVPROC
+    glTexCoordP4uiv;
+  PFNGLMULTITEXCOORDP1UIPROC
+    glMultiTexCoordP1ui;
+  PFNGLMULTITEXCOORDP1UIVPROC
+    glMultiTexCoordP1uiv;
+  PFNGLMULTITEXCOORDP2UIPROC
+    glMultiTexCoordP2ui;
+  PFNGLMULTITEXCOORDP2UIVPROC
+    glMultiTexCoordP2uiv;
+  PFNGLMULTITEXCOORDP3UIPROC
+    glMultiTexCoordP3ui;
+  PFNGLMULTITEXCOORDP3UIVPROC
+    glMultiTexCoordP3uiv;
+  PFNGLMULTITEXCOORDP4UIPROC
+    glMultiTexCoordP4ui;
+  PFNGLMULTITEXCOORDP4UIVPROC
+    glMultiTexCoordP4uiv;
+  PFNGLNORMALP3UIPROC
+    glNormalP3ui;
+  PFNGLNORMALP3UIVPROC
+    glNormalP3uiv;
+  PFNGLCOLORP3UIPROC
+    glColorP3ui;
+  PFNGLCOLORP3UIVPROC
+    glColorP3uiv;
+  PFNGLCOLORP4UIPROC
+    glColorP4ui;
+  PFNGLCOLORP4UIVPROC
+    glColorP4uiv;
+  PFNGLSECONDARYCOLORP3UIPROC
+    glSecondaryColorP3ui;
+  PFNGLSECONDARYCOLORP3UIVPROC
+    glSecondaryColorP3uiv;
 
-  // GL_ANGLE_framebuffer_blit
-  PFNGLBLITFRAMEBUFFERANGLEPROC
-    glBlitFramebufferANGLE;
-
-  // GL_ANGLE_framebuffer_multisample
-  PFNGLRENDERBUFFERSTORAGEMULTISAMPLEANGLEPROC
-    glRenderbufferStorageMultisampleANGLE;
-
-  // GL_ANGLE_instanced_arrays
-  PFNGLDRAWARRAYSINSTANCEDANGLEPROC
-    glDrawArraysInstancedANGLE;
-  PFNGLDRAWELEMENTSINSTANCEDANGLEPROC
-    glDrawElementsInstancedANGLE;
-  PFNGLVERTEXATTRIBDIVISORANGLEPROC
-    glVertexAttribDivisorANGLE;
-
-  // GL_ANGLE_translated_shader_source
-  PFNGLGETTRANSLATEDSHADERSOURCEANGLEPROC
-    glGetTranslatedShaderSourceANGLE;
-
-  // GL_APPLE_copy_texture_levels
-  PFNGLCOPYTEXTURELEVELSAPPLEPROC
-    glCopyTextureLevelsAPPLE;
-
-  // GL_APPLE_framebuffer_multisample
-  PFNGLRENDERBUFFERSTORAGEMULTISAMPLEAPPLEPROC
-    glRenderbufferStorageMultisampleAPPLE;
-  PFNGLRESOLVEMULTISAMPLEFRAMEBUFFERAPPLEPROC
-    glResolveMultisampleFramebufferAPPLE;
-
-  // GL_APPLE_sync
-  PFNGLFENCESYNCAPPLEPROC
-    glFenceSyncAPPLE;
-  PFNGLISSYNCAPPLEPROC
-    glIsSyncAPPLE;
-  PFNGLDELETESYNCAPPLEPROC
-    glDeleteSyncAPPLE;
-  PFNGLCLIENTWAITSYNCAPPLEPROC
-    glClientWaitSyncAPPLE;
-  PFNGLWAITSYNCAPPLEPROC
-    glWaitSyncAPPLE;
-  PFNGLGETINTEGER64VAPPLEPROC
-    glGetInteger64vAPPLE;
-  PFNGLGETSYNCIVAPPLEPROC
-    glGetSyncivAPPLE;
-
-  // GL_EXT_base_instance
-  PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEEXTPROC
-    glDrawArraysInstancedBaseInstanceEXT;
-  PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEEXTPROC
-    glDrawElementsInstancedBaseInstanceEXT;
-  PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEEXTPROC
-    glDrawElementsInstancedBaseVertexBaseInstanceEXT;
-
-  // GL_EXT_blend_minmax
-  PFNGLBLENDEQUATIONEXTPROC
-    glBlendEquationEXT;
-
-  // GL_EXT_buffer_storage
-  PFNGLBUFFERSTORAGEEXTPROC
-    glBufferStorageEXT;
-
-  // GL_EXT_copy_image
-  PFNGLCOPYIMAGESUBDATAEXTPROC
-    glCopyImageSubDataEXT;
-
-  // GL_EXT_debug_label
-  PFNGLLABELOBJECTEXTPROC
-    glLabelObjectEXT;
-  PFNGLGETOBJECTLABELEXTPROC
-    glGetObjectLabelEXT;
-
-  // GL_EXT_debug_marker
-  PFNGLINSERTEVENTMARKEREXTPROC
-    glInsertEventMarkerEXT;
-  PFNGLPUSHGROUPMARKEREXTPROC
-    glPushGroupMarkerEXT;
-  PFNGLPOPGROUPMARKEREXTPROC
-    glPopGroupMarkerEXT;
-
-  // GL_EXT_discard_framebuffer
-  PFNGLDISCARDFRAMEBUFFEREXTPROC
-    glDiscardFramebufferEXT;
-
-  // GL_EXT_disjoint_timer_query
-  PFNGLGENQUERIESEXTPROC
-    glGenQueriesEXT;
-  PFNGLDELETEQUERIESEXTPROC
-    glDeleteQueriesEXT;
-  PFNGLISQUERYEXTPROC
-    glIsQueryEXT;
-  PFNGLBEGINQUERYEXTPROC
-    glBeginQueryEXT;
-  PFNGLENDQUERYEXTPROC
-    glEndQueryEXT;
-  PFNGLQUERYCOUNTEREXTPROC
-    glQueryCounterEXT;
-  PFNGLGETQUERYIVEXTPROC
-    glGetQueryivEXT;
-  PFNGLGETQUERYOBJECTIVEXTPROC
-    glGetQueryObjectivEXT;
-  PFNGLGETQUERYOBJECTUIVEXTPROC
-    glGetQueryObjectuivEXT;
-  PFNGLGETQUERYOBJECTI64VEXTPROC
-    glGetQueryObjecti64vEXT;
-  PFNGLGETQUERYOBJECTUI64VEXTPROC
-    glGetQueryObjectui64vEXT;
-
-  // GL_EXT_draw_buffers
-  PFNGLDRAWBUFFERSEXTPROC
-    glDrawBuffersEXT;
-
-  // GL_EXT_draw_buffers_indexed
-  PFNGLENABLEIEXTPROC
-    glEnableiEXT;
-  PFNGLDISABLEIEXTPROC
-    glDisableiEXT;
-  PFNGLBLENDEQUATIONIEXTPROC
-    glBlendEquationiEXT;
-  PFNGLBLENDEQUATIONSEPARATEIEXTPROC
-    glBlendEquationSeparateiEXT;
-  PFNGLBLENDFUNCIEXTPROC
-    glBlendFunciEXT;
-  PFNGLBLENDFUNCSEPARATEIEXTPROC
-    glBlendFuncSeparateiEXT;
-  PFNGLCOLORMASKIEXTPROC
-    glColorMaskiEXT;
-  PFNGLISENABLEDIEXTPROC
-    glIsEnablediEXT;
-
-  // GL_EXT_draw_elements_base_vertex
-  PFNGLDRAWELEMENTSBASEVERTEXEXTPROC
-    glDrawElementsBaseVertexEXT;
-  PFNGLDRAWRANGEELEMENTSBASEVERTEXEXTPROC
-    glDrawRangeElementsBaseVertexEXT;
-  PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXEXTPROC
-    glDrawElementsInstancedBaseVertexEXT;
-  PFNGLMULTIDRAWELEMENTSBASEVERTEXEXTPROC
-    glMultiDrawElementsBaseVertexEXT;
-
-  // GL_EXT_draw_instanced
-  PFNGLDRAWARRAYSINSTANCEDEXTPROC
-    glDrawArraysInstancedEXT;
-  PFNGLDRAWELEMENTSINSTANCEDEXTPROC
-    glDrawElementsInstancedEXT;
-
-  // GL_EXT_geometry_shader
-  PFNGLFRAMEBUFFERTEXTUREEXTPROC
-    glFramebufferTextureEXT;
-
-  // GL_EXT_instanced_arrays
-  PFNGLDRAWARRAYSINSTANCEDEXTPROC
-    glDrawArraysInstancedEXT;
-  PFNGLDRAWELEMENTSINSTANCEDEXTPROC
-    glDrawElementsInstancedEXT;
-  PFNGLVERTEXATTRIBDIVISOREXTPROC
-    glVertexAttribDivisorEXT;
-
-  // GL_EXT_map_buffer_range
-  PFNGLMAPBUFFERRANGEEXTPROC
-    glMapBufferRangeEXT;
-  PFNGLFLUSHMAPPEDBUFFERRANGEEXTPROC
-    glFlushMappedBufferRangeEXT;
-
-  // GL_EXT_multi_draw_arrays
-  PFNGLMULTIDRAWARRAYSEXTPROC
-    glMultiDrawArraysEXT;
-  PFNGLMULTIDRAWELEMENTSEXTPROC
-    glMultiDrawElementsEXT;
-
-  // GL_EXT_multi_draw_indirect
-  PFNGLMULTIDRAWARRAYSINDIRECTEXTPROC
-    glMultiDrawArraysIndirectEXT;
-  PFNGLMULTIDRAWELEMENTSINDIRECTEXTPROC
-    glMultiDrawElementsIndirectEXT;
-
-  // GL_EXT_multisampled_render_to_texture
-  PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC
-    glRenderbufferStorageMultisampleEXT;
-  PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEEXTPROC
-    glFramebufferTexture2DMultisampleEXT;
-
-  // GL_EXT_multiview_draw_buffers
-  PFNGLREADBUFFERINDEXEDEXTPROC
-    glReadBufferIndexedEXT;
-  PFNGLDRAWBUFFERSINDEXEDEXTPROC
-    glDrawBuffersIndexedEXT;
-  PFNGLGETINTEGERI_VEXTPROC
-    glGetIntegeri_vEXT;
-
-  // GL_EXT_occlusion_query_boolean
-  PFNGLGENQUERIESEXTPROC
-    glGenQueriesEXT;
-  PFNGLDELETEQUERIESEXTPROC
-    glDeleteQueriesEXT;
-  PFNGLISQUERYEXTPROC
-    glIsQueryEXT;
-  PFNGLBEGINQUERYEXTPROC
-    glBeginQueryEXT;
-  PFNGLENDQUERYEXTPROC
-    glEndQueryEXT;
-  PFNGLGETQUERYIVEXTPROC
-    glGetQueryivEXT;
-  PFNGLGETQUERYOBJECTUIVEXTPROC
-    glGetQueryObjectuivEXT;
-
-  // GL_EXT_primitive_bounding_box
-  PFNGLPRIMITIVEBOUNDINGBOXEXTPROC
-    glPrimitiveBoundingBoxEXT;
-
-  // GL_EXT_raster_multisample
-  PFNGLRASTERSAMPLESEXTPROC
-    glRasterSamplesEXT;
-
-  // GL_EXT_robustness
-  PFNGLGETGRAPHICSRESETSTATUSEXTPROC
-    glGetGraphicsResetStatusEXT;
-  PFNGLREADNPIXELSEXTPROC
-    glReadnPixelsEXT;
-  PFNGLGETNUNIFORMFVEXTPROC
-    glGetnUniformfvEXT;
-  PFNGLGETNUNIFORMIVEXTPROC
-    glGetnUniformivEXT;
-
-  // GL_EXT_separate_shader_objects
-  PFNGLUSESHADERPROGRAMEXTPROC
-    glUseShaderProgramEXT;
-  PFNGLACTIVEPROGRAMEXTPROC
-    glActiveProgramEXT;
-  PFNGLCREATESHADERPROGRAMEXTPROC
-    glCreateShaderProgramEXT;
-  PFNGLACTIVESHADERPROGRAMEXTPROC
-    glActiveShaderProgramEXT;
-  PFNGLBINDPROGRAMPIPELINEEXTPROC
-    glBindProgramPipelineEXT;
-  PFNGLCREATESHADERPROGRAMVEXTPROC
-    glCreateShaderProgramvEXT;
-  PFNGLDELETEPROGRAMPIPELINESEXTPROC
-    glDeleteProgramPipelinesEXT;
-  PFNGLGENPROGRAMPIPELINESEXTPROC
-    glGenProgramPipelinesEXT;
-  PFNGLGETPROGRAMPIPELINEINFOLOGEXTPROC
-    glGetProgramPipelineInfoLogEXT;
-  PFNGLGETPROGRAMPIPELINEIVEXTPROC
-    glGetProgramPipelineivEXT;
-  PFNGLISPROGRAMPIPELINEEXTPROC
-    glIsProgramPipelineEXT;
-  PFNGLPROGRAMPARAMETERIEXTPROC
-    glProgramParameteriEXT;
-  PFNGLPROGRAMUNIFORM1FEXTPROC
-    glProgramUniform1fEXT;
-  PFNGLPROGRAMUNIFORM1FVEXTPROC
-    glProgramUniform1fvEXT;
-  PFNGLPROGRAMUNIFORM1IEXTPROC
-    glProgramUniform1iEXT;
-  PFNGLPROGRAMUNIFORM1IVEXTPROC
-    glProgramUniform1ivEXT;
-  PFNGLPROGRAMUNIFORM2FEXTPROC
-    glProgramUniform2fEXT;
-  PFNGLPROGRAMUNIFORM2FVEXTPROC
-    glProgramUniform2fvEXT;
-  PFNGLPROGRAMUNIFORM2IEXTPROC
-    glProgramUniform2iEXT;
-  PFNGLPROGRAMUNIFORM2IVEXTPROC
-    glProgramUniform2ivEXT;
-  PFNGLPROGRAMUNIFORM3FEXTPROC
-    glProgramUniform3fEXT;
-  PFNGLPROGRAMUNIFORM3FVEXTPROC
-    glProgramUniform3fvEXT;
-  PFNGLPROGRAMUNIFORM3IEXTPROC
-    glProgramUniform3iEXT;
-  PFNGLPROGRAMUNIFORM3IVEXTPROC
-    glProgramUniform3ivEXT;
-  PFNGLPROGRAMUNIFORM4FEXTPROC
-    glProgramUniform4fEXT;
-  PFNGLPROGRAMUNIFORM4FVEXTPROC
-    glProgramUniform4fvEXT;
-  PFNGLPROGRAMUNIFORM4IEXTPROC
-    glProgramUniform4iEXT;
-  PFNGLPROGRAMUNIFORM4IVEXTPROC
-    glProgramUniform4ivEXT;
-  PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC
-    glProgramUniformMatrix2fvEXT;
-  PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC
-    glProgramUniformMatrix3fvEXT;
-  PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC
-    glProgramUniformMatrix4fvEXT;
-  PFNGLUSEPROGRAMSTAGESEXTPROC
-    glUseProgramStagesEXT;
-  PFNGLVALIDATEPROGRAMPIPELINEEXTPROC
-    glValidateProgramPipelineEXT;
-  PFNGLPROGRAMUNIFORM1UIEXTPROC
-    glProgramUniform1uiEXT;
-  PFNGLPROGRAMUNIFORM2UIEXTPROC
-    glProgramUniform2uiEXT;
-  PFNGLPROGRAMUNIFORM3UIEXTPROC
-    glProgramUniform3uiEXT;
-  PFNGLPROGRAMUNIFORM4UIEXTPROC
-    glProgramUniform4uiEXT;
-  PFNGLPROGRAMUNIFORM1UIVEXTPROC
-    glProgramUniform1uivEXT;
-  PFNGLPROGRAMUNIFORM2UIVEXTPROC
-    glProgramUniform2uivEXT;
-  PFNGLPROGRAMUNIFORM3UIVEXTPROC
-    glProgramUniform3uivEXT;
-  PFNGLPROGRAMUNIFORM4UIVEXTPROC
-    glProgramUniform4uivEXT;
-  PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC
-    glProgramUniformMatrix4fvEXT;
-  PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC
-    glProgramUniformMatrix2x3fvEXT;
-  PFNGLPROGRAMUNIFORMMATRIX3X2FVEXTPROC
-    glProgramUniformMatrix3x2fvEXT;
-  PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC
-    glProgramUniformMatrix2x4fvEXT;
-  PFNGLPROGRAMUNIFORMMATRIX4X2FVEXTPROC
-    glProgramUniformMatrix4x2fvEXT;
-  PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC
-    glProgramUniformMatrix3x4fvEXT;
-  PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC
-    glProgramUniformMatrix4x3fvEXT;
-
-  // GL_EXT_sparse_texture
-  PFNGLTEXPAGECOMMITMENTARBPROC
-    glTexPageCommitmentARB;
-
-  // GL_EXT_tessellation_shader
-  PFNGLPATCHPARAMETERIEXTPROC
-    glPatchParameteriEXT;
-
-  // GL_EXT_texture_border_clamp
-  PFNGLTEXPARAMETERIIVEXTPROC
-    glTexParameterIivEXT;
-  PFNGLTEXPARAMETERIUIVEXTPROC
-    glTexParameterIuivEXT;
-  PFNGLGETTEXPARAMETERIIVEXTPROC
-    glGetTexParameterIivEXT;
-  PFNGLGETTEXPARAMETERIUIVEXTPROC
-    glGetTexParameterIuivEXT;
-  PFNGLSAMPLERPARAMETERIIVEXTPROC
-    glSamplerParameterIivEXT;
-  PFNGLSAMPLERPARAMETERIUIVEXTPROC
-    glSamplerParameterIuivEXT;
-  PFNGLGETSAMPLERPARAMETERIIVEXTPROC
-    glGetSamplerParameterIivEXT;
-  PFNGLGETSAMPLERPARAMETERIUIVEXTPROC
-    glGetSamplerParameterIuivEXT;
-
-  // GL_EXT_texture_buffer
-  PFNGLTEXBUFFEREXTPROC
-    glTexBufferEXT;
-  PFNGLTEXBUFFERRANGEEXTPROC
-    glTexBufferRangeEXT;
-
-  // GL_EXT_texture_filter_minmax
-  PFNGLRASTERSAMPLESEXTPROC
-    glRasterSamplesEXT;
-
-  // GL_EXT_texture_storage
-  PFNGLTEXSTORAGE1DEXTPROC
-    glTexStorage1DEXT;
-  PFNGLTEXSTORAGE2DEXTPROC
-    glTexStorage2DEXT;
-  PFNGLTEXSTORAGE3DEXTPROC
-    glTexStorage3DEXT;
-  PFNGLTEXTURESTORAGE1DEXTPROC
-    glTextureStorage1DEXT;
-  PFNGLTEXTURESTORAGE2DEXTPROC
-    glTextureStorage2DEXT;
-  PFNGLTEXTURESTORAGE3DEXTPROC
-    glTextureStorage3DEXT;
-
-  // GL_EXT_texture_view
-  PFNGLTEXTUREVIEWEXTPROC
-    glTextureViewEXT;
-
-  // GL_IMG_multisampled_render_to_texture
-  PFNGLRENDERBUFFERSTORAGEMULTISAMPLEIMGPROC
-    glRenderbufferStorageMultisampleIMG;
-  PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC
-    glFramebufferTexture2DMultisampleIMG;
-
-  // GL_IMG_user_clip_plane
-  PFNGLCLIPPLANEFIMGPROC
-    glClipPlanefIMG;
-  PFNGLCLIPPLANEXIMGPROC
-    glClipPlanexIMG;
-
-  // GL_INTEL_performance_query
-  PFNGLBEGINPERFQUERYINTELPROC
-    glBeginPerfQueryINTEL;
-  PFNGLCREATEPERFQUERYINTELPROC
-    glCreatePerfQueryINTEL;
-  PFNGLDELETEPERFQUERYINTELPROC
-    glDeletePerfQueryINTEL;
-  PFNGLENDPERFQUERYINTELPROC
-    glEndPerfQueryINTEL;
-  PFNGLGETFIRSTPERFQUERYIDINTELPROC
-    glGetFirstPerfQueryIdINTEL;
-  PFNGLGETNEXTPERFQUERYIDINTELPROC
-    glGetNextPerfQueryIdINTEL;
-  PFNGLGETPERFCOUNTERINFOINTELPROC
-    glGetPerfCounterInfoINTEL;
-  PFNGLGETPERFQUERYDATAINTELPROC
-    glGetPerfQueryDataINTEL;
-  PFNGLGETPERFQUERYIDBYNAMEINTELPROC
-    glGetPerfQueryIdByNameINTEL;
-  PFNGLGETPERFQUERYINFOINTELPROC
-    glGetPerfQueryInfoINTEL;
-
-  // GL_KHR_blend_equation_advanced
-  PFNGLBLENDBARRIERKHRPROC
-    glBlendBarrierKHR;
+  // GL_ARB_viewport_array
+  PFNGLVIEWPORTARRAYVPROC
+    glViewportArrayv;
+  PFNGLVIEWPORTINDEXEDFPROC
+    glViewportIndexedf;
+  PFNGLVIEWPORTINDEXEDFVPROC
+    glViewportIndexedfv;
+  PFNGLSCISSORARRAYVPROC
+    glScissorArrayv;
+  PFNGLSCISSORINDEXEDPROC
+    glScissorIndexed;
+  PFNGLSCISSORINDEXEDVPROC
+    glScissorIndexedv;
+  PFNGLDEPTHRANGEARRAYVPROC
+    glDepthRangeArrayv;
+  PFNGLDEPTHRANGEINDEXEDPROC
+    glDepthRangeIndexed;
+  PFNGLGETFLOATI_VPROC
+    glGetFloati_v;
+  PFNGLGETDOUBLEI_VPROC
+    glGetDoublei_v;
 
   // GL_KHR_debug
   PFNGLDEBUGMESSAGECONTROLPROC
@@ -1697,861 +1310,13 @@ public:
     glGetnUniformivKHR;
   PFNGLGETNUNIFORMUIVKHRPROC
     glGetnUniformuivKHR;
-
-  // GL_NV_bindless_texture
-  PFNGLGETTEXTUREHANDLENVPROC
-    glGetTextureHandleNV;
-  PFNGLGETTEXTURESAMPLERHANDLENVPROC
-    glGetTextureSamplerHandleNV;
-  PFNGLMAKETEXTUREHANDLERESIDENTNVPROC
-    glMakeTextureHandleResidentNV;
-  PFNGLMAKETEXTUREHANDLENONRESIDENTNVPROC
-    glMakeTextureHandleNonResidentNV;
-  PFNGLGETIMAGEHANDLENVPROC
-    glGetImageHandleNV;
-  PFNGLMAKEIMAGEHANDLERESIDENTNVPROC
-    glMakeImageHandleResidentNV;
-  PFNGLMAKEIMAGEHANDLENONRESIDENTNVPROC
-    glMakeImageHandleNonResidentNV;
-  PFNGLUNIFORMHANDLEUI64NVPROC
-    glUniformHandleui64NV;
-  PFNGLUNIFORMHANDLEUI64VNVPROC
-    glUniformHandleui64vNV;
-  PFNGLPROGRAMUNIFORMHANDLEUI64NVPROC
-    glProgramUniformHandleui64NV;
-  PFNGLPROGRAMUNIFORMHANDLEUI64VNVPROC
-    glProgramUniformHandleui64vNV;
-  PFNGLISTEXTUREHANDLERESIDENTNVPROC
-    glIsTextureHandleResidentNV;
-  PFNGLISIMAGEHANDLERESIDENTNVPROC
-    glIsImageHandleResidentNV;
-
-  // GL_NV_blend_equation_advanced
-  PFNGLBLENDPARAMETERINVPROC
-    glBlendParameteriNV;
-  PFNGLBLENDBARRIERNVPROC
-    glBlendBarrierNV;
-
-  // GL_NV_conditional_render
-  PFNGLBEGINCONDITIONALRENDERNVPROC
-    glBeginConditionalRenderNV;
-  PFNGLENDCONDITIONALRENDERNVPROC
-    glEndConditionalRenderNV;
-
-  // GL_NV_conservative_raster
-  PFNGLSUBPIXELPRECISIONBIASNVPROC
-    glSubpixelPrecisionBiasNV;
-
-  // GL_NV_copy_buffer
-  PFNGLCOPYBUFFERSUBDATANVPROC
-    glCopyBufferSubDataNV;
-
-  // GL_NV_coverage_sample
-  PFNGLCOVERAGEMASKNVPROC
-    glCoverageMaskNV;
-  PFNGLCOVERAGEOPERATIONNVPROC
-    glCoverageOperationNV;
-
-  // GL_NV_draw_buffers
-  PFNGLDRAWBUFFERSNVPROC
-    glDrawBuffersNV;
-
-  // GL_NV_draw_instanced
-  PFNGLDRAWARRAYSINSTANCEDNVPROC
-    glDrawArraysInstancedNV;
-  PFNGLDRAWELEMENTSINSTANCEDNVPROC
-    glDrawElementsInstancedNV;
-
-  // GL_NV_fence
-  PFNGLDELETEFENCESNVPROC
-    glDeleteFencesNV;
-  PFNGLGENFENCESNVPROC
-    glGenFencesNV;
-  PFNGLISFENCENVPROC
-    glIsFenceNV;
-  PFNGLTESTFENCENVPROC
-    glTestFenceNV;
-  PFNGLGETFENCEIVNVPROC
-    glGetFenceivNV;
-  PFNGLFINISHFENCENVPROC
-    glFinishFenceNV;
-  PFNGLSETFENCENVPROC
-    glSetFenceNV;
-
-  // GL_NV_fragment_coverage_to_color
-  PFNGLFRAGMENTCOVERAGECOLORNVPROC
-    glFragmentCoverageColorNV;
-
-  // GL_NV_framebuffer_blit
-  PFNGLBLITFRAMEBUFFERNVPROC
-    glBlitFramebufferNV;
-
-  // GL_NV_framebuffer_mixed_samples
-  PFNGLRASTERSAMPLESEXTPROC
-    glRasterSamplesEXT;
-  PFNGLCOVERAGEMODULATIONTABLENVPROC
-    glCoverageModulationTableNV;
-  PFNGLGETCOVERAGEMODULATIONTABLENVPROC
-    glGetCoverageModulationTableNV;
-  PFNGLCOVERAGEMODULATIONNVPROC
-    glCoverageModulationNV;
-
-  // GL_NV_framebuffer_multisample
-  PFNGLRENDERBUFFERSTORAGEMULTISAMPLENVPROC
-    glRenderbufferStorageMultisampleNV;
-
-  // GL_NV_instanced_arrays
-  PFNGLVERTEXATTRIBDIVISORNVPROC
-    glVertexAttribDivisorNV;
-
-  // GL_NV_internalformat_sample_query
-  PFNGLGETINTERNALFORMATSAMPLEIVNVPROC
-    glGetInternalformatSampleivNV;
-
-  // GL_NV_non_square_matrices
-  PFNGLUNIFORMMATRIX2X3FVNVPROC
-    glUniformMatrix2x3fvNV;
-  PFNGLUNIFORMMATRIX3X2FVNVPROC
-    glUniformMatrix3x2fvNV;
-  PFNGLUNIFORMMATRIX2X4FVNVPROC
-    glUniformMatrix2x4fvNV;
-  PFNGLUNIFORMMATRIX4X2FVNVPROC
-    glUniformMatrix4x2fvNV;
-  PFNGLUNIFORMMATRIX3X4FVNVPROC
-    glUniformMatrix3x4fvNV;
-  PFNGLUNIFORMMATRIX4X3FVNVPROC
-    glUniformMatrix4x3fvNV;
-
-  // GL_NV_path_rendering
-  PFNGLGENPATHSNVPROC
-    glGenPathsNV;
-  PFNGLDELETEPATHSNVPROC
-    glDeletePathsNV;
-  PFNGLISPATHNVPROC
-    glIsPathNV;
-  PFNGLPATHCOMMANDSNVPROC
-    glPathCommandsNV;
-  PFNGLPATHCOORDSNVPROC
-    glPathCoordsNV;
-  PFNGLPATHSUBCOMMANDSNVPROC
-    glPathSubCommandsNV;
-  PFNGLPATHSUBCOORDSNVPROC
-    glPathSubCoordsNV;
-  PFNGLPATHSTRINGNVPROC
-    glPathStringNV;
-  PFNGLPATHGLYPHSNVPROC
-    glPathGlyphsNV;
-  PFNGLPATHGLYPHRANGENVPROC
-    glPathGlyphRangeNV;
-  PFNGLWEIGHTPATHSNVPROC
-    glWeightPathsNV;
-  PFNGLCOPYPATHNVPROC
-    glCopyPathNV;
-  PFNGLINTERPOLATEPATHSNVPROC
-    glInterpolatePathsNV;
-  PFNGLTRANSFORMPATHNVPROC
-    glTransformPathNV;
-  PFNGLPATHPARAMETERIVNVPROC
-    glPathParameterivNV;
-  PFNGLPATHPARAMETERINVPROC
-    glPathParameteriNV;
-  PFNGLPATHPARAMETERFVNVPROC
-    glPathParameterfvNV;
-  PFNGLPATHPARAMETERFNVPROC
-    glPathParameterfNV;
-  PFNGLPATHDASHARRAYNVPROC
-    glPathDashArrayNV;
-  PFNGLPATHSTENCILFUNCNVPROC
-    glPathStencilFuncNV;
-  PFNGLPATHSTENCILDEPTHOFFSETNVPROC
-    glPathStencilDepthOffsetNV;
-  PFNGLSTENCILFILLPATHNVPROC
-    glStencilFillPathNV;
-  PFNGLSTENCILSTROKEPATHNVPROC
-    glStencilStrokePathNV;
-  PFNGLSTENCILFILLPATHINSTANCEDNVPROC
-    glStencilFillPathInstancedNV;
-  PFNGLSTENCILSTROKEPATHINSTANCEDNVPROC
-    glStencilStrokePathInstancedNV;
-  PFNGLPATHCOVERDEPTHFUNCNVPROC
-    glPathCoverDepthFuncNV;
-  PFNGLCOVERFILLPATHNVPROC
-    glCoverFillPathNV;
-  PFNGLCOVERSTROKEPATHNVPROC
-    glCoverStrokePathNV;
-  PFNGLCOVERFILLPATHINSTANCEDNVPROC
-    glCoverFillPathInstancedNV;
-  PFNGLCOVERSTROKEPATHINSTANCEDNVPROC
-    glCoverStrokePathInstancedNV;
-  PFNGLGETPATHPARAMETERIVNVPROC
-    glGetPathParameterivNV;
-  PFNGLGETPATHPARAMETERFVNVPROC
-    glGetPathParameterfvNV;
-  PFNGLGETPATHCOMMANDSNVPROC
-    glGetPathCommandsNV;
-  PFNGLGETPATHCOORDSNVPROC
-    glGetPathCoordsNV;
-  PFNGLGETPATHDASHARRAYNVPROC
-    glGetPathDashArrayNV;
-  PFNGLGETPATHMETRICSNVPROC
-    glGetPathMetricsNV;
-  PFNGLGETPATHMETRICRANGENVPROC
-    glGetPathMetricRangeNV;
-  PFNGLGETPATHSPACINGNVPROC
-    glGetPathSpacingNV;
-  PFNGLISPOINTINFILLPATHNVPROC
-    glIsPointInFillPathNV;
-  PFNGLISPOINTINSTROKEPATHNVPROC
-    glIsPointInStrokePathNV;
-  PFNGLGETPATHLENGTHNVPROC
-    glGetPathLengthNV;
-  PFNGLPOINTALONGPATHNVPROC
-    glPointAlongPathNV;
-  PFNGLMATRIXLOAD3X2FNVPROC
-    glMatrixLoad3x2fNV;
-  PFNGLMATRIXLOAD3X3FNVPROC
-    glMatrixLoad3x3fNV;
-  PFNGLMATRIXLOADTRANSPOSE3X3FNVPROC
-    glMatrixLoadTranspose3x3fNV;
-  PFNGLMATRIXMULT3X2FNVPROC
-    glMatrixMult3x2fNV;
-  PFNGLMATRIXMULT3X3FNVPROC
-    glMatrixMult3x3fNV;
-  PFNGLMATRIXMULTTRANSPOSE3X3FNVPROC
-    glMatrixMultTranspose3x3fNV;
-  PFNGLSTENCILTHENCOVERFILLPATHNVPROC
-    glStencilThenCoverFillPathNV;
-  PFNGLSTENCILTHENCOVERSTROKEPATHNVPROC
-    glStencilThenCoverStrokePathNV;
-  PFNGLSTENCILTHENCOVERFILLPATHINSTANCEDNVPROC
-    glStencilThenCoverFillPathInstancedNV;
-  PFNGLSTENCILTHENCOVERSTROKEPATHINSTANCEDNVPROC
-    glStencilThenCoverStrokePathInstancedNV;
-  PFNGLPATHGLYPHINDEXRANGENVPROC
-    glPathGlyphIndexRangeNV;
-  PFNGLPATHGLYPHINDEXARRAYNVPROC
-    glPathGlyphIndexArrayNV;
-  PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC
-    glPathMemoryGlyphIndexArrayNV;
-  PFNGLPROGRAMPATHFRAGMENTINPUTGENNVPROC
-    glProgramPathFragmentInputGenNV;
-  PFNGLGETPROGRAMRESOURCEFVNVPROC
-    glGetProgramResourcefvNV;
-  PFNGLPATHCOLORGENNVPROC
-    glPathColorGenNV;
-  PFNGLPATHTEXGENNVPROC
-    glPathTexGenNV;
-  PFNGLPATHFOGGENNVPROC
-    glPathFogGenNV;
-  PFNGLGETPATHCOLORGENIVNVPROC
-    glGetPathColorGenivNV;
-  PFNGLGETPATHCOLORGENFVNVPROC
-    glGetPathColorGenfvNV;
-  PFNGLGETPATHTEXGENIVNVPROC
-    glGetPathTexGenivNV;
-  PFNGLGETPATHTEXGENFVNVPROC
-    glGetPathTexGenfvNV;
-
-  // GL_NV_polygon_mode
-  PFNGLPOLYGONMODENVPROC
-    glPolygonModeNV;
-
-  // GL_NV_read_buffer
-  PFNGLREADBUFFERNVPROC
-    glReadBufferNV;
-
-  // GL_NV_sample_locations
-  PFNGLFRAMEBUFFERSAMPLELOCATIONSFVNVPROC
-    glFramebufferSampleLocationsfvNV;
-  PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVNVPROC
-    glNamedFramebufferSampleLocationsfvNV;
-  PFNGLRESOLVEDEPTHVALUESNVPROC
-    glResolveDepthValuesNV;
-
-  // GL_NV_viewport_array
-  PFNGLVIEWPORTARRAYVNVPROC
-    glViewportArrayvNV;
-  PFNGLVIEWPORTINDEXEDFNVPROC
-    glViewportIndexedfNV;
-  PFNGLVIEWPORTINDEXEDFVNVPROC
-    glViewportIndexedfvNV;
-  PFNGLSCISSORARRAYVNVPROC
-    glScissorArrayvNV;
-  PFNGLSCISSORINDEXEDNVPROC
-    glScissorIndexedNV;
-  PFNGLSCISSORINDEXEDVNVPROC
-    glScissorIndexedvNV;
-  PFNGLDEPTHRANGEARRAYFVNVPROC
-    glDepthRangeArrayfvNV;
-  PFNGLDEPTHRANGEINDEXEDFNVPROC
-    glDepthRangeIndexedfNV;
-  PFNGLGETFLOATI_VNVPROC
-    glGetFloati_vNV;
-  PFNGLENABLEINVPROC
-    glEnableiNV;
-  PFNGLDISABLEINVPROC
-    glDisableiNV;
-  PFNGLISENABLEDINVPROC
-    glIsEnablediNV;
-
-  // GL_OES_EGL_image
-  PFNGLEGLIMAGETARGETTEXTURE2DOESPROC
-    glEGLImageTargetTexture2DOES;
-  PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC
-    glEGLImageTargetRenderbufferStorageOES;
-
-  // GL_OES_blend_equation_separate
-  PFNGLBLENDEQUATIONSEPARATEOESPROC
-    glBlendEquationSeparateOES;
-
-  // GL_OES_blend_func_separate
-  PFNGLBLENDFUNCSEPARATEOESPROC
-    glBlendFuncSeparateOES;
-
-  // GL_OES_blend_subtract
-  PFNGLBLENDEQUATIONOESPROC
-    glBlendEquationOES;
-
-  // GL_OES_byte_coordinates
-  PFNGLMULTITEXCOORD1BOESPROC
-    glMultiTexCoord1bOES;
-  PFNGLMULTITEXCOORD1BVOESPROC
-    glMultiTexCoord1bvOES;
-  PFNGLMULTITEXCOORD2BOESPROC
-    glMultiTexCoord2bOES;
-  PFNGLMULTITEXCOORD2BVOESPROC
-    glMultiTexCoord2bvOES;
-  PFNGLMULTITEXCOORD3BOESPROC
-    glMultiTexCoord3bOES;
-  PFNGLMULTITEXCOORD3BVOESPROC
-    glMultiTexCoord3bvOES;
-  PFNGLMULTITEXCOORD4BOESPROC
-    glMultiTexCoord4bOES;
-  PFNGLMULTITEXCOORD4BVOESPROC
-    glMultiTexCoord4bvOES;
-  PFNGLTEXCOORD1BOESPROC
-    glTexCoord1bOES;
-  PFNGLTEXCOORD1BVOESPROC
-    glTexCoord1bvOES;
-  PFNGLTEXCOORD2BOESPROC
-    glTexCoord2bOES;
-  PFNGLTEXCOORD2BVOESPROC
-    glTexCoord2bvOES;
-  PFNGLTEXCOORD3BOESPROC
-    glTexCoord3bOES;
-  PFNGLTEXCOORD3BVOESPROC
-    glTexCoord3bvOES;
-  PFNGLTEXCOORD4BOESPROC
-    glTexCoord4bOES;
-  PFNGLTEXCOORD4BVOESPROC
-    glTexCoord4bvOES;
-  PFNGLVERTEX2BOESPROC
-    glVertex2bOES;
-  PFNGLVERTEX2BVOESPROC
-    glVertex2bvOES;
-  PFNGLVERTEX3BOESPROC
-    glVertex3bOES;
-  PFNGLVERTEX3BVOESPROC
-    glVertex3bvOES;
-  PFNGLVERTEX4BOESPROC
-    glVertex4bOES;
-  PFNGLVERTEX4BVOESPROC
-    glVertex4bvOES;
-
-  // GL_OES_copy_image
-  PFNGLCOPYIMAGESUBDATAOESPROC
-    glCopyImageSubDataOES;
-
-  // GL_OES_draw_buffers_indexed
-  PFNGLENABLEIOESPROC
-    glEnableiOES;
-  PFNGLDISABLEIOESPROC
-    glDisableiOES;
-  PFNGLBLENDEQUATIONIOESPROC
-    glBlendEquationiOES;
-  PFNGLBLENDEQUATIONSEPARATEIOESPROC
-    glBlendEquationSeparateiOES;
-  PFNGLBLENDFUNCIOESPROC
-    glBlendFunciOES;
-  PFNGLBLENDFUNCSEPARATEIOESPROC
-    glBlendFuncSeparateiOES;
-  PFNGLCOLORMASKIOESPROC
-    glColorMaskiOES;
-  PFNGLISENABLEDIOESPROC
-    glIsEnablediOES;
-
-  // GL_OES_draw_elements_base_vertex
-  PFNGLDRAWELEMENTSBASEVERTEXOESPROC
-    glDrawElementsBaseVertexOES;
-  PFNGLDRAWRANGEELEMENTSBASEVERTEXOESPROC
-    glDrawRangeElementsBaseVertexOES;
-  PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXOESPROC
-    glDrawElementsInstancedBaseVertexOES;
-  PFNGLMULTIDRAWELEMENTSBASEVERTEXOESPROC
-    glMultiDrawElementsBaseVertexOES;
-
-  // GL_OES_draw_texture
-  PFNGLDRAWTEXSOESPROC
-    glDrawTexsOES;
-  PFNGLDRAWTEXIOESPROC
-    glDrawTexiOES;
-  PFNGLDRAWTEXXOESPROC
-    glDrawTexxOES;
-  PFNGLDRAWTEXSVOESPROC
-    glDrawTexsvOES;
-  PFNGLDRAWTEXIVOESPROC
-    glDrawTexivOES;
-  PFNGLDRAWTEXXVOESPROC
-    glDrawTexxvOES;
-  PFNGLDRAWTEXFOESPROC
-    glDrawTexfOES;
-  PFNGLDRAWTEXFVOESPROC
-    glDrawTexfvOES;
-
-  // GL_OES_fixed_point
-  PFNGLALPHAFUNCXOESPROC
-    glAlphaFuncxOES;
-  PFNGLCLEARCOLORXOESPROC
-    glClearColorxOES;
-  PFNGLCLEARDEPTHXOESPROC
-    glClearDepthxOES;
-  PFNGLCLIPPLANEXOESPROC
-    glClipPlanexOES;
-  PFNGLCOLOR4XOESPROC
-    glColor4xOES;
-  PFNGLDEPTHRANGEXOESPROC
-    glDepthRangexOES;
-  PFNGLFOGXOESPROC
-    glFogxOES;
-  PFNGLFOGXVOESPROC
-    glFogxvOES;
-  PFNGLFRUSTUMXOESPROC
-    glFrustumxOES;
-  PFNGLGETCLIPPLANEXOESPROC
-    glGetClipPlanexOES;
-  PFNGLGETFIXEDVOESPROC
-    glGetFixedvOES;
-  PFNGLGETTEXENVXVOESPROC
-    glGetTexEnvxvOES;
-  PFNGLGETTEXPARAMETERXVOESPROC
-    glGetTexParameterxvOES;
-  PFNGLLIGHTMODELXOESPROC
-    glLightModelxOES;
-  PFNGLLIGHTMODELXVOESPROC
-    glLightModelxvOES;
-  PFNGLLIGHTXOESPROC
-    glLightxOES;
-  PFNGLLIGHTXVOESPROC
-    glLightxvOES;
-  PFNGLLINEWIDTHXOESPROC
-    glLineWidthxOES;
-  PFNGLLOADMATRIXXOESPROC
-    glLoadMatrixxOES;
-  PFNGLMATERIALXOESPROC
-    glMaterialxOES;
-  PFNGLMATERIALXVOESPROC
-    glMaterialxvOES;
-  PFNGLMULTMATRIXXOESPROC
-    glMultMatrixxOES;
-  PFNGLMULTITEXCOORD4XOESPROC
-    glMultiTexCoord4xOES;
-  PFNGLNORMAL3XOESPROC
-    glNormal3xOES;
-  PFNGLORTHOXOESPROC
-    glOrthoxOES;
-  PFNGLPOINTPARAMETERXVOESPROC
-    glPointParameterxvOES;
-  PFNGLPOINTSIZEXOESPROC
-    glPointSizexOES;
-  PFNGLPOLYGONOFFSETXOESPROC
-    glPolygonOffsetxOES;
-  PFNGLROTATEXOESPROC
-    glRotatexOES;
-  PFNGLSCALEXOESPROC
-    glScalexOES;
-  PFNGLTEXENVXOESPROC
-    glTexEnvxOES;
-  PFNGLTEXENVXVOESPROC
-    glTexEnvxvOES;
-  PFNGLTEXPARAMETERXOESPROC
-    glTexParameterxOES;
-  PFNGLTEXPARAMETERXVOESPROC
-    glTexParameterxvOES;
-  PFNGLTRANSLATEXOESPROC
-    glTranslatexOES;
-  PFNGLGETLIGHTXVOESPROC
-    glGetLightxvOES;
-  PFNGLGETMATERIALXVOESPROC
-    glGetMaterialxvOES;
-  PFNGLPOINTPARAMETERXOESPROC
-    glPointParameterxOES;
-  PFNGLSAMPLECOVERAGEXOESPROC
-    glSampleCoveragexOES;
-  PFNGLACCUMXOESPROC
-    glAccumxOES;
-  PFNGLBITMAPXOESPROC
-    glBitmapxOES;
-  PFNGLBLENDCOLORXOESPROC
-    glBlendColorxOES;
-  PFNGLCLEARACCUMXOESPROC
-    glClearAccumxOES;
-  PFNGLCOLOR3XOESPROC
-    glColor3xOES;
-  PFNGLCOLOR3XVOESPROC
-    glColor3xvOES;
-  PFNGLCOLOR4XVOESPROC
-    glColor4xvOES;
-  PFNGLCONVOLUTIONPARAMETERXOESPROC
-    glConvolutionParameterxOES;
-  PFNGLCONVOLUTIONPARAMETERXVOESPROC
-    glConvolutionParameterxvOES;
-  PFNGLEVALCOORD1XOESPROC
-    glEvalCoord1xOES;
-  PFNGLEVALCOORD1XVOESPROC
-    glEvalCoord1xvOES;
-  PFNGLEVALCOORD2XOESPROC
-    glEvalCoord2xOES;
-  PFNGLEVALCOORD2XVOESPROC
-    glEvalCoord2xvOES;
-  PFNGLFEEDBACKBUFFERXOESPROC
-    glFeedbackBufferxOES;
-  PFNGLGETCONVOLUTIONPARAMETERXVOESPROC
-    glGetConvolutionParameterxvOES;
-  PFNGLGETHISTOGRAMPARAMETERXVOESPROC
-    glGetHistogramParameterxvOES;
-  PFNGLGETLIGHTXOESPROC
-    glGetLightxOES;
-  PFNGLGETMAPXVOESPROC
-    glGetMapxvOES;
-  PFNGLGETMATERIALXOESPROC
-    glGetMaterialxOES;
-  PFNGLGETPIXELMAPXVPROC
-    glGetPixelMapxv;
-  PFNGLGETTEXGENXVOESPROC
-    glGetTexGenxvOES;
-  PFNGLGETTEXLEVELPARAMETERXVOESPROC
-    glGetTexLevelParameterxvOES;
-  PFNGLINDEXXOESPROC
-    glIndexxOES;
-  PFNGLINDEXXVOESPROC
-    glIndexxvOES;
-  PFNGLLOADTRANSPOSEMATRIXXOESPROC
-    glLoadTransposeMatrixxOES;
-  PFNGLMAP1XOESPROC
-    glMap1xOES;
-  PFNGLMAP2XOESPROC
-    glMap2xOES;
-  PFNGLMAPGRID1XOESPROC
-    glMapGrid1xOES;
-  PFNGLMAPGRID2XOESPROC
-    glMapGrid2xOES;
-  PFNGLMULTTRANSPOSEMATRIXXOESPROC
-    glMultTransposeMatrixxOES;
-  PFNGLMULTITEXCOORD1XOESPROC
-    glMultiTexCoord1xOES;
-  PFNGLMULTITEXCOORD1XVOESPROC
-    glMultiTexCoord1xvOES;
-  PFNGLMULTITEXCOORD2XOESPROC
-    glMultiTexCoord2xOES;
-  PFNGLMULTITEXCOORD2XVOESPROC
-    glMultiTexCoord2xvOES;
-  PFNGLMULTITEXCOORD3XOESPROC
-    glMultiTexCoord3xOES;
-  PFNGLMULTITEXCOORD3XVOESPROC
-    glMultiTexCoord3xvOES;
-  PFNGLMULTITEXCOORD4XVOESPROC
-    glMultiTexCoord4xvOES;
-  PFNGLNORMAL3XVOESPROC
-    glNormal3xvOES;
-  PFNGLPASSTHROUGHXOESPROC
-    glPassThroughxOES;
-  PFNGLPIXELMAPXPROC
-    glPixelMapx;
-  PFNGLPIXELSTOREXPROC
-    glPixelStorex;
-  PFNGLPIXELTRANSFERXOESPROC
-    glPixelTransferxOES;
-  PFNGLPIXELZOOMXOESPROC
-    glPixelZoomxOES;
-  PFNGLPRIORITIZETEXTURESXOESPROC
-    glPrioritizeTexturesxOES;
-  PFNGLRASTERPOS2XOESPROC
-    glRasterPos2xOES;
-  PFNGLRASTERPOS2XVOESPROC
-    glRasterPos2xvOES;
-  PFNGLRASTERPOS3XOESPROC
-    glRasterPos3xOES;
-  PFNGLRASTERPOS3XVOESPROC
-    glRasterPos3xvOES;
-  PFNGLRASTERPOS4XOESPROC
-    glRasterPos4xOES;
-  PFNGLRASTERPOS4XVOESPROC
-    glRasterPos4xvOES;
-  PFNGLRECTXOESPROC
-    glRectxOES;
-  PFNGLRECTXVOESPROC
-    glRectxvOES;
-  PFNGLTEXCOORD1XOESPROC
-    glTexCoord1xOES;
-  PFNGLTEXCOORD1XVOESPROC
-    glTexCoord1xvOES;
-  PFNGLTEXCOORD2XOESPROC
-    glTexCoord2xOES;
-  PFNGLTEXCOORD2XVOESPROC
-    glTexCoord2xvOES;
-  PFNGLTEXCOORD3XOESPROC
-    glTexCoord3xOES;
-  PFNGLTEXCOORD3XVOESPROC
-    glTexCoord3xvOES;
-  PFNGLTEXCOORD4XOESPROC
-    glTexCoord4xOES;
-  PFNGLTEXCOORD4XVOESPROC
-    glTexCoord4xvOES;
-  PFNGLTEXGENXOESPROC
-    glTexGenxOES;
-  PFNGLTEXGENXVOESPROC
-    glTexGenxvOES;
-  PFNGLVERTEX2XOESPROC
-    glVertex2xOES;
-  PFNGLVERTEX2XVOESPROC
-    glVertex2xvOES;
-  PFNGLVERTEX3XOESPROC
-    glVertex3xOES;
-  PFNGLVERTEX3XVOESPROC
-    glVertex3xvOES;
-  PFNGLVERTEX4XOESPROC
-    glVertex4xOES;
-  PFNGLVERTEX4XVOESPROC
-    glVertex4xvOES;
-
-  // GL_OES_framebuffer_object
-  PFNGLISRENDERBUFFEROESPROC
-    glIsRenderbufferOES;
-  PFNGLBINDRENDERBUFFEROESPROC
-    glBindRenderbufferOES;
-  PFNGLDELETERENDERBUFFERSOESPROC
-    glDeleteRenderbuffersOES;
-  PFNGLGENRENDERBUFFERSOESPROC
-    glGenRenderbuffersOES;
-  PFNGLRENDERBUFFERSTORAGEOESPROC
-    glRenderbufferStorageOES;
-  PFNGLGETRENDERBUFFERPARAMETERIVOESPROC
-    glGetRenderbufferParameterivOES;
-  PFNGLISFRAMEBUFFEROESPROC
-    glIsFramebufferOES;
-  PFNGLBINDFRAMEBUFFEROESPROC
-    glBindFramebufferOES;
-  PFNGLDELETEFRAMEBUFFERSOESPROC
-    glDeleteFramebuffersOES;
-  PFNGLGENFRAMEBUFFERSOESPROC
-    glGenFramebuffersOES;
-  PFNGLCHECKFRAMEBUFFERSTATUSOESPROC
-    glCheckFramebufferStatusOES;
-  PFNGLFRAMEBUFFERRENDERBUFFEROESPROC
-    glFramebufferRenderbufferOES;
-  PFNGLFRAMEBUFFERTEXTURE2DOESPROC
-    glFramebufferTexture2DOES;
-  PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVOESPROC
-    glGetFramebufferAttachmentParameterivOES;
-  PFNGLGENERATEMIPMAPOESPROC
-    glGenerateMipmapOES;
-
-  // GL_OES_geometry_shader
-  PFNGLFRAMEBUFFERTEXTUREOESPROC
-    glFramebufferTextureOES;
-
-  // GL_OES_get_program_binary
-  PFNGLGETPROGRAMBINARYOESPROC
-    glGetProgramBinaryOES;
-  PFNGLPROGRAMBINARYOESPROC
-    glProgramBinaryOES;
-
-  // GL_OES_mapbuffer
-  PFNGLMAPBUFFEROESPROC
-    glMapBufferOES;
-  PFNGLUNMAPBUFFEROESPROC
-    glUnmapBufferOES;
-  PFNGLGETBUFFERPOINTERVOESPROC
-    glGetBufferPointervOES;
-
-  // GL_OES_matrix_palette
-  PFNGLCURRENTPALETTEMATRIXOESPROC
-    glCurrentPaletteMatrixOES;
-  PFNGLLOADPALETTEFROMMODELVIEWMATRIXOESPROC
-    glLoadPaletteFromModelViewMatrixOES;
-  PFNGLMATRIXINDEXPOINTEROESPROC
-    glMatrixIndexPointerOES;
-  PFNGLWEIGHTPOINTEROESPROC
-    glWeightPointerOES;
-
-  // GL_OES_point_size_array
-  PFNGLPOINTSIZEPOINTEROESPROC
-    glPointSizePointerOES;
-
-  // GL_OES_primitive_bounding_box
-  PFNGLPRIMITIVEBOUNDINGBOXOESPROC
-    glPrimitiveBoundingBoxOES;
-
-  // GL_OES_query_matrix
-  PFNGLQUERYMATRIXXOESPROC
-    glQueryMatrixxOES;
-
-  // GL_OES_sample_shading
-  PFNGLMINSAMPLESHADINGOESPROC
-    glMinSampleShadingOES;
-
-  // GL_OES_single_precision
-  PFNGLCLEARDEPTHFOESPROC
-    glClearDepthfOES;
-  PFNGLCLIPPLANEFOESPROC
-    glClipPlanefOES;
-  PFNGLDEPTHRANGEFOESPROC
-    glDepthRangefOES;
-  PFNGLFRUSTUMFOESPROC
-    glFrustumfOES;
-  PFNGLGETCLIPPLANEFOESPROC
-    glGetClipPlanefOES;
-  PFNGLORTHOFOESPROC
-    glOrthofOES;
-
-  // GL_OES_tessellation_shader
-  PFNGLPATCHPARAMETERIOESPROC
-    glPatchParameteriOES;
-
-  // GL_OES_texture_3D
-  PFNGLTEXIMAGE3DOESPROC
-    glTexImage3DOES;
-  PFNGLTEXSUBIMAGE3DOESPROC
-    glTexSubImage3DOES;
-  PFNGLCOPYTEXSUBIMAGE3DOESPROC
-    glCopyTexSubImage3DOES;
-  PFNGLCOMPRESSEDTEXIMAGE3DOESPROC
-    glCompressedTexImage3DOES;
-  PFNGLCOMPRESSEDTEXSUBIMAGE3DOESPROC
-    glCompressedTexSubImage3DOES;
-  PFNGLFRAMEBUFFERTEXTURE3DOESPROC
-    glFramebufferTexture3DOES;
-
-  // GL_OES_texture_border_clamp
-  PFNGLTEXPARAMETERIIVOESPROC
-    glTexParameterIivOES;
-  PFNGLTEXPARAMETERIUIVOESPROC
-    glTexParameterIuivOES;
-  PFNGLGETTEXPARAMETERIIVOESPROC
-    glGetTexParameterIivOES;
-  PFNGLGETTEXPARAMETERIUIVOESPROC
-    glGetTexParameterIuivOES;
-  PFNGLSAMPLERPARAMETERIIVOESPROC
-    glSamplerParameterIivOES;
-  PFNGLSAMPLERPARAMETERIUIVOESPROC
-    glSamplerParameterIuivOES;
-  PFNGLGETSAMPLERPARAMETERIIVOESPROC
-    glGetSamplerParameterIivOES;
-  PFNGLGETSAMPLERPARAMETERIUIVOESPROC
-    glGetSamplerParameterIuivOES;
-
-  // GL_OES_texture_buffer
-  PFNGLTEXBUFFEROESPROC
-    glTexBufferOES;
-  PFNGLTEXBUFFERRANGEOESPROC
-    glTexBufferRangeOES;
-
-  // GL_OES_texture_cube_map
-  PFNGLTEXGENFOESPROC
-    glTexGenfOES;
-  PFNGLTEXGENFVOESPROC
-    glTexGenfvOES;
-  PFNGLTEXGENIOESPROC
-    glTexGeniOES;
-  PFNGLTEXGENIVOESPROC
-    glTexGenivOES;
-  PFNGLTEXGENXOESPROC
-    glTexGenxOES;
-  PFNGLTEXGENXVOESPROC
-    glTexGenxvOES;
-  PFNGLGETTEXGENFVOESPROC
-    glGetTexGenfvOES;
-  PFNGLGETTEXGENIVOESPROC
-    glGetTexGenivOES;
-  PFNGLGETTEXGENXVOESPROC
-    glGetTexGenxvOES;
-
-  // GL_OES_texture_storage_multisample_2d_array
-  PFNGLTEXSTORAGE3DMULTISAMPLEOESPROC
-    glTexStorage3DMultisampleOES;
-
-  // GL_OES_texture_view
-  PFNGLTEXTUREVIEWOESPROC
-    glTextureViewOES;
-
-  // GL_OES_vertex_array_object
-  PFNGLBINDVERTEXARRAYOESPROC
-    glBindVertexArrayOES;
-  PFNGLDELETEVERTEXARRAYSOESPROC
-    glDeleteVertexArraysOES;
-  PFNGLGENVERTEXARRAYSOESPROC
-    glGenVertexArraysOES;
-  PFNGLISVERTEXARRAYOESPROC
-    glIsVertexArrayOES;
-
-  // GL_OVR_multiview
-  PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC
-    glFramebufferTextureMultiviewOVR;
-
-  // GL_QCOM_alpha_test
-  PFNGLALPHAFUNCQCOMPROC
-    glAlphaFuncQCOM;
-
-  // GL_QCOM_driver_control
-  PFNGLGETDRIVERCONTROLSQCOMPROC
-    glGetDriverControlsQCOM;
-  PFNGLGETDRIVERCONTROLSTRINGQCOMPROC
-    glGetDriverControlStringQCOM;
-  PFNGLENABLEDRIVERCONTROLQCOMPROC
-    glEnableDriverControlQCOM;
-  PFNGLDISABLEDRIVERCONTROLQCOMPROC
-    glDisableDriverControlQCOM;
-
-  // GL_QCOM_extended_get
-  PFNGLEXTGETTEXTURESQCOMPROC
-    glExtGetTexturesQCOM;
-  PFNGLEXTGETBUFFERSQCOMPROC
-    glExtGetBuffersQCOM;
-  PFNGLEXTGETRENDERBUFFERSQCOMPROC
-    glExtGetRenderbuffersQCOM;
-  PFNGLEXTGETFRAMEBUFFERSQCOMPROC
-    glExtGetFramebuffersQCOM;
-  PFNGLEXTGETTEXLEVELPARAMETERIVQCOMPROC
-    glExtGetTexLevelParameterivQCOM;
-  PFNGLEXTTEXOBJECTSTATEOVERRIDEIQCOMPROC
-    glExtTexObjectStateOverrideiQCOM;
-  PFNGLEXTGETTEXSUBIMAGEQCOMPROC
-    glExtGetTexSubImageQCOM;
-  PFNGLEXTGETBUFFERPOINTERVQCOMPROC
-    glExtGetBufferPointervQCOM;
-
-  // GL_QCOM_extended_get2
-  PFNGLEXTGETSHADERSQCOMPROC
-    glExtGetShadersQCOM;
-  PFNGLEXTGETPROGRAMSQCOMPROC
-    glExtGetProgramsQCOM;
-  PFNGLEXTISPROGRAMBINARYQCOMPROC
-    glExtIsProgramBinaryQCOM;
-  PFNGLEXTGETPROGRAMBINARYSOURCEQCOMPROC
-    glExtGetProgramBinarySourceQCOM;
-
-  // GL_QCOM_tiled_rendering
-  PFNGLSTARTTILINGQCOMPROC
-    glStartTilingQCOM;
-  PFNGLENDTILINGQCOMPROC
-    glEndTilingQCOM;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLESBoolean glesGetCapabilities (GLESCapabilities *capabilities);
+GLCOREBoolean glcoreGetCapabilities (GLCORECapabilities *capabilities);
 
 #define glAccum __glAccum
 #define glAccumxOES __glAccumxOES
