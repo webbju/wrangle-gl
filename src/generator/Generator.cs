@@ -178,13 +178,11 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
-      writer.Write (string.Format ("\nclass {0}Capabilities\n{{\npublic:\n\n", m_api [0].ToUpperInvariant ()));
+      writer.Write (string.Format ("\nstruct {0}Capabilities\n{{\n", m_api [0].ToUpperInvariant ()));
 
-      writer.Write (string.Format ("  bool Initialise ();\n\n"));
-
-      writer.Write (string.Format ("  bool Deinitialise ();\n\n"));
-
-      writer.Write (string.Format ("  bool IsSupported (const char *extension);\n\n"));
+      // 
+      // Feature version identifiers.
+      // 
 
       if (m_featureNodesLookup.Count > 0)
       {
@@ -198,6 +196,10 @@ namespace wrangle_gl_generator
         }
       }
 
+      // 
+      // Extension identifiers.
+      // 
+
       if (m_extensionNodesLookup.Count > 0)
       {
         writer.Write ("\n  bool\n");
@@ -209,6 +211,10 @@ namespace wrangle_gl_generator
           writer.Write (string.Format ("    __{0}{1}\n", key, ((--extensionCount) > 0) ? "," : ";"));
         }
       }
+
+      // 
+      // Feature function prototypes.
+      // 
 
       if (m_featureNodesLookup.Count > 0)
       {
@@ -235,6 +241,10 @@ namespace wrangle_gl_generator
           }
         }
       }
+
+      // 
+      // Extension function prototypes.
+      // 
 
       if (m_extensionNodesLookup.Count > 0)
       {
@@ -266,7 +276,15 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
-      writer.Write (string.Format ("\n{0}Boolean {1}GetCapabilities ({0}Capabilities *capabilities);\n\n", m_api [0].ToUpperInvariant (), m_api [0]));
+      writer.Write (string.Format ("\n{1}Boolean {0}wQueryCapabilities ({1}Capabilities *capabilities);\n", m_api [0], m_api [0].ToUpperInvariant ()));
+
+      writer.Write (string.Format ("\nconst {1}Capabilities *{0}wGetCapabilities ();\n", m_api [0], m_api [0].ToUpperInvariant ()));
+
+      writer.Write (string.Format ("\n{1}Boolean {0}wSetCapabilities (const {1}Capabilities *capabilities);\n\n", m_api [0], m_api [0].ToUpperInvariant ()));
+
+      WriteCommentDivider (ref writer);
+
+      writer.Write ("\n");
 
       foreach (var keypair in m_commandsNodesLookup)
       {
@@ -290,12 +308,63 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
-      foreach (var keypair in m_extensionNodesLookup)
+      // 
+      // Features.
+      // 
+
+      foreach (var keypair in m_featureNodesLookup)
       {
-        writer.Write (string.Format ("// {0}\n", keypair.Key));
+        XmlNode featureNode = keypair.Value;
+
+        XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
+
+        if (requiredCommandNodes.Count == 0)
+        {
+          continue;
+        }
+
+        foreach (XmlNode commandNode in requiredCommandNodes)
+        {
+          string command = commandNode.Attributes ["name"].Value;
+
+          writer.Write (string.Format ("\n// {0}\n// {1}\n", keypair.Key, command));
+
+          writer.Write (string.Format ("{0}\n{{\n", GetFullCommandPrototype (command)));
+
+          writer.Write ("}\n\n");
+
+          WriteCommentDivider (ref writer);
+        }
       }
 
-      WriteCommentDivider (ref writer);
+      // 
+      // Extensions.
+      // 
+
+      foreach (var keypair in m_extensionNodesLookup)
+      {
+        XmlNode extensionNode = keypair.Value;
+
+        XmlNodeList requiredCommandNodes = extensionNode.SelectNodes ("require/command");
+
+        if (requiredCommandNodes.Count == 0)
+        {
+          continue;
+        }
+
+        foreach (XmlNode commandNode in requiredCommandNodes)
+        {
+          string command = commandNode.Attributes ["name"].Value;
+
+          writer.Write (string.Format ("\n// {0}\n// {1}\n", keypair.Key, command));
+
+          writer.Write (string.Format ("{0}\n{{\n", GetFullCommandPrototype (command)));
+
+          writer.Write ("}\n\n");
+
+          WriteCommentDivider (ref writer);
+        }
+      }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -318,6 +387,62 @@ namespace wrangle_gl_generator
       }
 
       return false;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private string GetFullCommandPrototype (string command)
+    {
+      XmlNode commandNode = null;
+
+      if (m_commandsNodesLookup.TryGetValue (command, out commandNode))
+      {
+        StringBuilder prototypeBuilder = new StringBuilder ();
+
+        // 
+        // Make an identical copy of the XML contents of component of the prototype/params.
+        // 
+
+        XmlNode protoNode = commandNode.SelectSingleNode ("proto");
+
+        prototypeBuilder.Append (protoNode.InnerXml);
+
+        prototypeBuilder.Append (" (");
+
+        XmlNodeList protoParamNodes = commandNode.SelectNodes ("param");
+
+        for (int i = 0; i < protoParamNodes.Count; ++i)
+        {
+          XmlNode paramNode = protoParamNodes.Item (i);
+
+          prototypeBuilder.Append (paramNode.InnerXml);
+
+          if (i < (protoParamNodes.Count - 1))
+          {
+            prototypeBuilder.Append (", ");
+          }
+        }
+
+        prototypeBuilder.Append (")");
+
+        // 
+        // Strip any unwanted XML tags.
+        // 
+
+        prototypeBuilder.Replace ("<ptype>", "");
+
+        prototypeBuilder.Replace ("</ptype>", "");
+
+        prototypeBuilder.Replace ("<name>", " ");
+
+        prototypeBuilder.Replace ("</name>", "");
+
+        return prototypeBuilder.ToString ();
+      }
+
+      return string.Empty;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
