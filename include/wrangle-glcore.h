@@ -2,4404 +2,4587 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#ifndef __GLEW_GLCORE_H__
+#define __GLEW_GLCORE_H__
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #include <GL/glcorearb.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-struct GLCORECapabilities
+namespace glew
 {
-
-  bool
-    __GL_ARB_ES2_compatibility,
-    __GL_ARB_ES3_1_compatibility,
-    __GL_ARB_ES3_compatibility,
-    __GL_ARB_arrays_of_arrays,
-    __GL_ARB_base_instance,
-    __GL_ARB_bindless_texture,
-    __GL_ARB_blend_func_extended,
-    __GL_ARB_buffer_storage,
-    __GL_ARB_cl_event,
-    __GL_ARB_clear_buffer_object,
-    __GL_ARB_clear_texture,
-    __GL_ARB_clip_control,
-    __GL_ARB_compressed_texture_pixel_storage,
-    __GL_ARB_compute_shader,
-    __GL_ARB_compute_variable_group_size,
-    __GL_ARB_conditional_render_inverted,
-    __GL_ARB_conservative_depth,
-    __GL_ARB_copy_buffer,
-    __GL_ARB_copy_image,
-    __GL_ARB_cull_distance,
-    __GL_ARB_debug_output,
-    __GL_ARB_depth_buffer_float,
-    __GL_ARB_depth_clamp,
-    __GL_ARB_derivative_control,
-    __GL_ARB_direct_state_access,
-    __GL_ARB_draw_buffers_blend,
-    __GL_ARB_draw_elements_base_vertex,
-    __GL_ARB_draw_indirect,
-    __GL_ARB_enhanced_layouts,
-    __GL_ARB_explicit_attrib_location,
-    __GL_ARB_explicit_uniform_location,
-    __GL_ARB_fragment_coord_conventions,
-    __GL_ARB_fragment_layer_viewport,
-    __GL_ARB_framebuffer_no_attachments,
-    __GL_ARB_framebuffer_object,
-    __GL_ARB_framebuffer_sRGB,
-    __GL_ARB_get_program_binary,
-    __GL_ARB_get_texture_sub_image,
-    __GL_ARB_gpu_shader5,
-    __GL_ARB_gpu_shader_fp64,
-    __GL_ARB_half_float_vertex,
-    __GL_ARB_imaging,
-    __GL_ARB_indirect_parameters,
-    __GL_ARB_internalformat_query,
-    __GL_ARB_internalformat_query2,
-    __GL_ARB_invalidate_subdata,
-    __GL_ARB_map_buffer_alignment,
-    __GL_ARB_map_buffer_range,
-    __GL_ARB_multi_bind,
-    __GL_ARB_multi_draw_indirect,
-    __GL_ARB_occlusion_query2,
-    __GL_ARB_pipeline_statistics_query,
-    __GL_ARB_program_interface_query,
-    __GL_ARB_provoking_vertex,
-    __GL_ARB_query_buffer_object,
-    __GL_ARB_robust_buffer_access_behavior,
-    __GL_ARB_robustness,
-    __GL_ARB_robustness_isolation,
-    __GL_ARB_sample_shading,
-    __GL_ARB_sampler_objects,
-    __GL_ARB_seamless_cube_map,
-    __GL_ARB_seamless_cubemap_per_texture,
-    __GL_ARB_separate_shader_objects,
-    __GL_ARB_shader_atomic_counters,
-    __GL_ARB_shader_bit_encoding,
-    __GL_ARB_shader_draw_parameters,
-    __GL_ARB_shader_group_vote,
-    __GL_ARB_shader_image_load_store,
-    __GL_ARB_shader_image_size,
-    __GL_ARB_shader_precision,
-    __GL_ARB_shader_stencil_export,
-    __GL_ARB_shader_storage_buffer_object,
-    __GL_ARB_shader_subroutine,
-    __GL_ARB_shader_texture_image_samples,
-    __GL_ARB_shading_language_420pack,
-    __GL_ARB_shading_language_include,
-    __GL_ARB_shading_language_packing,
-    __GL_ARB_sparse_buffer,
-    __GL_ARB_sparse_texture,
-    __GL_ARB_stencil_texturing,
-    __GL_ARB_sync,
-    __GL_ARB_tessellation_shader,
-    __GL_ARB_texture_barrier,
-    __GL_ARB_texture_buffer_object_rgb32,
-    __GL_ARB_texture_buffer_range,
-    __GL_ARB_texture_compression_bptc,
-    __GL_ARB_texture_compression_rgtc,
-    __GL_ARB_texture_cube_map_array,
-    __GL_ARB_texture_gather,
-    __GL_ARB_texture_mirror_clamp_to_edge,
-    __GL_ARB_texture_multisample,
-    __GL_ARB_texture_query_levels,
-    __GL_ARB_texture_query_lod,
-    __GL_ARB_texture_rg,
-    __GL_ARB_texture_rgb10_a2ui,
-    __GL_ARB_texture_stencil8,
-    __GL_ARB_texture_storage,
-    __GL_ARB_texture_storage_multisample,
-    __GL_ARB_texture_swizzle,
-    __GL_ARB_texture_view,
-    __GL_ARB_timer_query,
-    __GL_ARB_transform_feedback2,
-    __GL_ARB_transform_feedback3,
-    __GL_ARB_transform_feedback_instanced,
-    __GL_ARB_transform_feedback_overflow_query,
-    __GL_ARB_uniform_buffer_object,
-    __GL_ARB_vertex_array_bgra,
-    __GL_ARB_vertex_array_object,
-    __GL_ARB_vertex_attrib_64bit,
-    __GL_ARB_vertex_attrib_binding,
-    __GL_ARB_vertex_type_10f_11f_11f_rev,
-    __GL_ARB_vertex_type_2_10_10_10_rev,
-    __GL_ARB_viewport_array,
-    __GL_KHR_context_flush_control,
-    __GL_KHR_debug,
-    __GL_KHR_no_error,
-    __GL_KHR_robust_buffer_access_behavior,
-    __GL_KHR_robustness,
-    __GL_KHR_texture_compression_astc_hdr,
-    __GL_KHR_texture_compression_astc_ldr;
-
-  // GL_ARB_ES2_compatibility
-  PFNGLRELEASESHADERCOMPILERPROC
-    glReleaseShaderCompiler;
-  PFNGLSHADERBINARYPROC
-    glShaderBinary;
-  PFNGLGETSHADERPRECISIONFORMATPROC
-    glGetShaderPrecisionFormat;
-  PFNGLDEPTHRANGEFPROC
-    glDepthRangef;
-  PFNGLCLEARDEPTHFPROC
-    glClearDepthf;
-
-  // GL_ARB_ES3_1_compatibility
-  PFNGLMEMORYBARRIERBYREGIONPROC
-    glMemoryBarrierByRegion;
-
-  // GL_ARB_base_instance
-  PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC
-    glDrawArraysInstancedBaseInstance;
-  PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC
-    glDrawElementsInstancedBaseInstance;
-  PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC
-    glDrawElementsInstancedBaseVertexBaseInstance;
-
-  // GL_ARB_bindless_texture
-  PFNGLGETTEXTUREHANDLEARBPROC
-    glGetTextureHandleARB;
-  PFNGLGETTEXTURESAMPLERHANDLEARBPROC
-    glGetTextureSamplerHandleARB;
-  PFNGLMAKETEXTUREHANDLERESIDENTARBPROC
-    glMakeTextureHandleResidentARB;
-  PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC
-    glMakeTextureHandleNonResidentARB;
-  PFNGLGETIMAGEHANDLEARBPROC
-    glGetImageHandleARB;
-  PFNGLMAKEIMAGEHANDLERESIDENTARBPROC
-    glMakeImageHandleResidentARB;
-  PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC
-    glMakeImageHandleNonResidentARB;
-  PFNGLUNIFORMHANDLEUI64ARBPROC
-    glUniformHandleui64ARB;
-  PFNGLUNIFORMHANDLEUI64VARBPROC
-    glUniformHandleui64vARB;
-  PFNGLPROGRAMUNIFORMHANDLEUI64ARBPROC
-    glProgramUniformHandleui64ARB;
-  PFNGLPROGRAMUNIFORMHANDLEUI64VARBPROC
-    glProgramUniformHandleui64vARB;
-  PFNGLISTEXTUREHANDLERESIDENTARBPROC
-    glIsTextureHandleResidentARB;
-  PFNGLISIMAGEHANDLERESIDENTARBPROC
-    glIsImageHandleResidentARB;
-  PFNGLVERTEXATTRIBL1UI64ARBPROC
-    glVertexAttribL1ui64ARB;
-  PFNGLVERTEXATTRIBL1UI64VARBPROC
-    glVertexAttribL1ui64vARB;
-  PFNGLGETVERTEXATTRIBLUI64VARBPROC
-    glGetVertexAttribLui64vARB;
-
-  // GL_ARB_blend_func_extended
-  PFNGLBINDFRAGDATALOCATIONINDEXEDPROC
-    glBindFragDataLocationIndexed;
-  PFNGLGETFRAGDATAINDEXPROC
-    glGetFragDataIndex;
-
-  // GL_ARB_buffer_storage
-  PFNGLBUFFERSTORAGEPROC
-    glBufferStorage;
-
-  // GL_ARB_cl_event
-  PFNGLCREATESYNCFROMCLEVENTARBPROC
-    glCreateSyncFromCLeventARB;
-
-  // GL_ARB_clear_buffer_object
-  PFNGLCLEARBUFFERDATAPROC
-    glClearBufferData;
-  PFNGLCLEARBUFFERSUBDATAPROC
-    glClearBufferSubData;
-
-  // GL_ARB_clear_texture
-  PFNGLCLEARTEXIMAGEPROC
-    glClearTexImage;
-  PFNGLCLEARTEXSUBIMAGEPROC
-    glClearTexSubImage;
-
-  // GL_ARB_clip_control
-  PFNGLCLIPCONTROLPROC
-    glClipControl;
-
-  // GL_ARB_compute_shader
-  PFNGLDISPATCHCOMPUTEPROC
-    glDispatchCompute;
-  PFNGLDISPATCHCOMPUTEINDIRECTPROC
-    glDispatchComputeIndirect;
-
-  // GL_ARB_compute_variable_group_size
-  PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC
-    glDispatchComputeGroupSizeARB;
-
-  // GL_ARB_copy_buffer
-  PFNGLCOPYBUFFERSUBDATAPROC
-    glCopyBufferSubData;
-
-  // GL_ARB_copy_image
-  PFNGLCOPYIMAGESUBDATAPROC
-    glCopyImageSubData;
-
-  // GL_ARB_debug_output
-  PFNGLDEBUGMESSAGECONTROLARBPROC
-    glDebugMessageControlARB;
-  PFNGLDEBUGMESSAGEINSERTARBPROC
-    glDebugMessageInsertARB;
-  PFNGLDEBUGMESSAGECALLBACKARBPROC
-    glDebugMessageCallbackARB;
-  PFNGLGETDEBUGMESSAGELOGARBPROC
-    glGetDebugMessageLogARB;
-
-  // GL_ARB_direct_state_access
-  PFNGLCREATETRANSFORMFEEDBACKSPROC
-    glCreateTransformFeedbacks;
-  PFNGLTRANSFORMFEEDBACKBUFFERBASEPROC
-    glTransformFeedbackBufferBase;
-  PFNGLTRANSFORMFEEDBACKBUFFERRANGEPROC
-    glTransformFeedbackBufferRange;
-  PFNGLGETTRANSFORMFEEDBACKIVPROC
-    glGetTransformFeedbackiv;
-  PFNGLGETTRANSFORMFEEDBACKI_VPROC
-    glGetTransformFeedbacki_v;
-  PFNGLGETTRANSFORMFEEDBACKI64_VPROC
-    glGetTransformFeedbacki64_v;
-  PFNGLCREATEBUFFERSPROC
-    glCreateBuffers;
-  PFNGLNAMEDBUFFERSTORAGEPROC
-    glNamedBufferStorage;
-  PFNGLNAMEDBUFFERDATAPROC
-    glNamedBufferData;
-  PFNGLNAMEDBUFFERSUBDATAPROC
-    glNamedBufferSubData;
-  PFNGLCOPYNAMEDBUFFERSUBDATAPROC
-    glCopyNamedBufferSubData;
-  PFNGLCLEARNAMEDBUFFERDATAPROC
-    glClearNamedBufferData;
-  PFNGLCLEARNAMEDBUFFERSUBDATAPROC
-    glClearNamedBufferSubData;
-  PFNGLMAPNAMEDBUFFERPROC
-    glMapNamedBuffer;
-  PFNGLMAPNAMEDBUFFERRANGEPROC
-    glMapNamedBufferRange;
-  PFNGLUNMAPNAMEDBUFFERPROC
-    glUnmapNamedBuffer;
-  PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC
-    glFlushMappedNamedBufferRange;
-  PFNGLGETNAMEDBUFFERPARAMETERIVPROC
-    glGetNamedBufferParameteriv;
-  PFNGLGETNAMEDBUFFERPARAMETERI64VPROC
-    glGetNamedBufferParameteri64v;
-  PFNGLGETNAMEDBUFFERPOINTERVPROC
-    glGetNamedBufferPointerv;
-  PFNGLGETNAMEDBUFFERSUBDATAPROC
-    glGetNamedBufferSubData;
-  PFNGLCREATEFRAMEBUFFERSPROC
-    glCreateFramebuffers;
-  PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC
-    glNamedFramebufferRenderbuffer;
-  PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC
-    glNamedFramebufferParameteri;
-  PFNGLNAMEDFRAMEBUFFERTEXTUREPROC
-    glNamedFramebufferTexture;
-  PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC
-    glNamedFramebufferTextureLayer;
-  PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC
-    glNamedFramebufferDrawBuffer;
-  PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC
-    glNamedFramebufferDrawBuffers;
-  PFNGLNAMEDFRAMEBUFFERREADBUFFERPROC
-    glNamedFramebufferReadBuffer;
-  PFNGLINVALIDATENAMEDFRAMEBUFFERDATAPROC
-    glInvalidateNamedFramebufferData;
-  PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC
-    glInvalidateNamedFramebufferSubData;
-  PFNGLCLEARNAMEDFRAMEBUFFERIVPROC
-    glClearNamedFramebufferiv;
-  PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC
-    glClearNamedFramebufferuiv;
-  PFNGLCLEARNAMEDFRAMEBUFFERFVPROC
-    glClearNamedFramebufferfv;
-  PFNGLCLEARNAMEDFRAMEBUFFERFIPROC
-    glClearNamedFramebufferfi;
-  PFNGLBLITNAMEDFRAMEBUFFERPROC
-    glBlitNamedFramebuffer;
-  PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC
-    glCheckNamedFramebufferStatus;
-  PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC
-    glGetNamedFramebufferParameteriv;
-  PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC
-    glGetNamedFramebufferAttachmentParameteriv;
-  PFNGLCREATERENDERBUFFERSPROC
-    glCreateRenderbuffers;
-  PFNGLNAMEDRENDERBUFFERSTORAGEPROC
-    glNamedRenderbufferStorage;
-  PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC
-    glNamedRenderbufferStorageMultisample;
-  PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC
-    glGetNamedRenderbufferParameteriv;
-  PFNGLCREATETEXTURESPROC
-    glCreateTextures;
-  PFNGLTEXTUREBUFFERPROC
-    glTextureBuffer;
-  PFNGLTEXTUREBUFFERRANGEPROC
-    glTextureBufferRange;
-  PFNGLTEXTURESTORAGE1DPROC
-    glTextureStorage1D;
-  PFNGLTEXTURESTORAGE2DPROC
-    glTextureStorage2D;
-  PFNGLTEXTURESTORAGE3DPROC
-    glTextureStorage3D;
-  PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC
-    glTextureStorage2DMultisample;
-  PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC
-    glTextureStorage3DMultisample;
-  PFNGLTEXTURESUBIMAGE1DPROC
-    glTextureSubImage1D;
-  PFNGLTEXTURESUBIMAGE2DPROC
-    glTextureSubImage2D;
-  PFNGLTEXTURESUBIMAGE3DPROC
-    glTextureSubImage3D;
-  PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC
-    glCompressedTextureSubImage1D;
-  PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC
-    glCompressedTextureSubImage2D;
-  PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC
-    glCompressedTextureSubImage3D;
-  PFNGLCOPYTEXTURESUBIMAGE1DPROC
-    glCopyTextureSubImage1D;
-  PFNGLCOPYTEXTURESUBIMAGE2DPROC
-    glCopyTextureSubImage2D;
-  PFNGLCOPYTEXTURESUBIMAGE3DPROC
-    glCopyTextureSubImage3D;
-  PFNGLTEXTUREPARAMETERFPROC
-    glTextureParameterf;
-  PFNGLTEXTUREPARAMETERFVPROC
-    glTextureParameterfv;
-  PFNGLTEXTUREPARAMETERIPROC
-    glTextureParameteri;
-  PFNGLTEXTUREPARAMETERIIVPROC
-    glTextureParameterIiv;
-  PFNGLTEXTUREPARAMETERIUIVPROC
-    glTextureParameterIuiv;
-  PFNGLTEXTUREPARAMETERIVPROC
-    glTextureParameteriv;
-  PFNGLGENERATETEXTUREMIPMAPPROC
-    glGenerateTextureMipmap;
-  PFNGLBINDTEXTUREUNITPROC
-    glBindTextureUnit;
-  PFNGLGETTEXTUREIMAGEPROC
-    glGetTextureImage;
-  PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC
-    glGetCompressedTextureImage;
-  PFNGLGETTEXTURELEVELPARAMETERFVPROC
-    glGetTextureLevelParameterfv;
-  PFNGLGETTEXTURELEVELPARAMETERIVPROC
-    glGetTextureLevelParameteriv;
-  PFNGLGETTEXTUREPARAMETERFVPROC
-    glGetTextureParameterfv;
-  PFNGLGETTEXTUREPARAMETERIIVPROC
-    glGetTextureParameterIiv;
-  PFNGLGETTEXTUREPARAMETERIUIVPROC
-    glGetTextureParameterIuiv;
-  PFNGLGETTEXTUREPARAMETERIVPROC
-    glGetTextureParameteriv;
-  PFNGLCREATEVERTEXARRAYSPROC
-    glCreateVertexArrays;
-  PFNGLDISABLEVERTEXARRAYATTRIBPROC
-    glDisableVertexArrayAttrib;
-  PFNGLENABLEVERTEXARRAYATTRIBPROC
-    glEnableVertexArrayAttrib;
-  PFNGLVERTEXARRAYELEMENTBUFFERPROC
-    glVertexArrayElementBuffer;
-  PFNGLVERTEXARRAYVERTEXBUFFERPROC
-    glVertexArrayVertexBuffer;
-  PFNGLVERTEXARRAYVERTEXBUFFERSPROC
-    glVertexArrayVertexBuffers;
-  PFNGLVERTEXARRAYATTRIBBINDINGPROC
-    glVertexArrayAttribBinding;
-  PFNGLVERTEXARRAYATTRIBFORMATPROC
-    glVertexArrayAttribFormat;
-  PFNGLVERTEXARRAYATTRIBIFORMATPROC
-    glVertexArrayAttribIFormat;
-  PFNGLVERTEXARRAYATTRIBLFORMATPROC
-    glVertexArrayAttribLFormat;
-  PFNGLVERTEXARRAYBINDINGDIVISORPROC
-    glVertexArrayBindingDivisor;
-  PFNGLGETVERTEXARRAYIVPROC
-    glGetVertexArrayiv;
-  PFNGLGETVERTEXARRAYINDEXEDIVPROC
-    glGetVertexArrayIndexediv;
-  PFNGLGETVERTEXARRAYINDEXED64IVPROC
-    glGetVertexArrayIndexed64iv;
-  PFNGLCREATESAMPLERSPROC
-    glCreateSamplers;
-  PFNGLCREATEPROGRAMPIPELINESPROC
-    glCreateProgramPipelines;
-  PFNGLCREATEQUERIESPROC
-    glCreateQueries;
-  PFNGLGETQUERYBUFFEROBJECTI64VPROC
-    glGetQueryBufferObjecti64v;
-  PFNGLGETQUERYBUFFEROBJECTIVPROC
-    glGetQueryBufferObjectiv;
-  PFNGLGETQUERYBUFFEROBJECTUI64VPROC
-    glGetQueryBufferObjectui64v;
-  PFNGLGETQUERYBUFFEROBJECTUIVPROC
-    glGetQueryBufferObjectuiv;
-
-  // GL_ARB_draw_buffers_blend
-  PFNGLBLENDEQUATIONIARBPROC
-    glBlendEquationiARB;
-  PFNGLBLENDEQUATIONSEPARATEIARBPROC
-    glBlendEquationSeparateiARB;
-  PFNGLBLENDFUNCIARBPROC
-    glBlendFunciARB;
-  PFNGLBLENDFUNCSEPARATEIARBPROC
-    glBlendFuncSeparateiARB;
-
-  // GL_ARB_draw_elements_base_vertex
-  PFNGLDRAWELEMENTSBASEVERTEXPROC
-    glDrawElementsBaseVertex;
-  PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC
-    glDrawRangeElementsBaseVertex;
-  PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC
-    glDrawElementsInstancedBaseVertex;
-  PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC
-    glMultiDrawElementsBaseVertex;
-
-  // GL_ARB_draw_indirect
-  PFNGLDRAWARRAYSINDIRECTPROC
-    glDrawArraysIndirect;
-  PFNGLDRAWELEMENTSINDIRECTPROC
-    glDrawElementsIndirect;
-
-  // GL_ARB_framebuffer_no_attachments
-  PFNGLFRAMEBUFFERPARAMETERIPROC
-    glFramebufferParameteri;
-  PFNGLGETFRAMEBUFFERPARAMETERIVPROC
-    glGetFramebufferParameteriv;
-
-  // GL_ARB_framebuffer_object
-  PFNGLISRENDERBUFFERPROC
-    glIsRenderbuffer;
-  PFNGLBINDRENDERBUFFERPROC
-    glBindRenderbuffer;
-  PFNGLDELETERENDERBUFFERSPROC
-    glDeleteRenderbuffers;
-  PFNGLGENRENDERBUFFERSPROC
-    glGenRenderbuffers;
-  PFNGLRENDERBUFFERSTORAGEPROC
-    glRenderbufferStorage;
-  PFNGLGETRENDERBUFFERPARAMETERIVPROC
-    glGetRenderbufferParameteriv;
-  PFNGLISFRAMEBUFFERPROC
-    glIsFramebuffer;
-  PFNGLBINDFRAMEBUFFERPROC
-    glBindFramebuffer;
-  PFNGLDELETEFRAMEBUFFERSPROC
-    glDeleteFramebuffers;
-  PFNGLGENFRAMEBUFFERSPROC
-    glGenFramebuffers;
-  PFNGLCHECKFRAMEBUFFERSTATUSPROC
-    glCheckFramebufferStatus;
-  PFNGLFRAMEBUFFERTEXTURE1DPROC
-    glFramebufferTexture1D;
-  PFNGLFRAMEBUFFERTEXTURE2DPROC
-    glFramebufferTexture2D;
-  PFNGLFRAMEBUFFERTEXTURE3DPROC
-    glFramebufferTexture3D;
-  PFNGLFRAMEBUFFERRENDERBUFFERPROC
-    glFramebufferRenderbuffer;
-  PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC
-    glGetFramebufferAttachmentParameteriv;
-  PFNGLGENERATEMIPMAPPROC
-    glGenerateMipmap;
-  PFNGLBLITFRAMEBUFFERPROC
-    glBlitFramebuffer;
-  PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC
-    glRenderbufferStorageMultisample;
-  PFNGLFRAMEBUFFERTEXTURELAYERPROC
-    glFramebufferTextureLayer;
-
-  // GL_ARB_get_program_binary
-  PFNGLGETPROGRAMBINARYPROC
-    glGetProgramBinary;
-  PFNGLPROGRAMBINARYPROC
-    glProgramBinary;
-  PFNGLPROGRAMPARAMETERIPROC
-    glProgramParameteri;
-
-  // GL_ARB_get_texture_sub_image
-  PFNGLGETTEXTURESUBIMAGEPROC
-    glGetTextureSubImage;
-  PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC
-    glGetCompressedTextureSubImage;
-
-  // GL_ARB_gpu_shader_fp64
-  PFNGLUNIFORM1DPROC
-    glUniform1d;
-  PFNGLUNIFORM2DPROC
-    glUniform2d;
-  PFNGLUNIFORM3DPROC
-    glUniform3d;
-  PFNGLUNIFORM4DPROC
-    glUniform4d;
-  PFNGLUNIFORM1DVPROC
-    glUniform1dv;
-  PFNGLUNIFORM2DVPROC
-    glUniform2dv;
-  PFNGLUNIFORM3DVPROC
-    glUniform3dv;
-  PFNGLUNIFORM4DVPROC
-    glUniform4dv;
-  PFNGLUNIFORMMATRIX2DVPROC
-    glUniformMatrix2dv;
-  PFNGLUNIFORMMATRIX3DVPROC
-    glUniformMatrix3dv;
-  PFNGLUNIFORMMATRIX4DVPROC
-    glUniformMatrix4dv;
-  PFNGLUNIFORMMATRIX2X3DVPROC
-    glUniformMatrix2x3dv;
-  PFNGLUNIFORMMATRIX2X4DVPROC
-    glUniformMatrix2x4dv;
-  PFNGLUNIFORMMATRIX3X2DVPROC
-    glUniformMatrix3x2dv;
-  PFNGLUNIFORMMATRIX3X4DVPROC
-    glUniformMatrix3x4dv;
-  PFNGLUNIFORMMATRIX4X2DVPROC
-    glUniformMatrix4x2dv;
-  PFNGLUNIFORMMATRIX4X3DVPROC
-    glUniformMatrix4x3dv;
-  PFNGLGETUNIFORMDVPROC
-    glGetUniformdv;
-
-  // GL_ARB_imaging
-  PFNGLBLENDCOLORPROC
-    glBlendColor;
-  PFNGLBLENDEQUATIONPROC
-    glBlendEquation;
-  PFNGLCOLORTABLEPROC
-    glColorTable;
-  PFNGLCOLORTABLEPARAMETERFVPROC
-    glColorTableParameterfv;
-  PFNGLCOLORTABLEPARAMETERIVPROC
-    glColorTableParameteriv;
-  PFNGLCOPYCOLORTABLEPROC
-    glCopyColorTable;
-  PFNGLGETCOLORTABLEPROC
-    glGetColorTable;
-  PFNGLGETCOLORTABLEPARAMETERFVPROC
-    glGetColorTableParameterfv;
-  PFNGLGETCOLORTABLEPARAMETERIVPROC
-    glGetColorTableParameteriv;
-  PFNGLCOLORSUBTABLEPROC
-    glColorSubTable;
-  PFNGLCOPYCOLORSUBTABLEPROC
-    glCopyColorSubTable;
-  PFNGLCONVOLUTIONFILTER1DPROC
-    glConvolutionFilter1D;
-  PFNGLCONVOLUTIONFILTER2DPROC
-    glConvolutionFilter2D;
-  PFNGLCONVOLUTIONPARAMETERFPROC
-    glConvolutionParameterf;
-  PFNGLCONVOLUTIONPARAMETERFVPROC
-    glConvolutionParameterfv;
-  PFNGLCONVOLUTIONPARAMETERIPROC
-    glConvolutionParameteri;
-  PFNGLCONVOLUTIONPARAMETERIVPROC
-    glConvolutionParameteriv;
-  PFNGLCOPYCONVOLUTIONFILTER1DPROC
-    glCopyConvolutionFilter1D;
-  PFNGLCOPYCONVOLUTIONFILTER2DPROC
-    glCopyConvolutionFilter2D;
-  PFNGLGETCONVOLUTIONFILTERPROC
-    glGetConvolutionFilter;
-  PFNGLGETCONVOLUTIONPARAMETERFVPROC
-    glGetConvolutionParameterfv;
-  PFNGLGETCONVOLUTIONPARAMETERIVPROC
-    glGetConvolutionParameteriv;
-  PFNGLGETSEPARABLEFILTERPROC
-    glGetSeparableFilter;
-  PFNGLSEPARABLEFILTER2DPROC
-    glSeparableFilter2D;
-  PFNGLGETHISTOGRAMPROC
-    glGetHistogram;
-  PFNGLGETHISTOGRAMPARAMETERFVPROC
-    glGetHistogramParameterfv;
-  PFNGLGETHISTOGRAMPARAMETERIVPROC
-    glGetHistogramParameteriv;
-  PFNGLGETMINMAXPROC
-    glGetMinmax;
-  PFNGLGETMINMAXPARAMETERFVPROC
-    glGetMinmaxParameterfv;
-  PFNGLGETMINMAXPARAMETERIVPROC
-    glGetMinmaxParameteriv;
-  PFNGLHISTOGRAMPROC
-    glHistogram;
-  PFNGLMINMAXPROC
-    glMinmax;
-  PFNGLRESETHISTOGRAMPROC
-    glResetHistogram;
-  PFNGLRESETMINMAXPROC
-    glResetMinmax;
-
-  // GL_ARB_indirect_parameters
-  PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC
-    glMultiDrawArraysIndirectCountARB;
-  PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC
-    glMultiDrawElementsIndirectCountARB;
-
-  // GL_ARB_internalformat_query
-  PFNGLGETINTERNALFORMATIVPROC
-    glGetInternalformativ;
-
-  // GL_ARB_internalformat_query2
-  PFNGLGETINTERNALFORMATI64VPROC
-    glGetInternalformati64v;
-
-  // GL_ARB_invalidate_subdata
-  PFNGLINVALIDATETEXSUBIMAGEPROC
-    glInvalidateTexSubImage;
-  PFNGLINVALIDATETEXIMAGEPROC
-    glInvalidateTexImage;
-  PFNGLINVALIDATEBUFFERSUBDATAPROC
-    glInvalidateBufferSubData;
-  PFNGLINVALIDATEBUFFERDATAPROC
-    glInvalidateBufferData;
-  PFNGLINVALIDATEFRAMEBUFFERPROC
-    glInvalidateFramebuffer;
-  PFNGLINVALIDATESUBFRAMEBUFFERPROC
-    glInvalidateSubFramebuffer;
-
-  // GL_ARB_map_buffer_range
-  PFNGLMAPBUFFERRANGEPROC
-    glMapBufferRange;
-  PFNGLFLUSHMAPPEDBUFFERRANGEPROC
-    glFlushMappedBufferRange;
-
-  // GL_ARB_multi_bind
-  PFNGLBINDBUFFERSBASEPROC
-    glBindBuffersBase;
-  PFNGLBINDBUFFERSRANGEPROC
-    glBindBuffersRange;
-  PFNGLBINDTEXTURESPROC
-    glBindTextures;
-  PFNGLBINDSAMPLERSPROC
-    glBindSamplers;
-  PFNGLBINDIMAGETEXTURESPROC
-    glBindImageTextures;
-  PFNGLBINDVERTEXBUFFERSPROC
-    glBindVertexBuffers;
-
-  // GL_ARB_multi_draw_indirect
-  PFNGLMULTIDRAWARRAYSINDIRECTPROC
-    glMultiDrawArraysIndirect;
-  PFNGLMULTIDRAWELEMENTSINDIRECTPROC
-    glMultiDrawElementsIndirect;
-
-  // GL_ARB_program_interface_query
-  PFNGLGETPROGRAMINTERFACEIVPROC
-    glGetProgramInterfaceiv;
-  PFNGLGETPROGRAMRESOURCEINDEXPROC
-    glGetProgramResourceIndex;
-  PFNGLGETPROGRAMRESOURCENAMEPROC
-    glGetProgramResourceName;
-  PFNGLGETPROGRAMRESOURCEIVPROC
-    glGetProgramResourceiv;
-  PFNGLGETPROGRAMRESOURCELOCATIONPROC
-    glGetProgramResourceLocation;
-  PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC
-    glGetProgramResourceLocationIndex;
-
-  // GL_ARB_provoking_vertex
-  PFNGLPROVOKINGVERTEXPROC
-    glProvokingVertex;
-
-  // GL_ARB_robustness
-  PFNGLGETGRAPHICSRESETSTATUSARBPROC
-    glGetGraphicsResetStatusARB;
-  PFNGLGETNTEXIMAGEARBPROC
-    glGetnTexImageARB;
-  PFNGLREADNPIXELSARBPROC
-    glReadnPixelsARB;
-  PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC
-    glGetnCompressedTexImageARB;
-  PFNGLGETNUNIFORMFVARBPROC
-    glGetnUniformfvARB;
-  PFNGLGETNUNIFORMIVARBPROC
-    glGetnUniformivARB;
-  PFNGLGETNUNIFORMUIVARBPROC
-    glGetnUniformuivARB;
-  PFNGLGETNUNIFORMDVARBPROC
-    glGetnUniformdvARB;
-  PFNGLGETNMAPDVARBPROC
-    glGetnMapdvARB;
-  PFNGLGETNMAPFVARBPROC
-    glGetnMapfvARB;
-  PFNGLGETNMAPIVARBPROC
-    glGetnMapivARB;
-  PFNGLGETNPIXELMAPFVARBPROC
-    glGetnPixelMapfvARB;
-  PFNGLGETNPIXELMAPUIVARBPROC
-    glGetnPixelMapuivARB;
-  PFNGLGETNPIXELMAPUSVARBPROC
-    glGetnPixelMapusvARB;
-  PFNGLGETNPOLYGONSTIPPLEARBPROC
-    glGetnPolygonStippleARB;
-  PFNGLGETNCOLORTABLEARBPROC
-    glGetnColorTableARB;
-  PFNGLGETNCONVOLUTIONFILTERARBPROC
-    glGetnConvolutionFilterARB;
-  PFNGLGETNSEPARABLEFILTERARBPROC
-    glGetnSeparableFilterARB;
-  PFNGLGETNHISTOGRAMARBPROC
-    glGetnHistogramARB;
-  PFNGLGETNMINMAXARBPROC
-    glGetnMinmaxARB;
-
-  // GL_ARB_sample_shading
-  PFNGLMINSAMPLESHADINGARBPROC
-    glMinSampleShadingARB;
-
-  // GL_ARB_sampler_objects
-  PFNGLGENSAMPLERSPROC
-    glGenSamplers;
-  PFNGLDELETESAMPLERSPROC
-    glDeleteSamplers;
-  PFNGLISSAMPLERPROC
-    glIsSampler;
-  PFNGLBINDSAMPLERPROC
-    glBindSampler;
-  PFNGLSAMPLERPARAMETERIPROC
-    glSamplerParameteri;
-  PFNGLSAMPLERPARAMETERIVPROC
-    glSamplerParameteriv;
-  PFNGLSAMPLERPARAMETERFPROC
-    glSamplerParameterf;
-  PFNGLSAMPLERPARAMETERFVPROC
-    glSamplerParameterfv;
-  PFNGLSAMPLERPARAMETERIIVPROC
-    glSamplerParameterIiv;
-  PFNGLSAMPLERPARAMETERIUIVPROC
-    glSamplerParameterIuiv;
-  PFNGLGETSAMPLERPARAMETERIVPROC
-    glGetSamplerParameteriv;
-  PFNGLGETSAMPLERPARAMETERIIVPROC
-    glGetSamplerParameterIiv;
-  PFNGLGETSAMPLERPARAMETERFVPROC
-    glGetSamplerParameterfv;
-  PFNGLGETSAMPLERPARAMETERIUIVPROC
-    glGetSamplerParameterIuiv;
-
-  // GL_ARB_separate_shader_objects
-  PFNGLUSEPROGRAMSTAGESPROC
-    glUseProgramStages;
-  PFNGLACTIVESHADERPROGRAMPROC
-    glActiveShaderProgram;
-  PFNGLCREATESHADERPROGRAMVPROC
-    glCreateShaderProgramv;
-  PFNGLBINDPROGRAMPIPELINEPROC
-    glBindProgramPipeline;
-  PFNGLDELETEPROGRAMPIPELINESPROC
-    glDeleteProgramPipelines;
-  PFNGLGENPROGRAMPIPELINESPROC
-    glGenProgramPipelines;
-  PFNGLISPROGRAMPIPELINEPROC
-    glIsProgramPipeline;
-  PFNGLGETPROGRAMPIPELINEIVPROC
-    glGetProgramPipelineiv;
-  PFNGLPROGRAMUNIFORM1IPROC
-    glProgramUniform1i;
-  PFNGLPROGRAMUNIFORM1IVPROC
-    glProgramUniform1iv;
-  PFNGLPROGRAMUNIFORM1FPROC
-    glProgramUniform1f;
-  PFNGLPROGRAMUNIFORM1FVPROC
-    glProgramUniform1fv;
-  PFNGLPROGRAMUNIFORM1DPROC
-    glProgramUniform1d;
-  PFNGLPROGRAMUNIFORM1DVPROC
-    glProgramUniform1dv;
-  PFNGLPROGRAMUNIFORM1UIPROC
-    glProgramUniform1ui;
-  PFNGLPROGRAMUNIFORM1UIVPROC
-    glProgramUniform1uiv;
-  PFNGLPROGRAMUNIFORM2IPROC
-    glProgramUniform2i;
-  PFNGLPROGRAMUNIFORM2IVPROC
-    glProgramUniform2iv;
-  PFNGLPROGRAMUNIFORM2FPROC
-    glProgramUniform2f;
-  PFNGLPROGRAMUNIFORM2FVPROC
-    glProgramUniform2fv;
-  PFNGLPROGRAMUNIFORM2DPROC
-    glProgramUniform2d;
-  PFNGLPROGRAMUNIFORM2DVPROC
-    glProgramUniform2dv;
-  PFNGLPROGRAMUNIFORM2UIPROC
-    glProgramUniform2ui;
-  PFNGLPROGRAMUNIFORM2UIVPROC
-    glProgramUniform2uiv;
-  PFNGLPROGRAMUNIFORM3IPROC
-    glProgramUniform3i;
-  PFNGLPROGRAMUNIFORM3IVPROC
-    glProgramUniform3iv;
-  PFNGLPROGRAMUNIFORM3FPROC
-    glProgramUniform3f;
-  PFNGLPROGRAMUNIFORM3FVPROC
-    glProgramUniform3fv;
-  PFNGLPROGRAMUNIFORM3DPROC
-    glProgramUniform3d;
-  PFNGLPROGRAMUNIFORM3DVPROC
-    glProgramUniform3dv;
-  PFNGLPROGRAMUNIFORM3UIPROC
-    glProgramUniform3ui;
-  PFNGLPROGRAMUNIFORM3UIVPROC
-    glProgramUniform3uiv;
-  PFNGLPROGRAMUNIFORM4IPROC
-    glProgramUniform4i;
-  PFNGLPROGRAMUNIFORM4IVPROC
-    glProgramUniform4iv;
-  PFNGLPROGRAMUNIFORM4FPROC
-    glProgramUniform4f;
-  PFNGLPROGRAMUNIFORM4FVPROC
-    glProgramUniform4fv;
-  PFNGLPROGRAMUNIFORM4DPROC
-    glProgramUniform4d;
-  PFNGLPROGRAMUNIFORM4DVPROC
-    glProgramUniform4dv;
-  PFNGLPROGRAMUNIFORM4UIPROC
-    glProgramUniform4ui;
-  PFNGLPROGRAMUNIFORM4UIVPROC
-    glProgramUniform4uiv;
-  PFNGLPROGRAMUNIFORMMATRIX2FVPROC
-    glProgramUniformMatrix2fv;
-  PFNGLPROGRAMUNIFORMMATRIX3FVPROC
-    glProgramUniformMatrix3fv;
-  PFNGLPROGRAMUNIFORMMATRIX4FVPROC
-    glProgramUniformMatrix4fv;
-  PFNGLPROGRAMUNIFORMMATRIX2DVPROC
-    glProgramUniformMatrix2dv;
-  PFNGLPROGRAMUNIFORMMATRIX3DVPROC
-    glProgramUniformMatrix3dv;
-  PFNGLPROGRAMUNIFORMMATRIX4DVPROC
-    glProgramUniformMatrix4dv;
-  PFNGLPROGRAMUNIFORMMATRIX2X3FVPROC
-    glProgramUniformMatrix2x3fv;
-  PFNGLPROGRAMUNIFORMMATRIX3X2FVPROC
-    glProgramUniformMatrix3x2fv;
-  PFNGLPROGRAMUNIFORMMATRIX2X4FVPROC
-    glProgramUniformMatrix2x4fv;
-  PFNGLPROGRAMUNIFORMMATRIX4X2FVPROC
-    glProgramUniformMatrix4x2fv;
-  PFNGLPROGRAMUNIFORMMATRIX3X4FVPROC
-    glProgramUniformMatrix3x4fv;
-  PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC
-    glProgramUniformMatrix4x3fv;
-  PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC
-    glProgramUniformMatrix2x3dv;
-  PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC
-    glProgramUniformMatrix3x2dv;
-  PFNGLPROGRAMUNIFORMMATRIX2X4DVPROC
-    glProgramUniformMatrix2x4dv;
-  PFNGLPROGRAMUNIFORMMATRIX4X2DVPROC
-    glProgramUniformMatrix4x2dv;
-  PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC
-    glProgramUniformMatrix3x4dv;
-  PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC
-    glProgramUniformMatrix4x3dv;
-  PFNGLVALIDATEPROGRAMPIPELINEPROC
-    glValidateProgramPipeline;
-  PFNGLGETPROGRAMPIPELINEINFOLOGPROC
-    glGetProgramPipelineInfoLog;
-
-  // GL_ARB_shader_atomic_counters
-  PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC
-    glGetActiveAtomicCounterBufferiv;
-
-  // GL_ARB_shader_image_load_store
-  PFNGLBINDIMAGETEXTUREPROC
-    glBindImageTexture;
-  PFNGLMEMORYBARRIERPROC
-    glMemoryBarrier;
-
-  // GL_ARB_shader_storage_buffer_object
-  PFNGLSHADERSTORAGEBLOCKBINDINGPROC
-    glShaderStorageBlockBinding;
-
-  // GL_ARB_shader_subroutine
-  PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC
-    glGetSubroutineUniformLocation;
-  PFNGLGETSUBROUTINEINDEXPROC
-    glGetSubroutineIndex;
-  PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC
-    glGetActiveSubroutineUniformiv;
-  PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC
-    glGetActiveSubroutineUniformName;
-  PFNGLGETACTIVESUBROUTINENAMEPROC
-    glGetActiveSubroutineName;
-  PFNGLUNIFORMSUBROUTINESUIVPROC
-    glUniformSubroutinesuiv;
-  PFNGLGETUNIFORMSUBROUTINEUIVPROC
-    glGetUniformSubroutineuiv;
-  PFNGLGETPROGRAMSTAGEIVPROC
-    glGetProgramStageiv;
-
-  // GL_ARB_shading_language_include
-  PFNGLNAMEDSTRINGARBPROC
-    glNamedStringARB;
-  PFNGLDELETENAMEDSTRINGARBPROC
-    glDeleteNamedStringARB;
-  PFNGLCOMPILESHADERINCLUDEARBPROC
-    glCompileShaderIncludeARB;
-  PFNGLISNAMEDSTRINGARBPROC
-    glIsNamedStringARB;
-  PFNGLGETNAMEDSTRINGARBPROC
-    glGetNamedStringARB;
-  PFNGLGETNAMEDSTRINGIVARBPROC
-    glGetNamedStringivARB;
-
-  // GL_ARB_sparse_buffer
-  PFNGLBUFFERPAGECOMMITMENTARBPROC
-    glBufferPageCommitmentARB;
-  PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC
-    glNamedBufferPageCommitmentEXT;
-  PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC
-    glNamedBufferPageCommitmentARB;
-
-  // GL_ARB_sparse_texture
-  PFNGLTEXPAGECOMMITMENTARBPROC
-    glTexPageCommitmentARB;
-
-  // GL_ARB_sync
-  PFNGLFENCESYNCPROC
-    glFenceSync;
-  PFNGLISSYNCPROC
-    glIsSync;
-  PFNGLDELETESYNCPROC
-    glDeleteSync;
-  PFNGLCLIENTWAITSYNCPROC
-    glClientWaitSync;
-  PFNGLWAITSYNCPROC
-    glWaitSync;
-  PFNGLGETINTEGER64VPROC
-    glGetInteger64v;
-  PFNGLGETSYNCIVPROC
-    glGetSynciv;
-
-  // GL_ARB_tessellation_shader
-  PFNGLPATCHPARAMETERIPROC
-    glPatchParameteri;
-  PFNGLPATCHPARAMETERFVPROC
-    glPatchParameterfv;
-
-  // GL_ARB_texture_barrier
-  PFNGLTEXTUREBARRIERPROC
-    glTextureBarrier;
-
-  // GL_ARB_texture_buffer_range
-  PFNGLTEXBUFFERRANGEPROC
-    glTexBufferRange;
-
-  // GL_ARB_texture_multisample
-  PFNGLTEXIMAGE2DMULTISAMPLEPROC
-    glTexImage2DMultisample;
-  PFNGLTEXIMAGE3DMULTISAMPLEPROC
-    glTexImage3DMultisample;
-  PFNGLGETMULTISAMPLEFVPROC
-    glGetMultisamplefv;
-  PFNGLSAMPLEMASKIPROC
-    glSampleMaski;
-
-  // GL_ARB_texture_storage
-  PFNGLTEXSTORAGE1DPROC
-    glTexStorage1D;
-  PFNGLTEXSTORAGE2DPROC
-    glTexStorage2D;
-  PFNGLTEXSTORAGE3DPROC
-    glTexStorage3D;
-
-  // GL_ARB_texture_storage_multisample
-  PFNGLTEXSTORAGE2DMULTISAMPLEPROC
-    glTexStorage2DMultisample;
-  PFNGLTEXSTORAGE3DMULTISAMPLEPROC
-    glTexStorage3DMultisample;
-
-  // GL_ARB_texture_view
-  PFNGLTEXTUREVIEWPROC
-    glTextureView;
-
-  // GL_ARB_timer_query
-  PFNGLQUERYCOUNTERPROC
-    glQueryCounter;
-  PFNGLGETQUERYOBJECTI64VPROC
-    glGetQueryObjecti64v;
-  PFNGLGETQUERYOBJECTUI64VPROC
-    glGetQueryObjectui64v;
-
-  // GL_ARB_transform_feedback2
-  PFNGLBINDTRANSFORMFEEDBACKPROC
-    glBindTransformFeedback;
-  PFNGLDELETETRANSFORMFEEDBACKSPROC
-    glDeleteTransformFeedbacks;
-  PFNGLGENTRANSFORMFEEDBACKSPROC
-    glGenTransformFeedbacks;
-  PFNGLISTRANSFORMFEEDBACKPROC
-    glIsTransformFeedback;
-  PFNGLPAUSETRANSFORMFEEDBACKPROC
-    glPauseTransformFeedback;
-  PFNGLRESUMETRANSFORMFEEDBACKPROC
-    glResumeTransformFeedback;
-  PFNGLDRAWTRANSFORMFEEDBACKPROC
-    glDrawTransformFeedback;
-
-  // GL_ARB_transform_feedback3
-  PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC
-    glDrawTransformFeedbackStream;
-  PFNGLBEGINQUERYINDEXEDPROC
-    glBeginQueryIndexed;
-  PFNGLENDQUERYINDEXEDPROC
-    glEndQueryIndexed;
-  PFNGLGETQUERYINDEXEDIVPROC
-    glGetQueryIndexediv;
-
-  // GL_ARB_transform_feedback_instanced
-  PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC
-    glDrawTransformFeedbackInstanced;
-  PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC
-    glDrawTransformFeedbackStreamInstanced;
-
-  // GL_ARB_uniform_buffer_object
-  PFNGLGETUNIFORMINDICESPROC
-    glGetUniformIndices;
-  PFNGLGETACTIVEUNIFORMSIVPROC
-    glGetActiveUniformsiv;
-  PFNGLGETACTIVEUNIFORMNAMEPROC
-    glGetActiveUniformName;
-  PFNGLGETUNIFORMBLOCKINDEXPROC
-    glGetUniformBlockIndex;
-  PFNGLGETACTIVEUNIFORMBLOCKIVPROC
-    glGetActiveUniformBlockiv;
-  PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC
-    glGetActiveUniformBlockName;
-  PFNGLUNIFORMBLOCKBINDINGPROC
-    glUniformBlockBinding;
-  PFNGLBINDBUFFERRANGEPROC
-    glBindBufferRange;
-  PFNGLBINDBUFFERBASEPROC
-    glBindBufferBase;
-  PFNGLGETINTEGERI_VPROC
-    glGetIntegeri_v;
-
-  // GL_ARB_vertex_array_object
-  PFNGLBINDVERTEXARRAYPROC
-    glBindVertexArray;
-  PFNGLDELETEVERTEXARRAYSPROC
-    glDeleteVertexArrays;
-  PFNGLGENVERTEXARRAYSPROC
-    glGenVertexArrays;
-  PFNGLISVERTEXARRAYPROC
-    glIsVertexArray;
-
-  // GL_ARB_vertex_attrib_64bit
-  PFNGLVERTEXATTRIBL1DPROC
-    glVertexAttribL1d;
-  PFNGLVERTEXATTRIBL2DPROC
-    glVertexAttribL2d;
-  PFNGLVERTEXATTRIBL3DPROC
-    glVertexAttribL3d;
-  PFNGLVERTEXATTRIBL4DPROC
-    glVertexAttribL4d;
-  PFNGLVERTEXATTRIBL1DVPROC
-    glVertexAttribL1dv;
-  PFNGLVERTEXATTRIBL2DVPROC
-    glVertexAttribL2dv;
-  PFNGLVERTEXATTRIBL3DVPROC
-    glVertexAttribL3dv;
-  PFNGLVERTEXATTRIBL4DVPROC
-    glVertexAttribL4dv;
-  PFNGLVERTEXATTRIBLPOINTERPROC
-    glVertexAttribLPointer;
-  PFNGLGETVERTEXATTRIBLDVPROC
-    glGetVertexAttribLdv;
-
-  // GL_ARB_vertex_attrib_binding
-  PFNGLBINDVERTEXBUFFERPROC
-    glBindVertexBuffer;
-  PFNGLVERTEXATTRIBFORMATPROC
-    glVertexAttribFormat;
-  PFNGLVERTEXATTRIBIFORMATPROC
-    glVertexAttribIFormat;
-  PFNGLVERTEXATTRIBLFORMATPROC
-    glVertexAttribLFormat;
-  PFNGLVERTEXATTRIBBINDINGPROC
-    glVertexAttribBinding;
-  PFNGLVERTEXBINDINGDIVISORPROC
-    glVertexBindingDivisor;
-
-  // GL_ARB_vertex_type_2_10_10_10_rev
-  PFNGLVERTEXATTRIBP1UIPROC
-    glVertexAttribP1ui;
-  PFNGLVERTEXATTRIBP1UIVPROC
-    glVertexAttribP1uiv;
-  PFNGLVERTEXATTRIBP2UIPROC
-    glVertexAttribP2ui;
-  PFNGLVERTEXATTRIBP2UIVPROC
-    glVertexAttribP2uiv;
-  PFNGLVERTEXATTRIBP3UIPROC
-    glVertexAttribP3ui;
-  PFNGLVERTEXATTRIBP3UIVPROC
-    glVertexAttribP3uiv;
-  PFNGLVERTEXATTRIBP4UIPROC
-    glVertexAttribP4ui;
-  PFNGLVERTEXATTRIBP4UIVPROC
-    glVertexAttribP4uiv;
-  PFNGLVERTEXP2UIPROC
-    glVertexP2ui;
-  PFNGLVERTEXP2UIVPROC
-    glVertexP2uiv;
-  PFNGLVERTEXP3UIPROC
-    glVertexP3ui;
-  PFNGLVERTEXP3UIVPROC
-    glVertexP3uiv;
-  PFNGLVERTEXP4UIPROC
-    glVertexP4ui;
-  PFNGLVERTEXP4UIVPROC
-    glVertexP4uiv;
-  PFNGLTEXCOORDP1UIPROC
-    glTexCoordP1ui;
-  PFNGLTEXCOORDP1UIVPROC
-    glTexCoordP1uiv;
-  PFNGLTEXCOORDP2UIPROC
-    glTexCoordP2ui;
-  PFNGLTEXCOORDP2UIVPROC
-    glTexCoordP2uiv;
-  PFNGLTEXCOORDP3UIPROC
-    glTexCoordP3ui;
-  PFNGLTEXCOORDP3UIVPROC
-    glTexCoordP3uiv;
-  PFNGLTEXCOORDP4UIPROC
-    glTexCoordP4ui;
-  PFNGLTEXCOORDP4UIVPROC
-    glTexCoordP4uiv;
-  PFNGLMULTITEXCOORDP1UIPROC
-    glMultiTexCoordP1ui;
-  PFNGLMULTITEXCOORDP1UIVPROC
-    glMultiTexCoordP1uiv;
-  PFNGLMULTITEXCOORDP2UIPROC
-    glMultiTexCoordP2ui;
-  PFNGLMULTITEXCOORDP2UIVPROC
-    glMultiTexCoordP2uiv;
-  PFNGLMULTITEXCOORDP3UIPROC
-    glMultiTexCoordP3ui;
-  PFNGLMULTITEXCOORDP3UIVPROC
-    glMultiTexCoordP3uiv;
-  PFNGLMULTITEXCOORDP4UIPROC
-    glMultiTexCoordP4ui;
-  PFNGLMULTITEXCOORDP4UIVPROC
-    glMultiTexCoordP4uiv;
-  PFNGLNORMALP3UIPROC
-    glNormalP3ui;
-  PFNGLNORMALP3UIVPROC
-    glNormalP3uiv;
-  PFNGLCOLORP3UIPROC
-    glColorP3ui;
-  PFNGLCOLORP3UIVPROC
-    glColorP3uiv;
-  PFNGLCOLORP4UIPROC
-    glColorP4ui;
-  PFNGLCOLORP4UIVPROC
-    glColorP4uiv;
-  PFNGLSECONDARYCOLORP3UIPROC
-    glSecondaryColorP3ui;
-  PFNGLSECONDARYCOLORP3UIVPROC
-    glSecondaryColorP3uiv;
-
-  // GL_ARB_viewport_array
-  PFNGLVIEWPORTARRAYVPROC
-    glViewportArrayv;
-  PFNGLVIEWPORTINDEXEDFPROC
-    glViewportIndexedf;
-  PFNGLVIEWPORTINDEXEDFVPROC
-    glViewportIndexedfv;
-  PFNGLSCISSORARRAYVPROC
-    glScissorArrayv;
-  PFNGLSCISSORINDEXEDPROC
-    glScissorIndexed;
-  PFNGLSCISSORINDEXEDVPROC
-    glScissorIndexedv;
-  PFNGLDEPTHRANGEARRAYVPROC
-    glDepthRangeArrayv;
-  PFNGLDEPTHRANGEINDEXEDPROC
-    glDepthRangeIndexed;
-  PFNGLGETFLOATI_VPROC
-    glGetFloati_v;
-  PFNGLGETDOUBLEI_VPROC
-    glGetDoublei_v;
-
-  // GL_KHR_debug
-  PFNGLDEBUGMESSAGECONTROLPROC
-    glDebugMessageControl;
-  PFNGLDEBUGMESSAGEINSERTPROC
-    glDebugMessageInsert;
-  PFNGLDEBUGMESSAGECALLBACKPROC
-    glDebugMessageCallback;
-  PFNGLGETDEBUGMESSAGELOGPROC
-    glGetDebugMessageLog;
-  PFNGLPUSHDEBUGGROUPPROC
-    glPushDebugGroup;
-  PFNGLPOPDEBUGGROUPPROC
-    glPopDebugGroup;
-  PFNGLOBJECTLABELPROC
-    glObjectLabel;
-  PFNGLGETOBJECTLABELPROC
-    glGetObjectLabel;
-  PFNGLOBJECTPTRLABELPROC
-    glObjectPtrLabel;
-  PFNGLGETOBJECTPTRLABELPROC
-    glGetObjectPtrLabel;
-  PFNGLGETPOINTERVPROC
-    glGetPointerv;
-  PFNGLDEBUGMESSAGECONTROLKHRPROC
-    glDebugMessageControlKHR;
-  PFNGLDEBUGMESSAGEINSERTKHRPROC
-    glDebugMessageInsertKHR;
-  PFNGLDEBUGMESSAGECALLBACKKHRPROC
-    glDebugMessageCallbackKHR;
-  PFNGLGETDEBUGMESSAGELOGKHRPROC
-    glGetDebugMessageLogKHR;
-  PFNGLPUSHDEBUGGROUPKHRPROC
-    glPushDebugGroupKHR;
-  PFNGLPOPDEBUGGROUPKHRPROC
-    glPopDebugGroupKHR;
-  PFNGLOBJECTLABELKHRPROC
-    glObjectLabelKHR;
-  PFNGLGETOBJECTLABELKHRPROC
-    glGetObjectLabelKHR;
-  PFNGLOBJECTPTRLABELKHRPROC
-    glObjectPtrLabelKHR;
-  PFNGLGETOBJECTPTRLABELKHRPROC
-    glGetObjectPtrLabelKHR;
-  PFNGLGETPOINTERVKHRPROC
-    glGetPointervKHR;
-
-  // GL_KHR_robustness
-  PFNGLGETGRAPHICSRESETSTATUSPROC
-    glGetGraphicsResetStatus;
-  PFNGLREADNPIXELSPROC
-    glReadnPixels;
-  PFNGLGETNUNIFORMFVPROC
-    glGetnUniformfv;
-  PFNGLGETNUNIFORMIVPROC
-    glGetnUniformiv;
-  PFNGLGETNUNIFORMUIVPROC
-    glGetnUniformuiv;
-  PFNGLGETGRAPHICSRESETSTATUSKHRPROC
-    glGetGraphicsResetStatusKHR;
-  PFNGLREADNPIXELSKHRPROC
-    glReadnPixelsKHR;
-  PFNGLGETNUNIFORMFVKHRPROC
-    glGetnUniformfvKHR;
-  PFNGLGETNUNIFORMIVKHRPROC
-    glGetnUniformivKHR;
-  PFNGLGETNUNIFORMUIVKHRPROC
-    glGetnUniformuivKHR;
-};
+  class glcore
+  {
+  public:
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    enum FeatureSet
+    {
+      // Extensions
+      GLEW_GL_ARB_ES2_compatibility,
+      GLEW_GL_ARB_ES3_1_compatibility,
+      GLEW_GL_ARB_ES3_compatibility,
+      GLEW_GL_ARB_arrays_of_arrays,
+      GLEW_GL_ARB_base_instance,
+      GLEW_GL_ARB_bindless_texture,
+      GLEW_GL_ARB_blend_func_extended,
+      GLEW_GL_ARB_buffer_storage,
+      GLEW_GL_ARB_cl_event,
+      GLEW_GL_ARB_clear_buffer_object,
+      GLEW_GL_ARB_clear_texture,
+      GLEW_GL_ARB_clip_control,
+      GLEW_GL_ARB_compressed_texture_pixel_storage,
+      GLEW_GL_ARB_compute_shader,
+      GLEW_GL_ARB_compute_variable_group_size,
+      GLEW_GL_ARB_conditional_render_inverted,
+      GLEW_GL_ARB_conservative_depth,
+      GLEW_GL_ARB_copy_buffer,
+      GLEW_GL_ARB_copy_image,
+      GLEW_GL_ARB_cull_distance,
+      GLEW_GL_ARB_debug_output,
+      GLEW_GL_ARB_depth_buffer_float,
+      GLEW_GL_ARB_depth_clamp,
+      GLEW_GL_ARB_derivative_control,
+      GLEW_GL_ARB_direct_state_access,
+      GLEW_GL_ARB_draw_buffers_blend,
+      GLEW_GL_ARB_draw_elements_base_vertex,
+      GLEW_GL_ARB_draw_indirect,
+      GLEW_GL_ARB_enhanced_layouts,
+      GLEW_GL_ARB_explicit_attrib_location,
+      GLEW_GL_ARB_explicit_uniform_location,
+      GLEW_GL_ARB_fragment_coord_conventions,
+      GLEW_GL_ARB_fragment_layer_viewport,
+      GLEW_GL_ARB_framebuffer_no_attachments,
+      GLEW_GL_ARB_framebuffer_object,
+      GLEW_GL_ARB_framebuffer_sRGB,
+      GLEW_GL_ARB_get_program_binary,
+      GLEW_GL_ARB_get_texture_sub_image,
+      GLEW_GL_ARB_gpu_shader5,
+      GLEW_GL_ARB_gpu_shader_fp64,
+      GLEW_GL_ARB_half_float_vertex,
+      GLEW_GL_ARB_imaging,
+      GLEW_GL_ARB_indirect_parameters,
+      GLEW_GL_ARB_internalformat_query,
+      GLEW_GL_ARB_internalformat_query2,
+      GLEW_GL_ARB_invalidate_subdata,
+      GLEW_GL_ARB_map_buffer_alignment,
+      GLEW_GL_ARB_map_buffer_range,
+      GLEW_GL_ARB_multi_bind,
+      GLEW_GL_ARB_multi_draw_indirect,
+      GLEW_GL_ARB_occlusion_query2,
+      GLEW_GL_ARB_pipeline_statistics_query,
+      GLEW_GL_ARB_program_interface_query,
+      GLEW_GL_ARB_provoking_vertex,
+      GLEW_GL_ARB_query_buffer_object,
+      GLEW_GL_ARB_robust_buffer_access_behavior,
+      GLEW_GL_ARB_robustness,
+      GLEW_GL_ARB_robustness_isolation,
+      GLEW_GL_ARB_sample_shading,
+      GLEW_GL_ARB_sampler_objects,
+      GLEW_GL_ARB_seamless_cube_map,
+      GLEW_GL_ARB_seamless_cubemap_per_texture,
+      GLEW_GL_ARB_separate_shader_objects,
+      GLEW_GL_ARB_shader_atomic_counters,
+      GLEW_GL_ARB_shader_bit_encoding,
+      GLEW_GL_ARB_shader_draw_parameters,
+      GLEW_GL_ARB_shader_group_vote,
+      GLEW_GL_ARB_shader_image_load_store,
+      GLEW_GL_ARB_shader_image_size,
+      GLEW_GL_ARB_shader_precision,
+      GLEW_GL_ARB_shader_stencil_export,
+      GLEW_GL_ARB_shader_storage_buffer_object,
+      GLEW_GL_ARB_shader_subroutine,
+      GLEW_GL_ARB_shader_texture_image_samples,
+      GLEW_GL_ARB_shading_language_420pack,
+      GLEW_GL_ARB_shading_language_include,
+      GLEW_GL_ARB_shading_language_packing,
+      GLEW_GL_ARB_sparse_buffer,
+      GLEW_GL_ARB_sparse_texture,
+      GLEW_GL_ARB_stencil_texturing,
+      GLEW_GL_ARB_sync,
+      GLEW_GL_ARB_tessellation_shader,
+      GLEW_GL_ARB_texture_barrier,
+      GLEW_GL_ARB_texture_buffer_object_rgb32,
+      GLEW_GL_ARB_texture_buffer_range,
+      GLEW_GL_ARB_texture_compression_bptc,
+      GLEW_GL_ARB_texture_compression_rgtc,
+      GLEW_GL_ARB_texture_cube_map_array,
+      GLEW_GL_ARB_texture_gather,
+      GLEW_GL_ARB_texture_mirror_clamp_to_edge,
+      GLEW_GL_ARB_texture_multisample,
+      GLEW_GL_ARB_texture_query_levels,
+      GLEW_GL_ARB_texture_query_lod,
+      GLEW_GL_ARB_texture_rg,
+      GLEW_GL_ARB_texture_rgb10_a2ui,
+      GLEW_GL_ARB_texture_stencil8,
+      GLEW_GL_ARB_texture_storage,
+      GLEW_GL_ARB_texture_storage_multisample,
+      GLEW_GL_ARB_texture_swizzle,
+      GLEW_GL_ARB_texture_view,
+      GLEW_GL_ARB_timer_query,
+      GLEW_GL_ARB_transform_feedback2,
+      GLEW_GL_ARB_transform_feedback3,
+      GLEW_GL_ARB_transform_feedback_instanced,
+      GLEW_GL_ARB_transform_feedback_overflow_query,
+      GLEW_GL_ARB_uniform_buffer_object,
+      GLEW_GL_ARB_vertex_array_bgra,
+      GLEW_GL_ARB_vertex_array_object,
+      GLEW_GL_ARB_vertex_attrib_64bit,
+      GLEW_GL_ARB_vertex_attrib_binding,
+      GLEW_GL_ARB_vertex_type_10f_11f_11f_rev,
+      GLEW_GL_ARB_vertex_type_2_10_10_10_rev,
+      GLEW_GL_ARB_viewport_array,
+      GLEW_GL_KHR_context_flush_control,
+      GLEW_GL_KHR_debug,
+      GLEW_GL_KHR_no_error,
+      GLEW_GL_KHR_robust_buffer_access_behavior,
+      GLEW_GL_KHR_robustness,
+      GLEW_GL_KHR_texture_compression_astc_hdr,
+      GLEW_GL_KHR_texture_compression_astc_ldr,
+      GLEW_GL_FeatureSetCount
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    class DeviceState
+    {
+    private:
+
+      bool m_featureSupported [glew::glcore::FeatureSet::GLEW_GL_FeatureSetCount];
+
+    public:
+
+      bool IsSupported (glew::glcore::FeatureSet feature);
+      bool IsSupported (const char *feature);
+
+      // GL_ARB_ES2_compatibility
+      PFNGLRELEASESHADERCOMPILERPROC glReleaseShaderCompiler;
+      PFNGLSHADERBINARYPROC glShaderBinary;
+      PFNGLGETSHADERPRECISIONFORMATPROC glGetShaderPrecisionFormat;
+      PFNGLDEPTHRANGEFPROC glDepthRangef;
+      PFNGLCLEARDEPTHFPROC glClearDepthf;
+
+      // GL_ARB_ES3_1_compatibility
+      PFNGLMEMORYBARRIERBYREGIONPROC glMemoryBarrierByRegion;
+
+      // GL_ARB_base_instance
+      PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC glDrawArraysInstancedBaseInstance;
+      PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC glDrawElementsInstancedBaseInstance;
+      PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC glDrawElementsInstancedBaseVertexBaseInstance;
+
+      // GL_ARB_bindless_texture
+      PFNGLGETTEXTUREHANDLEARBPROC glGetTextureHandleARB;
+      PFNGLGETTEXTURESAMPLERHANDLEARBPROC glGetTextureSamplerHandleARB;
+      PFNGLMAKETEXTUREHANDLERESIDENTARBPROC glMakeTextureHandleResidentARB;
+      PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC glMakeTextureHandleNonResidentARB;
+      PFNGLGETIMAGEHANDLEARBPROC glGetImageHandleARB;
+      PFNGLMAKEIMAGEHANDLERESIDENTARBPROC glMakeImageHandleResidentARB;
+      PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC glMakeImageHandleNonResidentARB;
+      PFNGLUNIFORMHANDLEUI64ARBPROC glUniformHandleui64ARB;
+      PFNGLUNIFORMHANDLEUI64VARBPROC glUniformHandleui64vARB;
+      PFNGLPROGRAMUNIFORMHANDLEUI64ARBPROC glProgramUniformHandleui64ARB;
+      PFNGLPROGRAMUNIFORMHANDLEUI64VARBPROC glProgramUniformHandleui64vARB;
+      PFNGLISTEXTUREHANDLERESIDENTARBPROC glIsTextureHandleResidentARB;
+      PFNGLISIMAGEHANDLERESIDENTARBPROC glIsImageHandleResidentARB;
+      PFNGLVERTEXATTRIBL1UI64ARBPROC glVertexAttribL1ui64ARB;
+      PFNGLVERTEXATTRIBL1UI64VARBPROC glVertexAttribL1ui64vARB;
+      PFNGLGETVERTEXATTRIBLUI64VARBPROC glGetVertexAttribLui64vARB;
+
+      // GL_ARB_blend_func_extended
+      PFNGLBINDFRAGDATALOCATIONINDEXEDPROC glBindFragDataLocationIndexed;
+      PFNGLGETFRAGDATAINDEXPROC glGetFragDataIndex;
+
+      // GL_ARB_buffer_storage
+      PFNGLBUFFERSTORAGEPROC glBufferStorage;
+
+      // GL_ARB_cl_event
+      PFNGLCREATESYNCFROMCLEVENTARBPROC glCreateSyncFromCLeventARB;
+
+      // GL_ARB_clear_buffer_object
+      PFNGLCLEARBUFFERDATAPROC glClearBufferData;
+      PFNGLCLEARBUFFERSUBDATAPROC glClearBufferSubData;
+
+      // GL_ARB_clear_texture
+      PFNGLCLEARTEXIMAGEPROC glClearTexImage;
+      PFNGLCLEARTEXSUBIMAGEPROC glClearTexSubImage;
+
+      // GL_ARB_clip_control
+      PFNGLCLIPCONTROLPROC glClipControl;
+
+      // GL_ARB_compute_shader
+      PFNGLDISPATCHCOMPUTEPROC glDispatchCompute;
+      PFNGLDISPATCHCOMPUTEINDIRECTPROC glDispatchComputeIndirect;
+
+      // GL_ARB_compute_variable_group_size
+      PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC glDispatchComputeGroupSizeARB;
+
+      // GL_ARB_copy_buffer
+      PFNGLCOPYBUFFERSUBDATAPROC glCopyBufferSubData;
+
+      // GL_ARB_copy_image
+      PFNGLCOPYIMAGESUBDATAPROC glCopyImageSubData;
+
+      // GL_ARB_debug_output
+      PFNGLDEBUGMESSAGECONTROLARBPROC glDebugMessageControlARB;
+      PFNGLDEBUGMESSAGEINSERTARBPROC glDebugMessageInsertARB;
+      PFNGLDEBUGMESSAGECALLBACKARBPROC glDebugMessageCallbackARB;
+      PFNGLGETDEBUGMESSAGELOGARBPROC glGetDebugMessageLogARB;
+
+      // GL_ARB_direct_state_access
+      PFNGLCREATETRANSFORMFEEDBACKSPROC glCreateTransformFeedbacks;
+      PFNGLTRANSFORMFEEDBACKBUFFERBASEPROC glTransformFeedbackBufferBase;
+      PFNGLTRANSFORMFEEDBACKBUFFERRANGEPROC glTransformFeedbackBufferRange;
+      PFNGLGETTRANSFORMFEEDBACKIVPROC glGetTransformFeedbackiv;
+      PFNGLGETTRANSFORMFEEDBACKI_VPROC glGetTransformFeedbacki_v;
+      PFNGLGETTRANSFORMFEEDBACKI64_VPROC glGetTransformFeedbacki64_v;
+      PFNGLCREATEBUFFERSPROC glCreateBuffers;
+      PFNGLNAMEDBUFFERSTORAGEPROC glNamedBufferStorage;
+      PFNGLNAMEDBUFFERDATAPROC glNamedBufferData;
+      PFNGLNAMEDBUFFERSUBDATAPROC glNamedBufferSubData;
+      PFNGLCOPYNAMEDBUFFERSUBDATAPROC glCopyNamedBufferSubData;
+      PFNGLCLEARNAMEDBUFFERDATAPROC glClearNamedBufferData;
+      PFNGLCLEARNAMEDBUFFERSUBDATAPROC glClearNamedBufferSubData;
+      PFNGLMAPNAMEDBUFFERPROC glMapNamedBuffer;
+      PFNGLMAPNAMEDBUFFERRANGEPROC glMapNamedBufferRange;
+      PFNGLUNMAPNAMEDBUFFERPROC glUnmapNamedBuffer;
+      PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC glFlushMappedNamedBufferRange;
+      PFNGLGETNAMEDBUFFERPARAMETERIVPROC glGetNamedBufferParameteriv;
+      PFNGLGETNAMEDBUFFERPARAMETERI64VPROC glGetNamedBufferParameteri64v;
+      PFNGLGETNAMEDBUFFERPOINTERVPROC glGetNamedBufferPointerv;
+      PFNGLGETNAMEDBUFFERSUBDATAPROC glGetNamedBufferSubData;
+      PFNGLCREATEFRAMEBUFFERSPROC glCreateFramebuffers;
+      PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC glNamedFramebufferRenderbuffer;
+      PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC glNamedFramebufferParameteri;
+      PFNGLNAMEDFRAMEBUFFERTEXTUREPROC glNamedFramebufferTexture;
+      PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC glNamedFramebufferTextureLayer;
+      PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC glNamedFramebufferDrawBuffer;
+      PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC glNamedFramebufferDrawBuffers;
+      PFNGLNAMEDFRAMEBUFFERREADBUFFERPROC glNamedFramebufferReadBuffer;
+      PFNGLINVALIDATENAMEDFRAMEBUFFERDATAPROC glInvalidateNamedFramebufferData;
+      PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC glInvalidateNamedFramebufferSubData;
+      PFNGLCLEARNAMEDFRAMEBUFFERIVPROC glClearNamedFramebufferiv;
+      PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC glClearNamedFramebufferuiv;
+      PFNGLCLEARNAMEDFRAMEBUFFERFVPROC glClearNamedFramebufferfv;
+      PFNGLCLEARNAMEDFRAMEBUFFERFIPROC glClearNamedFramebufferfi;
+      PFNGLBLITNAMEDFRAMEBUFFERPROC glBlitNamedFramebuffer;
+      PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC glCheckNamedFramebufferStatus;
+      PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC glGetNamedFramebufferParameteriv;
+      PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC glGetNamedFramebufferAttachmentParameteriv;
+      PFNGLCREATERENDERBUFFERSPROC glCreateRenderbuffers;
+      PFNGLNAMEDRENDERBUFFERSTORAGEPROC glNamedRenderbufferStorage;
+      PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC glNamedRenderbufferStorageMultisample;
+      PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC glGetNamedRenderbufferParameteriv;
+      PFNGLCREATETEXTURESPROC glCreateTextures;
+      PFNGLTEXTUREBUFFERPROC glTextureBuffer;
+      PFNGLTEXTUREBUFFERRANGEPROC glTextureBufferRange;
+      PFNGLTEXTURESTORAGE1DPROC glTextureStorage1D;
+      PFNGLTEXTURESTORAGE2DPROC glTextureStorage2D;
+      PFNGLTEXTURESTORAGE3DPROC glTextureStorage3D;
+      PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC glTextureStorage2DMultisample;
+      PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC glTextureStorage3DMultisample;
+      PFNGLTEXTURESUBIMAGE1DPROC glTextureSubImage1D;
+      PFNGLTEXTURESUBIMAGE2DPROC glTextureSubImage2D;
+      PFNGLTEXTURESUBIMAGE3DPROC glTextureSubImage3D;
+      PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC glCompressedTextureSubImage1D;
+      PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC glCompressedTextureSubImage2D;
+      PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC glCompressedTextureSubImage3D;
+      PFNGLCOPYTEXTURESUBIMAGE1DPROC glCopyTextureSubImage1D;
+      PFNGLCOPYTEXTURESUBIMAGE2DPROC glCopyTextureSubImage2D;
+      PFNGLCOPYTEXTURESUBIMAGE3DPROC glCopyTextureSubImage3D;
+      PFNGLTEXTUREPARAMETERFPROC glTextureParameterf;
+      PFNGLTEXTUREPARAMETERFVPROC glTextureParameterfv;
+      PFNGLTEXTUREPARAMETERIPROC glTextureParameteri;
+      PFNGLTEXTUREPARAMETERIIVPROC glTextureParameterIiv;
+      PFNGLTEXTUREPARAMETERIUIVPROC glTextureParameterIuiv;
+      PFNGLTEXTUREPARAMETERIVPROC glTextureParameteriv;
+      PFNGLGENERATETEXTUREMIPMAPPROC glGenerateTextureMipmap;
+      PFNGLBINDTEXTUREUNITPROC glBindTextureUnit;
+      PFNGLGETTEXTUREIMAGEPROC glGetTextureImage;
+      PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC glGetCompressedTextureImage;
+      PFNGLGETTEXTURELEVELPARAMETERFVPROC glGetTextureLevelParameterfv;
+      PFNGLGETTEXTURELEVELPARAMETERIVPROC glGetTextureLevelParameteriv;
+      PFNGLGETTEXTUREPARAMETERFVPROC glGetTextureParameterfv;
+      PFNGLGETTEXTUREPARAMETERIIVPROC glGetTextureParameterIiv;
+      PFNGLGETTEXTUREPARAMETERIUIVPROC glGetTextureParameterIuiv;
+      PFNGLGETTEXTUREPARAMETERIVPROC glGetTextureParameteriv;
+      PFNGLCREATEVERTEXARRAYSPROC glCreateVertexArrays;
+      PFNGLDISABLEVERTEXARRAYATTRIBPROC glDisableVertexArrayAttrib;
+      PFNGLENABLEVERTEXARRAYATTRIBPROC glEnableVertexArrayAttrib;
+      PFNGLVERTEXARRAYELEMENTBUFFERPROC glVertexArrayElementBuffer;
+      PFNGLVERTEXARRAYVERTEXBUFFERPROC glVertexArrayVertexBuffer;
+      PFNGLVERTEXARRAYVERTEXBUFFERSPROC glVertexArrayVertexBuffers;
+      PFNGLVERTEXARRAYATTRIBBINDINGPROC glVertexArrayAttribBinding;
+      PFNGLVERTEXARRAYATTRIBFORMATPROC glVertexArrayAttribFormat;
+      PFNGLVERTEXARRAYATTRIBIFORMATPROC glVertexArrayAttribIFormat;
+      PFNGLVERTEXARRAYATTRIBLFORMATPROC glVertexArrayAttribLFormat;
+      PFNGLVERTEXARRAYBINDINGDIVISORPROC glVertexArrayBindingDivisor;
+      PFNGLGETVERTEXARRAYIVPROC glGetVertexArrayiv;
+      PFNGLGETVERTEXARRAYINDEXEDIVPROC glGetVertexArrayIndexediv;
+      PFNGLGETVERTEXARRAYINDEXED64IVPROC glGetVertexArrayIndexed64iv;
+      PFNGLCREATESAMPLERSPROC glCreateSamplers;
+      PFNGLCREATEPROGRAMPIPELINESPROC glCreateProgramPipelines;
+      PFNGLCREATEQUERIESPROC glCreateQueries;
+      PFNGLGETQUERYBUFFEROBJECTI64VPROC glGetQueryBufferObjecti64v;
+      PFNGLGETQUERYBUFFEROBJECTIVPROC glGetQueryBufferObjectiv;
+      PFNGLGETQUERYBUFFEROBJECTUI64VPROC glGetQueryBufferObjectui64v;
+      PFNGLGETQUERYBUFFEROBJECTUIVPROC glGetQueryBufferObjectuiv;
+
+      // GL_ARB_draw_buffers_blend
+      PFNGLBLENDEQUATIONIARBPROC glBlendEquationiARB;
+      PFNGLBLENDEQUATIONSEPARATEIARBPROC glBlendEquationSeparateiARB;
+      PFNGLBLENDFUNCIARBPROC glBlendFunciARB;
+      PFNGLBLENDFUNCSEPARATEIARBPROC glBlendFuncSeparateiARB;
+
+      // GL_ARB_draw_elements_base_vertex
+      PFNGLDRAWELEMENTSBASEVERTEXPROC glDrawElementsBaseVertex;
+      PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC glDrawRangeElementsBaseVertex;
+      PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC glDrawElementsInstancedBaseVertex;
+      PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC glMultiDrawElementsBaseVertex;
+
+      // GL_ARB_draw_indirect
+      PFNGLDRAWARRAYSINDIRECTPROC glDrawArraysIndirect;
+      PFNGLDRAWELEMENTSINDIRECTPROC glDrawElementsIndirect;
+
+      // GL_ARB_framebuffer_no_attachments
+      PFNGLFRAMEBUFFERPARAMETERIPROC glFramebufferParameteri;
+      PFNGLGETFRAMEBUFFERPARAMETERIVPROC glGetFramebufferParameteriv;
+
+      // GL_ARB_framebuffer_object
+      PFNGLISRENDERBUFFERPROC glIsRenderbuffer;
+      PFNGLBINDRENDERBUFFERPROC glBindRenderbuffer;
+      PFNGLDELETERENDERBUFFERSPROC glDeleteRenderbuffers;
+      PFNGLGENRENDERBUFFERSPROC glGenRenderbuffers;
+      PFNGLRENDERBUFFERSTORAGEPROC glRenderbufferStorage;
+      PFNGLGETRENDERBUFFERPARAMETERIVPROC glGetRenderbufferParameteriv;
+      PFNGLISFRAMEBUFFERPROC glIsFramebuffer;
+      PFNGLBINDFRAMEBUFFERPROC glBindFramebuffer;
+      PFNGLDELETEFRAMEBUFFERSPROC glDeleteFramebuffers;
+      PFNGLGENFRAMEBUFFERSPROC glGenFramebuffers;
+      PFNGLCHECKFRAMEBUFFERSTATUSPROC glCheckFramebufferStatus;
+      PFNGLFRAMEBUFFERTEXTURE1DPROC glFramebufferTexture1D;
+      PFNGLFRAMEBUFFERTEXTURE2DPROC glFramebufferTexture2D;
+      PFNGLFRAMEBUFFERTEXTURE3DPROC glFramebufferTexture3D;
+      PFNGLFRAMEBUFFERRENDERBUFFERPROC glFramebufferRenderbuffer;
+      PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC glGetFramebufferAttachmentParameteriv;
+      PFNGLGENERATEMIPMAPPROC glGenerateMipmap;
+      PFNGLBLITFRAMEBUFFERPROC glBlitFramebuffer;
+      PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC glRenderbufferStorageMultisample;
+      PFNGLFRAMEBUFFERTEXTURELAYERPROC glFramebufferTextureLayer;
+
+      // GL_ARB_get_program_binary
+      PFNGLGETPROGRAMBINARYPROC glGetProgramBinary;
+      PFNGLPROGRAMBINARYPROC glProgramBinary;
+      PFNGLPROGRAMPARAMETERIPROC glProgramParameteri;
+
+      // GL_ARB_get_texture_sub_image
+      PFNGLGETTEXTURESUBIMAGEPROC glGetTextureSubImage;
+      PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC glGetCompressedTextureSubImage;
+
+      // GL_ARB_gpu_shader_fp64
+      PFNGLUNIFORM1DPROC glUniform1d;
+      PFNGLUNIFORM2DPROC glUniform2d;
+      PFNGLUNIFORM3DPROC glUniform3d;
+      PFNGLUNIFORM4DPROC glUniform4d;
+      PFNGLUNIFORM1DVPROC glUniform1dv;
+      PFNGLUNIFORM2DVPROC glUniform2dv;
+      PFNGLUNIFORM3DVPROC glUniform3dv;
+      PFNGLUNIFORM4DVPROC glUniform4dv;
+      PFNGLUNIFORMMATRIX2DVPROC glUniformMatrix2dv;
+      PFNGLUNIFORMMATRIX3DVPROC glUniformMatrix3dv;
+      PFNGLUNIFORMMATRIX4DVPROC glUniformMatrix4dv;
+      PFNGLUNIFORMMATRIX2X3DVPROC glUniformMatrix2x3dv;
+      PFNGLUNIFORMMATRIX2X4DVPROC glUniformMatrix2x4dv;
+      PFNGLUNIFORMMATRIX3X2DVPROC glUniformMatrix3x2dv;
+      PFNGLUNIFORMMATRIX3X4DVPROC glUniformMatrix3x4dv;
+      PFNGLUNIFORMMATRIX4X2DVPROC glUniformMatrix4x2dv;
+      PFNGLUNIFORMMATRIX4X3DVPROC glUniformMatrix4x3dv;
+      PFNGLGETUNIFORMDVPROC glGetUniformdv;
+
+      // GL_ARB_imaging
+      PFNGLBLENDCOLORPROC glBlendColor;
+      PFNGLBLENDEQUATIONPROC glBlendEquation;
+      PFNGLCOLORTABLEPROC glColorTable;
+      PFNGLCOLORTABLEPARAMETERFVPROC glColorTableParameterfv;
+      PFNGLCOLORTABLEPARAMETERIVPROC glColorTableParameteriv;
+      PFNGLCOPYCOLORTABLEPROC glCopyColorTable;
+      PFNGLGETCOLORTABLEPROC glGetColorTable;
+      PFNGLGETCOLORTABLEPARAMETERFVPROC glGetColorTableParameterfv;
+      PFNGLGETCOLORTABLEPARAMETERIVPROC glGetColorTableParameteriv;
+      PFNGLCOLORSUBTABLEPROC glColorSubTable;
+      PFNGLCOPYCOLORSUBTABLEPROC glCopyColorSubTable;
+      PFNGLCONVOLUTIONFILTER1DPROC glConvolutionFilter1D;
+      PFNGLCONVOLUTIONFILTER2DPROC glConvolutionFilter2D;
+      PFNGLCONVOLUTIONPARAMETERFPROC glConvolutionParameterf;
+      PFNGLCONVOLUTIONPARAMETERFVPROC glConvolutionParameterfv;
+      PFNGLCONVOLUTIONPARAMETERIPROC glConvolutionParameteri;
+      PFNGLCONVOLUTIONPARAMETERIVPROC glConvolutionParameteriv;
+      PFNGLCOPYCONVOLUTIONFILTER1DPROC glCopyConvolutionFilter1D;
+      PFNGLCOPYCONVOLUTIONFILTER2DPROC glCopyConvolutionFilter2D;
+      PFNGLGETCONVOLUTIONFILTERPROC glGetConvolutionFilter;
+      PFNGLGETCONVOLUTIONPARAMETERFVPROC glGetConvolutionParameterfv;
+      PFNGLGETCONVOLUTIONPARAMETERIVPROC glGetConvolutionParameteriv;
+      PFNGLGETSEPARABLEFILTERPROC glGetSeparableFilter;
+      PFNGLSEPARABLEFILTER2DPROC glSeparableFilter2D;
+      PFNGLGETHISTOGRAMPROC glGetHistogram;
+      PFNGLGETHISTOGRAMPARAMETERFVPROC glGetHistogramParameterfv;
+      PFNGLGETHISTOGRAMPARAMETERIVPROC glGetHistogramParameteriv;
+      PFNGLGETMINMAXPROC glGetMinmax;
+      PFNGLGETMINMAXPARAMETERFVPROC glGetMinmaxParameterfv;
+      PFNGLGETMINMAXPARAMETERIVPROC glGetMinmaxParameteriv;
+      PFNGLHISTOGRAMPROC glHistogram;
+      PFNGLMINMAXPROC glMinmax;
+      PFNGLRESETHISTOGRAMPROC glResetHistogram;
+      PFNGLRESETMINMAXPROC glResetMinmax;
+
+      // GL_ARB_indirect_parameters
+      PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC glMultiDrawArraysIndirectCountARB;
+      PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC glMultiDrawElementsIndirectCountARB;
+
+      // GL_ARB_internalformat_query
+      PFNGLGETINTERNALFORMATIVPROC glGetInternalformativ;
+
+      // GL_ARB_internalformat_query2
+      PFNGLGETINTERNALFORMATI64VPROC glGetInternalformati64v;
+
+      // GL_ARB_invalidate_subdata
+      PFNGLINVALIDATETEXSUBIMAGEPROC glInvalidateTexSubImage;
+      PFNGLINVALIDATETEXIMAGEPROC glInvalidateTexImage;
+      PFNGLINVALIDATEBUFFERSUBDATAPROC glInvalidateBufferSubData;
+      PFNGLINVALIDATEBUFFERDATAPROC glInvalidateBufferData;
+      PFNGLINVALIDATEFRAMEBUFFERPROC glInvalidateFramebuffer;
+      PFNGLINVALIDATESUBFRAMEBUFFERPROC glInvalidateSubFramebuffer;
+
+      // GL_ARB_map_buffer_range
+      PFNGLMAPBUFFERRANGEPROC glMapBufferRange;
+      PFNGLFLUSHMAPPEDBUFFERRANGEPROC glFlushMappedBufferRange;
+
+      // GL_ARB_multi_bind
+      PFNGLBINDBUFFERSBASEPROC glBindBuffersBase;
+      PFNGLBINDBUFFERSRANGEPROC glBindBuffersRange;
+      PFNGLBINDTEXTURESPROC glBindTextures;
+      PFNGLBINDSAMPLERSPROC glBindSamplers;
+      PFNGLBINDIMAGETEXTURESPROC glBindImageTextures;
+      PFNGLBINDVERTEXBUFFERSPROC glBindVertexBuffers;
+
+      // GL_ARB_multi_draw_indirect
+      PFNGLMULTIDRAWARRAYSINDIRECTPROC glMultiDrawArraysIndirect;
+      PFNGLMULTIDRAWELEMENTSINDIRECTPROC glMultiDrawElementsIndirect;
+
+      // GL_ARB_program_interface_query
+      PFNGLGETPROGRAMINTERFACEIVPROC glGetProgramInterfaceiv;
+      PFNGLGETPROGRAMRESOURCEINDEXPROC glGetProgramResourceIndex;
+      PFNGLGETPROGRAMRESOURCENAMEPROC glGetProgramResourceName;
+      PFNGLGETPROGRAMRESOURCEIVPROC glGetProgramResourceiv;
+      PFNGLGETPROGRAMRESOURCELOCATIONPROC glGetProgramResourceLocation;
+      PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC glGetProgramResourceLocationIndex;
+
+      // GL_ARB_provoking_vertex
+      PFNGLPROVOKINGVERTEXPROC glProvokingVertex;
+
+      // GL_ARB_robustness
+      PFNGLGETGRAPHICSRESETSTATUSARBPROC glGetGraphicsResetStatusARB;
+      PFNGLGETNTEXIMAGEARBPROC glGetnTexImageARB;
+      PFNGLREADNPIXELSARBPROC glReadnPixelsARB;
+      PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC glGetnCompressedTexImageARB;
+      PFNGLGETNUNIFORMFVARBPROC glGetnUniformfvARB;
+      PFNGLGETNUNIFORMIVARBPROC glGetnUniformivARB;
+      PFNGLGETNUNIFORMUIVARBPROC glGetnUniformuivARB;
+      PFNGLGETNUNIFORMDVARBPROC glGetnUniformdvARB;
+      PFNGLGETNMAPDVARBPROC glGetnMapdvARB;
+      PFNGLGETNMAPFVARBPROC glGetnMapfvARB;
+      PFNGLGETNMAPIVARBPROC glGetnMapivARB;
+      PFNGLGETNPIXELMAPFVARBPROC glGetnPixelMapfvARB;
+      PFNGLGETNPIXELMAPUIVARBPROC glGetnPixelMapuivARB;
+      PFNGLGETNPIXELMAPUSVARBPROC glGetnPixelMapusvARB;
+      PFNGLGETNPOLYGONSTIPPLEARBPROC glGetnPolygonStippleARB;
+      PFNGLGETNCOLORTABLEARBPROC glGetnColorTableARB;
+      PFNGLGETNCONVOLUTIONFILTERARBPROC glGetnConvolutionFilterARB;
+      PFNGLGETNSEPARABLEFILTERARBPROC glGetnSeparableFilterARB;
+      PFNGLGETNHISTOGRAMARBPROC glGetnHistogramARB;
+      PFNGLGETNMINMAXARBPROC glGetnMinmaxARB;
+
+      // GL_ARB_sample_shading
+      PFNGLMINSAMPLESHADINGARBPROC glMinSampleShadingARB;
+
+      // GL_ARB_sampler_objects
+      PFNGLGENSAMPLERSPROC glGenSamplers;
+      PFNGLDELETESAMPLERSPROC glDeleteSamplers;
+      PFNGLISSAMPLERPROC glIsSampler;
+      PFNGLBINDSAMPLERPROC glBindSampler;
+      PFNGLSAMPLERPARAMETERIPROC glSamplerParameteri;
+      PFNGLSAMPLERPARAMETERIVPROC glSamplerParameteriv;
+      PFNGLSAMPLERPARAMETERFPROC glSamplerParameterf;
+      PFNGLSAMPLERPARAMETERFVPROC glSamplerParameterfv;
+      PFNGLSAMPLERPARAMETERIIVPROC glSamplerParameterIiv;
+      PFNGLSAMPLERPARAMETERIUIVPROC glSamplerParameterIuiv;
+      PFNGLGETSAMPLERPARAMETERIVPROC glGetSamplerParameteriv;
+      PFNGLGETSAMPLERPARAMETERIIVPROC glGetSamplerParameterIiv;
+      PFNGLGETSAMPLERPARAMETERFVPROC glGetSamplerParameterfv;
+      PFNGLGETSAMPLERPARAMETERIUIVPROC glGetSamplerParameterIuiv;
+
+      // GL_ARB_separate_shader_objects
+      PFNGLUSEPROGRAMSTAGESPROC glUseProgramStages;
+      PFNGLACTIVESHADERPROGRAMPROC glActiveShaderProgram;
+      PFNGLCREATESHADERPROGRAMVPROC glCreateShaderProgramv;
+      PFNGLBINDPROGRAMPIPELINEPROC glBindProgramPipeline;
+      PFNGLDELETEPROGRAMPIPELINESPROC glDeleteProgramPipelines;
+      PFNGLGENPROGRAMPIPELINESPROC glGenProgramPipelines;
+      PFNGLISPROGRAMPIPELINEPROC glIsProgramPipeline;
+      PFNGLGETPROGRAMPIPELINEIVPROC glGetProgramPipelineiv;
+      PFNGLPROGRAMUNIFORM1IPROC glProgramUniform1i;
+      PFNGLPROGRAMUNIFORM1IVPROC glProgramUniform1iv;
+      PFNGLPROGRAMUNIFORM1FPROC glProgramUniform1f;
+      PFNGLPROGRAMUNIFORM1FVPROC glProgramUniform1fv;
+      PFNGLPROGRAMUNIFORM1DPROC glProgramUniform1d;
+      PFNGLPROGRAMUNIFORM1DVPROC glProgramUniform1dv;
+      PFNGLPROGRAMUNIFORM1UIPROC glProgramUniform1ui;
+      PFNGLPROGRAMUNIFORM1UIVPROC glProgramUniform1uiv;
+      PFNGLPROGRAMUNIFORM2IPROC glProgramUniform2i;
+      PFNGLPROGRAMUNIFORM2IVPROC glProgramUniform2iv;
+      PFNGLPROGRAMUNIFORM2FPROC glProgramUniform2f;
+      PFNGLPROGRAMUNIFORM2FVPROC glProgramUniform2fv;
+      PFNGLPROGRAMUNIFORM2DPROC glProgramUniform2d;
+      PFNGLPROGRAMUNIFORM2DVPROC glProgramUniform2dv;
+      PFNGLPROGRAMUNIFORM2UIPROC glProgramUniform2ui;
+      PFNGLPROGRAMUNIFORM2UIVPROC glProgramUniform2uiv;
+      PFNGLPROGRAMUNIFORM3IPROC glProgramUniform3i;
+      PFNGLPROGRAMUNIFORM3IVPROC glProgramUniform3iv;
+      PFNGLPROGRAMUNIFORM3FPROC glProgramUniform3f;
+      PFNGLPROGRAMUNIFORM3FVPROC glProgramUniform3fv;
+      PFNGLPROGRAMUNIFORM3DPROC glProgramUniform3d;
+      PFNGLPROGRAMUNIFORM3DVPROC glProgramUniform3dv;
+      PFNGLPROGRAMUNIFORM3UIPROC glProgramUniform3ui;
+      PFNGLPROGRAMUNIFORM3UIVPROC glProgramUniform3uiv;
+      PFNGLPROGRAMUNIFORM4IPROC glProgramUniform4i;
+      PFNGLPROGRAMUNIFORM4IVPROC glProgramUniform4iv;
+      PFNGLPROGRAMUNIFORM4FPROC glProgramUniform4f;
+      PFNGLPROGRAMUNIFORM4FVPROC glProgramUniform4fv;
+      PFNGLPROGRAMUNIFORM4DPROC glProgramUniform4d;
+      PFNGLPROGRAMUNIFORM4DVPROC glProgramUniform4dv;
+      PFNGLPROGRAMUNIFORM4UIPROC glProgramUniform4ui;
+      PFNGLPROGRAMUNIFORM4UIVPROC glProgramUniform4uiv;
+      PFNGLPROGRAMUNIFORMMATRIX2FVPROC glProgramUniformMatrix2fv;
+      PFNGLPROGRAMUNIFORMMATRIX3FVPROC glProgramUniformMatrix3fv;
+      PFNGLPROGRAMUNIFORMMATRIX4FVPROC glProgramUniformMatrix4fv;
+      PFNGLPROGRAMUNIFORMMATRIX2DVPROC glProgramUniformMatrix2dv;
+      PFNGLPROGRAMUNIFORMMATRIX3DVPROC glProgramUniformMatrix3dv;
+      PFNGLPROGRAMUNIFORMMATRIX4DVPROC glProgramUniformMatrix4dv;
+      PFNGLPROGRAMUNIFORMMATRIX2X3FVPROC glProgramUniformMatrix2x3fv;
+      PFNGLPROGRAMUNIFORMMATRIX3X2FVPROC glProgramUniformMatrix3x2fv;
+      PFNGLPROGRAMUNIFORMMATRIX2X4FVPROC glProgramUniformMatrix2x4fv;
+      PFNGLPROGRAMUNIFORMMATRIX4X2FVPROC glProgramUniformMatrix4x2fv;
+      PFNGLPROGRAMUNIFORMMATRIX3X4FVPROC glProgramUniformMatrix3x4fv;
+      PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC glProgramUniformMatrix4x3fv;
+      PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC glProgramUniformMatrix2x3dv;
+      PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC glProgramUniformMatrix3x2dv;
+      PFNGLPROGRAMUNIFORMMATRIX2X4DVPROC glProgramUniformMatrix2x4dv;
+      PFNGLPROGRAMUNIFORMMATRIX4X2DVPROC glProgramUniformMatrix4x2dv;
+      PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC glProgramUniformMatrix3x4dv;
+      PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC glProgramUniformMatrix4x3dv;
+      PFNGLVALIDATEPROGRAMPIPELINEPROC glValidateProgramPipeline;
+      PFNGLGETPROGRAMPIPELINEINFOLOGPROC glGetProgramPipelineInfoLog;
+
+      // GL_ARB_shader_atomic_counters
+      PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC glGetActiveAtomicCounterBufferiv;
+
+      // GL_ARB_shader_image_load_store
+      PFNGLBINDIMAGETEXTUREPROC glBindImageTexture;
+      PFNGLMEMORYBARRIERPROC glMemoryBarrier;
+
+      // GL_ARB_shader_storage_buffer_object
+      PFNGLSHADERSTORAGEBLOCKBINDINGPROC glShaderStorageBlockBinding;
+
+      // GL_ARB_shader_subroutine
+      PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC glGetSubroutineUniformLocation;
+      PFNGLGETSUBROUTINEINDEXPROC glGetSubroutineIndex;
+      PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC glGetActiveSubroutineUniformiv;
+      PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC glGetActiveSubroutineUniformName;
+      PFNGLGETACTIVESUBROUTINENAMEPROC glGetActiveSubroutineName;
+      PFNGLUNIFORMSUBROUTINESUIVPROC glUniformSubroutinesuiv;
+      PFNGLGETUNIFORMSUBROUTINEUIVPROC glGetUniformSubroutineuiv;
+      PFNGLGETPROGRAMSTAGEIVPROC glGetProgramStageiv;
+
+      // GL_ARB_shading_language_include
+      PFNGLNAMEDSTRINGARBPROC glNamedStringARB;
+      PFNGLDELETENAMEDSTRINGARBPROC glDeleteNamedStringARB;
+      PFNGLCOMPILESHADERINCLUDEARBPROC glCompileShaderIncludeARB;
+      PFNGLISNAMEDSTRINGARBPROC glIsNamedStringARB;
+      PFNGLGETNAMEDSTRINGARBPROC glGetNamedStringARB;
+      PFNGLGETNAMEDSTRINGIVARBPROC glGetNamedStringivARB;
+
+      // GL_ARB_sparse_buffer
+      PFNGLBUFFERPAGECOMMITMENTARBPROC glBufferPageCommitmentARB;
+      PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC glNamedBufferPageCommitmentEXT;
+      PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC glNamedBufferPageCommitmentARB;
+
+      // GL_ARB_sparse_texture
+      PFNGLTEXPAGECOMMITMENTARBPROC glTexPageCommitmentARB;
+
+      // GL_ARB_sync
+      PFNGLFENCESYNCPROC glFenceSync;
+      PFNGLISSYNCPROC glIsSync;
+      PFNGLDELETESYNCPROC glDeleteSync;
+      PFNGLCLIENTWAITSYNCPROC glClientWaitSync;
+      PFNGLWAITSYNCPROC glWaitSync;
+      PFNGLGETINTEGER64VPROC glGetInteger64v;
+      PFNGLGETSYNCIVPROC glGetSynciv;
+
+      // GL_ARB_tessellation_shader
+      PFNGLPATCHPARAMETERIPROC glPatchParameteri;
+      PFNGLPATCHPARAMETERFVPROC glPatchParameterfv;
+
+      // GL_ARB_texture_barrier
+      PFNGLTEXTUREBARRIERPROC glTextureBarrier;
+
+      // GL_ARB_texture_buffer_range
+      PFNGLTEXBUFFERRANGEPROC glTexBufferRange;
+
+      // GL_ARB_texture_multisample
+      PFNGLTEXIMAGE2DMULTISAMPLEPROC glTexImage2DMultisample;
+      PFNGLTEXIMAGE3DMULTISAMPLEPROC glTexImage3DMultisample;
+      PFNGLGETMULTISAMPLEFVPROC glGetMultisamplefv;
+      PFNGLSAMPLEMASKIPROC glSampleMaski;
+
+      // GL_ARB_texture_storage
+      PFNGLTEXSTORAGE1DPROC glTexStorage1D;
+      PFNGLTEXSTORAGE2DPROC glTexStorage2D;
+      PFNGLTEXSTORAGE3DPROC glTexStorage3D;
+
+      // GL_ARB_texture_storage_multisample
+      PFNGLTEXSTORAGE2DMULTISAMPLEPROC glTexStorage2DMultisample;
+      PFNGLTEXSTORAGE3DMULTISAMPLEPROC glTexStorage3DMultisample;
+
+      // GL_ARB_texture_view
+      PFNGLTEXTUREVIEWPROC glTextureView;
+
+      // GL_ARB_timer_query
+      PFNGLQUERYCOUNTERPROC glQueryCounter;
+      PFNGLGETQUERYOBJECTI64VPROC glGetQueryObjecti64v;
+      PFNGLGETQUERYOBJECTUI64VPROC glGetQueryObjectui64v;
+
+      // GL_ARB_transform_feedback2
+      PFNGLBINDTRANSFORMFEEDBACKPROC glBindTransformFeedback;
+      PFNGLDELETETRANSFORMFEEDBACKSPROC glDeleteTransformFeedbacks;
+      PFNGLGENTRANSFORMFEEDBACKSPROC glGenTransformFeedbacks;
+      PFNGLISTRANSFORMFEEDBACKPROC glIsTransformFeedback;
+      PFNGLPAUSETRANSFORMFEEDBACKPROC glPauseTransformFeedback;
+      PFNGLRESUMETRANSFORMFEEDBACKPROC glResumeTransformFeedback;
+      PFNGLDRAWTRANSFORMFEEDBACKPROC glDrawTransformFeedback;
+
+      // GL_ARB_transform_feedback3
+      PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC glDrawTransformFeedbackStream;
+      PFNGLBEGINQUERYINDEXEDPROC glBeginQueryIndexed;
+      PFNGLENDQUERYINDEXEDPROC glEndQueryIndexed;
+      PFNGLGETQUERYINDEXEDIVPROC glGetQueryIndexediv;
+
+      // GL_ARB_transform_feedback_instanced
+      PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC glDrawTransformFeedbackInstanced;
+      PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC glDrawTransformFeedbackStreamInstanced;
+
+      // GL_ARB_uniform_buffer_object
+      PFNGLGETUNIFORMINDICESPROC glGetUniformIndices;
+      PFNGLGETACTIVEUNIFORMSIVPROC glGetActiveUniformsiv;
+      PFNGLGETACTIVEUNIFORMNAMEPROC glGetActiveUniformName;
+      PFNGLGETUNIFORMBLOCKINDEXPROC glGetUniformBlockIndex;
+      PFNGLGETACTIVEUNIFORMBLOCKIVPROC glGetActiveUniformBlockiv;
+      PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC glGetActiveUniformBlockName;
+      PFNGLUNIFORMBLOCKBINDINGPROC glUniformBlockBinding;
+      PFNGLBINDBUFFERRANGEPROC glBindBufferRange;
+      PFNGLBINDBUFFERBASEPROC glBindBufferBase;
+      PFNGLGETINTEGERI_VPROC glGetIntegeri_v;
+
+      // GL_ARB_vertex_array_object
+      PFNGLBINDVERTEXARRAYPROC glBindVertexArray;
+      PFNGLDELETEVERTEXARRAYSPROC glDeleteVertexArrays;
+      PFNGLGENVERTEXARRAYSPROC glGenVertexArrays;
+      PFNGLISVERTEXARRAYPROC glIsVertexArray;
+
+      // GL_ARB_vertex_attrib_64bit
+      PFNGLVERTEXATTRIBL1DPROC glVertexAttribL1d;
+      PFNGLVERTEXATTRIBL2DPROC glVertexAttribL2d;
+      PFNGLVERTEXATTRIBL3DPROC glVertexAttribL3d;
+      PFNGLVERTEXATTRIBL4DPROC glVertexAttribL4d;
+      PFNGLVERTEXATTRIBL1DVPROC glVertexAttribL1dv;
+      PFNGLVERTEXATTRIBL2DVPROC glVertexAttribL2dv;
+      PFNGLVERTEXATTRIBL3DVPROC glVertexAttribL3dv;
+      PFNGLVERTEXATTRIBL4DVPROC glVertexAttribL4dv;
+      PFNGLVERTEXATTRIBLPOINTERPROC glVertexAttribLPointer;
+      PFNGLGETVERTEXATTRIBLDVPROC glGetVertexAttribLdv;
+
+      // GL_ARB_vertex_attrib_binding
+      PFNGLBINDVERTEXBUFFERPROC glBindVertexBuffer;
+      PFNGLVERTEXATTRIBFORMATPROC glVertexAttribFormat;
+      PFNGLVERTEXATTRIBIFORMATPROC glVertexAttribIFormat;
+      PFNGLVERTEXATTRIBLFORMATPROC glVertexAttribLFormat;
+      PFNGLVERTEXATTRIBBINDINGPROC glVertexAttribBinding;
+      PFNGLVERTEXBINDINGDIVISORPROC glVertexBindingDivisor;
+
+      // GL_ARB_vertex_type_2_10_10_10_rev
+      PFNGLVERTEXATTRIBP1UIPROC glVertexAttribP1ui;
+      PFNGLVERTEXATTRIBP1UIVPROC glVertexAttribP1uiv;
+      PFNGLVERTEXATTRIBP2UIPROC glVertexAttribP2ui;
+      PFNGLVERTEXATTRIBP2UIVPROC glVertexAttribP2uiv;
+      PFNGLVERTEXATTRIBP3UIPROC glVertexAttribP3ui;
+      PFNGLVERTEXATTRIBP3UIVPROC glVertexAttribP3uiv;
+      PFNGLVERTEXATTRIBP4UIPROC glVertexAttribP4ui;
+      PFNGLVERTEXATTRIBP4UIVPROC glVertexAttribP4uiv;
+      PFNGLVERTEXP2UIPROC glVertexP2ui;
+      PFNGLVERTEXP2UIVPROC glVertexP2uiv;
+      PFNGLVERTEXP3UIPROC glVertexP3ui;
+      PFNGLVERTEXP3UIVPROC glVertexP3uiv;
+      PFNGLVERTEXP4UIPROC glVertexP4ui;
+      PFNGLVERTEXP4UIVPROC glVertexP4uiv;
+      PFNGLTEXCOORDP1UIPROC glTexCoordP1ui;
+      PFNGLTEXCOORDP1UIVPROC glTexCoordP1uiv;
+      PFNGLTEXCOORDP2UIPROC glTexCoordP2ui;
+      PFNGLTEXCOORDP2UIVPROC glTexCoordP2uiv;
+      PFNGLTEXCOORDP3UIPROC glTexCoordP3ui;
+      PFNGLTEXCOORDP3UIVPROC glTexCoordP3uiv;
+      PFNGLTEXCOORDP4UIPROC glTexCoordP4ui;
+      PFNGLTEXCOORDP4UIVPROC glTexCoordP4uiv;
+      PFNGLMULTITEXCOORDP1UIPROC glMultiTexCoordP1ui;
+      PFNGLMULTITEXCOORDP1UIVPROC glMultiTexCoordP1uiv;
+      PFNGLMULTITEXCOORDP2UIPROC glMultiTexCoordP2ui;
+      PFNGLMULTITEXCOORDP2UIVPROC glMultiTexCoordP2uiv;
+      PFNGLMULTITEXCOORDP3UIPROC glMultiTexCoordP3ui;
+      PFNGLMULTITEXCOORDP3UIVPROC glMultiTexCoordP3uiv;
+      PFNGLMULTITEXCOORDP4UIPROC glMultiTexCoordP4ui;
+      PFNGLMULTITEXCOORDP4UIVPROC glMultiTexCoordP4uiv;
+      PFNGLNORMALP3UIPROC glNormalP3ui;
+      PFNGLNORMALP3UIVPROC glNormalP3uiv;
+      PFNGLCOLORP3UIPROC glColorP3ui;
+      PFNGLCOLORP3UIVPROC glColorP3uiv;
+      PFNGLCOLORP4UIPROC glColorP4ui;
+      PFNGLCOLORP4UIVPROC glColorP4uiv;
+      PFNGLSECONDARYCOLORP3UIPROC glSecondaryColorP3ui;
+      PFNGLSECONDARYCOLORP3UIVPROC glSecondaryColorP3uiv;
+
+      // GL_ARB_viewport_array
+      PFNGLVIEWPORTARRAYVPROC glViewportArrayv;
+      PFNGLVIEWPORTINDEXEDFPROC glViewportIndexedf;
+      PFNGLVIEWPORTINDEXEDFVPROC glViewportIndexedfv;
+      PFNGLSCISSORARRAYVPROC glScissorArrayv;
+      PFNGLSCISSORINDEXEDPROC glScissorIndexed;
+      PFNGLSCISSORINDEXEDVPROC glScissorIndexedv;
+      PFNGLDEPTHRANGEARRAYVPROC glDepthRangeArrayv;
+      PFNGLDEPTHRANGEINDEXEDPROC glDepthRangeIndexed;
+      PFNGLGETFLOATI_VPROC glGetFloati_v;
+      PFNGLGETDOUBLEI_VPROC glGetDoublei_v;
+
+      // GL_KHR_debug
+      PFNGLDEBUGMESSAGECONTROLPROC glDebugMessageControl;
+      PFNGLDEBUGMESSAGEINSERTPROC glDebugMessageInsert;
+      PFNGLDEBUGMESSAGECALLBACKPROC glDebugMessageCallback;
+      PFNGLGETDEBUGMESSAGELOGPROC glGetDebugMessageLog;
+      PFNGLPUSHDEBUGGROUPPROC glPushDebugGroup;
+      PFNGLPOPDEBUGGROUPPROC glPopDebugGroup;
+      PFNGLOBJECTLABELPROC glObjectLabel;
+      PFNGLGETOBJECTLABELPROC glGetObjectLabel;
+      PFNGLOBJECTPTRLABELPROC glObjectPtrLabel;
+      PFNGLGETOBJECTPTRLABELPROC glGetObjectPtrLabel;
+      PFNGLGETPOINTERVPROC glGetPointerv;
+      PFNGLDEBUGMESSAGECONTROLKHRPROC glDebugMessageControlKHR;
+      PFNGLDEBUGMESSAGEINSERTKHRPROC glDebugMessageInsertKHR;
+      PFNGLDEBUGMESSAGECALLBACKKHRPROC glDebugMessageCallbackKHR;
+      PFNGLGETDEBUGMESSAGELOGKHRPROC glGetDebugMessageLogKHR;
+      PFNGLPUSHDEBUGGROUPKHRPROC glPushDebugGroupKHR;
+      PFNGLPOPDEBUGGROUPKHRPROC glPopDebugGroupKHR;
+      PFNGLOBJECTLABELKHRPROC glObjectLabelKHR;
+      PFNGLGETOBJECTLABELKHRPROC glGetObjectLabelKHR;
+      PFNGLOBJECTPTRLABELKHRPROC glObjectPtrLabelKHR;
+      PFNGLGETOBJECTPTRLABELKHRPROC glGetObjectPtrLabelKHR;
+      PFNGLGETPOINTERVKHRPROC glGetPointervKHR;
+
+      // GL_KHR_robustness
+      PFNGLGETGRAPHICSRESETSTATUSPROC glGetGraphicsResetStatus;
+      PFNGLREADNPIXELSPROC glReadnPixels;
+      PFNGLGETNUNIFORMFVPROC glGetnUniformfv;
+      PFNGLGETNUNIFORMIVPROC glGetnUniformiv;
+      PFNGLGETNUNIFORMUIVPROC glGetnUniformuiv;
+      PFNGLGETGRAPHICSRESETSTATUSKHRPROC glGetGraphicsResetStatusKHR;
+      PFNGLREADNPIXELSKHRPROC glReadnPixelsKHR;
+      PFNGLGETNUNIFORMFVKHRPROC glGetnUniformfvKHR;
+      PFNGLGETNUNIFORMIVKHRPROC glGetnUniformivKHR;
+      PFNGLGETNUNIFORMUIVKHRPROC glGetnUniformuivKHR;
+    };
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public:
+
+    static void Initialise (glew::glcore::DeviceState *deviceState);
+
+    static void Deinitialise ();
+
+    static glew::glcore::DeviceState *GetDeviceState ();
+
+  protected:
+
+    static glew::glcore::DeviceState *s_deviceState;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public:
+
+    // GL_ARB_ES2_compatibility
+    void  glReleaseShaderCompiler ();
+    void  glShaderBinary (GLsizei count, const GLuint * shaders, GLenum binaryformat, const void * binary, GLsizei length);
+    void  glGetShaderPrecisionFormat (GLenum shadertype, GLenum precisiontype, GLint * range, GLint * precision);
+    void  glDepthRangef (GLfloat n, GLfloat f);
+    void  glClearDepthf (GLfloat d);
+
+    // GL_ARB_ES3_1_compatibility
+    void  glMemoryBarrierByRegion (GLbitfield barriers);
+
+    // GL_ARB_base_instance
+    void  glDrawArraysInstancedBaseInstance (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance);
+    void  glDrawElementsInstancedBaseInstance (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLuint baseinstance);
+    void  glDrawElementsInstancedBaseVertexBaseInstance (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance);
+
+    // GL_ARB_bindless_texture
+    GLuint64 glGetTextureHandleARB (GLuint texture);
+    GLuint64 glGetTextureSamplerHandleARB (GLuint texture, GLuint sampler);
+    void  glMakeTextureHandleResidentARB (GLuint64 handle);
+    void  glMakeTextureHandleNonResidentARB (GLuint64 handle);
+    GLuint64 glGetImageHandleARB (GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum format);
+    void  glMakeImageHandleResidentARB (GLuint64 handle, GLenum access);
+    void  glMakeImageHandleNonResidentARB (GLuint64 handle);
+    void  glUniformHandleui64ARB (GLint location, GLuint64 value);
+    void  glUniformHandleui64vARB (GLint location, GLsizei count, const GLuint64 * value);
+    void  glProgramUniformHandleui64ARB (GLuint program, GLint location, GLuint64 value);
+    void  glProgramUniformHandleui64vARB (GLuint program, GLint location, GLsizei count, const GLuint64 * values);
+    GLboolean glIsTextureHandleResidentARB (GLuint64 handle);
+    GLboolean glIsImageHandleResidentARB (GLuint64 handle);
+    void  glVertexAttribL1ui64ARB (GLuint index, GLuint64EXT x);
+    void  glVertexAttribL1ui64vARB (GLuint index, const GLuint64EXT * v);
+    void  glGetVertexAttribLui64vARB (GLuint index, GLenum pname, GLuint64EXT * params);
+
+    // GL_ARB_blend_func_extended
+    void  glBindFragDataLocationIndexed (GLuint program, GLuint colorNumber, GLuint index, const GLchar * name);
+    GLint glGetFragDataIndex (GLuint program, const GLchar * name);
+
+    // GL_ARB_buffer_storage
+    void  glBufferStorage (GLenum target, GLsizeiptr size, const void * data, GLbitfield flags);
+
+    // GL_ARB_cl_event
+    GLsync glCreateSyncFromCLeventARB (struct _cl_context * context, struct _cl_event * event, GLbitfield flags);
+
+    // GL_ARB_clear_buffer_object
+    void  glClearBufferData (GLenum target, GLenum internalformat, GLenum format, GLenum type, const void * data);
+    void  glClearBufferSubData (GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data);
+
+    // GL_ARB_clear_texture
+    void  glClearTexImage (GLuint texture, GLint level, GLenum format, GLenum type, const void * data);
+    void  glClearTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * data);
+
+    // GL_ARB_clip_control
+    void  glClipControl (GLenum origin, GLenum depth);
+
+    // GL_ARB_compute_shader
+    void  glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z);
+    void  glDispatchComputeIndirect (GLintptr indirect);
+
+    // GL_ARB_compute_variable_group_size
+    void  glDispatchComputeGroupSizeARB (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z, GLuint group_size_x, GLuint group_size_y, GLuint group_size_z);
+
+    // GL_ARB_copy_buffer
+    void  glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+
+    // GL_ARB_copy_image
+    void  glCopyImageSubData (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth);
+
+    // GL_ARB_debug_output
+    void  glDebugMessageControlARB (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint * ids, GLboolean enabled);
+    void  glDebugMessageInsertARB (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar * buf);
+    void  glDebugMessageCallbackARB (GLDEBUGPROCARB callback, const void * userParam);
+    GLuint glGetDebugMessageLogARB (GLuint count, GLsizei bufSize, GLenum * sources, GLenum * types, GLuint * ids, GLenum * severities, GLsizei * lengths, GLchar * messageLog);
+
+    // GL_ARB_direct_state_access
+    void  glCreateTransformFeedbacks (GLsizei n, GLuint * ids);
+    void  glTransformFeedbackBufferBase (GLuint xfb, GLuint index, GLuint buffer);
+    void  glTransformFeedbackBufferRange (GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size);
+    void  glGetTransformFeedbackiv (GLuint xfb, GLenum pname, GLint * param);
+    void  glGetTransformFeedbacki_v (GLuint xfb, GLenum pname, GLuint index, GLint * param);
+    void  glGetTransformFeedbacki64_v (GLuint xfb, GLenum pname, GLuint index, GLint64 * param);
+    void  glCreateBuffers (GLsizei n, GLuint * buffers);
+    void  glNamedBufferStorage (GLuint buffer, GLsizeiptr size, const void * data, GLbitfield flags);
+    void  glNamedBufferData (GLuint buffer, GLsizeiptr size, const void * data, GLenum usage);
+    void  glNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, const void * data);
+    void  glCopyNamedBufferSubData (GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+    void  glClearNamedBufferData (GLuint buffer, GLenum internalformat, GLenum format, GLenum type, const void * data);
+    void  glClearNamedBufferSubData (GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data);
+    void * glMapNamedBuffer (GLuint buffer, GLenum access);
+    void * glMapNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access);
+    GLboolean glUnmapNamedBuffer (GLuint buffer);
+    void  glFlushMappedNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length);
+    void  glGetNamedBufferParameteriv (GLuint buffer, GLenum pname, GLint * params);
+    void  glGetNamedBufferParameteri64v (GLuint buffer, GLenum pname, GLint64 * params);
+    void  glGetNamedBufferPointerv (GLuint buffer, GLenum pname, void ** params);
+    void  glGetNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, void * data);
+    void  glCreateFramebuffers (GLsizei n, GLuint * framebuffers);
+    void  glNamedFramebufferRenderbuffer (GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer);
+    void  glNamedFramebufferParameteri (GLuint framebuffer, GLenum pname, GLint param);
+    void  glNamedFramebufferTexture (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level);
+    void  glNamedFramebufferTextureLayer (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer);
+    void  glNamedFramebufferDrawBuffer (GLuint framebuffer, GLenum buf);
+    void  glNamedFramebufferDrawBuffers (GLuint framebuffer, GLsizei n, const GLenum * bufs);
+    void  glNamedFramebufferReadBuffer (GLuint framebuffer, GLenum src);
+    void  glInvalidateNamedFramebufferData (GLuint framebuffer, GLsizei numAttachments, const GLenum * attachments);
+    void  glInvalidateNamedFramebufferSubData (GLuint framebuffer, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height);
+    void  glClearNamedFramebufferiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLint * value);
+    void  glClearNamedFramebufferuiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLuint * value);
+    void  glClearNamedFramebufferfv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLfloat * value);
+    void  glClearNamedFramebufferfi (GLuint framebuffer, GLenum buffer, const GLfloat depth, GLint stencil);
+    void  glBlitNamedFramebuffer (GLuint readFramebuffer, GLuint drawFramebuffer, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+    GLenum glCheckNamedFramebufferStatus (GLuint framebuffer, GLenum target);
+    void  glGetNamedFramebufferParameteriv (GLuint framebuffer, GLenum pname, GLint * param);
+    void  glGetNamedFramebufferAttachmentParameteriv (GLuint framebuffer, GLenum attachment, GLenum pname, GLint * params);
+    void  glCreateRenderbuffers (GLsizei n, GLuint * renderbuffers);
+    void  glNamedRenderbufferStorage (GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height);
+    void  glNamedRenderbufferStorageMultisample (GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+    void  glGetNamedRenderbufferParameteriv (GLuint renderbuffer, GLenum pname, GLint * params);
+    void  glCreateTextures (GLenum target, GLsizei n, GLuint * textures);
+    void  glTextureBuffer (GLuint texture, GLenum internalformat, GLuint buffer);
+    void  glTextureBufferRange (GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size);
+    void  glTextureStorage1D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width);
+    void  glTextureStorage2D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height);
+    void  glTextureStorage3D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth);
+    void  glTextureStorage2DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations);
+    void  glTextureStorage3DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations);
+    void  glTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void * pixels);
+    void  glTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void * pixels);
+    void  glTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * pixels);
+    void  glCompressedTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void * data);
+    void  glCompressedTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void * data);
+    void  glCompressedTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void * data);
+    void  glCopyTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width);
+    void  glCopyTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+    void  glCopyTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+    void  glTextureParameterf (GLuint texture, GLenum pname, GLfloat param);
+    void  glTextureParameterfv (GLuint texture, GLenum pname, const GLfloat * param);
+    void  glTextureParameteri (GLuint texture, GLenum pname, GLint param);
+    void  glTextureParameterIiv (GLuint texture, GLenum pname, const GLint * params);
+    void  glTextureParameterIuiv (GLuint texture, GLenum pname, const GLuint * params);
+    void  glTextureParameteriv (GLuint texture, GLenum pname, const GLint * param);
+    void  glGenerateTextureMipmap (GLuint texture);
+    void  glBindTextureUnit (GLuint unit, GLuint texture);
+    void  glGetTextureImage (GLuint texture, GLint level, GLenum format, GLenum type, GLsizei bufSize, void * pixels);
+    void  glGetCompressedTextureImage (GLuint texture, GLint level, GLsizei bufSize, void * pixels);
+    void  glGetTextureLevelParameterfv (GLuint texture, GLint level, GLenum pname, GLfloat * params);
+    void  glGetTextureLevelParameteriv (GLuint texture, GLint level, GLenum pname, GLint * params);
+    void  glGetTextureParameterfv (GLuint texture, GLenum pname, GLfloat * params);
+    void  glGetTextureParameterIiv (GLuint texture, GLenum pname, GLint * params);
+    void  glGetTextureParameterIuiv (GLuint texture, GLenum pname, GLuint * params);
+    void  glGetTextureParameteriv (GLuint texture, GLenum pname, GLint * params);
+    void  glCreateVertexArrays (GLsizei n, GLuint * arrays);
+    void  glDisableVertexArrayAttrib (GLuint vaobj, GLuint index);
+    void  glEnableVertexArrayAttrib (GLuint vaobj, GLuint index);
+    void  glVertexArrayElementBuffer (GLuint vaobj, GLuint buffer);
+    void  glVertexArrayVertexBuffer (GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride);
+    void  glVertexArrayVertexBuffers (GLuint vaobj, GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizei * strides);
+    void  glVertexArrayAttribBinding (GLuint vaobj, GLuint attribindex, GLuint bindingindex);
+    void  glVertexArrayAttribFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset);
+    void  glVertexArrayAttribIFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+    void  glVertexArrayAttribLFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+    void  glVertexArrayBindingDivisor (GLuint vaobj, GLuint bindingindex, GLuint divisor);
+    void  glGetVertexArrayiv (GLuint vaobj, GLenum pname, GLint * param);
+    void  glGetVertexArrayIndexediv (GLuint vaobj, GLuint index, GLenum pname, GLint * param);
+    void  glGetVertexArrayIndexed64iv (GLuint vaobj, GLuint index, GLenum pname, GLint64 * param);
+    void  glCreateSamplers (GLsizei n, GLuint * samplers);
+    void  glCreateProgramPipelines (GLsizei n, GLuint * pipelines);
+    void  glCreateQueries (GLenum target, GLsizei n, GLuint * ids);
+    void  glGetQueryBufferObjecti64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset);
+    void  glGetQueryBufferObjectiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset);
+    void  glGetQueryBufferObjectui64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset);
+    void  glGetQueryBufferObjectuiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset);
+
+    // GL_ARB_draw_buffers_blend
+    void  glBlendEquationiARB (GLuint buf, GLenum mode);
+    void  glBlendEquationSeparateiARB (GLuint buf, GLenum modeRGB, GLenum modeAlpha);
+    void  glBlendFunciARB (GLuint buf, GLenum src, GLenum dst);
+    void  glBlendFuncSeparateiARB (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha);
+
+    // GL_ARB_draw_elements_base_vertex
+    void  glDrawElementsBaseVertex (GLenum mode, GLsizei count, GLenum type, const void * indices, GLint basevertex);
+    void  glDrawRangeElementsBaseVertex (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices, GLint basevertex);
+    void  glDrawElementsInstancedBaseVertex (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex);
+    void  glMultiDrawElementsBaseVertex (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei drawcount, const GLint * basevertex);
+
+    // GL_ARB_draw_indirect
+    void  glDrawArraysIndirect (GLenum mode, const void * indirect);
+    void  glDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect);
+
+    // GL_ARB_framebuffer_no_attachments
+    void  glFramebufferParameteri (GLenum target, GLenum pname, GLint param);
+    void  glGetFramebufferParameteriv (GLenum target, GLenum pname, GLint * params);
+
+    // GL_ARB_framebuffer_object
+    GLboolean glIsRenderbuffer (GLuint renderbuffer);
+    void  glBindRenderbuffer (GLenum target, GLuint renderbuffer);
+    void  glDeleteRenderbuffers (GLsizei n, const GLuint * renderbuffers);
+    void  glGenRenderbuffers (GLsizei n, GLuint * renderbuffers);
+    void  glRenderbufferStorage (GLenum target, GLenum internalformat, GLsizei width, GLsizei height);
+    void  glGetRenderbufferParameteriv (GLenum target, GLenum pname, GLint * params);
+    GLboolean glIsFramebuffer (GLuint framebuffer);
+    void  glBindFramebuffer (GLenum target, GLuint framebuffer);
+    void  glDeleteFramebuffers (GLsizei n, const GLuint * framebuffers);
+    void  glGenFramebuffers (GLsizei n, GLuint * framebuffers);
+    GLenum glCheckFramebufferStatus (GLenum target);
+    void  glFramebufferTexture1D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
+    void  glFramebufferTexture2D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
+    void  glFramebufferTexture3D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset);
+    void  glFramebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer);
+    void  glGetFramebufferAttachmentParameteriv (GLenum target, GLenum attachment, GLenum pname, GLint * params);
+    void  glGenerateMipmap (GLenum target);
+    void  glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+    void  glRenderbufferStorageMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+    void  glFramebufferTextureLayer (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer);
+
+    // GL_ARB_get_program_binary
+    void  glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei * length, GLenum * binaryFormat, void * binary);
+    void  glProgramBinary (GLuint program, GLenum binaryFormat, const void * binary, GLsizei length);
+    void  glProgramParameteri (GLuint program, GLenum pname, GLint value);
+
+    // GL_ARB_get_texture_sub_image
+    void  glGetTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, GLsizei bufSize, void * pixels);
+    void  glGetCompressedTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei bufSize, void * pixels);
+
+    // GL_ARB_gpu_shader_fp64
+    void  glUniform1d (GLint location, GLdouble x);
+    void  glUniform2d (GLint location, GLdouble x, GLdouble y);
+    void  glUniform3d (GLint location, GLdouble x, GLdouble y, GLdouble z);
+    void  glUniform4d (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+    void  glUniform1dv (GLint location, GLsizei count, const GLdouble * value);
+    void  glUniform2dv (GLint location, GLsizei count, const GLdouble * value);
+    void  glUniform3dv (GLint location, GLsizei count, const GLdouble * value);
+    void  glUniform4dv (GLint location, GLsizei count, const GLdouble * value);
+    void  glUniformMatrix2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glUniformMatrix3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glUniformMatrix4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glUniformMatrix2x3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glUniformMatrix2x4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glUniformMatrix3x2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glUniformMatrix3x4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glUniformMatrix4x2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glUniformMatrix4x3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glGetUniformdv (GLuint program, GLint location, GLdouble * params);
+
+    // GL_ARB_imaging
+    void  glBlendColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
+    void  glBlendEquation (GLenum mode);
+    void  glColorTable (GLenum target, GLenum internalformat, GLsizei width, GLenum format, GLenum type, const void * table);
+    void  glColorTableParameterfv (GLenum target, GLenum pname, const GLfloat * params);
+    void  glColorTableParameteriv (GLenum target, GLenum pname, const GLint * params);
+    void  glCopyColorTable (GLenum target, GLenum internalformat, GLint x, GLint y, GLsizei width);
+    void  glGetColorTable (GLenum target, GLenum format, GLenum type, void * table);
+    void  glGetColorTableParameterfv (GLenum target, GLenum pname, GLfloat * params);
+    void  glGetColorTableParameteriv (GLenum target, GLenum pname, GLint * params);
+    void  glColorSubTable (GLenum target, GLsizei start, GLsizei count, GLenum format, GLenum type, const void * data);
+    void  glCopyColorSubTable (GLenum target, GLsizei start, GLint x, GLint y, GLsizei width);
+    void  glConvolutionFilter1D (GLenum target, GLenum internalformat, GLsizei width, GLenum format, GLenum type, const void * image);
+    void  glConvolutionFilter2D (GLenum target, GLenum internalformat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void * image);
+    void  glConvolutionParameterf (GLenum target, GLenum pname, GLfloat params);
+    void  glConvolutionParameterfv (GLenum target, GLenum pname, const GLfloat * params);
+    void  glConvolutionParameteri (GLenum target, GLenum pname, GLint params);
+    void  glConvolutionParameteriv (GLenum target, GLenum pname, const GLint * params);
+    void  glCopyConvolutionFilter1D (GLenum target, GLenum internalformat, GLint x, GLint y, GLsizei width);
+    void  glCopyConvolutionFilter2D (GLenum target, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height);
+    void  glGetConvolutionFilter (GLenum target, GLenum format, GLenum type, void * image);
+    void  glGetConvolutionParameterfv (GLenum target, GLenum pname, GLfloat * params);
+    void  glGetConvolutionParameteriv (GLenum target, GLenum pname, GLint * params);
+    void  glGetSeparableFilter (GLenum target, GLenum format, GLenum type, void * row, void * column, void * span);
+    void  glSeparableFilter2D (GLenum target, GLenum internalformat, GLsizei width, GLsizei height, GLenum format, GLenum type, const void * row, const void * column);
+    void  glGetHistogram (GLenum target, GLboolean reset, GLenum format, GLenum type, void * values);
+    void  glGetHistogramParameterfv (GLenum target, GLenum pname, GLfloat * params);
+    void  glGetHistogramParameteriv (GLenum target, GLenum pname, GLint * params);
+    void  glGetMinmax (GLenum target, GLboolean reset, GLenum format, GLenum type, void * values);
+    void  glGetMinmaxParameterfv (GLenum target, GLenum pname, GLfloat * params);
+    void  glGetMinmaxParameteriv (GLenum target, GLenum pname, GLint * params);
+    void  glHistogram (GLenum target, GLsizei width, GLenum internalformat, GLboolean sink);
+    void  glMinmax (GLenum target, GLenum internalformat, GLboolean sink);
+    void  glResetHistogram (GLenum target);
+    void  glResetMinmax (GLenum target);
+
+    // GL_ARB_indirect_parameters
+    void  glMultiDrawArraysIndirectCountARB (GLenum mode, GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+    void  glMultiDrawElementsIndirectCountARB (GLenum mode, GLenum type, GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+
+    // GL_ARB_internalformat_query
+    void  glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint * params);
+
+    // GL_ARB_internalformat_query2
+    void  glGetInternalformati64v (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint64 * params);
+
+    // GL_ARB_invalidate_subdata
+    void  glInvalidateTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth);
+    void  glInvalidateTexImage (GLuint texture, GLint level);
+    void  glInvalidateBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr length);
+    void  glInvalidateBufferData (GLuint buffer);
+    void  glInvalidateFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments);
+    void  glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height);
+
+    // GL_ARB_map_buffer_range
+    void * glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access);
+    void  glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsizeiptr length);
+
+    // GL_ARB_multi_bind
+    void  glBindBuffersBase (GLenum target, GLuint first, GLsizei count, const GLuint * buffers);
+    void  glBindBuffersRange (GLenum target, GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizeiptr * sizes);
+    void  glBindTextures (GLuint first, GLsizei count, const GLuint * textures);
+    void  glBindSamplers (GLuint first, GLsizei count, const GLuint * samplers);
+    void  glBindImageTextures (GLuint first, GLsizei count, const GLuint * textures);
+    void  glBindVertexBuffers (GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizei * strides);
+
+    // GL_ARB_multi_draw_indirect
+    void  glMultiDrawArraysIndirect (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride);
+    void  glMultiDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect, GLsizei drawcount, GLsizei stride);
+
+    // GL_ARB_program_interface_query
+    void  glGetProgramInterfaceiv (GLuint program, GLenum programInterface, GLenum pname, GLint * params);
+    GLuint glGetProgramResourceIndex (GLuint program, GLenum programInterface, const GLchar * name);
+    void  glGetProgramResourceName (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei * length, GLchar * name);
+    void  glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLint * params);
+    GLint glGetProgramResourceLocation (GLuint program, GLenum programInterface, const GLchar * name);
+    GLint glGetProgramResourceLocationIndex (GLuint program, GLenum programInterface, const GLchar * name);
+
+    // GL_ARB_provoking_vertex
+    void  glProvokingVertex (GLenum mode);
+
+    // GL_ARB_robustness
+    GLenum glGetGraphicsResetStatusARB ();
+    void  glGetnTexImageARB (GLenum target, GLint level, GLenum format, GLenum type, GLsizei bufSize, void * img);
+    void  glReadnPixelsARB (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data);
+    void  glGetnCompressedTexImageARB (GLenum target, GLint lod, GLsizei bufSize, void * img);
+    void  glGetnUniformfvARB (GLuint program, GLint location, GLsizei bufSize, GLfloat * params);
+    void  glGetnUniformivARB (GLuint program, GLint location, GLsizei bufSize, GLint * params);
+    void  glGetnUniformuivARB (GLuint program, GLint location, GLsizei bufSize, GLuint * params);
+    void  glGetnUniformdvARB (GLuint program, GLint location, GLsizei bufSize, GLdouble * params);
+    void  glGetnMapdvARB (GLenum target, GLenum query, GLsizei bufSize, GLdouble * v);
+    void  glGetnMapfvARB (GLenum target, GLenum query, GLsizei bufSize, GLfloat * v);
+    void  glGetnMapivARB (GLenum target, GLenum query, GLsizei bufSize, GLint * v);
+    void  glGetnPixelMapfvARB (GLenum map, GLsizei bufSize, GLfloat * values);
+    void  glGetnPixelMapuivARB (GLenum map, GLsizei bufSize, GLuint * values);
+    void  glGetnPixelMapusvARB (GLenum map, GLsizei bufSize, GLushort * values);
+    void  glGetnPolygonStippleARB (GLsizei bufSize, GLubyte * pattern);
+    void  glGetnColorTableARB (GLenum target, GLenum format, GLenum type, GLsizei bufSize, void * table);
+    void  glGetnConvolutionFilterARB (GLenum target, GLenum format, GLenum type, GLsizei bufSize, void * image);
+    void  glGetnSeparableFilterARB (GLenum target, GLenum format, GLenum type, GLsizei rowBufSize, void * row, GLsizei columnBufSize, void * column, void * span);
+    void  glGetnHistogramARB (GLenum target, GLboolean reset, GLenum format, GLenum type, GLsizei bufSize, void * values);
+    void  glGetnMinmaxARB (GLenum target, GLboolean reset, GLenum format, GLenum type, GLsizei bufSize, void * values);
+
+    // GL_ARB_sample_shading
+    void  glMinSampleShadingARB (GLfloat value);
+
+    // GL_ARB_sampler_objects
+    void  glGenSamplers (GLsizei count, GLuint * samplers);
+    void  glDeleteSamplers (GLsizei count, const GLuint * samplers);
+    GLboolean glIsSampler (GLuint sampler);
+    void  glBindSampler (GLuint unit, GLuint sampler);
+    void  glSamplerParameteri (GLuint sampler, GLenum pname, GLint param);
+    void  glSamplerParameteriv (GLuint sampler, GLenum pname, const GLint * param);
+    void  glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat param);
+    void  glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfloat * param);
+    void  glSamplerParameterIiv (GLuint sampler, GLenum pname, const GLint * param);
+    void  glSamplerParameterIuiv (GLuint sampler, GLenum pname, const GLuint * param);
+    void  glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint * params);
+    void  glGetSamplerParameterIiv (GLuint sampler, GLenum pname, GLint * params);
+    void  glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat * params);
+    void  glGetSamplerParameterIuiv (GLuint sampler, GLenum pname, GLuint * params);
+
+    // GL_ARB_separate_shader_objects
+    void  glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint program);
+    void  glActiveShaderProgram (GLuint pipeline, GLuint program);
+    GLuint glCreateShaderProgramv (GLenum type, GLsizei count, const GLchar *const* strings);
+    void  glBindProgramPipeline (GLuint pipeline);
+    void  glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines);
+    void  glGenProgramPipelines (GLsizei n, GLuint * pipelines);
+    GLboolean glIsProgramPipeline (GLuint pipeline);
+    void  glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint * params);
+    void  glProgramUniform1i (GLuint program, GLint location, GLint v0);
+    void  glProgramUniform1iv (GLuint program, GLint location, GLsizei count, const GLint * value);
+    void  glProgramUniform1f (GLuint program, GLint location, GLfloat v0);
+    void  glProgramUniform1fv (GLuint program, GLint location, GLsizei count, const GLfloat * value);
+    void  glProgramUniform1d (GLuint program, GLint location, GLdouble v0);
+    void  glProgramUniform1dv (GLuint program, GLint location, GLsizei count, const GLdouble * value);
+    void  glProgramUniform1ui (GLuint program, GLint location, GLuint v0);
+    void  glProgramUniform1uiv (GLuint program, GLint location, GLsizei count, const GLuint * value);
+    void  glProgramUniform2i (GLuint program, GLint location, GLint v0, GLint v1);
+    void  glProgramUniform2iv (GLuint program, GLint location, GLsizei count, const GLint * value);
+    void  glProgramUniform2f (GLuint program, GLint location, GLfloat v0, GLfloat v1);
+    void  glProgramUniform2fv (GLuint program, GLint location, GLsizei count, const GLfloat * value);
+    void  glProgramUniform2d (GLuint program, GLint location, GLdouble v0, GLdouble v1);
+    void  glProgramUniform2dv (GLuint program, GLint location, GLsizei count, const GLdouble * value);
+    void  glProgramUniform2ui (GLuint program, GLint location, GLuint v0, GLuint v1);
+    void  glProgramUniform2uiv (GLuint program, GLint location, GLsizei count, const GLuint * value);
+    void  glProgramUniform3i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2);
+    void  glProgramUniform3iv (GLuint program, GLint location, GLsizei count, const GLint * value);
+    void  glProgramUniform3f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2);
+    void  glProgramUniform3fv (GLuint program, GLint location, GLsizei count, const GLfloat * value);
+    void  glProgramUniform3d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2);
+    void  glProgramUniform3dv (GLuint program, GLint location, GLsizei count, const GLdouble * value);
+    void  glProgramUniform3ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2);
+    void  glProgramUniform3uiv (GLuint program, GLint location, GLsizei count, const GLuint * value);
+    void  glProgramUniform4i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3);
+    void  glProgramUniform4iv (GLuint program, GLint location, GLsizei count, const GLint * value);
+    void  glProgramUniform4f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
+    void  glProgramUniform4fv (GLuint program, GLint location, GLsizei count, const GLfloat * value);
+    void  glProgramUniform4d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3);
+    void  glProgramUniform4dv (GLuint program, GLint location, GLsizei count, const GLdouble * value);
+    void  glProgramUniform4ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3);
+    void  glProgramUniform4uiv (GLuint program, GLint location, GLsizei count, const GLuint * value);
+    void  glProgramUniformMatrix2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value);
+    void  glProgramUniformMatrix3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value);
+    void  glProgramUniformMatrix4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value);
+    void  glProgramUniformMatrix2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glProgramUniformMatrix3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glProgramUniformMatrix4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glProgramUniformMatrix2x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value);
+    void  glProgramUniformMatrix3x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value);
+    void  glProgramUniformMatrix2x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value);
+    void  glProgramUniformMatrix4x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value);
+    void  glProgramUniformMatrix3x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value);
+    void  glProgramUniformMatrix4x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value);
+    void  glProgramUniformMatrix2x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glProgramUniformMatrix3x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glProgramUniformMatrix2x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glProgramUniformMatrix4x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glProgramUniformMatrix3x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glProgramUniformMatrix4x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value);
+    void  glValidateProgramPipeline (GLuint pipeline);
+    void  glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, GLsizei * length, GLchar * infoLog);
+
+    // GL_ARB_shader_atomic_counters
+    void  glGetActiveAtomicCounterBufferiv (GLuint program, GLuint bufferIndex, GLenum pname, GLint * params);
+
+    // GL_ARB_shader_image_load_store
+    void  glBindImageTexture (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format);
+    void  glMemoryBarrier (GLbitfield barriers);
+
+    // GL_ARB_shader_storage_buffer_object
+    void  glShaderStorageBlockBinding (GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding);
+
+    // GL_ARB_shader_subroutine
+    GLint glGetSubroutineUniformLocation (GLuint program, GLenum shadertype, const GLchar * name);
+    GLuint glGetSubroutineIndex (GLuint program, GLenum shadertype, const GLchar * name);
+    void  glGetActiveSubroutineUniformiv (GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint * values);
+    void  glGetActiveSubroutineUniformName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei * length, GLchar * name);
+    void  glGetActiveSubroutineName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei * length, GLchar * name);
+    void  glUniformSubroutinesuiv (GLenum shadertype, GLsizei count, const GLuint * indices);
+    void  glGetUniformSubroutineuiv (GLenum shadertype, GLint location, GLuint * params);
+    void  glGetProgramStageiv (GLuint program, GLenum shadertype, GLenum pname, GLint * values);
+
+    // GL_ARB_shading_language_include
+    void  glNamedStringARB (GLenum type, GLint namelen, const GLchar * name, GLint stringlen, const GLchar * string);
+    void  glDeleteNamedStringARB (GLint namelen, const GLchar * name);
+    void  glCompileShaderIncludeARB (GLuint shader, GLsizei count, const GLchar *const* path, const GLint * length);
+    GLboolean glIsNamedStringARB (GLint namelen, const GLchar * name);
+    void  glGetNamedStringARB (GLint namelen, const GLchar * name, GLsizei bufSize, GLint * stringlen, GLchar * string);
+    void  glGetNamedStringivARB (GLint namelen, const GLchar * name, GLenum pname, GLint * params);
+
+    // GL_ARB_sparse_buffer
+    void  glBufferPageCommitmentARB (GLenum target, GLintptr offset, GLsizeiptr size, GLboolean commit);
+    void  glNamedBufferPageCommitmentEXT (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit);
+    void  glNamedBufferPageCommitmentARB (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit);
+
+    // GL_ARB_sparse_texture
+    void  glTexPageCommitmentARB (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit);
+
+    // GL_ARB_sync
+    GLsync glFenceSync (GLenum condition, GLbitfield flags);
+    GLboolean glIsSync (GLsync sync);
+    void  glDeleteSync (GLsync sync);
+    GLenum glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout);
+    void  glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout);
+    void  glGetInteger64v (GLenum pname, GLint64 * data);
+    void  glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values);
+
+    // GL_ARB_tessellation_shader
+    void  glPatchParameteri (GLenum pname, GLint value);
+    void  glPatchParameterfv (GLenum pname, const GLfloat * values);
+
+    // GL_ARB_texture_barrier
+    void  glTextureBarrier ();
+
+    // GL_ARB_texture_buffer_range
+    void  glTexBufferRange (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size);
+
+    // GL_ARB_texture_multisample
+    void  glTexImage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations);
+    void  glTexImage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations);
+    void  glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val);
+    void  glSampleMaski (GLuint maskNumber, GLbitfield mask);
+
+    // GL_ARB_texture_storage
+    void  glTexStorage1D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width);
+    void  glTexStorage2D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height);
+    void  glTexStorage3D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth);
+
+    // GL_ARB_texture_storage_multisample
+    void  glTexStorage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations);
+    void  glTexStorage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations);
+
+    // GL_ARB_texture_view
+    void  glTextureView (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers);
+
+    // GL_ARB_timer_query
+    void  glQueryCounter (GLuint id, GLenum target);
+    void  glGetQueryObjecti64v (GLuint id, GLenum pname, GLint64 * params);
+    void  glGetQueryObjectui64v (GLuint id, GLenum pname, GLuint64 * params);
+
+    // GL_ARB_transform_feedback2
+    void  glBindTransformFeedback (GLenum target, GLuint id);
+    void  glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids);
+    void  glGenTransformFeedbacks (GLsizei n, GLuint * ids);
+    GLboolean glIsTransformFeedback (GLuint id);
+    void  glPauseTransformFeedback ();
+    void  glResumeTransformFeedback ();
+    void  glDrawTransformFeedback (GLenum mode, GLuint id);
+
+    // GL_ARB_transform_feedback3
+    void  glDrawTransformFeedbackStream (GLenum mode, GLuint id, GLuint stream);
+    void  glBeginQueryIndexed (GLenum target, GLuint index, GLuint id);
+    void  glEndQueryIndexed (GLenum target, GLuint index);
+    void  glGetQueryIndexediv (GLenum target, GLuint index, GLenum pname, GLint * params);
+
+    // GL_ARB_transform_feedback_instanced
+    void  glDrawTransformFeedbackInstanced (GLenum mode, GLuint id, GLsizei instancecount);
+    void  glDrawTransformFeedbackStreamInstanced (GLenum mode, GLuint id, GLuint stream, GLsizei instancecount);
+
+    // GL_ARB_uniform_buffer_object
+    void  glGetUniformIndices (GLuint program, GLsizei uniformCount, const GLchar *const* uniformNames, GLuint * uniformIndices);
+    void  glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, const GLuint * uniformIndices, GLenum pname, GLint * params);
+    void  glGetActiveUniformName (GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformName);
+    GLuint glGetUniformBlockIndex (GLuint program, const GLchar * uniformBlockName);
+    void  glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint * params);
+    void  glGetActiveUniformBlockName (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformBlockName);
+    void  glUniformBlockBinding (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding);
+    void  glBindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size);
+    void  glBindBufferBase (GLenum target, GLuint index, GLuint buffer);
+    void  glGetIntegeri_v (GLenum target, GLuint index, GLint * data);
+
+    // GL_ARB_vertex_array_object
+    void  glBindVertexArray (GLuint array);
+    void  glDeleteVertexArrays (GLsizei n, const GLuint * arrays);
+    void  glGenVertexArrays (GLsizei n, GLuint * arrays);
+    GLboolean glIsVertexArray (GLuint array);
+
+    // GL_ARB_vertex_attrib_64bit
+    void  glVertexAttribL1d (GLuint index, GLdouble x);
+    void  glVertexAttribL2d (GLuint index, GLdouble x, GLdouble y);
+    void  glVertexAttribL3d (GLuint index, GLdouble x, GLdouble y, GLdouble z);
+    void  glVertexAttribL4d (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+    void  glVertexAttribL1dv (GLuint index, const GLdouble * v);
+    void  glVertexAttribL2dv (GLuint index, const GLdouble * v);
+    void  glVertexAttribL3dv (GLuint index, const GLdouble * v);
+    void  glVertexAttribL4dv (GLuint index, const GLdouble * v);
+    void  glVertexAttribLPointer (GLuint index, GLint size, GLenum type, GLsizei stride, const void * pointer);
+    void  glGetVertexAttribLdv (GLuint index, GLenum pname, GLdouble * params);
+
+    // GL_ARB_vertex_attrib_binding
+    void  glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride);
+    void  glVertexAttribFormat (GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset);
+    void  glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+    void  glVertexAttribLFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset);
+    void  glVertexAttribBinding (GLuint attribindex, GLuint bindingindex);
+    void  glVertexBindingDivisor (GLuint bindingindex, GLuint divisor);
+
+    // GL_ARB_vertex_type_2_10_10_10_rev
+    void  glVertexAttribP1ui (GLuint index, GLenum type, GLboolean normalized, GLuint value);
+    void  glVertexAttribP1uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value);
+    void  glVertexAttribP2ui (GLuint index, GLenum type, GLboolean normalized, GLuint value);
+    void  glVertexAttribP2uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value);
+    void  glVertexAttribP3ui (GLuint index, GLenum type, GLboolean normalized, GLuint value);
+    void  glVertexAttribP3uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value);
+    void  glVertexAttribP4ui (GLuint index, GLenum type, GLboolean normalized, GLuint value);
+    void  glVertexAttribP4uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value);
+    void  glVertexP2ui (GLenum type, GLuint value);
+    void  glVertexP2uiv (GLenum type, const GLuint * value);
+    void  glVertexP3ui (GLenum type, GLuint value);
+    void  glVertexP3uiv (GLenum type, const GLuint * value);
+    void  glVertexP4ui (GLenum type, GLuint value);
+    void  glVertexP4uiv (GLenum type, const GLuint * value);
+    void  glTexCoordP1ui (GLenum type, GLuint coords);
+    void  glTexCoordP1uiv (GLenum type, const GLuint * coords);
+    void  glTexCoordP2ui (GLenum type, GLuint coords);
+    void  glTexCoordP2uiv (GLenum type, const GLuint * coords);
+    void  glTexCoordP3ui (GLenum type, GLuint coords);
+    void  glTexCoordP3uiv (GLenum type, const GLuint * coords);
+    void  glTexCoordP4ui (GLenum type, GLuint coords);
+    void  glTexCoordP4uiv (GLenum type, const GLuint * coords);
+    void  glMultiTexCoordP1ui (GLenum texture, GLenum type, GLuint coords);
+    void  glMultiTexCoordP1uiv (GLenum texture, GLenum type, const GLuint * coords);
+    void  glMultiTexCoordP2ui (GLenum texture, GLenum type, GLuint coords);
+    void  glMultiTexCoordP2uiv (GLenum texture, GLenum type, const GLuint * coords);
+    void  glMultiTexCoordP3ui (GLenum texture, GLenum type, GLuint coords);
+    void  glMultiTexCoordP3uiv (GLenum texture, GLenum type, const GLuint * coords);
+    void  glMultiTexCoordP4ui (GLenum texture, GLenum type, GLuint coords);
+    void  glMultiTexCoordP4uiv (GLenum texture, GLenum type, const GLuint * coords);
+    void  glNormalP3ui (GLenum type, GLuint coords);
+    void  glNormalP3uiv (GLenum type, const GLuint * coords);
+    void  glColorP3ui (GLenum type, GLuint color);
+    void  glColorP3uiv (GLenum type, const GLuint * color);
+    void  glColorP4ui (GLenum type, GLuint color);
+    void  glColorP4uiv (GLenum type, const GLuint * color);
+    void  glSecondaryColorP3ui (GLenum type, GLuint color);
+    void  glSecondaryColorP3uiv (GLenum type, const GLuint * color);
+
+    // GL_ARB_viewport_array
+    void  glViewportArrayv (GLuint first, GLsizei count, const GLfloat * v);
+    void  glViewportIndexedf (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h);
+    void  glViewportIndexedfv (GLuint index, const GLfloat * v);
+    void  glScissorArrayv (GLuint first, GLsizei count, const GLint * v);
+    void  glScissorIndexed (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height);
+    void  glScissorIndexedv (GLuint index, const GLint * v);
+    void  glDepthRangeArrayv (GLuint first, GLsizei count, const GLdouble * v);
+    void  glDepthRangeIndexed (GLuint index, GLdouble n, GLdouble f);
+    void  glGetFloati_v (GLenum target, GLuint index, GLfloat * data);
+    void  glGetDoublei_v (GLenum target, GLuint index, GLdouble * data);
+
+    // GL_KHR_debug
+    void  glDebugMessageControl (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint * ids, GLboolean enabled);
+    void  glDebugMessageInsert (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar * buf);
+    void  glDebugMessageCallback (GLDEBUGPROC callback, const void * userParam);
+    GLuint glGetDebugMessageLog (GLuint count, GLsizei bufSize, GLenum * sources, GLenum * types, GLuint * ids, GLenum * severities, GLsizei * lengths, GLchar * messageLog);
+    void  glPushDebugGroup (GLenum source, GLuint id, GLsizei length, const GLchar * message);
+    void  glPopDebugGroup ();
+    void  glObjectLabel (GLenum identifier, GLuint name, GLsizei length, const GLchar * label);
+    void  glGetObjectLabel (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei * length, GLchar * label);
+    void  glObjectPtrLabel (const void * ptr, GLsizei length, const GLchar * label);
+    void  glGetObjectPtrLabel (const void * ptr, GLsizei bufSize, GLsizei * length, GLchar * label);
+    void  glGetPointerv (GLenum pname, void ** params);
+    void  glDebugMessageControlKHR (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint * ids, GLboolean enabled);
+    void  glDebugMessageInsertKHR (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar * buf);
+    void  glDebugMessageCallbackKHR (GLDEBUGPROCKHR callback, const void * userParam);
+    GLuint glGetDebugMessageLogKHR (GLuint count, GLsizei bufSize, GLenum * sources, GLenum * types, GLuint * ids, GLenum * severities, GLsizei * lengths, GLchar * messageLog);
+    void  glPushDebugGroupKHR (GLenum source, GLuint id, GLsizei length, const GLchar * message);
+    void  glPopDebugGroupKHR ();
+    void  glObjectLabelKHR (GLenum identifier, GLuint name, GLsizei length, const GLchar * label);
+    void  glGetObjectLabelKHR (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei * length, GLchar * label);
+    void  glObjectPtrLabelKHR (const void * ptr, GLsizei length, const GLchar * label);
+    void  glGetObjectPtrLabelKHR (const void * ptr, GLsizei bufSize, GLsizei * length, GLchar * label);
+    void  glGetPointervKHR (GLenum pname, void ** params);
+
+    // GL_KHR_robustness
+    GLenum glGetGraphicsResetStatus ();
+    void  glReadnPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data);
+    void  glGetnUniformfv (GLuint program, GLint location, GLsizei bufSize, GLfloat * params);
+    void  glGetnUniformiv (GLuint program, GLint location, GLsizei bufSize, GLint * params);
+    void  glGetnUniformuiv (GLuint program, GLint location, GLsizei bufSize, GLuint * params);
+    GLenum glGetGraphicsResetStatusKHR ();
+    void  glReadnPixelsKHR (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data);
+    void  glGetnUniformfvKHR (GLuint program, GLint location, GLsizei bufSize, GLfloat * params);
+    void  glGetnUniformivKHR (GLuint program, GLint location, GLsizei bufSize, GLint * params);
+    void  glGetnUniformuivKHR (GLuint program, GLint location, GLsizei bufSize, GLuint * params);
+  };
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLCOREBoolean glcorewQueryCapabilities (GLCORECapabilities *capabilities);
-
-const GLCORECapabilities *glcorewGetCapabilities ();
-
-GLCOREBoolean glcorewSetCapabilities (const GLCORECapabilities *capabilities);
+#define glAccum glew::glcore::glAccum
+#define glAccumxOES glew::glcore::glAccumxOES
+#define glActiveProgramEXT glew::glcore::glActiveProgramEXT
+#define glActiveShaderProgram glew::glcore::glActiveShaderProgram
+#define glActiveShaderProgramEXT glew::glcore::glActiveShaderProgramEXT
+#define glActiveStencilFaceEXT glew::glcore::glActiveStencilFaceEXT
+#define glActiveTexture glew::glcore::glActiveTexture
+#define glActiveTextureARB glew::glcore::glActiveTextureARB
+#define glActiveVaryingNV glew::glcore::glActiveVaryingNV
+#define glAlphaFragmentOp1ATI glew::glcore::glAlphaFragmentOp1ATI
+#define glAlphaFragmentOp2ATI glew::glcore::glAlphaFragmentOp2ATI
+#define glAlphaFragmentOp3ATI glew::glcore::glAlphaFragmentOp3ATI
+#define glAlphaFunc glew::glcore::glAlphaFunc
+#define glAlphaFuncQCOM glew::glcore::glAlphaFuncQCOM
+#define glAlphaFuncx glew::glcore::glAlphaFuncx
+#define glAlphaFuncxOES glew::glcore::glAlphaFuncxOES
+#define glApplyTextureEXT glew::glcore::glApplyTextureEXT
+#define glAreProgramsResidentNV glew::glcore::glAreProgramsResidentNV
+#define glAreTexturesResident glew::glcore::glAreTexturesResident
+#define glAreTexturesResidentEXT glew::glcore::glAreTexturesResidentEXT
+#define glArrayElement glew::glcore::glArrayElement
+#define glArrayElementEXT glew::glcore::glArrayElementEXT
+#define glArrayObjectATI glew::glcore::glArrayObjectATI
+#define glAsyncMarkerSGIX glew::glcore::glAsyncMarkerSGIX
+#define glAttachObjectARB glew::glcore::glAttachObjectARB
+#define glAttachShader glew::glcore::glAttachShader
+#define glBegin glew::glcore::glBegin
+#define glBeginConditionalRender glew::glcore::glBeginConditionalRender
+#define glBeginConditionalRenderNV glew::glcore::glBeginConditionalRenderNV
+#define glBeginConditionalRenderNVX glew::glcore::glBeginConditionalRenderNVX
+#define glBeginFragmentShaderATI glew::glcore::glBeginFragmentShaderATI
+#define glBeginOcclusionQueryNV glew::glcore::glBeginOcclusionQueryNV
+#define glBeginPerfMonitorAMD glew::glcore::glBeginPerfMonitorAMD
+#define glBeginPerfQueryINTEL glew::glcore::glBeginPerfQueryINTEL
+#define glBeginQuery glew::glcore::glBeginQuery
+#define glBeginQueryARB glew::glcore::glBeginQueryARB
+#define glBeginQueryEXT glew::glcore::glBeginQueryEXT
+#define glBeginQueryIndexed glew::glcore::glBeginQueryIndexed
+#define glBeginTransformFeedback glew::glcore::glBeginTransformFeedback
+#define glBeginTransformFeedbackEXT glew::glcore::glBeginTransformFeedbackEXT
+#define glBeginTransformFeedbackNV glew::glcore::glBeginTransformFeedbackNV
+#define glBeginVertexShaderEXT glew::glcore::glBeginVertexShaderEXT
+#define glBeginVideoCaptureNV glew::glcore::glBeginVideoCaptureNV
+#define glBindAttribLocation glew::glcore::glBindAttribLocation
+#define glBindAttribLocationARB glew::glcore::glBindAttribLocationARB
+#define glBindBuffer glew::glcore::glBindBuffer
+#define glBindBufferARB glew::glcore::glBindBufferARB
+#define glBindBufferBase glew::glcore::glBindBufferBase
+#define glBindBufferBaseEXT glew::glcore::glBindBufferBaseEXT
+#define glBindBufferBaseNV glew::glcore::glBindBufferBaseNV
+#define glBindBufferOffsetEXT glew::glcore::glBindBufferOffsetEXT
+#define glBindBufferOffsetNV glew::glcore::glBindBufferOffsetNV
+#define glBindBufferRange glew::glcore::glBindBufferRange
+#define glBindBufferRangeEXT glew::glcore::glBindBufferRangeEXT
+#define glBindBufferRangeNV glew::glcore::glBindBufferRangeNV
+#define glBindBuffersBase glew::glcore::glBindBuffersBase
+#define glBindBuffersRange glew::glcore::glBindBuffersRange
+#define glBindFragDataLocation glew::glcore::glBindFragDataLocation
+#define glBindFragDataLocationEXT glew::glcore::glBindFragDataLocationEXT
+#define glBindFragDataLocationIndexed glew::glcore::glBindFragDataLocationIndexed
+#define glBindFragmentShaderATI glew::glcore::glBindFragmentShaderATI
+#define glBindFramebuffer glew::glcore::glBindFramebuffer
+#define glBindFramebufferEXT glew::glcore::glBindFramebufferEXT
+#define glBindFramebufferOES glew::glcore::glBindFramebufferOES
+#define glBindImageTexture glew::glcore::glBindImageTexture
+#define glBindImageTextureEXT glew::glcore::glBindImageTextureEXT
+#define glBindImageTextures glew::glcore::glBindImageTextures
+#define glBindLightParameterEXT glew::glcore::glBindLightParameterEXT
+#define glBindMaterialParameterEXT glew::glcore::glBindMaterialParameterEXT
+#define glBindMultiTextureEXT glew::glcore::glBindMultiTextureEXT
+#define glBindParameterEXT glew::glcore::glBindParameterEXT
+#define glBindProgramARB glew::glcore::glBindProgramARB
+#define glBindProgramNV glew::glcore::glBindProgramNV
+#define glBindProgramPipeline glew::glcore::glBindProgramPipeline
+#define glBindProgramPipelineEXT glew::glcore::glBindProgramPipelineEXT
+#define glBindRenderbuffer glew::glcore::glBindRenderbuffer
+#define glBindRenderbufferEXT glew::glcore::glBindRenderbufferEXT
+#define glBindRenderbufferOES glew::glcore::glBindRenderbufferOES
+#define glBindSampler glew::glcore::glBindSampler
+#define glBindSamplers glew::glcore::glBindSamplers
+#define glBindTexGenParameterEXT glew::glcore::glBindTexGenParameterEXT
+#define glBindTexture glew::glcore::glBindTexture
+#define glBindTextureEXT glew::glcore::glBindTextureEXT
+#define glBindTextureUnit glew::glcore::glBindTextureUnit
+#define glBindTextureUnitParameterEXT glew::glcore::glBindTextureUnitParameterEXT
+#define glBindTextures glew::glcore::glBindTextures
+#define glBindTransformFeedback glew::glcore::glBindTransformFeedback
+#define glBindTransformFeedbackNV glew::glcore::glBindTransformFeedbackNV
+#define glBindVertexArray glew::glcore::glBindVertexArray
+#define glBindVertexArrayAPPLE glew::glcore::glBindVertexArrayAPPLE
+#define glBindVertexArrayOES glew::glcore::glBindVertexArrayOES
+#define glBindVertexBuffer glew::glcore::glBindVertexBuffer
+#define glBindVertexBuffers glew::glcore::glBindVertexBuffers
+#define glBindVertexShaderEXT glew::glcore::glBindVertexShaderEXT
+#define glBindVideoCaptureStreamBufferNV glew::glcore::glBindVideoCaptureStreamBufferNV
+#define glBindVideoCaptureStreamTextureNV glew::glcore::glBindVideoCaptureStreamTextureNV
+#define glBinormal3bEXT glew::glcore::glBinormal3bEXT
+#define glBinormal3bvEXT glew::glcore::glBinormal3bvEXT
+#define glBinormal3dEXT glew::glcore::glBinormal3dEXT
+#define glBinormal3dvEXT glew::glcore::glBinormal3dvEXT
+#define glBinormal3fEXT glew::glcore::glBinormal3fEXT
+#define glBinormal3fvEXT glew::glcore::glBinormal3fvEXT
+#define glBinormal3iEXT glew::glcore::glBinormal3iEXT
+#define glBinormal3ivEXT glew::glcore::glBinormal3ivEXT
+#define glBinormal3sEXT glew::glcore::glBinormal3sEXT
+#define glBinormal3svEXT glew::glcore::glBinormal3svEXT
+#define glBinormalPointerEXT glew::glcore::glBinormalPointerEXT
+#define glBitmap glew::glcore::glBitmap
+#define glBitmapxOES glew::glcore::glBitmapxOES
+#define glBlendBarrierKHR glew::glcore::glBlendBarrierKHR
+#define glBlendBarrierNV glew::glcore::glBlendBarrierNV
+#define glBlendColor glew::glcore::glBlendColor
+#define glBlendColorEXT glew::glcore::glBlendColorEXT
+#define glBlendColorxOES glew::glcore::glBlendColorxOES
+#define glBlendEquation glew::glcore::glBlendEquation
+#define glBlendEquationEXT glew::glcore::glBlendEquationEXT
+#define glBlendEquationIndexedAMD glew::glcore::glBlendEquationIndexedAMD
+#define glBlendEquationOES glew::glcore::glBlendEquationOES
+#define glBlendEquationSeparate glew::glcore::glBlendEquationSeparate
+#define glBlendEquationSeparateEXT glew::glcore::glBlendEquationSeparateEXT
+#define glBlendEquationSeparateIndexedAMD glew::glcore::glBlendEquationSeparateIndexedAMD
+#define glBlendEquationSeparateOES glew::glcore::glBlendEquationSeparateOES
+#define glBlendEquationSeparatei glew::glcore::glBlendEquationSeparatei
+#define glBlendEquationSeparateiARB glew::glcore::glBlendEquationSeparateiARB
+#define glBlendEquationSeparateiEXT glew::glcore::glBlendEquationSeparateiEXT
+#define glBlendEquationSeparateiOES glew::glcore::glBlendEquationSeparateiOES
+#define glBlendEquationi glew::glcore::glBlendEquationi
+#define glBlendEquationiARB glew::glcore::glBlendEquationiARB
+#define glBlendEquationiEXT glew::glcore::glBlendEquationiEXT
+#define glBlendEquationiOES glew::glcore::glBlendEquationiOES
+#define glBlendFunc glew::glcore::glBlendFunc
+#define glBlendFuncIndexedAMD glew::glcore::glBlendFuncIndexedAMD
+#define glBlendFuncSeparate glew::glcore::glBlendFuncSeparate
+#define glBlendFuncSeparateEXT glew::glcore::glBlendFuncSeparateEXT
+#define glBlendFuncSeparateINGR glew::glcore::glBlendFuncSeparateINGR
+#define glBlendFuncSeparateIndexedAMD glew::glcore::glBlendFuncSeparateIndexedAMD
+#define glBlendFuncSeparateOES glew::glcore::glBlendFuncSeparateOES
+#define glBlendFuncSeparatei glew::glcore::glBlendFuncSeparatei
+#define glBlendFuncSeparateiARB glew::glcore::glBlendFuncSeparateiARB
+#define glBlendFuncSeparateiEXT glew::glcore::glBlendFuncSeparateiEXT
+#define glBlendFuncSeparateiOES glew::glcore::glBlendFuncSeparateiOES
+#define glBlendFunci glew::glcore::glBlendFunci
+#define glBlendFunciARB glew::glcore::glBlendFunciARB
+#define glBlendFunciEXT glew::glcore::glBlendFunciEXT
+#define glBlendFunciOES glew::glcore::glBlendFunciOES
+#define glBlendParameteriNV glew::glcore::glBlendParameteriNV
+#define glBlitFramebuffer glew::glcore::glBlitFramebuffer
+#define glBlitFramebufferANGLE glew::glcore::glBlitFramebufferANGLE
+#define glBlitFramebufferEXT glew::glcore::glBlitFramebufferEXT
+#define glBlitFramebufferNV glew::glcore::glBlitFramebufferNV
+#define glBlitNamedFramebuffer glew::glcore::glBlitNamedFramebuffer
+#define glBufferAddressRangeNV glew::glcore::glBufferAddressRangeNV
+#define glBufferData glew::glcore::glBufferData
+#define glBufferDataARB glew::glcore::glBufferDataARB
+#define glBufferPageCommitmentARB glew::glcore::glBufferPageCommitmentARB
+#define glBufferParameteriAPPLE glew::glcore::glBufferParameteriAPPLE
+#define glBufferStorage glew::glcore::glBufferStorage
+#define glBufferStorageEXT glew::glcore::glBufferStorageEXT
+#define glBufferSubData glew::glcore::glBufferSubData
+#define glBufferSubDataARB glew::glcore::glBufferSubDataARB
+#define glCallCommandListNV glew::glcore::glCallCommandListNV
+#define glCallList glew::glcore::glCallList
+#define glCallLists glew::glcore::glCallLists
+#define glCheckFramebufferStatus glew::glcore::glCheckFramebufferStatus
+#define glCheckFramebufferStatusEXT glew::glcore::glCheckFramebufferStatusEXT
+#define glCheckFramebufferStatusOES glew::glcore::glCheckFramebufferStatusOES
+#define glCheckNamedFramebufferStatus glew::glcore::glCheckNamedFramebufferStatus
+#define glCheckNamedFramebufferStatusEXT glew::glcore::glCheckNamedFramebufferStatusEXT
+#define glClampColor glew::glcore::glClampColor
+#define glClampColorARB glew::glcore::glClampColorARB
+#define glClear glew::glcore::glClear
+#define glClearAccum glew::glcore::glClearAccum
+#define glClearAccumxOES glew::glcore::glClearAccumxOES
+#define glClearBufferData glew::glcore::glClearBufferData
+#define glClearBufferSubData glew::glcore::glClearBufferSubData
+#define glClearBufferfi glew::glcore::glClearBufferfi
+#define glClearBufferfv glew::glcore::glClearBufferfv
+#define glClearBufferiv glew::glcore::glClearBufferiv
+#define glClearBufferuiv glew::glcore::glClearBufferuiv
+#define glClearColor glew::glcore::glClearColor
+#define glClearColorIiEXT glew::glcore::glClearColorIiEXT
+#define glClearColorIuiEXT glew::glcore::glClearColorIuiEXT
+#define glClearColorx glew::glcore::glClearColorx
+#define glClearColorxOES glew::glcore::glClearColorxOES
+#define glClearDepth glew::glcore::glClearDepth
+#define glClearDepthdNV glew::glcore::glClearDepthdNV
+#define glClearDepthf glew::glcore::glClearDepthf
+#define glClearDepthfOES glew::glcore::glClearDepthfOES
+#define glClearDepthx glew::glcore::glClearDepthx
+#define glClearDepthxOES glew::glcore::glClearDepthxOES
+#define glClearIndex glew::glcore::glClearIndex
+#define glClearNamedBufferData glew::glcore::glClearNamedBufferData
+#define glClearNamedBufferDataEXT glew::glcore::glClearNamedBufferDataEXT
+#define glClearNamedBufferSubData glew::glcore::glClearNamedBufferSubData
+#define glClearNamedBufferSubDataEXT glew::glcore::glClearNamedBufferSubDataEXT
+#define glClearNamedFramebufferfi glew::glcore::glClearNamedFramebufferfi
+#define glClearNamedFramebufferfv glew::glcore::glClearNamedFramebufferfv
+#define glClearNamedFramebufferiv glew::glcore::glClearNamedFramebufferiv
+#define glClearNamedFramebufferuiv glew::glcore::glClearNamedFramebufferuiv
+#define glClearStencil glew::glcore::glClearStencil
+#define glClearTexImage glew::glcore::glClearTexImage
+#define glClearTexSubImage glew::glcore::glClearTexSubImage
+#define glClientActiveTexture glew::glcore::glClientActiveTexture
+#define glClientActiveTextureARB glew::glcore::glClientActiveTextureARB
+#define glClientActiveVertexStreamATI glew::glcore::glClientActiveVertexStreamATI
+#define glClientAttribDefaultEXT glew::glcore::glClientAttribDefaultEXT
+#define glClientWaitSync glew::glcore::glClientWaitSync
+#define glClientWaitSyncAPPLE glew::glcore::glClientWaitSyncAPPLE
+#define glClipControl glew::glcore::glClipControl
+#define glClipPlane glew::glcore::glClipPlane
+#define glClipPlanef glew::glcore::glClipPlanef
+#define glClipPlanefIMG glew::glcore::glClipPlanefIMG
+#define glClipPlanefOES glew::glcore::glClipPlanefOES
+#define glClipPlanex glew::glcore::glClipPlanex
+#define glClipPlanexIMG glew::glcore::glClipPlanexIMG
+#define glClipPlanexOES glew::glcore::glClipPlanexOES
+#define glColor3b glew::glcore::glColor3b
+#define glColor3bv glew::glcore::glColor3bv
+#define glColor3d glew::glcore::glColor3d
+#define glColor3dv glew::glcore::glColor3dv
+#define glColor3f glew::glcore::glColor3f
+#define glColor3fVertex3fSUN glew::glcore::glColor3fVertex3fSUN
+#define glColor3fVertex3fvSUN glew::glcore::glColor3fVertex3fvSUN
+#define glColor3fv glew::glcore::glColor3fv
+#define glColor3hNV glew::glcore::glColor3hNV
+#define glColor3hvNV glew::glcore::glColor3hvNV
+#define glColor3i glew::glcore::glColor3i
+#define glColor3iv glew::glcore::glColor3iv
+#define glColor3s glew::glcore::glColor3s
+#define glColor3sv glew::glcore::glColor3sv
+#define glColor3ub glew::glcore::glColor3ub
+#define glColor3ubv glew::glcore::glColor3ubv
+#define glColor3ui glew::glcore::glColor3ui
+#define glColor3uiv glew::glcore::glColor3uiv
+#define glColor3us glew::glcore::glColor3us
+#define glColor3usv glew::glcore::glColor3usv
+#define glColor3xOES glew::glcore::glColor3xOES
+#define glColor3xvOES glew::glcore::glColor3xvOES
+#define glColor4b glew::glcore::glColor4b
+#define glColor4bv glew::glcore::glColor4bv
+#define glColor4d glew::glcore::glColor4d
+#define glColor4dv glew::glcore::glColor4dv
+#define glColor4f glew::glcore::glColor4f
+#define glColor4fNormal3fVertex3fSUN glew::glcore::glColor4fNormal3fVertex3fSUN
+#define glColor4fNormal3fVertex3fvSUN glew::glcore::glColor4fNormal3fVertex3fvSUN
+#define glColor4fv glew::glcore::glColor4fv
+#define glColor4hNV glew::glcore::glColor4hNV
+#define glColor4hvNV glew::glcore::glColor4hvNV
+#define glColor4i glew::glcore::glColor4i
+#define glColor4iv glew::glcore::glColor4iv
+#define glColor4s glew::glcore::glColor4s
+#define glColor4sv glew::glcore::glColor4sv
+#define glColor4ub glew::glcore::glColor4ub
+#define glColor4ubVertex2fSUN glew::glcore::glColor4ubVertex2fSUN
+#define glColor4ubVertex2fvSUN glew::glcore::glColor4ubVertex2fvSUN
+#define glColor4ubVertex3fSUN glew::glcore::glColor4ubVertex3fSUN
+#define glColor4ubVertex3fvSUN glew::glcore::glColor4ubVertex3fvSUN
+#define glColor4ubv glew::glcore::glColor4ubv
+#define glColor4ui glew::glcore::glColor4ui
+#define glColor4uiv glew::glcore::glColor4uiv
+#define glColor4us glew::glcore::glColor4us
+#define glColor4usv glew::glcore::glColor4usv
+#define glColor4x glew::glcore::glColor4x
+#define glColor4xOES glew::glcore::glColor4xOES
+#define glColor4xvOES glew::glcore::glColor4xvOES
+#define glColorFormatNV glew::glcore::glColorFormatNV
+#define glColorFragmentOp1ATI glew::glcore::glColorFragmentOp1ATI
+#define glColorFragmentOp2ATI glew::glcore::glColorFragmentOp2ATI
+#define glColorFragmentOp3ATI glew::glcore::glColorFragmentOp3ATI
+#define glColorMask glew::glcore::glColorMask
+#define glColorMaskIndexedEXT glew::glcore::glColorMaskIndexedEXT
+#define glColorMaski glew::glcore::glColorMaski
+#define glColorMaskiEXT glew::glcore::glColorMaskiEXT
+#define glColorMaskiOES glew::glcore::glColorMaskiOES
+#define glColorMaterial glew::glcore::glColorMaterial
+#define glColorP3ui glew::glcore::glColorP3ui
+#define glColorP3uiv glew::glcore::glColorP3uiv
+#define glColorP4ui glew::glcore::glColorP4ui
+#define glColorP4uiv glew::glcore::glColorP4uiv
+#define glColorPointer glew::glcore::glColorPointer
+#define glColorPointerEXT glew::glcore::glColorPointerEXT
+#define glColorPointerListIBM glew::glcore::glColorPointerListIBM
+#define glColorPointervINTEL glew::glcore::glColorPointervINTEL
+#define glColorSubTable glew::glcore::glColorSubTable
+#define glColorSubTableEXT glew::glcore::glColorSubTableEXT
+#define glColorTable glew::glcore::glColorTable
+#define glColorTableEXT glew::glcore::glColorTableEXT
+#define glColorTableParameterfv glew::glcore::glColorTableParameterfv
+#define glColorTableParameterfvSGI glew::glcore::glColorTableParameterfvSGI
+#define glColorTableParameteriv glew::glcore::glColorTableParameteriv
+#define glColorTableParameterivSGI glew::glcore::glColorTableParameterivSGI
+#define glColorTableSGI glew::glcore::glColorTableSGI
+#define glCombinerInputNV glew::glcore::glCombinerInputNV
+#define glCombinerOutputNV glew::glcore::glCombinerOutputNV
+#define glCombinerParameterfNV glew::glcore::glCombinerParameterfNV
+#define glCombinerParameterfvNV glew::glcore::glCombinerParameterfvNV
+#define glCombinerParameteriNV glew::glcore::glCombinerParameteriNV
+#define glCombinerParameterivNV glew::glcore::glCombinerParameterivNV
+#define glCombinerStageParameterfvNV glew::glcore::glCombinerStageParameterfvNV
+#define glCommandListSegmentsNV glew::glcore::glCommandListSegmentsNV
+#define glCompileCommandListNV glew::glcore::glCompileCommandListNV
+#define glCompileShader glew::glcore::glCompileShader
+#define glCompileShaderARB glew::glcore::glCompileShaderARB
+#define glCompileShaderIncludeARB glew::glcore::glCompileShaderIncludeARB
+#define glCompressedMultiTexImage1DEXT glew::glcore::glCompressedMultiTexImage1DEXT
+#define glCompressedMultiTexImage2DEXT glew::glcore::glCompressedMultiTexImage2DEXT
+#define glCompressedMultiTexImage3DEXT glew::glcore::glCompressedMultiTexImage3DEXT
+#define glCompressedMultiTexSubImage1DEXT glew::glcore::glCompressedMultiTexSubImage1DEXT
+#define glCompressedMultiTexSubImage2DEXT glew::glcore::glCompressedMultiTexSubImage2DEXT
+#define glCompressedMultiTexSubImage3DEXT glew::glcore::glCompressedMultiTexSubImage3DEXT
+#define glCompressedTexImage1D glew::glcore::glCompressedTexImage1D
+#define glCompressedTexImage1DARB glew::glcore::glCompressedTexImage1DARB
+#define glCompressedTexImage2D glew::glcore::glCompressedTexImage2D
+#define glCompressedTexImage2DARB glew::glcore::glCompressedTexImage2DARB
+#define glCompressedTexImage3D glew::glcore::glCompressedTexImage3D
+#define glCompressedTexImage3DARB glew::glcore::glCompressedTexImage3DARB
+#define glCompressedTexImage3DOES glew::glcore::glCompressedTexImage3DOES
+#define glCompressedTexSubImage1D glew::glcore::glCompressedTexSubImage1D
+#define glCompressedTexSubImage1DARB glew::glcore::glCompressedTexSubImage1DARB
+#define glCompressedTexSubImage2D glew::glcore::glCompressedTexSubImage2D
+#define glCompressedTexSubImage2DARB glew::glcore::glCompressedTexSubImage2DARB
+#define glCompressedTexSubImage3D glew::glcore::glCompressedTexSubImage3D
+#define glCompressedTexSubImage3DARB glew::glcore::glCompressedTexSubImage3DARB
+#define glCompressedTexSubImage3DOES glew::glcore::glCompressedTexSubImage3DOES
+#define glCompressedTextureImage1DEXT glew::glcore::glCompressedTextureImage1DEXT
+#define glCompressedTextureImage2DEXT glew::glcore::glCompressedTextureImage2DEXT
+#define glCompressedTextureImage3DEXT glew::glcore::glCompressedTextureImage3DEXT
+#define glCompressedTextureSubImage1D glew::glcore::glCompressedTextureSubImage1D
+#define glCompressedTextureSubImage1DEXT glew::glcore::glCompressedTextureSubImage1DEXT
+#define glCompressedTextureSubImage2D glew::glcore::glCompressedTextureSubImage2D
+#define glCompressedTextureSubImage2DEXT glew::glcore::glCompressedTextureSubImage2DEXT
+#define glCompressedTextureSubImage3D glew::glcore::glCompressedTextureSubImage3D
+#define glCompressedTextureSubImage3DEXT glew::glcore::glCompressedTextureSubImage3DEXT
+#define glConvolutionFilter1D glew::glcore::glConvolutionFilter1D
+#define glConvolutionFilter1DEXT glew::glcore::glConvolutionFilter1DEXT
+#define glConvolutionFilter2D glew::glcore::glConvolutionFilter2D
+#define glConvolutionFilter2DEXT glew::glcore::glConvolutionFilter2DEXT
+#define glConvolutionParameterf glew::glcore::glConvolutionParameterf
+#define glConvolutionParameterfEXT glew::glcore::glConvolutionParameterfEXT
+#define glConvolutionParameterfv glew::glcore::glConvolutionParameterfv
+#define glConvolutionParameterfvEXT glew::glcore::glConvolutionParameterfvEXT
+#define glConvolutionParameteri glew::glcore::glConvolutionParameteri
+#define glConvolutionParameteriEXT glew::glcore::glConvolutionParameteriEXT
+#define glConvolutionParameteriv glew::glcore::glConvolutionParameteriv
+#define glConvolutionParameterivEXT glew::glcore::glConvolutionParameterivEXT
+#define glConvolutionParameterxOES glew::glcore::glConvolutionParameterxOES
+#define glConvolutionParameterxvOES glew::glcore::glConvolutionParameterxvOES
+#define glCopyBufferSubData glew::glcore::glCopyBufferSubData
+#define glCopyBufferSubDataNV glew::glcore::glCopyBufferSubDataNV
+#define glCopyColorSubTable glew::glcore::glCopyColorSubTable
+#define glCopyColorSubTableEXT glew::glcore::glCopyColorSubTableEXT
+#define glCopyColorTable glew::glcore::glCopyColorTable
+#define glCopyColorTableSGI glew::glcore::glCopyColorTableSGI
+#define glCopyConvolutionFilter1D glew::glcore::glCopyConvolutionFilter1D
+#define glCopyConvolutionFilter1DEXT glew::glcore::glCopyConvolutionFilter1DEXT
+#define glCopyConvolutionFilter2D glew::glcore::glCopyConvolutionFilter2D
+#define glCopyConvolutionFilter2DEXT glew::glcore::glCopyConvolutionFilter2DEXT
+#define glCopyImageSubData glew::glcore::glCopyImageSubData
+#define glCopyImageSubDataEXT glew::glcore::glCopyImageSubDataEXT
+#define glCopyImageSubDataOES glew::glcore::glCopyImageSubDataOES
+#define glCopyImageSubDataNV glew::glcore::glCopyImageSubDataNV
+#define glCopyMultiTexImage1DEXT glew::glcore::glCopyMultiTexImage1DEXT
+#define glCopyMultiTexImage2DEXT glew::glcore::glCopyMultiTexImage2DEXT
+#define glCopyMultiTexSubImage1DEXT glew::glcore::glCopyMultiTexSubImage1DEXT
+#define glCopyMultiTexSubImage2DEXT glew::glcore::glCopyMultiTexSubImage2DEXT
+#define glCopyMultiTexSubImage3DEXT glew::glcore::glCopyMultiTexSubImage3DEXT
+#define glCopyNamedBufferSubData glew::glcore::glCopyNamedBufferSubData
+#define glCopyPathNV glew::glcore::glCopyPathNV
+#define glCopyPixels glew::glcore::glCopyPixels
+#define glCopyTexImage1D glew::glcore::glCopyTexImage1D
+#define glCopyTexImage1DEXT glew::glcore::glCopyTexImage1DEXT
+#define glCopyTexImage2D glew::glcore::glCopyTexImage2D
+#define glCopyTexImage2DEXT glew::glcore::glCopyTexImage2DEXT
+#define glCopyTexSubImage1D glew::glcore::glCopyTexSubImage1D
+#define glCopyTexSubImage1DEXT glew::glcore::glCopyTexSubImage1DEXT
+#define glCopyTexSubImage2D glew::glcore::glCopyTexSubImage2D
+#define glCopyTexSubImage2DEXT glew::glcore::glCopyTexSubImage2DEXT
+#define glCopyTexSubImage3D glew::glcore::glCopyTexSubImage3D
+#define glCopyTexSubImage3DEXT glew::glcore::glCopyTexSubImage3DEXT
+#define glCopyTexSubImage3DOES glew::glcore::glCopyTexSubImage3DOES
+#define glCopyTextureImage1DEXT glew::glcore::glCopyTextureImage1DEXT
+#define glCopyTextureImage2DEXT glew::glcore::glCopyTextureImage2DEXT
+#define glCopyTextureLevelsAPPLE glew::glcore::glCopyTextureLevelsAPPLE
+#define glCopyTextureSubImage1D glew::glcore::glCopyTextureSubImage1D
+#define glCopyTextureSubImage1DEXT glew::glcore::glCopyTextureSubImage1DEXT
+#define glCopyTextureSubImage2D glew::glcore::glCopyTextureSubImage2D
+#define glCopyTextureSubImage2DEXT glew::glcore::glCopyTextureSubImage2DEXT
+#define glCopyTextureSubImage3D glew::glcore::glCopyTextureSubImage3D
+#define glCopyTextureSubImage3DEXT glew::glcore::glCopyTextureSubImage3DEXT
+#define glCoverFillPathInstancedNV glew::glcore::glCoverFillPathInstancedNV
+#define glCoverFillPathNV glew::glcore::glCoverFillPathNV
+#define glCoverStrokePathInstancedNV glew::glcore::glCoverStrokePathInstancedNV
+#define glCoverStrokePathNV glew::glcore::glCoverStrokePathNV
+#define glCoverageMaskNV glew::glcore::glCoverageMaskNV
+#define glCoverageOperationNV glew::glcore::glCoverageOperationNV
+#define glCreateBuffers glew::glcore::glCreateBuffers
+#define glCreateCommandListsNV glew::glcore::glCreateCommandListsNV
+#define glCreateStatesNV glew::glcore::glCreateStatesNV
+#define glCreateFramebuffers glew::glcore::glCreateFramebuffers
+#define glCreatePerfQueryINTEL glew::glcore::glCreatePerfQueryINTEL
+#define glCreateProgram glew::glcore::glCreateProgram
+#define glCreateProgramObjectARB glew::glcore::glCreateProgramObjectARB
+#define glCreateProgramPipelines glew::glcore::glCreateProgramPipelines
+#define glCreateQueries glew::glcore::glCreateQueries
+#define glCreateRenderbuffers glew::glcore::glCreateRenderbuffers
+#define glCreateSamplers glew::glcore::glCreateSamplers
+#define glCreateShader glew::glcore::glCreateShader
+#define glCreateShaderObjectARB glew::glcore::glCreateShaderObjectARB
+#define glCreateShaderProgramEXT glew::glcore::glCreateShaderProgramEXT
+#define glCreateShaderProgramv glew::glcore::glCreateShaderProgramv
+#define glCreateShaderProgramvEXT glew::glcore::glCreateShaderProgramvEXT
+#define glCreateSyncFromCLeventARB glew::glcore::glCreateSyncFromCLeventARB
+#define glCreateTextures glew::glcore::glCreateTextures
+#define glCreateTransformFeedbacks glew::glcore::glCreateTransformFeedbacks
+#define glCreateVertexArrays glew::glcore::glCreateVertexArrays
+#define glCullFace glew::glcore::glCullFace
+#define glCullParameterdvEXT glew::glcore::glCullParameterdvEXT
+#define glCullParameterfvEXT glew::glcore::glCullParameterfvEXT
+#define glCurrentPaletteMatrixARB glew::glcore::glCurrentPaletteMatrixARB
+#define glCurrentPaletteMatrixOES glew::glcore::glCurrentPaletteMatrixOES
+#define glDebugMessageCallback glew::glcore::glDebugMessageCallback
+#define glDebugMessageCallbackAMD glew::glcore::glDebugMessageCallbackAMD
+#define glDebugMessageCallbackARB glew::glcore::glDebugMessageCallbackARB
+#define glDebugMessageCallbackKHR glew::glcore::glDebugMessageCallbackKHR
+#define glDebugMessageControl glew::glcore::glDebugMessageControl
+#define glDebugMessageControlARB glew::glcore::glDebugMessageControlARB
+#define glDebugMessageControlKHR glew::glcore::glDebugMessageControlKHR
+#define glDebugMessageEnableAMD glew::glcore::glDebugMessageEnableAMD
+#define glDebugMessageInsert glew::glcore::glDebugMessageInsert
+#define glDebugMessageInsertAMD glew::glcore::glDebugMessageInsertAMD
+#define glDebugMessageInsertARB glew::glcore::glDebugMessageInsertARB
+#define glDebugMessageInsertKHR glew::glcore::glDebugMessageInsertKHR
+#define glDeformSGIX glew::glcore::glDeformSGIX
+#define glDeformationMap3dSGIX glew::glcore::glDeformationMap3dSGIX
+#define glDeformationMap3fSGIX glew::glcore::glDeformationMap3fSGIX
+#define glDeleteAsyncMarkersSGIX glew::glcore::glDeleteAsyncMarkersSGIX
+#define glDeleteBuffers glew::glcore::glDeleteBuffers
+#define glDeleteBuffersARB glew::glcore::glDeleteBuffersARB
+#define glDeleteCommandListsNV glew::glcore::glDeleteCommandListsNV
+#define glDeleteStatesNV glew::glcore::glDeleteStatesNV
+#define glDeleteFencesAPPLE glew::glcore::glDeleteFencesAPPLE
+#define glDeleteFencesNV glew::glcore::glDeleteFencesNV
+#define glDeleteFragmentShaderATI glew::glcore::glDeleteFragmentShaderATI
+#define glDeleteFramebuffers glew::glcore::glDeleteFramebuffers
+#define glDeleteFramebuffersEXT glew::glcore::glDeleteFramebuffersEXT
+#define glDeleteFramebuffersOES glew::glcore::glDeleteFramebuffersOES
+#define glDeleteLists glew::glcore::glDeleteLists
+#define glDeleteNamedStringARB glew::glcore::glDeleteNamedStringARB
+#define glDeleteNamesAMD glew::glcore::glDeleteNamesAMD
+#define glDeleteObjectARB glew::glcore::glDeleteObjectARB
+#define glDeleteOcclusionQueriesNV glew::glcore::glDeleteOcclusionQueriesNV
+#define glDeletePathsNV glew::glcore::glDeletePathsNV
+#define glDeletePerfMonitorsAMD glew::glcore::glDeletePerfMonitorsAMD
+#define glDeletePerfQueryINTEL glew::glcore::glDeletePerfQueryINTEL
+#define glDeleteProgram glew::glcore::glDeleteProgram
+#define glDeleteProgramPipelines glew::glcore::glDeleteProgramPipelines
+#define glDeleteProgramPipelinesEXT glew::glcore::glDeleteProgramPipelinesEXT
+#define glDeleteProgramsARB glew::glcore::glDeleteProgramsARB
+#define glDeleteProgramsNV glew::glcore::glDeleteProgramsNV
+#define glDeleteQueries glew::glcore::glDeleteQueries
+#define glDeleteQueriesARB glew::glcore::glDeleteQueriesARB
+#define glDeleteQueriesEXT glew::glcore::glDeleteQueriesEXT
+#define glDeleteRenderbuffers glew::glcore::glDeleteRenderbuffers
+#define glDeleteRenderbuffersEXT glew::glcore::glDeleteRenderbuffersEXT
+#define glDeleteRenderbuffersOES glew::glcore::glDeleteRenderbuffersOES
+#define glDeleteSamplers glew::glcore::glDeleteSamplers
+#define glDeleteShader glew::glcore::glDeleteShader
+#define glDeleteSync glew::glcore::glDeleteSync
+#define glDeleteSyncAPPLE glew::glcore::glDeleteSyncAPPLE
+#define glDeleteTextures glew::glcore::glDeleteTextures
+#define glDeleteTexturesEXT glew::glcore::glDeleteTexturesEXT
+#define glDeleteTransformFeedbacks glew::glcore::glDeleteTransformFeedbacks
+#define glDeleteTransformFeedbacksNV glew::glcore::glDeleteTransformFeedbacksNV
+#define glDeleteVertexArrays glew::glcore::glDeleteVertexArrays
+#define glDeleteVertexArraysAPPLE glew::glcore::glDeleteVertexArraysAPPLE
+#define glDeleteVertexArraysOES glew::glcore::glDeleteVertexArraysOES
+#define glDeleteVertexShaderEXT glew::glcore::glDeleteVertexShaderEXT
+#define glDepthBoundsEXT glew::glcore::glDepthBoundsEXT
+#define glDepthBoundsdNV glew::glcore::glDepthBoundsdNV
+#define glDepthFunc glew::glcore::glDepthFunc
+#define glDepthMask glew::glcore::glDepthMask
+#define glDepthRange glew::glcore::glDepthRange
+#define glDepthRangeArrayv glew::glcore::glDepthRangeArrayv
+#define glDepthRangeArrayfvNV glew::glcore::glDepthRangeArrayfvNV
+#define glDepthRangeIndexed glew::glcore::glDepthRangeIndexed
+#define glDepthRangeIndexedfNV glew::glcore::glDepthRangeIndexedfNV
+#define glDepthRangedNV glew::glcore::glDepthRangedNV
+#define glDepthRangef glew::glcore::glDepthRangef
+#define glDepthRangefOES glew::glcore::glDepthRangefOES
+#define glDepthRangex glew::glcore::glDepthRangex
+#define glDepthRangexOES glew::glcore::glDepthRangexOES
+#define glDetachObjectARB glew::glcore::glDetachObjectARB
+#define glDetachShader glew::glcore::glDetachShader
+#define glDetailTexFuncSGIS glew::glcore::glDetailTexFuncSGIS
+#define glDisable glew::glcore::glDisable
+#define glDisableClientState glew::glcore::glDisableClientState
+#define glDisableClientStateIndexedEXT glew::glcore::glDisableClientStateIndexedEXT
+#define glDisableClientStateiEXT glew::glcore::glDisableClientStateiEXT
+#define glDisableDriverControlQCOM glew::glcore::glDisableDriverControlQCOM
+#define glDisableIndexedEXT glew::glcore::glDisableIndexedEXT
+#define glDisableVariantClientStateEXT glew::glcore::glDisableVariantClientStateEXT
+#define glDisableVertexArrayAttrib glew::glcore::glDisableVertexArrayAttrib
+#define glDisableVertexArrayAttribEXT glew::glcore::glDisableVertexArrayAttribEXT
+#define glDisableVertexArrayEXT glew::glcore::glDisableVertexArrayEXT
+#define glDisableVertexAttribAPPLE glew::glcore::glDisableVertexAttribAPPLE
+#define glDisableVertexAttribArray glew::glcore::glDisableVertexAttribArray
+#define glDisableVertexAttribArrayARB glew::glcore::glDisableVertexAttribArrayARB
+#define glDisablei glew::glcore::glDisablei
+#define glDisableiEXT glew::glcore::glDisableiEXT
+#define glDisableiNV glew::glcore::glDisableiNV
+#define glDisableiOES glew::glcore::glDisableiOES
+#define glDiscardFramebufferEXT glew::glcore::glDiscardFramebufferEXT
+#define glDispatchCompute glew::glcore::glDispatchCompute
+#define glDispatchComputeGroupSizeARB glew::glcore::glDispatchComputeGroupSizeARB
+#define glDispatchComputeIndirect glew::glcore::glDispatchComputeIndirect
+#define glDrawArrays glew::glcore::glDrawArrays
+#define glDrawArraysEXT glew::glcore::glDrawArraysEXT
+#define glDrawArraysIndirect glew::glcore::glDrawArraysIndirect
+#define glDrawArraysInstanced glew::glcore::glDrawArraysInstanced
+#define glDrawArraysInstancedANGLE glew::glcore::glDrawArraysInstancedANGLE
+#define glDrawArraysInstancedARB glew::glcore::glDrawArraysInstancedARB
+#define glDrawArraysInstancedBaseInstance glew::glcore::glDrawArraysInstancedBaseInstance
+#define glDrawArraysInstancedBaseInstanceEXT glew::glcore::glDrawArraysInstancedBaseInstanceEXT
+#define glDrawArraysInstancedEXT glew::glcore::glDrawArraysInstancedEXT
+#define glDrawArraysInstancedNV glew::glcore::glDrawArraysInstancedNV
+#define glDrawBuffer glew::glcore::glDrawBuffer
+#define glDrawBuffers glew::glcore::glDrawBuffers
+#define glDrawBuffersARB glew::glcore::glDrawBuffersARB
+#define glDrawBuffersATI glew::glcore::glDrawBuffersATI
+#define glDrawBuffersEXT glew::glcore::glDrawBuffersEXT
+#define glDrawBuffersIndexedEXT glew::glcore::glDrawBuffersIndexedEXT
+#define glDrawBuffersNV glew::glcore::glDrawBuffersNV
+#define glDrawCommandsNV glew::glcore::glDrawCommandsNV
+#define glDrawCommandsAddressNV glew::glcore::glDrawCommandsAddressNV
+#define glDrawCommandsStatesNV glew::glcore::glDrawCommandsStatesNV
+#define glDrawCommandsStatesAddressNV glew::glcore::glDrawCommandsStatesAddressNV
+#define glDrawElementArrayAPPLE glew::glcore::glDrawElementArrayAPPLE
+#define glDrawElementArrayATI glew::glcore::glDrawElementArrayATI
+#define glDrawElements glew::glcore::glDrawElements
+#define glDrawElementsBaseVertex glew::glcore::glDrawElementsBaseVertex
+#define glDrawElementsBaseVertexEXT glew::glcore::glDrawElementsBaseVertexEXT
+#define glDrawElementsBaseVertexOES glew::glcore::glDrawElementsBaseVertexOES
+#define glDrawElementsIndirect glew::glcore::glDrawElementsIndirect
+#define glDrawElementsInstanced glew::glcore::glDrawElementsInstanced
+#define glDrawElementsInstancedANGLE glew::glcore::glDrawElementsInstancedANGLE
+#define glDrawElementsInstancedARB glew::glcore::glDrawElementsInstancedARB
+#define glDrawElementsInstancedBaseInstance glew::glcore::glDrawElementsInstancedBaseInstance
+#define glDrawElementsInstancedBaseInstanceEXT glew::glcore::glDrawElementsInstancedBaseInstanceEXT
+#define glDrawElementsInstancedBaseVertex glew::glcore::glDrawElementsInstancedBaseVertex
+#define glDrawElementsInstancedBaseVertexEXT glew::glcore::glDrawElementsInstancedBaseVertexEXT
+#define glDrawElementsInstancedBaseVertexOES glew::glcore::glDrawElementsInstancedBaseVertexOES
+#define glDrawElementsInstancedBaseVertexBaseInstance glew::glcore::glDrawElementsInstancedBaseVertexBaseInstance
+#define glDrawElementsInstancedBaseVertexBaseInstanceEXT glew::glcore::glDrawElementsInstancedBaseVertexBaseInstanceEXT
+#define glDrawElementsInstancedEXT glew::glcore::glDrawElementsInstancedEXT
+#define glDrawElementsInstancedNV glew::glcore::glDrawElementsInstancedNV
+#define glDrawMeshArraysSUN glew::glcore::glDrawMeshArraysSUN
+#define glDrawPixels glew::glcore::glDrawPixels
+#define glDrawRangeElementArrayAPPLE glew::glcore::glDrawRangeElementArrayAPPLE
+#define glDrawRangeElementArrayATI glew::glcore::glDrawRangeElementArrayATI
+#define glDrawRangeElements glew::glcore::glDrawRangeElements
+#define glDrawRangeElementsBaseVertex glew::glcore::glDrawRangeElementsBaseVertex
+#define glDrawRangeElementsBaseVertexEXT glew::glcore::glDrawRangeElementsBaseVertexEXT
+#define glDrawRangeElementsBaseVertexOES glew::glcore::glDrawRangeElementsBaseVertexOES
+#define glDrawRangeElementsEXT glew::glcore::glDrawRangeElementsEXT
+#define glDrawTexfOES glew::glcore::glDrawTexfOES
+#define glDrawTexfvOES glew::glcore::glDrawTexfvOES
+#define glDrawTexiOES glew::glcore::glDrawTexiOES
+#define glDrawTexivOES glew::glcore::glDrawTexivOES
+#define glDrawTexsOES glew::glcore::glDrawTexsOES
+#define glDrawTexsvOES glew::glcore::glDrawTexsvOES
+#define glDrawTextureNV glew::glcore::glDrawTextureNV
+#define glDrawTexxOES glew::glcore::glDrawTexxOES
+#define glDrawTexxvOES glew::glcore::glDrawTexxvOES
+#define glDrawTransformFeedback glew::glcore::glDrawTransformFeedback
+#define glDrawTransformFeedbackInstanced glew::glcore::glDrawTransformFeedbackInstanced
+#define glDrawTransformFeedbackNV glew::glcore::glDrawTransformFeedbackNV
+#define glDrawTransformFeedbackStream glew::glcore::glDrawTransformFeedbackStream
+#define glDrawTransformFeedbackStreamInstanced glew::glcore::glDrawTransformFeedbackStreamInstanced
+#define glEGLImageTargetRenderbufferStorageOES glew::glcore::glEGLImageTargetRenderbufferStorageOES
+#define glEGLImageTargetTexture2DOES glew::glcore::glEGLImageTargetTexture2DOES
+#define glEdgeFlag glew::glcore::glEdgeFlag
+#define glEdgeFlagFormatNV glew::glcore::glEdgeFlagFormatNV
+#define glEdgeFlagPointer glew::glcore::glEdgeFlagPointer
+#define glEdgeFlagPointerEXT glew::glcore::glEdgeFlagPointerEXT
+#define glEdgeFlagPointerListIBM glew::glcore::glEdgeFlagPointerListIBM
+#define glEdgeFlagv glew::glcore::glEdgeFlagv
+#define glElementPointerAPPLE glew::glcore::glElementPointerAPPLE
+#define glElementPointerATI glew::glcore::glElementPointerATI
+#define glEnable glew::glcore::glEnable
+#define glEnableClientState glew::glcore::glEnableClientState
+#define glEnableClientStateIndexedEXT glew::glcore::glEnableClientStateIndexedEXT
+#define glEnableClientStateiEXT glew::glcore::glEnableClientStateiEXT
+#define glEnableDriverControlQCOM glew::glcore::glEnableDriverControlQCOM
+#define glEnableIndexedEXT glew::glcore::glEnableIndexedEXT
+#define glEnableVariantClientStateEXT glew::glcore::glEnableVariantClientStateEXT
+#define glEnableVertexArrayAttrib glew::glcore::glEnableVertexArrayAttrib
+#define glEnableVertexArrayAttribEXT glew::glcore::glEnableVertexArrayAttribEXT
+#define glEnableVertexArrayEXT glew::glcore::glEnableVertexArrayEXT
+#define glEnableVertexAttribAPPLE glew::glcore::glEnableVertexAttribAPPLE
+#define glEnableVertexAttribArray glew::glcore::glEnableVertexAttribArray
+#define glEnableVertexAttribArrayARB glew::glcore::glEnableVertexAttribArrayARB
+#define glEnablei glew::glcore::glEnablei
+#define glEnableiEXT glew::glcore::glEnableiEXT
+#define glEnableiNV glew::glcore::glEnableiNV
+#define glEnableiOES glew::glcore::glEnableiOES
+#define glEnd glew::glcore::glEnd
+#define glEndConditionalRender glew::glcore::glEndConditionalRender
+#define glEndConditionalRenderNV glew::glcore::glEndConditionalRenderNV
+#define glEndConditionalRenderNVX glew::glcore::glEndConditionalRenderNVX
+#define glEndFragmentShaderATI glew::glcore::glEndFragmentShaderATI
+#define glEndList glew::glcore::glEndList
+#define glEndOcclusionQueryNV glew::glcore::glEndOcclusionQueryNV
+#define glEndPerfMonitorAMD glew::glcore::glEndPerfMonitorAMD
+#define glEndPerfQueryINTEL glew::glcore::glEndPerfQueryINTEL
+#define glEndQuery glew::glcore::glEndQuery
+#define glEndQueryARB glew::glcore::glEndQueryARB
+#define glEndQueryEXT glew::glcore::glEndQueryEXT
+#define glEndQueryIndexed glew::glcore::glEndQueryIndexed
+#define glEndTilingQCOM glew::glcore::glEndTilingQCOM
+#define glEndTransformFeedback glew::glcore::glEndTransformFeedback
+#define glEndTransformFeedbackEXT glew::glcore::glEndTransformFeedbackEXT
+#define glEndTransformFeedbackNV glew::glcore::glEndTransformFeedbackNV
+#define glEndVertexShaderEXT glew::glcore::glEndVertexShaderEXT
+#define glEndVideoCaptureNV glew::glcore::glEndVideoCaptureNV
+#define glEvalCoord1d glew::glcore::glEvalCoord1d
+#define glEvalCoord1dv glew::glcore::glEvalCoord1dv
+#define glEvalCoord1f glew::glcore::glEvalCoord1f
+#define glEvalCoord1fv glew::glcore::glEvalCoord1fv
+#define glEvalCoord1xOES glew::glcore::glEvalCoord1xOES
+#define glEvalCoord1xvOES glew::glcore::glEvalCoord1xvOES
+#define glEvalCoord2d glew::glcore::glEvalCoord2d
+#define glEvalCoord2dv glew::glcore::glEvalCoord2dv
+#define glEvalCoord2f glew::glcore::glEvalCoord2f
+#define glEvalCoord2fv glew::glcore::glEvalCoord2fv
+#define glEvalCoord2xOES glew::glcore::glEvalCoord2xOES
+#define glEvalCoord2xvOES glew::glcore::glEvalCoord2xvOES
+#define glEvalMapsNV glew::glcore::glEvalMapsNV
+#define glEvalMesh1 glew::glcore::glEvalMesh1
+#define glEvalMesh2 glew::glcore::glEvalMesh2
+#define glEvalPoint1 glew::glcore::glEvalPoint1
+#define glEvalPoint2 glew::glcore::glEvalPoint2
+#define glExecuteProgramNV glew::glcore::glExecuteProgramNV
+#define glExtGetBufferPointervQCOM glew::glcore::glExtGetBufferPointervQCOM
+#define glExtGetBuffersQCOM glew::glcore::glExtGetBuffersQCOM
+#define glExtGetFramebuffersQCOM glew::glcore::glExtGetFramebuffersQCOM
+#define glExtGetProgramBinarySourceQCOM glew::glcore::glExtGetProgramBinarySourceQCOM
+#define glExtGetProgramsQCOM glew::glcore::glExtGetProgramsQCOM
+#define glExtGetRenderbuffersQCOM glew::glcore::glExtGetRenderbuffersQCOM
+#define glExtGetShadersQCOM glew::glcore::glExtGetShadersQCOM
+#define glExtGetTexLevelParameterivQCOM glew::glcore::glExtGetTexLevelParameterivQCOM
+#define glExtGetTexSubImageQCOM glew::glcore::glExtGetTexSubImageQCOM
+#define glExtGetTexturesQCOM glew::glcore::glExtGetTexturesQCOM
+#define glExtIsProgramBinaryQCOM glew::glcore::glExtIsProgramBinaryQCOM
+#define glExtTexObjectStateOverrideiQCOM glew::glcore::glExtTexObjectStateOverrideiQCOM
+#define glExtractComponentEXT glew::glcore::glExtractComponentEXT
+#define glFeedbackBuffer glew::glcore::glFeedbackBuffer
+#define glFeedbackBufferxOES glew::glcore::glFeedbackBufferxOES
+#define glFenceSync glew::glcore::glFenceSync
+#define glFenceSyncAPPLE glew::glcore::glFenceSyncAPPLE
+#define glFinalCombinerInputNV glew::glcore::glFinalCombinerInputNV
+#define glFinish glew::glcore::glFinish
+#define glFinishAsyncSGIX glew::glcore::glFinishAsyncSGIX
+#define glFinishFenceAPPLE glew::glcore::glFinishFenceAPPLE
+#define glFinishFenceNV glew::glcore::glFinishFenceNV
+#define glFinishObjectAPPLE glew::glcore::glFinishObjectAPPLE
+#define glFinishTextureSUNX glew::glcore::glFinishTextureSUNX
+#define glFlush glew::glcore::glFlush
+#define glFlushMappedBufferRange glew::glcore::glFlushMappedBufferRange
+#define glFlushMappedBufferRangeAPPLE glew::glcore::glFlushMappedBufferRangeAPPLE
+#define glFlushMappedBufferRangeEXT glew::glcore::glFlushMappedBufferRangeEXT
+#define glFlushMappedNamedBufferRange glew::glcore::glFlushMappedNamedBufferRange
+#define glFlushMappedNamedBufferRangeEXT glew::glcore::glFlushMappedNamedBufferRangeEXT
+#define glFlushPixelDataRangeNV glew::glcore::glFlushPixelDataRangeNV
+#define glFlushRasterSGIX glew::glcore::glFlushRasterSGIX
+#define glFlushStaticDataIBM glew::glcore::glFlushStaticDataIBM
+#define glFlushVertexArrayRangeAPPLE glew::glcore::glFlushVertexArrayRangeAPPLE
+#define glFlushVertexArrayRangeNV glew::glcore::glFlushVertexArrayRangeNV
+#define glFogCoordFormatNV glew::glcore::glFogCoordFormatNV
+#define glFogCoordPointer glew::glcore::glFogCoordPointer
+#define glFogCoordPointerEXT glew::glcore::glFogCoordPointerEXT
+#define glFogCoordPointerListIBM glew::glcore::glFogCoordPointerListIBM
+#define glFogCoordd glew::glcore::glFogCoordd
+#define glFogCoorddEXT glew::glcore::glFogCoorddEXT
+#define glFogCoorddv glew::glcore::glFogCoorddv
+#define glFogCoorddvEXT glew::glcore::glFogCoorddvEXT
+#define glFogCoordf glew::glcore::glFogCoordf
+#define glFogCoordfEXT glew::glcore::glFogCoordfEXT
+#define glFogCoordfv glew::glcore::glFogCoordfv
+#define glFogCoordfvEXT glew::glcore::glFogCoordfvEXT
+#define glFogCoordhNV glew::glcore::glFogCoordhNV
+#define glFogCoordhvNV glew::glcore::glFogCoordhvNV
+#define glFogFuncSGIS glew::glcore::glFogFuncSGIS
+#define glFogf glew::glcore::glFogf
+#define glFogfv glew::glcore::glFogfv
+#define glFogi glew::glcore::glFogi
+#define glFogiv glew::glcore::glFogiv
+#define glFogx glew::glcore::glFogx
+#define glFogxOES glew::glcore::glFogxOES
+#define glFogxv glew::glcore::glFogxv
+#define glFogxvOES glew::glcore::glFogxvOES
+#define glFragmentColorMaterialSGIX glew::glcore::glFragmentColorMaterialSGIX
+#define glFragmentLightModelfSGIX glew::glcore::glFragmentLightModelfSGIX
+#define glFragmentLightModelfvSGIX glew::glcore::glFragmentLightModelfvSGIX
+#define glFragmentLightModeliSGIX glew::glcore::glFragmentLightModeliSGIX
+#define glFragmentLightModelivSGIX glew::glcore::glFragmentLightModelivSGIX
+#define glFragmentLightfSGIX glew::glcore::glFragmentLightfSGIX
+#define glFragmentLightfvSGIX glew::glcore::glFragmentLightfvSGIX
+#define glFragmentLightiSGIX glew::glcore::glFragmentLightiSGIX
+#define glFragmentLightivSGIX glew::glcore::glFragmentLightivSGIX
+#define glFragmentMaterialfSGIX glew::glcore::glFragmentMaterialfSGIX
+#define glFragmentMaterialfvSGIX glew::glcore::glFragmentMaterialfvSGIX
+#define glFragmentMaterialiSGIX glew::glcore::glFragmentMaterialiSGIX
+#define glFragmentMaterialivSGIX glew::glcore::glFragmentMaterialivSGIX
+#define glFrameTerminatorGREMEDY glew::glcore::glFrameTerminatorGREMEDY
+#define glFrameZoomSGIX glew::glcore::glFrameZoomSGIX
+#define glFramebufferDrawBufferEXT glew::glcore::glFramebufferDrawBufferEXT
+#define glFramebufferDrawBuffersEXT glew::glcore::glFramebufferDrawBuffersEXT
+#define glFramebufferParameteri glew::glcore::glFramebufferParameteri
+#define glFramebufferReadBufferEXT glew::glcore::glFramebufferReadBufferEXT
+#define glFramebufferRenderbuffer glew::glcore::glFramebufferRenderbuffer
+#define glFramebufferRenderbufferEXT glew::glcore::glFramebufferRenderbufferEXT
+#define glFramebufferRenderbufferOES glew::glcore::glFramebufferRenderbufferOES
+#define glFramebufferTexture glew::glcore::glFramebufferTexture
+#define glFramebufferTexture1D glew::glcore::glFramebufferTexture1D
+#define glFramebufferTexture1DEXT glew::glcore::glFramebufferTexture1DEXT
+#define glFramebufferTexture2D glew::glcore::glFramebufferTexture2D
+#define glFramebufferTexture2DEXT glew::glcore::glFramebufferTexture2DEXT
+#define glFramebufferTexture2DMultisampleEXT glew::glcore::glFramebufferTexture2DMultisampleEXT
+#define glFramebufferTexture2DMultisampleIMG glew::glcore::glFramebufferTexture2DMultisampleIMG
+#define glFramebufferTexture2DOES glew::glcore::glFramebufferTexture2DOES
+#define glFramebufferTexture3D glew::glcore::glFramebufferTexture3D
+#define glFramebufferTexture3DEXT glew::glcore::glFramebufferTexture3DEXT
+#define glFramebufferTexture3DOES glew::glcore::glFramebufferTexture3DOES
+#define glFramebufferTextureARB glew::glcore::glFramebufferTextureARB
+#define glFramebufferTextureEXT glew::glcore::glFramebufferTextureEXT
+#define glFramebufferTextureOES glew::glcore::glFramebufferTextureOES
+#define glFramebufferTextureFaceARB glew::glcore::glFramebufferTextureFaceARB
+#define glFramebufferTextureFaceEXT glew::glcore::glFramebufferTextureFaceEXT
+#define glFramebufferTextureLayer glew::glcore::glFramebufferTextureLayer
+#define glFramebufferTextureLayerARB glew::glcore::glFramebufferTextureLayerARB
+#define glFramebufferTextureLayerEXT glew::glcore::glFramebufferTextureLayerEXT
+#define glFramebufferTextureMultiviewOVR glew::glcore::glFramebufferTextureMultiviewOVR
+#define glFreeObjectBufferATI glew::glcore::glFreeObjectBufferATI
+#define glFrontFace glew::glcore::glFrontFace
+#define glFrustum glew::glcore::glFrustum
+#define glFrustumf glew::glcore::glFrustumf
+#define glFrustumfOES glew::glcore::glFrustumfOES
+#define glFrustumx glew::glcore::glFrustumx
+#define glFrustumxOES glew::glcore::glFrustumxOES
+#define glGenAsyncMarkersSGIX glew::glcore::glGenAsyncMarkersSGIX
+#define glGenBuffers glew::glcore::glGenBuffers
+#define glGenBuffersARB glew::glcore::glGenBuffersARB
+#define glGenFencesAPPLE glew::glcore::glGenFencesAPPLE
+#define glGenFencesNV glew::glcore::glGenFencesNV
+#define glGenFragmentShadersATI glew::glcore::glGenFragmentShadersATI
+#define glGenFramebuffers glew::glcore::glGenFramebuffers
+#define glGenFramebuffersEXT glew::glcore::glGenFramebuffersEXT
+#define glGenFramebuffersOES glew::glcore::glGenFramebuffersOES
+#define glGenLists glew::glcore::glGenLists
+#define glGenNamesAMD glew::glcore::glGenNamesAMD
+#define glGenOcclusionQueriesNV glew::glcore::glGenOcclusionQueriesNV
+#define glGenPathsNV glew::glcore::glGenPathsNV
+#define glGenPerfMonitorsAMD glew::glcore::glGenPerfMonitorsAMD
+#define glGenProgramPipelines glew::glcore::glGenProgramPipelines
+#define glGenProgramPipelinesEXT glew::glcore::glGenProgramPipelinesEXT
+#define glGenProgramsARB glew::glcore::glGenProgramsARB
+#define glGenProgramsNV glew::glcore::glGenProgramsNV
+#define glGenQueries glew::glcore::glGenQueries
+#define glGenQueriesARB glew::glcore::glGenQueriesARB
+#define glGenQueriesEXT glew::glcore::glGenQueriesEXT
+#define glGenRenderbuffers glew::glcore::glGenRenderbuffers
+#define glGenRenderbuffersEXT glew::glcore::glGenRenderbuffersEXT
+#define glGenRenderbuffersOES glew::glcore::glGenRenderbuffersOES
+#define glGenSamplers glew::glcore::glGenSamplers
+#define glGenSymbolsEXT glew::glcore::glGenSymbolsEXT
+#define glGenTextures glew::glcore::glGenTextures
+#define glGenTexturesEXT glew::glcore::glGenTexturesEXT
+#define glGenTransformFeedbacks glew::glcore::glGenTransformFeedbacks
+#define glGenTransformFeedbacksNV glew::glcore::glGenTransformFeedbacksNV
+#define glGenVertexArrays glew::glcore::glGenVertexArrays
+#define glGenVertexArraysAPPLE glew::glcore::glGenVertexArraysAPPLE
+#define glGenVertexArraysOES glew::glcore::glGenVertexArraysOES
+#define glGenVertexShadersEXT glew::glcore::glGenVertexShadersEXT
+#define glGenerateMipmap glew::glcore::glGenerateMipmap
+#define glGenerateMipmapEXT glew::glcore::glGenerateMipmapEXT
+#define glGenerateMipmapOES glew::glcore::glGenerateMipmapOES
+#define glGenerateMultiTexMipmapEXT glew::glcore::glGenerateMultiTexMipmapEXT
+#define glGenerateTextureMipmap glew::glcore::glGenerateTextureMipmap
+#define glGenerateTextureMipmapEXT glew::glcore::glGenerateTextureMipmapEXT
+#define glGetActiveAtomicCounterBufferiv glew::glcore::glGetActiveAtomicCounterBufferiv
+#define glGetActiveAttrib glew::glcore::glGetActiveAttrib
+#define glGetActiveAttribARB glew::glcore::glGetActiveAttribARB
+#define glGetActiveSubroutineName glew::glcore::glGetActiveSubroutineName
+#define glGetActiveSubroutineUniformName glew::glcore::glGetActiveSubroutineUniformName
+#define glGetActiveSubroutineUniformiv glew::glcore::glGetActiveSubroutineUniformiv
+#define glGetActiveUniform glew::glcore::glGetActiveUniform
+#define glGetActiveUniformARB glew::glcore::glGetActiveUniformARB
+#define glGetActiveUniformBlockName glew::glcore::glGetActiveUniformBlockName
+#define glGetActiveUniformBlockiv glew::glcore::glGetActiveUniformBlockiv
+#define glGetActiveUniformName glew::glcore::glGetActiveUniformName
+#define glGetActiveUniformsiv glew::glcore::glGetActiveUniformsiv
+#define glGetActiveVaryingNV glew::glcore::glGetActiveVaryingNV
+#define glGetArrayObjectfvATI glew::glcore::glGetArrayObjectfvATI
+#define glGetArrayObjectivATI glew::glcore::glGetArrayObjectivATI
+#define glGetAttachedObjectsARB glew::glcore::glGetAttachedObjectsARB
+#define glGetAttachedShaders glew::glcore::glGetAttachedShaders
+#define glGetAttribLocation glew::glcore::glGetAttribLocation
+#define glGetAttribLocationARB glew::glcore::glGetAttribLocationARB
+#define glGetBooleanIndexedvEXT glew::glcore::glGetBooleanIndexedvEXT
+#define glGetBooleani_v glew::glcore::glGetBooleani_v
+#define glGetBooleanv glew::glcore::glGetBooleanv
+#define glGetBufferParameteri64v glew::glcore::glGetBufferParameteri64v
+#define glGetBufferParameteriv glew::glcore::glGetBufferParameteriv
+#define glGetBufferParameterivARB glew::glcore::glGetBufferParameterivARB
+#define glGetBufferParameterui64vNV glew::glcore::glGetBufferParameterui64vNV
+#define glGetBufferPointerv glew::glcore::glGetBufferPointerv
+#define glGetBufferPointervARB glew::glcore::glGetBufferPointervARB
+#define glGetBufferPointervOES glew::glcore::glGetBufferPointervOES
+#define glGetBufferSubData glew::glcore::glGetBufferSubData
+#define glGetBufferSubDataARB glew::glcore::glGetBufferSubDataARB
+#define glGetClipPlane glew::glcore::glGetClipPlane
+#define glGetClipPlanef glew::glcore::glGetClipPlanef
+#define glGetClipPlanefOES glew::glcore::glGetClipPlanefOES
+#define glGetClipPlanex glew::glcore::glGetClipPlanex
+#define glGetClipPlanexOES glew::glcore::glGetClipPlanexOES
+#define glGetColorTable glew::glcore::glGetColorTable
+#define glGetColorTableEXT glew::glcore::glGetColorTableEXT
+#define glGetColorTableParameterfv glew::glcore::glGetColorTableParameterfv
+#define glGetColorTableParameterfvEXT glew::glcore::glGetColorTableParameterfvEXT
+#define glGetColorTableParameterfvSGI glew::glcore::glGetColorTableParameterfvSGI
+#define glGetColorTableParameteriv glew::glcore::glGetColorTableParameteriv
+#define glGetColorTableParameterivEXT glew::glcore::glGetColorTableParameterivEXT
+#define glGetColorTableParameterivSGI glew::glcore::glGetColorTableParameterivSGI
+#define glGetColorTableSGI glew::glcore::glGetColorTableSGI
+#define glGetCombinerInputParameterfvNV glew::glcore::glGetCombinerInputParameterfvNV
+#define glGetCombinerInputParameterivNV glew::glcore::glGetCombinerInputParameterivNV
+#define glGetCombinerOutputParameterfvNV glew::glcore::glGetCombinerOutputParameterfvNV
+#define glGetCombinerOutputParameterivNV glew::glcore::glGetCombinerOutputParameterivNV
+#define glGetCombinerStageParameterfvNV glew::glcore::glGetCombinerStageParameterfvNV
+#define glGetCommandHeaderNV glew::glcore::glGetCommandHeaderNV
+#define glGetCompressedMultiTexImageEXT glew::glcore::glGetCompressedMultiTexImageEXT
+#define glGetCompressedTexImage glew::glcore::glGetCompressedTexImage
+#define glGetCompressedTexImageARB glew::glcore::glGetCompressedTexImageARB
+#define glGetCompressedTextureImage glew::glcore::glGetCompressedTextureImage
+#define glGetCompressedTextureImageEXT glew::glcore::glGetCompressedTextureImageEXT
+#define glGetCompressedTextureSubImage glew::glcore::glGetCompressedTextureSubImage
+#define glGetConvolutionFilter glew::glcore::glGetConvolutionFilter
+#define glGetConvolutionFilterEXT glew::glcore::glGetConvolutionFilterEXT
+#define glGetConvolutionParameterfv glew::glcore::glGetConvolutionParameterfv
+#define glGetConvolutionParameterfvEXT glew::glcore::glGetConvolutionParameterfvEXT
+#define glGetConvolutionParameteriv glew::glcore::glGetConvolutionParameteriv
+#define glGetConvolutionParameterivEXT glew::glcore::glGetConvolutionParameterivEXT
+#define glGetConvolutionParameterxvOES glew::glcore::glGetConvolutionParameterxvOES
+#define glGetDebugMessageLog glew::glcore::glGetDebugMessageLog
+#define glGetDebugMessageLogAMD glew::glcore::glGetDebugMessageLogAMD
+#define glGetDebugMessageLogARB glew::glcore::glGetDebugMessageLogARB
+#define glGetDebugMessageLogKHR glew::glcore::glGetDebugMessageLogKHR
+#define glGetDetailTexFuncSGIS glew::glcore::glGetDetailTexFuncSGIS
+#define glGetDoubleIndexedvEXT glew::glcore::glGetDoubleIndexedvEXT
+#define glGetDoublei_v glew::glcore::glGetDoublei_v
+#define glGetDoublei_vEXT glew::glcore::glGetDoublei_vEXT
+#define glGetDoublev glew::glcore::glGetDoublev
+#define glGetDriverControlStringQCOM glew::glcore::glGetDriverControlStringQCOM
+#define glGetDriverControlsQCOM glew::glcore::glGetDriverControlsQCOM
+#define glGetError glew::glcore::glGetError
+#define glGetFenceivNV glew::glcore::glGetFenceivNV
+#define glGetFinalCombinerInputParameterfvNV glew::glcore::glGetFinalCombinerInputParameterfvNV
+#define glGetFinalCombinerInputParameterivNV glew::glcore::glGetFinalCombinerInputParameterivNV
+#define glGetFirstPerfQueryIdINTEL glew::glcore::glGetFirstPerfQueryIdINTEL
+#define glGetFixedv glew::glcore::glGetFixedv
+#define glGetFixedvOES glew::glcore::glGetFixedvOES
+#define glGetFloatIndexedvEXT glew::glcore::glGetFloatIndexedvEXT
+#define glGetFloati_v glew::glcore::glGetFloati_v
+#define glGetFloati_vNV glew::glcore::glGetFloati_vNV
+#define glGetFloati_vEXT glew::glcore::glGetFloati_vEXT
+#define glGetFloatv glew::glcore::glGetFloatv
+#define glGetFogFuncSGIS glew::glcore::glGetFogFuncSGIS
+#define glGetFragDataIndex glew::glcore::glGetFragDataIndex
+#define glGetFragDataLocation glew::glcore::glGetFragDataLocation
+#define glGetFragDataLocationEXT glew::glcore::glGetFragDataLocationEXT
+#define glGetFragmentLightfvSGIX glew::glcore::glGetFragmentLightfvSGIX
+#define glGetFragmentLightivSGIX glew::glcore::glGetFragmentLightivSGIX
+#define glGetFragmentMaterialfvSGIX glew::glcore::glGetFragmentMaterialfvSGIX
+#define glGetFragmentMaterialivSGIX glew::glcore::glGetFragmentMaterialivSGIX
+#define glGetFramebufferAttachmentParameteriv glew::glcore::glGetFramebufferAttachmentParameteriv
+#define glGetFramebufferAttachmentParameterivEXT glew::glcore::glGetFramebufferAttachmentParameterivEXT
+#define glGetFramebufferAttachmentParameterivOES glew::glcore::glGetFramebufferAttachmentParameterivOES
+#define glGetFramebufferParameteriv glew::glcore::glGetFramebufferParameteriv
+#define glGetFramebufferParameterivEXT glew::glcore::glGetFramebufferParameterivEXT
+#define glGetGraphicsResetStatus glew::glcore::glGetGraphicsResetStatus
+#define glGetGraphicsResetStatusARB glew::glcore::glGetGraphicsResetStatusARB
+#define glGetGraphicsResetStatusEXT glew::glcore::glGetGraphicsResetStatusEXT
+#define glGetGraphicsResetStatusKHR glew::glcore::glGetGraphicsResetStatusKHR
+#define glGetHandleARB glew::glcore::glGetHandleARB
+#define glGetHistogram glew::glcore::glGetHistogram
+#define glGetHistogramEXT glew::glcore::glGetHistogramEXT
+#define glGetHistogramParameterfv glew::glcore::glGetHistogramParameterfv
+#define glGetHistogramParameterfvEXT glew::glcore::glGetHistogramParameterfvEXT
+#define glGetHistogramParameteriv glew::glcore::glGetHistogramParameteriv
+#define glGetHistogramParameterivEXT glew::glcore::glGetHistogramParameterivEXT
+#define glGetHistogramParameterxvOES glew::glcore::glGetHistogramParameterxvOES
+#define glGetImageHandleARB glew::glcore::glGetImageHandleARB
+#define glGetImageHandleNV glew::glcore::glGetImageHandleNV
+#define glGetImageTransformParameterfvHP glew::glcore::glGetImageTransformParameterfvHP
+#define glGetImageTransformParameterivHP glew::glcore::glGetImageTransformParameterivHP
+#define glGetInfoLogARB glew::glcore::glGetInfoLogARB
+#define glGetInstrumentsSGIX glew::glcore::glGetInstrumentsSGIX
+#define glGetInteger64i_v glew::glcore::glGetInteger64i_v
+#define glGetInteger64v glew::glcore::glGetInteger64v
+#define glGetInteger64vAPPLE glew::glcore::glGetInteger64vAPPLE
+#define glGetIntegerIndexedvEXT glew::glcore::glGetIntegerIndexedvEXT
+#define glGetIntegeri_v glew::glcore::glGetIntegeri_v
+#define glGetIntegeri_vEXT glew::glcore::glGetIntegeri_vEXT
+#define glGetIntegerui64i_vNV glew::glcore::glGetIntegerui64i_vNV
+#define glGetIntegerui64vNV glew::glcore::glGetIntegerui64vNV
+#define glGetIntegerv glew::glcore::glGetIntegerv
+#define glGetInternalformati64v glew::glcore::glGetInternalformati64v
+#define glGetInternalformativ glew::glcore::glGetInternalformativ
+#define glGetInternalformatSampleivNV glew::glcore::glGetInternalformatSampleivNV
+#define glGetInvariantBooleanvEXT glew::glcore::glGetInvariantBooleanvEXT
+#define glGetInvariantFloatvEXT glew::glcore::glGetInvariantFloatvEXT
+#define glGetInvariantIntegervEXT glew::glcore::glGetInvariantIntegervEXT
+#define glGetLightfv glew::glcore::glGetLightfv
+#define glGetLightiv glew::glcore::glGetLightiv
+#define glGetLightxOES glew::glcore::glGetLightxOES
+#define glGetLightxv glew::glcore::glGetLightxv
+#define glGetLightxvOES glew::glcore::glGetLightxvOES
+#define glGetListParameterfvSGIX glew::glcore::glGetListParameterfvSGIX
+#define glGetListParameterivSGIX glew::glcore::glGetListParameterivSGIX
+#define glGetLocalConstantBooleanvEXT glew::glcore::glGetLocalConstantBooleanvEXT
+#define glGetLocalConstantFloatvEXT glew::glcore::glGetLocalConstantFloatvEXT
+#define glGetLocalConstantIntegervEXT glew::glcore::glGetLocalConstantIntegervEXT
+#define glGetMapAttribParameterfvNV glew::glcore::glGetMapAttribParameterfvNV
+#define glGetMapAttribParameterivNV glew::glcore::glGetMapAttribParameterivNV
+#define glGetMapControlPointsNV glew::glcore::glGetMapControlPointsNV
+#define glGetMapParameterfvNV glew::glcore::glGetMapParameterfvNV
+#define glGetMapParameterivNV glew::glcore::glGetMapParameterivNV
+#define glGetMapdv glew::glcore::glGetMapdv
+#define glGetMapfv glew::glcore::glGetMapfv
+#define glGetMapiv glew::glcore::glGetMapiv
+#define glGetMapxvOES glew::glcore::glGetMapxvOES
+#define glGetMaterialfv glew::glcore::glGetMaterialfv
+#define glGetMaterialiv glew::glcore::glGetMaterialiv
+#define glGetMaterialxOES glew::glcore::glGetMaterialxOES
+#define glGetMaterialxv glew::glcore::glGetMaterialxv
+#define glGetMaterialxvOES glew::glcore::glGetMaterialxvOES
+#define glGetMinmax glew::glcore::glGetMinmax
+#define glGetMinmaxEXT glew::glcore::glGetMinmaxEXT
+#define glGetMinmaxParameterfv glew::glcore::glGetMinmaxParameterfv
+#define glGetMinmaxParameterfvEXT glew::glcore::glGetMinmaxParameterfvEXT
+#define glGetMinmaxParameteriv glew::glcore::glGetMinmaxParameteriv
+#define glGetMinmaxParameterivEXT glew::glcore::glGetMinmaxParameterivEXT
+#define glGetMultiTexEnvfvEXT glew::glcore::glGetMultiTexEnvfvEXT
+#define glGetMultiTexEnvivEXT glew::glcore::glGetMultiTexEnvivEXT
+#define glGetMultiTexGendvEXT glew::glcore::glGetMultiTexGendvEXT
+#define glGetMultiTexGenfvEXT glew::glcore::glGetMultiTexGenfvEXT
+#define glGetMultiTexGenivEXT glew::glcore::glGetMultiTexGenivEXT
+#define glGetMultiTexImageEXT glew::glcore::glGetMultiTexImageEXT
+#define glGetMultiTexLevelParameterfvEXT glew::glcore::glGetMultiTexLevelParameterfvEXT
+#define glGetMultiTexLevelParameterivEXT glew::glcore::glGetMultiTexLevelParameterivEXT
+#define glGetMultiTexParameterIivEXT glew::glcore::glGetMultiTexParameterIivEXT
+#define glGetMultiTexParameterIuivEXT glew::glcore::glGetMultiTexParameterIuivEXT
+#define glGetMultiTexParameterfvEXT glew::glcore::glGetMultiTexParameterfvEXT
+#define glGetMultiTexParameterivEXT glew::glcore::glGetMultiTexParameterivEXT
+#define glGetMultisamplefv glew::glcore::glGetMultisamplefv
+#define glGetMultisamplefvNV glew::glcore::glGetMultisamplefvNV
+#define glGetNamedBufferParameteri64v glew::glcore::glGetNamedBufferParameteri64v
+#define glGetNamedBufferParameteriv glew::glcore::glGetNamedBufferParameteriv
+#define glGetNamedBufferParameterivEXT glew::glcore::glGetNamedBufferParameterivEXT
+#define glGetNamedBufferParameterui64vNV glew::glcore::glGetNamedBufferParameterui64vNV
+#define glGetNamedBufferPointerv glew::glcore::glGetNamedBufferPointerv
+#define glGetNamedBufferPointervEXT glew::glcore::glGetNamedBufferPointervEXT
+#define glGetNamedBufferSubData glew::glcore::glGetNamedBufferSubData
+#define glGetNamedBufferSubDataEXT glew::glcore::glGetNamedBufferSubDataEXT
+#define glGetNamedFramebufferAttachmentParameteriv glew::glcore::glGetNamedFramebufferAttachmentParameteriv
+#define glGetNamedFramebufferAttachmentParameterivEXT glew::glcore::glGetNamedFramebufferAttachmentParameterivEXT
+#define glGetNamedFramebufferParameteriv glew::glcore::glGetNamedFramebufferParameteriv
+#define glGetNamedFramebufferParameterivEXT glew::glcore::glGetNamedFramebufferParameterivEXT
+#define glGetNamedProgramLocalParameterIivEXT glew::glcore::glGetNamedProgramLocalParameterIivEXT
+#define glGetNamedProgramLocalParameterIuivEXT glew::glcore::glGetNamedProgramLocalParameterIuivEXT
+#define glGetNamedProgramLocalParameterdvEXT glew::glcore::glGetNamedProgramLocalParameterdvEXT
+#define glGetNamedProgramLocalParameterfvEXT glew::glcore::glGetNamedProgramLocalParameterfvEXT
+#define glGetNamedProgramStringEXT glew::glcore::glGetNamedProgramStringEXT
+#define glGetNamedProgramivEXT glew::glcore::glGetNamedProgramivEXT
+#define glGetNamedRenderbufferParameteriv glew::glcore::glGetNamedRenderbufferParameteriv
+#define glGetNamedRenderbufferParameterivEXT glew::glcore::glGetNamedRenderbufferParameterivEXT
+#define glGetNamedStringARB glew::glcore::glGetNamedStringARB
+#define glGetNamedStringivARB glew::glcore::glGetNamedStringivARB
+#define glGetNextPerfQueryIdINTEL glew::glcore::glGetNextPerfQueryIdINTEL
+#define glGetObjectBufferfvATI glew::glcore::glGetObjectBufferfvATI
+#define glGetObjectBufferivATI glew::glcore::glGetObjectBufferivATI
+#define glGetObjectLabel glew::glcore::glGetObjectLabel
+#define glGetObjectLabelEXT glew::glcore::glGetObjectLabelEXT
+#define glGetObjectLabelKHR glew::glcore::glGetObjectLabelKHR
+#define glGetObjectParameterfvARB glew::glcore::glGetObjectParameterfvARB
+#define glGetObjectParameterivAPPLE glew::glcore::glGetObjectParameterivAPPLE
+#define glGetObjectParameterivARB glew::glcore::glGetObjectParameterivARB
+#define glGetObjectPtrLabel glew::glcore::glGetObjectPtrLabel
+#define glGetObjectPtrLabelKHR glew::glcore::glGetObjectPtrLabelKHR
+#define glGetOcclusionQueryivNV glew::glcore::glGetOcclusionQueryivNV
+#define glGetOcclusionQueryuivNV glew::glcore::glGetOcclusionQueryuivNV
+#define glGetPathColorGenfvNV glew::glcore::glGetPathColorGenfvNV
+#define glGetPathColorGenivNV glew::glcore::glGetPathColorGenivNV
+#define glGetPathCommandsNV glew::glcore::glGetPathCommandsNV
+#define glGetPathCoordsNV glew::glcore::glGetPathCoordsNV
+#define glGetPathDashArrayNV glew::glcore::glGetPathDashArrayNV
+#define glGetPathLengthNV glew::glcore::glGetPathLengthNV
+#define glGetPathMetricRangeNV glew::glcore::glGetPathMetricRangeNV
+#define glGetPathMetricsNV glew::glcore::glGetPathMetricsNV
+#define glGetPathParameterfvNV glew::glcore::glGetPathParameterfvNV
+#define glGetPathParameterivNV glew::glcore::glGetPathParameterivNV
+#define glGetPathSpacingNV glew::glcore::glGetPathSpacingNV
+#define glGetPathTexGenfvNV glew::glcore::glGetPathTexGenfvNV
+#define glGetPathTexGenivNV glew::glcore::glGetPathTexGenivNV
+#define glGetPerfCounterInfoINTEL glew::glcore::glGetPerfCounterInfoINTEL
+#define glGetPerfMonitorCounterDataAMD glew::glcore::glGetPerfMonitorCounterDataAMD
+#define glGetPerfMonitorCounterInfoAMD glew::glcore::glGetPerfMonitorCounterInfoAMD
+#define glGetPerfMonitorCounterStringAMD glew::glcore::glGetPerfMonitorCounterStringAMD
+#define glGetPerfMonitorCountersAMD glew::glcore::glGetPerfMonitorCountersAMD
+#define glGetPerfMonitorGroupStringAMD glew::glcore::glGetPerfMonitorGroupStringAMD
+#define glGetPerfMonitorGroupsAMD glew::glcore::glGetPerfMonitorGroupsAMD
+#define glGetPerfQueryDataINTEL glew::glcore::glGetPerfQueryDataINTEL
+#define glGetPerfQueryIdByNameINTEL glew::glcore::glGetPerfQueryIdByNameINTEL
+#define glGetPerfQueryInfoINTEL glew::glcore::glGetPerfQueryInfoINTEL
+#define glGetPixelMapfv glew::glcore::glGetPixelMapfv
+#define glGetPixelMapuiv glew::glcore::glGetPixelMapuiv
+#define glGetPixelMapusv glew::glcore::glGetPixelMapusv
+#define glGetPixelMapxv glew::glcore::glGetPixelMapxv
+#define glGetPixelTexGenParameterfvSGIS glew::glcore::glGetPixelTexGenParameterfvSGIS
+#define glGetPixelTexGenParameterivSGIS glew::glcore::glGetPixelTexGenParameterivSGIS
+#define glGetPixelTransformParameterfvEXT glew::glcore::glGetPixelTransformParameterfvEXT
+#define glGetPixelTransformParameterivEXT glew::glcore::glGetPixelTransformParameterivEXT
+#define glGetPointerIndexedvEXT glew::glcore::glGetPointerIndexedvEXT
+#define glGetPointeri_vEXT glew::glcore::glGetPointeri_vEXT
+#define glGetPointerv glew::glcore::glGetPointerv
+#define glGetPointervEXT glew::glcore::glGetPointervEXT
+#define glGetPointervKHR glew::glcore::glGetPointervKHR
+#define glGetPolygonStipple glew::glcore::glGetPolygonStipple
+#define glGetProgramBinary glew::glcore::glGetProgramBinary
+#define glGetProgramBinaryOES glew::glcore::glGetProgramBinaryOES
+#define glGetProgramEnvParameterIivNV glew::glcore::glGetProgramEnvParameterIivNV
+#define glGetProgramEnvParameterIuivNV glew::glcore::glGetProgramEnvParameterIuivNV
+#define glGetProgramEnvParameterdvARB glew::glcore::glGetProgramEnvParameterdvARB
+#define glGetProgramEnvParameterfvARB glew::glcore::glGetProgramEnvParameterfvARB
+#define glGetProgramInfoLog glew::glcore::glGetProgramInfoLog
+#define glGetProgramInterfaceiv glew::glcore::glGetProgramInterfaceiv
+#define glGetProgramLocalParameterIivNV glew::glcore::glGetProgramLocalParameterIivNV
+#define glGetProgramLocalParameterIuivNV glew::glcore::glGetProgramLocalParameterIuivNV
+#define glGetProgramLocalParameterdvARB glew::glcore::glGetProgramLocalParameterdvARB
+#define glGetProgramLocalParameterfvARB glew::glcore::glGetProgramLocalParameterfvARB
+#define glGetProgramNamedParameterdvNV glew::glcore::glGetProgramNamedParameterdvNV
+#define glGetProgramNamedParameterfvNV glew::glcore::glGetProgramNamedParameterfvNV
+#define glGetProgramParameterdvNV glew::glcore::glGetProgramParameterdvNV
+#define glGetProgramParameterfvNV glew::glcore::glGetProgramParameterfvNV
+#define glGetProgramPipelineInfoLog glew::glcore::glGetProgramPipelineInfoLog
+#define glGetProgramPipelineInfoLogEXT glew::glcore::glGetProgramPipelineInfoLogEXT
+#define glGetProgramPipelineiv glew::glcore::glGetProgramPipelineiv
+#define glGetProgramPipelineivEXT glew::glcore::glGetProgramPipelineivEXT
+#define glGetProgramResourceIndex glew::glcore::glGetProgramResourceIndex
+#define glGetProgramResourceLocation glew::glcore::glGetProgramResourceLocation
+#define glGetProgramResourceLocationIndex glew::glcore::glGetProgramResourceLocationIndex
+#define glGetProgramResourceName glew::glcore::glGetProgramResourceName
+#define glGetProgramResourcefvNV glew::glcore::glGetProgramResourcefvNV
+#define glGetProgramResourceiv glew::glcore::glGetProgramResourceiv
+#define glGetProgramStageiv glew::glcore::glGetProgramStageiv
+#define glGetProgramStringARB glew::glcore::glGetProgramStringARB
+#define glGetProgramStringNV glew::glcore::glGetProgramStringNV
+#define glGetProgramSubroutineParameteruivNV glew::glcore::glGetProgramSubroutineParameteruivNV
+#define glGetProgramiv glew::glcore::glGetProgramiv
+#define glGetProgramivARB glew::glcore::glGetProgramivARB
+#define glGetProgramivNV glew::glcore::glGetProgramivNV
+#define glGetQueryBufferObjecti64v glew::glcore::glGetQueryBufferObjecti64v
+#define glGetQueryBufferObjectiv glew::glcore::glGetQueryBufferObjectiv
+#define glGetQueryBufferObjectui64v glew::glcore::glGetQueryBufferObjectui64v
+#define glGetQueryBufferObjectuiv glew::glcore::glGetQueryBufferObjectuiv
+#define glGetQueryIndexediv glew::glcore::glGetQueryIndexediv
+#define glGetQueryObjecti64v glew::glcore::glGetQueryObjecti64v
+#define glGetQueryObjecti64vEXT glew::glcore::glGetQueryObjecti64vEXT
+#define glGetQueryObjectiv glew::glcore::glGetQueryObjectiv
+#define glGetQueryObjectivARB glew::glcore::glGetQueryObjectivARB
+#define glGetQueryObjectivEXT glew::glcore::glGetQueryObjectivEXT
+#define glGetQueryObjectui64v glew::glcore::glGetQueryObjectui64v
+#define glGetQueryObjectui64vEXT glew::glcore::glGetQueryObjectui64vEXT
+#define glGetQueryObjectuiv glew::glcore::glGetQueryObjectuiv
+#define glGetQueryObjectuivARB glew::glcore::glGetQueryObjectuivARB
+#define glGetQueryObjectuivEXT glew::glcore::glGetQueryObjectuivEXT
+#define glGetQueryiv glew::glcore::glGetQueryiv
+#define glGetQueryivARB glew::glcore::glGetQueryivARB
+#define glGetQueryivEXT glew::glcore::glGetQueryivEXT
+#define glGetRenderbufferParameteriv glew::glcore::glGetRenderbufferParameteriv
+#define glGetRenderbufferParameterivEXT glew::glcore::glGetRenderbufferParameterivEXT
+#define glGetRenderbufferParameterivOES glew::glcore::glGetRenderbufferParameterivOES
+#define glGetSamplerParameterIiv glew::glcore::glGetSamplerParameterIiv
+#define glGetSamplerParameterIivEXT glew::glcore::glGetSamplerParameterIivEXT
+#define glGetSamplerParameterIivOES glew::glcore::glGetSamplerParameterIivOES
+#define glGetSamplerParameterIuiv glew::glcore::glGetSamplerParameterIuiv
+#define glGetSamplerParameterIuivEXT glew::glcore::glGetSamplerParameterIuivEXT
+#define glGetSamplerParameterIuivOES glew::glcore::glGetSamplerParameterIuivOES
+#define glGetSamplerParameterfv glew::glcore::glGetSamplerParameterfv
+#define glGetSamplerParameteriv glew::glcore::glGetSamplerParameteriv
+#define glGetSeparableFilter glew::glcore::glGetSeparableFilter
+#define glGetSeparableFilterEXT glew::glcore::glGetSeparableFilterEXT
+#define glGetShaderInfoLog glew::glcore::glGetShaderInfoLog
+#define glGetShaderPrecisionFormat glew::glcore::glGetShaderPrecisionFormat
+#define glGetShaderSource glew::glcore::glGetShaderSource
+#define glGetShaderSourceARB glew::glcore::glGetShaderSourceARB
+#define glGetShaderiv glew::glcore::glGetShaderiv
+#define glGetSharpenTexFuncSGIS glew::glcore::glGetSharpenTexFuncSGIS
+#define glGetStageIndexNV glew::glcore::glGetStageIndexNV
+#define glGetString glew::glcore::glGetString
+#define glGetStringi glew::glcore::glGetStringi
+#define glGetSubroutineIndex glew::glcore::glGetSubroutineIndex
+#define glGetSubroutineUniformLocation glew::glcore::glGetSubroutineUniformLocation
+#define glGetSynciv glew::glcore::glGetSynciv
+#define glGetSyncivAPPLE glew::glcore::glGetSyncivAPPLE
+#define glGetTexBumpParameterfvATI glew::glcore::glGetTexBumpParameterfvATI
+#define glGetTexBumpParameterivATI glew::glcore::glGetTexBumpParameterivATI
+#define glGetTexEnvfv glew::glcore::glGetTexEnvfv
+#define glGetTexEnviv glew::glcore::glGetTexEnviv
+#define glGetTexEnvxv glew::glcore::glGetTexEnvxv
+#define glGetTexEnvxvOES glew::glcore::glGetTexEnvxvOES
+#define glGetTexFilterFuncSGIS glew::glcore::glGetTexFilterFuncSGIS
+#define glGetTexGendv glew::glcore::glGetTexGendv
+#define glGetTexGenfv glew::glcore::glGetTexGenfv
+#define glGetTexGenfvOES glew::glcore::glGetTexGenfvOES
+#define glGetTexGeniv glew::glcore::glGetTexGeniv
+#define glGetTexGenivOES glew::glcore::glGetTexGenivOES
+#define glGetTexGenxvOES glew::glcore::glGetTexGenxvOES
+#define glGetTexImage glew::glcore::glGetTexImage
+#define glGetTexLevelParameterfv glew::glcore::glGetTexLevelParameterfv
+#define glGetTexLevelParameteriv glew::glcore::glGetTexLevelParameteriv
+#define glGetTexLevelParameterxvOES glew::glcore::glGetTexLevelParameterxvOES
+#define glGetTexParameterIiv glew::glcore::glGetTexParameterIiv
+#define glGetTexParameterIivEXT glew::glcore::glGetTexParameterIivEXT
+#define glGetTexParameterIivOES glew::glcore::glGetTexParameterIivOES
+#define glGetTexParameterIuiv glew::glcore::glGetTexParameterIuiv
+#define glGetTexParameterIuivEXT glew::glcore::glGetTexParameterIuivEXT
+#define glGetTexParameterIuivOES glew::glcore::glGetTexParameterIuivOES
+#define glGetTexParameterPointervAPPLE glew::glcore::glGetTexParameterPointervAPPLE
+#define glGetTexParameterfv glew::glcore::glGetTexParameterfv
+#define glGetTexParameteriv glew::glcore::glGetTexParameteriv
+#define glGetTexParameterxv glew::glcore::glGetTexParameterxv
+#define glGetTexParameterxvOES glew::glcore::glGetTexParameterxvOES
+#define glGetTextureHandleARB glew::glcore::glGetTextureHandleARB
+#define glGetTextureHandleNV glew::glcore::glGetTextureHandleNV
+#define glGetTextureImage glew::glcore::glGetTextureImage
+#define glGetTextureImageEXT glew::glcore::glGetTextureImageEXT
+#define glGetTextureLevelParameterfv glew::glcore::glGetTextureLevelParameterfv
+#define glGetTextureLevelParameterfvEXT glew::glcore::glGetTextureLevelParameterfvEXT
+#define glGetTextureLevelParameteriv glew::glcore::glGetTextureLevelParameteriv
+#define glGetTextureLevelParameterivEXT glew::glcore::glGetTextureLevelParameterivEXT
+#define glGetTextureParameterIiv glew::glcore::glGetTextureParameterIiv
+#define glGetTextureParameterIivEXT glew::glcore::glGetTextureParameterIivEXT
+#define glGetTextureParameterIuiv glew::glcore::glGetTextureParameterIuiv
+#define glGetTextureParameterIuivEXT glew::glcore::glGetTextureParameterIuivEXT
+#define glGetTextureParameterfv glew::glcore::glGetTextureParameterfv
+#define glGetTextureParameterfvEXT glew::glcore::glGetTextureParameterfvEXT
+#define glGetTextureParameteriv glew::glcore::glGetTextureParameteriv
+#define glGetTextureParameterivEXT glew::glcore::glGetTextureParameterivEXT
+#define glGetTextureSamplerHandleARB glew::glcore::glGetTextureSamplerHandleARB
+#define glGetTextureSamplerHandleNV glew::glcore::glGetTextureSamplerHandleNV
+#define glGetTextureSubImage glew::glcore::glGetTextureSubImage
+#define glGetTrackMatrixivNV glew::glcore::glGetTrackMatrixivNV
+#define glGetTransformFeedbackVarying glew::glcore::glGetTransformFeedbackVarying
+#define glGetTransformFeedbackVaryingEXT glew::glcore::glGetTransformFeedbackVaryingEXT
+#define glGetTransformFeedbackVaryingNV glew::glcore::glGetTransformFeedbackVaryingNV
+#define glGetTransformFeedbacki64_v glew::glcore::glGetTransformFeedbacki64_v
+#define glGetTransformFeedbacki_v glew::glcore::glGetTransformFeedbacki_v
+#define glGetTransformFeedbackiv glew::glcore::glGetTransformFeedbackiv
+#define glGetTranslatedShaderSourceANGLE glew::glcore::glGetTranslatedShaderSourceANGLE
+#define glGetUniformBlockIndex glew::glcore::glGetUniformBlockIndex
+#define glGetUniformBufferSizeEXT glew::glcore::glGetUniformBufferSizeEXT
+#define glGetUniformIndices glew::glcore::glGetUniformIndices
+#define glGetUniformLocation glew::glcore::glGetUniformLocation
+#define glGetUniformLocationARB glew::glcore::glGetUniformLocationARB
+#define glGetUniformOffsetEXT glew::glcore::glGetUniformOffsetEXT
+#define glGetUniformSubroutineuiv glew::glcore::glGetUniformSubroutineuiv
+#define glGetUniformdv glew::glcore::glGetUniformdv
+#define glGetUniformfv glew::glcore::glGetUniformfv
+#define glGetUniformfvARB glew::glcore::glGetUniformfvARB
+#define glGetUniformi64vNV glew::glcore::glGetUniformi64vNV
+#define glGetUniformiv glew::glcore::glGetUniformiv
+#define glGetUniformivARB glew::glcore::glGetUniformivARB
+#define glGetUniformui64vNV glew::glcore::glGetUniformui64vNV
+#define glGetUniformuiv glew::glcore::glGetUniformuiv
+#define glGetUniformuivEXT glew::glcore::glGetUniformuivEXT
+#define glGetVariantArrayObjectfvATI glew::glcore::glGetVariantArrayObjectfvATI
+#define glGetVariantArrayObjectivATI glew::glcore::glGetVariantArrayObjectivATI
+#define glGetVariantBooleanvEXT glew::glcore::glGetVariantBooleanvEXT
+#define glGetVariantFloatvEXT glew::glcore::glGetVariantFloatvEXT
+#define glGetVariantIntegervEXT glew::glcore::glGetVariantIntegervEXT
+#define glGetVariantPointervEXT glew::glcore::glGetVariantPointervEXT
+#define glGetVaryingLocationNV glew::glcore::glGetVaryingLocationNV
+#define glGetVertexArrayIndexed64iv glew::glcore::glGetVertexArrayIndexed64iv
+#define glGetVertexArrayIndexediv glew::glcore::glGetVertexArrayIndexediv
+#define glGetVertexArrayIntegeri_vEXT glew::glcore::glGetVertexArrayIntegeri_vEXT
+#define glGetVertexArrayIntegervEXT glew::glcore::glGetVertexArrayIntegervEXT
+#define glGetVertexArrayPointeri_vEXT glew::glcore::glGetVertexArrayPointeri_vEXT
+#define glGetVertexArrayPointervEXT glew::glcore::glGetVertexArrayPointervEXT
+#define glGetVertexArrayiv glew::glcore::glGetVertexArrayiv
+#define glGetVertexAttribArrayObjectfvATI glew::glcore::glGetVertexAttribArrayObjectfvATI
+#define glGetVertexAttribArrayObjectivATI glew::glcore::glGetVertexAttribArrayObjectivATI
+#define glGetVertexAttribIiv glew::glcore::glGetVertexAttribIiv
+#define glGetVertexAttribIivEXT glew::glcore::glGetVertexAttribIivEXT
+#define glGetVertexAttribIuiv glew::glcore::glGetVertexAttribIuiv
+#define glGetVertexAttribIuivEXT glew::glcore::glGetVertexAttribIuivEXT
+#define glGetVertexAttribLdv glew::glcore::glGetVertexAttribLdv
+#define glGetVertexAttribLdvEXT glew::glcore::glGetVertexAttribLdvEXT
+#define glGetVertexAttribLi64vNV glew::glcore::glGetVertexAttribLi64vNV
+#define glGetVertexAttribLui64vARB glew::glcore::glGetVertexAttribLui64vARB
+#define glGetVertexAttribLui64vNV glew::glcore::glGetVertexAttribLui64vNV
+#define glGetVertexAttribPointerv glew::glcore::glGetVertexAttribPointerv
+#define glGetVertexAttribPointervARB glew::glcore::glGetVertexAttribPointervARB
+#define glGetVertexAttribPointervNV glew::glcore::glGetVertexAttribPointervNV
+#define glGetVertexAttribdv glew::glcore::glGetVertexAttribdv
+#define glGetVertexAttribdvARB glew::glcore::glGetVertexAttribdvARB
+#define glGetVertexAttribdvNV glew::glcore::glGetVertexAttribdvNV
+#define glGetVertexAttribfv glew::glcore::glGetVertexAttribfv
+#define glGetVertexAttribfvARB glew::glcore::glGetVertexAttribfvARB
+#define glGetVertexAttribfvNV glew::glcore::glGetVertexAttribfvNV
+#define glGetVertexAttribiv glew::glcore::glGetVertexAttribiv
+#define glGetVertexAttribivARB glew::glcore::glGetVertexAttribivARB
+#define glGetVertexAttribivNV glew::glcore::glGetVertexAttribivNV
+#define glGetVideoCaptureStreamdvNV glew::glcore::glGetVideoCaptureStreamdvNV
+#define glGetVideoCaptureStreamfvNV glew::glcore::glGetVideoCaptureStreamfvNV
+#define glGetVideoCaptureStreamivNV glew::glcore::glGetVideoCaptureStreamivNV
+#define glGetVideoCaptureivNV glew::glcore::glGetVideoCaptureivNV
+#define glGetVideoi64vNV glew::glcore::glGetVideoi64vNV
+#define glGetVideoivNV glew::glcore::glGetVideoivNV
+#define glGetVideoui64vNV glew::glcore::glGetVideoui64vNV
+#define glGetVideouivNV glew::glcore::glGetVideouivNV
+#define glGetnColorTable glew::glcore::glGetnColorTable
+#define glGetnColorTableARB glew::glcore::glGetnColorTableARB
+#define glGetnCompressedTexImage glew::glcore::glGetnCompressedTexImage
+#define glGetnCompressedTexImageARB glew::glcore::glGetnCompressedTexImageARB
+#define glGetnConvolutionFilter glew::glcore::glGetnConvolutionFilter
+#define glGetnConvolutionFilterARB glew::glcore::glGetnConvolutionFilterARB
+#define glGetnHistogram glew::glcore::glGetnHistogram
+#define glGetnHistogramARB glew::glcore::glGetnHistogramARB
+#define glGetnMapdv glew::glcore::glGetnMapdv
+#define glGetnMapdvARB glew::glcore::glGetnMapdvARB
+#define glGetnMapfv glew::glcore::glGetnMapfv
+#define glGetnMapfvARB glew::glcore::glGetnMapfvARB
+#define glGetnMapiv glew::glcore::glGetnMapiv
+#define glGetnMapivARB glew::glcore::glGetnMapivARB
+#define glGetnMinmax glew::glcore::glGetnMinmax
+#define glGetnMinmaxARB glew::glcore::glGetnMinmaxARB
+#define glGetnPixelMapfv glew::glcore::glGetnPixelMapfv
+#define glGetnPixelMapfvARB glew::glcore::glGetnPixelMapfvARB
+#define glGetnPixelMapuiv glew::glcore::glGetnPixelMapuiv
+#define glGetnPixelMapuivARB glew::glcore::glGetnPixelMapuivARB
+#define glGetnPixelMapusv glew::glcore::glGetnPixelMapusv
+#define glGetnPixelMapusvARB glew::glcore::glGetnPixelMapusvARB
+#define glGetnPolygonStipple glew::glcore::glGetnPolygonStipple
+#define glGetnPolygonStippleARB glew::glcore::glGetnPolygonStippleARB
+#define glGetnSeparableFilter glew::glcore::glGetnSeparableFilter
+#define glGetnSeparableFilterARB glew::glcore::glGetnSeparableFilterARB
+#define glGetnTexImage glew::glcore::glGetnTexImage
+#define glGetnTexImageARB glew::glcore::glGetnTexImageARB
+#define glGetnUniformdv glew::glcore::glGetnUniformdv
+#define glGetnUniformdvARB glew::glcore::glGetnUniformdvARB
+#define glGetnUniformfv glew::glcore::glGetnUniformfv
+#define glGetnUniformfvARB glew::glcore::glGetnUniformfvARB
+#define glGetnUniformfvEXT glew::glcore::glGetnUniformfvEXT
+#define glGetnUniformfvKHR glew::glcore::glGetnUniformfvKHR
+#define glGetnUniformiv glew::glcore::glGetnUniformiv
+#define glGetnUniformivARB glew::glcore::glGetnUniformivARB
+#define glGetnUniformivEXT glew::glcore::glGetnUniformivEXT
+#define glGetnUniformivKHR glew::glcore::glGetnUniformivKHR
+#define glGetnUniformuiv glew::glcore::glGetnUniformuiv
+#define glGetnUniformuivARB glew::glcore::glGetnUniformuivARB
+#define glGetnUniformuivKHR glew::glcore::glGetnUniformuivKHR
+#define glGlobalAlphaFactorbSUN glew::glcore::glGlobalAlphaFactorbSUN
+#define glGlobalAlphaFactordSUN glew::glcore::glGlobalAlphaFactordSUN
+#define glGlobalAlphaFactorfSUN glew::glcore::glGlobalAlphaFactorfSUN
+#define glGlobalAlphaFactoriSUN glew::glcore::glGlobalAlphaFactoriSUN
+#define glGlobalAlphaFactorsSUN glew::glcore::glGlobalAlphaFactorsSUN
+#define glGlobalAlphaFactorubSUN glew::glcore::glGlobalAlphaFactorubSUN
+#define glGlobalAlphaFactoruiSUN glew::glcore::glGlobalAlphaFactoruiSUN
+#define glGlobalAlphaFactorusSUN glew::glcore::glGlobalAlphaFactorusSUN
+#define glHint glew::glcore::glHint
+#define glHintPGI glew::glcore::glHintPGI
+#define glHistogram glew::glcore::glHistogram
+#define glHistogramEXT glew::glcore::glHistogramEXT
+#define glIglooInterfaceSGIX glew::glcore::glIglooInterfaceSGIX
+#define glImageTransformParameterfHP glew::glcore::glImageTransformParameterfHP
+#define glImageTransformParameterfvHP glew::glcore::glImageTransformParameterfvHP
+#define glImageTransformParameteriHP glew::glcore::glImageTransformParameteriHP
+#define glImageTransformParameterivHP glew::glcore::glImageTransformParameterivHP
+#define glImportSyncEXT glew::glcore::glImportSyncEXT
+#define glIndexFormatNV glew::glcore::glIndexFormatNV
+#define glIndexFuncEXT glew::glcore::glIndexFuncEXT
+#define glIndexMask glew::glcore::glIndexMask
+#define glIndexMaterialEXT glew::glcore::glIndexMaterialEXT
+#define glIndexPointer glew::glcore::glIndexPointer
+#define glIndexPointerEXT glew::glcore::glIndexPointerEXT
+#define glIndexPointerListIBM glew::glcore::glIndexPointerListIBM
+#define glIndexd glew::glcore::glIndexd
+#define glIndexdv glew::glcore::glIndexdv
+#define glIndexf glew::glcore::glIndexf
+#define glIndexfv glew::glcore::glIndexfv
+#define glIndexi glew::glcore::glIndexi
+#define glIndexiv glew::glcore::glIndexiv
+#define glIndexs glew::glcore::glIndexs
+#define glIndexsv glew::glcore::glIndexsv
+#define glIndexub glew::glcore::glIndexub
+#define glIndexubv glew::glcore::glIndexubv
+#define glIndexxOES glew::glcore::glIndexxOES
+#define glIndexxvOES glew::glcore::glIndexxvOES
+#define glInitNames glew::glcore::glInitNames
+#define glInsertComponentEXT glew::glcore::glInsertComponentEXT
+#define glInsertEventMarkerEXT glew::glcore::glInsertEventMarkerEXT
+#define glInstrumentsBufferSGIX glew::glcore::glInstrumentsBufferSGIX
+#define glInterleavedArrays glew::glcore::glInterleavedArrays
+#define glInterpolatePathsNV glew::glcore::glInterpolatePathsNV
+#define glInvalidateBufferData glew::glcore::glInvalidateBufferData
+#define glInvalidateBufferSubData glew::glcore::glInvalidateBufferSubData
+#define glInvalidateFramebuffer glew::glcore::glInvalidateFramebuffer
+#define glInvalidateNamedFramebufferData glew::glcore::glInvalidateNamedFramebufferData
+#define glInvalidateNamedFramebufferSubData glew::glcore::glInvalidateNamedFramebufferSubData
+#define glInvalidateSubFramebuffer glew::glcore::glInvalidateSubFramebuffer
+#define glInvalidateTexImage glew::glcore::glInvalidateTexImage
+#define glInvalidateTexSubImage glew::glcore::glInvalidateTexSubImage
+#define glIsAsyncMarkerSGIX glew::glcore::glIsAsyncMarkerSGIX
+#define glIsBuffer glew::glcore::glIsBuffer
+#define glIsBufferARB glew::glcore::glIsBufferARB
+#define glIsBufferResidentNV glew::glcore::glIsBufferResidentNV
+#define glIsCommandListNV glew::glcore::glIsCommandListNV
+#define glIsEnabled glew::glcore::glIsEnabled
+#define glIsEnabledIndexedEXT glew::glcore::glIsEnabledIndexedEXT
+#define glIsEnabledi glew::glcore::glIsEnabledi
+#define glIsEnablediEXT glew::glcore::glIsEnablediEXT
+#define glIsEnablediOES glew::glcore::glIsEnablediOES
+#define glIsEnablediNV glew::glcore::glIsEnablediNV
+#define glIsFenceAPPLE glew::glcore::glIsFenceAPPLE
+#define glIsFenceNV glew::glcore::glIsFenceNV
+#define glIsFramebuffer glew::glcore::glIsFramebuffer
+#define glIsFramebufferEXT glew::glcore::glIsFramebufferEXT
+#define glIsFramebufferOES glew::glcore::glIsFramebufferOES
+#define glIsImageHandleResidentARB glew::glcore::glIsImageHandleResidentARB
+#define glIsImageHandleResidentNV glew::glcore::glIsImageHandleResidentNV
+#define glIsList glew::glcore::glIsList
+#define glIsNameAMD glew::glcore::glIsNameAMD
+#define glIsNamedBufferResidentNV glew::glcore::glIsNamedBufferResidentNV
+#define glIsNamedStringARB glew::glcore::glIsNamedStringARB
+#define glIsObjectBufferATI glew::glcore::glIsObjectBufferATI
+#define glIsOcclusionQueryNV glew::glcore::glIsOcclusionQueryNV
+#define glIsPathNV glew::glcore::glIsPathNV
+#define glIsPointInFillPathNV glew::glcore::glIsPointInFillPathNV
+#define glIsPointInStrokePathNV glew::glcore::glIsPointInStrokePathNV
+#define glIsProgram glew::glcore::glIsProgram
+#define glIsProgramARB glew::glcore::glIsProgramARB
+#define glIsProgramNV glew::glcore::glIsProgramNV
+#define glIsProgramPipeline glew::glcore::glIsProgramPipeline
+#define glIsProgramPipelineEXT glew::glcore::glIsProgramPipelineEXT
+#define glIsQuery glew::glcore::glIsQuery
+#define glIsQueryARB glew::glcore::glIsQueryARB
+#define glIsQueryEXT glew::glcore::glIsQueryEXT
+#define glIsRenderbuffer glew::glcore::glIsRenderbuffer
+#define glIsRenderbufferEXT glew::glcore::glIsRenderbufferEXT
+#define glIsRenderbufferOES glew::glcore::glIsRenderbufferOES
+#define glIsSampler glew::glcore::glIsSampler
+#define glIsShader glew::glcore::glIsShader
+#define glIsStateNV glew::glcore::glIsStateNV
+#define glIsSync glew::glcore::glIsSync
+#define glIsSyncAPPLE glew::glcore::glIsSyncAPPLE
+#define glIsTexture glew::glcore::glIsTexture
+#define glIsTextureEXT glew::glcore::glIsTextureEXT
+#define glIsTextureHandleResidentARB glew::glcore::glIsTextureHandleResidentARB
+#define glIsTextureHandleResidentNV glew::glcore::glIsTextureHandleResidentNV
+#define glIsTransformFeedback glew::glcore::glIsTransformFeedback
+#define glIsTransformFeedbackNV glew::glcore::glIsTransformFeedbackNV
+#define glIsVariantEnabledEXT glew::glcore::glIsVariantEnabledEXT
+#define glIsVertexArray glew::glcore::glIsVertexArray
+#define glIsVertexArrayAPPLE glew::glcore::glIsVertexArrayAPPLE
+#define glIsVertexArrayOES glew::glcore::glIsVertexArrayOES
+#define glIsVertexAttribEnabledAPPLE glew::glcore::glIsVertexAttribEnabledAPPLE
+#define glLabelObjectEXT glew::glcore::glLabelObjectEXT
+#define glLightEnviSGIX glew::glcore::glLightEnviSGIX
+#define glLightModelf glew::glcore::glLightModelf
+#define glLightModelfv glew::glcore::glLightModelfv
+#define glLightModeli glew::glcore::glLightModeli
+#define glLightModeliv glew::glcore::glLightModeliv
+#define glLightModelx glew::glcore::glLightModelx
+#define glLightModelxOES glew::glcore::glLightModelxOES
+#define glLightModelxv glew::glcore::glLightModelxv
+#define glLightModelxvOES glew::glcore::glLightModelxvOES
+#define glLightf glew::glcore::glLightf
+#define glLightfv glew::glcore::glLightfv
+#define glLighti glew::glcore::glLighti
+#define glLightiv glew::glcore::glLightiv
+#define glLightx glew::glcore::glLightx
+#define glLightxOES glew::glcore::glLightxOES
+#define glLightxv glew::glcore::glLightxv
+#define glLightxvOES glew::glcore::glLightxvOES
+#define glLineStipple glew::glcore::glLineStipple
+#define glLineWidth glew::glcore::glLineWidth
+#define glLineWidthx glew::glcore::glLineWidthx
+#define glLineWidthxOES glew::glcore::glLineWidthxOES
+#define glLinkProgram glew::glcore::glLinkProgram
+#define glLinkProgramARB glew::glcore::glLinkProgramARB
+#define glListBase glew::glcore::glListBase
+#define glListDrawCommandsStatesClientNV glew::glcore::glListDrawCommandsStatesClientNV
+#define glListParameterfSGIX glew::glcore::glListParameterfSGIX
+#define glListParameterfvSGIX glew::glcore::glListParameterfvSGIX
+#define glListParameteriSGIX glew::glcore::glListParameteriSGIX
+#define glListParameterivSGIX glew::glcore::glListParameterivSGIX
+#define glLoadIdentity glew::glcore::glLoadIdentity
+#define glLoadIdentityDeformationMapSGIX glew::glcore::glLoadIdentityDeformationMapSGIX
+#define glLoadMatrixd glew::glcore::glLoadMatrixd
+#define glLoadMatrixf glew::glcore::glLoadMatrixf
+#define glLoadMatrixx glew::glcore::glLoadMatrixx
+#define glLoadMatrixxOES glew::glcore::glLoadMatrixxOES
+#define glLoadName glew::glcore::glLoadName
+#define glLoadPaletteFromModelViewMatrixOES glew::glcore::glLoadPaletteFromModelViewMatrixOES
+#define glLoadProgramNV glew::glcore::glLoadProgramNV
+#define glLoadTransposeMatrixd glew::glcore::glLoadTransposeMatrixd
+#define glLoadTransposeMatrixdARB glew::glcore::glLoadTransposeMatrixdARB
+#define glLoadTransposeMatrixf glew::glcore::glLoadTransposeMatrixf
+#define glLoadTransposeMatrixfARB glew::glcore::glLoadTransposeMatrixfARB
+#define glLoadTransposeMatrixxOES glew::glcore::glLoadTransposeMatrixxOES
+#define glLockArraysEXT glew::glcore::glLockArraysEXT
+#define glLogicOp glew::glcore::glLogicOp
+#define glMakeBufferNonResidentNV glew::glcore::glMakeBufferNonResidentNV
+#define glMakeBufferResidentNV glew::glcore::glMakeBufferResidentNV
+#define glMakeImageHandleNonResidentARB glew::glcore::glMakeImageHandleNonResidentARB
+#define glMakeImageHandleNonResidentNV glew::glcore::glMakeImageHandleNonResidentNV
+#define glMakeImageHandleResidentARB glew::glcore::glMakeImageHandleResidentARB
+#define glMakeImageHandleResidentNV glew::glcore::glMakeImageHandleResidentNV
+#define glMakeNamedBufferNonResidentNV glew::glcore::glMakeNamedBufferNonResidentNV
+#define glMakeNamedBufferResidentNV glew::glcore::glMakeNamedBufferResidentNV
+#define glMakeTextureHandleNonResidentARB glew::glcore::glMakeTextureHandleNonResidentARB
+#define glMakeTextureHandleNonResidentNV glew::glcore::glMakeTextureHandleNonResidentNV
+#define glMakeTextureHandleResidentARB glew::glcore::glMakeTextureHandleResidentARB
+#define glMakeTextureHandleResidentNV glew::glcore::glMakeTextureHandleResidentNV
+#define glMap1d glew::glcore::glMap1d
+#define glMap1f glew::glcore::glMap1f
+#define glMap1xOES glew::glcore::glMap1xOES
+#define glMap2d glew::glcore::glMap2d
+#define glMap2f glew::glcore::glMap2f
+#define glMap2xOES glew::glcore::glMap2xOES
+#define glMapBuffer glew::glcore::glMapBuffer
+#define glMapBufferARB glew::glcore::glMapBufferARB
+#define glMapBufferOES glew::glcore::glMapBufferOES
+#define glMapBufferRange glew::glcore::glMapBufferRange
+#define glMapBufferRangeEXT glew::glcore::glMapBufferRangeEXT
+#define glMapControlPointsNV glew::glcore::glMapControlPointsNV
+#define glMapGrid1d glew::glcore::glMapGrid1d
+#define glMapGrid1f glew::glcore::glMapGrid1f
+#define glMapGrid1xOES glew::glcore::glMapGrid1xOES
+#define glMapGrid2d glew::glcore::glMapGrid2d
+#define glMapGrid2f glew::glcore::glMapGrid2f
+#define glMapGrid2xOES glew::glcore::glMapGrid2xOES
+#define glMapNamedBuffer glew::glcore::glMapNamedBuffer
+#define glMapNamedBufferEXT glew::glcore::glMapNamedBufferEXT
+#define glMapNamedBufferRange glew::glcore::glMapNamedBufferRange
+#define glMapNamedBufferRangeEXT glew::glcore::glMapNamedBufferRangeEXT
+#define glMapObjectBufferATI glew::glcore::glMapObjectBufferATI
+#define glMapParameterfvNV glew::glcore::glMapParameterfvNV
+#define glMapParameterivNV glew::glcore::glMapParameterivNV
+#define glMapTexture2DINTEL glew::glcore::glMapTexture2DINTEL
+#define glMapVertexAttrib1dAPPLE glew::glcore::glMapVertexAttrib1dAPPLE
+#define glMapVertexAttrib1fAPPLE glew::glcore::glMapVertexAttrib1fAPPLE
+#define glMapVertexAttrib2dAPPLE glew::glcore::glMapVertexAttrib2dAPPLE
+#define glMapVertexAttrib2fAPPLE glew::glcore::glMapVertexAttrib2fAPPLE
+#define glMaterialf glew::glcore::glMaterialf
+#define glMaterialfv glew::glcore::glMaterialfv
+#define glMateriali glew::glcore::glMateriali
+#define glMaterialiv glew::glcore::glMaterialiv
+#define glMaterialx glew::glcore::glMaterialx
+#define glMaterialxOES glew::glcore::glMaterialxOES
+#define glMaterialxv glew::glcore::glMaterialxv
+#define glMaterialxvOES glew::glcore::glMaterialxvOES
+#define glMatrixFrustumEXT glew::glcore::glMatrixFrustumEXT
+#define glMatrixIndexPointerARB glew::glcore::glMatrixIndexPointerARB
+#define glMatrixIndexPointerOES glew::glcore::glMatrixIndexPointerOES
+#define glMatrixIndexubvARB glew::glcore::glMatrixIndexubvARB
+#define glMatrixIndexuivARB glew::glcore::glMatrixIndexuivARB
+#define glMatrixIndexusvARB glew::glcore::glMatrixIndexusvARB
+#define glMatrixLoad3x2fNV glew::glcore::glMatrixLoad3x2fNV
+#define glMatrixLoad3x3fNV glew::glcore::glMatrixLoad3x3fNV
+#define glMatrixLoadIdentityEXT glew::glcore::glMatrixLoadIdentityEXT
+#define glMatrixLoadTranspose3x3fNV glew::glcore::glMatrixLoadTranspose3x3fNV
+#define glMatrixLoadTransposedEXT glew::glcore::glMatrixLoadTransposedEXT
+#define glMatrixLoadTransposefEXT glew::glcore::glMatrixLoadTransposefEXT
+#define glMatrixLoaddEXT glew::glcore::glMatrixLoaddEXT
+#define glMatrixLoadfEXT glew::glcore::glMatrixLoadfEXT
+#define glMatrixMode glew::glcore::glMatrixMode
+#define glMatrixMult3x2fNV glew::glcore::glMatrixMult3x2fNV
+#define glMatrixMult3x3fNV glew::glcore::glMatrixMult3x3fNV
+#define glMatrixMultTranspose3x3fNV glew::glcore::glMatrixMultTranspose3x3fNV
+#define glMatrixMultTransposedEXT glew::glcore::glMatrixMultTransposedEXT
+#define glMatrixMultTransposefEXT glew::glcore::glMatrixMultTransposefEXT
+#define glMatrixMultdEXT glew::glcore::glMatrixMultdEXT
+#define glMatrixMultfEXT glew::glcore::glMatrixMultfEXT
+#define glMatrixOrthoEXT glew::glcore::glMatrixOrthoEXT
+#define glMatrixPopEXT glew::glcore::glMatrixPopEXT
+#define glMatrixPushEXT glew::glcore::glMatrixPushEXT
+#define glMatrixRotatedEXT glew::glcore::glMatrixRotatedEXT
+#define glMatrixRotatefEXT glew::glcore::glMatrixRotatefEXT
+#define glMatrixScaledEXT glew::glcore::glMatrixScaledEXT
+#define glMatrixScalefEXT glew::glcore::glMatrixScalefEXT
+#define glMatrixTranslatedEXT glew::glcore::glMatrixTranslatedEXT
+#define glMatrixTranslatefEXT glew::glcore::glMatrixTranslatefEXT
+#define glMemoryBarrier glew::glcore::glMemoryBarrier
+#define glMemoryBarrierByRegion glew::glcore::glMemoryBarrierByRegion
+#define glMemoryBarrierEXT glew::glcore::glMemoryBarrierEXT
+#define glMinSampleShading glew::glcore::glMinSampleShading
+#define glMinSampleShadingARB glew::glcore::glMinSampleShadingARB
+#define glMinSampleShadingOES glew::glcore::glMinSampleShadingOES
+#define glMinmax glew::glcore::glMinmax
+#define glMinmaxEXT glew::glcore::glMinmaxEXT
+#define glMultMatrixd glew::glcore::glMultMatrixd
+#define glMultMatrixf glew::glcore::glMultMatrixf
+#define glMultMatrixx glew::glcore::glMultMatrixx
+#define glMultMatrixxOES glew::glcore::glMultMatrixxOES
+#define glMultTransposeMatrixd glew::glcore::glMultTransposeMatrixd
+#define glMultTransposeMatrixdARB glew::glcore::glMultTransposeMatrixdARB
+#define glMultTransposeMatrixf glew::glcore::glMultTransposeMatrixf
+#define glMultTransposeMatrixfARB glew::glcore::glMultTransposeMatrixfARB
+#define glMultTransposeMatrixxOES glew::glcore::glMultTransposeMatrixxOES
+#define glMultiDrawArrays glew::glcore::glMultiDrawArrays
+#define glMultiDrawArraysEXT glew::glcore::glMultiDrawArraysEXT
+#define glMultiDrawArraysIndirect glew::glcore::glMultiDrawArraysIndirect
+#define glMultiDrawArraysIndirectAMD glew::glcore::glMultiDrawArraysIndirectAMD
+#define glMultiDrawArraysIndirectEXT glew::glcore::glMultiDrawArraysIndirectEXT
+#define glMultiDrawArraysIndirectBindlessCountNV glew::glcore::glMultiDrawArraysIndirectBindlessCountNV
+#define glMultiDrawArraysIndirectBindlessNV glew::glcore::glMultiDrawArraysIndirectBindlessNV
+#define glMultiDrawArraysIndirectCountARB glew::glcore::glMultiDrawArraysIndirectCountARB
+#define glMultiDrawElementArrayAPPLE glew::glcore::glMultiDrawElementArrayAPPLE
+#define glMultiDrawElements glew::glcore::glMultiDrawElements
+#define glMultiDrawElementsBaseVertex glew::glcore::glMultiDrawElementsBaseVertex
+#define glMultiDrawElementsBaseVertexEXT glew::glcore::glMultiDrawElementsBaseVertexEXT
+#define glMultiDrawElementsBaseVertexOES glew::glcore::glMultiDrawElementsBaseVertexOES
+#define glMultiDrawElementsEXT glew::glcore::glMultiDrawElementsEXT
+#define glMultiDrawElementsIndirect glew::glcore::glMultiDrawElementsIndirect
+#define glMultiDrawElementsIndirectEXT glew::glcore::glMultiDrawElementsIndirectEXT
+#define glMultiDrawElementsIndirectAMD glew::glcore::glMultiDrawElementsIndirectAMD
+#define glMultiDrawElementsIndirectBindlessCountNV glew::glcore::glMultiDrawElementsIndirectBindlessCountNV
+#define glMultiDrawElementsIndirectBindlessNV glew::glcore::glMultiDrawElementsIndirectBindlessNV
+#define glMultiDrawElementsIndirectCountARB glew::glcore::glMultiDrawElementsIndirectCountARB
+#define glMultiDrawRangeElementArrayAPPLE glew::glcore::glMultiDrawRangeElementArrayAPPLE
+#define glMultiModeDrawArraysIBM glew::glcore::glMultiModeDrawArraysIBM
+#define glMultiModeDrawElementsIBM glew::glcore::glMultiModeDrawElementsIBM
+#define glMultiTexBufferEXT glew::glcore::glMultiTexBufferEXT
+#define glMultiTexCoord1bOES glew::glcore::glMultiTexCoord1bOES
+#define glMultiTexCoord1bvOES glew::glcore::glMultiTexCoord1bvOES
+#define glMultiTexCoord1d glew::glcore::glMultiTexCoord1d
+#define glMultiTexCoord1dARB glew::glcore::glMultiTexCoord1dARB
+#define glMultiTexCoord1dv glew::glcore::glMultiTexCoord1dv
+#define glMultiTexCoord1dvARB glew::glcore::glMultiTexCoord1dvARB
+#define glMultiTexCoord1f glew::glcore::glMultiTexCoord1f
+#define glMultiTexCoord1fARB glew::glcore::glMultiTexCoord1fARB
+#define glMultiTexCoord1fv glew::glcore::glMultiTexCoord1fv
+#define glMultiTexCoord1fvARB glew::glcore::glMultiTexCoord1fvARB
+#define glMultiTexCoord1hNV glew::glcore::glMultiTexCoord1hNV
+#define glMultiTexCoord1hvNV glew::glcore::glMultiTexCoord1hvNV
+#define glMultiTexCoord1i glew::glcore::glMultiTexCoord1i
+#define glMultiTexCoord1iARB glew::glcore::glMultiTexCoord1iARB
+#define glMultiTexCoord1iv glew::glcore::glMultiTexCoord1iv
+#define glMultiTexCoord1ivARB glew::glcore::glMultiTexCoord1ivARB
+#define glMultiTexCoord1s glew::glcore::glMultiTexCoord1s
+#define glMultiTexCoord1sARB glew::glcore::glMultiTexCoord1sARB
+#define glMultiTexCoord1sv glew::glcore::glMultiTexCoord1sv
+#define glMultiTexCoord1svARB glew::glcore::glMultiTexCoord1svARB
+#define glMultiTexCoord1xOES glew::glcore::glMultiTexCoord1xOES
+#define glMultiTexCoord1xvOES glew::glcore::glMultiTexCoord1xvOES
+#define glMultiTexCoord2bOES glew::glcore::glMultiTexCoord2bOES
+#define glMultiTexCoord2bvOES glew::glcore::glMultiTexCoord2bvOES
+#define glMultiTexCoord2d glew::glcore::glMultiTexCoord2d
+#define glMultiTexCoord2dARB glew::glcore::glMultiTexCoord2dARB
+#define glMultiTexCoord2dv glew::glcore::glMultiTexCoord2dv
+#define glMultiTexCoord2dvARB glew::glcore::glMultiTexCoord2dvARB
+#define glMultiTexCoord2f glew::glcore::glMultiTexCoord2f
+#define glMultiTexCoord2fARB glew::glcore::glMultiTexCoord2fARB
+#define glMultiTexCoord2fv glew::glcore::glMultiTexCoord2fv
+#define glMultiTexCoord2fvARB glew::glcore::glMultiTexCoord2fvARB
+#define glMultiTexCoord2hNV glew::glcore::glMultiTexCoord2hNV
+#define glMultiTexCoord2hvNV glew::glcore::glMultiTexCoord2hvNV
+#define glMultiTexCoord2i glew::glcore::glMultiTexCoord2i
+#define glMultiTexCoord2iARB glew::glcore::glMultiTexCoord2iARB
+#define glMultiTexCoord2iv glew::glcore::glMultiTexCoord2iv
+#define glMultiTexCoord2ivARB glew::glcore::glMultiTexCoord2ivARB
+#define glMultiTexCoord2s glew::glcore::glMultiTexCoord2s
+#define glMultiTexCoord2sARB glew::glcore::glMultiTexCoord2sARB
+#define glMultiTexCoord2sv glew::glcore::glMultiTexCoord2sv
+#define glMultiTexCoord2svARB glew::glcore::glMultiTexCoord2svARB
+#define glMultiTexCoord2xOES glew::glcore::glMultiTexCoord2xOES
+#define glMultiTexCoord2xvOES glew::glcore::glMultiTexCoord2xvOES
+#define glMultiTexCoord3bOES glew::glcore::glMultiTexCoord3bOES
+#define glMultiTexCoord3bvOES glew::glcore::glMultiTexCoord3bvOES
+#define glMultiTexCoord3d glew::glcore::glMultiTexCoord3d
+#define glMultiTexCoord3dARB glew::glcore::glMultiTexCoord3dARB
+#define glMultiTexCoord3dv glew::glcore::glMultiTexCoord3dv
+#define glMultiTexCoord3dvARB glew::glcore::glMultiTexCoord3dvARB
+#define glMultiTexCoord3f glew::glcore::glMultiTexCoord3f
+#define glMultiTexCoord3fARB glew::glcore::glMultiTexCoord3fARB
+#define glMultiTexCoord3fv glew::glcore::glMultiTexCoord3fv
+#define glMultiTexCoord3fvARB glew::glcore::glMultiTexCoord3fvARB
+#define glMultiTexCoord3hNV glew::glcore::glMultiTexCoord3hNV
+#define glMultiTexCoord3hvNV glew::glcore::glMultiTexCoord3hvNV
+#define glMultiTexCoord3i glew::glcore::glMultiTexCoord3i
+#define glMultiTexCoord3iARB glew::glcore::glMultiTexCoord3iARB
+#define glMultiTexCoord3iv glew::glcore::glMultiTexCoord3iv
+#define glMultiTexCoord3ivARB glew::glcore::glMultiTexCoord3ivARB
+#define glMultiTexCoord3s glew::glcore::glMultiTexCoord3s
+#define glMultiTexCoord3sARB glew::glcore::glMultiTexCoord3sARB
+#define glMultiTexCoord3sv glew::glcore::glMultiTexCoord3sv
+#define glMultiTexCoord3svARB glew::glcore::glMultiTexCoord3svARB
+#define glMultiTexCoord3xOES glew::glcore::glMultiTexCoord3xOES
+#define glMultiTexCoord3xvOES glew::glcore::glMultiTexCoord3xvOES
+#define glMultiTexCoord4bOES glew::glcore::glMultiTexCoord4bOES
+#define glMultiTexCoord4bvOES glew::glcore::glMultiTexCoord4bvOES
+#define glMultiTexCoord4d glew::glcore::glMultiTexCoord4d
+#define glMultiTexCoord4dARB glew::glcore::glMultiTexCoord4dARB
+#define glMultiTexCoord4dv glew::glcore::glMultiTexCoord4dv
+#define glMultiTexCoord4dvARB glew::glcore::glMultiTexCoord4dvARB
+#define glMultiTexCoord4f glew::glcore::glMultiTexCoord4f
+#define glMultiTexCoord4fARB glew::glcore::glMultiTexCoord4fARB
+#define glMultiTexCoord4fv glew::glcore::glMultiTexCoord4fv
+#define glMultiTexCoord4fvARB glew::glcore::glMultiTexCoord4fvARB
+#define glMultiTexCoord4hNV glew::glcore::glMultiTexCoord4hNV
+#define glMultiTexCoord4hvNV glew::glcore::glMultiTexCoord4hvNV
+#define glMultiTexCoord4i glew::glcore::glMultiTexCoord4i
+#define glMultiTexCoord4iARB glew::glcore::glMultiTexCoord4iARB
+#define glMultiTexCoord4iv glew::glcore::glMultiTexCoord4iv
+#define glMultiTexCoord4ivARB glew::glcore::glMultiTexCoord4ivARB
+#define glMultiTexCoord4s glew::glcore::glMultiTexCoord4s
+#define glMultiTexCoord4sARB glew::glcore::glMultiTexCoord4sARB
+#define glMultiTexCoord4sv glew::glcore::glMultiTexCoord4sv
+#define glMultiTexCoord4svARB glew::glcore::glMultiTexCoord4svARB
+#define glMultiTexCoord4x glew::glcore::glMultiTexCoord4x
+#define glMultiTexCoord4xOES glew::glcore::glMultiTexCoord4xOES
+#define glMultiTexCoord4xvOES glew::glcore::glMultiTexCoord4xvOES
+#define glMultiTexCoordP1ui glew::glcore::glMultiTexCoordP1ui
+#define glMultiTexCoordP1uiv glew::glcore::glMultiTexCoordP1uiv
+#define glMultiTexCoordP2ui glew::glcore::glMultiTexCoordP2ui
+#define glMultiTexCoordP2uiv glew::glcore::glMultiTexCoordP2uiv
+#define glMultiTexCoordP3ui glew::glcore::glMultiTexCoordP3ui
+#define glMultiTexCoordP3uiv glew::glcore::glMultiTexCoordP3uiv
+#define glMultiTexCoordP4ui glew::glcore::glMultiTexCoordP4ui
+#define glMultiTexCoordP4uiv glew::glcore::glMultiTexCoordP4uiv
+#define glMultiTexCoordPointerEXT glew::glcore::glMultiTexCoordPointerEXT
+#define glMultiTexEnvfEXT glew::glcore::glMultiTexEnvfEXT
+#define glMultiTexEnvfvEXT glew::glcore::glMultiTexEnvfvEXT
+#define glMultiTexEnviEXT glew::glcore::glMultiTexEnviEXT
+#define glMultiTexEnvivEXT glew::glcore::glMultiTexEnvivEXT
+#define glMultiTexGendEXT glew::glcore::glMultiTexGendEXT
+#define glMultiTexGendvEXT glew::glcore::glMultiTexGendvEXT
+#define glMultiTexGenfEXT glew::glcore::glMultiTexGenfEXT
+#define glMultiTexGenfvEXT glew::glcore::glMultiTexGenfvEXT
+#define glMultiTexGeniEXT glew::glcore::glMultiTexGeniEXT
+#define glMultiTexGenivEXT glew::glcore::glMultiTexGenivEXT
+#define glMultiTexImage1DEXT glew::glcore::glMultiTexImage1DEXT
+#define glMultiTexImage2DEXT glew::glcore::glMultiTexImage2DEXT
+#define glMultiTexImage3DEXT glew::glcore::glMultiTexImage3DEXT
+#define glMultiTexParameterIivEXT glew::glcore::glMultiTexParameterIivEXT
+#define glMultiTexParameterIuivEXT glew::glcore::glMultiTexParameterIuivEXT
+#define glMultiTexParameterfEXT glew::glcore::glMultiTexParameterfEXT
+#define glMultiTexParameterfvEXT glew::glcore::glMultiTexParameterfvEXT
+#define glMultiTexParameteriEXT glew::glcore::glMultiTexParameteriEXT
+#define glMultiTexParameterivEXT glew::glcore::glMultiTexParameterivEXT
+#define glMultiTexRenderbufferEXT glew::glcore::glMultiTexRenderbufferEXT
+#define glMultiTexSubImage1DEXT glew::glcore::glMultiTexSubImage1DEXT
+#define glMultiTexSubImage2DEXT glew::glcore::glMultiTexSubImage2DEXT
+#define glMultiTexSubImage3DEXT glew::glcore::glMultiTexSubImage3DEXT
+#define glNamedBufferData glew::glcore::glNamedBufferData
+#define glNamedBufferDataEXT glew::glcore::glNamedBufferDataEXT
+#define glNamedBufferPageCommitmentARB glew::glcore::glNamedBufferPageCommitmentARB
+#define glNamedBufferPageCommitmentEXT glew::glcore::glNamedBufferPageCommitmentEXT
+#define glNamedBufferStorage glew::glcore::glNamedBufferStorage
+#define glNamedBufferStorageEXT glew::glcore::glNamedBufferStorageEXT
+#define glNamedBufferSubData glew::glcore::glNamedBufferSubData
+#define glNamedBufferSubDataEXT glew::glcore::glNamedBufferSubDataEXT
+#define glNamedCopyBufferSubDataEXT glew::glcore::glNamedCopyBufferSubDataEXT
+#define glNamedFramebufferDrawBuffer glew::glcore::glNamedFramebufferDrawBuffer
+#define glNamedFramebufferDrawBuffers glew::glcore::glNamedFramebufferDrawBuffers
+#define glNamedFramebufferParameteri glew::glcore::glNamedFramebufferParameteri
+#define glNamedFramebufferParameteriEXT glew::glcore::glNamedFramebufferParameteriEXT
+#define glNamedFramebufferReadBuffer glew::glcore::glNamedFramebufferReadBuffer
+#define glNamedFramebufferRenderbuffer glew::glcore::glNamedFramebufferRenderbuffer
+#define glNamedFramebufferRenderbufferEXT glew::glcore::glNamedFramebufferRenderbufferEXT
+#define glNamedFramebufferTexture glew::glcore::glNamedFramebufferTexture
+#define glNamedFramebufferTexture1DEXT glew::glcore::glNamedFramebufferTexture1DEXT
+#define glNamedFramebufferTexture2DEXT glew::glcore::glNamedFramebufferTexture2DEXT
+#define glNamedFramebufferTexture3DEXT glew::glcore::glNamedFramebufferTexture3DEXT
+#define glNamedFramebufferTextureEXT glew::glcore::glNamedFramebufferTextureEXT
+#define glNamedFramebufferTextureFaceEXT glew::glcore::glNamedFramebufferTextureFaceEXT
+#define glNamedFramebufferTextureLayer glew::glcore::glNamedFramebufferTextureLayer
+#define glNamedFramebufferTextureLayerEXT glew::glcore::glNamedFramebufferTextureLayerEXT
+#define glNamedProgramLocalParameter4dEXT glew::glcore::glNamedProgramLocalParameter4dEXT
+#define glNamedProgramLocalParameter4dvEXT glew::glcore::glNamedProgramLocalParameter4dvEXT
+#define glNamedProgramLocalParameter4fEXT glew::glcore::glNamedProgramLocalParameter4fEXT
+#define glNamedProgramLocalParameter4fvEXT glew::glcore::glNamedProgramLocalParameter4fvEXT
+#define glNamedProgramLocalParameterI4iEXT glew::glcore::glNamedProgramLocalParameterI4iEXT
+#define glNamedProgramLocalParameterI4ivEXT glew::glcore::glNamedProgramLocalParameterI4ivEXT
+#define glNamedProgramLocalParameterI4uiEXT glew::glcore::glNamedProgramLocalParameterI4uiEXT
+#define glNamedProgramLocalParameterI4uivEXT glew::glcore::glNamedProgramLocalParameterI4uivEXT
+#define glNamedProgramLocalParameters4fvEXT glew::glcore::glNamedProgramLocalParameters4fvEXT
+#define glNamedProgramLocalParametersI4ivEXT glew::glcore::glNamedProgramLocalParametersI4ivEXT
+#define glNamedProgramLocalParametersI4uivEXT glew::glcore::glNamedProgramLocalParametersI4uivEXT
+#define glNamedProgramStringEXT glew::glcore::glNamedProgramStringEXT
+#define glNamedRenderbufferStorage glew::glcore::glNamedRenderbufferStorage
+#define glNamedRenderbufferStorageEXT glew::glcore::glNamedRenderbufferStorageEXT
+#define glNamedRenderbufferStorageMultisample glew::glcore::glNamedRenderbufferStorageMultisample
+#define glNamedRenderbufferStorageMultisampleCoverageEXT glew::glcore::glNamedRenderbufferStorageMultisampleCoverageEXT
+#define glNamedRenderbufferStorageMultisampleEXT glew::glcore::glNamedRenderbufferStorageMultisampleEXT
+#define glNamedStringARB glew::glcore::glNamedStringARB
+#define glNewList glew::glcore::glNewList
+#define glNewObjectBufferATI glew::glcore::glNewObjectBufferATI
+#define glNormal3b glew::glcore::glNormal3b
+#define glNormal3bv glew::glcore::glNormal3bv
+#define glNormal3d glew::glcore::glNormal3d
+#define glNormal3dv glew::glcore::glNormal3dv
+#define glNormal3f glew::glcore::glNormal3f
+#define glNormal3fVertex3fSUN glew::glcore::glNormal3fVertex3fSUN
+#define glNormal3fVertex3fvSUN glew::glcore::glNormal3fVertex3fvSUN
+#define glNormal3fv glew::glcore::glNormal3fv
+#define glNormal3hNV glew::glcore::glNormal3hNV
+#define glNormal3hvNV glew::glcore::glNormal3hvNV
+#define glNormal3i glew::glcore::glNormal3i
+#define glNormal3iv glew::glcore::glNormal3iv
+#define glNormal3s glew::glcore::glNormal3s
+#define glNormal3sv glew::glcore::glNormal3sv
+#define glNormal3x glew::glcore::glNormal3x
+#define glNormal3xOES glew::glcore::glNormal3xOES
+#define glNormal3xvOES glew::glcore::glNormal3xvOES
+#define glNormalFormatNV glew::glcore::glNormalFormatNV
+#define glNormalP3ui glew::glcore::glNormalP3ui
+#define glNormalP3uiv glew::glcore::glNormalP3uiv
+#define glNormalPointer glew::glcore::glNormalPointer
+#define glNormalPointerEXT glew::glcore::glNormalPointerEXT
+#define glNormalPointerListIBM glew::glcore::glNormalPointerListIBM
+#define glNormalPointervINTEL glew::glcore::glNormalPointervINTEL
+#define glNormalStream3bATI glew::glcore::glNormalStream3bATI
+#define glNormalStream3bvATI glew::glcore::glNormalStream3bvATI
+#define glNormalStream3dATI glew::glcore::glNormalStream3dATI
+#define glNormalStream3dvATI glew::glcore::glNormalStream3dvATI
+#define glNormalStream3fATI glew::glcore::glNormalStream3fATI
+#define glNormalStream3fvATI glew::glcore::glNormalStream3fvATI
+#define glNormalStream3iATI glew::glcore::glNormalStream3iATI
+#define glNormalStream3ivATI glew::glcore::glNormalStream3ivATI
+#define glNormalStream3sATI glew::glcore::glNormalStream3sATI
+#define glNormalStream3svATI glew::glcore::glNormalStream3svATI
+#define glObjectLabel glew::glcore::glObjectLabel
+#define glObjectLabelKHR glew::glcore::glObjectLabelKHR
+#define glObjectPtrLabel glew::glcore::glObjectPtrLabel
+#define glObjectPtrLabelKHR glew::glcore::glObjectPtrLabelKHR
+#define glObjectPurgeableAPPLE glew::glcore::glObjectPurgeableAPPLE
+#define glObjectUnpurgeableAPPLE glew::glcore::glObjectUnpurgeableAPPLE
+#define glOrtho glew::glcore::glOrtho
+#define glOrthof glew::glcore::glOrthof
+#define glOrthofOES glew::glcore::glOrthofOES
+#define glOrthox glew::glcore::glOrthox
+#define glOrthoxOES glew::glcore::glOrthoxOES
+#define glPNTrianglesfATI glew::glcore::glPNTrianglesfATI
+#define glPNTrianglesiATI glew::glcore::glPNTrianglesiATI
+#define glPassTexCoordATI glew::glcore::glPassTexCoordATI
+#define glPassThrough glew::glcore::glPassThrough
+#define glPassThroughxOES glew::glcore::glPassThroughxOES
+#define glPatchParameterfv glew::glcore::glPatchParameterfv
+#define glPatchParameteri glew::glcore::glPatchParameteri
+#define glPatchParameteriEXT glew::glcore::glPatchParameteriEXT
+#define glPatchParameteriOES glew::glcore::glPatchParameteriOES
+#define glPathColorGenNV glew::glcore::glPathColorGenNV
+#define glPathCommandsNV glew::glcore::glPathCommandsNV
+#define glPathCoordsNV glew::glcore::glPathCoordsNV
+#define glPathCoverDepthFuncNV glew::glcore::glPathCoverDepthFuncNV
+#define glPathDashArrayNV glew::glcore::glPathDashArrayNV
+#define glPathFogGenNV glew::glcore::glPathFogGenNV
+#define glPathGlyphIndexArrayNV glew::glcore::glPathGlyphIndexArrayNV
+#define glPathGlyphIndexRangeNV glew::glcore::glPathGlyphIndexRangeNV
+#define glPathGlyphRangeNV glew::glcore::glPathGlyphRangeNV
+#define glPathGlyphsNV glew::glcore::glPathGlyphsNV
+#define glPathMemoryGlyphIndexArrayNV glew::glcore::glPathMemoryGlyphIndexArrayNV
+#define glPathParameterfNV glew::glcore::glPathParameterfNV
+#define glPathParameterfvNV glew::glcore::glPathParameterfvNV
+#define glPathParameteriNV glew::glcore::glPathParameteriNV
+#define glPathParameterivNV glew::glcore::glPathParameterivNV
+#define glPathStencilDepthOffsetNV glew::glcore::glPathStencilDepthOffsetNV
+#define glPathStencilFuncNV glew::glcore::glPathStencilFuncNV
+#define glPathStringNV glew::glcore::glPathStringNV
+#define glPathSubCommandsNV glew::glcore::glPathSubCommandsNV
+#define glPathSubCoordsNV glew::glcore::glPathSubCoordsNV
+#define glPathTexGenNV glew::glcore::glPathTexGenNV
+#define glPauseTransformFeedback glew::glcore::glPauseTransformFeedback
+#define glPauseTransformFeedbackNV glew::glcore::glPauseTransformFeedbackNV
+#define glPixelDataRangeNV glew::glcore::glPixelDataRangeNV
+#define glPixelMapfv glew::glcore::glPixelMapfv
+#define glPixelMapuiv glew::glcore::glPixelMapuiv
+#define glPixelMapusv glew::glcore::glPixelMapusv
+#define glPixelMapx glew::glcore::glPixelMapx
+#define glPixelStoref glew::glcore::glPixelStoref
+#define glPixelStorei glew::glcore::glPixelStorei
+#define glPixelStorex glew::glcore::glPixelStorex
+#define glPixelTexGenParameterfSGIS glew::glcore::glPixelTexGenParameterfSGIS
+#define glPixelTexGenParameterfvSGIS glew::glcore::glPixelTexGenParameterfvSGIS
+#define glPixelTexGenParameteriSGIS glew::glcore::glPixelTexGenParameteriSGIS
+#define glPixelTexGenParameterivSGIS glew::glcore::glPixelTexGenParameterivSGIS
+#define glPixelTexGenSGIX glew::glcore::glPixelTexGenSGIX
+#define glPixelTransferf glew::glcore::glPixelTransferf
+#define glPixelTransferi glew::glcore::glPixelTransferi
+#define glPixelTransferxOES glew::glcore::glPixelTransferxOES
+#define glPixelTransformParameterfEXT glew::glcore::glPixelTransformParameterfEXT
+#define glPixelTransformParameterfvEXT glew::glcore::glPixelTransformParameterfvEXT
+#define glPixelTransformParameteriEXT glew::glcore::glPixelTransformParameteriEXT
+#define glPixelTransformParameterivEXT glew::glcore::glPixelTransformParameterivEXT
+#define glPixelZoom glew::glcore::glPixelZoom
+#define glPixelZoomxOES glew::glcore::glPixelZoomxOES
+#define glPointAlongPathNV glew::glcore::glPointAlongPathNV
+#define glPointParameterf glew::glcore::glPointParameterf
+#define glPointParameterfARB glew::glcore::glPointParameterfARB
+#define glPointParameterfEXT glew::glcore::glPointParameterfEXT
+#define glPointParameterfSGIS glew::glcore::glPointParameterfSGIS
+#define glPointParameterfv glew::glcore::glPointParameterfv
+#define glPointParameterfvARB glew::glcore::glPointParameterfvARB
+#define glPointParameterfvEXT glew::glcore::glPointParameterfvEXT
+#define glPointParameterfvSGIS glew::glcore::glPointParameterfvSGIS
+#define glPointParameteri glew::glcore::glPointParameteri
+#define glPointParameteriNV glew::glcore::glPointParameteriNV
+#define glPointParameteriv glew::glcore::glPointParameteriv
+#define glPointParameterivNV glew::glcore::glPointParameterivNV
+#define glPointParameterx glew::glcore::glPointParameterx
+#define glPointParameterxOES glew::glcore::glPointParameterxOES
+#define glPointParameterxv glew::glcore::glPointParameterxv
+#define glPointParameterxvOES glew::glcore::glPointParameterxvOES
+#define glPointSize glew::glcore::glPointSize
+#define glPointSizePointerOES glew::glcore::glPointSizePointerOES
+#define glPointSizex glew::glcore::glPointSizex
+#define glPointSizexOES glew::glcore::glPointSizexOES
+#define glPollAsyncSGIX glew::glcore::glPollAsyncSGIX
+#define glPollInstrumentsSGIX glew::glcore::glPollInstrumentsSGIX
+#define glPolygonMode glew::glcore::glPolygonMode
+#define glPolygonModeNV glew::glcore::glPolygonModeNV
+#define glPolygonOffset glew::glcore::glPolygonOffset
+#define glPolygonOffsetEXT glew::glcore::glPolygonOffsetEXT
+#define glPolygonOffsetx glew::glcore::glPolygonOffsetx
+#define glPolygonOffsetxOES glew::glcore::glPolygonOffsetxOES
+#define glPolygonOffsetClampEXT glew::glcore::glPolygonOffsetClampEXT
+#define glPolygonStipple glew::glcore::glPolygonStipple
+#define glPopAttrib glew::glcore::glPopAttrib
+#define glPopClientAttrib glew::glcore::glPopClientAttrib
+#define glPopDebugGroup glew::glcore::glPopDebugGroup
+#define glPopDebugGroupKHR glew::glcore::glPopDebugGroupKHR
+#define glPopGroupMarkerEXT glew::glcore::glPopGroupMarkerEXT
+#define glPopMatrix glew::glcore::glPopMatrix
+#define glPopName glew::glcore::glPopName
+#define glPresentFrameDualFillNV glew::glcore::glPresentFrameDualFillNV
+#define glPresentFrameKeyedNV glew::glcore::glPresentFrameKeyedNV
+#define glPrimitiveBoundingBoxEXT glew::glcore::glPrimitiveBoundingBoxEXT
+#define glPrimitiveBoundingBoxOES glew::glcore::glPrimitiveBoundingBoxOES
+#define glPrimitiveRestartIndex glew::glcore::glPrimitiveRestartIndex
+#define glPrimitiveRestartIndexNV glew::glcore::glPrimitiveRestartIndexNV
+#define glPrimitiveRestartNV glew::glcore::glPrimitiveRestartNV
+#define glPrioritizeTextures glew::glcore::glPrioritizeTextures
+#define glPrioritizeTexturesEXT glew::glcore::glPrioritizeTexturesEXT
+#define glPrioritizeTexturesxOES glew::glcore::glPrioritizeTexturesxOES
+#define glProgramBinary glew::glcore::glProgramBinary
+#define glProgramBinaryOES glew::glcore::glProgramBinaryOES
+#define glProgramBufferParametersIivNV glew::glcore::glProgramBufferParametersIivNV
+#define glProgramBufferParametersIuivNV glew::glcore::glProgramBufferParametersIuivNV
+#define glProgramBufferParametersfvNV glew::glcore::glProgramBufferParametersfvNV
+#define glProgramEnvParameter4dARB glew::glcore::glProgramEnvParameter4dARB
+#define glProgramEnvParameter4dvARB glew::glcore::glProgramEnvParameter4dvARB
+#define glProgramEnvParameter4fARB glew::glcore::glProgramEnvParameter4fARB
+#define glProgramEnvParameter4fvARB glew::glcore::glProgramEnvParameter4fvARB
+#define glProgramEnvParameterI4iNV glew::glcore::glProgramEnvParameterI4iNV
+#define glProgramEnvParameterI4ivNV glew::glcore::glProgramEnvParameterI4ivNV
+#define glProgramEnvParameterI4uiNV glew::glcore::glProgramEnvParameterI4uiNV
+#define glProgramEnvParameterI4uivNV glew::glcore::glProgramEnvParameterI4uivNV
+#define glProgramEnvParameters4fvEXT glew::glcore::glProgramEnvParameters4fvEXT
+#define glProgramEnvParametersI4ivNV glew::glcore::glProgramEnvParametersI4ivNV
+#define glProgramEnvParametersI4uivNV glew::glcore::glProgramEnvParametersI4uivNV
+#define glProgramLocalParameter4dARB glew::glcore::glProgramLocalParameter4dARB
+#define glProgramLocalParameter4dvARB glew::glcore::glProgramLocalParameter4dvARB
+#define glProgramLocalParameter4fARB glew::glcore::glProgramLocalParameter4fARB
+#define glProgramLocalParameter4fvARB glew::glcore::glProgramLocalParameter4fvARB
+#define glProgramLocalParameterI4iNV glew::glcore::glProgramLocalParameterI4iNV
+#define glProgramLocalParameterI4ivNV glew::glcore::glProgramLocalParameterI4ivNV
+#define glProgramLocalParameterI4uiNV glew::glcore::glProgramLocalParameterI4uiNV
+#define glProgramLocalParameterI4uivNV glew::glcore::glProgramLocalParameterI4uivNV
+#define glProgramLocalParameters4fvEXT glew::glcore::glProgramLocalParameters4fvEXT
+#define glProgramLocalParametersI4ivNV glew::glcore::glProgramLocalParametersI4ivNV
+#define glProgramLocalParametersI4uivNV glew::glcore::glProgramLocalParametersI4uivNV
+#define glProgramNamedParameter4dNV glew::glcore::glProgramNamedParameter4dNV
+#define glProgramNamedParameter4dvNV glew::glcore::glProgramNamedParameter4dvNV
+#define glProgramNamedParameter4fNV glew::glcore::glProgramNamedParameter4fNV
+#define glProgramNamedParameter4fvNV glew::glcore::glProgramNamedParameter4fvNV
+#define glProgramParameter4dNV glew::glcore::glProgramParameter4dNV
+#define glProgramParameter4dvNV glew::glcore::glProgramParameter4dvNV
+#define glProgramParameter4fNV glew::glcore::glProgramParameter4fNV
+#define glProgramParameter4fvNV glew::glcore::glProgramParameter4fvNV
+#define glProgramParameteri glew::glcore::glProgramParameteri
+#define glProgramParameteriARB glew::glcore::glProgramParameteriARB
+#define glProgramParameteriEXT glew::glcore::glProgramParameteriEXT
+#define glProgramParameters4dvNV glew::glcore::glProgramParameters4dvNV
+#define glProgramParameters4fvNV glew::glcore::glProgramParameters4fvNV
+#define glProgramPathFragmentInputGenNV glew::glcore::glProgramPathFragmentInputGenNV
+#define glProgramStringARB glew::glcore::glProgramStringARB
+#define glProgramSubroutineParametersuivNV glew::glcore::glProgramSubroutineParametersuivNV
+#define glProgramUniform1d glew::glcore::glProgramUniform1d
+#define glProgramUniform1dEXT glew::glcore::glProgramUniform1dEXT
+#define glProgramUniform1dv glew::glcore::glProgramUniform1dv
+#define glProgramUniform1dvEXT glew::glcore::glProgramUniform1dvEXT
+#define glProgramUniform1f glew::glcore::glProgramUniform1f
+#define glProgramUniform1fEXT glew::glcore::glProgramUniform1fEXT
+#define glProgramUniform1fv glew::glcore::glProgramUniform1fv
+#define glProgramUniform1fvEXT glew::glcore::glProgramUniform1fvEXT
+#define glProgramUniform1i glew::glcore::glProgramUniform1i
+#define glProgramUniform1i64NV glew::glcore::glProgramUniform1i64NV
+#define glProgramUniform1i64vNV glew::glcore::glProgramUniform1i64vNV
+#define glProgramUniform1iEXT glew::glcore::glProgramUniform1iEXT
+#define glProgramUniform1iv glew::glcore::glProgramUniform1iv
+#define glProgramUniform1ivEXT glew::glcore::glProgramUniform1ivEXT
+#define glProgramUniform1ui glew::glcore::glProgramUniform1ui
+#define glProgramUniform1ui64NV glew::glcore::glProgramUniform1ui64NV
+#define glProgramUniform1ui64vNV glew::glcore::glProgramUniform1ui64vNV
+#define glProgramUniform1uiEXT glew::glcore::glProgramUniform1uiEXT
+#define glProgramUniform1uiv glew::glcore::glProgramUniform1uiv
+#define glProgramUniform1uivEXT glew::glcore::glProgramUniform1uivEXT
+#define glProgramUniform2d glew::glcore::glProgramUniform2d
+#define glProgramUniform2dEXT glew::glcore::glProgramUniform2dEXT
+#define glProgramUniform2dv glew::glcore::glProgramUniform2dv
+#define glProgramUniform2dvEXT glew::glcore::glProgramUniform2dvEXT
+#define glProgramUniform2f glew::glcore::glProgramUniform2f
+#define glProgramUniform2fEXT glew::glcore::glProgramUniform2fEXT
+#define glProgramUniform2fv glew::glcore::glProgramUniform2fv
+#define glProgramUniform2fvEXT glew::glcore::glProgramUniform2fvEXT
+#define glProgramUniform2i glew::glcore::glProgramUniform2i
+#define glProgramUniform2i64NV glew::glcore::glProgramUniform2i64NV
+#define glProgramUniform2i64vNV glew::glcore::glProgramUniform2i64vNV
+#define glProgramUniform2iEXT glew::glcore::glProgramUniform2iEXT
+#define glProgramUniform2iv glew::glcore::glProgramUniform2iv
+#define glProgramUniform2ivEXT glew::glcore::glProgramUniform2ivEXT
+#define glProgramUniform2ui glew::glcore::glProgramUniform2ui
+#define glProgramUniform2ui64NV glew::glcore::glProgramUniform2ui64NV
+#define glProgramUniform2ui64vNV glew::glcore::glProgramUniform2ui64vNV
+#define glProgramUniform2uiEXT glew::glcore::glProgramUniform2uiEXT
+#define glProgramUniform2uiv glew::glcore::glProgramUniform2uiv
+#define glProgramUniform2uivEXT glew::glcore::glProgramUniform2uivEXT
+#define glProgramUniform3d glew::glcore::glProgramUniform3d
+#define glProgramUniform3dEXT glew::glcore::glProgramUniform3dEXT
+#define glProgramUniform3dv glew::glcore::glProgramUniform3dv
+#define glProgramUniform3dvEXT glew::glcore::glProgramUniform3dvEXT
+#define glProgramUniform3f glew::glcore::glProgramUniform3f
+#define glProgramUniform3fEXT glew::glcore::glProgramUniform3fEXT
+#define glProgramUniform3fv glew::glcore::glProgramUniform3fv
+#define glProgramUniform3fvEXT glew::glcore::glProgramUniform3fvEXT
+#define glProgramUniform3i glew::glcore::glProgramUniform3i
+#define glProgramUniform3i64NV glew::glcore::glProgramUniform3i64NV
+#define glProgramUniform3i64vNV glew::glcore::glProgramUniform3i64vNV
+#define glProgramUniform3iEXT glew::glcore::glProgramUniform3iEXT
+#define glProgramUniform3iv glew::glcore::glProgramUniform3iv
+#define glProgramUniform3ivEXT glew::glcore::glProgramUniform3ivEXT
+#define glProgramUniform3ui glew::glcore::glProgramUniform3ui
+#define glProgramUniform3ui64NV glew::glcore::glProgramUniform3ui64NV
+#define glProgramUniform3ui64vNV glew::glcore::glProgramUniform3ui64vNV
+#define glProgramUniform3uiEXT glew::glcore::glProgramUniform3uiEXT
+#define glProgramUniform3uiv glew::glcore::glProgramUniform3uiv
+#define glProgramUniform3uivEXT glew::glcore::glProgramUniform3uivEXT
+#define glProgramUniform4d glew::glcore::glProgramUniform4d
+#define glProgramUniform4dEXT glew::glcore::glProgramUniform4dEXT
+#define glProgramUniform4dv glew::glcore::glProgramUniform4dv
+#define glProgramUniform4dvEXT glew::glcore::glProgramUniform4dvEXT
+#define glProgramUniform4f glew::glcore::glProgramUniform4f
+#define glProgramUniform4fEXT glew::glcore::glProgramUniform4fEXT
+#define glProgramUniform4fv glew::glcore::glProgramUniform4fv
+#define glProgramUniform4fvEXT glew::glcore::glProgramUniform4fvEXT
+#define glProgramUniform4i glew::glcore::glProgramUniform4i
+#define glProgramUniform4i64NV glew::glcore::glProgramUniform4i64NV
+#define glProgramUniform4i64vNV glew::glcore::glProgramUniform4i64vNV
+#define glProgramUniform4iEXT glew::glcore::glProgramUniform4iEXT
+#define glProgramUniform4iv glew::glcore::glProgramUniform4iv
+#define glProgramUniform4ivEXT glew::glcore::glProgramUniform4ivEXT
+#define glProgramUniform4ui glew::glcore::glProgramUniform4ui
+#define glProgramUniform4ui64NV glew::glcore::glProgramUniform4ui64NV
+#define glProgramUniform4ui64vNV glew::glcore::glProgramUniform4ui64vNV
+#define glProgramUniform4uiEXT glew::glcore::glProgramUniform4uiEXT
+#define glProgramUniform4uiv glew::glcore::glProgramUniform4uiv
+#define glProgramUniform4uivEXT glew::glcore::glProgramUniform4uivEXT
+#define glProgramUniformHandleui64ARB glew::glcore::glProgramUniformHandleui64ARB
+#define glProgramUniformHandleui64NV glew::glcore::glProgramUniformHandleui64NV
+#define glProgramUniformHandleui64vARB glew::glcore::glProgramUniformHandleui64vARB
+#define glProgramUniformHandleui64vNV glew::glcore::glProgramUniformHandleui64vNV
+#define glProgramUniformMatrix2dv glew::glcore::glProgramUniformMatrix2dv
+#define glProgramUniformMatrix2dvEXT glew::glcore::glProgramUniformMatrix2dvEXT
+#define glProgramUniformMatrix2fv glew::glcore::glProgramUniformMatrix2fv
+#define glProgramUniformMatrix2fvEXT glew::glcore::glProgramUniformMatrix2fvEXT
+#define glProgramUniformMatrix2x3dv glew::glcore::glProgramUniformMatrix2x3dv
+#define glProgramUniformMatrix2x3dvEXT glew::glcore::glProgramUniformMatrix2x3dvEXT
+#define glProgramUniformMatrix2x3fv glew::glcore::glProgramUniformMatrix2x3fv
+#define glProgramUniformMatrix2x3fvEXT glew::glcore::glProgramUniformMatrix2x3fvEXT
+#define glProgramUniformMatrix2x4dv glew::glcore::glProgramUniformMatrix2x4dv
+#define glProgramUniformMatrix2x4dvEXT glew::glcore::glProgramUniformMatrix2x4dvEXT
+#define glProgramUniformMatrix2x4fv glew::glcore::glProgramUniformMatrix2x4fv
+#define glProgramUniformMatrix2x4fvEXT glew::glcore::glProgramUniformMatrix2x4fvEXT
+#define glProgramUniformMatrix3dv glew::glcore::glProgramUniformMatrix3dv
+#define glProgramUniformMatrix3dvEXT glew::glcore::glProgramUniformMatrix3dvEXT
+#define glProgramUniformMatrix3fv glew::glcore::glProgramUniformMatrix3fv
+#define glProgramUniformMatrix3fvEXT glew::glcore::glProgramUniformMatrix3fvEXT
+#define glProgramUniformMatrix3x2dv glew::glcore::glProgramUniformMatrix3x2dv
+#define glProgramUniformMatrix3x2dvEXT glew::glcore::glProgramUniformMatrix3x2dvEXT
+#define glProgramUniformMatrix3x2fv glew::glcore::glProgramUniformMatrix3x2fv
+#define glProgramUniformMatrix3x2fvEXT glew::glcore::glProgramUniformMatrix3x2fvEXT
+#define glProgramUniformMatrix3x4dv glew::glcore::glProgramUniformMatrix3x4dv
+#define glProgramUniformMatrix3x4dvEXT glew::glcore::glProgramUniformMatrix3x4dvEXT
+#define glProgramUniformMatrix3x4fv glew::glcore::glProgramUniformMatrix3x4fv
+#define glProgramUniformMatrix3x4fvEXT glew::glcore::glProgramUniformMatrix3x4fvEXT
+#define glProgramUniformMatrix4dv glew::glcore::glProgramUniformMatrix4dv
+#define glProgramUniformMatrix4dvEXT glew::glcore::glProgramUniformMatrix4dvEXT
+#define glProgramUniformMatrix4fv glew::glcore::glProgramUniformMatrix4fv
+#define glProgramUniformMatrix4fvEXT glew::glcore::glProgramUniformMatrix4fvEXT
+#define glProgramUniformMatrix4x2dv glew::glcore::glProgramUniformMatrix4x2dv
+#define glProgramUniformMatrix4x2dvEXT glew::glcore::glProgramUniformMatrix4x2dvEXT
+#define glProgramUniformMatrix4x2fv glew::glcore::glProgramUniformMatrix4x2fv
+#define glProgramUniformMatrix4x2fvEXT glew::glcore::glProgramUniformMatrix4x2fvEXT
+#define glProgramUniformMatrix4x3dv glew::glcore::glProgramUniformMatrix4x3dv
+#define glProgramUniformMatrix4x3dvEXT glew::glcore::glProgramUniformMatrix4x3dvEXT
+#define glProgramUniformMatrix4x3fv glew::glcore::glProgramUniformMatrix4x3fv
+#define glProgramUniformMatrix4x3fvEXT glew::glcore::glProgramUniformMatrix4x3fvEXT
+#define glProgramUniformui64NV glew::glcore::glProgramUniformui64NV
+#define glProgramUniformui64vNV glew::glcore::glProgramUniformui64vNV
+#define glProgramVertexLimitNV glew::glcore::glProgramVertexLimitNV
+#define glProvokingVertex glew::glcore::glProvokingVertex
+#define glProvokingVertexEXT glew::glcore::glProvokingVertexEXT
+#define glPushAttrib glew::glcore::glPushAttrib
+#define glPushClientAttrib glew::glcore::glPushClientAttrib
+#define glPushClientAttribDefaultEXT glew::glcore::glPushClientAttribDefaultEXT
+#define glPushDebugGroup glew::glcore::glPushDebugGroup
+#define glPushDebugGroupKHR glew::glcore::glPushDebugGroupKHR
+#define glPushGroupMarkerEXT glew::glcore::glPushGroupMarkerEXT
+#define glPushMatrix glew::glcore::glPushMatrix
+#define glPushName glew::glcore::glPushName
+#define glQueryCounter glew::glcore::glQueryCounter
+#define glQueryCounterEXT glew::glcore::glQueryCounterEXT
+#define glQueryMatrixxOES glew::glcore::glQueryMatrixxOES
+#define glQueryObjectParameteruiAMD glew::glcore::glQueryObjectParameteruiAMD
+#define glRasterPos2d glew::glcore::glRasterPos2d
+#define glRasterPos2dv glew::glcore::glRasterPos2dv
+#define glRasterPos2f glew::glcore::glRasterPos2f
+#define glRasterPos2fv glew::glcore::glRasterPos2fv
+#define glRasterPos2i glew::glcore::glRasterPos2i
+#define glRasterPos2iv glew::glcore::glRasterPos2iv
+#define glRasterPos2s glew::glcore::glRasterPos2s
+#define glRasterPos2sv glew::glcore::glRasterPos2sv
+#define glRasterPos2xOES glew::glcore::glRasterPos2xOES
+#define glRasterPos2xvOES glew::glcore::glRasterPos2xvOES
+#define glRasterPos3d glew::glcore::glRasterPos3d
+#define glRasterPos3dv glew::glcore::glRasterPos3dv
+#define glRasterPos3f glew::glcore::glRasterPos3f
+#define glRasterPos3fv glew::glcore::glRasterPos3fv
+#define glRasterPos3i glew::glcore::glRasterPos3i
+#define glRasterPos3iv glew::glcore::glRasterPos3iv
+#define glRasterPos3s glew::glcore::glRasterPos3s
+#define glRasterPos3sv glew::glcore::glRasterPos3sv
+#define glRasterPos3xOES glew::glcore::glRasterPos3xOES
+#define glRasterPos3xvOES glew::glcore::glRasterPos3xvOES
+#define glRasterPos4d glew::glcore::glRasterPos4d
+#define glRasterPos4dv glew::glcore::glRasterPos4dv
+#define glRasterPos4f glew::glcore::glRasterPos4f
+#define glRasterPos4fv glew::glcore::glRasterPos4fv
+#define glRasterPos4i glew::glcore::glRasterPos4i
+#define glRasterPos4iv glew::glcore::glRasterPos4iv
+#define glRasterPos4s glew::glcore::glRasterPos4s
+#define glRasterPos4sv glew::glcore::glRasterPos4sv
+#define glRasterPos4xOES glew::glcore::glRasterPos4xOES
+#define glRasterPos4xvOES glew::glcore::glRasterPos4xvOES
+#define glReadBuffer glew::glcore::glReadBuffer
+#define glReadBufferIndexedEXT glew::glcore::glReadBufferIndexedEXT
+#define glReadBufferNV glew::glcore::glReadBufferNV
+#define glReadInstrumentsSGIX glew::glcore::glReadInstrumentsSGIX
+#define glReadPixels glew::glcore::glReadPixels
+#define glReadnPixels glew::glcore::glReadnPixels
+#define glReadnPixelsARB glew::glcore::glReadnPixelsARB
+#define glReadnPixelsEXT glew::glcore::glReadnPixelsEXT
+#define glReadnPixelsKHR glew::glcore::glReadnPixelsKHR
+#define glRectd glew::glcore::glRectd
+#define glRectdv glew::glcore::glRectdv
+#define glRectf glew::glcore::glRectf
+#define glRectfv glew::glcore::glRectfv
+#define glRecti glew::glcore::glRecti
+#define glRectiv glew::glcore::glRectiv
+#define glRects glew::glcore::glRects
+#define glRectsv glew::glcore::glRectsv
+#define glRectxOES glew::glcore::glRectxOES
+#define glRectxvOES glew::glcore::glRectxvOES
+#define glReferencePlaneSGIX glew::glcore::glReferencePlaneSGIX
+#define glReleaseShaderCompiler glew::glcore::glReleaseShaderCompiler
+#define glRenderMode glew::glcore::glRenderMode
+#define glRenderbufferStorage glew::glcore::glRenderbufferStorage
+#define glRenderbufferStorageEXT glew::glcore::glRenderbufferStorageEXT
+#define glRenderbufferStorageMultisample glew::glcore::glRenderbufferStorageMultisample
+#define glRenderbufferStorageMultisampleANGLE glew::glcore::glRenderbufferStorageMultisampleANGLE
+#define glRenderbufferStorageMultisampleAPPLE glew::glcore::glRenderbufferStorageMultisampleAPPLE
+#define glRenderbufferStorageMultisampleCoverageNV glew::glcore::glRenderbufferStorageMultisampleCoverageNV
+#define glRenderbufferStorageMultisampleEXT glew::glcore::glRenderbufferStorageMultisampleEXT
+#define glRenderbufferStorageMultisampleIMG glew::glcore::glRenderbufferStorageMultisampleIMG
+#define glRenderbufferStorageMultisampleNV glew::glcore::glRenderbufferStorageMultisampleNV
+#define glRenderbufferStorageOES glew::glcore::glRenderbufferStorageOES
+#define glReplacementCodePointerSUN glew::glcore::glReplacementCodePointerSUN
+#define glReplacementCodeubSUN glew::glcore::glReplacementCodeubSUN
+#define glReplacementCodeubvSUN glew::glcore::glReplacementCodeubvSUN
+#define glReplacementCodeuiColor3fVertex3fSUN glew::glcore::glReplacementCodeuiColor3fVertex3fSUN
+#define glReplacementCodeuiColor3fVertex3fvSUN glew::glcore::glReplacementCodeuiColor3fVertex3fvSUN
+#define glReplacementCodeuiColor4fNormal3fVertex3fSUN glew::glcore::glReplacementCodeuiColor4fNormal3fVertex3fSUN
+#define glReplacementCodeuiColor4fNormal3fVertex3fvSUN glew::glcore::glReplacementCodeuiColor4fNormal3fVertex3fvSUN
+#define glReplacementCodeuiColor4ubVertex3fSUN glew::glcore::glReplacementCodeuiColor4ubVertex3fSUN
+#define glReplacementCodeuiColor4ubVertex3fvSUN glew::glcore::glReplacementCodeuiColor4ubVertex3fvSUN
+#define glReplacementCodeuiNormal3fVertex3fSUN glew::glcore::glReplacementCodeuiNormal3fVertex3fSUN
+#define glReplacementCodeuiNormal3fVertex3fvSUN glew::glcore::glReplacementCodeuiNormal3fVertex3fvSUN
+#define glReplacementCodeuiSUN glew::glcore::glReplacementCodeuiSUN
+#define glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN glew::glcore::glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN
+#define glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN glew::glcore::glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN
+#define glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN glew::glcore::glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN
+#define glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN glew::glcore::glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN
+#define glReplacementCodeuiTexCoord2fVertex3fSUN glew::glcore::glReplacementCodeuiTexCoord2fVertex3fSUN
+#define glReplacementCodeuiTexCoord2fVertex3fvSUN glew::glcore::glReplacementCodeuiTexCoord2fVertex3fvSUN
+#define glReplacementCodeuiVertex3fSUN glew::glcore::glReplacementCodeuiVertex3fSUN
+#define glReplacementCodeuiVertex3fvSUN glew::glcore::glReplacementCodeuiVertex3fvSUN
+#define glReplacementCodeuivSUN glew::glcore::glReplacementCodeuivSUN
+#define glReplacementCodeusSUN glew::glcore::glReplacementCodeusSUN
+#define glReplacementCodeusvSUN glew::glcore::glReplacementCodeusvSUN
+#define glRequestResidentProgramsNV glew::glcore::glRequestResidentProgramsNV
+#define glResetHistogram glew::glcore::glResetHistogram
+#define glResetHistogramEXT glew::glcore::glResetHistogramEXT
+#define glResetMinmax glew::glcore::glResetMinmax
+#define glResetMinmaxEXT glew::glcore::glResetMinmaxEXT
+#define glResizeBuffersMESA glew::glcore::glResizeBuffersMESA
+#define glResolveMultisampleFramebufferAPPLE glew::glcore::glResolveMultisampleFramebufferAPPLE
+#define glResumeTransformFeedback glew::glcore::glResumeTransformFeedback
+#define glResumeTransformFeedbackNV glew::glcore::glResumeTransformFeedbackNV
+#define glRotated glew::glcore::glRotated
+#define glRotatef glew::glcore::glRotatef
+#define glRotatex glew::glcore::glRotatex
+#define glRotatexOES glew::glcore::glRotatexOES
+#define glSampleCoverage glew::glcore::glSampleCoverage
+#define glSampleCoverageARB glew::glcore::glSampleCoverageARB
+#define glSampleCoveragex glew::glcore::glSampleCoveragex
+#define glSampleCoveragexOES glew::glcore::glSampleCoveragexOES
+#define glSampleMapATI glew::glcore::glSampleMapATI
+#define glSampleMaskEXT glew::glcore::glSampleMaskEXT
+#define glSampleMaskIndexedNV glew::glcore::glSampleMaskIndexedNV
+#define glSampleMaskSGIS glew::glcore::glSampleMaskSGIS
+#define glSampleMaski glew::glcore::glSampleMaski
+#define glSamplePatternEXT glew::glcore::glSamplePatternEXT
+#define glSamplePatternSGIS glew::glcore::glSamplePatternSGIS
+#define glSamplerParameterIiv glew::glcore::glSamplerParameterIiv
+#define glSamplerParameterIivEXT glew::glcore::glSamplerParameterIivEXT
+#define glSamplerParameterIivOES glew::glcore::glSamplerParameterIivOES
+#define glSamplerParameterIuiv glew::glcore::glSamplerParameterIuiv
+#define glSamplerParameterIuivEXT glew::glcore::glSamplerParameterIuivEXT
+#define glSamplerParameterIuivOES glew::glcore::glSamplerParameterIuivOES
+#define glSamplerParameterf glew::glcore::glSamplerParameterf
+#define glSamplerParameterfv glew::glcore::glSamplerParameterfv
+#define glSamplerParameteri glew::glcore::glSamplerParameteri
+#define glSamplerParameteriv glew::glcore::glSamplerParameteriv
+#define glScaled glew::glcore::glScaled
+#define glScalef glew::glcore::glScalef
+#define glScalex glew::glcore::glScalex
+#define glScalexOES glew::glcore::glScalexOES
+#define glScissor glew::glcore::glScissor
+#define glScissorArrayv glew::glcore::glScissorArrayv
+#define glScissorArrayvNV glew::glcore::glScissorArrayvNV
+#define glScissorIndexed glew::glcore::glScissorIndexed
+#define glScissorIndexedNV glew::glcore::glScissorIndexedNV
+#define glScissorIndexedv glew::glcore::glScissorIndexedv
+#define glScissorIndexedvNV glew::glcore::glScissorIndexedvNV
+#define glSecondaryColor3b glew::glcore::glSecondaryColor3b
+#define glSecondaryColor3bEXT glew::glcore::glSecondaryColor3bEXT
+#define glSecondaryColor3bv glew::glcore::glSecondaryColor3bv
+#define glSecondaryColor3bvEXT glew::glcore::glSecondaryColor3bvEXT
+#define glSecondaryColor3d glew::glcore::glSecondaryColor3d
+#define glSecondaryColor3dEXT glew::glcore::glSecondaryColor3dEXT
+#define glSecondaryColor3dv glew::glcore::glSecondaryColor3dv
+#define glSecondaryColor3dvEXT glew::glcore::glSecondaryColor3dvEXT
+#define glSecondaryColor3f glew::glcore::glSecondaryColor3f
+#define glSecondaryColor3fEXT glew::glcore::glSecondaryColor3fEXT
+#define glSecondaryColor3fv glew::glcore::glSecondaryColor3fv
+#define glSecondaryColor3fvEXT glew::glcore::glSecondaryColor3fvEXT
+#define glSecondaryColor3hNV glew::glcore::glSecondaryColor3hNV
+#define glSecondaryColor3hvNV glew::glcore::glSecondaryColor3hvNV
+#define glSecondaryColor3i glew::glcore::glSecondaryColor3i
+#define glSecondaryColor3iEXT glew::glcore::glSecondaryColor3iEXT
+#define glSecondaryColor3iv glew::glcore::glSecondaryColor3iv
+#define glSecondaryColor3ivEXT glew::glcore::glSecondaryColor3ivEXT
+#define glSecondaryColor3s glew::glcore::glSecondaryColor3s
+#define glSecondaryColor3sEXT glew::glcore::glSecondaryColor3sEXT
+#define glSecondaryColor3sv glew::glcore::glSecondaryColor3sv
+#define glSecondaryColor3svEXT glew::glcore::glSecondaryColor3svEXT
+#define glSecondaryColor3ub glew::glcore::glSecondaryColor3ub
+#define glSecondaryColor3ubEXT glew::glcore::glSecondaryColor3ubEXT
+#define glSecondaryColor3ubv glew::glcore::glSecondaryColor3ubv
+#define glSecondaryColor3ubvEXT glew::glcore::glSecondaryColor3ubvEXT
+#define glSecondaryColor3ui glew::glcore::glSecondaryColor3ui
+#define glSecondaryColor3uiEXT glew::glcore::glSecondaryColor3uiEXT
+#define glSecondaryColor3uiv glew::glcore::glSecondaryColor3uiv
+#define glSecondaryColor3uivEXT glew::glcore::glSecondaryColor3uivEXT
+#define glSecondaryColor3us glew::glcore::glSecondaryColor3us
+#define glSecondaryColor3usEXT glew::glcore::glSecondaryColor3usEXT
+#define glSecondaryColor3usv glew::glcore::glSecondaryColor3usv
+#define glSecondaryColor3usvEXT glew::glcore::glSecondaryColor3usvEXT
+#define glSecondaryColorFormatNV glew::glcore::glSecondaryColorFormatNV
+#define glSecondaryColorP3ui glew::glcore::glSecondaryColorP3ui
+#define glSecondaryColorP3uiv glew::glcore::glSecondaryColorP3uiv
+#define glSecondaryColorPointer glew::glcore::glSecondaryColorPointer
+#define glSecondaryColorPointerEXT glew::glcore::glSecondaryColorPointerEXT
+#define glSecondaryColorPointerListIBM glew::glcore::glSecondaryColorPointerListIBM
+#define glSelectBuffer glew::glcore::glSelectBuffer
+#define glSelectPerfMonitorCountersAMD glew::glcore::glSelectPerfMonitorCountersAMD
+#define glSeparableFilter2D glew::glcore::glSeparableFilter2D
+#define glSeparableFilter2DEXT glew::glcore::glSeparableFilter2DEXT
+#define glSetFenceAPPLE glew::glcore::glSetFenceAPPLE
+#define glSetFenceNV glew::glcore::glSetFenceNV
+#define glSetFragmentShaderConstantATI glew::glcore::glSetFragmentShaderConstantATI
+#define glSetInvariantEXT glew::glcore::glSetInvariantEXT
+#define glSetLocalConstantEXT glew::glcore::glSetLocalConstantEXT
+#define glSetMultisamplefvAMD glew::glcore::glSetMultisamplefvAMD
+#define glShadeModel glew::glcore::glShadeModel
+#define glShaderBinary glew::glcore::glShaderBinary
+#define glShaderOp1EXT glew::glcore::glShaderOp1EXT
+#define glShaderOp2EXT glew::glcore::glShaderOp2EXT
+#define glShaderOp3EXT glew::glcore::glShaderOp3EXT
+#define glShaderSource glew::glcore::glShaderSource
+#define glShaderSourceARB glew::glcore::glShaderSourceARB
+#define glShaderStorageBlockBinding glew::glcore::glShaderStorageBlockBinding
+#define glSharpenTexFuncSGIS glew::glcore::glSharpenTexFuncSGIS
+#define glSpriteParameterfSGIX glew::glcore::glSpriteParameterfSGIX
+#define glSpriteParameterfvSGIX glew::glcore::glSpriteParameterfvSGIX
+#define glSpriteParameteriSGIX glew::glcore::glSpriteParameteriSGIX
+#define glSpriteParameterivSGIX glew::glcore::glSpriteParameterivSGIX
+#define glStartInstrumentsSGIX glew::glcore::glStartInstrumentsSGIX
+#define glStartTilingQCOM glew::glcore::glStartTilingQCOM
+#define glStateCaptureNV glew::glcore::glStateCaptureNV
+#define glStencilClearTagEXT glew::glcore::glStencilClearTagEXT
+#define glStencilFillPathInstancedNV glew::glcore::glStencilFillPathInstancedNV
+#define glStencilFillPathNV glew::glcore::glStencilFillPathNV
+#define glStencilFunc glew::glcore::glStencilFunc
+#define glStencilFuncSeparate glew::glcore::glStencilFuncSeparate
+#define glStencilFuncSeparateATI glew::glcore::glStencilFuncSeparateATI
+#define glStencilMask glew::glcore::glStencilMask
+#define glStencilMaskSeparate glew::glcore::glStencilMaskSeparate
+#define glStencilOp glew::glcore::glStencilOp
+#define glStencilOpSeparate glew::glcore::glStencilOpSeparate
+#define glStencilOpSeparateATI glew::glcore::glStencilOpSeparateATI
+#define glStencilOpValueAMD glew::glcore::glStencilOpValueAMD
+#define glStencilStrokePathInstancedNV glew::glcore::glStencilStrokePathInstancedNV
+#define glStencilStrokePathNV glew::glcore::glStencilStrokePathNV
+#define glStencilThenCoverFillPathInstancedNV glew::glcore::glStencilThenCoverFillPathInstancedNV
+#define glStencilThenCoverFillPathNV glew::glcore::glStencilThenCoverFillPathNV
+#define glStencilThenCoverStrokePathInstancedNV glew::glcore::glStencilThenCoverStrokePathInstancedNV
+#define glStencilThenCoverStrokePathNV glew::glcore::glStencilThenCoverStrokePathNV
+#define glStopInstrumentsSGIX glew::glcore::glStopInstrumentsSGIX
+#define glStringMarkerGREMEDY glew::glcore::glStringMarkerGREMEDY
+#define glSwizzleEXT glew::glcore::glSwizzleEXT
+#define glSyncTextureINTEL glew::glcore::glSyncTextureINTEL
+#define glTagSampleBufferSGIX glew::glcore::glTagSampleBufferSGIX
+#define glTangent3bEXT glew::glcore::glTangent3bEXT
+#define glTangent3bvEXT glew::glcore::glTangent3bvEXT
+#define glTangent3dEXT glew::glcore::glTangent3dEXT
+#define glTangent3dvEXT glew::glcore::glTangent3dvEXT
+#define glTangent3fEXT glew::glcore::glTangent3fEXT
+#define glTangent3fvEXT glew::glcore::glTangent3fvEXT
+#define glTangent3iEXT glew::glcore::glTangent3iEXT
+#define glTangent3ivEXT glew::glcore::glTangent3ivEXT
+#define glTangent3sEXT glew::glcore::glTangent3sEXT
+#define glTangent3svEXT glew::glcore::glTangent3svEXT
+#define glTangentPointerEXT glew::glcore::glTangentPointerEXT
+#define glTbufferMask3DFX glew::glcore::glTbufferMask3DFX
+#define glTessellationFactorAMD glew::glcore::glTessellationFactorAMD
+#define glTessellationModeAMD glew::glcore::glTessellationModeAMD
+#define glTestFenceAPPLE glew::glcore::glTestFenceAPPLE
+#define glTestFenceNV glew::glcore::glTestFenceNV
+#define glTestObjectAPPLE glew::glcore::glTestObjectAPPLE
+#define glTexBuffer glew::glcore::glTexBuffer
+#define glTexBufferARB glew::glcore::glTexBufferARB
+#define glTexBufferEXT glew::glcore::glTexBufferEXT
+#define glTexBufferOES glew::glcore::glTexBufferOES
+#define glTexBufferRange glew::glcore::glTexBufferRange
+#define glTexBufferRangeEXT glew::glcore::glTexBufferRangeEXT
+#define glTexBufferRangeOES glew::glcore::glTexBufferRangeOES
+#define glTexBumpParameterfvATI glew::glcore::glTexBumpParameterfvATI
+#define glTexBumpParameterivATI glew::glcore::glTexBumpParameterivATI
+#define glTexCoord1bOES glew::glcore::glTexCoord1bOES
+#define glTexCoord1bvOES glew::glcore::glTexCoord1bvOES
+#define glTexCoord1d glew::glcore::glTexCoord1d
+#define glTexCoord1dv glew::glcore::glTexCoord1dv
+#define glTexCoord1f glew::glcore::glTexCoord1f
+#define glTexCoord1fv glew::glcore::glTexCoord1fv
+#define glTexCoord1hNV glew::glcore::glTexCoord1hNV
+#define glTexCoord1hvNV glew::glcore::glTexCoord1hvNV
+#define glTexCoord1i glew::glcore::glTexCoord1i
+#define glTexCoord1iv glew::glcore::glTexCoord1iv
+#define glTexCoord1s glew::glcore::glTexCoord1s
+#define glTexCoord1sv glew::glcore::glTexCoord1sv
+#define glTexCoord1xOES glew::glcore::glTexCoord1xOES
+#define glTexCoord1xvOES glew::glcore::glTexCoord1xvOES
+#define glTexCoord2bOES glew::glcore::glTexCoord2bOES
+#define glTexCoord2bvOES glew::glcore::glTexCoord2bvOES
+#define glTexCoord2d glew::glcore::glTexCoord2d
+#define glTexCoord2dv glew::glcore::glTexCoord2dv
+#define glTexCoord2f glew::glcore::glTexCoord2f
+#define glTexCoord2fColor3fVertex3fSUN glew::glcore::glTexCoord2fColor3fVertex3fSUN
+#define glTexCoord2fColor3fVertex3fvSUN glew::glcore::glTexCoord2fColor3fVertex3fvSUN
+#define glTexCoord2fColor4fNormal3fVertex3fSUN glew::glcore::glTexCoord2fColor4fNormal3fVertex3fSUN
+#define glTexCoord2fColor4fNormal3fVertex3fvSUN glew::glcore::glTexCoord2fColor4fNormal3fVertex3fvSUN
+#define glTexCoord2fColor4ubVertex3fSUN glew::glcore::glTexCoord2fColor4ubVertex3fSUN
+#define glTexCoord2fColor4ubVertex3fvSUN glew::glcore::glTexCoord2fColor4ubVertex3fvSUN
+#define glTexCoord2fNormal3fVertex3fSUN glew::glcore::glTexCoord2fNormal3fVertex3fSUN
+#define glTexCoord2fNormal3fVertex3fvSUN glew::glcore::glTexCoord2fNormal3fVertex3fvSUN
+#define glTexCoord2fVertex3fSUN glew::glcore::glTexCoord2fVertex3fSUN
+#define glTexCoord2fVertex3fvSUN glew::glcore::glTexCoord2fVertex3fvSUN
+#define glTexCoord2fv glew::glcore::glTexCoord2fv
+#define glTexCoord2hNV glew::glcore::glTexCoord2hNV
+#define glTexCoord2hvNV glew::glcore::glTexCoord2hvNV
+#define glTexCoord2i glew::glcore::glTexCoord2i
+#define glTexCoord2iv glew::glcore::glTexCoord2iv
+#define glTexCoord2s glew::glcore::glTexCoord2s
+#define glTexCoord2sv glew::glcore::glTexCoord2sv
+#define glTexCoord2xOES glew::glcore::glTexCoord2xOES
+#define glTexCoord2xvOES glew::glcore::glTexCoord2xvOES
+#define glTexCoord3bOES glew::glcore::glTexCoord3bOES
+#define glTexCoord3bvOES glew::glcore::glTexCoord3bvOES
+#define glTexCoord3d glew::glcore::glTexCoord3d
+#define glTexCoord3dv glew::glcore::glTexCoord3dv
+#define glTexCoord3f glew::glcore::glTexCoord3f
+#define glTexCoord3fv glew::glcore::glTexCoord3fv
+#define glTexCoord3hNV glew::glcore::glTexCoord3hNV
+#define glTexCoord3hvNV glew::glcore::glTexCoord3hvNV
+#define glTexCoord3i glew::glcore::glTexCoord3i
+#define glTexCoord3iv glew::glcore::glTexCoord3iv
+#define glTexCoord3s glew::glcore::glTexCoord3s
+#define glTexCoord3sv glew::glcore::glTexCoord3sv
+#define glTexCoord3xOES glew::glcore::glTexCoord3xOES
+#define glTexCoord3xvOES glew::glcore::glTexCoord3xvOES
+#define glTexCoord4bOES glew::glcore::glTexCoord4bOES
+#define glTexCoord4bvOES glew::glcore::glTexCoord4bvOES
+#define glTexCoord4d glew::glcore::glTexCoord4d
+#define glTexCoord4dv glew::glcore::glTexCoord4dv
+#define glTexCoord4f glew::glcore::glTexCoord4f
+#define glTexCoord4fColor4fNormal3fVertex4fSUN glew::glcore::glTexCoord4fColor4fNormal3fVertex4fSUN
+#define glTexCoord4fColor4fNormal3fVertex4fvSUN glew::glcore::glTexCoord4fColor4fNormal3fVertex4fvSUN
+#define glTexCoord4fVertex4fSUN glew::glcore::glTexCoord4fVertex4fSUN
+#define glTexCoord4fVertex4fvSUN glew::glcore::glTexCoord4fVertex4fvSUN
+#define glTexCoord4fv glew::glcore::glTexCoord4fv
+#define glTexCoord4hNV glew::glcore::glTexCoord4hNV
+#define glTexCoord4hvNV glew::glcore::glTexCoord4hvNV
+#define glTexCoord4i glew::glcore::glTexCoord4i
+#define glTexCoord4iv glew::glcore::glTexCoord4iv
+#define glTexCoord4s glew::glcore::glTexCoord4s
+#define glTexCoord4sv glew::glcore::glTexCoord4sv
+#define glTexCoord4xOES glew::glcore::glTexCoord4xOES
+#define glTexCoord4xvOES glew::glcore::glTexCoord4xvOES
+#define glTexCoordFormatNV glew::glcore::glTexCoordFormatNV
+#define glTexCoordP1ui glew::glcore::glTexCoordP1ui
+#define glTexCoordP1uiv glew::glcore::glTexCoordP1uiv
+#define glTexCoordP2ui glew::glcore::glTexCoordP2ui
+#define glTexCoordP2uiv glew::glcore::glTexCoordP2uiv
+#define glTexCoordP3ui glew::glcore::glTexCoordP3ui
+#define glTexCoordP3uiv glew::glcore::glTexCoordP3uiv
+#define glTexCoordP4ui glew::glcore::glTexCoordP4ui
+#define glTexCoordP4uiv glew::glcore::glTexCoordP4uiv
+#define glTexCoordPointer glew::glcore::glTexCoordPointer
+#define glTexCoordPointerEXT glew::glcore::glTexCoordPointerEXT
+#define glTexCoordPointerListIBM glew::glcore::glTexCoordPointerListIBM
+#define glTexCoordPointervINTEL glew::glcore::glTexCoordPointervINTEL
+#define glTexEnvf glew::glcore::glTexEnvf
+#define glTexEnvfv glew::glcore::glTexEnvfv
+#define glTexEnvi glew::glcore::glTexEnvi
+#define glTexEnviv glew::glcore::glTexEnviv
+#define glTexEnvx glew::glcore::glTexEnvx
+#define glTexEnvxOES glew::glcore::glTexEnvxOES
+#define glTexEnvxv glew::glcore::glTexEnvxv
+#define glTexEnvxvOES glew::glcore::glTexEnvxvOES
+#define glTexFilterFuncSGIS glew::glcore::glTexFilterFuncSGIS
+#define glTexGend glew::glcore::glTexGend
+#define glTexGendv glew::glcore::glTexGendv
+#define glTexGenf glew::glcore::glTexGenf
+#define glTexGenfOES glew::glcore::glTexGenfOES
+#define glTexGenfv glew::glcore::glTexGenfv
+#define glTexGenfvOES glew::glcore::glTexGenfvOES
+#define glTexGeni glew::glcore::glTexGeni
+#define glTexGeniOES glew::glcore::glTexGeniOES
+#define glTexGeniv glew::glcore::glTexGeniv
+#define glTexGenivOES glew::glcore::glTexGenivOES
+#define glTexGenxOES glew::glcore::glTexGenxOES
+#define glTexGenxvOES glew::glcore::glTexGenxvOES
+#define glTexImage1D glew::glcore::glTexImage1D
+#define glTexImage2D glew::glcore::glTexImage2D
+#define glTexImage2DMultisample glew::glcore::glTexImage2DMultisample
+#define glTexImage2DMultisampleCoverageNV glew::glcore::glTexImage2DMultisampleCoverageNV
+#define glTexImage3D glew::glcore::glTexImage3D
+#define glTexImage3DEXT glew::glcore::glTexImage3DEXT
+#define glTexImage3DMultisample glew::glcore::glTexImage3DMultisample
+#define glTexImage3DMultisampleCoverageNV glew::glcore::glTexImage3DMultisampleCoverageNV
+#define glTexImage3DOES glew::glcore::glTexImage3DOES
+#define glTexImage4DSGIS glew::glcore::glTexImage4DSGIS
+#define glTexPageCommitmentARB glew::glcore::glTexPageCommitmentARB
+#define glTexPageCommitmentEXT glew::glcore::glTexPageCommitmentEXT
+#define glTexParameterIiv glew::glcore::glTexParameterIiv
+#define glTexParameterIivEXT glew::glcore::glTexParameterIivEXT
+#define glTexParameterIivOES glew::glcore::glTexParameterIivOES
+#define glTexParameterIuiv glew::glcore::glTexParameterIuiv
+#define glTexParameterIuivEXT glew::glcore::glTexParameterIuivEXT
+#define glTexParameterIuivOES glew::glcore::glTexParameterIuivOES
+#define glTexParameterf glew::glcore::glTexParameterf
+#define glTexParameterfv glew::glcore::glTexParameterfv
+#define glTexParameteri glew::glcore::glTexParameteri
+#define glTexParameteriv glew::glcore::glTexParameteriv
+#define glTexParameterx glew::glcore::glTexParameterx
+#define glTexParameterxOES glew::glcore::glTexParameterxOES
+#define glTexParameterxv glew::glcore::glTexParameterxv
+#define glTexParameterxvOES glew::glcore::glTexParameterxvOES
+#define glTexRenderbufferNV glew::glcore::glTexRenderbufferNV
+#define glTexStorage1D glew::glcore::glTexStorage1D
+#define glTexStorage1DEXT glew::glcore::glTexStorage1DEXT
+#define glTexStorage2D glew::glcore::glTexStorage2D
+#define glTexStorage2DEXT glew::glcore::glTexStorage2DEXT
+#define glTexStorage2DMultisample glew::glcore::glTexStorage2DMultisample
+#define glTexStorage3D glew::glcore::glTexStorage3D
+#define glTexStorage3DEXT glew::glcore::glTexStorage3DEXT
+#define glTexStorage3DMultisample glew::glcore::glTexStorage3DMultisample
+#define glTexStorage3DMultisampleOES glew::glcore::glTexStorage3DMultisampleOES
+#define glTexStorageSparseAMD glew::glcore::glTexStorageSparseAMD
+#define glTexSubImage1D glew::glcore::glTexSubImage1D
+#define glTexSubImage1DEXT glew::glcore::glTexSubImage1DEXT
+#define glTexSubImage2D glew::glcore::glTexSubImage2D
+#define glTexSubImage2DEXT glew::glcore::glTexSubImage2DEXT
+#define glTexSubImage3D glew::glcore::glTexSubImage3D
+#define glTexSubImage3DEXT glew::glcore::glTexSubImage3DEXT
+#define glTexSubImage3DOES glew::glcore::glTexSubImage3DOES
+#define glTexSubImage4DSGIS glew::glcore::glTexSubImage4DSGIS
+#define glTextureBarrier glew::glcore::glTextureBarrier
+#define glTextureBarrierNV glew::glcore::glTextureBarrierNV
+#define glTextureBuffer glew::glcore::glTextureBuffer
+#define glTextureBufferEXT glew::glcore::glTextureBufferEXT
+#define glTextureBufferRange glew::glcore::glTextureBufferRange
+#define glTextureBufferRangeEXT glew::glcore::glTextureBufferRangeEXT
+#define glTextureColorMaskSGIS glew::glcore::glTextureColorMaskSGIS
+#define glTextureImage1DEXT glew::glcore::glTextureImage1DEXT
+#define glTextureImage2DEXT glew::glcore::glTextureImage2DEXT
+#define glTextureImage2DMultisampleCoverageNV glew::glcore::glTextureImage2DMultisampleCoverageNV
+#define glTextureImage2DMultisampleNV glew::glcore::glTextureImage2DMultisampleNV
+#define glTextureImage3DEXT glew::glcore::glTextureImage3DEXT
+#define glTextureImage3DMultisampleCoverageNV glew::glcore::glTextureImage3DMultisampleCoverageNV
+#define glTextureImage3DMultisampleNV glew::glcore::glTextureImage3DMultisampleNV
+#define glTextureLightEXT glew::glcore::glTextureLightEXT
+#define glTextureMaterialEXT glew::glcore::glTextureMaterialEXT
+#define glTextureNormalEXT glew::glcore::glTextureNormalEXT
+#define glTexturePageCommitmentEXT glew::glcore::glTexturePageCommitmentEXT
+#define glTextureParameterIiv glew::glcore::glTextureParameterIiv
+#define glTextureParameterIivEXT glew::glcore::glTextureParameterIivEXT
+#define glTextureParameterIuiv glew::glcore::glTextureParameterIuiv
+#define glTextureParameterIuivEXT glew::glcore::glTextureParameterIuivEXT
+#define glTextureParameterf glew::glcore::glTextureParameterf
+#define glTextureParameterfEXT glew::glcore::glTextureParameterfEXT
+#define glTextureParameterfv glew::glcore::glTextureParameterfv
+#define glTextureParameterfvEXT glew::glcore::glTextureParameterfvEXT
+#define glTextureParameteri glew::glcore::glTextureParameteri
+#define glTextureParameteriEXT glew::glcore::glTextureParameteriEXT
+#define glTextureParameteriv glew::glcore::glTextureParameteriv
+#define glTextureParameterivEXT glew::glcore::glTextureParameterivEXT
+#define glTextureRangeAPPLE glew::glcore::glTextureRangeAPPLE
+#define glTextureRenderbufferEXT glew::glcore::glTextureRenderbufferEXT
+#define glTextureStorage1D glew::glcore::glTextureStorage1D
+#define glTextureStorage1DEXT glew::glcore::glTextureStorage1DEXT
+#define glTextureStorage2D glew::glcore::glTextureStorage2D
+#define glTextureStorage2DEXT glew::glcore::glTextureStorage2DEXT
+#define glTextureStorage2DMultisample glew::glcore::glTextureStorage2DMultisample
+#define glTextureStorage2DMultisampleEXT glew::glcore::glTextureStorage2DMultisampleEXT
+#define glTextureStorage3D glew::glcore::glTextureStorage3D
+#define glTextureStorage3DEXT glew::glcore::glTextureStorage3DEXT
+#define glTextureStorage3DMultisample glew::glcore::glTextureStorage3DMultisample
+#define glTextureStorage3DMultisampleEXT glew::glcore::glTextureStorage3DMultisampleEXT
+#define glTextureStorageSparseAMD glew::glcore::glTextureStorageSparseAMD
+#define glTextureSubImage1D glew::glcore::glTextureSubImage1D
+#define glTextureSubImage1DEXT glew::glcore::glTextureSubImage1DEXT
+#define glTextureSubImage2D glew::glcore::glTextureSubImage2D
+#define glTextureSubImage2DEXT glew::glcore::glTextureSubImage2DEXT
+#define glTextureSubImage3D glew::glcore::glTextureSubImage3D
+#define glTextureSubImage3DEXT glew::glcore::glTextureSubImage3DEXT
+#define glTextureView glew::glcore::glTextureView
+#define glTextureViewEXT glew::glcore::glTextureViewEXT
+#define glTextureViewOES glew::glcore::glTextureViewOES
+#define glTrackMatrixNV glew::glcore::glTrackMatrixNV
+#define glTransformFeedbackAttribsNV glew::glcore::glTransformFeedbackAttribsNV
+#define glTransformFeedbackBufferBase glew::glcore::glTransformFeedbackBufferBase
+#define glTransformFeedbackBufferRange glew::glcore::glTransformFeedbackBufferRange
+#define glTransformFeedbackStreamAttribsNV glew::glcore::glTransformFeedbackStreamAttribsNV
+#define glTransformFeedbackVaryings glew::glcore::glTransformFeedbackVaryings
+#define glTransformFeedbackVaryingsEXT glew::glcore::glTransformFeedbackVaryingsEXT
+#define glTransformFeedbackVaryingsNV glew::glcore::glTransformFeedbackVaryingsNV
+#define glTransformPathNV glew::glcore::glTransformPathNV
+#define glTranslated glew::glcore::glTranslated
+#define glTranslatef glew::glcore::glTranslatef
+#define glTranslatex glew::glcore::glTranslatex
+#define glTranslatexOES glew::glcore::glTranslatexOES
+#define glUniform1d glew::glcore::glUniform1d
+#define glUniform1dv glew::glcore::glUniform1dv
+#define glUniform1f glew::glcore::glUniform1f
+#define glUniform1fARB glew::glcore::glUniform1fARB
+#define glUniform1fv glew::glcore::glUniform1fv
+#define glUniform1fvARB glew::glcore::glUniform1fvARB
+#define glUniform1i glew::glcore::glUniform1i
+#define glUniform1i64NV glew::glcore::glUniform1i64NV
+#define glUniform1i64vNV glew::glcore::glUniform1i64vNV
+#define glUniform1iARB glew::glcore::glUniform1iARB
+#define glUniform1iv glew::glcore::glUniform1iv
+#define glUniform1ivARB glew::glcore::glUniform1ivARB
+#define glUniform1ui glew::glcore::glUniform1ui
+#define glUniform1ui64NV glew::glcore::glUniform1ui64NV
+#define glUniform1ui64vNV glew::glcore::glUniform1ui64vNV
+#define glUniform1uiEXT glew::glcore::glUniform1uiEXT
+#define glUniform1uiv glew::glcore::glUniform1uiv
+#define glUniform1uivEXT glew::glcore::glUniform1uivEXT
+#define glUniform2d glew::glcore::glUniform2d
+#define glUniform2dv glew::glcore::glUniform2dv
+#define glUniform2f glew::glcore::glUniform2f
+#define glUniform2fARB glew::glcore::glUniform2fARB
+#define glUniform2fv glew::glcore::glUniform2fv
+#define glUniform2fvARB glew::glcore::glUniform2fvARB
+#define glUniform2i glew::glcore::glUniform2i
+#define glUniform2i64NV glew::glcore::glUniform2i64NV
+#define glUniform2i64vNV glew::glcore::glUniform2i64vNV
+#define glUniform2iARB glew::glcore::glUniform2iARB
+#define glUniform2iv glew::glcore::glUniform2iv
+#define glUniform2ivARB glew::glcore::glUniform2ivARB
+#define glUniform2ui glew::glcore::glUniform2ui
+#define glUniform2ui64NV glew::glcore::glUniform2ui64NV
+#define glUniform2ui64vNV glew::glcore::glUniform2ui64vNV
+#define glUniform2uiEXT glew::glcore::glUniform2uiEXT
+#define glUniform2uiv glew::glcore::glUniform2uiv
+#define glUniform2uivEXT glew::glcore::glUniform2uivEXT
+#define glUniform3d glew::glcore::glUniform3d
+#define glUniform3dv glew::glcore::glUniform3dv
+#define glUniform3f glew::glcore::glUniform3f
+#define glUniform3fARB glew::glcore::glUniform3fARB
+#define glUniform3fv glew::glcore::glUniform3fv
+#define glUniform3fvARB glew::glcore::glUniform3fvARB
+#define glUniform3i glew::glcore::glUniform3i
+#define glUniform3i64NV glew::glcore::glUniform3i64NV
+#define glUniform3i64vNV glew::glcore::glUniform3i64vNV
+#define glUniform3iARB glew::glcore::glUniform3iARB
+#define glUniform3iv glew::glcore::glUniform3iv
+#define glUniform3ivARB glew::glcore::glUniform3ivARB
+#define glUniform3ui glew::glcore::glUniform3ui
+#define glUniform3ui64NV glew::glcore::glUniform3ui64NV
+#define glUniform3ui64vNV glew::glcore::glUniform3ui64vNV
+#define glUniform3uiEXT glew::glcore::glUniform3uiEXT
+#define glUniform3uiv glew::glcore::glUniform3uiv
+#define glUniform3uivEXT glew::glcore::glUniform3uivEXT
+#define glUniform4d glew::glcore::glUniform4d
+#define glUniform4dv glew::glcore::glUniform4dv
+#define glUniform4f glew::glcore::glUniform4f
+#define glUniform4fARB glew::glcore::glUniform4fARB
+#define glUniform4fv glew::glcore::glUniform4fv
+#define glUniform4fvARB glew::glcore::glUniform4fvARB
+#define glUniform4i glew::glcore::glUniform4i
+#define glUniform4i64NV glew::glcore::glUniform4i64NV
+#define glUniform4i64vNV glew::glcore::glUniform4i64vNV
+#define glUniform4iARB glew::glcore::glUniform4iARB
+#define glUniform4iv glew::glcore::glUniform4iv
+#define glUniform4ivARB glew::glcore::glUniform4ivARB
+#define glUniform4ui glew::glcore::glUniform4ui
+#define glUniform4ui64NV glew::glcore::glUniform4ui64NV
+#define glUniform4ui64vNV glew::glcore::glUniform4ui64vNV
+#define glUniform4uiEXT glew::glcore::glUniform4uiEXT
+#define glUniform4uiv glew::glcore::glUniform4uiv
+#define glUniform4uivEXT glew::glcore::glUniform4uivEXT
+#define glUniformBlockBinding glew::glcore::glUniformBlockBinding
+#define glUniformBufferEXT glew::glcore::glUniformBufferEXT
+#define glUniformHandleui64ARB glew::glcore::glUniformHandleui64ARB
+#define glUniformHandleui64NV glew::glcore::glUniformHandleui64NV
+#define glUniformHandleui64vARB glew::glcore::glUniformHandleui64vARB
+#define glUniformHandleui64vNV glew::glcore::glUniformHandleui64vNV
+#define glUniformMatrix2dv glew::glcore::glUniformMatrix2dv
+#define glUniformMatrix2fv glew::glcore::glUniformMatrix2fv
+#define glUniformMatrix2fvARB glew::glcore::glUniformMatrix2fvARB
+#define glUniformMatrix2x3dv glew::glcore::glUniformMatrix2x3dv
+#define glUniformMatrix2x3fv glew::glcore::glUniformMatrix2x3fv
+#define glUniformMatrix2x3fvNV glew::glcore::glUniformMatrix2x3fvNV
+#define glUniformMatrix2x4dv glew::glcore::glUniformMatrix2x4dv
+#define glUniformMatrix2x4fv glew::glcore::glUniformMatrix2x4fv
+#define glUniformMatrix2x4fvNV glew::glcore::glUniformMatrix2x4fvNV
+#define glUniformMatrix3dv glew::glcore::glUniformMatrix3dv
+#define glUniformMatrix3fv glew::glcore::glUniformMatrix3fv
+#define glUniformMatrix3fvARB glew::glcore::glUniformMatrix3fvARB
+#define glUniformMatrix3x2dv glew::glcore::glUniformMatrix3x2dv
+#define glUniformMatrix3x2fv glew::glcore::glUniformMatrix3x2fv
+#define glUniformMatrix3x2fvNV glew::glcore::glUniformMatrix3x2fvNV
+#define glUniformMatrix3x4dv glew::glcore::glUniformMatrix3x4dv
+#define glUniformMatrix3x4fv glew::glcore::glUniformMatrix3x4fv
+#define glUniformMatrix3x4fvNV glew::glcore::glUniformMatrix3x4fvNV
+#define glUniformMatrix4dv glew::glcore::glUniformMatrix4dv
+#define glUniformMatrix4fv glew::glcore::glUniformMatrix4fv
+#define glUniformMatrix4fvARB glew::glcore::glUniformMatrix4fvARB
+#define glUniformMatrix4x2dv glew::glcore::glUniformMatrix4x2dv
+#define glUniformMatrix4x2fv glew::glcore::glUniformMatrix4x2fv
+#define glUniformMatrix4x2fvNV glew::glcore::glUniformMatrix4x2fvNV
+#define glUniformMatrix4x3dv glew::glcore::glUniformMatrix4x3dv
+#define glUniformMatrix4x3fv glew::glcore::glUniformMatrix4x3fv
+#define glUniformMatrix4x3fvNV glew::glcore::glUniformMatrix4x3fvNV
+#define glUniformSubroutinesuiv glew::glcore::glUniformSubroutinesuiv
+#define glUniformui64NV glew::glcore::glUniformui64NV
+#define glUniformui64vNV glew::glcore::glUniformui64vNV
+#define glUnlockArraysEXT glew::glcore::glUnlockArraysEXT
+#define glUnmapBuffer glew::glcore::glUnmapBuffer
+#define glUnmapBufferARB glew::glcore::glUnmapBufferARB
+#define glUnmapBufferOES glew::glcore::glUnmapBufferOES
+#define glUnmapNamedBuffer glew::glcore::glUnmapNamedBuffer
+#define glUnmapNamedBufferEXT glew::glcore::glUnmapNamedBufferEXT
+#define glUnmapObjectBufferATI glew::glcore::glUnmapObjectBufferATI
+#define glUnmapTexture2DINTEL glew::glcore::glUnmapTexture2DINTEL
+#define glUpdateObjectBufferATI glew::glcore::glUpdateObjectBufferATI
+#define glUseProgram glew::glcore::glUseProgram
+#define glUseProgramObjectARB glew::glcore::glUseProgramObjectARB
+#define glUseProgramStages glew::glcore::glUseProgramStages
+#define glUseProgramStagesEXT glew::glcore::glUseProgramStagesEXT
+#define glUseShaderProgramEXT glew::glcore::glUseShaderProgramEXT
+#define glVDPAUFiniNV glew::glcore::glVDPAUFiniNV
+#define glVDPAUGetSurfaceivNV glew::glcore::glVDPAUGetSurfaceivNV
+#define glVDPAUInitNV glew::glcore::glVDPAUInitNV
+#define glVDPAUIsSurfaceNV glew::glcore::glVDPAUIsSurfaceNV
+#define glVDPAUMapSurfacesNV glew::glcore::glVDPAUMapSurfacesNV
+#define glVDPAURegisterOutputSurfaceNV glew::glcore::glVDPAURegisterOutputSurfaceNV
+#define glVDPAURegisterVideoSurfaceNV glew::glcore::glVDPAURegisterVideoSurfaceNV
+#define glVDPAUSurfaceAccessNV glew::glcore::glVDPAUSurfaceAccessNV
+#define glVDPAUUnmapSurfacesNV glew::glcore::glVDPAUUnmapSurfacesNV
+#define glVDPAUUnregisterSurfaceNV glew::glcore::glVDPAUUnregisterSurfaceNV
+#define glValidateProgram glew::glcore::glValidateProgram
+#define glValidateProgramARB glew::glcore::glValidateProgramARB
+#define glValidateProgramPipeline glew::glcore::glValidateProgramPipeline
+#define glValidateProgramPipelineEXT glew::glcore::glValidateProgramPipelineEXT
+#define glVariantArrayObjectATI glew::glcore::glVariantArrayObjectATI
+#define glVariantPointerEXT glew::glcore::glVariantPointerEXT
+#define glVariantbvEXT glew::glcore::glVariantbvEXT
+#define glVariantdvEXT glew::glcore::glVariantdvEXT
+#define glVariantfvEXT glew::glcore::glVariantfvEXT
+#define glVariantivEXT glew::glcore::glVariantivEXT
+#define glVariantsvEXT glew::glcore::glVariantsvEXT
+#define glVariantubvEXT glew::glcore::glVariantubvEXT
+#define glVariantuivEXT glew::glcore::glVariantuivEXT
+#define glVariantusvEXT glew::glcore::glVariantusvEXT
+#define glVertex2bOES glew::glcore::glVertex2bOES
+#define glVertex2bvOES glew::glcore::glVertex2bvOES
+#define glVertex2d glew::glcore::glVertex2d
+#define glVertex2dv glew::glcore::glVertex2dv
+#define glVertex2f glew::glcore::glVertex2f
+#define glVertex2fv glew::glcore::glVertex2fv
+#define glVertex2hNV glew::glcore::glVertex2hNV
+#define glVertex2hvNV glew::glcore::glVertex2hvNV
+#define glVertex2i glew::glcore::glVertex2i
+#define glVertex2iv glew::glcore::glVertex2iv
+#define glVertex2s glew::glcore::glVertex2s
+#define glVertex2sv glew::glcore::glVertex2sv
+#define glVertex2xOES glew::glcore::glVertex2xOES
+#define glVertex2xvOES glew::glcore::glVertex2xvOES
+#define glVertex3bOES glew::glcore::glVertex3bOES
+#define glVertex3bvOES glew::glcore::glVertex3bvOES
+#define glVertex3d glew::glcore::glVertex3d
+#define glVertex3dv glew::glcore::glVertex3dv
+#define glVertex3f glew::glcore::glVertex3f
+#define glVertex3fv glew::glcore::glVertex3fv
+#define glVertex3hNV glew::glcore::glVertex3hNV
+#define glVertex3hvNV glew::glcore::glVertex3hvNV
+#define glVertex3i glew::glcore::glVertex3i
+#define glVertex3iv glew::glcore::glVertex3iv
+#define glVertex3s glew::glcore::glVertex3s
+#define glVertex3sv glew::glcore::glVertex3sv
+#define glVertex3xOES glew::glcore::glVertex3xOES
+#define glVertex3xvOES glew::glcore::glVertex3xvOES
+#define glVertex4bOES glew::glcore::glVertex4bOES
+#define glVertex4bvOES glew::glcore::glVertex4bvOES
+#define glVertex4d glew::glcore::glVertex4d
+#define glVertex4dv glew::glcore::glVertex4dv
+#define glVertex4f glew::glcore::glVertex4f
+#define glVertex4fv glew::glcore::glVertex4fv
+#define glVertex4hNV glew::glcore::glVertex4hNV
+#define glVertex4hvNV glew::glcore::glVertex4hvNV
+#define glVertex4i glew::glcore::glVertex4i
+#define glVertex4iv glew::glcore::glVertex4iv
+#define glVertex4s glew::glcore::glVertex4s
+#define glVertex4sv glew::glcore::glVertex4sv
+#define glVertex4xOES glew::glcore::glVertex4xOES
+#define glVertex4xvOES glew::glcore::glVertex4xvOES
+#define glVertexArrayAttribBinding glew::glcore::glVertexArrayAttribBinding
+#define glVertexArrayAttribFormat glew::glcore::glVertexArrayAttribFormat
+#define glVertexArrayAttribIFormat glew::glcore::glVertexArrayAttribIFormat
+#define glVertexArrayAttribLFormat glew::glcore::glVertexArrayAttribLFormat
+#define glVertexArrayBindVertexBufferEXT glew::glcore::glVertexArrayBindVertexBufferEXT
+#define glVertexArrayBindingDivisor glew::glcore::glVertexArrayBindingDivisor
+#define glVertexArrayColorOffsetEXT glew::glcore::glVertexArrayColorOffsetEXT
+#define glVertexArrayEdgeFlagOffsetEXT glew::glcore::glVertexArrayEdgeFlagOffsetEXT
+#define glVertexArrayElementBuffer glew::glcore::glVertexArrayElementBuffer
+#define glVertexArrayFogCoordOffsetEXT glew::glcore::glVertexArrayFogCoordOffsetEXT
+#define glVertexArrayIndexOffsetEXT glew::glcore::glVertexArrayIndexOffsetEXT
+#define glVertexArrayMultiTexCoordOffsetEXT glew::glcore::glVertexArrayMultiTexCoordOffsetEXT
+#define glVertexArrayNormalOffsetEXT glew::glcore::glVertexArrayNormalOffsetEXT
+#define glVertexArrayParameteriAPPLE glew::glcore::glVertexArrayParameteriAPPLE
+#define glVertexArrayRangeAPPLE glew::glcore::glVertexArrayRangeAPPLE
+#define glVertexArrayRangeNV glew::glcore::glVertexArrayRangeNV
+#define glVertexArraySecondaryColorOffsetEXT glew::glcore::glVertexArraySecondaryColorOffsetEXT
+#define glVertexArrayTexCoordOffsetEXT glew::glcore::glVertexArrayTexCoordOffsetEXT
+#define glVertexArrayVertexAttribBindingEXT glew::glcore::glVertexArrayVertexAttribBindingEXT
+#define glVertexArrayVertexAttribDivisorEXT glew::glcore::glVertexArrayVertexAttribDivisorEXT
+#define glVertexArrayVertexAttribFormatEXT glew::glcore::glVertexArrayVertexAttribFormatEXT
+#define glVertexArrayVertexAttribIFormatEXT glew::glcore::glVertexArrayVertexAttribIFormatEXT
+#define glVertexArrayVertexAttribIOffsetEXT glew::glcore::glVertexArrayVertexAttribIOffsetEXT
+#define glVertexArrayVertexAttribLFormatEXT glew::glcore::glVertexArrayVertexAttribLFormatEXT
+#define glVertexArrayVertexAttribLOffsetEXT glew::glcore::glVertexArrayVertexAttribLOffsetEXT
+#define glVertexArrayVertexAttribOffsetEXT glew::glcore::glVertexArrayVertexAttribOffsetEXT
+#define glVertexArrayVertexBindingDivisorEXT glew::glcore::glVertexArrayVertexBindingDivisorEXT
+#define glVertexArrayVertexBuffer glew::glcore::glVertexArrayVertexBuffer
+#define glVertexArrayVertexBuffers glew::glcore::glVertexArrayVertexBuffers
+#define glVertexArrayVertexOffsetEXT glew::glcore::glVertexArrayVertexOffsetEXT
+#define glVertexAttrib1d glew::glcore::glVertexAttrib1d
+#define glVertexAttrib1dARB glew::glcore::glVertexAttrib1dARB
+#define glVertexAttrib1dNV glew::glcore::glVertexAttrib1dNV
+#define glVertexAttrib1dv glew::glcore::glVertexAttrib1dv
+#define glVertexAttrib1dvARB glew::glcore::glVertexAttrib1dvARB
+#define glVertexAttrib1dvNV glew::glcore::glVertexAttrib1dvNV
+#define glVertexAttrib1f glew::glcore::glVertexAttrib1f
+#define glVertexAttrib1fARB glew::glcore::glVertexAttrib1fARB
+#define glVertexAttrib1fNV glew::glcore::glVertexAttrib1fNV
+#define glVertexAttrib1fv glew::glcore::glVertexAttrib1fv
+#define glVertexAttrib1fvARB glew::glcore::glVertexAttrib1fvARB
+#define glVertexAttrib1fvNV glew::glcore::glVertexAttrib1fvNV
+#define glVertexAttrib1hNV glew::glcore::glVertexAttrib1hNV
+#define glVertexAttrib1hvNV glew::glcore::glVertexAttrib1hvNV
+#define glVertexAttrib1s glew::glcore::glVertexAttrib1s
+#define glVertexAttrib1sARB glew::glcore::glVertexAttrib1sARB
+#define glVertexAttrib1sNV glew::glcore::glVertexAttrib1sNV
+#define glVertexAttrib1sv glew::glcore::glVertexAttrib1sv
+#define glVertexAttrib1svARB glew::glcore::glVertexAttrib1svARB
+#define glVertexAttrib1svNV glew::glcore::glVertexAttrib1svNV
+#define glVertexAttrib2d glew::glcore::glVertexAttrib2d
+#define glVertexAttrib2dARB glew::glcore::glVertexAttrib2dARB
+#define glVertexAttrib2dNV glew::glcore::glVertexAttrib2dNV
+#define glVertexAttrib2dv glew::glcore::glVertexAttrib2dv
+#define glVertexAttrib2dvARB glew::glcore::glVertexAttrib2dvARB
+#define glVertexAttrib2dvNV glew::glcore::glVertexAttrib2dvNV
+#define glVertexAttrib2f glew::glcore::glVertexAttrib2f
+#define glVertexAttrib2fARB glew::glcore::glVertexAttrib2fARB
+#define glVertexAttrib2fNV glew::glcore::glVertexAttrib2fNV
+#define glVertexAttrib2fv glew::glcore::glVertexAttrib2fv
+#define glVertexAttrib2fvARB glew::glcore::glVertexAttrib2fvARB
+#define glVertexAttrib2fvNV glew::glcore::glVertexAttrib2fvNV
+#define glVertexAttrib2hNV glew::glcore::glVertexAttrib2hNV
+#define glVertexAttrib2hvNV glew::glcore::glVertexAttrib2hvNV
+#define glVertexAttrib2s glew::glcore::glVertexAttrib2s
+#define glVertexAttrib2sARB glew::glcore::glVertexAttrib2sARB
+#define glVertexAttrib2sNV glew::glcore::glVertexAttrib2sNV
+#define glVertexAttrib2sv glew::glcore::glVertexAttrib2sv
+#define glVertexAttrib2svARB glew::glcore::glVertexAttrib2svARB
+#define glVertexAttrib2svNV glew::glcore::glVertexAttrib2svNV
+#define glVertexAttrib3d glew::glcore::glVertexAttrib3d
+#define glVertexAttrib3dARB glew::glcore::glVertexAttrib3dARB
+#define glVertexAttrib3dNV glew::glcore::glVertexAttrib3dNV
+#define glVertexAttrib3dv glew::glcore::glVertexAttrib3dv
+#define glVertexAttrib3dvARB glew::glcore::glVertexAttrib3dvARB
+#define glVertexAttrib3dvNV glew::glcore::glVertexAttrib3dvNV
+#define glVertexAttrib3f glew::glcore::glVertexAttrib3f
+#define glVertexAttrib3fARB glew::glcore::glVertexAttrib3fARB
+#define glVertexAttrib3fNV glew::glcore::glVertexAttrib3fNV
+#define glVertexAttrib3fv glew::glcore::glVertexAttrib3fv
+#define glVertexAttrib3fvARB glew::glcore::glVertexAttrib3fvARB
+#define glVertexAttrib3fvNV glew::glcore::glVertexAttrib3fvNV
+#define glVertexAttrib3hNV glew::glcore::glVertexAttrib3hNV
+#define glVertexAttrib3hvNV glew::glcore::glVertexAttrib3hvNV
+#define glVertexAttrib3s glew::glcore::glVertexAttrib3s
+#define glVertexAttrib3sARB glew::glcore::glVertexAttrib3sARB
+#define glVertexAttrib3sNV glew::glcore::glVertexAttrib3sNV
+#define glVertexAttrib3sv glew::glcore::glVertexAttrib3sv
+#define glVertexAttrib3svARB glew::glcore::glVertexAttrib3svARB
+#define glVertexAttrib3svNV glew::glcore::glVertexAttrib3svNV
+#define glVertexAttrib4Nbv glew::glcore::glVertexAttrib4Nbv
+#define glVertexAttrib4NbvARB glew::glcore::glVertexAttrib4NbvARB
+#define glVertexAttrib4Niv glew::glcore::glVertexAttrib4Niv
+#define glVertexAttrib4NivARB glew::glcore::glVertexAttrib4NivARB
+#define glVertexAttrib4Nsv glew::glcore::glVertexAttrib4Nsv
+#define glVertexAttrib4NsvARB glew::glcore::glVertexAttrib4NsvARB
+#define glVertexAttrib4Nub glew::glcore::glVertexAttrib4Nub
+#define glVertexAttrib4NubARB glew::glcore::glVertexAttrib4NubARB
+#define glVertexAttrib4Nubv glew::glcore::glVertexAttrib4Nubv
+#define glVertexAttrib4NubvARB glew::glcore::glVertexAttrib4NubvARB
+#define glVertexAttrib4Nuiv glew::glcore::glVertexAttrib4Nuiv
+#define glVertexAttrib4NuivARB glew::glcore::glVertexAttrib4NuivARB
+#define glVertexAttrib4Nusv glew::glcore::glVertexAttrib4Nusv
+#define glVertexAttrib4NusvARB glew::glcore::glVertexAttrib4NusvARB
+#define glVertexAttrib4bv glew::glcore::glVertexAttrib4bv
+#define glVertexAttrib4bvARB glew::glcore::glVertexAttrib4bvARB
+#define glVertexAttrib4d glew::glcore::glVertexAttrib4d
+#define glVertexAttrib4dARB glew::glcore::glVertexAttrib4dARB
+#define glVertexAttrib4dNV glew::glcore::glVertexAttrib4dNV
+#define glVertexAttrib4dv glew::glcore::glVertexAttrib4dv
+#define glVertexAttrib4dvARB glew::glcore::glVertexAttrib4dvARB
+#define glVertexAttrib4dvNV glew::glcore::glVertexAttrib4dvNV
+#define glVertexAttrib4f glew::glcore::glVertexAttrib4f
+#define glVertexAttrib4fARB glew::glcore::glVertexAttrib4fARB
+#define glVertexAttrib4fNV glew::glcore::glVertexAttrib4fNV
+#define glVertexAttrib4fv glew::glcore::glVertexAttrib4fv
+#define glVertexAttrib4fvARB glew::glcore::glVertexAttrib4fvARB
+#define glVertexAttrib4fvNV glew::glcore::glVertexAttrib4fvNV
+#define glVertexAttrib4hNV glew::glcore::glVertexAttrib4hNV
+#define glVertexAttrib4hvNV glew::glcore::glVertexAttrib4hvNV
+#define glVertexAttrib4iv glew::glcore::glVertexAttrib4iv
+#define glVertexAttrib4ivARB glew::glcore::glVertexAttrib4ivARB
+#define glVertexAttrib4s glew::glcore::glVertexAttrib4s
+#define glVertexAttrib4sARB glew::glcore::glVertexAttrib4sARB
+#define glVertexAttrib4sNV glew::glcore::glVertexAttrib4sNV
+#define glVertexAttrib4sv glew::glcore::glVertexAttrib4sv
+#define glVertexAttrib4svARB glew::glcore::glVertexAttrib4svARB
+#define glVertexAttrib4svNV glew::glcore::glVertexAttrib4svNV
+#define glVertexAttrib4ubNV glew::glcore::glVertexAttrib4ubNV
+#define glVertexAttrib4ubv glew::glcore::glVertexAttrib4ubv
+#define glVertexAttrib4ubvARB glew::glcore::glVertexAttrib4ubvARB
+#define glVertexAttrib4ubvNV glew::glcore::glVertexAttrib4ubvNV
+#define glVertexAttrib4uiv glew::glcore::glVertexAttrib4uiv
+#define glVertexAttrib4uivARB glew::glcore::glVertexAttrib4uivARB
+#define glVertexAttrib4usv glew::glcore::glVertexAttrib4usv
+#define glVertexAttrib4usvARB glew::glcore::glVertexAttrib4usvARB
+#define glVertexAttribArrayObjectATI glew::glcore::glVertexAttribArrayObjectATI
+#define glVertexAttribBinding glew::glcore::glVertexAttribBinding
+#define glVertexAttribDivisor glew::glcore::glVertexAttribDivisor
+#define glVertexAttribDivisorANGLE glew::glcore::glVertexAttribDivisorANGLE
+#define glVertexAttribDivisorARB glew::glcore::glVertexAttribDivisorARB
+#define glVertexAttribDivisorEXT glew::glcore::glVertexAttribDivisorEXT
+#define glVertexAttribDivisorNV glew::glcore::glVertexAttribDivisorNV
+#define glVertexAttribFormat glew::glcore::glVertexAttribFormat
+#define glVertexAttribFormatNV glew::glcore::glVertexAttribFormatNV
+#define glVertexAttribI1i glew::glcore::glVertexAttribI1i
+#define glVertexAttribI1iEXT glew::glcore::glVertexAttribI1iEXT
+#define glVertexAttribI1iv glew::glcore::glVertexAttribI1iv
+#define glVertexAttribI1ivEXT glew::glcore::glVertexAttribI1ivEXT
+#define glVertexAttribI1ui glew::glcore::glVertexAttribI1ui
+#define glVertexAttribI1uiEXT glew::glcore::glVertexAttribI1uiEXT
+#define glVertexAttribI1uiv glew::glcore::glVertexAttribI1uiv
+#define glVertexAttribI1uivEXT glew::glcore::glVertexAttribI1uivEXT
+#define glVertexAttribI2i glew::glcore::glVertexAttribI2i
+#define glVertexAttribI2iEXT glew::glcore::glVertexAttribI2iEXT
+#define glVertexAttribI2iv glew::glcore::glVertexAttribI2iv
+#define glVertexAttribI2ivEXT glew::glcore::glVertexAttribI2ivEXT
+#define glVertexAttribI2ui glew::glcore::glVertexAttribI2ui
+#define glVertexAttribI2uiEXT glew::glcore::glVertexAttribI2uiEXT
+#define glVertexAttribI2uiv glew::glcore::glVertexAttribI2uiv
+#define glVertexAttribI2uivEXT glew::glcore::glVertexAttribI2uivEXT
+#define glVertexAttribI3i glew::glcore::glVertexAttribI3i
+#define glVertexAttribI3iEXT glew::glcore::glVertexAttribI3iEXT
+#define glVertexAttribI3iv glew::glcore::glVertexAttribI3iv
+#define glVertexAttribI3ivEXT glew::glcore::glVertexAttribI3ivEXT
+#define glVertexAttribI3ui glew::glcore::glVertexAttribI3ui
+#define glVertexAttribI3uiEXT glew::glcore::glVertexAttribI3uiEXT
+#define glVertexAttribI3uiv glew::glcore::glVertexAttribI3uiv
+#define glVertexAttribI3uivEXT glew::glcore::glVertexAttribI3uivEXT
+#define glVertexAttribI4bv glew::glcore::glVertexAttribI4bv
+#define glVertexAttribI4bvEXT glew::glcore::glVertexAttribI4bvEXT
+#define glVertexAttribI4i glew::glcore::glVertexAttribI4i
+#define glVertexAttribI4iEXT glew::glcore::glVertexAttribI4iEXT
+#define glVertexAttribI4iv glew::glcore::glVertexAttribI4iv
+#define glVertexAttribI4ivEXT glew::glcore::glVertexAttribI4ivEXT
+#define glVertexAttribI4sv glew::glcore::glVertexAttribI4sv
+#define glVertexAttribI4svEXT glew::glcore::glVertexAttribI4svEXT
+#define glVertexAttribI4ubv glew::glcore::glVertexAttribI4ubv
+#define glVertexAttribI4ubvEXT glew::glcore::glVertexAttribI4ubvEXT
+#define glVertexAttribI4ui glew::glcore::glVertexAttribI4ui
+#define glVertexAttribI4uiEXT glew::glcore::glVertexAttribI4uiEXT
+#define glVertexAttribI4uiv glew::glcore::glVertexAttribI4uiv
+#define glVertexAttribI4uivEXT glew::glcore::glVertexAttribI4uivEXT
+#define glVertexAttribI4usv glew::glcore::glVertexAttribI4usv
+#define glVertexAttribI4usvEXT glew::glcore::glVertexAttribI4usvEXT
+#define glVertexAttribIFormat glew::glcore::glVertexAttribIFormat
+#define glVertexAttribIFormatNV glew::glcore::glVertexAttribIFormatNV
+#define glVertexAttribIPointer glew::glcore::glVertexAttribIPointer
+#define glVertexAttribIPointerEXT glew::glcore::glVertexAttribIPointerEXT
+#define glVertexAttribL1d glew::glcore::glVertexAttribL1d
+#define glVertexAttribL1dEXT glew::glcore::glVertexAttribL1dEXT
+#define glVertexAttribL1dv glew::glcore::glVertexAttribL1dv
+#define glVertexAttribL1dvEXT glew::glcore::glVertexAttribL1dvEXT
+#define glVertexAttribL1i64NV glew::glcore::glVertexAttribL1i64NV
+#define glVertexAttribL1i64vNV glew::glcore::glVertexAttribL1i64vNV
+#define glVertexAttribL1ui64ARB glew::glcore::glVertexAttribL1ui64ARB
+#define glVertexAttribL1ui64NV glew::glcore::glVertexAttribL1ui64NV
+#define glVertexAttribL1ui64vARB glew::glcore::glVertexAttribL1ui64vARB
+#define glVertexAttribL1ui64vNV glew::glcore::glVertexAttribL1ui64vNV
+#define glVertexAttribL2d glew::glcore::glVertexAttribL2d
+#define glVertexAttribL2dEXT glew::glcore::glVertexAttribL2dEXT
+#define glVertexAttribL2dv glew::glcore::glVertexAttribL2dv
+#define glVertexAttribL2dvEXT glew::glcore::glVertexAttribL2dvEXT
+#define glVertexAttribL2i64NV glew::glcore::glVertexAttribL2i64NV
+#define glVertexAttribL2i64vNV glew::glcore::glVertexAttribL2i64vNV
+#define glVertexAttribL2ui64NV glew::glcore::glVertexAttribL2ui64NV
+#define glVertexAttribL2ui64vNV glew::glcore::glVertexAttribL2ui64vNV
+#define glVertexAttribL3d glew::glcore::glVertexAttribL3d
+#define glVertexAttribL3dEXT glew::glcore::glVertexAttribL3dEXT
+#define glVertexAttribL3dv glew::glcore::glVertexAttribL3dv
+#define glVertexAttribL3dvEXT glew::glcore::glVertexAttribL3dvEXT
+#define glVertexAttribL3i64NV glew::glcore::glVertexAttribL3i64NV
+#define glVertexAttribL3i64vNV glew::glcore::glVertexAttribL3i64vNV
+#define glVertexAttribL3ui64NV glew::glcore::glVertexAttribL3ui64NV
+#define glVertexAttribL3ui64vNV glew::glcore::glVertexAttribL3ui64vNV
+#define glVertexAttribL4d glew::glcore::glVertexAttribL4d
+#define glVertexAttribL4dEXT glew::glcore::glVertexAttribL4dEXT
+#define glVertexAttribL4dv glew::glcore::glVertexAttribL4dv
+#define glVertexAttribL4dvEXT glew::glcore::glVertexAttribL4dvEXT
+#define glVertexAttribL4i64NV glew::glcore::glVertexAttribL4i64NV
+#define glVertexAttribL4i64vNV glew::glcore::glVertexAttribL4i64vNV
+#define glVertexAttribL4ui64NV glew::glcore::glVertexAttribL4ui64NV
+#define glVertexAttribL4ui64vNV glew::glcore::glVertexAttribL4ui64vNV
+#define glVertexAttribLFormat glew::glcore::glVertexAttribLFormat
+#define glVertexAttribLFormatNV glew::glcore::glVertexAttribLFormatNV
+#define glVertexAttribLPointer glew::glcore::glVertexAttribLPointer
+#define glVertexAttribLPointerEXT glew::glcore::glVertexAttribLPointerEXT
+#define glVertexAttribP1ui glew::glcore::glVertexAttribP1ui
+#define glVertexAttribP1uiv glew::glcore::glVertexAttribP1uiv
+#define glVertexAttribP2ui glew::glcore::glVertexAttribP2ui
+#define glVertexAttribP2uiv glew::glcore::glVertexAttribP2uiv
+#define glVertexAttribP3ui glew::glcore::glVertexAttribP3ui
+#define glVertexAttribP3uiv glew::glcore::glVertexAttribP3uiv
+#define glVertexAttribP4ui glew::glcore::glVertexAttribP4ui
+#define glVertexAttribP4uiv glew::glcore::glVertexAttribP4uiv
+#define glVertexAttribParameteriAMD glew::glcore::glVertexAttribParameteriAMD
+#define glVertexAttribPointer glew::glcore::glVertexAttribPointer
+#define glVertexAttribPointerARB glew::glcore::glVertexAttribPointerARB
+#define glVertexAttribPointerNV glew::glcore::glVertexAttribPointerNV
+#define glVertexAttribs1dvNV glew::glcore::glVertexAttribs1dvNV
+#define glVertexAttribs1fvNV glew::glcore::glVertexAttribs1fvNV
+#define glVertexAttribs1hvNV glew::glcore::glVertexAttribs1hvNV
+#define glVertexAttribs1svNV glew::glcore::glVertexAttribs1svNV
+#define glVertexAttribs2dvNV glew::glcore::glVertexAttribs2dvNV
+#define glVertexAttribs2fvNV glew::glcore::glVertexAttribs2fvNV
+#define glVertexAttribs2hvNV glew::glcore::glVertexAttribs2hvNV
+#define glVertexAttribs2svNV glew::glcore::glVertexAttribs2svNV
+#define glVertexAttribs3dvNV glew::glcore::glVertexAttribs3dvNV
+#define glVertexAttribs3fvNV glew::glcore::glVertexAttribs3fvNV
+#define glVertexAttribs3hvNV glew::glcore::glVertexAttribs3hvNV
+#define glVertexAttribs3svNV glew::glcore::glVertexAttribs3svNV
+#define glVertexAttribs4dvNV glew::glcore::glVertexAttribs4dvNV
+#define glVertexAttribs4fvNV glew::glcore::glVertexAttribs4fvNV
+#define glVertexAttribs4hvNV glew::glcore::glVertexAttribs4hvNV
+#define glVertexAttribs4svNV glew::glcore::glVertexAttribs4svNV
+#define glVertexAttribs4ubvNV glew::glcore::glVertexAttribs4ubvNV
+#define glVertexBindingDivisor glew::glcore::glVertexBindingDivisor
+#define glVertexBlendARB glew::glcore::glVertexBlendARB
+#define glVertexBlendEnvfATI glew::glcore::glVertexBlendEnvfATI
+#define glVertexBlendEnviATI glew::glcore::glVertexBlendEnviATI
+#define glVertexFormatNV glew::glcore::glVertexFormatNV
+#define glVertexP2ui glew::glcore::glVertexP2ui
+#define glVertexP2uiv glew::glcore::glVertexP2uiv
+#define glVertexP3ui glew::glcore::glVertexP3ui
+#define glVertexP3uiv glew::glcore::glVertexP3uiv
+#define glVertexP4ui glew::glcore::glVertexP4ui
+#define glVertexP4uiv glew::glcore::glVertexP4uiv
+#define glVertexPointer glew::glcore::glVertexPointer
+#define glVertexPointerEXT glew::glcore::glVertexPointerEXT
+#define glVertexPointerListIBM glew::glcore::glVertexPointerListIBM
+#define glVertexPointervINTEL glew::glcore::glVertexPointervINTEL
+#define glVertexStream1dATI glew::glcore::glVertexStream1dATI
+#define glVertexStream1dvATI glew::glcore::glVertexStream1dvATI
+#define glVertexStream1fATI glew::glcore::glVertexStream1fATI
+#define glVertexStream1fvATI glew::glcore::glVertexStream1fvATI
+#define glVertexStream1iATI glew::glcore::glVertexStream1iATI
+#define glVertexStream1ivATI glew::glcore::glVertexStream1ivATI
+#define glVertexStream1sATI glew::glcore::glVertexStream1sATI
+#define glVertexStream1svATI glew::glcore::glVertexStream1svATI
+#define glVertexStream2dATI glew::glcore::glVertexStream2dATI
+#define glVertexStream2dvATI glew::glcore::glVertexStream2dvATI
+#define glVertexStream2fATI glew::glcore::glVertexStream2fATI
+#define glVertexStream2fvATI glew::glcore::glVertexStream2fvATI
+#define glVertexStream2iATI glew::glcore::glVertexStream2iATI
+#define glVertexStream2ivATI glew::glcore::glVertexStream2ivATI
+#define glVertexStream2sATI glew::glcore::glVertexStream2sATI
+#define glVertexStream2svATI glew::glcore::glVertexStream2svATI
+#define glVertexStream3dATI glew::glcore::glVertexStream3dATI
+#define glVertexStream3dvATI glew::glcore::glVertexStream3dvATI
+#define glVertexStream3fATI glew::glcore::glVertexStream3fATI
+#define glVertexStream3fvATI glew::glcore::glVertexStream3fvATI
+#define glVertexStream3iATI glew::glcore::glVertexStream3iATI
+#define glVertexStream3ivATI glew::glcore::glVertexStream3ivATI
+#define glVertexStream3sATI glew::glcore::glVertexStream3sATI
+#define glVertexStream3svATI glew::glcore::glVertexStream3svATI
+#define glVertexStream4dATI glew::glcore::glVertexStream4dATI
+#define glVertexStream4dvATI glew::glcore::glVertexStream4dvATI
+#define glVertexStream4fATI glew::glcore::glVertexStream4fATI
+#define glVertexStream4fvATI glew::glcore::glVertexStream4fvATI
+#define glVertexStream4iATI glew::glcore::glVertexStream4iATI
+#define glVertexStream4ivATI glew::glcore::glVertexStream4ivATI
+#define glVertexStream4sATI glew::glcore::glVertexStream4sATI
+#define glVertexStream4svATI glew::glcore::glVertexStream4svATI
+#define glVertexWeightPointerEXT glew::glcore::glVertexWeightPointerEXT
+#define glVertexWeightfEXT glew::glcore::glVertexWeightfEXT
+#define glVertexWeightfvEXT glew::glcore::glVertexWeightfvEXT
+#define glVertexWeighthNV glew::glcore::glVertexWeighthNV
+#define glVertexWeighthvNV glew::glcore::glVertexWeighthvNV
+#define glVideoCaptureNV glew::glcore::glVideoCaptureNV
+#define glVideoCaptureStreamParameterdvNV glew::glcore::glVideoCaptureStreamParameterdvNV
+#define glVideoCaptureStreamParameterfvNV glew::glcore::glVideoCaptureStreamParameterfvNV
+#define glVideoCaptureStreamParameterivNV glew::glcore::glVideoCaptureStreamParameterivNV
+#define glViewport glew::glcore::glViewport
+#define glViewportArrayv glew::glcore::glViewportArrayv
+#define glViewportArrayvNV glew::glcore::glViewportArrayvNV
+#define glViewportIndexedf glew::glcore::glViewportIndexedf
+#define glViewportIndexedfNV glew::glcore::glViewportIndexedfNV
+#define glViewportIndexedfv glew::glcore::glViewportIndexedfv
+#define glViewportIndexedfvNV glew::glcore::glViewportIndexedfvNV
+#define glWaitSync glew::glcore::glWaitSync
+#define glWaitSyncAPPLE glew::glcore::glWaitSyncAPPLE
+#define glWeightPathsNV glew::glcore::glWeightPathsNV
+#define glWeightPointerARB glew::glcore::glWeightPointerARB
+#define glWeightPointerOES glew::glcore::glWeightPointerOES
+#define glWeightbvARB glew::glcore::glWeightbvARB
+#define glWeightdvARB glew::glcore::glWeightdvARB
+#define glWeightfvARB glew::glcore::glWeightfvARB
+#define glWeightivARB glew::glcore::glWeightivARB
+#define glWeightsvARB glew::glcore::glWeightsvARB
+#define glWeightubvARB glew::glcore::glWeightubvARB
+#define glWeightuivARB glew::glcore::glWeightuivARB
+#define glWeightusvARB glew::glcore::glWeightusvARB
+#define glWindowPos2d glew::glcore::glWindowPos2d
+#define glWindowPos2dARB glew::glcore::glWindowPos2dARB
+#define glWindowPos2dMESA glew::glcore::glWindowPos2dMESA
+#define glWindowPos2dv glew::glcore::glWindowPos2dv
+#define glWindowPos2dvARB glew::glcore::glWindowPos2dvARB
+#define glWindowPos2dvMESA glew::glcore::glWindowPos2dvMESA
+#define glWindowPos2f glew::glcore::glWindowPos2f
+#define glWindowPos2fARB glew::glcore::glWindowPos2fARB
+#define glWindowPos2fMESA glew::glcore::glWindowPos2fMESA
+#define glWindowPos2fv glew::glcore::glWindowPos2fv
+#define glWindowPos2fvARB glew::glcore::glWindowPos2fvARB
+#define glWindowPos2fvMESA glew::glcore::glWindowPos2fvMESA
+#define glWindowPos2i glew::glcore::glWindowPos2i
+#define glWindowPos2iARB glew::glcore::glWindowPos2iARB
+#define glWindowPos2iMESA glew::glcore::glWindowPos2iMESA
+#define glWindowPos2iv glew::glcore::glWindowPos2iv
+#define glWindowPos2ivARB glew::glcore::glWindowPos2ivARB
+#define glWindowPos2ivMESA glew::glcore::glWindowPos2ivMESA
+#define glWindowPos2s glew::glcore::glWindowPos2s
+#define glWindowPos2sARB glew::glcore::glWindowPos2sARB
+#define glWindowPos2sMESA glew::glcore::glWindowPos2sMESA
+#define glWindowPos2sv glew::glcore::glWindowPos2sv
+#define glWindowPos2svARB glew::glcore::glWindowPos2svARB
+#define glWindowPos2svMESA glew::glcore::glWindowPos2svMESA
+#define glWindowPos3d glew::glcore::glWindowPos3d
+#define glWindowPos3dARB glew::glcore::glWindowPos3dARB
+#define glWindowPos3dMESA glew::glcore::glWindowPos3dMESA
+#define glWindowPos3dv glew::glcore::glWindowPos3dv
+#define glWindowPos3dvARB glew::glcore::glWindowPos3dvARB
+#define glWindowPos3dvMESA glew::glcore::glWindowPos3dvMESA
+#define glWindowPos3f glew::glcore::glWindowPos3f
+#define glWindowPos3fARB glew::glcore::glWindowPos3fARB
+#define glWindowPos3fMESA glew::glcore::glWindowPos3fMESA
+#define glWindowPos3fv glew::glcore::glWindowPos3fv
+#define glWindowPos3fvARB glew::glcore::glWindowPos3fvARB
+#define glWindowPos3fvMESA glew::glcore::glWindowPos3fvMESA
+#define glWindowPos3i glew::glcore::glWindowPos3i
+#define glWindowPos3iARB glew::glcore::glWindowPos3iARB
+#define glWindowPos3iMESA glew::glcore::glWindowPos3iMESA
+#define glWindowPos3iv glew::glcore::glWindowPos3iv
+#define glWindowPos3ivARB glew::glcore::glWindowPos3ivARB
+#define glWindowPos3ivMESA glew::glcore::glWindowPos3ivMESA
+#define glWindowPos3s glew::glcore::glWindowPos3s
+#define glWindowPos3sARB glew::glcore::glWindowPos3sARB
+#define glWindowPos3sMESA glew::glcore::glWindowPos3sMESA
+#define glWindowPos3sv glew::glcore::glWindowPos3sv
+#define glWindowPos3svARB glew::glcore::glWindowPos3svARB
+#define glWindowPos3svMESA glew::glcore::glWindowPos3svMESA
+#define glWindowPos4dMESA glew::glcore::glWindowPos4dMESA
+#define glWindowPos4dvMESA glew::glcore::glWindowPos4dvMESA
+#define glWindowPos4fMESA glew::glcore::glWindowPos4fMESA
+#define glWindowPos4fvMESA glew::glcore::glWindowPos4fvMESA
+#define glWindowPos4iMESA glew::glcore::glWindowPos4iMESA
+#define glWindowPos4ivMESA glew::glcore::glWindowPos4ivMESA
+#define glWindowPos4sMESA glew::glcore::glWindowPos4sMESA
+#define glWindowPos4svMESA glew::glcore::glWindowPos4svMESA
+#define glWriteMaskEXT glew::glcore::glWriteMaskEXT
+#define glCoverageModulationNV glew::glcore::glCoverageModulationNV
+#define glCoverageModulationTableNV glew::glcore::glCoverageModulationTableNV
+#define glFragmentCoverageColorNV glew::glcore::glFragmentCoverageColorNV
+#define glFramebufferSampleLocationsfvNV glew::glcore::glFramebufferSampleLocationsfvNV
+#define glGetCoverageModulationTableNV glew::glcore::glGetCoverageModulationTableNV
+#define glNamedFramebufferSampleLocationsfvNV glew::glcore::glNamedFramebufferSampleLocationsfvNV
+#define glRasterSamplesEXT glew::glcore::glRasterSamplesEXT
+#define glResolveDepthValuesNV glew::glcore::glResolveDepthValuesNV
+#define glSubpixelPrecisionBiasNV glew::glcore::glSubpixelPrecisionBiasNV
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define glAccum __glAccum
-#define glAccumxOES __glAccumxOES
-#define glActiveProgramEXT __glActiveProgramEXT
-#define glActiveShaderProgram __glActiveShaderProgram
-#define glActiveShaderProgramEXT __glActiveShaderProgramEXT
-#define glActiveStencilFaceEXT __glActiveStencilFaceEXT
-#define glActiveTexture __glActiveTexture
-#define glActiveTextureARB __glActiveTextureARB
-#define glActiveVaryingNV __glActiveVaryingNV
-#define glAlphaFragmentOp1ATI __glAlphaFragmentOp1ATI
-#define glAlphaFragmentOp2ATI __glAlphaFragmentOp2ATI
-#define glAlphaFragmentOp3ATI __glAlphaFragmentOp3ATI
-#define glAlphaFunc __glAlphaFunc
-#define glAlphaFuncQCOM __glAlphaFuncQCOM
-#define glAlphaFuncx __glAlphaFuncx
-#define glAlphaFuncxOES __glAlphaFuncxOES
-#define glApplyTextureEXT __glApplyTextureEXT
-#define glAreProgramsResidentNV __glAreProgramsResidentNV
-#define glAreTexturesResident __glAreTexturesResident
-#define glAreTexturesResidentEXT __glAreTexturesResidentEXT
-#define glArrayElement __glArrayElement
-#define glArrayElementEXT __glArrayElementEXT
-#define glArrayObjectATI __glArrayObjectATI
-#define glAsyncMarkerSGIX __glAsyncMarkerSGIX
-#define glAttachObjectARB __glAttachObjectARB
-#define glAttachShader __glAttachShader
-#define glBegin __glBegin
-#define glBeginConditionalRender __glBeginConditionalRender
-#define glBeginConditionalRenderNV __glBeginConditionalRenderNV
-#define glBeginConditionalRenderNVX __glBeginConditionalRenderNVX
-#define glBeginFragmentShaderATI __glBeginFragmentShaderATI
-#define glBeginOcclusionQueryNV __glBeginOcclusionQueryNV
-#define glBeginPerfMonitorAMD __glBeginPerfMonitorAMD
-#define glBeginPerfQueryINTEL __glBeginPerfQueryINTEL
-#define glBeginQuery __glBeginQuery
-#define glBeginQueryARB __glBeginQueryARB
-#define glBeginQueryEXT __glBeginQueryEXT
-#define glBeginQueryIndexed __glBeginQueryIndexed
-#define glBeginTransformFeedback __glBeginTransformFeedback
-#define glBeginTransformFeedbackEXT __glBeginTransformFeedbackEXT
-#define glBeginTransformFeedbackNV __glBeginTransformFeedbackNV
-#define glBeginVertexShaderEXT __glBeginVertexShaderEXT
-#define glBeginVideoCaptureNV __glBeginVideoCaptureNV
-#define glBindAttribLocation __glBindAttribLocation
-#define glBindAttribLocationARB __glBindAttribLocationARB
-#define glBindBuffer __glBindBuffer
-#define glBindBufferARB __glBindBufferARB
-#define glBindBufferBase __glBindBufferBase
-#define glBindBufferBaseEXT __glBindBufferBaseEXT
-#define glBindBufferBaseNV __glBindBufferBaseNV
-#define glBindBufferOffsetEXT __glBindBufferOffsetEXT
-#define glBindBufferOffsetNV __glBindBufferOffsetNV
-#define glBindBufferRange __glBindBufferRange
-#define glBindBufferRangeEXT __glBindBufferRangeEXT
-#define glBindBufferRangeNV __glBindBufferRangeNV
-#define glBindBuffersBase __glBindBuffersBase
-#define glBindBuffersRange __glBindBuffersRange
-#define glBindFragDataLocation __glBindFragDataLocation
-#define glBindFragDataLocationEXT __glBindFragDataLocationEXT
-#define glBindFragDataLocationIndexed __glBindFragDataLocationIndexed
-#define glBindFragmentShaderATI __glBindFragmentShaderATI
-#define glBindFramebuffer __glBindFramebuffer
-#define glBindFramebufferEXT __glBindFramebufferEXT
-#define glBindFramebufferOES __glBindFramebufferOES
-#define glBindImageTexture __glBindImageTexture
-#define glBindImageTextureEXT __glBindImageTextureEXT
-#define glBindImageTextures __glBindImageTextures
-#define glBindLightParameterEXT __glBindLightParameterEXT
-#define glBindMaterialParameterEXT __glBindMaterialParameterEXT
-#define glBindMultiTextureEXT __glBindMultiTextureEXT
-#define glBindParameterEXT __glBindParameterEXT
-#define glBindProgramARB __glBindProgramARB
-#define glBindProgramNV __glBindProgramNV
-#define glBindProgramPipeline __glBindProgramPipeline
-#define glBindProgramPipelineEXT __glBindProgramPipelineEXT
-#define glBindRenderbuffer __glBindRenderbuffer
-#define glBindRenderbufferEXT __glBindRenderbufferEXT
-#define glBindRenderbufferOES __glBindRenderbufferOES
-#define glBindSampler __glBindSampler
-#define glBindSamplers __glBindSamplers
-#define glBindTexGenParameterEXT __glBindTexGenParameterEXT
-#define glBindTexture __glBindTexture
-#define glBindTextureEXT __glBindTextureEXT
-#define glBindTextureUnit __glBindTextureUnit
-#define glBindTextureUnitParameterEXT __glBindTextureUnitParameterEXT
-#define glBindTextures __glBindTextures
-#define glBindTransformFeedback __glBindTransformFeedback
-#define glBindTransformFeedbackNV __glBindTransformFeedbackNV
-#define glBindVertexArray __glBindVertexArray
-#define glBindVertexArrayAPPLE __glBindVertexArrayAPPLE
-#define glBindVertexArrayOES __glBindVertexArrayOES
-#define glBindVertexBuffer __glBindVertexBuffer
-#define glBindVertexBuffers __glBindVertexBuffers
-#define glBindVertexShaderEXT __glBindVertexShaderEXT
-#define glBindVideoCaptureStreamBufferNV __glBindVideoCaptureStreamBufferNV
-#define glBindVideoCaptureStreamTextureNV __glBindVideoCaptureStreamTextureNV
-#define glBinormal3bEXT __glBinormal3bEXT
-#define glBinormal3bvEXT __glBinormal3bvEXT
-#define glBinormal3dEXT __glBinormal3dEXT
-#define glBinormal3dvEXT __glBinormal3dvEXT
-#define glBinormal3fEXT __glBinormal3fEXT
-#define glBinormal3fvEXT __glBinormal3fvEXT
-#define glBinormal3iEXT __glBinormal3iEXT
-#define glBinormal3ivEXT __glBinormal3ivEXT
-#define glBinormal3sEXT __glBinormal3sEXT
-#define glBinormal3svEXT __glBinormal3svEXT
-#define glBinormalPointerEXT __glBinormalPointerEXT
-#define glBitmap __glBitmap
-#define glBitmapxOES __glBitmapxOES
-#define glBlendBarrierKHR __glBlendBarrierKHR
-#define glBlendBarrierNV __glBlendBarrierNV
-#define glBlendColor __glBlendColor
-#define glBlendColorEXT __glBlendColorEXT
-#define glBlendColorxOES __glBlendColorxOES
-#define glBlendEquation __glBlendEquation
-#define glBlendEquationEXT __glBlendEquationEXT
-#define glBlendEquationIndexedAMD __glBlendEquationIndexedAMD
-#define glBlendEquationOES __glBlendEquationOES
-#define glBlendEquationSeparate __glBlendEquationSeparate
-#define glBlendEquationSeparateEXT __glBlendEquationSeparateEXT
-#define glBlendEquationSeparateIndexedAMD __glBlendEquationSeparateIndexedAMD
-#define glBlendEquationSeparateOES __glBlendEquationSeparateOES
-#define glBlendEquationSeparatei __glBlendEquationSeparatei
-#define glBlendEquationSeparateiARB __glBlendEquationSeparateiARB
-#define glBlendEquationSeparateiEXT __glBlendEquationSeparateiEXT
-#define glBlendEquationSeparateiOES __glBlendEquationSeparateiOES
-#define glBlendEquationi __glBlendEquationi
-#define glBlendEquationiARB __glBlendEquationiARB
-#define glBlendEquationiEXT __glBlendEquationiEXT
-#define glBlendEquationiOES __glBlendEquationiOES
-#define glBlendFunc __glBlendFunc
-#define glBlendFuncIndexedAMD __glBlendFuncIndexedAMD
-#define glBlendFuncSeparate __glBlendFuncSeparate
-#define glBlendFuncSeparateEXT __glBlendFuncSeparateEXT
-#define glBlendFuncSeparateINGR __glBlendFuncSeparateINGR
-#define glBlendFuncSeparateIndexedAMD __glBlendFuncSeparateIndexedAMD
-#define glBlendFuncSeparateOES __glBlendFuncSeparateOES
-#define glBlendFuncSeparatei __glBlendFuncSeparatei
-#define glBlendFuncSeparateiARB __glBlendFuncSeparateiARB
-#define glBlendFuncSeparateiEXT __glBlendFuncSeparateiEXT
-#define glBlendFuncSeparateiOES __glBlendFuncSeparateiOES
-#define glBlendFunci __glBlendFunci
-#define glBlendFunciARB __glBlendFunciARB
-#define glBlendFunciEXT __glBlendFunciEXT
-#define glBlendFunciOES __glBlendFunciOES
-#define glBlendParameteriNV __glBlendParameteriNV
-#define glBlitFramebuffer __glBlitFramebuffer
-#define glBlitFramebufferANGLE __glBlitFramebufferANGLE
-#define glBlitFramebufferEXT __glBlitFramebufferEXT
-#define glBlitFramebufferNV __glBlitFramebufferNV
-#define glBlitNamedFramebuffer __glBlitNamedFramebuffer
-#define glBufferAddressRangeNV __glBufferAddressRangeNV
-#define glBufferData __glBufferData
-#define glBufferDataARB __glBufferDataARB
-#define glBufferPageCommitmentARB __glBufferPageCommitmentARB
-#define glBufferParameteriAPPLE __glBufferParameteriAPPLE
-#define glBufferStorage __glBufferStorage
-#define glBufferStorageEXT __glBufferStorageEXT
-#define glBufferSubData __glBufferSubData
-#define glBufferSubDataARB __glBufferSubDataARB
-#define glCallCommandListNV __glCallCommandListNV
-#define glCallList __glCallList
-#define glCallLists __glCallLists
-#define glCheckFramebufferStatus __glCheckFramebufferStatus
-#define glCheckFramebufferStatusEXT __glCheckFramebufferStatusEXT
-#define glCheckFramebufferStatusOES __glCheckFramebufferStatusOES
-#define glCheckNamedFramebufferStatus __glCheckNamedFramebufferStatus
-#define glCheckNamedFramebufferStatusEXT __glCheckNamedFramebufferStatusEXT
-#define glClampColor __glClampColor
-#define glClampColorARB __glClampColorARB
-#define glClear __glClear
-#define glClearAccum __glClearAccum
-#define glClearAccumxOES __glClearAccumxOES
-#define glClearBufferData __glClearBufferData
-#define glClearBufferSubData __glClearBufferSubData
-#define glClearBufferfi __glClearBufferfi
-#define glClearBufferfv __glClearBufferfv
-#define glClearBufferiv __glClearBufferiv
-#define glClearBufferuiv __glClearBufferuiv
-#define glClearColor __glClearColor
-#define glClearColorIiEXT __glClearColorIiEXT
-#define glClearColorIuiEXT __glClearColorIuiEXT
-#define glClearColorx __glClearColorx
-#define glClearColorxOES __glClearColorxOES
-#define glClearDepth __glClearDepth
-#define glClearDepthdNV __glClearDepthdNV
-#define glClearDepthf __glClearDepthf
-#define glClearDepthfOES __glClearDepthfOES
-#define glClearDepthx __glClearDepthx
-#define glClearDepthxOES __glClearDepthxOES
-#define glClearIndex __glClearIndex
-#define glClearNamedBufferData __glClearNamedBufferData
-#define glClearNamedBufferDataEXT __glClearNamedBufferDataEXT
-#define glClearNamedBufferSubData __glClearNamedBufferSubData
-#define glClearNamedBufferSubDataEXT __glClearNamedBufferSubDataEXT
-#define glClearNamedFramebufferfi __glClearNamedFramebufferfi
-#define glClearNamedFramebufferfv __glClearNamedFramebufferfv
-#define glClearNamedFramebufferiv __glClearNamedFramebufferiv
-#define glClearNamedFramebufferuiv __glClearNamedFramebufferuiv
-#define glClearStencil __glClearStencil
-#define glClearTexImage __glClearTexImage
-#define glClearTexSubImage __glClearTexSubImage
-#define glClientActiveTexture __glClientActiveTexture
-#define glClientActiveTextureARB __glClientActiveTextureARB
-#define glClientActiveVertexStreamATI __glClientActiveVertexStreamATI
-#define glClientAttribDefaultEXT __glClientAttribDefaultEXT
-#define glClientWaitSync __glClientWaitSync
-#define glClientWaitSyncAPPLE __glClientWaitSyncAPPLE
-#define glClipControl __glClipControl
-#define glClipPlane __glClipPlane
-#define glClipPlanef __glClipPlanef
-#define glClipPlanefIMG __glClipPlanefIMG
-#define glClipPlanefOES __glClipPlanefOES
-#define glClipPlanex __glClipPlanex
-#define glClipPlanexIMG __glClipPlanexIMG
-#define glClipPlanexOES __glClipPlanexOES
-#define glColor3b __glColor3b
-#define glColor3bv __glColor3bv
-#define glColor3d __glColor3d
-#define glColor3dv __glColor3dv
-#define glColor3f __glColor3f
-#define glColor3fVertex3fSUN __glColor3fVertex3fSUN
-#define glColor3fVertex3fvSUN __glColor3fVertex3fvSUN
-#define glColor3fv __glColor3fv
-#define glColor3hNV __glColor3hNV
-#define glColor3hvNV __glColor3hvNV
-#define glColor3i __glColor3i
-#define glColor3iv __glColor3iv
-#define glColor3s __glColor3s
-#define glColor3sv __glColor3sv
-#define glColor3ub __glColor3ub
-#define glColor3ubv __glColor3ubv
-#define glColor3ui __glColor3ui
-#define glColor3uiv __glColor3uiv
-#define glColor3us __glColor3us
-#define glColor3usv __glColor3usv
-#define glColor3xOES __glColor3xOES
-#define glColor3xvOES __glColor3xvOES
-#define glColor4b __glColor4b
-#define glColor4bv __glColor4bv
-#define glColor4d __glColor4d
-#define glColor4dv __glColor4dv
-#define glColor4f __glColor4f
-#define glColor4fNormal3fVertex3fSUN __glColor4fNormal3fVertex3fSUN
-#define glColor4fNormal3fVertex3fvSUN __glColor4fNormal3fVertex3fvSUN
-#define glColor4fv __glColor4fv
-#define glColor4hNV __glColor4hNV
-#define glColor4hvNV __glColor4hvNV
-#define glColor4i __glColor4i
-#define glColor4iv __glColor4iv
-#define glColor4s __glColor4s
-#define glColor4sv __glColor4sv
-#define glColor4ub __glColor4ub
-#define glColor4ubVertex2fSUN __glColor4ubVertex2fSUN
-#define glColor4ubVertex2fvSUN __glColor4ubVertex2fvSUN
-#define glColor4ubVertex3fSUN __glColor4ubVertex3fSUN
-#define glColor4ubVertex3fvSUN __glColor4ubVertex3fvSUN
-#define glColor4ubv __glColor4ubv
-#define glColor4ui __glColor4ui
-#define glColor4uiv __glColor4uiv
-#define glColor4us __glColor4us
-#define glColor4usv __glColor4usv
-#define glColor4x __glColor4x
-#define glColor4xOES __glColor4xOES
-#define glColor4xvOES __glColor4xvOES
-#define glColorFormatNV __glColorFormatNV
-#define glColorFragmentOp1ATI __glColorFragmentOp1ATI
-#define glColorFragmentOp2ATI __glColorFragmentOp2ATI
-#define glColorFragmentOp3ATI __glColorFragmentOp3ATI
-#define glColorMask __glColorMask
-#define glColorMaskIndexedEXT __glColorMaskIndexedEXT
-#define glColorMaski __glColorMaski
-#define glColorMaskiEXT __glColorMaskiEXT
-#define glColorMaskiOES __glColorMaskiOES
-#define glColorMaterial __glColorMaterial
-#define glColorP3ui __glColorP3ui
-#define glColorP3uiv __glColorP3uiv
-#define glColorP4ui __glColorP4ui
-#define glColorP4uiv __glColorP4uiv
-#define glColorPointer __glColorPointer
-#define glColorPointerEXT __glColorPointerEXT
-#define glColorPointerListIBM __glColorPointerListIBM
-#define glColorPointervINTEL __glColorPointervINTEL
-#define glColorSubTable __glColorSubTable
-#define glColorSubTableEXT __glColorSubTableEXT
-#define glColorTable __glColorTable
-#define glColorTableEXT __glColorTableEXT
-#define glColorTableParameterfv __glColorTableParameterfv
-#define glColorTableParameterfvSGI __glColorTableParameterfvSGI
-#define glColorTableParameteriv __glColorTableParameteriv
-#define glColorTableParameterivSGI __glColorTableParameterivSGI
-#define glColorTableSGI __glColorTableSGI
-#define glCombinerInputNV __glCombinerInputNV
-#define glCombinerOutputNV __glCombinerOutputNV
-#define glCombinerParameterfNV __glCombinerParameterfNV
-#define glCombinerParameterfvNV __glCombinerParameterfvNV
-#define glCombinerParameteriNV __glCombinerParameteriNV
-#define glCombinerParameterivNV __glCombinerParameterivNV
-#define glCombinerStageParameterfvNV __glCombinerStageParameterfvNV
-#define glCommandListSegmentsNV __glCommandListSegmentsNV
-#define glCompileCommandListNV __glCompileCommandListNV
-#define glCompileShader __glCompileShader
-#define glCompileShaderARB __glCompileShaderARB
-#define glCompileShaderIncludeARB __glCompileShaderIncludeARB
-#define glCompressedMultiTexImage1DEXT __glCompressedMultiTexImage1DEXT
-#define glCompressedMultiTexImage2DEXT __glCompressedMultiTexImage2DEXT
-#define glCompressedMultiTexImage3DEXT __glCompressedMultiTexImage3DEXT
-#define glCompressedMultiTexSubImage1DEXT __glCompressedMultiTexSubImage1DEXT
-#define glCompressedMultiTexSubImage2DEXT __glCompressedMultiTexSubImage2DEXT
-#define glCompressedMultiTexSubImage3DEXT __glCompressedMultiTexSubImage3DEXT
-#define glCompressedTexImage1D __glCompressedTexImage1D
-#define glCompressedTexImage1DARB __glCompressedTexImage1DARB
-#define glCompressedTexImage2D __glCompressedTexImage2D
-#define glCompressedTexImage2DARB __glCompressedTexImage2DARB
-#define glCompressedTexImage3D __glCompressedTexImage3D
-#define glCompressedTexImage3DARB __glCompressedTexImage3DARB
-#define glCompressedTexImage3DOES __glCompressedTexImage3DOES
-#define glCompressedTexSubImage1D __glCompressedTexSubImage1D
-#define glCompressedTexSubImage1DARB __glCompressedTexSubImage1DARB
-#define glCompressedTexSubImage2D __glCompressedTexSubImage2D
-#define glCompressedTexSubImage2DARB __glCompressedTexSubImage2DARB
-#define glCompressedTexSubImage3D __glCompressedTexSubImage3D
-#define glCompressedTexSubImage3DARB __glCompressedTexSubImage3DARB
-#define glCompressedTexSubImage3DOES __glCompressedTexSubImage3DOES
-#define glCompressedTextureImage1DEXT __glCompressedTextureImage1DEXT
-#define glCompressedTextureImage2DEXT __glCompressedTextureImage2DEXT
-#define glCompressedTextureImage3DEXT __glCompressedTextureImage3DEXT
-#define glCompressedTextureSubImage1D __glCompressedTextureSubImage1D
-#define glCompressedTextureSubImage1DEXT __glCompressedTextureSubImage1DEXT
-#define glCompressedTextureSubImage2D __glCompressedTextureSubImage2D
-#define glCompressedTextureSubImage2DEXT __glCompressedTextureSubImage2DEXT
-#define glCompressedTextureSubImage3D __glCompressedTextureSubImage3D
-#define glCompressedTextureSubImage3DEXT __glCompressedTextureSubImage3DEXT
-#define glConvolutionFilter1D __glConvolutionFilter1D
-#define glConvolutionFilter1DEXT __glConvolutionFilter1DEXT
-#define glConvolutionFilter2D __glConvolutionFilter2D
-#define glConvolutionFilter2DEXT __glConvolutionFilter2DEXT
-#define glConvolutionParameterf __glConvolutionParameterf
-#define glConvolutionParameterfEXT __glConvolutionParameterfEXT
-#define glConvolutionParameterfv __glConvolutionParameterfv
-#define glConvolutionParameterfvEXT __glConvolutionParameterfvEXT
-#define glConvolutionParameteri __glConvolutionParameteri
-#define glConvolutionParameteriEXT __glConvolutionParameteriEXT
-#define glConvolutionParameteriv __glConvolutionParameteriv
-#define glConvolutionParameterivEXT __glConvolutionParameterivEXT
-#define glConvolutionParameterxOES __glConvolutionParameterxOES
-#define glConvolutionParameterxvOES __glConvolutionParameterxvOES
-#define glCopyBufferSubData __glCopyBufferSubData
-#define glCopyBufferSubDataNV __glCopyBufferSubDataNV
-#define glCopyColorSubTable __glCopyColorSubTable
-#define glCopyColorSubTableEXT __glCopyColorSubTableEXT
-#define glCopyColorTable __glCopyColorTable
-#define glCopyColorTableSGI __glCopyColorTableSGI
-#define glCopyConvolutionFilter1D __glCopyConvolutionFilter1D
-#define glCopyConvolutionFilter1DEXT __glCopyConvolutionFilter1DEXT
-#define glCopyConvolutionFilter2D __glCopyConvolutionFilter2D
-#define glCopyConvolutionFilter2DEXT __glCopyConvolutionFilter2DEXT
-#define glCopyImageSubData __glCopyImageSubData
-#define glCopyImageSubDataEXT __glCopyImageSubDataEXT
-#define glCopyImageSubDataOES __glCopyImageSubDataOES
-#define glCopyImageSubDataNV __glCopyImageSubDataNV
-#define glCopyMultiTexImage1DEXT __glCopyMultiTexImage1DEXT
-#define glCopyMultiTexImage2DEXT __glCopyMultiTexImage2DEXT
-#define glCopyMultiTexSubImage1DEXT __glCopyMultiTexSubImage1DEXT
-#define glCopyMultiTexSubImage2DEXT __glCopyMultiTexSubImage2DEXT
-#define glCopyMultiTexSubImage3DEXT __glCopyMultiTexSubImage3DEXT
-#define glCopyNamedBufferSubData __glCopyNamedBufferSubData
-#define glCopyPathNV __glCopyPathNV
-#define glCopyPixels __glCopyPixels
-#define glCopyTexImage1D __glCopyTexImage1D
-#define glCopyTexImage1DEXT __glCopyTexImage1DEXT
-#define glCopyTexImage2D __glCopyTexImage2D
-#define glCopyTexImage2DEXT __glCopyTexImage2DEXT
-#define glCopyTexSubImage1D __glCopyTexSubImage1D
-#define glCopyTexSubImage1DEXT __glCopyTexSubImage1DEXT
-#define glCopyTexSubImage2D __glCopyTexSubImage2D
-#define glCopyTexSubImage2DEXT __glCopyTexSubImage2DEXT
-#define glCopyTexSubImage3D __glCopyTexSubImage3D
-#define glCopyTexSubImage3DEXT __glCopyTexSubImage3DEXT
-#define glCopyTexSubImage3DOES __glCopyTexSubImage3DOES
-#define glCopyTextureImage1DEXT __glCopyTextureImage1DEXT
-#define glCopyTextureImage2DEXT __glCopyTextureImage2DEXT
-#define glCopyTextureLevelsAPPLE __glCopyTextureLevelsAPPLE
-#define glCopyTextureSubImage1D __glCopyTextureSubImage1D
-#define glCopyTextureSubImage1DEXT __glCopyTextureSubImage1DEXT
-#define glCopyTextureSubImage2D __glCopyTextureSubImage2D
-#define glCopyTextureSubImage2DEXT __glCopyTextureSubImage2DEXT
-#define glCopyTextureSubImage3D __glCopyTextureSubImage3D
-#define glCopyTextureSubImage3DEXT __glCopyTextureSubImage3DEXT
-#define glCoverFillPathInstancedNV __glCoverFillPathInstancedNV
-#define glCoverFillPathNV __glCoverFillPathNV
-#define glCoverStrokePathInstancedNV __glCoverStrokePathInstancedNV
-#define glCoverStrokePathNV __glCoverStrokePathNV
-#define glCoverageMaskNV __glCoverageMaskNV
-#define glCoverageOperationNV __glCoverageOperationNV
-#define glCreateBuffers __glCreateBuffers
-#define glCreateCommandListsNV __glCreateCommandListsNV
-#define glCreateStatesNV __glCreateStatesNV
-#define glCreateFramebuffers __glCreateFramebuffers
-#define glCreatePerfQueryINTEL __glCreatePerfQueryINTEL
-#define glCreateProgram __glCreateProgram
-#define glCreateProgramObjectARB __glCreateProgramObjectARB
-#define glCreateProgramPipelines __glCreateProgramPipelines
-#define glCreateQueries __glCreateQueries
-#define glCreateRenderbuffers __glCreateRenderbuffers
-#define glCreateSamplers __glCreateSamplers
-#define glCreateShader __glCreateShader
-#define glCreateShaderObjectARB __glCreateShaderObjectARB
-#define glCreateShaderProgramEXT __glCreateShaderProgramEXT
-#define glCreateShaderProgramv __glCreateShaderProgramv
-#define glCreateShaderProgramvEXT __glCreateShaderProgramvEXT
-#define glCreateSyncFromCLeventARB __glCreateSyncFromCLeventARB
-#define glCreateTextures __glCreateTextures
-#define glCreateTransformFeedbacks __glCreateTransformFeedbacks
-#define glCreateVertexArrays __glCreateVertexArrays
-#define glCullFace __glCullFace
-#define glCullParameterdvEXT __glCullParameterdvEXT
-#define glCullParameterfvEXT __glCullParameterfvEXT
-#define glCurrentPaletteMatrixARB __glCurrentPaletteMatrixARB
-#define glCurrentPaletteMatrixOES __glCurrentPaletteMatrixOES
-#define glDebugMessageCallback __glDebugMessageCallback
-#define glDebugMessageCallbackAMD __glDebugMessageCallbackAMD
-#define glDebugMessageCallbackARB __glDebugMessageCallbackARB
-#define glDebugMessageCallbackKHR __glDebugMessageCallbackKHR
-#define glDebugMessageControl __glDebugMessageControl
-#define glDebugMessageControlARB __glDebugMessageControlARB
-#define glDebugMessageControlKHR __glDebugMessageControlKHR
-#define glDebugMessageEnableAMD __glDebugMessageEnableAMD
-#define glDebugMessageInsert __glDebugMessageInsert
-#define glDebugMessageInsertAMD __glDebugMessageInsertAMD
-#define glDebugMessageInsertARB __glDebugMessageInsertARB
-#define glDebugMessageInsertKHR __glDebugMessageInsertKHR
-#define glDeformSGIX __glDeformSGIX
-#define glDeformationMap3dSGIX __glDeformationMap3dSGIX
-#define glDeformationMap3fSGIX __glDeformationMap3fSGIX
-#define glDeleteAsyncMarkersSGIX __glDeleteAsyncMarkersSGIX
-#define glDeleteBuffers __glDeleteBuffers
-#define glDeleteBuffersARB __glDeleteBuffersARB
-#define glDeleteCommandListsNV __glDeleteCommandListsNV
-#define glDeleteStatesNV __glDeleteStatesNV
-#define glDeleteFencesAPPLE __glDeleteFencesAPPLE
-#define glDeleteFencesNV __glDeleteFencesNV
-#define glDeleteFragmentShaderATI __glDeleteFragmentShaderATI
-#define glDeleteFramebuffers __glDeleteFramebuffers
-#define glDeleteFramebuffersEXT __glDeleteFramebuffersEXT
-#define glDeleteFramebuffersOES __glDeleteFramebuffersOES
-#define glDeleteLists __glDeleteLists
-#define glDeleteNamedStringARB __glDeleteNamedStringARB
-#define glDeleteNamesAMD __glDeleteNamesAMD
-#define glDeleteObjectARB __glDeleteObjectARB
-#define glDeleteOcclusionQueriesNV __glDeleteOcclusionQueriesNV
-#define glDeletePathsNV __glDeletePathsNV
-#define glDeletePerfMonitorsAMD __glDeletePerfMonitorsAMD
-#define glDeletePerfQueryINTEL __glDeletePerfQueryINTEL
-#define glDeleteProgram __glDeleteProgram
-#define glDeleteProgramPipelines __glDeleteProgramPipelines
-#define glDeleteProgramPipelinesEXT __glDeleteProgramPipelinesEXT
-#define glDeleteProgramsARB __glDeleteProgramsARB
-#define glDeleteProgramsNV __glDeleteProgramsNV
-#define glDeleteQueries __glDeleteQueries
-#define glDeleteQueriesARB __glDeleteQueriesARB
-#define glDeleteQueriesEXT __glDeleteQueriesEXT
-#define glDeleteRenderbuffers __glDeleteRenderbuffers
-#define glDeleteRenderbuffersEXT __glDeleteRenderbuffersEXT
-#define glDeleteRenderbuffersOES __glDeleteRenderbuffersOES
-#define glDeleteSamplers __glDeleteSamplers
-#define glDeleteShader __glDeleteShader
-#define glDeleteSync __glDeleteSync
-#define glDeleteSyncAPPLE __glDeleteSyncAPPLE
-#define glDeleteTextures __glDeleteTextures
-#define glDeleteTexturesEXT __glDeleteTexturesEXT
-#define glDeleteTransformFeedbacks __glDeleteTransformFeedbacks
-#define glDeleteTransformFeedbacksNV __glDeleteTransformFeedbacksNV
-#define glDeleteVertexArrays __glDeleteVertexArrays
-#define glDeleteVertexArraysAPPLE __glDeleteVertexArraysAPPLE
-#define glDeleteVertexArraysOES __glDeleteVertexArraysOES
-#define glDeleteVertexShaderEXT __glDeleteVertexShaderEXT
-#define glDepthBoundsEXT __glDepthBoundsEXT
-#define glDepthBoundsdNV __glDepthBoundsdNV
-#define glDepthFunc __glDepthFunc
-#define glDepthMask __glDepthMask
-#define glDepthRange __glDepthRange
-#define glDepthRangeArrayv __glDepthRangeArrayv
-#define glDepthRangeArrayfvNV __glDepthRangeArrayfvNV
-#define glDepthRangeIndexed __glDepthRangeIndexed
-#define glDepthRangeIndexedfNV __glDepthRangeIndexedfNV
-#define glDepthRangedNV __glDepthRangedNV
-#define glDepthRangef __glDepthRangef
-#define glDepthRangefOES __glDepthRangefOES
-#define glDepthRangex __glDepthRangex
-#define glDepthRangexOES __glDepthRangexOES
-#define glDetachObjectARB __glDetachObjectARB
-#define glDetachShader __glDetachShader
-#define glDetailTexFuncSGIS __glDetailTexFuncSGIS
-#define glDisable __glDisable
-#define glDisableClientState __glDisableClientState
-#define glDisableClientStateIndexedEXT __glDisableClientStateIndexedEXT
-#define glDisableClientStateiEXT __glDisableClientStateiEXT
-#define glDisableDriverControlQCOM __glDisableDriverControlQCOM
-#define glDisableIndexedEXT __glDisableIndexedEXT
-#define glDisableVariantClientStateEXT __glDisableVariantClientStateEXT
-#define glDisableVertexArrayAttrib __glDisableVertexArrayAttrib
-#define glDisableVertexArrayAttribEXT __glDisableVertexArrayAttribEXT
-#define glDisableVertexArrayEXT __glDisableVertexArrayEXT
-#define glDisableVertexAttribAPPLE __glDisableVertexAttribAPPLE
-#define glDisableVertexAttribArray __glDisableVertexAttribArray
-#define glDisableVertexAttribArrayARB __glDisableVertexAttribArrayARB
-#define glDisablei __glDisablei
-#define glDisableiEXT __glDisableiEXT
-#define glDisableiNV __glDisableiNV
-#define glDisableiOES __glDisableiOES
-#define glDiscardFramebufferEXT __glDiscardFramebufferEXT
-#define glDispatchCompute __glDispatchCompute
-#define glDispatchComputeGroupSizeARB __glDispatchComputeGroupSizeARB
-#define glDispatchComputeIndirect __glDispatchComputeIndirect
-#define glDrawArrays __glDrawArrays
-#define glDrawArraysEXT __glDrawArraysEXT
-#define glDrawArraysIndirect __glDrawArraysIndirect
-#define glDrawArraysInstanced __glDrawArraysInstanced
-#define glDrawArraysInstancedANGLE __glDrawArraysInstancedANGLE
-#define glDrawArraysInstancedARB __glDrawArraysInstancedARB
-#define glDrawArraysInstancedBaseInstance __glDrawArraysInstancedBaseInstance
-#define glDrawArraysInstancedBaseInstanceEXT __glDrawArraysInstancedBaseInstanceEXT
-#define glDrawArraysInstancedEXT __glDrawArraysInstancedEXT
-#define glDrawArraysInstancedNV __glDrawArraysInstancedNV
-#define glDrawBuffer __glDrawBuffer
-#define glDrawBuffers __glDrawBuffers
-#define glDrawBuffersARB __glDrawBuffersARB
-#define glDrawBuffersATI __glDrawBuffersATI
-#define glDrawBuffersEXT __glDrawBuffersEXT
-#define glDrawBuffersIndexedEXT __glDrawBuffersIndexedEXT
-#define glDrawBuffersNV __glDrawBuffersNV
-#define glDrawCommandsNV __glDrawCommandsNV
-#define glDrawCommandsAddressNV __glDrawCommandsAddressNV
-#define glDrawCommandsStatesNV __glDrawCommandsStatesNV
-#define glDrawCommandsStatesAddressNV __glDrawCommandsStatesAddressNV
-#define glDrawElementArrayAPPLE __glDrawElementArrayAPPLE
-#define glDrawElementArrayATI __glDrawElementArrayATI
-#define glDrawElements __glDrawElements
-#define glDrawElementsBaseVertex __glDrawElementsBaseVertex
-#define glDrawElementsBaseVertexEXT __glDrawElementsBaseVertexEXT
-#define glDrawElementsBaseVertexOES __glDrawElementsBaseVertexOES
-#define glDrawElementsIndirect __glDrawElementsIndirect
-#define glDrawElementsInstanced __glDrawElementsInstanced
-#define glDrawElementsInstancedANGLE __glDrawElementsInstancedANGLE
-#define glDrawElementsInstancedARB __glDrawElementsInstancedARB
-#define glDrawElementsInstancedBaseInstance __glDrawElementsInstancedBaseInstance
-#define glDrawElementsInstancedBaseInstanceEXT __glDrawElementsInstancedBaseInstanceEXT
-#define glDrawElementsInstancedBaseVertex __glDrawElementsInstancedBaseVertex
-#define glDrawElementsInstancedBaseVertexEXT __glDrawElementsInstancedBaseVertexEXT
-#define glDrawElementsInstancedBaseVertexOES __glDrawElementsInstancedBaseVertexOES
-#define glDrawElementsInstancedBaseVertexBaseInstance __glDrawElementsInstancedBaseVertexBaseInstance
-#define glDrawElementsInstancedBaseVertexBaseInstanceEXT __glDrawElementsInstancedBaseVertexBaseInstanceEXT
-#define glDrawElementsInstancedEXT __glDrawElementsInstancedEXT
-#define glDrawElementsInstancedNV __glDrawElementsInstancedNV
-#define glDrawMeshArraysSUN __glDrawMeshArraysSUN
-#define glDrawPixels __glDrawPixels
-#define glDrawRangeElementArrayAPPLE __glDrawRangeElementArrayAPPLE
-#define glDrawRangeElementArrayATI __glDrawRangeElementArrayATI
-#define glDrawRangeElements __glDrawRangeElements
-#define glDrawRangeElementsBaseVertex __glDrawRangeElementsBaseVertex
-#define glDrawRangeElementsBaseVertexEXT __glDrawRangeElementsBaseVertexEXT
-#define glDrawRangeElementsBaseVertexOES __glDrawRangeElementsBaseVertexOES
-#define glDrawRangeElementsEXT __glDrawRangeElementsEXT
-#define glDrawTexfOES __glDrawTexfOES
-#define glDrawTexfvOES __glDrawTexfvOES
-#define glDrawTexiOES __glDrawTexiOES
-#define glDrawTexivOES __glDrawTexivOES
-#define glDrawTexsOES __glDrawTexsOES
-#define glDrawTexsvOES __glDrawTexsvOES
-#define glDrawTextureNV __glDrawTextureNV
-#define glDrawTexxOES __glDrawTexxOES
-#define glDrawTexxvOES __glDrawTexxvOES
-#define glDrawTransformFeedback __glDrawTransformFeedback
-#define glDrawTransformFeedbackInstanced __glDrawTransformFeedbackInstanced
-#define glDrawTransformFeedbackNV __glDrawTransformFeedbackNV
-#define glDrawTransformFeedbackStream __glDrawTransformFeedbackStream
-#define glDrawTransformFeedbackStreamInstanced __glDrawTransformFeedbackStreamInstanced
-#define glEGLImageTargetRenderbufferStorageOES __glEGLImageTargetRenderbufferStorageOES
-#define glEGLImageTargetTexture2DOES __glEGLImageTargetTexture2DOES
-#define glEdgeFlag __glEdgeFlag
-#define glEdgeFlagFormatNV __glEdgeFlagFormatNV
-#define glEdgeFlagPointer __glEdgeFlagPointer
-#define glEdgeFlagPointerEXT __glEdgeFlagPointerEXT
-#define glEdgeFlagPointerListIBM __glEdgeFlagPointerListIBM
-#define glEdgeFlagv __glEdgeFlagv
-#define glElementPointerAPPLE __glElementPointerAPPLE
-#define glElementPointerATI __glElementPointerATI
-#define glEnable __glEnable
-#define glEnableClientState __glEnableClientState
-#define glEnableClientStateIndexedEXT __glEnableClientStateIndexedEXT
-#define glEnableClientStateiEXT __glEnableClientStateiEXT
-#define glEnableDriverControlQCOM __glEnableDriverControlQCOM
-#define glEnableIndexedEXT __glEnableIndexedEXT
-#define glEnableVariantClientStateEXT __glEnableVariantClientStateEXT
-#define glEnableVertexArrayAttrib __glEnableVertexArrayAttrib
-#define glEnableVertexArrayAttribEXT __glEnableVertexArrayAttribEXT
-#define glEnableVertexArrayEXT __glEnableVertexArrayEXT
-#define glEnableVertexAttribAPPLE __glEnableVertexAttribAPPLE
-#define glEnableVertexAttribArray __glEnableVertexAttribArray
-#define glEnableVertexAttribArrayARB __glEnableVertexAttribArrayARB
-#define glEnablei __glEnablei
-#define glEnableiEXT __glEnableiEXT
-#define glEnableiNV __glEnableiNV
-#define glEnableiOES __glEnableiOES
-#define glEnd __glEnd
-#define glEndConditionalRender __glEndConditionalRender
-#define glEndConditionalRenderNV __glEndConditionalRenderNV
-#define glEndConditionalRenderNVX __glEndConditionalRenderNVX
-#define glEndFragmentShaderATI __glEndFragmentShaderATI
-#define glEndList __glEndList
-#define glEndOcclusionQueryNV __glEndOcclusionQueryNV
-#define glEndPerfMonitorAMD __glEndPerfMonitorAMD
-#define glEndPerfQueryINTEL __glEndPerfQueryINTEL
-#define glEndQuery __glEndQuery
-#define glEndQueryARB __glEndQueryARB
-#define glEndQueryEXT __glEndQueryEXT
-#define glEndQueryIndexed __glEndQueryIndexed
-#define glEndTilingQCOM __glEndTilingQCOM
-#define glEndTransformFeedback __glEndTransformFeedback
-#define glEndTransformFeedbackEXT __glEndTransformFeedbackEXT
-#define glEndTransformFeedbackNV __glEndTransformFeedbackNV
-#define glEndVertexShaderEXT __glEndVertexShaderEXT
-#define glEndVideoCaptureNV __glEndVideoCaptureNV
-#define glEvalCoord1d __glEvalCoord1d
-#define glEvalCoord1dv __glEvalCoord1dv
-#define glEvalCoord1f __glEvalCoord1f
-#define glEvalCoord1fv __glEvalCoord1fv
-#define glEvalCoord1xOES __glEvalCoord1xOES
-#define glEvalCoord1xvOES __glEvalCoord1xvOES
-#define glEvalCoord2d __glEvalCoord2d
-#define glEvalCoord2dv __glEvalCoord2dv
-#define glEvalCoord2f __glEvalCoord2f
-#define glEvalCoord2fv __glEvalCoord2fv
-#define glEvalCoord2xOES __glEvalCoord2xOES
-#define glEvalCoord2xvOES __glEvalCoord2xvOES
-#define glEvalMapsNV __glEvalMapsNV
-#define glEvalMesh1 __glEvalMesh1
-#define glEvalMesh2 __glEvalMesh2
-#define glEvalPoint1 __glEvalPoint1
-#define glEvalPoint2 __glEvalPoint2
-#define glExecuteProgramNV __glExecuteProgramNV
-#define glExtGetBufferPointervQCOM __glExtGetBufferPointervQCOM
-#define glExtGetBuffersQCOM __glExtGetBuffersQCOM
-#define glExtGetFramebuffersQCOM __glExtGetFramebuffersQCOM
-#define glExtGetProgramBinarySourceQCOM __glExtGetProgramBinarySourceQCOM
-#define glExtGetProgramsQCOM __glExtGetProgramsQCOM
-#define glExtGetRenderbuffersQCOM __glExtGetRenderbuffersQCOM
-#define glExtGetShadersQCOM __glExtGetShadersQCOM
-#define glExtGetTexLevelParameterivQCOM __glExtGetTexLevelParameterivQCOM
-#define glExtGetTexSubImageQCOM __glExtGetTexSubImageQCOM
-#define glExtGetTexturesQCOM __glExtGetTexturesQCOM
-#define glExtIsProgramBinaryQCOM __glExtIsProgramBinaryQCOM
-#define glExtTexObjectStateOverrideiQCOM __glExtTexObjectStateOverrideiQCOM
-#define glExtractComponentEXT __glExtractComponentEXT
-#define glFeedbackBuffer __glFeedbackBuffer
-#define glFeedbackBufferxOES __glFeedbackBufferxOES
-#define glFenceSync __glFenceSync
-#define glFenceSyncAPPLE __glFenceSyncAPPLE
-#define glFinalCombinerInputNV __glFinalCombinerInputNV
-#define glFinish __glFinish
-#define glFinishAsyncSGIX __glFinishAsyncSGIX
-#define glFinishFenceAPPLE __glFinishFenceAPPLE
-#define glFinishFenceNV __glFinishFenceNV
-#define glFinishObjectAPPLE __glFinishObjectAPPLE
-#define glFinishTextureSUNX __glFinishTextureSUNX
-#define glFlush __glFlush
-#define glFlushMappedBufferRange __glFlushMappedBufferRange
-#define glFlushMappedBufferRangeAPPLE __glFlushMappedBufferRangeAPPLE
-#define glFlushMappedBufferRangeEXT __glFlushMappedBufferRangeEXT
-#define glFlushMappedNamedBufferRange __glFlushMappedNamedBufferRange
-#define glFlushMappedNamedBufferRangeEXT __glFlushMappedNamedBufferRangeEXT
-#define glFlushPixelDataRangeNV __glFlushPixelDataRangeNV
-#define glFlushRasterSGIX __glFlushRasterSGIX
-#define glFlushStaticDataIBM __glFlushStaticDataIBM
-#define glFlushVertexArrayRangeAPPLE __glFlushVertexArrayRangeAPPLE
-#define glFlushVertexArrayRangeNV __glFlushVertexArrayRangeNV
-#define glFogCoordFormatNV __glFogCoordFormatNV
-#define glFogCoordPointer __glFogCoordPointer
-#define glFogCoordPointerEXT __glFogCoordPointerEXT
-#define glFogCoordPointerListIBM __glFogCoordPointerListIBM
-#define glFogCoordd __glFogCoordd
-#define glFogCoorddEXT __glFogCoorddEXT
-#define glFogCoorddv __glFogCoorddv
-#define glFogCoorddvEXT __glFogCoorddvEXT
-#define glFogCoordf __glFogCoordf
-#define glFogCoordfEXT __glFogCoordfEXT
-#define glFogCoordfv __glFogCoordfv
-#define glFogCoordfvEXT __glFogCoordfvEXT
-#define glFogCoordhNV __glFogCoordhNV
-#define glFogCoordhvNV __glFogCoordhvNV
-#define glFogFuncSGIS __glFogFuncSGIS
-#define glFogf __glFogf
-#define glFogfv __glFogfv
-#define glFogi __glFogi
-#define glFogiv __glFogiv
-#define glFogx __glFogx
-#define glFogxOES __glFogxOES
-#define glFogxv __glFogxv
-#define glFogxvOES __glFogxvOES
-#define glFragmentColorMaterialSGIX __glFragmentColorMaterialSGIX
-#define glFragmentLightModelfSGIX __glFragmentLightModelfSGIX
-#define glFragmentLightModelfvSGIX __glFragmentLightModelfvSGIX
-#define glFragmentLightModeliSGIX __glFragmentLightModeliSGIX
-#define glFragmentLightModelivSGIX __glFragmentLightModelivSGIX
-#define glFragmentLightfSGIX __glFragmentLightfSGIX
-#define glFragmentLightfvSGIX __glFragmentLightfvSGIX
-#define glFragmentLightiSGIX __glFragmentLightiSGIX
-#define glFragmentLightivSGIX __glFragmentLightivSGIX
-#define glFragmentMaterialfSGIX __glFragmentMaterialfSGIX
-#define glFragmentMaterialfvSGIX __glFragmentMaterialfvSGIX
-#define glFragmentMaterialiSGIX __glFragmentMaterialiSGIX
-#define glFragmentMaterialivSGIX __glFragmentMaterialivSGIX
-#define glFrameTerminatorGREMEDY __glFrameTerminatorGREMEDY
-#define glFrameZoomSGIX __glFrameZoomSGIX
-#define glFramebufferDrawBufferEXT __glFramebufferDrawBufferEXT
-#define glFramebufferDrawBuffersEXT __glFramebufferDrawBuffersEXT
-#define glFramebufferParameteri __glFramebufferParameteri
-#define glFramebufferReadBufferEXT __glFramebufferReadBufferEXT
-#define glFramebufferRenderbuffer __glFramebufferRenderbuffer
-#define glFramebufferRenderbufferEXT __glFramebufferRenderbufferEXT
-#define glFramebufferRenderbufferOES __glFramebufferRenderbufferOES
-#define glFramebufferTexture __glFramebufferTexture
-#define glFramebufferTexture1D __glFramebufferTexture1D
-#define glFramebufferTexture1DEXT __glFramebufferTexture1DEXT
-#define glFramebufferTexture2D __glFramebufferTexture2D
-#define glFramebufferTexture2DEXT __glFramebufferTexture2DEXT
-#define glFramebufferTexture2DMultisampleEXT __glFramebufferTexture2DMultisampleEXT
-#define glFramebufferTexture2DMultisampleIMG __glFramebufferTexture2DMultisampleIMG
-#define glFramebufferTexture2DOES __glFramebufferTexture2DOES
-#define glFramebufferTexture3D __glFramebufferTexture3D
-#define glFramebufferTexture3DEXT __glFramebufferTexture3DEXT
-#define glFramebufferTexture3DOES __glFramebufferTexture3DOES
-#define glFramebufferTextureARB __glFramebufferTextureARB
-#define glFramebufferTextureEXT __glFramebufferTextureEXT
-#define glFramebufferTextureOES __glFramebufferTextureOES
-#define glFramebufferTextureFaceARB __glFramebufferTextureFaceARB
-#define glFramebufferTextureFaceEXT __glFramebufferTextureFaceEXT
-#define glFramebufferTextureLayer __glFramebufferTextureLayer
-#define glFramebufferTextureLayerARB __glFramebufferTextureLayerARB
-#define glFramebufferTextureLayerEXT __glFramebufferTextureLayerEXT
-#define glFramebufferTextureMultiviewOVR __glFramebufferTextureMultiviewOVR
-#define glFreeObjectBufferATI __glFreeObjectBufferATI
-#define glFrontFace __glFrontFace
-#define glFrustum __glFrustum
-#define glFrustumf __glFrustumf
-#define glFrustumfOES __glFrustumfOES
-#define glFrustumx __glFrustumx
-#define glFrustumxOES __glFrustumxOES
-#define glGenAsyncMarkersSGIX __glGenAsyncMarkersSGIX
-#define glGenBuffers __glGenBuffers
-#define glGenBuffersARB __glGenBuffersARB
-#define glGenFencesAPPLE __glGenFencesAPPLE
-#define glGenFencesNV __glGenFencesNV
-#define glGenFragmentShadersATI __glGenFragmentShadersATI
-#define glGenFramebuffers __glGenFramebuffers
-#define glGenFramebuffersEXT __glGenFramebuffersEXT
-#define glGenFramebuffersOES __glGenFramebuffersOES
-#define glGenLists __glGenLists
-#define glGenNamesAMD __glGenNamesAMD
-#define glGenOcclusionQueriesNV __glGenOcclusionQueriesNV
-#define glGenPathsNV __glGenPathsNV
-#define glGenPerfMonitorsAMD __glGenPerfMonitorsAMD
-#define glGenProgramPipelines __glGenProgramPipelines
-#define glGenProgramPipelinesEXT __glGenProgramPipelinesEXT
-#define glGenProgramsARB __glGenProgramsARB
-#define glGenProgramsNV __glGenProgramsNV
-#define glGenQueries __glGenQueries
-#define glGenQueriesARB __glGenQueriesARB
-#define glGenQueriesEXT __glGenQueriesEXT
-#define glGenRenderbuffers __glGenRenderbuffers
-#define glGenRenderbuffersEXT __glGenRenderbuffersEXT
-#define glGenRenderbuffersOES __glGenRenderbuffersOES
-#define glGenSamplers __glGenSamplers
-#define glGenSymbolsEXT __glGenSymbolsEXT
-#define glGenTextures __glGenTextures
-#define glGenTexturesEXT __glGenTexturesEXT
-#define glGenTransformFeedbacks __glGenTransformFeedbacks
-#define glGenTransformFeedbacksNV __glGenTransformFeedbacksNV
-#define glGenVertexArrays __glGenVertexArrays
-#define glGenVertexArraysAPPLE __glGenVertexArraysAPPLE
-#define glGenVertexArraysOES __glGenVertexArraysOES
-#define glGenVertexShadersEXT __glGenVertexShadersEXT
-#define glGenerateMipmap __glGenerateMipmap
-#define glGenerateMipmapEXT __glGenerateMipmapEXT
-#define glGenerateMipmapOES __glGenerateMipmapOES
-#define glGenerateMultiTexMipmapEXT __glGenerateMultiTexMipmapEXT
-#define glGenerateTextureMipmap __glGenerateTextureMipmap
-#define glGenerateTextureMipmapEXT __glGenerateTextureMipmapEXT
-#define glGetActiveAtomicCounterBufferiv __glGetActiveAtomicCounterBufferiv
-#define glGetActiveAttrib __glGetActiveAttrib
-#define glGetActiveAttribARB __glGetActiveAttribARB
-#define glGetActiveSubroutineName __glGetActiveSubroutineName
-#define glGetActiveSubroutineUniformName __glGetActiveSubroutineUniformName
-#define glGetActiveSubroutineUniformiv __glGetActiveSubroutineUniformiv
-#define glGetActiveUniform __glGetActiveUniform
-#define glGetActiveUniformARB __glGetActiveUniformARB
-#define glGetActiveUniformBlockName __glGetActiveUniformBlockName
-#define glGetActiveUniformBlockiv __glGetActiveUniformBlockiv
-#define glGetActiveUniformName __glGetActiveUniformName
-#define glGetActiveUniformsiv __glGetActiveUniformsiv
-#define glGetActiveVaryingNV __glGetActiveVaryingNV
-#define glGetArrayObjectfvATI __glGetArrayObjectfvATI
-#define glGetArrayObjectivATI __glGetArrayObjectivATI
-#define glGetAttachedObjectsARB __glGetAttachedObjectsARB
-#define glGetAttachedShaders __glGetAttachedShaders
-#define glGetAttribLocation __glGetAttribLocation
-#define glGetAttribLocationARB __glGetAttribLocationARB
-#define glGetBooleanIndexedvEXT __glGetBooleanIndexedvEXT
-#define glGetBooleani_v __glGetBooleani_v
-#define glGetBooleanv __glGetBooleanv
-#define glGetBufferParameteri64v __glGetBufferParameteri64v
-#define glGetBufferParameteriv __glGetBufferParameteriv
-#define glGetBufferParameterivARB __glGetBufferParameterivARB
-#define glGetBufferParameterui64vNV __glGetBufferParameterui64vNV
-#define glGetBufferPointerv __glGetBufferPointerv
-#define glGetBufferPointervARB __glGetBufferPointervARB
-#define glGetBufferPointervOES __glGetBufferPointervOES
-#define glGetBufferSubData __glGetBufferSubData
-#define glGetBufferSubDataARB __glGetBufferSubDataARB
-#define glGetClipPlane __glGetClipPlane
-#define glGetClipPlanef __glGetClipPlanef
-#define glGetClipPlanefOES __glGetClipPlanefOES
-#define glGetClipPlanex __glGetClipPlanex
-#define glGetClipPlanexOES __glGetClipPlanexOES
-#define glGetColorTable __glGetColorTable
-#define glGetColorTableEXT __glGetColorTableEXT
-#define glGetColorTableParameterfv __glGetColorTableParameterfv
-#define glGetColorTableParameterfvEXT __glGetColorTableParameterfvEXT
-#define glGetColorTableParameterfvSGI __glGetColorTableParameterfvSGI
-#define glGetColorTableParameteriv __glGetColorTableParameteriv
-#define glGetColorTableParameterivEXT __glGetColorTableParameterivEXT
-#define glGetColorTableParameterivSGI __glGetColorTableParameterivSGI
-#define glGetColorTableSGI __glGetColorTableSGI
-#define glGetCombinerInputParameterfvNV __glGetCombinerInputParameterfvNV
-#define glGetCombinerInputParameterivNV __glGetCombinerInputParameterivNV
-#define glGetCombinerOutputParameterfvNV __glGetCombinerOutputParameterfvNV
-#define glGetCombinerOutputParameterivNV __glGetCombinerOutputParameterivNV
-#define glGetCombinerStageParameterfvNV __glGetCombinerStageParameterfvNV
-#define glGetCommandHeaderNV __glGetCommandHeaderNV
-#define glGetCompressedMultiTexImageEXT __glGetCompressedMultiTexImageEXT
-#define glGetCompressedTexImage __glGetCompressedTexImage
-#define glGetCompressedTexImageARB __glGetCompressedTexImageARB
-#define glGetCompressedTextureImage __glGetCompressedTextureImage
-#define glGetCompressedTextureImageEXT __glGetCompressedTextureImageEXT
-#define glGetCompressedTextureSubImage __glGetCompressedTextureSubImage
-#define glGetConvolutionFilter __glGetConvolutionFilter
-#define glGetConvolutionFilterEXT __glGetConvolutionFilterEXT
-#define glGetConvolutionParameterfv __glGetConvolutionParameterfv
-#define glGetConvolutionParameterfvEXT __glGetConvolutionParameterfvEXT
-#define glGetConvolutionParameteriv __glGetConvolutionParameteriv
-#define glGetConvolutionParameterivEXT __glGetConvolutionParameterivEXT
-#define glGetConvolutionParameterxvOES __glGetConvolutionParameterxvOES
-#define glGetDebugMessageLog __glGetDebugMessageLog
-#define glGetDebugMessageLogAMD __glGetDebugMessageLogAMD
-#define glGetDebugMessageLogARB __glGetDebugMessageLogARB
-#define glGetDebugMessageLogKHR __glGetDebugMessageLogKHR
-#define glGetDetailTexFuncSGIS __glGetDetailTexFuncSGIS
-#define glGetDoubleIndexedvEXT __glGetDoubleIndexedvEXT
-#define glGetDoublei_v __glGetDoublei_v
-#define glGetDoublei_vEXT __glGetDoublei_vEXT
-#define glGetDoublev __glGetDoublev
-#define glGetDriverControlStringQCOM __glGetDriverControlStringQCOM
-#define glGetDriverControlsQCOM __glGetDriverControlsQCOM
-#define glGetError __glGetError
-#define glGetFenceivNV __glGetFenceivNV
-#define glGetFinalCombinerInputParameterfvNV __glGetFinalCombinerInputParameterfvNV
-#define glGetFinalCombinerInputParameterivNV __glGetFinalCombinerInputParameterivNV
-#define glGetFirstPerfQueryIdINTEL __glGetFirstPerfQueryIdINTEL
-#define glGetFixedv __glGetFixedv
-#define glGetFixedvOES __glGetFixedvOES
-#define glGetFloatIndexedvEXT __glGetFloatIndexedvEXT
-#define glGetFloati_v __glGetFloati_v
-#define glGetFloati_vNV __glGetFloati_vNV
-#define glGetFloati_vEXT __glGetFloati_vEXT
-#define glGetFloatv __glGetFloatv
-#define glGetFogFuncSGIS __glGetFogFuncSGIS
-#define glGetFragDataIndex __glGetFragDataIndex
-#define glGetFragDataLocation __glGetFragDataLocation
-#define glGetFragDataLocationEXT __glGetFragDataLocationEXT
-#define glGetFragmentLightfvSGIX __glGetFragmentLightfvSGIX
-#define glGetFragmentLightivSGIX __glGetFragmentLightivSGIX
-#define glGetFragmentMaterialfvSGIX __glGetFragmentMaterialfvSGIX
-#define glGetFragmentMaterialivSGIX __glGetFragmentMaterialivSGIX
-#define glGetFramebufferAttachmentParameteriv __glGetFramebufferAttachmentParameteriv
-#define glGetFramebufferAttachmentParameterivEXT __glGetFramebufferAttachmentParameterivEXT
-#define glGetFramebufferAttachmentParameterivOES __glGetFramebufferAttachmentParameterivOES
-#define glGetFramebufferParameteriv __glGetFramebufferParameteriv
-#define glGetFramebufferParameterivEXT __glGetFramebufferParameterivEXT
-#define glGetGraphicsResetStatus __glGetGraphicsResetStatus
-#define glGetGraphicsResetStatusARB __glGetGraphicsResetStatusARB
-#define glGetGraphicsResetStatusEXT __glGetGraphicsResetStatusEXT
-#define glGetGraphicsResetStatusKHR __glGetGraphicsResetStatusKHR
-#define glGetHandleARB __glGetHandleARB
-#define glGetHistogram __glGetHistogram
-#define glGetHistogramEXT __glGetHistogramEXT
-#define glGetHistogramParameterfv __glGetHistogramParameterfv
-#define glGetHistogramParameterfvEXT __glGetHistogramParameterfvEXT
-#define glGetHistogramParameteriv __glGetHistogramParameteriv
-#define glGetHistogramParameterivEXT __glGetHistogramParameterivEXT
-#define glGetHistogramParameterxvOES __glGetHistogramParameterxvOES
-#define glGetImageHandleARB __glGetImageHandleARB
-#define glGetImageHandleNV __glGetImageHandleNV
-#define glGetImageTransformParameterfvHP __glGetImageTransformParameterfvHP
-#define glGetImageTransformParameterivHP __glGetImageTransformParameterivHP
-#define glGetInfoLogARB __glGetInfoLogARB
-#define glGetInstrumentsSGIX __glGetInstrumentsSGIX
-#define glGetInteger64i_v __glGetInteger64i_v
-#define glGetInteger64v __glGetInteger64v
-#define glGetInteger64vAPPLE __glGetInteger64vAPPLE
-#define glGetIntegerIndexedvEXT __glGetIntegerIndexedvEXT
-#define glGetIntegeri_v __glGetIntegeri_v
-#define glGetIntegeri_vEXT __glGetIntegeri_vEXT
-#define glGetIntegerui64i_vNV __glGetIntegerui64i_vNV
-#define glGetIntegerui64vNV __glGetIntegerui64vNV
-#define glGetIntegerv __glGetIntegerv
-#define glGetInternalformati64v __glGetInternalformati64v
-#define glGetInternalformativ __glGetInternalformativ
-#define glGetInternalformatSampleivNV __glGetInternalformatSampleivNV
-#define glGetInvariantBooleanvEXT __glGetInvariantBooleanvEXT
-#define glGetInvariantFloatvEXT __glGetInvariantFloatvEXT
-#define glGetInvariantIntegervEXT __glGetInvariantIntegervEXT
-#define glGetLightfv __glGetLightfv
-#define glGetLightiv __glGetLightiv
-#define glGetLightxOES __glGetLightxOES
-#define glGetLightxv __glGetLightxv
-#define glGetLightxvOES __glGetLightxvOES
-#define glGetListParameterfvSGIX __glGetListParameterfvSGIX
-#define glGetListParameterivSGIX __glGetListParameterivSGIX
-#define glGetLocalConstantBooleanvEXT __glGetLocalConstantBooleanvEXT
-#define glGetLocalConstantFloatvEXT __glGetLocalConstantFloatvEXT
-#define glGetLocalConstantIntegervEXT __glGetLocalConstantIntegervEXT
-#define glGetMapAttribParameterfvNV __glGetMapAttribParameterfvNV
-#define glGetMapAttribParameterivNV __glGetMapAttribParameterivNV
-#define glGetMapControlPointsNV __glGetMapControlPointsNV
-#define glGetMapParameterfvNV __glGetMapParameterfvNV
-#define glGetMapParameterivNV __glGetMapParameterivNV
-#define glGetMapdv __glGetMapdv
-#define glGetMapfv __glGetMapfv
-#define glGetMapiv __glGetMapiv
-#define glGetMapxvOES __glGetMapxvOES
-#define glGetMaterialfv __glGetMaterialfv
-#define glGetMaterialiv __glGetMaterialiv
-#define glGetMaterialxOES __glGetMaterialxOES
-#define glGetMaterialxv __glGetMaterialxv
-#define glGetMaterialxvOES __glGetMaterialxvOES
-#define glGetMinmax __glGetMinmax
-#define glGetMinmaxEXT __glGetMinmaxEXT
-#define glGetMinmaxParameterfv __glGetMinmaxParameterfv
-#define glGetMinmaxParameterfvEXT __glGetMinmaxParameterfvEXT
-#define glGetMinmaxParameteriv __glGetMinmaxParameteriv
-#define glGetMinmaxParameterivEXT __glGetMinmaxParameterivEXT
-#define glGetMultiTexEnvfvEXT __glGetMultiTexEnvfvEXT
-#define glGetMultiTexEnvivEXT __glGetMultiTexEnvivEXT
-#define glGetMultiTexGendvEXT __glGetMultiTexGendvEXT
-#define glGetMultiTexGenfvEXT __glGetMultiTexGenfvEXT
-#define glGetMultiTexGenivEXT __glGetMultiTexGenivEXT
-#define glGetMultiTexImageEXT __glGetMultiTexImageEXT
-#define glGetMultiTexLevelParameterfvEXT __glGetMultiTexLevelParameterfvEXT
-#define glGetMultiTexLevelParameterivEXT __glGetMultiTexLevelParameterivEXT
-#define glGetMultiTexParameterIivEXT __glGetMultiTexParameterIivEXT
-#define glGetMultiTexParameterIuivEXT __glGetMultiTexParameterIuivEXT
-#define glGetMultiTexParameterfvEXT __glGetMultiTexParameterfvEXT
-#define glGetMultiTexParameterivEXT __glGetMultiTexParameterivEXT
-#define glGetMultisamplefv __glGetMultisamplefv
-#define glGetMultisamplefvNV __glGetMultisamplefvNV
-#define glGetNamedBufferParameteri64v __glGetNamedBufferParameteri64v
-#define glGetNamedBufferParameteriv __glGetNamedBufferParameteriv
-#define glGetNamedBufferParameterivEXT __glGetNamedBufferParameterivEXT
-#define glGetNamedBufferParameterui64vNV __glGetNamedBufferParameterui64vNV
-#define glGetNamedBufferPointerv __glGetNamedBufferPointerv
-#define glGetNamedBufferPointervEXT __glGetNamedBufferPointervEXT
-#define glGetNamedBufferSubData __glGetNamedBufferSubData
-#define glGetNamedBufferSubDataEXT __glGetNamedBufferSubDataEXT
-#define glGetNamedFramebufferAttachmentParameteriv __glGetNamedFramebufferAttachmentParameteriv
-#define glGetNamedFramebufferAttachmentParameterivEXT __glGetNamedFramebufferAttachmentParameterivEXT
-#define glGetNamedFramebufferParameteriv __glGetNamedFramebufferParameteriv
-#define glGetNamedFramebufferParameterivEXT __glGetNamedFramebufferParameterivEXT
-#define glGetNamedProgramLocalParameterIivEXT __glGetNamedProgramLocalParameterIivEXT
-#define glGetNamedProgramLocalParameterIuivEXT __glGetNamedProgramLocalParameterIuivEXT
-#define glGetNamedProgramLocalParameterdvEXT __glGetNamedProgramLocalParameterdvEXT
-#define glGetNamedProgramLocalParameterfvEXT __glGetNamedProgramLocalParameterfvEXT
-#define glGetNamedProgramStringEXT __glGetNamedProgramStringEXT
-#define glGetNamedProgramivEXT __glGetNamedProgramivEXT
-#define glGetNamedRenderbufferParameteriv __glGetNamedRenderbufferParameteriv
-#define glGetNamedRenderbufferParameterivEXT __glGetNamedRenderbufferParameterivEXT
-#define glGetNamedStringARB __glGetNamedStringARB
-#define glGetNamedStringivARB __glGetNamedStringivARB
-#define glGetNextPerfQueryIdINTEL __glGetNextPerfQueryIdINTEL
-#define glGetObjectBufferfvATI __glGetObjectBufferfvATI
-#define glGetObjectBufferivATI __glGetObjectBufferivATI
-#define glGetObjectLabel __glGetObjectLabel
-#define glGetObjectLabelEXT __glGetObjectLabelEXT
-#define glGetObjectLabelKHR __glGetObjectLabelKHR
-#define glGetObjectParameterfvARB __glGetObjectParameterfvARB
-#define glGetObjectParameterivAPPLE __glGetObjectParameterivAPPLE
-#define glGetObjectParameterivARB __glGetObjectParameterivARB
-#define glGetObjectPtrLabel __glGetObjectPtrLabel
-#define glGetObjectPtrLabelKHR __glGetObjectPtrLabelKHR
-#define glGetOcclusionQueryivNV __glGetOcclusionQueryivNV
-#define glGetOcclusionQueryuivNV __glGetOcclusionQueryuivNV
-#define glGetPathColorGenfvNV __glGetPathColorGenfvNV
-#define glGetPathColorGenivNV __glGetPathColorGenivNV
-#define glGetPathCommandsNV __glGetPathCommandsNV
-#define glGetPathCoordsNV __glGetPathCoordsNV
-#define glGetPathDashArrayNV __glGetPathDashArrayNV
-#define glGetPathLengthNV __glGetPathLengthNV
-#define glGetPathMetricRangeNV __glGetPathMetricRangeNV
-#define glGetPathMetricsNV __glGetPathMetricsNV
-#define glGetPathParameterfvNV __glGetPathParameterfvNV
-#define glGetPathParameterivNV __glGetPathParameterivNV
-#define glGetPathSpacingNV __glGetPathSpacingNV
-#define glGetPathTexGenfvNV __glGetPathTexGenfvNV
-#define glGetPathTexGenivNV __glGetPathTexGenivNV
-#define glGetPerfCounterInfoINTEL __glGetPerfCounterInfoINTEL
-#define glGetPerfMonitorCounterDataAMD __glGetPerfMonitorCounterDataAMD
-#define glGetPerfMonitorCounterInfoAMD __glGetPerfMonitorCounterInfoAMD
-#define glGetPerfMonitorCounterStringAMD __glGetPerfMonitorCounterStringAMD
-#define glGetPerfMonitorCountersAMD __glGetPerfMonitorCountersAMD
-#define glGetPerfMonitorGroupStringAMD __glGetPerfMonitorGroupStringAMD
-#define glGetPerfMonitorGroupsAMD __glGetPerfMonitorGroupsAMD
-#define glGetPerfQueryDataINTEL __glGetPerfQueryDataINTEL
-#define glGetPerfQueryIdByNameINTEL __glGetPerfQueryIdByNameINTEL
-#define glGetPerfQueryInfoINTEL __glGetPerfQueryInfoINTEL
-#define glGetPixelMapfv __glGetPixelMapfv
-#define glGetPixelMapuiv __glGetPixelMapuiv
-#define glGetPixelMapusv __glGetPixelMapusv
-#define glGetPixelMapxv __glGetPixelMapxv
-#define glGetPixelTexGenParameterfvSGIS __glGetPixelTexGenParameterfvSGIS
-#define glGetPixelTexGenParameterivSGIS __glGetPixelTexGenParameterivSGIS
-#define glGetPixelTransformParameterfvEXT __glGetPixelTransformParameterfvEXT
-#define glGetPixelTransformParameterivEXT __glGetPixelTransformParameterivEXT
-#define glGetPointerIndexedvEXT __glGetPointerIndexedvEXT
-#define glGetPointeri_vEXT __glGetPointeri_vEXT
-#define glGetPointerv __glGetPointerv
-#define glGetPointervEXT __glGetPointervEXT
-#define glGetPointervKHR __glGetPointervKHR
-#define glGetPolygonStipple __glGetPolygonStipple
-#define glGetProgramBinary __glGetProgramBinary
-#define glGetProgramBinaryOES __glGetProgramBinaryOES
-#define glGetProgramEnvParameterIivNV __glGetProgramEnvParameterIivNV
-#define glGetProgramEnvParameterIuivNV __glGetProgramEnvParameterIuivNV
-#define glGetProgramEnvParameterdvARB __glGetProgramEnvParameterdvARB
-#define glGetProgramEnvParameterfvARB __glGetProgramEnvParameterfvARB
-#define glGetProgramInfoLog __glGetProgramInfoLog
-#define glGetProgramInterfaceiv __glGetProgramInterfaceiv
-#define glGetProgramLocalParameterIivNV __glGetProgramLocalParameterIivNV
-#define glGetProgramLocalParameterIuivNV __glGetProgramLocalParameterIuivNV
-#define glGetProgramLocalParameterdvARB __glGetProgramLocalParameterdvARB
-#define glGetProgramLocalParameterfvARB __glGetProgramLocalParameterfvARB
-#define glGetProgramNamedParameterdvNV __glGetProgramNamedParameterdvNV
-#define glGetProgramNamedParameterfvNV __glGetProgramNamedParameterfvNV
-#define glGetProgramParameterdvNV __glGetProgramParameterdvNV
-#define glGetProgramParameterfvNV __glGetProgramParameterfvNV
-#define glGetProgramPipelineInfoLog __glGetProgramPipelineInfoLog
-#define glGetProgramPipelineInfoLogEXT __glGetProgramPipelineInfoLogEXT
-#define glGetProgramPipelineiv __glGetProgramPipelineiv
-#define glGetProgramPipelineivEXT __glGetProgramPipelineivEXT
-#define glGetProgramResourceIndex __glGetProgramResourceIndex
-#define glGetProgramResourceLocation __glGetProgramResourceLocation
-#define glGetProgramResourceLocationIndex __glGetProgramResourceLocationIndex
-#define glGetProgramResourceName __glGetProgramResourceName
-#define glGetProgramResourcefvNV __glGetProgramResourcefvNV
-#define glGetProgramResourceiv __glGetProgramResourceiv
-#define glGetProgramStageiv __glGetProgramStageiv
-#define glGetProgramStringARB __glGetProgramStringARB
-#define glGetProgramStringNV __glGetProgramStringNV
-#define glGetProgramSubroutineParameteruivNV __glGetProgramSubroutineParameteruivNV
-#define glGetProgramiv __glGetProgramiv
-#define glGetProgramivARB __glGetProgramivARB
-#define glGetProgramivNV __glGetProgramivNV
-#define glGetQueryBufferObjecti64v __glGetQueryBufferObjecti64v
-#define glGetQueryBufferObjectiv __glGetQueryBufferObjectiv
-#define glGetQueryBufferObjectui64v __glGetQueryBufferObjectui64v
-#define glGetQueryBufferObjectuiv __glGetQueryBufferObjectuiv
-#define glGetQueryIndexediv __glGetQueryIndexediv
-#define glGetQueryObjecti64v __glGetQueryObjecti64v
-#define glGetQueryObjecti64vEXT __glGetQueryObjecti64vEXT
-#define glGetQueryObjectiv __glGetQueryObjectiv
-#define glGetQueryObjectivARB __glGetQueryObjectivARB
-#define glGetQueryObjectivEXT __glGetQueryObjectivEXT
-#define glGetQueryObjectui64v __glGetQueryObjectui64v
-#define glGetQueryObjectui64vEXT __glGetQueryObjectui64vEXT
-#define glGetQueryObjectuiv __glGetQueryObjectuiv
-#define glGetQueryObjectuivARB __glGetQueryObjectuivARB
-#define glGetQueryObjectuivEXT __glGetQueryObjectuivEXT
-#define glGetQueryiv __glGetQueryiv
-#define glGetQueryivARB __glGetQueryivARB
-#define glGetQueryivEXT __glGetQueryivEXT
-#define glGetRenderbufferParameteriv __glGetRenderbufferParameteriv
-#define glGetRenderbufferParameterivEXT __glGetRenderbufferParameterivEXT
-#define glGetRenderbufferParameterivOES __glGetRenderbufferParameterivOES
-#define glGetSamplerParameterIiv __glGetSamplerParameterIiv
-#define glGetSamplerParameterIivEXT __glGetSamplerParameterIivEXT
-#define glGetSamplerParameterIivOES __glGetSamplerParameterIivOES
-#define glGetSamplerParameterIuiv __glGetSamplerParameterIuiv
-#define glGetSamplerParameterIuivEXT __glGetSamplerParameterIuivEXT
-#define glGetSamplerParameterIuivOES __glGetSamplerParameterIuivOES
-#define glGetSamplerParameterfv __glGetSamplerParameterfv
-#define glGetSamplerParameteriv __glGetSamplerParameteriv
-#define glGetSeparableFilter __glGetSeparableFilter
-#define glGetSeparableFilterEXT __glGetSeparableFilterEXT
-#define glGetShaderInfoLog __glGetShaderInfoLog
-#define glGetShaderPrecisionFormat __glGetShaderPrecisionFormat
-#define glGetShaderSource __glGetShaderSource
-#define glGetShaderSourceARB __glGetShaderSourceARB
-#define glGetShaderiv __glGetShaderiv
-#define glGetSharpenTexFuncSGIS __glGetSharpenTexFuncSGIS
-#define glGetStageIndexNV __glGetStageIndexNV
-#define glGetString __glGetString
-#define glGetStringi __glGetStringi
-#define glGetSubroutineIndex __glGetSubroutineIndex
-#define glGetSubroutineUniformLocation __glGetSubroutineUniformLocation
-#define glGetSynciv __glGetSynciv
-#define glGetSyncivAPPLE __glGetSyncivAPPLE
-#define glGetTexBumpParameterfvATI __glGetTexBumpParameterfvATI
-#define glGetTexBumpParameterivATI __glGetTexBumpParameterivATI
-#define glGetTexEnvfv __glGetTexEnvfv
-#define glGetTexEnviv __glGetTexEnviv
-#define glGetTexEnvxv __glGetTexEnvxv
-#define glGetTexEnvxvOES __glGetTexEnvxvOES
-#define glGetTexFilterFuncSGIS __glGetTexFilterFuncSGIS
-#define glGetTexGendv __glGetTexGendv
-#define glGetTexGenfv __glGetTexGenfv
-#define glGetTexGenfvOES __glGetTexGenfvOES
-#define glGetTexGeniv __glGetTexGeniv
-#define glGetTexGenivOES __glGetTexGenivOES
-#define glGetTexGenxvOES __glGetTexGenxvOES
-#define glGetTexImage __glGetTexImage
-#define glGetTexLevelParameterfv __glGetTexLevelParameterfv
-#define glGetTexLevelParameteriv __glGetTexLevelParameteriv
-#define glGetTexLevelParameterxvOES __glGetTexLevelParameterxvOES
-#define glGetTexParameterIiv __glGetTexParameterIiv
-#define glGetTexParameterIivEXT __glGetTexParameterIivEXT
-#define glGetTexParameterIivOES __glGetTexParameterIivOES
-#define glGetTexParameterIuiv __glGetTexParameterIuiv
-#define glGetTexParameterIuivEXT __glGetTexParameterIuivEXT
-#define glGetTexParameterIuivOES __glGetTexParameterIuivOES
-#define glGetTexParameterPointervAPPLE __glGetTexParameterPointervAPPLE
-#define glGetTexParameterfv __glGetTexParameterfv
-#define glGetTexParameteriv __glGetTexParameteriv
-#define glGetTexParameterxv __glGetTexParameterxv
-#define glGetTexParameterxvOES __glGetTexParameterxvOES
-#define glGetTextureHandleARB __glGetTextureHandleARB
-#define glGetTextureHandleNV __glGetTextureHandleNV
-#define glGetTextureImage __glGetTextureImage
-#define glGetTextureImageEXT __glGetTextureImageEXT
-#define glGetTextureLevelParameterfv __glGetTextureLevelParameterfv
-#define glGetTextureLevelParameterfvEXT __glGetTextureLevelParameterfvEXT
-#define glGetTextureLevelParameteriv __glGetTextureLevelParameteriv
-#define glGetTextureLevelParameterivEXT __glGetTextureLevelParameterivEXT
-#define glGetTextureParameterIiv __glGetTextureParameterIiv
-#define glGetTextureParameterIivEXT __glGetTextureParameterIivEXT
-#define glGetTextureParameterIuiv __glGetTextureParameterIuiv
-#define glGetTextureParameterIuivEXT __glGetTextureParameterIuivEXT
-#define glGetTextureParameterfv __glGetTextureParameterfv
-#define glGetTextureParameterfvEXT __glGetTextureParameterfvEXT
-#define glGetTextureParameteriv __glGetTextureParameteriv
-#define glGetTextureParameterivEXT __glGetTextureParameterivEXT
-#define glGetTextureSamplerHandleARB __glGetTextureSamplerHandleARB
-#define glGetTextureSamplerHandleNV __glGetTextureSamplerHandleNV
-#define glGetTextureSubImage __glGetTextureSubImage
-#define glGetTrackMatrixivNV __glGetTrackMatrixivNV
-#define glGetTransformFeedbackVarying __glGetTransformFeedbackVarying
-#define glGetTransformFeedbackVaryingEXT __glGetTransformFeedbackVaryingEXT
-#define glGetTransformFeedbackVaryingNV __glGetTransformFeedbackVaryingNV
-#define glGetTransformFeedbacki64_v __glGetTransformFeedbacki64_v
-#define glGetTransformFeedbacki_v __glGetTransformFeedbacki_v
-#define glGetTransformFeedbackiv __glGetTransformFeedbackiv
-#define glGetTranslatedShaderSourceANGLE __glGetTranslatedShaderSourceANGLE
-#define glGetUniformBlockIndex __glGetUniformBlockIndex
-#define glGetUniformBufferSizeEXT __glGetUniformBufferSizeEXT
-#define glGetUniformIndices __glGetUniformIndices
-#define glGetUniformLocation __glGetUniformLocation
-#define glGetUniformLocationARB __glGetUniformLocationARB
-#define glGetUniformOffsetEXT __glGetUniformOffsetEXT
-#define glGetUniformSubroutineuiv __glGetUniformSubroutineuiv
-#define glGetUniformdv __glGetUniformdv
-#define glGetUniformfv __glGetUniformfv
-#define glGetUniformfvARB __glGetUniformfvARB
-#define glGetUniformi64vNV __glGetUniformi64vNV
-#define glGetUniformiv __glGetUniformiv
-#define glGetUniformivARB __glGetUniformivARB
-#define glGetUniformui64vNV __glGetUniformui64vNV
-#define glGetUniformuiv __glGetUniformuiv
-#define glGetUniformuivEXT __glGetUniformuivEXT
-#define glGetVariantArrayObjectfvATI __glGetVariantArrayObjectfvATI
-#define glGetVariantArrayObjectivATI __glGetVariantArrayObjectivATI
-#define glGetVariantBooleanvEXT __glGetVariantBooleanvEXT
-#define glGetVariantFloatvEXT __glGetVariantFloatvEXT
-#define glGetVariantIntegervEXT __glGetVariantIntegervEXT
-#define glGetVariantPointervEXT __glGetVariantPointervEXT
-#define glGetVaryingLocationNV __glGetVaryingLocationNV
-#define glGetVertexArrayIndexed64iv __glGetVertexArrayIndexed64iv
-#define glGetVertexArrayIndexediv __glGetVertexArrayIndexediv
-#define glGetVertexArrayIntegeri_vEXT __glGetVertexArrayIntegeri_vEXT
-#define glGetVertexArrayIntegervEXT __glGetVertexArrayIntegervEXT
-#define glGetVertexArrayPointeri_vEXT __glGetVertexArrayPointeri_vEXT
-#define glGetVertexArrayPointervEXT __glGetVertexArrayPointervEXT
-#define glGetVertexArrayiv __glGetVertexArrayiv
-#define glGetVertexAttribArrayObjectfvATI __glGetVertexAttribArrayObjectfvATI
-#define glGetVertexAttribArrayObjectivATI __glGetVertexAttribArrayObjectivATI
-#define glGetVertexAttribIiv __glGetVertexAttribIiv
-#define glGetVertexAttribIivEXT __glGetVertexAttribIivEXT
-#define glGetVertexAttribIuiv __glGetVertexAttribIuiv
-#define glGetVertexAttribIuivEXT __glGetVertexAttribIuivEXT
-#define glGetVertexAttribLdv __glGetVertexAttribLdv
-#define glGetVertexAttribLdvEXT __glGetVertexAttribLdvEXT
-#define glGetVertexAttribLi64vNV __glGetVertexAttribLi64vNV
-#define glGetVertexAttribLui64vARB __glGetVertexAttribLui64vARB
-#define glGetVertexAttribLui64vNV __glGetVertexAttribLui64vNV
-#define glGetVertexAttribPointerv __glGetVertexAttribPointerv
-#define glGetVertexAttribPointervARB __glGetVertexAttribPointervARB
-#define glGetVertexAttribPointervNV __glGetVertexAttribPointervNV
-#define glGetVertexAttribdv __glGetVertexAttribdv
-#define glGetVertexAttribdvARB __glGetVertexAttribdvARB
-#define glGetVertexAttribdvNV __glGetVertexAttribdvNV
-#define glGetVertexAttribfv __glGetVertexAttribfv
-#define glGetVertexAttribfvARB __glGetVertexAttribfvARB
-#define glGetVertexAttribfvNV __glGetVertexAttribfvNV
-#define glGetVertexAttribiv __glGetVertexAttribiv
-#define glGetVertexAttribivARB __glGetVertexAttribivARB
-#define glGetVertexAttribivNV __glGetVertexAttribivNV
-#define glGetVideoCaptureStreamdvNV __glGetVideoCaptureStreamdvNV
-#define glGetVideoCaptureStreamfvNV __glGetVideoCaptureStreamfvNV
-#define glGetVideoCaptureStreamivNV __glGetVideoCaptureStreamivNV
-#define glGetVideoCaptureivNV __glGetVideoCaptureivNV
-#define glGetVideoi64vNV __glGetVideoi64vNV
-#define glGetVideoivNV __glGetVideoivNV
-#define glGetVideoui64vNV __glGetVideoui64vNV
-#define glGetVideouivNV __glGetVideouivNV
-#define glGetnColorTable __glGetnColorTable
-#define glGetnColorTableARB __glGetnColorTableARB
-#define glGetnCompressedTexImage __glGetnCompressedTexImage
-#define glGetnCompressedTexImageARB __glGetnCompressedTexImageARB
-#define glGetnConvolutionFilter __glGetnConvolutionFilter
-#define glGetnConvolutionFilterARB __glGetnConvolutionFilterARB
-#define glGetnHistogram __glGetnHistogram
-#define glGetnHistogramARB __glGetnHistogramARB
-#define glGetnMapdv __glGetnMapdv
-#define glGetnMapdvARB __glGetnMapdvARB
-#define glGetnMapfv __glGetnMapfv
-#define glGetnMapfvARB __glGetnMapfvARB
-#define glGetnMapiv __glGetnMapiv
-#define glGetnMapivARB __glGetnMapivARB
-#define glGetnMinmax __glGetnMinmax
-#define glGetnMinmaxARB __glGetnMinmaxARB
-#define glGetnPixelMapfv __glGetnPixelMapfv
-#define glGetnPixelMapfvARB __glGetnPixelMapfvARB
-#define glGetnPixelMapuiv __glGetnPixelMapuiv
-#define glGetnPixelMapuivARB __glGetnPixelMapuivARB
-#define glGetnPixelMapusv __glGetnPixelMapusv
-#define glGetnPixelMapusvARB __glGetnPixelMapusvARB
-#define glGetnPolygonStipple __glGetnPolygonStipple
-#define glGetnPolygonStippleARB __glGetnPolygonStippleARB
-#define glGetnSeparableFilter __glGetnSeparableFilter
-#define glGetnSeparableFilterARB __glGetnSeparableFilterARB
-#define glGetnTexImage __glGetnTexImage
-#define glGetnTexImageARB __glGetnTexImageARB
-#define glGetnUniformdv __glGetnUniformdv
-#define glGetnUniformdvARB __glGetnUniformdvARB
-#define glGetnUniformfv __glGetnUniformfv
-#define glGetnUniformfvARB __glGetnUniformfvARB
-#define glGetnUniformfvEXT __glGetnUniformfvEXT
-#define glGetnUniformfvKHR __glGetnUniformfvKHR
-#define glGetnUniformiv __glGetnUniformiv
-#define glGetnUniformivARB __glGetnUniformivARB
-#define glGetnUniformivEXT __glGetnUniformivEXT
-#define glGetnUniformivKHR __glGetnUniformivKHR
-#define glGetnUniformuiv __glGetnUniformuiv
-#define glGetnUniformuivARB __glGetnUniformuivARB
-#define glGetnUniformuivKHR __glGetnUniformuivKHR
-#define glGlobalAlphaFactorbSUN __glGlobalAlphaFactorbSUN
-#define glGlobalAlphaFactordSUN __glGlobalAlphaFactordSUN
-#define glGlobalAlphaFactorfSUN __glGlobalAlphaFactorfSUN
-#define glGlobalAlphaFactoriSUN __glGlobalAlphaFactoriSUN
-#define glGlobalAlphaFactorsSUN __glGlobalAlphaFactorsSUN
-#define glGlobalAlphaFactorubSUN __glGlobalAlphaFactorubSUN
-#define glGlobalAlphaFactoruiSUN __glGlobalAlphaFactoruiSUN
-#define glGlobalAlphaFactorusSUN __glGlobalAlphaFactorusSUN
-#define glHint __glHint
-#define glHintPGI __glHintPGI
-#define glHistogram __glHistogram
-#define glHistogramEXT __glHistogramEXT
-#define glIglooInterfaceSGIX __glIglooInterfaceSGIX
-#define glImageTransformParameterfHP __glImageTransformParameterfHP
-#define glImageTransformParameterfvHP __glImageTransformParameterfvHP
-#define glImageTransformParameteriHP __glImageTransformParameteriHP
-#define glImageTransformParameterivHP __glImageTransformParameterivHP
-#define glImportSyncEXT __glImportSyncEXT
-#define glIndexFormatNV __glIndexFormatNV
-#define glIndexFuncEXT __glIndexFuncEXT
-#define glIndexMask __glIndexMask
-#define glIndexMaterialEXT __glIndexMaterialEXT
-#define glIndexPointer __glIndexPointer
-#define glIndexPointerEXT __glIndexPointerEXT
-#define glIndexPointerListIBM __glIndexPointerListIBM
-#define glIndexd __glIndexd
-#define glIndexdv __glIndexdv
-#define glIndexf __glIndexf
-#define glIndexfv __glIndexfv
-#define glIndexi __glIndexi
-#define glIndexiv __glIndexiv
-#define glIndexs __glIndexs
-#define glIndexsv __glIndexsv
-#define glIndexub __glIndexub
-#define glIndexubv __glIndexubv
-#define glIndexxOES __glIndexxOES
-#define glIndexxvOES __glIndexxvOES
-#define glInitNames __glInitNames
-#define glInsertComponentEXT __glInsertComponentEXT
-#define glInsertEventMarkerEXT __glInsertEventMarkerEXT
-#define glInstrumentsBufferSGIX __glInstrumentsBufferSGIX
-#define glInterleavedArrays __glInterleavedArrays
-#define glInterpolatePathsNV __glInterpolatePathsNV
-#define glInvalidateBufferData __glInvalidateBufferData
-#define glInvalidateBufferSubData __glInvalidateBufferSubData
-#define glInvalidateFramebuffer __glInvalidateFramebuffer
-#define glInvalidateNamedFramebufferData __glInvalidateNamedFramebufferData
-#define glInvalidateNamedFramebufferSubData __glInvalidateNamedFramebufferSubData
-#define glInvalidateSubFramebuffer __glInvalidateSubFramebuffer
-#define glInvalidateTexImage __glInvalidateTexImage
-#define glInvalidateTexSubImage __glInvalidateTexSubImage
-#define glIsAsyncMarkerSGIX __glIsAsyncMarkerSGIX
-#define glIsBuffer __glIsBuffer
-#define glIsBufferARB __glIsBufferARB
-#define glIsBufferResidentNV __glIsBufferResidentNV
-#define glIsCommandListNV __glIsCommandListNV
-#define glIsEnabled __glIsEnabled
-#define glIsEnabledIndexedEXT __glIsEnabledIndexedEXT
-#define glIsEnabledi __glIsEnabledi
-#define glIsEnablediEXT __glIsEnablediEXT
-#define glIsEnablediOES __glIsEnablediOES
-#define glIsEnablediNV __glIsEnablediNV
-#define glIsFenceAPPLE __glIsFenceAPPLE
-#define glIsFenceNV __glIsFenceNV
-#define glIsFramebuffer __glIsFramebuffer
-#define glIsFramebufferEXT __glIsFramebufferEXT
-#define glIsFramebufferOES __glIsFramebufferOES
-#define glIsImageHandleResidentARB __glIsImageHandleResidentARB
-#define glIsImageHandleResidentNV __glIsImageHandleResidentNV
-#define glIsList __glIsList
-#define glIsNameAMD __glIsNameAMD
-#define glIsNamedBufferResidentNV __glIsNamedBufferResidentNV
-#define glIsNamedStringARB __glIsNamedStringARB
-#define glIsObjectBufferATI __glIsObjectBufferATI
-#define glIsOcclusionQueryNV __glIsOcclusionQueryNV
-#define glIsPathNV __glIsPathNV
-#define glIsPointInFillPathNV __glIsPointInFillPathNV
-#define glIsPointInStrokePathNV __glIsPointInStrokePathNV
-#define glIsProgram __glIsProgram
-#define glIsProgramARB __glIsProgramARB
-#define glIsProgramNV __glIsProgramNV
-#define glIsProgramPipeline __glIsProgramPipeline
-#define glIsProgramPipelineEXT __glIsProgramPipelineEXT
-#define glIsQuery __glIsQuery
-#define glIsQueryARB __glIsQueryARB
-#define glIsQueryEXT __glIsQueryEXT
-#define glIsRenderbuffer __glIsRenderbuffer
-#define glIsRenderbufferEXT __glIsRenderbufferEXT
-#define glIsRenderbufferOES __glIsRenderbufferOES
-#define glIsSampler __glIsSampler
-#define glIsShader __glIsShader
-#define glIsStateNV __glIsStateNV
-#define glIsSync __glIsSync
-#define glIsSyncAPPLE __glIsSyncAPPLE
-#define glIsTexture __glIsTexture
-#define glIsTextureEXT __glIsTextureEXT
-#define glIsTextureHandleResidentARB __glIsTextureHandleResidentARB
-#define glIsTextureHandleResidentNV __glIsTextureHandleResidentNV
-#define glIsTransformFeedback __glIsTransformFeedback
-#define glIsTransformFeedbackNV __glIsTransformFeedbackNV
-#define glIsVariantEnabledEXT __glIsVariantEnabledEXT
-#define glIsVertexArray __glIsVertexArray
-#define glIsVertexArrayAPPLE __glIsVertexArrayAPPLE
-#define glIsVertexArrayOES __glIsVertexArrayOES
-#define glIsVertexAttribEnabledAPPLE __glIsVertexAttribEnabledAPPLE
-#define glLabelObjectEXT __glLabelObjectEXT
-#define glLightEnviSGIX __glLightEnviSGIX
-#define glLightModelf __glLightModelf
-#define glLightModelfv __glLightModelfv
-#define glLightModeli __glLightModeli
-#define glLightModeliv __glLightModeliv
-#define glLightModelx __glLightModelx
-#define glLightModelxOES __glLightModelxOES
-#define glLightModelxv __glLightModelxv
-#define glLightModelxvOES __glLightModelxvOES
-#define glLightf __glLightf
-#define glLightfv __glLightfv
-#define glLighti __glLighti
-#define glLightiv __glLightiv
-#define glLightx __glLightx
-#define glLightxOES __glLightxOES
-#define glLightxv __glLightxv
-#define glLightxvOES __glLightxvOES
-#define glLineStipple __glLineStipple
-#define glLineWidth __glLineWidth
-#define glLineWidthx __glLineWidthx
-#define glLineWidthxOES __glLineWidthxOES
-#define glLinkProgram __glLinkProgram
-#define glLinkProgramARB __glLinkProgramARB
-#define glListBase __glListBase
-#define glListDrawCommandsStatesClientNV __glListDrawCommandsStatesClientNV
-#define glListParameterfSGIX __glListParameterfSGIX
-#define glListParameterfvSGIX __glListParameterfvSGIX
-#define glListParameteriSGIX __glListParameteriSGIX
-#define glListParameterivSGIX __glListParameterivSGIX
-#define glLoadIdentity __glLoadIdentity
-#define glLoadIdentityDeformationMapSGIX __glLoadIdentityDeformationMapSGIX
-#define glLoadMatrixd __glLoadMatrixd
-#define glLoadMatrixf __glLoadMatrixf
-#define glLoadMatrixx __glLoadMatrixx
-#define glLoadMatrixxOES __glLoadMatrixxOES
-#define glLoadName __glLoadName
-#define glLoadPaletteFromModelViewMatrixOES __glLoadPaletteFromModelViewMatrixOES
-#define glLoadProgramNV __glLoadProgramNV
-#define glLoadTransposeMatrixd __glLoadTransposeMatrixd
-#define glLoadTransposeMatrixdARB __glLoadTransposeMatrixdARB
-#define glLoadTransposeMatrixf __glLoadTransposeMatrixf
-#define glLoadTransposeMatrixfARB __glLoadTransposeMatrixfARB
-#define glLoadTransposeMatrixxOES __glLoadTransposeMatrixxOES
-#define glLockArraysEXT __glLockArraysEXT
-#define glLogicOp __glLogicOp
-#define glMakeBufferNonResidentNV __glMakeBufferNonResidentNV
-#define glMakeBufferResidentNV __glMakeBufferResidentNV
-#define glMakeImageHandleNonResidentARB __glMakeImageHandleNonResidentARB
-#define glMakeImageHandleNonResidentNV __glMakeImageHandleNonResidentNV
-#define glMakeImageHandleResidentARB __glMakeImageHandleResidentARB
-#define glMakeImageHandleResidentNV __glMakeImageHandleResidentNV
-#define glMakeNamedBufferNonResidentNV __glMakeNamedBufferNonResidentNV
-#define glMakeNamedBufferResidentNV __glMakeNamedBufferResidentNV
-#define glMakeTextureHandleNonResidentARB __glMakeTextureHandleNonResidentARB
-#define glMakeTextureHandleNonResidentNV __glMakeTextureHandleNonResidentNV
-#define glMakeTextureHandleResidentARB __glMakeTextureHandleResidentARB
-#define glMakeTextureHandleResidentNV __glMakeTextureHandleResidentNV
-#define glMap1d __glMap1d
-#define glMap1f __glMap1f
-#define glMap1xOES __glMap1xOES
-#define glMap2d __glMap2d
-#define glMap2f __glMap2f
-#define glMap2xOES __glMap2xOES
-#define glMapBuffer __glMapBuffer
-#define glMapBufferARB __glMapBufferARB
-#define glMapBufferOES __glMapBufferOES
-#define glMapBufferRange __glMapBufferRange
-#define glMapBufferRangeEXT __glMapBufferRangeEXT
-#define glMapControlPointsNV __glMapControlPointsNV
-#define glMapGrid1d __glMapGrid1d
-#define glMapGrid1f __glMapGrid1f
-#define glMapGrid1xOES __glMapGrid1xOES
-#define glMapGrid2d __glMapGrid2d
-#define glMapGrid2f __glMapGrid2f
-#define glMapGrid2xOES __glMapGrid2xOES
-#define glMapNamedBuffer __glMapNamedBuffer
-#define glMapNamedBufferEXT __glMapNamedBufferEXT
-#define glMapNamedBufferRange __glMapNamedBufferRange
-#define glMapNamedBufferRangeEXT __glMapNamedBufferRangeEXT
-#define glMapObjectBufferATI __glMapObjectBufferATI
-#define glMapParameterfvNV __glMapParameterfvNV
-#define glMapParameterivNV __glMapParameterivNV
-#define glMapTexture2DINTEL __glMapTexture2DINTEL
-#define glMapVertexAttrib1dAPPLE __glMapVertexAttrib1dAPPLE
-#define glMapVertexAttrib1fAPPLE __glMapVertexAttrib1fAPPLE
-#define glMapVertexAttrib2dAPPLE __glMapVertexAttrib2dAPPLE
-#define glMapVertexAttrib2fAPPLE __glMapVertexAttrib2fAPPLE
-#define glMaterialf __glMaterialf
-#define glMaterialfv __glMaterialfv
-#define glMateriali __glMateriali
-#define glMaterialiv __glMaterialiv
-#define glMaterialx __glMaterialx
-#define glMaterialxOES __glMaterialxOES
-#define glMaterialxv __glMaterialxv
-#define glMaterialxvOES __glMaterialxvOES
-#define glMatrixFrustumEXT __glMatrixFrustumEXT
-#define glMatrixIndexPointerARB __glMatrixIndexPointerARB
-#define glMatrixIndexPointerOES __glMatrixIndexPointerOES
-#define glMatrixIndexubvARB __glMatrixIndexubvARB
-#define glMatrixIndexuivARB __glMatrixIndexuivARB
-#define glMatrixIndexusvARB __glMatrixIndexusvARB
-#define glMatrixLoad3x2fNV __glMatrixLoad3x2fNV
-#define glMatrixLoad3x3fNV __glMatrixLoad3x3fNV
-#define glMatrixLoadIdentityEXT __glMatrixLoadIdentityEXT
-#define glMatrixLoadTranspose3x3fNV __glMatrixLoadTranspose3x3fNV
-#define glMatrixLoadTransposedEXT __glMatrixLoadTransposedEXT
-#define glMatrixLoadTransposefEXT __glMatrixLoadTransposefEXT
-#define glMatrixLoaddEXT __glMatrixLoaddEXT
-#define glMatrixLoadfEXT __glMatrixLoadfEXT
-#define glMatrixMode __glMatrixMode
-#define glMatrixMult3x2fNV __glMatrixMult3x2fNV
-#define glMatrixMult3x3fNV __glMatrixMult3x3fNV
-#define glMatrixMultTranspose3x3fNV __glMatrixMultTranspose3x3fNV
-#define glMatrixMultTransposedEXT __glMatrixMultTransposedEXT
-#define glMatrixMultTransposefEXT __glMatrixMultTransposefEXT
-#define glMatrixMultdEXT __glMatrixMultdEXT
-#define glMatrixMultfEXT __glMatrixMultfEXT
-#define glMatrixOrthoEXT __glMatrixOrthoEXT
-#define glMatrixPopEXT __glMatrixPopEXT
-#define glMatrixPushEXT __glMatrixPushEXT
-#define glMatrixRotatedEXT __glMatrixRotatedEXT
-#define glMatrixRotatefEXT __glMatrixRotatefEXT
-#define glMatrixScaledEXT __glMatrixScaledEXT
-#define glMatrixScalefEXT __glMatrixScalefEXT
-#define glMatrixTranslatedEXT __glMatrixTranslatedEXT
-#define glMatrixTranslatefEXT __glMatrixTranslatefEXT
-#define glMemoryBarrier __glMemoryBarrier
-#define glMemoryBarrierByRegion __glMemoryBarrierByRegion
-#define glMemoryBarrierEXT __glMemoryBarrierEXT
-#define glMinSampleShading __glMinSampleShading
-#define glMinSampleShadingARB __glMinSampleShadingARB
-#define glMinSampleShadingOES __glMinSampleShadingOES
-#define glMinmax __glMinmax
-#define glMinmaxEXT __glMinmaxEXT
-#define glMultMatrixd __glMultMatrixd
-#define glMultMatrixf __glMultMatrixf
-#define glMultMatrixx __glMultMatrixx
-#define glMultMatrixxOES __glMultMatrixxOES
-#define glMultTransposeMatrixd __glMultTransposeMatrixd
-#define glMultTransposeMatrixdARB __glMultTransposeMatrixdARB
-#define glMultTransposeMatrixf __glMultTransposeMatrixf
-#define glMultTransposeMatrixfARB __glMultTransposeMatrixfARB
-#define glMultTransposeMatrixxOES __glMultTransposeMatrixxOES
-#define glMultiDrawArrays __glMultiDrawArrays
-#define glMultiDrawArraysEXT __glMultiDrawArraysEXT
-#define glMultiDrawArraysIndirect __glMultiDrawArraysIndirect
-#define glMultiDrawArraysIndirectAMD __glMultiDrawArraysIndirectAMD
-#define glMultiDrawArraysIndirectEXT __glMultiDrawArraysIndirectEXT
-#define glMultiDrawArraysIndirectBindlessCountNV __glMultiDrawArraysIndirectBindlessCountNV
-#define glMultiDrawArraysIndirectBindlessNV __glMultiDrawArraysIndirectBindlessNV
-#define glMultiDrawArraysIndirectCountARB __glMultiDrawArraysIndirectCountARB
-#define glMultiDrawElementArrayAPPLE __glMultiDrawElementArrayAPPLE
-#define glMultiDrawElements __glMultiDrawElements
-#define glMultiDrawElementsBaseVertex __glMultiDrawElementsBaseVertex
-#define glMultiDrawElementsBaseVertexEXT __glMultiDrawElementsBaseVertexEXT
-#define glMultiDrawElementsBaseVertexOES __glMultiDrawElementsBaseVertexOES
-#define glMultiDrawElementsEXT __glMultiDrawElementsEXT
-#define glMultiDrawElementsIndirect __glMultiDrawElementsIndirect
-#define glMultiDrawElementsIndirectEXT __glMultiDrawElementsIndirectEXT
-#define glMultiDrawElementsIndirectAMD __glMultiDrawElementsIndirectAMD
-#define glMultiDrawElementsIndirectBindlessCountNV __glMultiDrawElementsIndirectBindlessCountNV
-#define glMultiDrawElementsIndirectBindlessNV __glMultiDrawElementsIndirectBindlessNV
-#define glMultiDrawElementsIndirectCountARB __glMultiDrawElementsIndirectCountARB
-#define glMultiDrawRangeElementArrayAPPLE __glMultiDrawRangeElementArrayAPPLE
-#define glMultiModeDrawArraysIBM __glMultiModeDrawArraysIBM
-#define glMultiModeDrawElementsIBM __glMultiModeDrawElementsIBM
-#define glMultiTexBufferEXT __glMultiTexBufferEXT
-#define glMultiTexCoord1bOES __glMultiTexCoord1bOES
-#define glMultiTexCoord1bvOES __glMultiTexCoord1bvOES
-#define glMultiTexCoord1d __glMultiTexCoord1d
-#define glMultiTexCoord1dARB __glMultiTexCoord1dARB
-#define glMultiTexCoord1dv __glMultiTexCoord1dv
-#define glMultiTexCoord1dvARB __glMultiTexCoord1dvARB
-#define glMultiTexCoord1f __glMultiTexCoord1f
-#define glMultiTexCoord1fARB __glMultiTexCoord1fARB
-#define glMultiTexCoord1fv __glMultiTexCoord1fv
-#define glMultiTexCoord1fvARB __glMultiTexCoord1fvARB
-#define glMultiTexCoord1hNV __glMultiTexCoord1hNV
-#define glMultiTexCoord1hvNV __glMultiTexCoord1hvNV
-#define glMultiTexCoord1i __glMultiTexCoord1i
-#define glMultiTexCoord1iARB __glMultiTexCoord1iARB
-#define glMultiTexCoord1iv __glMultiTexCoord1iv
-#define glMultiTexCoord1ivARB __glMultiTexCoord1ivARB
-#define glMultiTexCoord1s __glMultiTexCoord1s
-#define glMultiTexCoord1sARB __glMultiTexCoord1sARB
-#define glMultiTexCoord1sv __glMultiTexCoord1sv
-#define glMultiTexCoord1svARB __glMultiTexCoord1svARB
-#define glMultiTexCoord1xOES __glMultiTexCoord1xOES
-#define glMultiTexCoord1xvOES __glMultiTexCoord1xvOES
-#define glMultiTexCoord2bOES __glMultiTexCoord2bOES
-#define glMultiTexCoord2bvOES __glMultiTexCoord2bvOES
-#define glMultiTexCoord2d __glMultiTexCoord2d
-#define glMultiTexCoord2dARB __glMultiTexCoord2dARB
-#define glMultiTexCoord2dv __glMultiTexCoord2dv
-#define glMultiTexCoord2dvARB __glMultiTexCoord2dvARB
-#define glMultiTexCoord2f __glMultiTexCoord2f
-#define glMultiTexCoord2fARB __glMultiTexCoord2fARB
-#define glMultiTexCoord2fv __glMultiTexCoord2fv
-#define glMultiTexCoord2fvARB __glMultiTexCoord2fvARB
-#define glMultiTexCoord2hNV __glMultiTexCoord2hNV
-#define glMultiTexCoord2hvNV __glMultiTexCoord2hvNV
-#define glMultiTexCoord2i __glMultiTexCoord2i
-#define glMultiTexCoord2iARB __glMultiTexCoord2iARB
-#define glMultiTexCoord2iv __glMultiTexCoord2iv
-#define glMultiTexCoord2ivARB __glMultiTexCoord2ivARB
-#define glMultiTexCoord2s __glMultiTexCoord2s
-#define glMultiTexCoord2sARB __glMultiTexCoord2sARB
-#define glMultiTexCoord2sv __glMultiTexCoord2sv
-#define glMultiTexCoord2svARB __glMultiTexCoord2svARB
-#define glMultiTexCoord2xOES __glMultiTexCoord2xOES
-#define glMultiTexCoord2xvOES __glMultiTexCoord2xvOES
-#define glMultiTexCoord3bOES __glMultiTexCoord3bOES
-#define glMultiTexCoord3bvOES __glMultiTexCoord3bvOES
-#define glMultiTexCoord3d __glMultiTexCoord3d
-#define glMultiTexCoord3dARB __glMultiTexCoord3dARB
-#define glMultiTexCoord3dv __glMultiTexCoord3dv
-#define glMultiTexCoord3dvARB __glMultiTexCoord3dvARB
-#define glMultiTexCoord3f __glMultiTexCoord3f
-#define glMultiTexCoord3fARB __glMultiTexCoord3fARB
-#define glMultiTexCoord3fv __glMultiTexCoord3fv
-#define glMultiTexCoord3fvARB __glMultiTexCoord3fvARB
-#define glMultiTexCoord3hNV __glMultiTexCoord3hNV
-#define glMultiTexCoord3hvNV __glMultiTexCoord3hvNV
-#define glMultiTexCoord3i __glMultiTexCoord3i
-#define glMultiTexCoord3iARB __glMultiTexCoord3iARB
-#define glMultiTexCoord3iv __glMultiTexCoord3iv
-#define glMultiTexCoord3ivARB __glMultiTexCoord3ivARB
-#define glMultiTexCoord3s __glMultiTexCoord3s
-#define glMultiTexCoord3sARB __glMultiTexCoord3sARB
-#define glMultiTexCoord3sv __glMultiTexCoord3sv
-#define glMultiTexCoord3svARB __glMultiTexCoord3svARB
-#define glMultiTexCoord3xOES __glMultiTexCoord3xOES
-#define glMultiTexCoord3xvOES __glMultiTexCoord3xvOES
-#define glMultiTexCoord4bOES __glMultiTexCoord4bOES
-#define glMultiTexCoord4bvOES __glMultiTexCoord4bvOES
-#define glMultiTexCoord4d __glMultiTexCoord4d
-#define glMultiTexCoord4dARB __glMultiTexCoord4dARB
-#define glMultiTexCoord4dv __glMultiTexCoord4dv
-#define glMultiTexCoord4dvARB __glMultiTexCoord4dvARB
-#define glMultiTexCoord4f __glMultiTexCoord4f
-#define glMultiTexCoord4fARB __glMultiTexCoord4fARB
-#define glMultiTexCoord4fv __glMultiTexCoord4fv
-#define glMultiTexCoord4fvARB __glMultiTexCoord4fvARB
-#define glMultiTexCoord4hNV __glMultiTexCoord4hNV
-#define glMultiTexCoord4hvNV __glMultiTexCoord4hvNV
-#define glMultiTexCoord4i __glMultiTexCoord4i
-#define glMultiTexCoord4iARB __glMultiTexCoord4iARB
-#define glMultiTexCoord4iv __glMultiTexCoord4iv
-#define glMultiTexCoord4ivARB __glMultiTexCoord4ivARB
-#define glMultiTexCoord4s __glMultiTexCoord4s
-#define glMultiTexCoord4sARB __glMultiTexCoord4sARB
-#define glMultiTexCoord4sv __glMultiTexCoord4sv
-#define glMultiTexCoord4svARB __glMultiTexCoord4svARB
-#define glMultiTexCoord4x __glMultiTexCoord4x
-#define glMultiTexCoord4xOES __glMultiTexCoord4xOES
-#define glMultiTexCoord4xvOES __glMultiTexCoord4xvOES
-#define glMultiTexCoordP1ui __glMultiTexCoordP1ui
-#define glMultiTexCoordP1uiv __glMultiTexCoordP1uiv
-#define glMultiTexCoordP2ui __glMultiTexCoordP2ui
-#define glMultiTexCoordP2uiv __glMultiTexCoordP2uiv
-#define glMultiTexCoordP3ui __glMultiTexCoordP3ui
-#define glMultiTexCoordP3uiv __glMultiTexCoordP3uiv
-#define glMultiTexCoordP4ui __glMultiTexCoordP4ui
-#define glMultiTexCoordP4uiv __glMultiTexCoordP4uiv
-#define glMultiTexCoordPointerEXT __glMultiTexCoordPointerEXT
-#define glMultiTexEnvfEXT __glMultiTexEnvfEXT
-#define glMultiTexEnvfvEXT __glMultiTexEnvfvEXT
-#define glMultiTexEnviEXT __glMultiTexEnviEXT
-#define glMultiTexEnvivEXT __glMultiTexEnvivEXT
-#define glMultiTexGendEXT __glMultiTexGendEXT
-#define glMultiTexGendvEXT __glMultiTexGendvEXT
-#define glMultiTexGenfEXT __glMultiTexGenfEXT
-#define glMultiTexGenfvEXT __glMultiTexGenfvEXT
-#define glMultiTexGeniEXT __glMultiTexGeniEXT
-#define glMultiTexGenivEXT __glMultiTexGenivEXT
-#define glMultiTexImage1DEXT __glMultiTexImage1DEXT
-#define glMultiTexImage2DEXT __glMultiTexImage2DEXT
-#define glMultiTexImage3DEXT __glMultiTexImage3DEXT
-#define glMultiTexParameterIivEXT __glMultiTexParameterIivEXT
-#define glMultiTexParameterIuivEXT __glMultiTexParameterIuivEXT
-#define glMultiTexParameterfEXT __glMultiTexParameterfEXT
-#define glMultiTexParameterfvEXT __glMultiTexParameterfvEXT
-#define glMultiTexParameteriEXT __glMultiTexParameteriEXT
-#define glMultiTexParameterivEXT __glMultiTexParameterivEXT
-#define glMultiTexRenderbufferEXT __glMultiTexRenderbufferEXT
-#define glMultiTexSubImage1DEXT __glMultiTexSubImage1DEXT
-#define glMultiTexSubImage2DEXT __glMultiTexSubImage2DEXT
-#define glMultiTexSubImage3DEXT __glMultiTexSubImage3DEXT
-#define glNamedBufferData __glNamedBufferData
-#define glNamedBufferDataEXT __glNamedBufferDataEXT
-#define glNamedBufferPageCommitmentARB __glNamedBufferPageCommitmentARB
-#define glNamedBufferPageCommitmentEXT __glNamedBufferPageCommitmentEXT
-#define glNamedBufferStorage __glNamedBufferStorage
-#define glNamedBufferStorageEXT __glNamedBufferStorageEXT
-#define glNamedBufferSubData __glNamedBufferSubData
-#define glNamedBufferSubDataEXT __glNamedBufferSubDataEXT
-#define glNamedCopyBufferSubDataEXT __glNamedCopyBufferSubDataEXT
-#define glNamedFramebufferDrawBuffer __glNamedFramebufferDrawBuffer
-#define glNamedFramebufferDrawBuffers __glNamedFramebufferDrawBuffers
-#define glNamedFramebufferParameteri __glNamedFramebufferParameteri
-#define glNamedFramebufferParameteriEXT __glNamedFramebufferParameteriEXT
-#define glNamedFramebufferReadBuffer __glNamedFramebufferReadBuffer
-#define glNamedFramebufferRenderbuffer __glNamedFramebufferRenderbuffer
-#define glNamedFramebufferRenderbufferEXT __glNamedFramebufferRenderbufferEXT
-#define glNamedFramebufferTexture __glNamedFramebufferTexture
-#define glNamedFramebufferTexture1DEXT __glNamedFramebufferTexture1DEXT
-#define glNamedFramebufferTexture2DEXT __glNamedFramebufferTexture2DEXT
-#define glNamedFramebufferTexture3DEXT __glNamedFramebufferTexture3DEXT
-#define glNamedFramebufferTextureEXT __glNamedFramebufferTextureEXT
-#define glNamedFramebufferTextureFaceEXT __glNamedFramebufferTextureFaceEXT
-#define glNamedFramebufferTextureLayer __glNamedFramebufferTextureLayer
-#define glNamedFramebufferTextureLayerEXT __glNamedFramebufferTextureLayerEXT
-#define glNamedProgramLocalParameter4dEXT __glNamedProgramLocalParameter4dEXT
-#define glNamedProgramLocalParameter4dvEXT __glNamedProgramLocalParameter4dvEXT
-#define glNamedProgramLocalParameter4fEXT __glNamedProgramLocalParameter4fEXT
-#define glNamedProgramLocalParameter4fvEXT __glNamedProgramLocalParameter4fvEXT
-#define glNamedProgramLocalParameterI4iEXT __glNamedProgramLocalParameterI4iEXT
-#define glNamedProgramLocalParameterI4ivEXT __glNamedProgramLocalParameterI4ivEXT
-#define glNamedProgramLocalParameterI4uiEXT __glNamedProgramLocalParameterI4uiEXT
-#define glNamedProgramLocalParameterI4uivEXT __glNamedProgramLocalParameterI4uivEXT
-#define glNamedProgramLocalParameters4fvEXT __glNamedProgramLocalParameters4fvEXT
-#define glNamedProgramLocalParametersI4ivEXT __glNamedProgramLocalParametersI4ivEXT
-#define glNamedProgramLocalParametersI4uivEXT __glNamedProgramLocalParametersI4uivEXT
-#define glNamedProgramStringEXT __glNamedProgramStringEXT
-#define glNamedRenderbufferStorage __glNamedRenderbufferStorage
-#define glNamedRenderbufferStorageEXT __glNamedRenderbufferStorageEXT
-#define glNamedRenderbufferStorageMultisample __glNamedRenderbufferStorageMultisample
-#define glNamedRenderbufferStorageMultisampleCoverageEXT __glNamedRenderbufferStorageMultisampleCoverageEXT
-#define glNamedRenderbufferStorageMultisampleEXT __glNamedRenderbufferStorageMultisampleEXT
-#define glNamedStringARB __glNamedStringARB
-#define glNewList __glNewList
-#define glNewObjectBufferATI __glNewObjectBufferATI
-#define glNormal3b __glNormal3b
-#define glNormal3bv __glNormal3bv
-#define glNormal3d __glNormal3d
-#define glNormal3dv __glNormal3dv
-#define glNormal3f __glNormal3f
-#define glNormal3fVertex3fSUN __glNormal3fVertex3fSUN
-#define glNormal3fVertex3fvSUN __glNormal3fVertex3fvSUN
-#define glNormal3fv __glNormal3fv
-#define glNormal3hNV __glNormal3hNV
-#define glNormal3hvNV __glNormal3hvNV
-#define glNormal3i __glNormal3i
-#define glNormal3iv __glNormal3iv
-#define glNormal3s __glNormal3s
-#define glNormal3sv __glNormal3sv
-#define glNormal3x __glNormal3x
-#define glNormal3xOES __glNormal3xOES
-#define glNormal3xvOES __glNormal3xvOES
-#define glNormalFormatNV __glNormalFormatNV
-#define glNormalP3ui __glNormalP3ui
-#define glNormalP3uiv __glNormalP3uiv
-#define glNormalPointer __glNormalPointer
-#define glNormalPointerEXT __glNormalPointerEXT
-#define glNormalPointerListIBM __glNormalPointerListIBM
-#define glNormalPointervINTEL __glNormalPointervINTEL
-#define glNormalStream3bATI __glNormalStream3bATI
-#define glNormalStream3bvATI __glNormalStream3bvATI
-#define glNormalStream3dATI __glNormalStream3dATI
-#define glNormalStream3dvATI __glNormalStream3dvATI
-#define glNormalStream3fATI __glNormalStream3fATI
-#define glNormalStream3fvATI __glNormalStream3fvATI
-#define glNormalStream3iATI __glNormalStream3iATI
-#define glNormalStream3ivATI __glNormalStream3ivATI
-#define glNormalStream3sATI __glNormalStream3sATI
-#define glNormalStream3svATI __glNormalStream3svATI
-#define glObjectLabel __glObjectLabel
-#define glObjectLabelKHR __glObjectLabelKHR
-#define glObjectPtrLabel __glObjectPtrLabel
-#define glObjectPtrLabelKHR __glObjectPtrLabelKHR
-#define glObjectPurgeableAPPLE __glObjectPurgeableAPPLE
-#define glObjectUnpurgeableAPPLE __glObjectUnpurgeableAPPLE
-#define glOrtho __glOrtho
-#define glOrthof __glOrthof
-#define glOrthofOES __glOrthofOES
-#define glOrthox __glOrthox
-#define glOrthoxOES __glOrthoxOES
-#define glPNTrianglesfATI __glPNTrianglesfATI
-#define glPNTrianglesiATI __glPNTrianglesiATI
-#define glPassTexCoordATI __glPassTexCoordATI
-#define glPassThrough __glPassThrough
-#define glPassThroughxOES __glPassThroughxOES
-#define glPatchParameterfv __glPatchParameterfv
-#define glPatchParameteri __glPatchParameteri
-#define glPatchParameteriEXT __glPatchParameteriEXT
-#define glPatchParameteriOES __glPatchParameteriOES
-#define glPathColorGenNV __glPathColorGenNV
-#define glPathCommandsNV __glPathCommandsNV
-#define glPathCoordsNV __glPathCoordsNV
-#define glPathCoverDepthFuncNV __glPathCoverDepthFuncNV
-#define glPathDashArrayNV __glPathDashArrayNV
-#define glPathFogGenNV __glPathFogGenNV
-#define glPathGlyphIndexArrayNV __glPathGlyphIndexArrayNV
-#define glPathGlyphIndexRangeNV __glPathGlyphIndexRangeNV
-#define glPathGlyphRangeNV __glPathGlyphRangeNV
-#define glPathGlyphsNV __glPathGlyphsNV
-#define glPathMemoryGlyphIndexArrayNV __glPathMemoryGlyphIndexArrayNV
-#define glPathParameterfNV __glPathParameterfNV
-#define glPathParameterfvNV __glPathParameterfvNV
-#define glPathParameteriNV __glPathParameteriNV
-#define glPathParameterivNV __glPathParameterivNV
-#define glPathStencilDepthOffsetNV __glPathStencilDepthOffsetNV
-#define glPathStencilFuncNV __glPathStencilFuncNV
-#define glPathStringNV __glPathStringNV
-#define glPathSubCommandsNV __glPathSubCommandsNV
-#define glPathSubCoordsNV __glPathSubCoordsNV
-#define glPathTexGenNV __glPathTexGenNV
-#define glPauseTransformFeedback __glPauseTransformFeedback
-#define glPauseTransformFeedbackNV __glPauseTransformFeedbackNV
-#define glPixelDataRangeNV __glPixelDataRangeNV
-#define glPixelMapfv __glPixelMapfv
-#define glPixelMapuiv __glPixelMapuiv
-#define glPixelMapusv __glPixelMapusv
-#define glPixelMapx __glPixelMapx
-#define glPixelStoref __glPixelStoref
-#define glPixelStorei __glPixelStorei
-#define glPixelStorex __glPixelStorex
-#define glPixelTexGenParameterfSGIS __glPixelTexGenParameterfSGIS
-#define glPixelTexGenParameterfvSGIS __glPixelTexGenParameterfvSGIS
-#define glPixelTexGenParameteriSGIS __glPixelTexGenParameteriSGIS
-#define glPixelTexGenParameterivSGIS __glPixelTexGenParameterivSGIS
-#define glPixelTexGenSGIX __glPixelTexGenSGIX
-#define glPixelTransferf __glPixelTransferf
-#define glPixelTransferi __glPixelTransferi
-#define glPixelTransferxOES __glPixelTransferxOES
-#define glPixelTransformParameterfEXT __glPixelTransformParameterfEXT
-#define glPixelTransformParameterfvEXT __glPixelTransformParameterfvEXT
-#define glPixelTransformParameteriEXT __glPixelTransformParameteriEXT
-#define glPixelTransformParameterivEXT __glPixelTransformParameterivEXT
-#define glPixelZoom __glPixelZoom
-#define glPixelZoomxOES __glPixelZoomxOES
-#define glPointAlongPathNV __glPointAlongPathNV
-#define glPointParameterf __glPointParameterf
-#define glPointParameterfARB __glPointParameterfARB
-#define glPointParameterfEXT __glPointParameterfEXT
-#define glPointParameterfSGIS __glPointParameterfSGIS
-#define glPointParameterfv __glPointParameterfv
-#define glPointParameterfvARB __glPointParameterfvARB
-#define glPointParameterfvEXT __glPointParameterfvEXT
-#define glPointParameterfvSGIS __glPointParameterfvSGIS
-#define glPointParameteri __glPointParameteri
-#define glPointParameteriNV __glPointParameteriNV
-#define glPointParameteriv __glPointParameteriv
-#define glPointParameterivNV __glPointParameterivNV
-#define glPointParameterx __glPointParameterx
-#define glPointParameterxOES __glPointParameterxOES
-#define glPointParameterxv __glPointParameterxv
-#define glPointParameterxvOES __glPointParameterxvOES
-#define glPointSize __glPointSize
-#define glPointSizePointerOES __glPointSizePointerOES
-#define glPointSizex __glPointSizex
-#define glPointSizexOES __glPointSizexOES
-#define glPollAsyncSGIX __glPollAsyncSGIX
-#define glPollInstrumentsSGIX __glPollInstrumentsSGIX
-#define glPolygonMode __glPolygonMode
-#define glPolygonModeNV __glPolygonModeNV
-#define glPolygonOffset __glPolygonOffset
-#define glPolygonOffsetEXT __glPolygonOffsetEXT
-#define glPolygonOffsetx __glPolygonOffsetx
-#define glPolygonOffsetxOES __glPolygonOffsetxOES
-#define glPolygonOffsetClampEXT __glPolygonOffsetClampEXT
-#define glPolygonStipple __glPolygonStipple
-#define glPopAttrib __glPopAttrib
-#define glPopClientAttrib __glPopClientAttrib
-#define glPopDebugGroup __glPopDebugGroup
-#define glPopDebugGroupKHR __glPopDebugGroupKHR
-#define glPopGroupMarkerEXT __glPopGroupMarkerEXT
-#define glPopMatrix __glPopMatrix
-#define glPopName __glPopName
-#define glPresentFrameDualFillNV __glPresentFrameDualFillNV
-#define glPresentFrameKeyedNV __glPresentFrameKeyedNV
-#define glPrimitiveBoundingBoxEXT __glPrimitiveBoundingBoxEXT
-#define glPrimitiveBoundingBoxOES __glPrimitiveBoundingBoxOES
-#define glPrimitiveRestartIndex __glPrimitiveRestartIndex
-#define glPrimitiveRestartIndexNV __glPrimitiveRestartIndexNV
-#define glPrimitiveRestartNV __glPrimitiveRestartNV
-#define glPrioritizeTextures __glPrioritizeTextures
-#define glPrioritizeTexturesEXT __glPrioritizeTexturesEXT
-#define glPrioritizeTexturesxOES __glPrioritizeTexturesxOES
-#define glProgramBinary __glProgramBinary
-#define glProgramBinaryOES __glProgramBinaryOES
-#define glProgramBufferParametersIivNV __glProgramBufferParametersIivNV
-#define glProgramBufferParametersIuivNV __glProgramBufferParametersIuivNV
-#define glProgramBufferParametersfvNV __glProgramBufferParametersfvNV
-#define glProgramEnvParameter4dARB __glProgramEnvParameter4dARB
-#define glProgramEnvParameter4dvARB __glProgramEnvParameter4dvARB
-#define glProgramEnvParameter4fARB __glProgramEnvParameter4fARB
-#define glProgramEnvParameter4fvARB __glProgramEnvParameter4fvARB
-#define glProgramEnvParameterI4iNV __glProgramEnvParameterI4iNV
-#define glProgramEnvParameterI4ivNV __glProgramEnvParameterI4ivNV
-#define glProgramEnvParameterI4uiNV __glProgramEnvParameterI4uiNV
-#define glProgramEnvParameterI4uivNV __glProgramEnvParameterI4uivNV
-#define glProgramEnvParameters4fvEXT __glProgramEnvParameters4fvEXT
-#define glProgramEnvParametersI4ivNV __glProgramEnvParametersI4ivNV
-#define glProgramEnvParametersI4uivNV __glProgramEnvParametersI4uivNV
-#define glProgramLocalParameter4dARB __glProgramLocalParameter4dARB
-#define glProgramLocalParameter4dvARB __glProgramLocalParameter4dvARB
-#define glProgramLocalParameter4fARB __glProgramLocalParameter4fARB
-#define glProgramLocalParameter4fvARB __glProgramLocalParameter4fvARB
-#define glProgramLocalParameterI4iNV __glProgramLocalParameterI4iNV
-#define glProgramLocalParameterI4ivNV __glProgramLocalParameterI4ivNV
-#define glProgramLocalParameterI4uiNV __glProgramLocalParameterI4uiNV
-#define glProgramLocalParameterI4uivNV __glProgramLocalParameterI4uivNV
-#define glProgramLocalParameters4fvEXT __glProgramLocalParameters4fvEXT
-#define glProgramLocalParametersI4ivNV __glProgramLocalParametersI4ivNV
-#define glProgramLocalParametersI4uivNV __glProgramLocalParametersI4uivNV
-#define glProgramNamedParameter4dNV __glProgramNamedParameter4dNV
-#define glProgramNamedParameter4dvNV __glProgramNamedParameter4dvNV
-#define glProgramNamedParameter4fNV __glProgramNamedParameter4fNV
-#define glProgramNamedParameter4fvNV __glProgramNamedParameter4fvNV
-#define glProgramParameter4dNV __glProgramParameter4dNV
-#define glProgramParameter4dvNV __glProgramParameter4dvNV
-#define glProgramParameter4fNV __glProgramParameter4fNV
-#define glProgramParameter4fvNV __glProgramParameter4fvNV
-#define glProgramParameteri __glProgramParameteri
-#define glProgramParameteriARB __glProgramParameteriARB
-#define glProgramParameteriEXT __glProgramParameteriEXT
-#define glProgramParameters4dvNV __glProgramParameters4dvNV
-#define glProgramParameters4fvNV __glProgramParameters4fvNV
-#define glProgramPathFragmentInputGenNV __glProgramPathFragmentInputGenNV
-#define glProgramStringARB __glProgramStringARB
-#define glProgramSubroutineParametersuivNV __glProgramSubroutineParametersuivNV
-#define glProgramUniform1d __glProgramUniform1d
-#define glProgramUniform1dEXT __glProgramUniform1dEXT
-#define glProgramUniform1dv __glProgramUniform1dv
-#define glProgramUniform1dvEXT __glProgramUniform1dvEXT
-#define glProgramUniform1f __glProgramUniform1f
-#define glProgramUniform1fEXT __glProgramUniform1fEXT
-#define glProgramUniform1fv __glProgramUniform1fv
-#define glProgramUniform1fvEXT __glProgramUniform1fvEXT
-#define glProgramUniform1i __glProgramUniform1i
-#define glProgramUniform1i64NV __glProgramUniform1i64NV
-#define glProgramUniform1i64vNV __glProgramUniform1i64vNV
-#define glProgramUniform1iEXT __glProgramUniform1iEXT
-#define glProgramUniform1iv __glProgramUniform1iv
-#define glProgramUniform1ivEXT __glProgramUniform1ivEXT
-#define glProgramUniform1ui __glProgramUniform1ui
-#define glProgramUniform1ui64NV __glProgramUniform1ui64NV
-#define glProgramUniform1ui64vNV __glProgramUniform1ui64vNV
-#define glProgramUniform1uiEXT __glProgramUniform1uiEXT
-#define glProgramUniform1uiv __glProgramUniform1uiv
-#define glProgramUniform1uivEXT __glProgramUniform1uivEXT
-#define glProgramUniform2d __glProgramUniform2d
-#define glProgramUniform2dEXT __glProgramUniform2dEXT
-#define glProgramUniform2dv __glProgramUniform2dv
-#define glProgramUniform2dvEXT __glProgramUniform2dvEXT
-#define glProgramUniform2f __glProgramUniform2f
-#define glProgramUniform2fEXT __glProgramUniform2fEXT
-#define glProgramUniform2fv __glProgramUniform2fv
-#define glProgramUniform2fvEXT __glProgramUniform2fvEXT
-#define glProgramUniform2i __glProgramUniform2i
-#define glProgramUniform2i64NV __glProgramUniform2i64NV
-#define glProgramUniform2i64vNV __glProgramUniform2i64vNV
-#define glProgramUniform2iEXT __glProgramUniform2iEXT
-#define glProgramUniform2iv __glProgramUniform2iv
-#define glProgramUniform2ivEXT __glProgramUniform2ivEXT
-#define glProgramUniform2ui __glProgramUniform2ui
-#define glProgramUniform2ui64NV __glProgramUniform2ui64NV
-#define glProgramUniform2ui64vNV __glProgramUniform2ui64vNV
-#define glProgramUniform2uiEXT __glProgramUniform2uiEXT
-#define glProgramUniform2uiv __glProgramUniform2uiv
-#define glProgramUniform2uivEXT __glProgramUniform2uivEXT
-#define glProgramUniform3d __glProgramUniform3d
-#define glProgramUniform3dEXT __glProgramUniform3dEXT
-#define glProgramUniform3dv __glProgramUniform3dv
-#define glProgramUniform3dvEXT __glProgramUniform3dvEXT
-#define glProgramUniform3f __glProgramUniform3f
-#define glProgramUniform3fEXT __glProgramUniform3fEXT
-#define glProgramUniform3fv __glProgramUniform3fv
-#define glProgramUniform3fvEXT __glProgramUniform3fvEXT
-#define glProgramUniform3i __glProgramUniform3i
-#define glProgramUniform3i64NV __glProgramUniform3i64NV
-#define glProgramUniform3i64vNV __glProgramUniform3i64vNV
-#define glProgramUniform3iEXT __glProgramUniform3iEXT
-#define glProgramUniform3iv __glProgramUniform3iv
-#define glProgramUniform3ivEXT __glProgramUniform3ivEXT
-#define glProgramUniform3ui __glProgramUniform3ui
-#define glProgramUniform3ui64NV __glProgramUniform3ui64NV
-#define glProgramUniform3ui64vNV __glProgramUniform3ui64vNV
-#define glProgramUniform3uiEXT __glProgramUniform3uiEXT
-#define glProgramUniform3uiv __glProgramUniform3uiv
-#define glProgramUniform3uivEXT __glProgramUniform3uivEXT
-#define glProgramUniform4d __glProgramUniform4d
-#define glProgramUniform4dEXT __glProgramUniform4dEXT
-#define glProgramUniform4dv __glProgramUniform4dv
-#define glProgramUniform4dvEXT __glProgramUniform4dvEXT
-#define glProgramUniform4f __glProgramUniform4f
-#define glProgramUniform4fEXT __glProgramUniform4fEXT
-#define glProgramUniform4fv __glProgramUniform4fv
-#define glProgramUniform4fvEXT __glProgramUniform4fvEXT
-#define glProgramUniform4i __glProgramUniform4i
-#define glProgramUniform4i64NV __glProgramUniform4i64NV
-#define glProgramUniform4i64vNV __glProgramUniform4i64vNV
-#define glProgramUniform4iEXT __glProgramUniform4iEXT
-#define glProgramUniform4iv __glProgramUniform4iv
-#define glProgramUniform4ivEXT __glProgramUniform4ivEXT
-#define glProgramUniform4ui __glProgramUniform4ui
-#define glProgramUniform4ui64NV __glProgramUniform4ui64NV
-#define glProgramUniform4ui64vNV __glProgramUniform4ui64vNV
-#define glProgramUniform4uiEXT __glProgramUniform4uiEXT
-#define glProgramUniform4uiv __glProgramUniform4uiv
-#define glProgramUniform4uivEXT __glProgramUniform4uivEXT
-#define glProgramUniformHandleui64ARB __glProgramUniformHandleui64ARB
-#define glProgramUniformHandleui64NV __glProgramUniformHandleui64NV
-#define glProgramUniformHandleui64vARB __glProgramUniformHandleui64vARB
-#define glProgramUniformHandleui64vNV __glProgramUniformHandleui64vNV
-#define glProgramUniformMatrix2dv __glProgramUniformMatrix2dv
-#define glProgramUniformMatrix2dvEXT __glProgramUniformMatrix2dvEXT
-#define glProgramUniformMatrix2fv __glProgramUniformMatrix2fv
-#define glProgramUniformMatrix2fvEXT __glProgramUniformMatrix2fvEXT
-#define glProgramUniformMatrix2x3dv __glProgramUniformMatrix2x3dv
-#define glProgramUniformMatrix2x3dvEXT __glProgramUniformMatrix2x3dvEXT
-#define glProgramUniformMatrix2x3fv __glProgramUniformMatrix2x3fv
-#define glProgramUniformMatrix2x3fvEXT __glProgramUniformMatrix2x3fvEXT
-#define glProgramUniformMatrix2x4dv __glProgramUniformMatrix2x4dv
-#define glProgramUniformMatrix2x4dvEXT __glProgramUniformMatrix2x4dvEXT
-#define glProgramUniformMatrix2x4fv __glProgramUniformMatrix2x4fv
-#define glProgramUniformMatrix2x4fvEXT __glProgramUniformMatrix2x4fvEXT
-#define glProgramUniformMatrix3dv __glProgramUniformMatrix3dv
-#define glProgramUniformMatrix3dvEXT __glProgramUniformMatrix3dvEXT
-#define glProgramUniformMatrix3fv __glProgramUniformMatrix3fv
-#define glProgramUniformMatrix3fvEXT __glProgramUniformMatrix3fvEXT
-#define glProgramUniformMatrix3x2dv __glProgramUniformMatrix3x2dv
-#define glProgramUniformMatrix3x2dvEXT __glProgramUniformMatrix3x2dvEXT
-#define glProgramUniformMatrix3x2fv __glProgramUniformMatrix3x2fv
-#define glProgramUniformMatrix3x2fvEXT __glProgramUniformMatrix3x2fvEXT
-#define glProgramUniformMatrix3x4dv __glProgramUniformMatrix3x4dv
-#define glProgramUniformMatrix3x4dvEXT __glProgramUniformMatrix3x4dvEXT
-#define glProgramUniformMatrix3x4fv __glProgramUniformMatrix3x4fv
-#define glProgramUniformMatrix3x4fvEXT __glProgramUniformMatrix3x4fvEXT
-#define glProgramUniformMatrix4dv __glProgramUniformMatrix4dv
-#define glProgramUniformMatrix4dvEXT __glProgramUniformMatrix4dvEXT
-#define glProgramUniformMatrix4fv __glProgramUniformMatrix4fv
-#define glProgramUniformMatrix4fvEXT __glProgramUniformMatrix4fvEXT
-#define glProgramUniformMatrix4x2dv __glProgramUniformMatrix4x2dv
-#define glProgramUniformMatrix4x2dvEXT __glProgramUniformMatrix4x2dvEXT
-#define glProgramUniformMatrix4x2fv __glProgramUniformMatrix4x2fv
-#define glProgramUniformMatrix4x2fvEXT __glProgramUniformMatrix4x2fvEXT
-#define glProgramUniformMatrix4x3dv __glProgramUniformMatrix4x3dv
-#define glProgramUniformMatrix4x3dvEXT __glProgramUniformMatrix4x3dvEXT
-#define glProgramUniformMatrix4x3fv __glProgramUniformMatrix4x3fv
-#define glProgramUniformMatrix4x3fvEXT __glProgramUniformMatrix4x3fvEXT
-#define glProgramUniformui64NV __glProgramUniformui64NV
-#define glProgramUniformui64vNV __glProgramUniformui64vNV
-#define glProgramVertexLimitNV __glProgramVertexLimitNV
-#define glProvokingVertex __glProvokingVertex
-#define glProvokingVertexEXT __glProvokingVertexEXT
-#define glPushAttrib __glPushAttrib
-#define glPushClientAttrib __glPushClientAttrib
-#define glPushClientAttribDefaultEXT __glPushClientAttribDefaultEXT
-#define glPushDebugGroup __glPushDebugGroup
-#define glPushDebugGroupKHR __glPushDebugGroupKHR
-#define glPushGroupMarkerEXT __glPushGroupMarkerEXT
-#define glPushMatrix __glPushMatrix
-#define glPushName __glPushName
-#define glQueryCounter __glQueryCounter
-#define glQueryCounterEXT __glQueryCounterEXT
-#define glQueryMatrixxOES __glQueryMatrixxOES
-#define glQueryObjectParameteruiAMD __glQueryObjectParameteruiAMD
-#define glRasterPos2d __glRasterPos2d
-#define glRasterPos2dv __glRasterPos2dv
-#define glRasterPos2f __glRasterPos2f
-#define glRasterPos2fv __glRasterPos2fv
-#define glRasterPos2i __glRasterPos2i
-#define glRasterPos2iv __glRasterPos2iv
-#define glRasterPos2s __glRasterPos2s
-#define glRasterPos2sv __glRasterPos2sv
-#define glRasterPos2xOES __glRasterPos2xOES
-#define glRasterPos2xvOES __glRasterPos2xvOES
-#define glRasterPos3d __glRasterPos3d
-#define glRasterPos3dv __glRasterPos3dv
-#define glRasterPos3f __glRasterPos3f
-#define glRasterPos3fv __glRasterPos3fv
-#define glRasterPos3i __glRasterPos3i
-#define glRasterPos3iv __glRasterPos3iv
-#define glRasterPos3s __glRasterPos3s
-#define glRasterPos3sv __glRasterPos3sv
-#define glRasterPos3xOES __glRasterPos3xOES
-#define glRasterPos3xvOES __glRasterPos3xvOES
-#define glRasterPos4d __glRasterPos4d
-#define glRasterPos4dv __glRasterPos4dv
-#define glRasterPos4f __glRasterPos4f
-#define glRasterPos4fv __glRasterPos4fv
-#define glRasterPos4i __glRasterPos4i
-#define glRasterPos4iv __glRasterPos4iv
-#define glRasterPos4s __glRasterPos4s
-#define glRasterPos4sv __glRasterPos4sv
-#define glRasterPos4xOES __glRasterPos4xOES
-#define glRasterPos4xvOES __glRasterPos4xvOES
-#define glReadBuffer __glReadBuffer
-#define glReadBufferIndexedEXT __glReadBufferIndexedEXT
-#define glReadBufferNV __glReadBufferNV
-#define glReadInstrumentsSGIX __glReadInstrumentsSGIX
-#define glReadPixels __glReadPixels
-#define glReadnPixels __glReadnPixels
-#define glReadnPixelsARB __glReadnPixelsARB
-#define glReadnPixelsEXT __glReadnPixelsEXT
-#define glReadnPixelsKHR __glReadnPixelsKHR
-#define glRectd __glRectd
-#define glRectdv __glRectdv
-#define glRectf __glRectf
-#define glRectfv __glRectfv
-#define glRecti __glRecti
-#define glRectiv __glRectiv
-#define glRects __glRects
-#define glRectsv __glRectsv
-#define glRectxOES __glRectxOES
-#define glRectxvOES __glRectxvOES
-#define glReferencePlaneSGIX __glReferencePlaneSGIX
-#define glReleaseShaderCompiler __glReleaseShaderCompiler
-#define glRenderMode __glRenderMode
-#define glRenderbufferStorage __glRenderbufferStorage
-#define glRenderbufferStorageEXT __glRenderbufferStorageEXT
-#define glRenderbufferStorageMultisample __glRenderbufferStorageMultisample
-#define glRenderbufferStorageMultisampleANGLE __glRenderbufferStorageMultisampleANGLE
-#define glRenderbufferStorageMultisampleAPPLE __glRenderbufferStorageMultisampleAPPLE
-#define glRenderbufferStorageMultisampleCoverageNV __glRenderbufferStorageMultisampleCoverageNV
-#define glRenderbufferStorageMultisampleEXT __glRenderbufferStorageMultisampleEXT
-#define glRenderbufferStorageMultisampleIMG __glRenderbufferStorageMultisampleIMG
-#define glRenderbufferStorageMultisampleNV __glRenderbufferStorageMultisampleNV
-#define glRenderbufferStorageOES __glRenderbufferStorageOES
-#define glReplacementCodePointerSUN __glReplacementCodePointerSUN
-#define glReplacementCodeubSUN __glReplacementCodeubSUN
-#define glReplacementCodeubvSUN __glReplacementCodeubvSUN
-#define glReplacementCodeuiColor3fVertex3fSUN __glReplacementCodeuiColor3fVertex3fSUN
-#define glReplacementCodeuiColor3fVertex3fvSUN __glReplacementCodeuiColor3fVertex3fvSUN
-#define glReplacementCodeuiColor4fNormal3fVertex3fSUN __glReplacementCodeuiColor4fNormal3fVertex3fSUN
-#define glReplacementCodeuiColor4fNormal3fVertex3fvSUN __glReplacementCodeuiColor4fNormal3fVertex3fvSUN
-#define glReplacementCodeuiColor4ubVertex3fSUN __glReplacementCodeuiColor4ubVertex3fSUN
-#define glReplacementCodeuiColor4ubVertex3fvSUN __glReplacementCodeuiColor4ubVertex3fvSUN
-#define glReplacementCodeuiNormal3fVertex3fSUN __glReplacementCodeuiNormal3fVertex3fSUN
-#define glReplacementCodeuiNormal3fVertex3fvSUN __glReplacementCodeuiNormal3fVertex3fvSUN
-#define glReplacementCodeuiSUN __glReplacementCodeuiSUN
-#define glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN __glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN
-#define glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN __glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN
-#define glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN __glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN
-#define glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN __glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN
-#define glReplacementCodeuiTexCoord2fVertex3fSUN __glReplacementCodeuiTexCoord2fVertex3fSUN
-#define glReplacementCodeuiTexCoord2fVertex3fvSUN __glReplacementCodeuiTexCoord2fVertex3fvSUN
-#define glReplacementCodeuiVertex3fSUN __glReplacementCodeuiVertex3fSUN
-#define glReplacementCodeuiVertex3fvSUN __glReplacementCodeuiVertex3fvSUN
-#define glReplacementCodeuivSUN __glReplacementCodeuivSUN
-#define glReplacementCodeusSUN __glReplacementCodeusSUN
-#define glReplacementCodeusvSUN __glReplacementCodeusvSUN
-#define glRequestResidentProgramsNV __glRequestResidentProgramsNV
-#define glResetHistogram __glResetHistogram
-#define glResetHistogramEXT __glResetHistogramEXT
-#define glResetMinmax __glResetMinmax
-#define glResetMinmaxEXT __glResetMinmaxEXT
-#define glResizeBuffersMESA __glResizeBuffersMESA
-#define glResolveMultisampleFramebufferAPPLE __glResolveMultisampleFramebufferAPPLE
-#define glResumeTransformFeedback __glResumeTransformFeedback
-#define glResumeTransformFeedbackNV __glResumeTransformFeedbackNV
-#define glRotated __glRotated
-#define glRotatef __glRotatef
-#define glRotatex __glRotatex
-#define glRotatexOES __glRotatexOES
-#define glSampleCoverage __glSampleCoverage
-#define glSampleCoverageARB __glSampleCoverageARB
-#define glSampleCoveragex __glSampleCoveragex
-#define glSampleCoveragexOES __glSampleCoveragexOES
-#define glSampleMapATI __glSampleMapATI
-#define glSampleMaskEXT __glSampleMaskEXT
-#define glSampleMaskIndexedNV __glSampleMaskIndexedNV
-#define glSampleMaskSGIS __glSampleMaskSGIS
-#define glSampleMaski __glSampleMaski
-#define glSamplePatternEXT __glSamplePatternEXT
-#define glSamplePatternSGIS __glSamplePatternSGIS
-#define glSamplerParameterIiv __glSamplerParameterIiv
-#define glSamplerParameterIivEXT __glSamplerParameterIivEXT
-#define glSamplerParameterIivOES __glSamplerParameterIivOES
-#define glSamplerParameterIuiv __glSamplerParameterIuiv
-#define glSamplerParameterIuivEXT __glSamplerParameterIuivEXT
-#define glSamplerParameterIuivOES __glSamplerParameterIuivOES
-#define glSamplerParameterf __glSamplerParameterf
-#define glSamplerParameterfv __glSamplerParameterfv
-#define glSamplerParameteri __glSamplerParameteri
-#define glSamplerParameteriv __glSamplerParameteriv
-#define glScaled __glScaled
-#define glScalef __glScalef
-#define glScalex __glScalex
-#define glScalexOES __glScalexOES
-#define glScissor __glScissor
-#define glScissorArrayv __glScissorArrayv
-#define glScissorArrayvNV __glScissorArrayvNV
-#define glScissorIndexed __glScissorIndexed
-#define glScissorIndexedNV __glScissorIndexedNV
-#define glScissorIndexedv __glScissorIndexedv
-#define glScissorIndexedvNV __glScissorIndexedvNV
-#define glSecondaryColor3b __glSecondaryColor3b
-#define glSecondaryColor3bEXT __glSecondaryColor3bEXT
-#define glSecondaryColor3bv __glSecondaryColor3bv
-#define glSecondaryColor3bvEXT __glSecondaryColor3bvEXT
-#define glSecondaryColor3d __glSecondaryColor3d
-#define glSecondaryColor3dEXT __glSecondaryColor3dEXT
-#define glSecondaryColor3dv __glSecondaryColor3dv
-#define glSecondaryColor3dvEXT __glSecondaryColor3dvEXT
-#define glSecondaryColor3f __glSecondaryColor3f
-#define glSecondaryColor3fEXT __glSecondaryColor3fEXT
-#define glSecondaryColor3fv __glSecondaryColor3fv
-#define glSecondaryColor3fvEXT __glSecondaryColor3fvEXT
-#define glSecondaryColor3hNV __glSecondaryColor3hNV
-#define glSecondaryColor3hvNV __glSecondaryColor3hvNV
-#define glSecondaryColor3i __glSecondaryColor3i
-#define glSecondaryColor3iEXT __glSecondaryColor3iEXT
-#define glSecondaryColor3iv __glSecondaryColor3iv
-#define glSecondaryColor3ivEXT __glSecondaryColor3ivEXT
-#define glSecondaryColor3s __glSecondaryColor3s
-#define glSecondaryColor3sEXT __glSecondaryColor3sEXT
-#define glSecondaryColor3sv __glSecondaryColor3sv
-#define glSecondaryColor3svEXT __glSecondaryColor3svEXT
-#define glSecondaryColor3ub __glSecondaryColor3ub
-#define glSecondaryColor3ubEXT __glSecondaryColor3ubEXT
-#define glSecondaryColor3ubv __glSecondaryColor3ubv
-#define glSecondaryColor3ubvEXT __glSecondaryColor3ubvEXT
-#define glSecondaryColor3ui __glSecondaryColor3ui
-#define glSecondaryColor3uiEXT __glSecondaryColor3uiEXT
-#define glSecondaryColor3uiv __glSecondaryColor3uiv
-#define glSecondaryColor3uivEXT __glSecondaryColor3uivEXT
-#define glSecondaryColor3us __glSecondaryColor3us
-#define glSecondaryColor3usEXT __glSecondaryColor3usEXT
-#define glSecondaryColor3usv __glSecondaryColor3usv
-#define glSecondaryColor3usvEXT __glSecondaryColor3usvEXT
-#define glSecondaryColorFormatNV __glSecondaryColorFormatNV
-#define glSecondaryColorP3ui __glSecondaryColorP3ui
-#define glSecondaryColorP3uiv __glSecondaryColorP3uiv
-#define glSecondaryColorPointer __glSecondaryColorPointer
-#define glSecondaryColorPointerEXT __glSecondaryColorPointerEXT
-#define glSecondaryColorPointerListIBM __glSecondaryColorPointerListIBM
-#define glSelectBuffer __glSelectBuffer
-#define glSelectPerfMonitorCountersAMD __glSelectPerfMonitorCountersAMD
-#define glSeparableFilter2D __glSeparableFilter2D
-#define glSeparableFilter2DEXT __glSeparableFilter2DEXT
-#define glSetFenceAPPLE __glSetFenceAPPLE
-#define glSetFenceNV __glSetFenceNV
-#define glSetFragmentShaderConstantATI __glSetFragmentShaderConstantATI
-#define glSetInvariantEXT __glSetInvariantEXT
-#define glSetLocalConstantEXT __glSetLocalConstantEXT
-#define glSetMultisamplefvAMD __glSetMultisamplefvAMD
-#define glShadeModel __glShadeModel
-#define glShaderBinary __glShaderBinary
-#define glShaderOp1EXT __glShaderOp1EXT
-#define glShaderOp2EXT __glShaderOp2EXT
-#define glShaderOp3EXT __glShaderOp3EXT
-#define glShaderSource __glShaderSource
-#define glShaderSourceARB __glShaderSourceARB
-#define glShaderStorageBlockBinding __glShaderStorageBlockBinding
-#define glSharpenTexFuncSGIS __glSharpenTexFuncSGIS
-#define glSpriteParameterfSGIX __glSpriteParameterfSGIX
-#define glSpriteParameterfvSGIX __glSpriteParameterfvSGIX
-#define glSpriteParameteriSGIX __glSpriteParameteriSGIX
-#define glSpriteParameterivSGIX __glSpriteParameterivSGIX
-#define glStartInstrumentsSGIX __glStartInstrumentsSGIX
-#define glStartTilingQCOM __glStartTilingQCOM
-#define glStateCaptureNV __glStateCaptureNV
-#define glStencilClearTagEXT __glStencilClearTagEXT
-#define glStencilFillPathInstancedNV __glStencilFillPathInstancedNV
-#define glStencilFillPathNV __glStencilFillPathNV
-#define glStencilFunc __glStencilFunc
-#define glStencilFuncSeparate __glStencilFuncSeparate
-#define glStencilFuncSeparateATI __glStencilFuncSeparateATI
-#define glStencilMask __glStencilMask
-#define glStencilMaskSeparate __glStencilMaskSeparate
-#define glStencilOp __glStencilOp
-#define glStencilOpSeparate __glStencilOpSeparate
-#define glStencilOpSeparateATI __glStencilOpSeparateATI
-#define glStencilOpValueAMD __glStencilOpValueAMD
-#define glStencilStrokePathInstancedNV __glStencilStrokePathInstancedNV
-#define glStencilStrokePathNV __glStencilStrokePathNV
-#define glStencilThenCoverFillPathInstancedNV __glStencilThenCoverFillPathInstancedNV
-#define glStencilThenCoverFillPathNV __glStencilThenCoverFillPathNV
-#define glStencilThenCoverStrokePathInstancedNV __glStencilThenCoverStrokePathInstancedNV
-#define glStencilThenCoverStrokePathNV __glStencilThenCoverStrokePathNV
-#define glStopInstrumentsSGIX __glStopInstrumentsSGIX
-#define glStringMarkerGREMEDY __glStringMarkerGREMEDY
-#define glSwizzleEXT __glSwizzleEXT
-#define glSyncTextureINTEL __glSyncTextureINTEL
-#define glTagSampleBufferSGIX __glTagSampleBufferSGIX
-#define glTangent3bEXT __glTangent3bEXT
-#define glTangent3bvEXT __glTangent3bvEXT
-#define glTangent3dEXT __glTangent3dEXT
-#define glTangent3dvEXT __glTangent3dvEXT
-#define glTangent3fEXT __glTangent3fEXT
-#define glTangent3fvEXT __glTangent3fvEXT
-#define glTangent3iEXT __glTangent3iEXT
-#define glTangent3ivEXT __glTangent3ivEXT
-#define glTangent3sEXT __glTangent3sEXT
-#define glTangent3svEXT __glTangent3svEXT
-#define glTangentPointerEXT __glTangentPointerEXT
-#define glTbufferMask3DFX __glTbufferMask3DFX
-#define glTessellationFactorAMD __glTessellationFactorAMD
-#define glTessellationModeAMD __glTessellationModeAMD
-#define glTestFenceAPPLE __glTestFenceAPPLE
-#define glTestFenceNV __glTestFenceNV
-#define glTestObjectAPPLE __glTestObjectAPPLE
-#define glTexBuffer __glTexBuffer
-#define glTexBufferARB __glTexBufferARB
-#define glTexBufferEXT __glTexBufferEXT
-#define glTexBufferOES __glTexBufferOES
-#define glTexBufferRange __glTexBufferRange
-#define glTexBufferRangeEXT __glTexBufferRangeEXT
-#define glTexBufferRangeOES __glTexBufferRangeOES
-#define glTexBumpParameterfvATI __glTexBumpParameterfvATI
-#define glTexBumpParameterivATI __glTexBumpParameterivATI
-#define glTexCoord1bOES __glTexCoord1bOES
-#define glTexCoord1bvOES __glTexCoord1bvOES
-#define glTexCoord1d __glTexCoord1d
-#define glTexCoord1dv __glTexCoord1dv
-#define glTexCoord1f __glTexCoord1f
-#define glTexCoord1fv __glTexCoord1fv
-#define glTexCoord1hNV __glTexCoord1hNV
-#define glTexCoord1hvNV __glTexCoord1hvNV
-#define glTexCoord1i __glTexCoord1i
-#define glTexCoord1iv __glTexCoord1iv
-#define glTexCoord1s __glTexCoord1s
-#define glTexCoord1sv __glTexCoord1sv
-#define glTexCoord1xOES __glTexCoord1xOES
-#define glTexCoord1xvOES __glTexCoord1xvOES
-#define glTexCoord2bOES __glTexCoord2bOES
-#define glTexCoord2bvOES __glTexCoord2bvOES
-#define glTexCoord2d __glTexCoord2d
-#define glTexCoord2dv __glTexCoord2dv
-#define glTexCoord2f __glTexCoord2f
-#define glTexCoord2fColor3fVertex3fSUN __glTexCoord2fColor3fVertex3fSUN
-#define glTexCoord2fColor3fVertex3fvSUN __glTexCoord2fColor3fVertex3fvSUN
-#define glTexCoord2fColor4fNormal3fVertex3fSUN __glTexCoord2fColor4fNormal3fVertex3fSUN
-#define glTexCoord2fColor4fNormal3fVertex3fvSUN __glTexCoord2fColor4fNormal3fVertex3fvSUN
-#define glTexCoord2fColor4ubVertex3fSUN __glTexCoord2fColor4ubVertex3fSUN
-#define glTexCoord2fColor4ubVertex3fvSUN __glTexCoord2fColor4ubVertex3fvSUN
-#define glTexCoord2fNormal3fVertex3fSUN __glTexCoord2fNormal3fVertex3fSUN
-#define glTexCoord2fNormal3fVertex3fvSUN __glTexCoord2fNormal3fVertex3fvSUN
-#define glTexCoord2fVertex3fSUN __glTexCoord2fVertex3fSUN
-#define glTexCoord2fVertex3fvSUN __glTexCoord2fVertex3fvSUN
-#define glTexCoord2fv __glTexCoord2fv
-#define glTexCoord2hNV __glTexCoord2hNV
-#define glTexCoord2hvNV __glTexCoord2hvNV
-#define glTexCoord2i __glTexCoord2i
-#define glTexCoord2iv __glTexCoord2iv
-#define glTexCoord2s __glTexCoord2s
-#define glTexCoord2sv __glTexCoord2sv
-#define glTexCoord2xOES __glTexCoord2xOES
-#define glTexCoord2xvOES __glTexCoord2xvOES
-#define glTexCoord3bOES __glTexCoord3bOES
-#define glTexCoord3bvOES __glTexCoord3bvOES
-#define glTexCoord3d __glTexCoord3d
-#define glTexCoord3dv __glTexCoord3dv
-#define glTexCoord3f __glTexCoord3f
-#define glTexCoord3fv __glTexCoord3fv
-#define glTexCoord3hNV __glTexCoord3hNV
-#define glTexCoord3hvNV __glTexCoord3hvNV
-#define glTexCoord3i __glTexCoord3i
-#define glTexCoord3iv __glTexCoord3iv
-#define glTexCoord3s __glTexCoord3s
-#define glTexCoord3sv __glTexCoord3sv
-#define glTexCoord3xOES __glTexCoord3xOES
-#define glTexCoord3xvOES __glTexCoord3xvOES
-#define glTexCoord4bOES __glTexCoord4bOES
-#define glTexCoord4bvOES __glTexCoord4bvOES
-#define glTexCoord4d __glTexCoord4d
-#define glTexCoord4dv __glTexCoord4dv
-#define glTexCoord4f __glTexCoord4f
-#define glTexCoord4fColor4fNormal3fVertex4fSUN __glTexCoord4fColor4fNormal3fVertex4fSUN
-#define glTexCoord4fColor4fNormal3fVertex4fvSUN __glTexCoord4fColor4fNormal3fVertex4fvSUN
-#define glTexCoord4fVertex4fSUN __glTexCoord4fVertex4fSUN
-#define glTexCoord4fVertex4fvSUN __glTexCoord4fVertex4fvSUN
-#define glTexCoord4fv __glTexCoord4fv
-#define glTexCoord4hNV __glTexCoord4hNV
-#define glTexCoord4hvNV __glTexCoord4hvNV
-#define glTexCoord4i __glTexCoord4i
-#define glTexCoord4iv __glTexCoord4iv
-#define glTexCoord4s __glTexCoord4s
-#define glTexCoord4sv __glTexCoord4sv
-#define glTexCoord4xOES __glTexCoord4xOES
-#define glTexCoord4xvOES __glTexCoord4xvOES
-#define glTexCoordFormatNV __glTexCoordFormatNV
-#define glTexCoordP1ui __glTexCoordP1ui
-#define glTexCoordP1uiv __glTexCoordP1uiv
-#define glTexCoordP2ui __glTexCoordP2ui
-#define glTexCoordP2uiv __glTexCoordP2uiv
-#define glTexCoordP3ui __glTexCoordP3ui
-#define glTexCoordP3uiv __glTexCoordP3uiv
-#define glTexCoordP4ui __glTexCoordP4ui
-#define glTexCoordP4uiv __glTexCoordP4uiv
-#define glTexCoordPointer __glTexCoordPointer
-#define glTexCoordPointerEXT __glTexCoordPointerEXT
-#define glTexCoordPointerListIBM __glTexCoordPointerListIBM
-#define glTexCoordPointervINTEL __glTexCoordPointervINTEL
-#define glTexEnvf __glTexEnvf
-#define glTexEnvfv __glTexEnvfv
-#define glTexEnvi __glTexEnvi
-#define glTexEnviv __glTexEnviv
-#define glTexEnvx __glTexEnvx
-#define glTexEnvxOES __glTexEnvxOES
-#define glTexEnvxv __glTexEnvxv
-#define glTexEnvxvOES __glTexEnvxvOES
-#define glTexFilterFuncSGIS __glTexFilterFuncSGIS
-#define glTexGend __glTexGend
-#define glTexGendv __glTexGendv
-#define glTexGenf __glTexGenf
-#define glTexGenfOES __glTexGenfOES
-#define glTexGenfv __glTexGenfv
-#define glTexGenfvOES __glTexGenfvOES
-#define glTexGeni __glTexGeni
-#define glTexGeniOES __glTexGeniOES
-#define glTexGeniv __glTexGeniv
-#define glTexGenivOES __glTexGenivOES
-#define glTexGenxOES __glTexGenxOES
-#define glTexGenxvOES __glTexGenxvOES
-#define glTexImage1D __glTexImage1D
-#define glTexImage2D __glTexImage2D
-#define glTexImage2DMultisample __glTexImage2DMultisample
-#define glTexImage2DMultisampleCoverageNV __glTexImage2DMultisampleCoverageNV
-#define glTexImage3D __glTexImage3D
-#define glTexImage3DEXT __glTexImage3DEXT
-#define glTexImage3DMultisample __glTexImage3DMultisample
-#define glTexImage3DMultisampleCoverageNV __glTexImage3DMultisampleCoverageNV
-#define glTexImage3DOES __glTexImage3DOES
-#define glTexImage4DSGIS __glTexImage4DSGIS
-#define glTexPageCommitmentARB __glTexPageCommitmentARB
-#define glTexPageCommitmentEXT __glTexPageCommitmentEXT
-#define glTexParameterIiv __glTexParameterIiv
-#define glTexParameterIivEXT __glTexParameterIivEXT
-#define glTexParameterIivOES __glTexParameterIivOES
-#define glTexParameterIuiv __glTexParameterIuiv
-#define glTexParameterIuivEXT __glTexParameterIuivEXT
-#define glTexParameterIuivOES __glTexParameterIuivOES
-#define glTexParameterf __glTexParameterf
-#define glTexParameterfv __glTexParameterfv
-#define glTexParameteri __glTexParameteri
-#define glTexParameteriv __glTexParameteriv
-#define glTexParameterx __glTexParameterx
-#define glTexParameterxOES __glTexParameterxOES
-#define glTexParameterxv __glTexParameterxv
-#define glTexParameterxvOES __glTexParameterxvOES
-#define glTexRenderbufferNV __glTexRenderbufferNV
-#define glTexStorage1D __glTexStorage1D
-#define glTexStorage1DEXT __glTexStorage1DEXT
-#define glTexStorage2D __glTexStorage2D
-#define glTexStorage2DEXT __glTexStorage2DEXT
-#define glTexStorage2DMultisample __glTexStorage2DMultisample
-#define glTexStorage3D __glTexStorage3D
-#define glTexStorage3DEXT __glTexStorage3DEXT
-#define glTexStorage3DMultisample __glTexStorage3DMultisample
-#define glTexStorage3DMultisampleOES __glTexStorage3DMultisampleOES
-#define glTexStorageSparseAMD __glTexStorageSparseAMD
-#define glTexSubImage1D __glTexSubImage1D
-#define glTexSubImage1DEXT __glTexSubImage1DEXT
-#define glTexSubImage2D __glTexSubImage2D
-#define glTexSubImage2DEXT __glTexSubImage2DEXT
-#define glTexSubImage3D __glTexSubImage3D
-#define glTexSubImage3DEXT __glTexSubImage3DEXT
-#define glTexSubImage3DOES __glTexSubImage3DOES
-#define glTexSubImage4DSGIS __glTexSubImage4DSGIS
-#define glTextureBarrier __glTextureBarrier
-#define glTextureBarrierNV __glTextureBarrierNV
-#define glTextureBuffer __glTextureBuffer
-#define glTextureBufferEXT __glTextureBufferEXT
-#define glTextureBufferRange __glTextureBufferRange
-#define glTextureBufferRangeEXT __glTextureBufferRangeEXT
-#define glTextureColorMaskSGIS __glTextureColorMaskSGIS
-#define glTextureImage1DEXT __glTextureImage1DEXT
-#define glTextureImage2DEXT __glTextureImage2DEXT
-#define glTextureImage2DMultisampleCoverageNV __glTextureImage2DMultisampleCoverageNV
-#define glTextureImage2DMultisampleNV __glTextureImage2DMultisampleNV
-#define glTextureImage3DEXT __glTextureImage3DEXT
-#define glTextureImage3DMultisampleCoverageNV __glTextureImage3DMultisampleCoverageNV
-#define glTextureImage3DMultisampleNV __glTextureImage3DMultisampleNV
-#define glTextureLightEXT __glTextureLightEXT
-#define glTextureMaterialEXT __glTextureMaterialEXT
-#define glTextureNormalEXT __glTextureNormalEXT
-#define glTexturePageCommitmentEXT __glTexturePageCommitmentEXT
-#define glTextureParameterIiv __glTextureParameterIiv
-#define glTextureParameterIivEXT __glTextureParameterIivEXT
-#define glTextureParameterIuiv __glTextureParameterIuiv
-#define glTextureParameterIuivEXT __glTextureParameterIuivEXT
-#define glTextureParameterf __glTextureParameterf
-#define glTextureParameterfEXT __glTextureParameterfEXT
-#define glTextureParameterfv __glTextureParameterfv
-#define glTextureParameterfvEXT __glTextureParameterfvEXT
-#define glTextureParameteri __glTextureParameteri
-#define glTextureParameteriEXT __glTextureParameteriEXT
-#define glTextureParameteriv __glTextureParameteriv
-#define glTextureParameterivEXT __glTextureParameterivEXT
-#define glTextureRangeAPPLE __glTextureRangeAPPLE
-#define glTextureRenderbufferEXT __glTextureRenderbufferEXT
-#define glTextureStorage1D __glTextureStorage1D
-#define glTextureStorage1DEXT __glTextureStorage1DEXT
-#define glTextureStorage2D __glTextureStorage2D
-#define glTextureStorage2DEXT __glTextureStorage2DEXT
-#define glTextureStorage2DMultisample __glTextureStorage2DMultisample
-#define glTextureStorage2DMultisampleEXT __glTextureStorage2DMultisampleEXT
-#define glTextureStorage3D __glTextureStorage3D
-#define glTextureStorage3DEXT __glTextureStorage3DEXT
-#define glTextureStorage3DMultisample __glTextureStorage3DMultisample
-#define glTextureStorage3DMultisampleEXT __glTextureStorage3DMultisampleEXT
-#define glTextureStorageSparseAMD __glTextureStorageSparseAMD
-#define glTextureSubImage1D __glTextureSubImage1D
-#define glTextureSubImage1DEXT __glTextureSubImage1DEXT
-#define glTextureSubImage2D __glTextureSubImage2D
-#define glTextureSubImage2DEXT __glTextureSubImage2DEXT
-#define glTextureSubImage3D __glTextureSubImage3D
-#define glTextureSubImage3DEXT __glTextureSubImage3DEXT
-#define glTextureView __glTextureView
-#define glTextureViewEXT __glTextureViewEXT
-#define glTextureViewOES __glTextureViewOES
-#define glTrackMatrixNV __glTrackMatrixNV
-#define glTransformFeedbackAttribsNV __glTransformFeedbackAttribsNV
-#define glTransformFeedbackBufferBase __glTransformFeedbackBufferBase
-#define glTransformFeedbackBufferRange __glTransformFeedbackBufferRange
-#define glTransformFeedbackStreamAttribsNV __glTransformFeedbackStreamAttribsNV
-#define glTransformFeedbackVaryings __glTransformFeedbackVaryings
-#define glTransformFeedbackVaryingsEXT __glTransformFeedbackVaryingsEXT
-#define glTransformFeedbackVaryingsNV __glTransformFeedbackVaryingsNV
-#define glTransformPathNV __glTransformPathNV
-#define glTranslated __glTranslated
-#define glTranslatef __glTranslatef
-#define glTranslatex __glTranslatex
-#define glTranslatexOES __glTranslatexOES
-#define glUniform1d __glUniform1d
-#define glUniform1dv __glUniform1dv
-#define glUniform1f __glUniform1f
-#define glUniform1fARB __glUniform1fARB
-#define glUniform1fv __glUniform1fv
-#define glUniform1fvARB __glUniform1fvARB
-#define glUniform1i __glUniform1i
-#define glUniform1i64NV __glUniform1i64NV
-#define glUniform1i64vNV __glUniform1i64vNV
-#define glUniform1iARB __glUniform1iARB
-#define glUniform1iv __glUniform1iv
-#define glUniform1ivARB __glUniform1ivARB
-#define glUniform1ui __glUniform1ui
-#define glUniform1ui64NV __glUniform1ui64NV
-#define glUniform1ui64vNV __glUniform1ui64vNV
-#define glUniform1uiEXT __glUniform1uiEXT
-#define glUniform1uiv __glUniform1uiv
-#define glUniform1uivEXT __glUniform1uivEXT
-#define glUniform2d __glUniform2d
-#define glUniform2dv __glUniform2dv
-#define glUniform2f __glUniform2f
-#define glUniform2fARB __glUniform2fARB
-#define glUniform2fv __glUniform2fv
-#define glUniform2fvARB __glUniform2fvARB
-#define glUniform2i __glUniform2i
-#define glUniform2i64NV __glUniform2i64NV
-#define glUniform2i64vNV __glUniform2i64vNV
-#define glUniform2iARB __glUniform2iARB
-#define glUniform2iv __glUniform2iv
-#define glUniform2ivARB __glUniform2ivARB
-#define glUniform2ui __glUniform2ui
-#define glUniform2ui64NV __glUniform2ui64NV
-#define glUniform2ui64vNV __glUniform2ui64vNV
-#define glUniform2uiEXT __glUniform2uiEXT
-#define glUniform2uiv __glUniform2uiv
-#define glUniform2uivEXT __glUniform2uivEXT
-#define glUniform3d __glUniform3d
-#define glUniform3dv __glUniform3dv
-#define glUniform3f __glUniform3f
-#define glUniform3fARB __glUniform3fARB
-#define glUniform3fv __glUniform3fv
-#define glUniform3fvARB __glUniform3fvARB
-#define glUniform3i __glUniform3i
-#define glUniform3i64NV __glUniform3i64NV
-#define glUniform3i64vNV __glUniform3i64vNV
-#define glUniform3iARB __glUniform3iARB
-#define glUniform3iv __glUniform3iv
-#define glUniform3ivARB __glUniform3ivARB
-#define glUniform3ui __glUniform3ui
-#define glUniform3ui64NV __glUniform3ui64NV
-#define glUniform3ui64vNV __glUniform3ui64vNV
-#define glUniform3uiEXT __glUniform3uiEXT
-#define glUniform3uiv __glUniform3uiv
-#define glUniform3uivEXT __glUniform3uivEXT
-#define glUniform4d __glUniform4d
-#define glUniform4dv __glUniform4dv
-#define glUniform4f __glUniform4f
-#define glUniform4fARB __glUniform4fARB
-#define glUniform4fv __glUniform4fv
-#define glUniform4fvARB __glUniform4fvARB
-#define glUniform4i __glUniform4i
-#define glUniform4i64NV __glUniform4i64NV
-#define glUniform4i64vNV __glUniform4i64vNV
-#define glUniform4iARB __glUniform4iARB
-#define glUniform4iv __glUniform4iv
-#define glUniform4ivARB __glUniform4ivARB
-#define glUniform4ui __glUniform4ui
-#define glUniform4ui64NV __glUniform4ui64NV
-#define glUniform4ui64vNV __glUniform4ui64vNV
-#define glUniform4uiEXT __glUniform4uiEXT
-#define glUniform4uiv __glUniform4uiv
-#define glUniform4uivEXT __glUniform4uivEXT
-#define glUniformBlockBinding __glUniformBlockBinding
-#define glUniformBufferEXT __glUniformBufferEXT
-#define glUniformHandleui64ARB __glUniformHandleui64ARB
-#define glUniformHandleui64NV __glUniformHandleui64NV
-#define glUniformHandleui64vARB __glUniformHandleui64vARB
-#define glUniformHandleui64vNV __glUniformHandleui64vNV
-#define glUniformMatrix2dv __glUniformMatrix2dv
-#define glUniformMatrix2fv __glUniformMatrix2fv
-#define glUniformMatrix2fvARB __glUniformMatrix2fvARB
-#define glUniformMatrix2x3dv __glUniformMatrix2x3dv
-#define glUniformMatrix2x3fv __glUniformMatrix2x3fv
-#define glUniformMatrix2x3fvNV __glUniformMatrix2x3fvNV
-#define glUniformMatrix2x4dv __glUniformMatrix2x4dv
-#define glUniformMatrix2x4fv __glUniformMatrix2x4fv
-#define glUniformMatrix2x4fvNV __glUniformMatrix2x4fvNV
-#define glUniformMatrix3dv __glUniformMatrix3dv
-#define glUniformMatrix3fv __glUniformMatrix3fv
-#define glUniformMatrix3fvARB __glUniformMatrix3fvARB
-#define glUniformMatrix3x2dv __glUniformMatrix3x2dv
-#define glUniformMatrix3x2fv __glUniformMatrix3x2fv
-#define glUniformMatrix3x2fvNV __glUniformMatrix3x2fvNV
-#define glUniformMatrix3x4dv __glUniformMatrix3x4dv
-#define glUniformMatrix3x4fv __glUniformMatrix3x4fv
-#define glUniformMatrix3x4fvNV __glUniformMatrix3x4fvNV
-#define glUniformMatrix4dv __glUniformMatrix4dv
-#define glUniformMatrix4fv __glUniformMatrix4fv
-#define glUniformMatrix4fvARB __glUniformMatrix4fvARB
-#define glUniformMatrix4x2dv __glUniformMatrix4x2dv
-#define glUniformMatrix4x2fv __glUniformMatrix4x2fv
-#define glUniformMatrix4x2fvNV __glUniformMatrix4x2fvNV
-#define glUniformMatrix4x3dv __glUniformMatrix4x3dv
-#define glUniformMatrix4x3fv __glUniformMatrix4x3fv
-#define glUniformMatrix4x3fvNV __glUniformMatrix4x3fvNV
-#define glUniformSubroutinesuiv __glUniformSubroutinesuiv
-#define glUniformui64NV __glUniformui64NV
-#define glUniformui64vNV __glUniformui64vNV
-#define glUnlockArraysEXT __glUnlockArraysEXT
-#define glUnmapBuffer __glUnmapBuffer
-#define glUnmapBufferARB __glUnmapBufferARB
-#define glUnmapBufferOES __glUnmapBufferOES
-#define glUnmapNamedBuffer __glUnmapNamedBuffer
-#define glUnmapNamedBufferEXT __glUnmapNamedBufferEXT
-#define glUnmapObjectBufferATI __glUnmapObjectBufferATI
-#define glUnmapTexture2DINTEL __glUnmapTexture2DINTEL
-#define glUpdateObjectBufferATI __glUpdateObjectBufferATI
-#define glUseProgram __glUseProgram
-#define glUseProgramObjectARB __glUseProgramObjectARB
-#define glUseProgramStages __glUseProgramStages
-#define glUseProgramStagesEXT __glUseProgramStagesEXT
-#define glUseShaderProgramEXT __glUseShaderProgramEXT
-#define glVDPAUFiniNV __glVDPAUFiniNV
-#define glVDPAUGetSurfaceivNV __glVDPAUGetSurfaceivNV
-#define glVDPAUInitNV __glVDPAUInitNV
-#define glVDPAUIsSurfaceNV __glVDPAUIsSurfaceNV
-#define glVDPAUMapSurfacesNV __glVDPAUMapSurfacesNV
-#define glVDPAURegisterOutputSurfaceNV __glVDPAURegisterOutputSurfaceNV
-#define glVDPAURegisterVideoSurfaceNV __glVDPAURegisterVideoSurfaceNV
-#define glVDPAUSurfaceAccessNV __glVDPAUSurfaceAccessNV
-#define glVDPAUUnmapSurfacesNV __glVDPAUUnmapSurfacesNV
-#define glVDPAUUnregisterSurfaceNV __glVDPAUUnregisterSurfaceNV
-#define glValidateProgram __glValidateProgram
-#define glValidateProgramARB __glValidateProgramARB
-#define glValidateProgramPipeline __glValidateProgramPipeline
-#define glValidateProgramPipelineEXT __glValidateProgramPipelineEXT
-#define glVariantArrayObjectATI __glVariantArrayObjectATI
-#define glVariantPointerEXT __glVariantPointerEXT
-#define glVariantbvEXT __glVariantbvEXT
-#define glVariantdvEXT __glVariantdvEXT
-#define glVariantfvEXT __glVariantfvEXT
-#define glVariantivEXT __glVariantivEXT
-#define glVariantsvEXT __glVariantsvEXT
-#define glVariantubvEXT __glVariantubvEXT
-#define glVariantuivEXT __glVariantuivEXT
-#define glVariantusvEXT __glVariantusvEXT
-#define glVertex2bOES __glVertex2bOES
-#define glVertex2bvOES __glVertex2bvOES
-#define glVertex2d __glVertex2d
-#define glVertex2dv __glVertex2dv
-#define glVertex2f __glVertex2f
-#define glVertex2fv __glVertex2fv
-#define glVertex2hNV __glVertex2hNV
-#define glVertex2hvNV __glVertex2hvNV
-#define glVertex2i __glVertex2i
-#define glVertex2iv __glVertex2iv
-#define glVertex2s __glVertex2s
-#define glVertex2sv __glVertex2sv
-#define glVertex2xOES __glVertex2xOES
-#define glVertex2xvOES __glVertex2xvOES
-#define glVertex3bOES __glVertex3bOES
-#define glVertex3bvOES __glVertex3bvOES
-#define glVertex3d __glVertex3d
-#define glVertex3dv __glVertex3dv
-#define glVertex3f __glVertex3f
-#define glVertex3fv __glVertex3fv
-#define glVertex3hNV __glVertex3hNV
-#define glVertex3hvNV __glVertex3hvNV
-#define glVertex3i __glVertex3i
-#define glVertex3iv __glVertex3iv
-#define glVertex3s __glVertex3s
-#define glVertex3sv __glVertex3sv
-#define glVertex3xOES __glVertex3xOES
-#define glVertex3xvOES __glVertex3xvOES
-#define glVertex4bOES __glVertex4bOES
-#define glVertex4bvOES __glVertex4bvOES
-#define glVertex4d __glVertex4d
-#define glVertex4dv __glVertex4dv
-#define glVertex4f __glVertex4f
-#define glVertex4fv __glVertex4fv
-#define glVertex4hNV __glVertex4hNV
-#define glVertex4hvNV __glVertex4hvNV
-#define glVertex4i __glVertex4i
-#define glVertex4iv __glVertex4iv
-#define glVertex4s __glVertex4s
-#define glVertex4sv __glVertex4sv
-#define glVertex4xOES __glVertex4xOES
-#define glVertex4xvOES __glVertex4xvOES
-#define glVertexArrayAttribBinding __glVertexArrayAttribBinding
-#define glVertexArrayAttribFormat __glVertexArrayAttribFormat
-#define glVertexArrayAttribIFormat __glVertexArrayAttribIFormat
-#define glVertexArrayAttribLFormat __glVertexArrayAttribLFormat
-#define glVertexArrayBindVertexBufferEXT __glVertexArrayBindVertexBufferEXT
-#define glVertexArrayBindingDivisor __glVertexArrayBindingDivisor
-#define glVertexArrayColorOffsetEXT __glVertexArrayColorOffsetEXT
-#define glVertexArrayEdgeFlagOffsetEXT __glVertexArrayEdgeFlagOffsetEXT
-#define glVertexArrayElementBuffer __glVertexArrayElementBuffer
-#define glVertexArrayFogCoordOffsetEXT __glVertexArrayFogCoordOffsetEXT
-#define glVertexArrayIndexOffsetEXT __glVertexArrayIndexOffsetEXT
-#define glVertexArrayMultiTexCoordOffsetEXT __glVertexArrayMultiTexCoordOffsetEXT
-#define glVertexArrayNormalOffsetEXT __glVertexArrayNormalOffsetEXT
-#define glVertexArrayParameteriAPPLE __glVertexArrayParameteriAPPLE
-#define glVertexArrayRangeAPPLE __glVertexArrayRangeAPPLE
-#define glVertexArrayRangeNV __glVertexArrayRangeNV
-#define glVertexArraySecondaryColorOffsetEXT __glVertexArraySecondaryColorOffsetEXT
-#define glVertexArrayTexCoordOffsetEXT __glVertexArrayTexCoordOffsetEXT
-#define glVertexArrayVertexAttribBindingEXT __glVertexArrayVertexAttribBindingEXT
-#define glVertexArrayVertexAttribDivisorEXT __glVertexArrayVertexAttribDivisorEXT
-#define glVertexArrayVertexAttribFormatEXT __glVertexArrayVertexAttribFormatEXT
-#define glVertexArrayVertexAttribIFormatEXT __glVertexArrayVertexAttribIFormatEXT
-#define glVertexArrayVertexAttribIOffsetEXT __glVertexArrayVertexAttribIOffsetEXT
-#define glVertexArrayVertexAttribLFormatEXT __glVertexArrayVertexAttribLFormatEXT
-#define glVertexArrayVertexAttribLOffsetEXT __glVertexArrayVertexAttribLOffsetEXT
-#define glVertexArrayVertexAttribOffsetEXT __glVertexArrayVertexAttribOffsetEXT
-#define glVertexArrayVertexBindingDivisorEXT __glVertexArrayVertexBindingDivisorEXT
-#define glVertexArrayVertexBuffer __glVertexArrayVertexBuffer
-#define glVertexArrayVertexBuffers __glVertexArrayVertexBuffers
-#define glVertexArrayVertexOffsetEXT __glVertexArrayVertexOffsetEXT
-#define glVertexAttrib1d __glVertexAttrib1d
-#define glVertexAttrib1dARB __glVertexAttrib1dARB
-#define glVertexAttrib1dNV __glVertexAttrib1dNV
-#define glVertexAttrib1dv __glVertexAttrib1dv
-#define glVertexAttrib1dvARB __glVertexAttrib1dvARB
-#define glVertexAttrib1dvNV __glVertexAttrib1dvNV
-#define glVertexAttrib1f __glVertexAttrib1f
-#define glVertexAttrib1fARB __glVertexAttrib1fARB
-#define glVertexAttrib1fNV __glVertexAttrib1fNV
-#define glVertexAttrib1fv __glVertexAttrib1fv
-#define glVertexAttrib1fvARB __glVertexAttrib1fvARB
-#define glVertexAttrib1fvNV __glVertexAttrib1fvNV
-#define glVertexAttrib1hNV __glVertexAttrib1hNV
-#define glVertexAttrib1hvNV __glVertexAttrib1hvNV
-#define glVertexAttrib1s __glVertexAttrib1s
-#define glVertexAttrib1sARB __glVertexAttrib1sARB
-#define glVertexAttrib1sNV __glVertexAttrib1sNV
-#define glVertexAttrib1sv __glVertexAttrib1sv
-#define glVertexAttrib1svARB __glVertexAttrib1svARB
-#define glVertexAttrib1svNV __glVertexAttrib1svNV
-#define glVertexAttrib2d __glVertexAttrib2d
-#define glVertexAttrib2dARB __glVertexAttrib2dARB
-#define glVertexAttrib2dNV __glVertexAttrib2dNV
-#define glVertexAttrib2dv __glVertexAttrib2dv
-#define glVertexAttrib2dvARB __glVertexAttrib2dvARB
-#define glVertexAttrib2dvNV __glVertexAttrib2dvNV
-#define glVertexAttrib2f __glVertexAttrib2f
-#define glVertexAttrib2fARB __glVertexAttrib2fARB
-#define glVertexAttrib2fNV __glVertexAttrib2fNV
-#define glVertexAttrib2fv __glVertexAttrib2fv
-#define glVertexAttrib2fvARB __glVertexAttrib2fvARB
-#define glVertexAttrib2fvNV __glVertexAttrib2fvNV
-#define glVertexAttrib2hNV __glVertexAttrib2hNV
-#define glVertexAttrib2hvNV __glVertexAttrib2hvNV
-#define glVertexAttrib2s __glVertexAttrib2s
-#define glVertexAttrib2sARB __glVertexAttrib2sARB
-#define glVertexAttrib2sNV __glVertexAttrib2sNV
-#define glVertexAttrib2sv __glVertexAttrib2sv
-#define glVertexAttrib2svARB __glVertexAttrib2svARB
-#define glVertexAttrib2svNV __glVertexAttrib2svNV
-#define glVertexAttrib3d __glVertexAttrib3d
-#define glVertexAttrib3dARB __glVertexAttrib3dARB
-#define glVertexAttrib3dNV __glVertexAttrib3dNV
-#define glVertexAttrib3dv __glVertexAttrib3dv
-#define glVertexAttrib3dvARB __glVertexAttrib3dvARB
-#define glVertexAttrib3dvNV __glVertexAttrib3dvNV
-#define glVertexAttrib3f __glVertexAttrib3f
-#define glVertexAttrib3fARB __glVertexAttrib3fARB
-#define glVertexAttrib3fNV __glVertexAttrib3fNV
-#define glVertexAttrib3fv __glVertexAttrib3fv
-#define glVertexAttrib3fvARB __glVertexAttrib3fvARB
-#define glVertexAttrib3fvNV __glVertexAttrib3fvNV
-#define glVertexAttrib3hNV __glVertexAttrib3hNV
-#define glVertexAttrib3hvNV __glVertexAttrib3hvNV
-#define glVertexAttrib3s __glVertexAttrib3s
-#define glVertexAttrib3sARB __glVertexAttrib3sARB
-#define glVertexAttrib3sNV __glVertexAttrib3sNV
-#define glVertexAttrib3sv __glVertexAttrib3sv
-#define glVertexAttrib3svARB __glVertexAttrib3svARB
-#define glVertexAttrib3svNV __glVertexAttrib3svNV
-#define glVertexAttrib4Nbv __glVertexAttrib4Nbv
-#define glVertexAttrib4NbvARB __glVertexAttrib4NbvARB
-#define glVertexAttrib4Niv __glVertexAttrib4Niv
-#define glVertexAttrib4NivARB __glVertexAttrib4NivARB
-#define glVertexAttrib4Nsv __glVertexAttrib4Nsv
-#define glVertexAttrib4NsvARB __glVertexAttrib4NsvARB
-#define glVertexAttrib4Nub __glVertexAttrib4Nub
-#define glVertexAttrib4NubARB __glVertexAttrib4NubARB
-#define glVertexAttrib4Nubv __glVertexAttrib4Nubv
-#define glVertexAttrib4NubvARB __glVertexAttrib4NubvARB
-#define glVertexAttrib4Nuiv __glVertexAttrib4Nuiv
-#define glVertexAttrib4NuivARB __glVertexAttrib4NuivARB
-#define glVertexAttrib4Nusv __glVertexAttrib4Nusv
-#define glVertexAttrib4NusvARB __glVertexAttrib4NusvARB
-#define glVertexAttrib4bv __glVertexAttrib4bv
-#define glVertexAttrib4bvARB __glVertexAttrib4bvARB
-#define glVertexAttrib4d __glVertexAttrib4d
-#define glVertexAttrib4dARB __glVertexAttrib4dARB
-#define glVertexAttrib4dNV __glVertexAttrib4dNV
-#define glVertexAttrib4dv __glVertexAttrib4dv
-#define glVertexAttrib4dvARB __glVertexAttrib4dvARB
-#define glVertexAttrib4dvNV __glVertexAttrib4dvNV
-#define glVertexAttrib4f __glVertexAttrib4f
-#define glVertexAttrib4fARB __glVertexAttrib4fARB
-#define glVertexAttrib4fNV __glVertexAttrib4fNV
-#define glVertexAttrib4fv __glVertexAttrib4fv
-#define glVertexAttrib4fvARB __glVertexAttrib4fvARB
-#define glVertexAttrib4fvNV __glVertexAttrib4fvNV
-#define glVertexAttrib4hNV __glVertexAttrib4hNV
-#define glVertexAttrib4hvNV __glVertexAttrib4hvNV
-#define glVertexAttrib4iv __glVertexAttrib4iv
-#define glVertexAttrib4ivARB __glVertexAttrib4ivARB
-#define glVertexAttrib4s __glVertexAttrib4s
-#define glVertexAttrib4sARB __glVertexAttrib4sARB
-#define glVertexAttrib4sNV __glVertexAttrib4sNV
-#define glVertexAttrib4sv __glVertexAttrib4sv
-#define glVertexAttrib4svARB __glVertexAttrib4svARB
-#define glVertexAttrib4svNV __glVertexAttrib4svNV
-#define glVertexAttrib4ubNV __glVertexAttrib4ubNV
-#define glVertexAttrib4ubv __glVertexAttrib4ubv
-#define glVertexAttrib4ubvARB __glVertexAttrib4ubvARB
-#define glVertexAttrib4ubvNV __glVertexAttrib4ubvNV
-#define glVertexAttrib4uiv __glVertexAttrib4uiv
-#define glVertexAttrib4uivARB __glVertexAttrib4uivARB
-#define glVertexAttrib4usv __glVertexAttrib4usv
-#define glVertexAttrib4usvARB __glVertexAttrib4usvARB
-#define glVertexAttribArrayObjectATI __glVertexAttribArrayObjectATI
-#define glVertexAttribBinding __glVertexAttribBinding
-#define glVertexAttribDivisor __glVertexAttribDivisor
-#define glVertexAttribDivisorANGLE __glVertexAttribDivisorANGLE
-#define glVertexAttribDivisorARB __glVertexAttribDivisorARB
-#define glVertexAttribDivisorEXT __glVertexAttribDivisorEXT
-#define glVertexAttribDivisorNV __glVertexAttribDivisorNV
-#define glVertexAttribFormat __glVertexAttribFormat
-#define glVertexAttribFormatNV __glVertexAttribFormatNV
-#define glVertexAttribI1i __glVertexAttribI1i
-#define glVertexAttribI1iEXT __glVertexAttribI1iEXT
-#define glVertexAttribI1iv __glVertexAttribI1iv
-#define glVertexAttribI1ivEXT __glVertexAttribI1ivEXT
-#define glVertexAttribI1ui __glVertexAttribI1ui
-#define glVertexAttribI1uiEXT __glVertexAttribI1uiEXT
-#define glVertexAttribI1uiv __glVertexAttribI1uiv
-#define glVertexAttribI1uivEXT __glVertexAttribI1uivEXT
-#define glVertexAttribI2i __glVertexAttribI2i
-#define glVertexAttribI2iEXT __glVertexAttribI2iEXT
-#define glVertexAttribI2iv __glVertexAttribI2iv
-#define glVertexAttribI2ivEXT __glVertexAttribI2ivEXT
-#define glVertexAttribI2ui __glVertexAttribI2ui
-#define glVertexAttribI2uiEXT __glVertexAttribI2uiEXT
-#define glVertexAttribI2uiv __glVertexAttribI2uiv
-#define glVertexAttribI2uivEXT __glVertexAttribI2uivEXT
-#define glVertexAttribI3i __glVertexAttribI3i
-#define glVertexAttribI3iEXT __glVertexAttribI3iEXT
-#define glVertexAttribI3iv __glVertexAttribI3iv
-#define glVertexAttribI3ivEXT __glVertexAttribI3ivEXT
-#define glVertexAttribI3ui __glVertexAttribI3ui
-#define glVertexAttribI3uiEXT __glVertexAttribI3uiEXT
-#define glVertexAttribI3uiv __glVertexAttribI3uiv
-#define glVertexAttribI3uivEXT __glVertexAttribI3uivEXT
-#define glVertexAttribI4bv __glVertexAttribI4bv
-#define glVertexAttribI4bvEXT __glVertexAttribI4bvEXT
-#define glVertexAttribI4i __glVertexAttribI4i
-#define glVertexAttribI4iEXT __glVertexAttribI4iEXT
-#define glVertexAttribI4iv __glVertexAttribI4iv
-#define glVertexAttribI4ivEXT __glVertexAttribI4ivEXT
-#define glVertexAttribI4sv __glVertexAttribI4sv
-#define glVertexAttribI4svEXT __glVertexAttribI4svEXT
-#define glVertexAttribI4ubv __glVertexAttribI4ubv
-#define glVertexAttribI4ubvEXT __glVertexAttribI4ubvEXT
-#define glVertexAttribI4ui __glVertexAttribI4ui
-#define glVertexAttribI4uiEXT __glVertexAttribI4uiEXT
-#define glVertexAttribI4uiv __glVertexAttribI4uiv
-#define glVertexAttribI4uivEXT __glVertexAttribI4uivEXT
-#define glVertexAttribI4usv __glVertexAttribI4usv
-#define glVertexAttribI4usvEXT __glVertexAttribI4usvEXT
-#define glVertexAttribIFormat __glVertexAttribIFormat
-#define glVertexAttribIFormatNV __glVertexAttribIFormatNV
-#define glVertexAttribIPointer __glVertexAttribIPointer
-#define glVertexAttribIPointerEXT __glVertexAttribIPointerEXT
-#define glVertexAttribL1d __glVertexAttribL1d
-#define glVertexAttribL1dEXT __glVertexAttribL1dEXT
-#define glVertexAttribL1dv __glVertexAttribL1dv
-#define glVertexAttribL1dvEXT __glVertexAttribL1dvEXT
-#define glVertexAttribL1i64NV __glVertexAttribL1i64NV
-#define glVertexAttribL1i64vNV __glVertexAttribL1i64vNV
-#define glVertexAttribL1ui64ARB __glVertexAttribL1ui64ARB
-#define glVertexAttribL1ui64NV __glVertexAttribL1ui64NV
-#define glVertexAttribL1ui64vARB __glVertexAttribL1ui64vARB
-#define glVertexAttribL1ui64vNV __glVertexAttribL1ui64vNV
-#define glVertexAttribL2d __glVertexAttribL2d
-#define glVertexAttribL2dEXT __glVertexAttribL2dEXT
-#define glVertexAttribL2dv __glVertexAttribL2dv
-#define glVertexAttribL2dvEXT __glVertexAttribL2dvEXT
-#define glVertexAttribL2i64NV __glVertexAttribL2i64NV
-#define glVertexAttribL2i64vNV __glVertexAttribL2i64vNV
-#define glVertexAttribL2ui64NV __glVertexAttribL2ui64NV
-#define glVertexAttribL2ui64vNV __glVertexAttribL2ui64vNV
-#define glVertexAttribL3d __glVertexAttribL3d
-#define glVertexAttribL3dEXT __glVertexAttribL3dEXT
-#define glVertexAttribL3dv __glVertexAttribL3dv
-#define glVertexAttribL3dvEXT __glVertexAttribL3dvEXT
-#define glVertexAttribL3i64NV __glVertexAttribL3i64NV
-#define glVertexAttribL3i64vNV __glVertexAttribL3i64vNV
-#define glVertexAttribL3ui64NV __glVertexAttribL3ui64NV
-#define glVertexAttribL3ui64vNV __glVertexAttribL3ui64vNV
-#define glVertexAttribL4d __glVertexAttribL4d
-#define glVertexAttribL4dEXT __glVertexAttribL4dEXT
-#define glVertexAttribL4dv __glVertexAttribL4dv
-#define glVertexAttribL4dvEXT __glVertexAttribL4dvEXT
-#define glVertexAttribL4i64NV __glVertexAttribL4i64NV
-#define glVertexAttribL4i64vNV __glVertexAttribL4i64vNV
-#define glVertexAttribL4ui64NV __glVertexAttribL4ui64NV
-#define glVertexAttribL4ui64vNV __glVertexAttribL4ui64vNV
-#define glVertexAttribLFormat __glVertexAttribLFormat
-#define glVertexAttribLFormatNV __glVertexAttribLFormatNV
-#define glVertexAttribLPointer __glVertexAttribLPointer
-#define glVertexAttribLPointerEXT __glVertexAttribLPointerEXT
-#define glVertexAttribP1ui __glVertexAttribP1ui
-#define glVertexAttribP1uiv __glVertexAttribP1uiv
-#define glVertexAttribP2ui __glVertexAttribP2ui
-#define glVertexAttribP2uiv __glVertexAttribP2uiv
-#define glVertexAttribP3ui __glVertexAttribP3ui
-#define glVertexAttribP3uiv __glVertexAttribP3uiv
-#define glVertexAttribP4ui __glVertexAttribP4ui
-#define glVertexAttribP4uiv __glVertexAttribP4uiv
-#define glVertexAttribParameteriAMD __glVertexAttribParameteriAMD
-#define glVertexAttribPointer __glVertexAttribPointer
-#define glVertexAttribPointerARB __glVertexAttribPointerARB
-#define glVertexAttribPointerNV __glVertexAttribPointerNV
-#define glVertexAttribs1dvNV __glVertexAttribs1dvNV
-#define glVertexAttribs1fvNV __glVertexAttribs1fvNV
-#define glVertexAttribs1hvNV __glVertexAttribs1hvNV
-#define glVertexAttribs1svNV __glVertexAttribs1svNV
-#define glVertexAttribs2dvNV __glVertexAttribs2dvNV
-#define glVertexAttribs2fvNV __glVertexAttribs2fvNV
-#define glVertexAttribs2hvNV __glVertexAttribs2hvNV
-#define glVertexAttribs2svNV __glVertexAttribs2svNV
-#define glVertexAttribs3dvNV __glVertexAttribs3dvNV
-#define glVertexAttribs3fvNV __glVertexAttribs3fvNV
-#define glVertexAttribs3hvNV __glVertexAttribs3hvNV
-#define glVertexAttribs3svNV __glVertexAttribs3svNV
-#define glVertexAttribs4dvNV __glVertexAttribs4dvNV
-#define glVertexAttribs4fvNV __glVertexAttribs4fvNV
-#define glVertexAttribs4hvNV __glVertexAttribs4hvNV
-#define glVertexAttribs4svNV __glVertexAttribs4svNV
-#define glVertexAttribs4ubvNV __glVertexAttribs4ubvNV
-#define glVertexBindingDivisor __glVertexBindingDivisor
-#define glVertexBlendARB __glVertexBlendARB
-#define glVertexBlendEnvfATI __glVertexBlendEnvfATI
-#define glVertexBlendEnviATI __glVertexBlendEnviATI
-#define glVertexFormatNV __glVertexFormatNV
-#define glVertexP2ui __glVertexP2ui
-#define glVertexP2uiv __glVertexP2uiv
-#define glVertexP3ui __glVertexP3ui
-#define glVertexP3uiv __glVertexP3uiv
-#define glVertexP4ui __glVertexP4ui
-#define glVertexP4uiv __glVertexP4uiv
-#define glVertexPointer __glVertexPointer
-#define glVertexPointerEXT __glVertexPointerEXT
-#define glVertexPointerListIBM __glVertexPointerListIBM
-#define glVertexPointervINTEL __glVertexPointervINTEL
-#define glVertexStream1dATI __glVertexStream1dATI
-#define glVertexStream1dvATI __glVertexStream1dvATI
-#define glVertexStream1fATI __glVertexStream1fATI
-#define glVertexStream1fvATI __glVertexStream1fvATI
-#define glVertexStream1iATI __glVertexStream1iATI
-#define glVertexStream1ivATI __glVertexStream1ivATI
-#define glVertexStream1sATI __glVertexStream1sATI
-#define glVertexStream1svATI __glVertexStream1svATI
-#define glVertexStream2dATI __glVertexStream2dATI
-#define glVertexStream2dvATI __glVertexStream2dvATI
-#define glVertexStream2fATI __glVertexStream2fATI
-#define glVertexStream2fvATI __glVertexStream2fvATI
-#define glVertexStream2iATI __glVertexStream2iATI
-#define glVertexStream2ivATI __glVertexStream2ivATI
-#define glVertexStream2sATI __glVertexStream2sATI
-#define glVertexStream2svATI __glVertexStream2svATI
-#define glVertexStream3dATI __glVertexStream3dATI
-#define glVertexStream3dvATI __glVertexStream3dvATI
-#define glVertexStream3fATI __glVertexStream3fATI
-#define glVertexStream3fvATI __glVertexStream3fvATI
-#define glVertexStream3iATI __glVertexStream3iATI
-#define glVertexStream3ivATI __glVertexStream3ivATI
-#define glVertexStream3sATI __glVertexStream3sATI
-#define glVertexStream3svATI __glVertexStream3svATI
-#define glVertexStream4dATI __glVertexStream4dATI
-#define glVertexStream4dvATI __glVertexStream4dvATI
-#define glVertexStream4fATI __glVertexStream4fATI
-#define glVertexStream4fvATI __glVertexStream4fvATI
-#define glVertexStream4iATI __glVertexStream4iATI
-#define glVertexStream4ivATI __glVertexStream4ivATI
-#define glVertexStream4sATI __glVertexStream4sATI
-#define glVertexStream4svATI __glVertexStream4svATI
-#define glVertexWeightPointerEXT __glVertexWeightPointerEXT
-#define glVertexWeightfEXT __glVertexWeightfEXT
-#define glVertexWeightfvEXT __glVertexWeightfvEXT
-#define glVertexWeighthNV __glVertexWeighthNV
-#define glVertexWeighthvNV __glVertexWeighthvNV
-#define glVideoCaptureNV __glVideoCaptureNV
-#define glVideoCaptureStreamParameterdvNV __glVideoCaptureStreamParameterdvNV
-#define glVideoCaptureStreamParameterfvNV __glVideoCaptureStreamParameterfvNV
-#define glVideoCaptureStreamParameterivNV __glVideoCaptureStreamParameterivNV
-#define glViewport __glViewport
-#define glViewportArrayv __glViewportArrayv
-#define glViewportArrayvNV __glViewportArrayvNV
-#define glViewportIndexedf __glViewportIndexedf
-#define glViewportIndexedfNV __glViewportIndexedfNV
-#define glViewportIndexedfv __glViewportIndexedfv
-#define glViewportIndexedfvNV __glViewportIndexedfvNV
-#define glWaitSync __glWaitSync
-#define glWaitSyncAPPLE __glWaitSyncAPPLE
-#define glWeightPathsNV __glWeightPathsNV
-#define glWeightPointerARB __glWeightPointerARB
-#define glWeightPointerOES __glWeightPointerOES
-#define glWeightbvARB __glWeightbvARB
-#define glWeightdvARB __glWeightdvARB
-#define glWeightfvARB __glWeightfvARB
-#define glWeightivARB __glWeightivARB
-#define glWeightsvARB __glWeightsvARB
-#define glWeightubvARB __glWeightubvARB
-#define glWeightuivARB __glWeightuivARB
-#define glWeightusvARB __glWeightusvARB
-#define glWindowPos2d __glWindowPos2d
-#define glWindowPos2dARB __glWindowPos2dARB
-#define glWindowPos2dMESA __glWindowPos2dMESA
-#define glWindowPos2dv __glWindowPos2dv
-#define glWindowPos2dvARB __glWindowPos2dvARB
-#define glWindowPos2dvMESA __glWindowPos2dvMESA
-#define glWindowPos2f __glWindowPos2f
-#define glWindowPos2fARB __glWindowPos2fARB
-#define glWindowPos2fMESA __glWindowPos2fMESA
-#define glWindowPos2fv __glWindowPos2fv
-#define glWindowPos2fvARB __glWindowPos2fvARB
-#define glWindowPos2fvMESA __glWindowPos2fvMESA
-#define glWindowPos2i __glWindowPos2i
-#define glWindowPos2iARB __glWindowPos2iARB
-#define glWindowPos2iMESA __glWindowPos2iMESA
-#define glWindowPos2iv __glWindowPos2iv
-#define glWindowPos2ivARB __glWindowPos2ivARB
-#define glWindowPos2ivMESA __glWindowPos2ivMESA
-#define glWindowPos2s __glWindowPos2s
-#define glWindowPos2sARB __glWindowPos2sARB
-#define glWindowPos2sMESA __glWindowPos2sMESA
-#define glWindowPos2sv __glWindowPos2sv
-#define glWindowPos2svARB __glWindowPos2svARB
-#define glWindowPos2svMESA __glWindowPos2svMESA
-#define glWindowPos3d __glWindowPos3d
-#define glWindowPos3dARB __glWindowPos3dARB
-#define glWindowPos3dMESA __glWindowPos3dMESA
-#define glWindowPos3dv __glWindowPos3dv
-#define glWindowPos3dvARB __glWindowPos3dvARB
-#define glWindowPos3dvMESA __glWindowPos3dvMESA
-#define glWindowPos3f __glWindowPos3f
-#define glWindowPos3fARB __glWindowPos3fARB
-#define glWindowPos3fMESA __glWindowPos3fMESA
-#define glWindowPos3fv __glWindowPos3fv
-#define glWindowPos3fvARB __glWindowPos3fvARB
-#define glWindowPos3fvMESA __glWindowPos3fvMESA
-#define glWindowPos3i __glWindowPos3i
-#define glWindowPos3iARB __glWindowPos3iARB
-#define glWindowPos3iMESA __glWindowPos3iMESA
-#define glWindowPos3iv __glWindowPos3iv
-#define glWindowPos3ivARB __glWindowPos3ivARB
-#define glWindowPos3ivMESA __glWindowPos3ivMESA
-#define glWindowPos3s __glWindowPos3s
-#define glWindowPos3sARB __glWindowPos3sARB
-#define glWindowPos3sMESA __glWindowPos3sMESA
-#define glWindowPos3sv __glWindowPos3sv
-#define glWindowPos3svARB __glWindowPos3svARB
-#define glWindowPos3svMESA __glWindowPos3svMESA
-#define glWindowPos4dMESA __glWindowPos4dMESA
-#define glWindowPos4dvMESA __glWindowPos4dvMESA
-#define glWindowPos4fMESA __glWindowPos4fMESA
-#define glWindowPos4fvMESA __glWindowPos4fvMESA
-#define glWindowPos4iMESA __glWindowPos4iMESA
-#define glWindowPos4ivMESA __glWindowPos4ivMESA
-#define glWindowPos4sMESA __glWindowPos4sMESA
-#define glWindowPos4svMESA __glWindowPos4svMESA
-#define glWriteMaskEXT __glWriteMaskEXT
-#define glCoverageModulationNV __glCoverageModulationNV
-#define glCoverageModulationTableNV __glCoverageModulationTableNV
-#define glFragmentCoverageColorNV __glFragmentCoverageColorNV
-#define glFramebufferSampleLocationsfvNV __glFramebufferSampleLocationsfvNV
-#define glGetCoverageModulationTableNV __glGetCoverageModulationTableNV
-#define glNamedFramebufferSampleLocationsfvNV __glNamedFramebufferSampleLocationsfvNV
-#define glRasterSamplesEXT __glRasterSamplesEXT
-#define glResolveDepthValuesNV __glResolveDepthValuesNV
-#define glSubpixelPrecisionBiasNV __glSubpixelPrecisionBiasNV
+#endif // __GLEW_GLCORE_H__
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

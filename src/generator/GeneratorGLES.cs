@@ -40,11 +40,19 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
+      writer.Write (string.Format ("\n#ifndef __{0}_{1}_H__\n#define __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
+
+      WriteCommentDivider (ref writer);
+
       writer.Write ("\n#include <GLES3/gl3.h>\n");
 
       writer.Write ("\n#include <GLES3/gl31.h>\n\n");
 
       base.ExportHpp (ref writer);
+
+      writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
+
+      WriteCommentDivider (ref writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

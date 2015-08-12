@@ -178,42 +178,64 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
-      writer.Write (string.Format ("\nstruct {0}Capabilities\n{{\n", m_api [0].ToUpperInvariant ()));
+      writer.Write (string.Format ("\nnamespace glew\n{{\n  class {0}\n  {{\n  public:\n\n", m_api [0]));
 
       // 
-      // Feature version identifiers.
+      // 'FeatureSet' class; wraps 'features' and 'extension' identifiers.
       // 
+
+      WriteCommentDivider (ref writer, 4);
+
+      writer.Write ("\n    enum FeatureSet\n    {\n");
 
       if (m_featureNodesLookup.Count > 0)
       {
-        writer.Write ("  bool\n");
+        writer.Write ("      // Features\n");
 
         int featureCount = m_featureNodesLookup.Keys.Count;
 
         foreach (string key in m_featureNodesLookup.Keys)
         {
-          writer.Write (string.Format ("    __{0}{1}\n", key, ((--featureCount) > 0) ? "," : ";"));
+          writer.Write (string.Format ("      {0}{1},\n", "GLEW_", key));
         }
       }
 
-      // 
-      // Extension identifiers.
-      // 
-
       if (m_extensionNodesLookup.Count > 0)
       {
-        writer.Write ("\n  bool\n");
+        writer.Write ("      // Extensions\n");
 
         int extensionCount = m_extensionNodesLookup.Keys.Count;
 
         foreach (string key in m_extensionNodesLookup.Keys)
         {
-          writer.Write (string.Format ("    __{0}{1}\n", key, ((--extensionCount) > 0) ? "," : ";"));
+          writer.Write (string.Format ("      {0}{1},\n", "GLEW_", key));
         }
       }
 
+      writer.Write (string.Format ("      {0}{1}\n", "GLEW_", "GL_FeatureSetCount"));
+
+      writer.Write ("    }\n\n");
+
       // 
-      // Feature function prototypes.
+      // 'DeviceState' class.
+      // 
+
+      WriteCommentDivider (ref writer, 4);
+
+      writer.Write (string.Format ("\n    class DeviceState\n    {{\n"));
+
+      writer.Write (string.Format ("    private:\n\n"));
+
+      writer.Write (string.Format ("      bool m_featureSupported [glew::{0}::FeatureSet::{1}{2}];\n\n", m_api [0], "GLEW_", "GL_FeatureSetCount"));
+
+      writer.Write (string.Format ("    public:\n\n"));
+
+      writer.Write (string.Format ("      bool IsSupported (glew::{0}::FeatureSet feature);\n", m_api [0]));
+
+      writer.Write (string.Format ("      bool IsSupported (const char *feature);\n"));
+
+      // 
+      // 'DeviceState' class - Feature function prototypes.
       // 
 
       if (m_featureNodesLookup.Count > 0)
@@ -229,7 +251,7 @@ namespace wrangle_gl_generator
             continue;
           }
 
-          writer.Write (string.Format ("\n  // {0}\n", keypair.Key));
+          writer.Write (string.Format ("\n      // {0}\n", keypair.Key));
 
           foreach (XmlNode commandNode in requiredCommandNodes)
           {
@@ -237,7 +259,7 @@ namespace wrangle_gl_generator
 
             string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
 
-            writer.Write (string.Format ("  {0}\n    {1};\n", mangedFunctionPointer, command));
+            writer.Write (string.Format ("      {0} {1};\n", mangedFunctionPointer, command));
           }
         }
       }
@@ -259,7 +281,7 @@ namespace wrangle_gl_generator
             continue;
           }
 
-          writer.Write (string.Format ("\n  // {0}\n", keypair.Key));
+          writer.Write (string.Format ("\n      // {0}\n", keypair.Key));
 
           foreach (XmlNode commandNode in requiredCommandNodes)
           {
@@ -267,28 +289,96 @@ namespace wrangle_gl_generator
 
             string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
 
-            writer.Write (string.Format ("  {0}\n    {1};\n", mangedFunctionPointer, command));
+            writer.Write (string.Format ("      {0} {1};\n", mangedFunctionPointer, command));
           }
         }
       }
 
-      writer.Write ("};\n\n");
+      writer.Write ("    };\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (ref writer, 4);
 
-      writer.Write (string.Format ("\n{1}Boolean {0}wQueryCapabilities ({1}Capabilities *capabilities);\n", m_api [0], m_api [0].ToUpperInvariant ()));
+      // 
+      // Standard GLEW header API.
+      // 
 
-      writer.Write (string.Format ("\nconst {1}Capabilities *{0}wGetCapabilities ();\n", m_api [0], m_api [0].ToUpperInvariant ()));
+      writer.Write (string.Format ("\n  public:\n\n    static void Initialise (glew::{0}::DeviceState *deviceState);\n\n", m_api [0]));
 
-      writer.Write (string.Format ("\n{1}Boolean {0}wSetCapabilities (const {1}Capabilities *capabilities);\n\n", m_api [0], m_api [0].ToUpperInvariant ()));
+      writer.Write (string.Format ("    static void Deinitialise ();\n\n"));
 
-      WriteCommentDivider (ref writer);
+      writer.Write (string.Format ("    static glew::{0}::DeviceState *GetDeviceState ();\n", m_api [0]));
+
+      writer.Write (string.Format ("\n  protected:\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static glew::{0}::DeviceState *s_deviceState;\n\n", m_api [0]));
+
+      WriteCommentDivider (ref writer, 4);
+
+      // 
+      // Internal GLEW-managed API functions (seeded from features and extension specifications).
+      // 
+
+      writer.Write (string.Format ("\n  public:\n"));
+
+      foreach (var keypair in m_featureNodesLookup)
+      {
+        XmlNode featureNode = keypair.Value;
+
+        XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
+
+        if (requiredCommandNodes.Count == 0)
+        {
+          continue;
+        }
+
+        writer.Write (string.Format ("\n    // {0}\n", keypair.Key));
+
+        foreach (XmlNode commandNode in requiredCommandNodes)
+        {
+          string command = commandNode.Attributes ["name"].Value;
+
+          writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
+        }
+      }
+
+      // 
+      // Extensions.
+      // 
+
+      foreach (var keypair in m_extensionNodesLookup)
+      {
+        XmlNode extensionNode = keypair.Value;
+
+        XmlNodeList requiredCommandNodes = extensionNode.SelectNodes ("require/command");
+
+        if (requiredCommandNodes.Count == 0)
+        {
+          continue;
+        }
+
+        writer.Write (string.Format ("\n    // {0}\n", keypair.Key));
+
+        foreach (XmlNode commandNode in requiredCommandNodes)
+        {
+          string command = commandNode.Attributes ["name"].Value;
+
+          writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
+        }
+      }
+
+      writer.Write (string.Format ("  }};\n}}\n\n"));
+
+      WriteCommentDivider (ref writer, 0);
+
+      // 
+      // Pre-processor pass-through defines for redirecting functions to glew alternatives.
+      // 
 
       writer.Write ("\n");
 
       foreach (var keypair in m_commandsNodesLookup)
       {
-        writer.Write (string.Format ("#define {0} __{0}\n", keypair.Key));
+        writer.Write (string.Format ("#define {1} glew::{0}::{1}\n", m_api [0], keypair.Key));
       }
 
       writer.Write ("\n");
@@ -449,11 +539,15 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected void WriteCommentDivider (ref StreamWriter writer)
+    protected void WriteCommentDivider (ref StreamWriter writer, int whitespacePadding = 0)
     {
-      writer.WriteLine ("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
-      writer.WriteLine ("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
-      writer.WriteLine ("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
+      string divider = string.Format ("{0," + whitespacePadding + "}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////", "");
+
+      writer.WriteLine (divider);
+
+      writer.WriteLine (divider);
+
+      writer.WriteLine (divider);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
