@@ -27,7 +27,7 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public GeneratorGLES (string filename)
-      : base (filename, new string [] { "gles", "gles1", "gles2" })
+      : base (filename, new string [] { "gles", /*"gles1",*/ "gles2" })
     {
 
     }
@@ -44,9 +44,9 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
-      writer.Write ("\n#include <GLES3/gl3.h>\n");
+      writer.Write ("\n#include <GLES3/gl31.h>\n");
 
-      writer.Write ("\n#include <GLES3/gl31.h>\n\n");
+      writer.Write ("\n#include <GLES3/gl2ext.h>\n\n");
 
       base.ExportHpp (ref writer);
 

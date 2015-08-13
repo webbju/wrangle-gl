@@ -178,11 +178,100 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
-      writer.Write (string.Format ("\nnamespace glew\n{{\n  class {0}\n  {{\n  public:\n\n", m_api [0]));
+      // 
+      // Define function pointers to feature and extension functions (these are usually just exposed via pre-linked functions).
+      // 
+
+      {
+        Dictionary<string, XmlNode> featureAndExtensionCommands = new Dictionary<string, XmlNode> ();
+
+        foreach (var keypair in m_featureNodesLookup)
+        {
+          if (!featureAndExtensionCommands.ContainsKey (keypair.Key))
+          {
+            featureAndExtensionCommands.Add (keypair.Key, keypair.Value);
+          }
+        }
+
+        /*foreach (var keypair in m_extensionNodesLookup)
+        {
+          if (!featureAndExtensionCommands.ContainsKey (keypair.Key))
+          {
+            featureAndExtensionCommands.Add (keypair.Key, keypair.Value);
+          }
+        }*/
+
+        if (featureAndExtensionCommands.Count > 0)
+        {
+          foreach (var keypair in featureAndExtensionCommands)
+          {
+            XmlNode featureNode = keypair.Value;
+
+            XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
+
+            if (requiredCommandNodes.Count == 0)
+            {
+              continue;
+            }
+
+            writer.Write (string.Format ("\n// {0}\n", keypair.Key));
+
+            StringBuilder commandFuncPointerBuilder = new StringBuilder ();
+
+            foreach (XmlNode commandNode in requiredCommandNodes)
+            {
+              commandFuncPointerBuilder.Clear ();
+
+              string command = commandNode.Attributes ["name"].Value;
+
+              string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+              string returnType;
+
+              Dictionary<string, string> parameters;
+
+              GetFullCommandPrototype (command, out returnType, out parameters);
+
+              string funcPointerApiEntryPrefix = "";
+
+              string funcPointerApiEntryPostfix = "GL_APIENTRYP";
+
+              commandFuncPointerBuilder.AppendFormat ("typedef {0}{1} ({2} {3}) (", funcPointerApiEntryPrefix, returnType, funcPointerApiEntryPostfix, mangedFunctionPointer);
+
+              if (parameters.Count > 0)
+              {
+                foreach (var parameter in parameters)
+                {
+                  string name = parameter.Key;
+
+                  string type = parameter.Value;
+
+                  commandFuncPointerBuilder.AppendFormat ("{0} {1}, ", type, name);
+                }
+
+                if (commandFuncPointerBuilder.Length >= 2)
+                {
+                  commandFuncPointerBuilder.Length -= 2; // strip trailing ", "
+                }
+              }
+
+              commandFuncPointerBuilder.Append (")");
+
+              writer.Write (string.Format ("{0};\n", commandFuncPointerBuilder.ToString ()));
+            }
+          }
+
+          writer.Write ("\n");
+        }
+      }
+
+      WriteCommentDivider (ref writer);
 
       // 
       // 'FeatureSet' class; wraps 'features' and 'extension' identifiers.
       // 
+
+      writer.Write (string.Format ("\nnamespace glew\n{{\n  class {0}\n  {{\n  public:\n\n", m_api [0]));
 
       WriteCommentDivider (ref writer, 4);
 
@@ -202,7 +291,7 @@ namespace wrangle_gl_generator
 
       if (m_extensionNodesLookup.Count > 0)
       {
-        writer.Write ("      // Extensions\n");
+        writer.Write ("\n      // Extensions\n");
 
         int extensionCount = m_extensionNodesLookup.Keys.Count;
 
@@ -212,9 +301,9 @@ namespace wrangle_gl_generator
         }
       }
 
-      writer.Write (string.Format ("      {0}{1}\n", "GLEW_", "GL_FeatureSetCount"));
+      writer.Write (string.Format ("      {0}{1}_{2}\n", "GLEW_", m_api [0].ToUpperInvariant (), "FeatureSetCount"));
 
-      writer.Write ("    }\n\n");
+      writer.Write ("    };\n\n");
 
       // 
       // 'DeviceState' class.
@@ -226,70 +315,84 @@ namespace wrangle_gl_generator
 
       writer.Write (string.Format ("    private:\n\n"));
 
-      writer.Write (string.Format ("      bool m_featureSupported [glew::{0}::FeatureSet::{1}{2}];\n\n", m_api [0], "GLEW_", "GL_FeatureSetCount"));
+      writer.Write (string.Format ("      bool m_featureSupported [glew::{0}::FeatureSet::{1}{2}_{3}];\n\n", m_api [0], "GLEW_", m_api [0].ToUpperInvariant (), "FeatureSetCount"));
 
       writer.Write (string.Format ("    public:\n\n"));
 
-      writer.Write (string.Format ("      bool IsSupported (glew::{0}::FeatureSet feature);\n", m_api [0]));
+      writer.Write (string.Format ("      bool IsSupported (glew::{0}::FeatureSet feature);\n\n", m_api [0]));
 
-      writer.Write (string.Format ("      bool IsSupported (const char *feature);\n"));
+      writer.Write (string.Format ("      bool IsSupported (const char *feature);\n\n"));
 
       // 
       // 'DeviceState' class - Feature function prototypes.
       // 
 
-      if (m_featureNodesLookup.Count > 0)
       {
-        foreach (var keypair in m_featureNodesLookup)
+        HashSet<string> prototypes = new HashSet<string> ();
+
+        if (m_featureNodesLookup.Count > 0)
         {
-          XmlNode featureNode = keypair.Value;
-
-          XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
-
-          if (requiredCommandNodes.Count == 0)
+          foreach (var keypair in m_featureNodesLookup)
           {
-            continue;
-          }
+            XmlNode featureNode = keypair.Value;
 
-          writer.Write (string.Format ("\n      // {0}\n", keypair.Key));
+            XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
 
-          foreach (XmlNode commandNode in requiredCommandNodes)
-          {
-            string command = commandNode.Attributes ["name"].Value;
+            if (requiredCommandNodes.Count == 0)
+            {
+              continue;
+            }
 
-            string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+            //writer.Write (string.Format ("\n      // {0}\n", keypair.Key));
 
-            writer.Write (string.Format ("      {0} {1};\n", mangedFunctionPointer, command));
+            foreach (XmlNode commandNode in requiredCommandNodes)
+            {
+              string command = commandNode.Attributes ["name"].Value;
+
+              if (!prototypes.Contains (command))
+              {
+                prototypes.Add (command);
+
+                string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+                writer.Write (string.Format ("      {0} m_{1};\n", mangedFunctionPointer, command));
+              }
+            }
           }
         }
-      }
 
-      // 
-      // Extension function prototypes.
-      // 
+        // 
+        // Extension function prototypes.
+        // 
 
-      if (m_extensionNodesLookup.Count > 0)
-      {
-        foreach (var keypair in m_extensionNodesLookup)
+        if (m_extensionNodesLookup.Count > 0)
         {
-          XmlNode extensionNode = keypair.Value;
-
-          XmlNodeList requiredCommandNodes = extensionNode.SelectNodes ("require/command");
-
-          if (requiredCommandNodes.Count == 0)
+          foreach (var keypair in m_extensionNodesLookup)
           {
-            continue;
-          }
+            XmlNode extensionNode = keypair.Value;
 
-          writer.Write (string.Format ("\n      // {0}\n", keypair.Key));
+            XmlNodeList requiredCommandNodes = extensionNode.SelectNodes ("require/command");
 
-          foreach (XmlNode commandNode in requiredCommandNodes)
-          {
-            string command = commandNode.Attributes ["name"].Value;
+            if (requiredCommandNodes.Count == 0)
+            {
+              continue;
+            }
 
-            string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+            //writer.Write (string.Format ("\n      // {0}\n", keypair.Key));
 
-            writer.Write (string.Format ("      {0} {1};\n", mangedFunctionPointer, command));
+            foreach (XmlNode commandNode in requiredCommandNodes)
+            {
+              string command = commandNode.Attributes ["name"].Value;
+
+              if (!prototypes.Contains (command))
+              {
+                prototypes.Add (command);
+
+                string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+                writer.Write (string.Format ("      {0} m_{1};\n", mangedFunctionPointer, command));
+              }
+            }
           }
         }
       }
@@ -306,7 +409,7 @@ namespace wrangle_gl_generator
 
       writer.Write (string.Format ("    static void Deinitialise ();\n\n"));
 
-      writer.Write (string.Format ("    static glew::{0}::DeviceState *GetDeviceState ();\n", m_api [0]));
+      writer.Write (string.Format ("    static const glew::{0}::DeviceState *GetDeviceState () {{ return s_deviceState; }}\n", m_api [0]));
 
       writer.Write (string.Format ("\n  protected:\n\n", m_api [0]));
 
@@ -318,51 +421,61 @@ namespace wrangle_gl_generator
       // Internal GLEW-managed API functions (seeded from features and extension specifications).
       // 
 
-      writer.Write (string.Format ("\n  public:\n"));
+      writer.Write (string.Format ("\n  public:\n\n"));
 
-      foreach (var keypair in m_featureNodesLookup)
       {
-        XmlNode featureNode = keypair.Value;
+        HashSet<string> prototypes = new HashSet<string> ();
 
-        XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
-
-        if (requiredCommandNodes.Count == 0)
+        foreach (var keypair in m_featureNodesLookup)
         {
-          continue;
+          XmlNode featureNode = keypair.Value;
+
+          XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
+
+          if (requiredCommandNodes.Count == 0)
+          {
+            continue;
+          }
+
+          //writer.Write (string.Format ("\n    // {0}\n", keypair.Key));
+
+          foreach (XmlNode commandNode in requiredCommandNodes)
+          {
+            string command = commandNode.Attributes ["name"].Value;
+
+            if (!prototypes.Contains (command))
+            {
+              prototypes.Add (command);
+
+              writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
+            }
+          }
         }
 
-        writer.Write (string.Format ("\n    // {0}\n", keypair.Key));
-
-        foreach (XmlNode commandNode in requiredCommandNodes)
+        foreach (var keypair in m_extensionNodesLookup)
         {
-          string command = commandNode.Attributes ["name"].Value;
+          XmlNode extensionNode = keypair.Value;
 
-          writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
-        }
-      }
+          XmlNodeList requiredCommandNodes = extensionNode.SelectNodes ("require/command");
 
-      // 
-      // Extensions.
-      // 
+          if (requiredCommandNodes.Count == 0)
+          {
+            continue;
+          }
 
-      foreach (var keypair in m_extensionNodesLookup)
-      {
-        XmlNode extensionNode = keypair.Value;
+          //writer.Write (string.Format ("\n    // {0}\n", keypair.Key));
 
-        XmlNodeList requiredCommandNodes = extensionNode.SelectNodes ("require/command");
+          foreach (XmlNode commandNode in requiredCommandNodes)
+          {
+            string command = commandNode.Attributes ["name"].Value;
 
-        if (requiredCommandNodes.Count == 0)
-        {
-          continue;
-        }
+            if (!prototypes.Contains (command))
+            {
+              prototypes.Add (command);
 
-        writer.Write (string.Format ("\n    // {0}\n", keypair.Key));
-
-        foreach (XmlNode commandNode in requiredCommandNodes)
-        {
-          string command = commandNode.Attributes ["name"].Value;
-
-          writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
+              writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
+            }
+          }
         }
       }
 
@@ -376,10 +489,22 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n");
 
-      foreach (var keypair in m_commandsNodesLookup)
       {
-        writer.Write (string.Format ("#define {1} glew::{0}::{1}\n", m_api [0], keypair.Key));
+        HashSet<string> prototypes = new HashSet<string> ();
+
+        foreach (var keypair in m_commandsNodesLookup)
+        {
+          string command = keypair.Key;
+
+          if (!prototypes.Contains (command))
+          {
+            prototypes.Add (command);
+
+            writer.Write (string.Format ("#define {1} glew::{0}::{1}\n", m_api [0], keypair.Key));
+          }
+        }
       }
+
 
       writer.Write ("\n");
 
@@ -399,60 +524,97 @@ namespace wrangle_gl_generator
       WriteCommentDivider (ref writer);
 
       // 
-      // Features.
+      // Feature and extension function definitions.
       // 
+
+      Dictionary<string, XmlNode> featureAndExtensionCommands = new Dictionary<string, XmlNode> ();
 
       foreach (var keypair in m_featureNodesLookup)
       {
-        XmlNode featureNode = keypair.Value;
-
-        XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
-
-        if (requiredCommandNodes.Count == 0)
+        if (!featureAndExtensionCommands.ContainsKey (keypair.Key))
         {
-          continue;
-        }
-
-        foreach (XmlNode commandNode in requiredCommandNodes)
-        {
-          string command = commandNode.Attributes ["name"].Value;
-
-          writer.Write (string.Format ("\n// {0}\n// {1}\n", keypair.Key, command));
-
-          writer.Write (string.Format ("{0}\n{{\n", GetFullCommandPrototype (command)));
-
-          writer.Write ("}\n\n");
-
-          WriteCommentDivider (ref writer);
+          featureAndExtensionCommands.Add (keypair.Key, keypair.Value);
         }
       }
 
-      // 
-      // Extensions.
-      // 
-
       foreach (var keypair in m_extensionNodesLookup)
       {
-        XmlNode extensionNode = keypair.Value;
-
-        XmlNodeList requiredCommandNodes = extensionNode.SelectNodes ("require/command");
-
-        if (requiredCommandNodes.Count == 0)
+        if (!featureAndExtensionCommands.ContainsKey (keypair.Key))
         {
-          continue;
+          featureAndExtensionCommands.Add (keypair.Key, keypair.Value);
         }
+      }
 
-        foreach (XmlNode commandNode in requiredCommandNodes)
+      if (featureAndExtensionCommands.Count > 0)
+      {
+        HashSet<string> definedPrototypes = new HashSet<string> ();
+
+        foreach (var keypair in featureAndExtensionCommands)
         {
-          string command = commandNode.Attributes ["name"].Value;
+          XmlNode featureNode = keypair.Value;
 
-          writer.Write (string.Format ("\n// {0}\n// {1}\n", keypair.Key, command));
+          XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
 
-          writer.Write (string.Format ("{0}\n{{\n", GetFullCommandPrototype (command)));
+          if (requiredCommandNodes.Count == 0)
+          {
+            continue;
+          }
 
-          writer.Write ("}\n\n");
+          foreach (XmlNode commandNode in requiredCommandNodes)
+          {
+            string returnType;
 
-          WriteCommentDivider (ref writer);
+            Dictionary<string, string> parameters;
+
+            string command = commandNode.Attributes ["name"].Value;
+
+            string prototype = GetFullCommandPrototype (command, out returnType, out parameters);
+
+            if (definedPrototypes.Contains (prototype))
+            {
+              continue;
+            }
+
+            definedPrototypes.Add (prototype);
+
+            bool voidFunction = (returnType.Contains ("void") && !returnType.Contains ("*"));
+
+            writer.Write (string.Format ("\n{0}\n{{\n", prototype));
+
+            writer.Write (string.Format ("  // {0} - {1}\n", keypair.Key, command));
+
+            writer.Write (string.Format ("  const glew::{0}::DeviceState *deviceState = glew::{0}::GetDeviceState ();\n", m_api [0]));
+
+            StringBuilder paramBuilder = new StringBuilder ();
+
+            if (parameters.Count > 0)
+            {
+              foreach (string param in parameters.Keys)
+              {
+                paramBuilder.Append (param + ", ");
+              }
+
+              if (paramBuilder.Length >= 2)
+              {
+                paramBuilder.Length -= 2; // strip trailing ", "
+              }
+            }
+
+            writer.Write (string.Format ("  if (deviceState && deviceState->m_{0})\n  {{\n", command));
+
+            writer.Write (string.Format ("    {0}", (voidFunction ? "" : "return ")));
+
+            writer.Write (string.Format ("deviceState->m_{0} ({1});\n  }}\n", command, paramBuilder.ToString ()));
+
+            if (!voidFunction)
+            {
+              writer.Write (string.Format ("  return (({0})0);\n", returnType));
+            }
+
+            writer.Write ("}\n\n");
+
+            WriteCommentDivider (ref writer);
+          }
         }
       }
     }
@@ -482,10 +644,27 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    
     private string GetFullCommandPrototype (string command)
     {
+      string returnType = null;
+
+      Dictionary<string, string> parameters = null;
+
+      return GetFullCommandPrototype (command, out returnType, out parameters);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private string GetFullCommandPrototype (string command, out string returnType, out Dictionary <string, string> parameters)
+    {
       XmlNode commandNode = null;
+
+      returnType = null;
+
+      parameters = null;
 
       if (m_commandsNodesLookup.TryGetValue (command, out commandNode))
       {
@@ -497,17 +676,53 @@ namespace wrangle_gl_generator
 
         XmlNode protoNode = commandNode.SelectSingleNode ("proto");
 
-        prototypeBuilder.Append (protoNode.InnerXml);
-
-        prototypeBuilder.Append (" (");
-
         XmlNodeList protoParamNodes = commandNode.SelectNodes ("param");
+
+        parameters = new Dictionary<string, string> ();
+
+        {
+          int protoNameIndex = protoNode.InnerXml.IndexOf ("<name>");
+
+          string protoType = protoNode.InnerXml.Substring (0, protoNameIndex);
+
+          protoType = protoType.Replace ("<ptype>", "");
+
+          protoType = protoType.Replace ("</ptype>", "");
+
+          returnType = protoType;
+
+          string protoName = protoNode.InnerXml.Substring (protoNameIndex);
+
+          protoName = protoName.Replace ("<name>", "");
+
+          protoName = protoName.Replace ("</name>", "");
+
+          prototypeBuilder.Append (protoType + " " + protoName);
+
+          prototypeBuilder.Append (" (");
+        }
 
         for (int i = 0; i < protoParamNodes.Count; ++i)
         {
           XmlNode paramNode = protoParamNodes.Item (i);
 
-          prototypeBuilder.Append (paramNode.InnerXml);
+          int paramNameIndex = paramNode.InnerXml.IndexOf ("<name>");
+
+          string paramType = paramNode.InnerXml.Substring (0, paramNameIndex);
+
+          paramType = paramType.Replace ("<ptype>", "");
+
+          paramType = paramType.Replace ("</ptype>", "");
+
+          string paramName = paramNode.InnerXml.Substring (paramNameIndex);
+
+          paramName = paramName.Replace ("<name>", "");
+
+          paramName = paramName.Replace ("</name>", "");
+
+          prototypeBuilder.Append (paramType + " " + paramName);
+
+          parameters.Add (paramName, paramType);
 
           if (i < (protoParamNodes.Count - 1))
           {
@@ -517,17 +732,7 @@ namespace wrangle_gl_generator
 
         prototypeBuilder.Append (")");
 
-        // 
-        // Strip any unwanted XML tags.
-        // 
-
-        prototypeBuilder.Replace ("<ptype>", "");
-
-        prototypeBuilder.Replace ("</ptype>", "");
-
-        prototypeBuilder.Replace ("<name>", " ");
-
-        prototypeBuilder.Replace ("</name>", "");
+        prototypeBuilder.Replace ("  ", " ");
 
         return prototypeBuilder.ToString ();
       }
