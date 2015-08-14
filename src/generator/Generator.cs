@@ -49,6 +49,10 @@ namespace wrangle_gl_generator
 
     protected Dictionary<string, XmlNode> m_extensionNodesLookup = new Dictionary<string, XmlNode> ();
 
+    protected string m_funcPointerApiEntryPrefix = "";
+
+    protected string m_funcPointerApiEntryPostfix = "";
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,37 +183,60 @@ namespace wrangle_gl_generator
       WriteCommentDivider (ref writer);
 
       // 
+      // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
+      // 
+
+      Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
+
+      foreach (var keypair in m_featureNodesLookup)
+      {
+        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
+        {
+          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
+        }
+      }
+
+      foreach (var keypair in m_extensionNodesLookup)
+      {
+        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
+        {
+          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
+        }
+      }
+
+      // 
       // Define function pointers to feature and extension functions (these are usually just exposed via pre-linked functions).
       // 
 
+      if (featureAndExtensionNodes.Count > 0)
       {
-        Dictionary<string, XmlNode> featureAndExtensionCommands = new Dictionary<string, XmlNode> ();
-
-        foreach (var keypair in m_featureNodesLookup)
+        foreach (var keypair in featureAndExtensionNodes)
         {
-          if (!featureAndExtensionCommands.ContainsKey (keypair.Key))
+          XmlNode featureNode = keypair.Value;
+
+          // 
+          // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+          // 
+
+          XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+
+          if (requireNodes.Count == 0)
           {
-            featureAndExtensionCommands.Add (keypair.Key, keypair.Value);
+            continue;
           }
-        }
 
-        /*foreach (var keypair in m_extensionNodesLookup)
-        {
-          if (!featureAndExtensionCommands.ContainsKey (keypair.Key))
+          foreach (XmlNode requireNode in requireNodes)
           {
-            featureAndExtensionCommands.Add (keypair.Key, keypair.Value);
-          }
-        }*/
+            XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
-        if (featureAndExtensionCommands.Count > 0)
-        {
-          foreach (var keypair in featureAndExtensionCommands)
-          {
-            XmlNode featureNode = keypair.Value;
+            if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
+            {
+              continue;
+            }
 
-            XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
+            XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
-            if (requiredCommandNodes.Count == 0)
+            if (requireCommandNodes.Count == 0)
             {
               continue;
             }
@@ -218,7 +245,7 @@ namespace wrangle_gl_generator
 
             StringBuilder commandFuncPointerBuilder = new StringBuilder ();
 
-            foreach (XmlNode commandNode in requiredCommandNodes)
+            foreach (XmlNode commandNode in requireCommandNodes)
             {
               commandFuncPointerBuilder.Clear ();
 
@@ -232,11 +259,7 @@ namespace wrangle_gl_generator
 
               GetFullCommandPrototype (command, out returnType, out parameters);
 
-              string funcPointerApiEntryPrefix = "";
-
-              string funcPointerApiEntryPostfix = "GL_APIENTRYP";
-
-              commandFuncPointerBuilder.AppendFormat ("typedef {0}{1} ({2} {3}) (", funcPointerApiEntryPrefix, returnType, funcPointerApiEntryPostfix, mangedFunctionPointer);
+              commandFuncPointerBuilder.AppendFormat ("typedef {0} {1} ({2} {3}) (", m_funcPointerApiEntryPrefix, returnType, m_funcPointerApiEntryPostfix, mangedFunctionPointer);
 
               if (parameters.Count > 0)
               {
@@ -260,9 +283,9 @@ namespace wrangle_gl_generator
               writer.Write (string.Format ("{0};\n", commandFuncPointerBuilder.ToString ()));
             }
           }
-
-          writer.Write ("\n");
         }
+
+        writer.Write ("\n");
       }
 
       WriteCommentDivider (ref writer);
@@ -277,25 +300,9 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n    enum FeatureSet\n    {\n");
 
-      if (m_featureNodesLookup.Count > 0)
+      if (featureAndExtensionNodes.Count > 0)
       {
-        writer.Write ("      // Features\n");
-
-        int featureCount = m_featureNodesLookup.Keys.Count;
-
-        foreach (string key in m_featureNodesLookup.Keys)
-        {
-          writer.Write (string.Format ("      {0}{1},\n", "GLEW_", key));
-        }
-      }
-
-      if (m_extensionNodesLookup.Count > 0)
-      {
-        writer.Write ("\n      // Extensions\n");
-
-        int extensionCount = m_extensionNodesLookup.Keys.Count;
-
-        foreach (string key in m_extensionNodesLookup.Keys)
+        foreach (string key in featureAndExtensionNodes.Keys)
         {
           writer.Write (string.Format ("      {0}{1},\n", "GLEW_", key));
         }
@@ -324,63 +331,48 @@ namespace wrangle_gl_generator
       writer.Write (string.Format ("      bool IsSupported (const char *feature);\n\n"));
 
       // 
-      // 'DeviceState' class - Feature function prototypes.
+      // 'DeviceState' class
+      // Feature and extension function prototypes.
       // 
 
+      if (featureAndExtensionNodes.Count > 0)
       {
         HashSet<string> prototypes = new HashSet<string> ();
 
-        if (m_featureNodesLookup.Count > 0)
+        foreach (var keypair in featureAndExtensionNodes)
         {
-          foreach (var keypair in m_featureNodesLookup)
+          XmlNode featureNode = keypair.Value;
+
+          // 
+          // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+          // 
+
+          XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+
+          if (requireNodes.Count == 0)
           {
-            XmlNode featureNode = keypair.Value;
-
-            XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
-
-            if (requiredCommandNodes.Count == 0)
-            {
-              continue;
-            }
-
-            //writer.Write (string.Format ("\n      // {0}\n", keypair.Key));
-
-            foreach (XmlNode commandNode in requiredCommandNodes)
-            {
-              string command = commandNode.Attributes ["name"].Value;
-
-              if (!prototypes.Contains (command))
-              {
-                prototypes.Add (command);
-
-                string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
-
-                writer.Write (string.Format ("      {0} m_{1};\n", mangedFunctionPointer, command));
-              }
-            }
+            continue;
           }
-        }
 
-        // 
-        // Extension function prototypes.
-        // 
-
-        if (m_extensionNodesLookup.Count > 0)
-        {
-          foreach (var keypair in m_extensionNodesLookup)
+          foreach (XmlNode requireNode in requireNodes)
           {
-            XmlNode extensionNode = keypair.Value;
+            XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
-            XmlNodeList requiredCommandNodes = extensionNode.SelectNodes ("require/command");
+            if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
+            {
+              continue;
+            }
 
-            if (requiredCommandNodes.Count == 0)
+            XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
+
+            if (requireCommandNodes.Count == 0)
             {
               continue;
             }
 
             //writer.Write (string.Format ("\n      // {0}\n", keypair.Key));
 
-            foreach (XmlNode commandNode in requiredCommandNodes)
+            foreach (XmlNode commandNode in requireCommandNodes)
             {
               string command = commandNode.Attributes ["name"].Value;
 
@@ -423,57 +415,53 @@ namespace wrangle_gl_generator
 
       writer.Write (string.Format ("\n  public:\n\n"));
 
+      if (featureAndExtensionNodes.Count > 0)
       {
         HashSet<string> prototypes = new HashSet<string> ();
 
-        foreach (var keypair in m_featureNodesLookup)
+        foreach (var keypair in featureAndExtensionNodes)
         {
           XmlNode featureNode = keypair.Value;
 
-          XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
+          // 
+          // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+          // 
 
-          if (requiredCommandNodes.Count == 0)
+          XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+
+          if (requireNodes.Count == 0)
           {
             continue;
           }
 
-          //writer.Write (string.Format ("\n    // {0}\n", keypair.Key));
-
-          foreach (XmlNode commandNode in requiredCommandNodes)
+          foreach (XmlNode requireNode in requireNodes)
           {
-            string command = commandNode.Attributes ["name"].Value;
+            XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
-            if (!prototypes.Contains (command))
+            if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
             {
-              prototypes.Add (command);
-
-              writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
+              continue;
             }
-          }
-        }
 
-        foreach (var keypair in m_extensionNodesLookup)
-        {
-          XmlNode extensionNode = keypair.Value;
+            XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
-          XmlNodeList requiredCommandNodes = extensionNode.SelectNodes ("require/command");
-
-          if (requiredCommandNodes.Count == 0)
-          {
-            continue;
-          }
-
-          //writer.Write (string.Format ("\n    // {0}\n", keypair.Key));
-
-          foreach (XmlNode commandNode in requiredCommandNodes)
-          {
-            string command = commandNode.Attributes ["name"].Value;
-
-            if (!prototypes.Contains (command))
+            if (requireCommandNodes.Count == 0)
             {
-              prototypes.Add (command);
+              continue;
+            }
 
-              writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
+            //writer.Write (string.Format ("\n    // {0}\n", keypair.Key));
+
+            foreach (XmlNode commandNode in requireCommandNodes)
+            {
+              string command = commandNode.Attributes ["name"].Value;
+
+              if (!prototypes.Contains (command))
+              {
+                prototypes.Add (command);
+
+                writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
+              }
             }
           }
         }
@@ -489,22 +477,55 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n");
 
+      if (featureAndExtensionNodes.Count > 0)
       {
         HashSet<string> prototypes = new HashSet<string> ();
 
-        foreach (var keypair in m_commandsNodesLookup)
+        foreach (var keypair in featureAndExtensionNodes)
         {
-          string command = keypair.Key;
+          XmlNode featureNode = keypair.Value;
 
-          if (!prototypes.Contains (command))
+          // 
+          // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+          // 
+
+          XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+
+          if (requireNodes.Count == 0)
           {
-            prototypes.Add (command);
+            continue;
+          }
 
-            writer.Write (string.Format ("#define {1} glew::{0}::{1}\n", m_api [0], keypair.Key));
+          foreach (XmlNode requireNode in requireNodes)
+          {
+            XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
+
+            if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
+            {
+              continue;
+            }
+
+            XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
+
+            if (requireCommandNodes.Count == 0)
+            {
+              continue;
+            }
+
+            foreach (XmlNode commandNode in requireCommandNodes)
+            {
+              string command = commandNode.Attributes ["name"].Value;
+
+              if (!prototypes.Contains (command))
+              {
+                prototypes.Add (command);
+
+                writer.Write (string.Format ("#define {1} glew::{0}::{1}\n", m_api [0], command));
+              }
+            }
           }
         }
       }
-
 
       writer.Write ("\n");
 
@@ -517,103 +538,135 @@ namespace wrangle_gl_generator
 
     public virtual void ExportCpp (ref StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
-
-      writer.Write (string.Format ("\n#include <wrangle-{0}.h>\n\n", m_api [0]));
+      writer.Write (string.Format ("#include <wrangle-{0}.h>\n\n", m_api [0]));
 
       WriteCommentDivider (ref writer);
 
       // 
-      // Feature and extension function definitions.
+      // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
       // 
 
-      Dictionary<string, XmlNode> featureAndExtensionCommands = new Dictionary<string, XmlNode> ();
+      Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
 
       foreach (var keypair in m_featureNodesLookup)
       {
-        if (!featureAndExtensionCommands.ContainsKey (keypair.Key))
+        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
         {
-          featureAndExtensionCommands.Add (keypair.Key, keypair.Value);
+          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
         }
       }
 
       foreach (var keypair in m_extensionNodesLookup)
       {
-        if (!featureAndExtensionCommands.ContainsKey (keypair.Key))
+        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
         {
-          featureAndExtensionCommands.Add (keypair.Key, keypair.Value);
+          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
         }
       }
 
-      if (featureAndExtensionCommands.Count > 0)
+      // 
+      // Feature and extension function definitions.
+      // 
+
+      if (featureAndExtensionNodes.Count > 0)
       {
         HashSet<string> definedPrototypes = new HashSet<string> ();
 
-        foreach (var keypair in featureAndExtensionCommands)
+        foreach (var keypair in featureAndExtensionNodes)
         {
           XmlNode featureNode = keypair.Value;
 
-          XmlNodeList requiredCommandNodes = featureNode.SelectNodes ("require/command");
+          // 
+          // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+          // 
 
-          if (requiredCommandNodes.Count == 0)
+          XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+
+          if (requireNodes.Count == 0)
           {
             continue;
           }
 
-          foreach (XmlNode commandNode in requiredCommandNodes)
+          foreach (XmlNode requireNode in requireNodes)
           {
-            string returnType;
+            XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
-            Dictionary<string, string> parameters;
-
-            string command = commandNode.Attributes ["name"].Value;
-
-            string prototype = GetFullCommandPrototype (command, out returnType, out parameters);
-
-            if (definedPrototypes.Contains (prototype))
+            if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
             {
               continue;
             }
 
-            definedPrototypes.Add (prototype);
+            XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
-            bool voidFunction = (returnType.Contains ("void") && !returnType.Contains ("*"));
-
-            writer.Write (string.Format ("\n{0}\n{{\n", prototype));
-
-            writer.Write (string.Format ("  // {0} - {1}\n", keypair.Key, command));
-
-            writer.Write (string.Format ("  const glew::{0}::DeviceState *deviceState = glew::{0}::GetDeviceState ();\n", m_api [0]));
-
-            StringBuilder paramBuilder = new StringBuilder ();
-
-            if (parameters.Count > 0)
+            if (requireCommandNodes.Count == 0)
             {
-              foreach (string param in parameters.Keys)
-              {
-                paramBuilder.Append (param + ", ");
-              }
-
-              if (paramBuilder.Length >= 2)
-              {
-                paramBuilder.Length -= 2; // strip trailing ", "
-              }
+              continue;
             }
 
-            writer.Write (string.Format ("  if (deviceState && deviceState->m_{0})\n  {{\n", command));
-
-            writer.Write (string.Format ("    {0}", (voidFunction ? "" : "return ")));
-
-            writer.Write (string.Format ("deviceState->m_{0} ({1});\n  }}\n", command, paramBuilder.ToString ()));
-
-            if (!voidFunction)
+            foreach (XmlNode commandNode in requireCommandNodes)
             {
-              writer.Write (string.Format ("  return (({0})0);\n", returnType));
+              string returnType;
+
+              Dictionary<string, string> parameters;
+
+              string command = commandNode.Attributes ["name"].Value;
+
+              string prototype = GetFullCommandPrototype (command, out returnType, out parameters);
+
+              if (definedPrototypes.Contains (prototype))
+              {
+                continue;
+              }
+
+              definedPrototypes.Add (prototype);
+
+              bool voidFunction = (returnType.Contains ("void") && !returnType.Contains ("*"));
+
+              writer.Write (string.Format ("\n{0}\n{{\n", prototype));
+
+              writer.Write (string.Format ("  // {0} - {1}\n", keypair.Key, command));
+
+              writer.Write (string.Format ("  const glew::{0}::DeviceState *deviceState = glew::{0}::GetDeviceState ();\n", m_api [0]));
+
+              StringBuilder paramBuilder = new StringBuilder ();
+
+              if (parameters.Count > 0)
+              {
+                foreach (string key in parameters.Keys)
+                {
+                  string param = key;
+
+                  int arrayOffset = param.IndexOf ('[');
+
+                  if (arrayOffset != -1)
+                  {
+                    param = param.Substring (0, arrayOffset);
+                  }
+
+                  paramBuilder.Append (param + ", ");
+                }
+
+                if (paramBuilder.Length >= 2)
+                {
+                  paramBuilder.Length -= 2; // strip trailing ", "
+                }
+              }
+
+              writer.Write (string.Format ("  if (deviceState && deviceState->m_{0})\n  {{\n", command));
+
+              writer.Write (string.Format ("    {0}", (voidFunction ? "" : "return ")));
+
+              writer.Write (string.Format ("deviceState->m_{0} ({1});\n  }}\n", command, paramBuilder.ToString ()));
+
+              if (!voidFunction)
+              {
+                writer.Write (string.Format ("  return (({0})0);\n", returnType));
+              }
+
+              writer.Write ("}\n\n");
+
+              WriteCommentDivider (ref writer);
             }
-
-            writer.Write ("}\n\n");
-
-            WriteCommentDivider (ref writer);
           }
         }
       }
