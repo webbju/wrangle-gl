@@ -11,10 +11,9 @@
 void glReleaseShaderCompiler ()
 {
   // GL_ARB_ES2_compatibility - glReleaseShaderCompiler
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glReleaseShaderCompiler)
+  if (s_deviceConfig.m_glReleaseShaderCompiler)
   {
-    deviceState->m_glReleaseShaderCompiler ();
+    s_deviceConfig.m_glReleaseShaderCompiler ();
   }
 }
 
@@ -25,10 +24,9 @@ void glReleaseShaderCompiler ()
 void glShaderBinary (GLsizei count, const GLuint * shaders, GLenum binaryformat, const void * binary, GLsizei length)
 {
   // GL_ARB_ES2_compatibility - glShaderBinary
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glShaderBinary)
+  if (s_deviceConfig.m_glShaderBinary)
   {
-    deviceState->m_glShaderBinary (count, shaders, binaryformat, binary, length);
+    s_deviceConfig.m_glShaderBinary (count, shaders, binaryformat, binary, length);
   }
 }
 
@@ -39,10 +37,9 @@ void glShaderBinary (GLsizei count, const GLuint * shaders, GLenum binaryformat,
 void glGetShaderPrecisionFormat (GLenum shadertype, GLenum precisiontype, GLint * range, GLint * precision)
 {
   // GL_ARB_ES2_compatibility - glGetShaderPrecisionFormat
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetShaderPrecisionFormat)
+  if (s_deviceConfig.m_glGetShaderPrecisionFormat)
   {
-    deviceState->m_glGetShaderPrecisionFormat (shadertype, precisiontype, range, precision);
+    s_deviceConfig.m_glGetShaderPrecisionFormat (shadertype, precisiontype, range, precision);
   }
 }
 
@@ -53,10 +50,9 @@ void glGetShaderPrecisionFormat (GLenum shadertype, GLenum precisiontype, GLint 
 void glDepthRangef (GLfloat n, GLfloat f)
 {
   // GL_ARB_ES2_compatibility - glDepthRangef
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDepthRangef)
+  if (s_deviceConfig.m_glDepthRangef)
   {
-    deviceState->m_glDepthRangef (n, f);
+    s_deviceConfig.m_glDepthRangef (n, f);
   }
 }
 
@@ -67,10 +63,9 @@ void glDepthRangef (GLfloat n, GLfloat f)
 void glClearDepthf (GLfloat d)
 {
   // GL_ARB_ES2_compatibility - glClearDepthf
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearDepthf)
+  if (s_deviceConfig.m_glClearDepthf)
   {
-    deviceState->m_glClearDepthf (d);
+    s_deviceConfig.m_glClearDepthf (d);
   }
 }
 
@@ -81,10 +76,9 @@ void glClearDepthf (GLfloat d)
 void glMemoryBarrierByRegion (GLbitfield barriers)
 {
   // GL_ARB_ES3_1_compatibility - glMemoryBarrierByRegion
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMemoryBarrierByRegion)
+  if (s_deviceConfig.m_glMemoryBarrierByRegion)
   {
-    deviceState->m_glMemoryBarrierByRegion (barriers);
+    s_deviceConfig.m_glMemoryBarrierByRegion (barriers);
   }
 }
 
@@ -95,10 +89,9 @@ void glMemoryBarrierByRegion (GLbitfield barriers)
 void glDrawArraysInstancedBaseInstance (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance)
 {
   // GL_ARB_base_instance - glDrawArraysInstancedBaseInstance
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawArraysInstancedBaseInstance)
+  if (s_deviceConfig.m_glDrawArraysInstancedBaseInstance)
   {
-    deviceState->m_glDrawArraysInstancedBaseInstance (mode, first, count, instancecount, baseinstance);
+    s_deviceConfig.m_glDrawArraysInstancedBaseInstance (mode, first, count, instancecount, baseinstance);
   }
 }
 
@@ -109,10 +102,9 @@ void glDrawArraysInstancedBaseInstance (GLenum mode, GLint first, GLsizei count,
 void glDrawElementsInstancedBaseInstance (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLuint baseinstance)
 {
   // GL_ARB_base_instance - glDrawElementsInstancedBaseInstance
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawElementsInstancedBaseInstance)
+  if (s_deviceConfig.m_glDrawElementsInstancedBaseInstance)
   {
-    deviceState->m_glDrawElementsInstancedBaseInstance (mode, count, type, indices, instancecount, baseinstance);
+    s_deviceConfig.m_glDrawElementsInstancedBaseInstance (mode, count, type, indices, instancecount, baseinstance);
   }
 }
 
@@ -123,10 +115,9 @@ void glDrawElementsInstancedBaseInstance (GLenum mode, GLsizei count, GLenum typ
 void glDrawElementsInstancedBaseVertexBaseInstance (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance)
 {
   // GL_ARB_base_instance - glDrawElementsInstancedBaseVertexBaseInstance
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawElementsInstancedBaseVertexBaseInstance)
+  if (s_deviceConfig.m_glDrawElementsInstancedBaseVertexBaseInstance)
   {
-    deviceState->m_glDrawElementsInstancedBaseVertexBaseInstance (mode, count, type, indices, instancecount, basevertex, baseinstance);
+    s_deviceConfig.m_glDrawElementsInstancedBaseVertexBaseInstance (mode, count, type, indices, instancecount, basevertex, baseinstance);
   }
 }
 
@@ -137,10 +128,9 @@ void glDrawElementsInstancedBaseVertexBaseInstance (GLenum mode, GLsizei count, 
 GLuint64 glGetTextureHandleARB (GLuint texture)
 {
   // GL_ARB_bindless_texture - glGetTextureHandleARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureHandleARB)
+  if (s_deviceConfig.m_glGetTextureHandleARB)
   {
-    return deviceState->m_glGetTextureHandleARB (texture);
+    return s_deviceConfig.m_glGetTextureHandleARB (texture);
   }
   return ((GLuint64)0);
 }
@@ -152,10 +142,9 @@ GLuint64 glGetTextureHandleARB (GLuint texture)
 GLuint64 glGetTextureSamplerHandleARB (GLuint texture, GLuint sampler)
 {
   // GL_ARB_bindless_texture - glGetTextureSamplerHandleARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureSamplerHandleARB)
+  if (s_deviceConfig.m_glGetTextureSamplerHandleARB)
   {
-    return deviceState->m_glGetTextureSamplerHandleARB (texture, sampler);
+    return s_deviceConfig.m_glGetTextureSamplerHandleARB (texture, sampler);
   }
   return ((GLuint64)0);
 }
@@ -167,10 +156,9 @@ GLuint64 glGetTextureSamplerHandleARB (GLuint texture, GLuint sampler)
 void glMakeTextureHandleResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glMakeTextureHandleResidentARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMakeTextureHandleResidentARB)
+  if (s_deviceConfig.m_glMakeTextureHandleResidentARB)
   {
-    deviceState->m_glMakeTextureHandleResidentARB (handle);
+    s_deviceConfig.m_glMakeTextureHandleResidentARB (handle);
   }
 }
 
@@ -181,10 +169,9 @@ void glMakeTextureHandleResidentARB (GLuint64 handle)
 void glMakeTextureHandleNonResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glMakeTextureHandleNonResidentARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMakeTextureHandleNonResidentARB)
+  if (s_deviceConfig.m_glMakeTextureHandleNonResidentARB)
   {
-    deviceState->m_glMakeTextureHandleNonResidentARB (handle);
+    s_deviceConfig.m_glMakeTextureHandleNonResidentARB (handle);
   }
 }
 
@@ -195,10 +182,9 @@ void glMakeTextureHandleNonResidentARB (GLuint64 handle)
 GLuint64 glGetImageHandleARB (GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum format)
 {
   // GL_ARB_bindless_texture - glGetImageHandleARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetImageHandleARB)
+  if (s_deviceConfig.m_glGetImageHandleARB)
   {
-    return deviceState->m_glGetImageHandleARB (texture, level, layered, layer, format);
+    return s_deviceConfig.m_glGetImageHandleARB (texture, level, layered, layer, format);
   }
   return ((GLuint64)0);
 }
@@ -210,10 +196,9 @@ GLuint64 glGetImageHandleARB (GLuint texture, GLint level, GLboolean layered, GL
 void glMakeImageHandleResidentARB (GLuint64 handle, GLenum access)
 {
   // GL_ARB_bindless_texture - glMakeImageHandleResidentARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMakeImageHandleResidentARB)
+  if (s_deviceConfig.m_glMakeImageHandleResidentARB)
   {
-    deviceState->m_glMakeImageHandleResidentARB (handle, access);
+    s_deviceConfig.m_glMakeImageHandleResidentARB (handle, access);
   }
 }
 
@@ -224,10 +209,9 @@ void glMakeImageHandleResidentARB (GLuint64 handle, GLenum access)
 void glMakeImageHandleNonResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glMakeImageHandleNonResidentARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMakeImageHandleNonResidentARB)
+  if (s_deviceConfig.m_glMakeImageHandleNonResidentARB)
   {
-    deviceState->m_glMakeImageHandleNonResidentARB (handle);
+    s_deviceConfig.m_glMakeImageHandleNonResidentARB (handle);
   }
 }
 
@@ -238,10 +222,9 @@ void glMakeImageHandleNonResidentARB (GLuint64 handle)
 void glUniformHandleui64ARB (GLint location, GLuint64 value)
 {
   // GL_ARB_bindless_texture - glUniformHandleui64ARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformHandleui64ARB)
+  if (s_deviceConfig.m_glUniformHandleui64ARB)
   {
-    deviceState->m_glUniformHandleui64ARB (location, value);
+    s_deviceConfig.m_glUniformHandleui64ARB (location, value);
   }
 }
 
@@ -252,10 +235,9 @@ void glUniformHandleui64ARB (GLint location, GLuint64 value)
 void glUniformHandleui64vARB (GLint location, GLsizei count, const GLuint64 * value)
 {
   // GL_ARB_bindless_texture - glUniformHandleui64vARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformHandleui64vARB)
+  if (s_deviceConfig.m_glUniformHandleui64vARB)
   {
-    deviceState->m_glUniformHandleui64vARB (location, count, value);
+    s_deviceConfig.m_glUniformHandleui64vARB (location, count, value);
   }
 }
 
@@ -266,10 +248,9 @@ void glUniformHandleui64vARB (GLint location, GLsizei count, const GLuint64 * va
 void glProgramUniformHandleui64ARB (GLuint program, GLint location, GLuint64 value)
 {
   // GL_ARB_bindless_texture - glProgramUniformHandleui64ARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformHandleui64ARB)
+  if (s_deviceConfig.m_glProgramUniformHandleui64ARB)
   {
-    deviceState->m_glProgramUniformHandleui64ARB (program, location, value);
+    s_deviceConfig.m_glProgramUniformHandleui64ARB (program, location, value);
   }
 }
 
@@ -280,10 +261,9 @@ void glProgramUniformHandleui64ARB (GLuint program, GLint location, GLuint64 val
 void glProgramUniformHandleui64vARB (GLuint program, GLint location, GLsizei count, const GLuint64 * values)
 {
   // GL_ARB_bindless_texture - glProgramUniformHandleui64vARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformHandleui64vARB)
+  if (s_deviceConfig.m_glProgramUniformHandleui64vARB)
   {
-    deviceState->m_glProgramUniformHandleui64vARB (program, location, count, values);
+    s_deviceConfig.m_glProgramUniformHandleui64vARB (program, location, count, values);
   }
 }
 
@@ -294,10 +274,9 @@ void glProgramUniformHandleui64vARB (GLuint program, GLint location, GLsizei cou
 GLboolean glIsTextureHandleResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glIsTextureHandleResidentARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsTextureHandleResidentARB)
+  if (s_deviceConfig.m_glIsTextureHandleResidentARB)
   {
-    return deviceState->m_glIsTextureHandleResidentARB (handle);
+    return s_deviceConfig.m_glIsTextureHandleResidentARB (handle);
   }
   return ((GLboolean)0);
 }
@@ -309,10 +288,9 @@ GLboolean glIsTextureHandleResidentARB (GLuint64 handle)
 GLboolean glIsImageHandleResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glIsImageHandleResidentARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsImageHandleResidentARB)
+  if (s_deviceConfig.m_glIsImageHandleResidentARB)
   {
-    return deviceState->m_glIsImageHandleResidentARB (handle);
+    return s_deviceConfig.m_glIsImageHandleResidentARB (handle);
   }
   return ((GLboolean)0);
 }
@@ -324,10 +302,9 @@ GLboolean glIsImageHandleResidentARB (GLuint64 handle)
 void glVertexAttribL1ui64ARB (GLuint index, GLuint64EXT x)
 {
   // GL_ARB_bindless_texture - glVertexAttribL1ui64ARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL1ui64ARB)
+  if (s_deviceConfig.m_glVertexAttribL1ui64ARB)
   {
-    deviceState->m_glVertexAttribL1ui64ARB (index, x);
+    s_deviceConfig.m_glVertexAttribL1ui64ARB (index, x);
   }
 }
 
@@ -338,10 +315,9 @@ void glVertexAttribL1ui64ARB (GLuint index, GLuint64EXT x)
 void glVertexAttribL1ui64vARB (GLuint index, const GLuint64EXT * v)
 {
   // GL_ARB_bindless_texture - glVertexAttribL1ui64vARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL1ui64vARB)
+  if (s_deviceConfig.m_glVertexAttribL1ui64vARB)
   {
-    deviceState->m_glVertexAttribL1ui64vARB (index, v);
+    s_deviceConfig.m_glVertexAttribL1ui64vARB (index, v);
   }
 }
 
@@ -352,10 +328,9 @@ void glVertexAttribL1ui64vARB (GLuint index, const GLuint64EXT * v)
 void glGetVertexAttribLui64vARB (GLuint index, GLenum pname, GLuint64EXT * params)
 {
   // GL_ARB_bindless_texture - glGetVertexAttribLui64vARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetVertexAttribLui64vARB)
+  if (s_deviceConfig.m_glGetVertexAttribLui64vARB)
   {
-    deviceState->m_glGetVertexAttribLui64vARB (index, pname, params);
+    s_deviceConfig.m_glGetVertexAttribLui64vARB (index, pname, params);
   }
 }
 
@@ -366,10 +341,9 @@ void glGetVertexAttribLui64vARB (GLuint index, GLenum pname, GLuint64EXT * param
 void glBindFragDataLocationIndexed (GLuint program, GLuint colorNumber, GLuint index, const GLchar * name)
 {
   // GL_ARB_blend_func_extended - glBindFragDataLocationIndexed
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindFragDataLocationIndexed)
+  if (s_deviceConfig.m_glBindFragDataLocationIndexed)
   {
-    deviceState->m_glBindFragDataLocationIndexed (program, colorNumber, index, name);
+    s_deviceConfig.m_glBindFragDataLocationIndexed (program, colorNumber, index, name);
   }
 }
 
@@ -380,10 +354,9 @@ void glBindFragDataLocationIndexed (GLuint program, GLuint colorNumber, GLuint i
 GLint glGetFragDataIndex (GLuint program, const GLchar * name)
 {
   // GL_ARB_blend_func_extended - glGetFragDataIndex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetFragDataIndex)
+  if (s_deviceConfig.m_glGetFragDataIndex)
   {
-    return deviceState->m_glGetFragDataIndex (program, name);
+    return s_deviceConfig.m_glGetFragDataIndex (program, name);
   }
   return ((GLint)0);
 }
@@ -395,10 +368,9 @@ GLint glGetFragDataIndex (GLuint program, const GLchar * name)
 void glBufferStorage (GLenum target, GLsizeiptr size, const void * data, GLbitfield flags)
 {
   // GL_ARB_buffer_storage - glBufferStorage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBufferStorage)
+  if (s_deviceConfig.m_glBufferStorage)
   {
-    deviceState->m_glBufferStorage (target, size, data, flags);
+    s_deviceConfig.m_glBufferStorage (target, size, data, flags);
   }
 }
 
@@ -409,10 +381,9 @@ void glBufferStorage (GLenum target, GLsizeiptr size, const void * data, GLbitfi
 GLsync glCreateSyncFromCLeventARB (struct _cl_context * context, struct _cl_event * event, GLbitfield flags)
 {
   // GL_ARB_cl_event - glCreateSyncFromCLeventARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateSyncFromCLeventARB)
+  if (s_deviceConfig.m_glCreateSyncFromCLeventARB)
   {
-    return deviceState->m_glCreateSyncFromCLeventARB (context, event, flags);
+    return s_deviceConfig.m_glCreateSyncFromCLeventARB (context, event, flags);
   }
   return ((GLsync)0);
 }
@@ -424,10 +395,9 @@ GLsync glCreateSyncFromCLeventARB (struct _cl_context * context, struct _cl_even
 void glClearBufferData (GLenum target, GLenum internalformat, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_clear_buffer_object - glClearBufferData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearBufferData)
+  if (s_deviceConfig.m_glClearBufferData)
   {
-    deviceState->m_glClearBufferData (target, internalformat, format, type, data);
+    s_deviceConfig.m_glClearBufferData (target, internalformat, format, type, data);
   }
 }
 
@@ -438,10 +408,9 @@ void glClearBufferData (GLenum target, GLenum internalformat, GLenum format, GLe
 void glClearBufferSubData (GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_clear_buffer_object - glClearBufferSubData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearBufferSubData)
+  if (s_deviceConfig.m_glClearBufferSubData)
   {
-    deviceState->m_glClearBufferSubData (target, internalformat, offset, size, format, type, data);
+    s_deviceConfig.m_glClearBufferSubData (target, internalformat, offset, size, format, type, data);
   }
 }
 
@@ -452,10 +421,9 @@ void glClearBufferSubData (GLenum target, GLenum internalformat, GLintptr offset
 void glClearTexImage (GLuint texture, GLint level, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_clear_texture - glClearTexImage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearTexImage)
+  if (s_deviceConfig.m_glClearTexImage)
   {
-    deviceState->m_glClearTexImage (texture, level, format, type, data);
+    s_deviceConfig.m_glClearTexImage (texture, level, format, type, data);
   }
 }
 
@@ -466,10 +434,9 @@ void glClearTexImage (GLuint texture, GLint level, GLenum format, GLenum type, c
 void glClearTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_clear_texture - glClearTexSubImage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearTexSubImage)
+  if (s_deviceConfig.m_glClearTexSubImage)
   {
-    deviceState->m_glClearTexSubImage (texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data);
+    s_deviceConfig.m_glClearTexSubImage (texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data);
   }
 }
 
@@ -480,10 +447,9 @@ void glClearTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffs
 void glClipControl (GLenum origin, GLenum depth)
 {
   // GL_ARB_clip_control - glClipControl
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClipControl)
+  if (s_deviceConfig.m_glClipControl)
   {
-    deviceState->m_glClipControl (origin, depth);
+    s_deviceConfig.m_glClipControl (origin, depth);
   }
 }
 
@@ -494,10 +460,9 @@ void glClipControl (GLenum origin, GLenum depth)
 void glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z)
 {
   // GL_ARB_compute_shader - glDispatchCompute
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDispatchCompute)
+  if (s_deviceConfig.m_glDispatchCompute)
   {
-    deviceState->m_glDispatchCompute (num_groups_x, num_groups_y, num_groups_z);
+    s_deviceConfig.m_glDispatchCompute (num_groups_x, num_groups_y, num_groups_z);
   }
 }
 
@@ -508,10 +473,9 @@ void glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLuint num_gro
 void glDispatchComputeIndirect (GLintptr indirect)
 {
   // GL_ARB_compute_shader - glDispatchComputeIndirect
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDispatchComputeIndirect)
+  if (s_deviceConfig.m_glDispatchComputeIndirect)
   {
-    deviceState->m_glDispatchComputeIndirect (indirect);
+    s_deviceConfig.m_glDispatchComputeIndirect (indirect);
   }
 }
 
@@ -522,10 +486,9 @@ void glDispatchComputeIndirect (GLintptr indirect)
 void glDispatchComputeGroupSizeARB (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z, GLuint group_size_x, GLuint group_size_y, GLuint group_size_z)
 {
   // GL_ARB_compute_variable_group_size - glDispatchComputeGroupSizeARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDispatchComputeGroupSizeARB)
+  if (s_deviceConfig.m_glDispatchComputeGroupSizeARB)
   {
-    deviceState->m_glDispatchComputeGroupSizeARB (num_groups_x, num_groups_y, num_groups_z, group_size_x, group_size_y, group_size_z);
+    s_deviceConfig.m_glDispatchComputeGroupSizeARB (num_groups_x, num_groups_y, num_groups_z, group_size_x, group_size_y, group_size_z);
   }
 }
 
@@ -536,10 +499,9 @@ void glDispatchComputeGroupSizeARB (GLuint num_groups_x, GLuint num_groups_y, GL
 void glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
   // GL_ARB_copy_buffer - glCopyBufferSubData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCopyBufferSubData)
+  if (s_deviceConfig.m_glCopyBufferSubData)
   {
-    deviceState->m_glCopyBufferSubData (readTarget, writeTarget, readOffset, writeOffset, size);
+    s_deviceConfig.m_glCopyBufferSubData (readTarget, writeTarget, readOffset, writeOffset, size);
   }
 }
 
@@ -550,10 +512,9 @@ void glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GLintptr readOf
 void glCopyImageSubData (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth)
 {
   // GL_ARB_copy_image - glCopyImageSubData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCopyImageSubData)
+  if (s_deviceConfig.m_glCopyImageSubData)
   {
-    deviceState->m_glCopyImageSubData (srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth);
+    s_deviceConfig.m_glCopyImageSubData (srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth);
   }
 }
 
@@ -564,10 +525,9 @@ void glCopyImageSubData (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint
 void glDebugMessageControlARB (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint * ids, GLboolean enabled)
 {
   // GL_ARB_debug_output - glDebugMessageControlARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDebugMessageControlARB)
+  if (s_deviceConfig.m_glDebugMessageControlARB)
   {
-    deviceState->m_glDebugMessageControlARB (source, type, severity, count, ids, enabled);
+    s_deviceConfig.m_glDebugMessageControlARB (source, type, severity, count, ids, enabled);
   }
 }
 
@@ -578,10 +538,9 @@ void glDebugMessageControlARB (GLenum source, GLenum type, GLenum severity, GLsi
 void glDebugMessageInsertARB (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar * buf)
 {
   // GL_ARB_debug_output - glDebugMessageInsertARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDebugMessageInsertARB)
+  if (s_deviceConfig.m_glDebugMessageInsertARB)
   {
-    deviceState->m_glDebugMessageInsertARB (source, type, id, severity, length, buf);
+    s_deviceConfig.m_glDebugMessageInsertARB (source, type, id, severity, length, buf);
   }
 }
 
@@ -592,10 +551,9 @@ void glDebugMessageInsertARB (GLenum source, GLenum type, GLuint id, GLenum seve
 void glDebugMessageCallbackARB (GLDEBUGPROCARB callback, const void * userParam)
 {
   // GL_ARB_debug_output - glDebugMessageCallbackARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDebugMessageCallbackARB)
+  if (s_deviceConfig.m_glDebugMessageCallbackARB)
   {
-    deviceState->m_glDebugMessageCallbackARB (callback, userParam);
+    s_deviceConfig.m_glDebugMessageCallbackARB (callback, userParam);
   }
 }
 
@@ -606,10 +564,9 @@ void glDebugMessageCallbackARB (GLDEBUGPROCARB callback, const void * userParam)
 GLuint glGetDebugMessageLogARB (GLuint count, GLsizei bufSize, GLenum * sources, GLenum * types, GLuint * ids, GLenum * severities, GLsizei * lengths, GLchar * messageLog)
 {
   // GL_ARB_debug_output - glGetDebugMessageLogARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetDebugMessageLogARB)
+  if (s_deviceConfig.m_glGetDebugMessageLogARB)
   {
-    return deviceState->m_glGetDebugMessageLogARB (count, bufSize, sources, types, ids, severities, lengths, messageLog);
+    return s_deviceConfig.m_glGetDebugMessageLogARB (count, bufSize, sources, types, ids, severities, lengths, messageLog);
   }
   return ((GLuint)0);
 }
@@ -621,10 +578,9 @@ GLuint glGetDebugMessageLogARB (GLuint count, GLsizei bufSize, GLenum * sources,
 void glCreateTransformFeedbacks (GLsizei n, GLuint * ids)
 {
   // GL_ARB_direct_state_access - glCreateTransformFeedbacks
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateTransformFeedbacks)
+  if (s_deviceConfig.m_glCreateTransformFeedbacks)
   {
-    deviceState->m_glCreateTransformFeedbacks (n, ids);
+    s_deviceConfig.m_glCreateTransformFeedbacks (n, ids);
   }
 }
 
@@ -635,10 +591,9 @@ void glCreateTransformFeedbacks (GLsizei n, GLuint * ids)
 void glTransformFeedbackBufferBase (GLuint xfb, GLuint index, GLuint buffer)
 {
   // GL_ARB_direct_state_access - glTransformFeedbackBufferBase
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTransformFeedbackBufferBase)
+  if (s_deviceConfig.m_glTransformFeedbackBufferBase)
   {
-    deviceState->m_glTransformFeedbackBufferBase (xfb, index, buffer);
+    s_deviceConfig.m_glTransformFeedbackBufferBase (xfb, index, buffer);
   }
 }
 
@@ -649,10 +604,9 @@ void glTransformFeedbackBufferBase (GLuint xfb, GLuint index, GLuint buffer)
 void glTransformFeedbackBufferRange (GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
   // GL_ARB_direct_state_access - glTransformFeedbackBufferRange
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTransformFeedbackBufferRange)
+  if (s_deviceConfig.m_glTransformFeedbackBufferRange)
   {
-    deviceState->m_glTransformFeedbackBufferRange (xfb, index, buffer, offset, size);
+    s_deviceConfig.m_glTransformFeedbackBufferRange (xfb, index, buffer, offset, size);
   }
 }
 
@@ -663,10 +617,9 @@ void glTransformFeedbackBufferRange (GLuint xfb, GLuint index, GLuint buffer, GL
 void glGetTransformFeedbackiv (GLuint xfb, GLenum pname, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetTransformFeedbackiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTransformFeedbackiv)
+  if (s_deviceConfig.m_glGetTransformFeedbackiv)
   {
-    deviceState->m_glGetTransformFeedbackiv (xfb, pname, param);
+    s_deviceConfig.m_glGetTransformFeedbackiv (xfb, pname, param);
   }
 }
 
@@ -677,10 +630,9 @@ void glGetTransformFeedbackiv (GLuint xfb, GLenum pname, GLint * param)
 void glGetTransformFeedbacki_v (GLuint xfb, GLenum pname, GLuint index, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetTransformFeedbacki_v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTransformFeedbacki_v)
+  if (s_deviceConfig.m_glGetTransformFeedbacki_v)
   {
-    deviceState->m_glGetTransformFeedbacki_v (xfb, pname, index, param);
+    s_deviceConfig.m_glGetTransformFeedbacki_v (xfb, pname, index, param);
   }
 }
 
@@ -691,10 +643,9 @@ void glGetTransformFeedbacki_v (GLuint xfb, GLenum pname, GLuint index, GLint * 
 void glGetTransformFeedbacki64_v (GLuint xfb, GLenum pname, GLuint index, GLint64 * param)
 {
   // GL_ARB_direct_state_access - glGetTransformFeedbacki64_v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTransformFeedbacki64_v)
+  if (s_deviceConfig.m_glGetTransformFeedbacki64_v)
   {
-    deviceState->m_glGetTransformFeedbacki64_v (xfb, pname, index, param);
+    s_deviceConfig.m_glGetTransformFeedbacki64_v (xfb, pname, index, param);
   }
 }
 
@@ -705,10 +656,9 @@ void glGetTransformFeedbacki64_v (GLuint xfb, GLenum pname, GLuint index, GLint6
 void glCreateBuffers (GLsizei n, GLuint * buffers)
 {
   // GL_ARB_direct_state_access - glCreateBuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateBuffers)
+  if (s_deviceConfig.m_glCreateBuffers)
   {
-    deviceState->m_glCreateBuffers (n, buffers);
+    s_deviceConfig.m_glCreateBuffers (n, buffers);
   }
 }
 
@@ -719,10 +669,9 @@ void glCreateBuffers (GLsizei n, GLuint * buffers)
 void glNamedBufferStorage (GLuint buffer, GLsizeiptr size, const void * data, GLbitfield flags)
 {
   // GL_ARB_direct_state_access - glNamedBufferStorage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedBufferStorage)
+  if (s_deviceConfig.m_glNamedBufferStorage)
   {
-    deviceState->m_glNamedBufferStorage (buffer, size, data, flags);
+    s_deviceConfig.m_glNamedBufferStorage (buffer, size, data, flags);
   }
 }
 
@@ -733,10 +682,9 @@ void glNamedBufferStorage (GLuint buffer, GLsizeiptr size, const void * data, GL
 void glNamedBufferData (GLuint buffer, GLsizeiptr size, const void * data, GLenum usage)
 {
   // GL_ARB_direct_state_access - glNamedBufferData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedBufferData)
+  if (s_deviceConfig.m_glNamedBufferData)
   {
-    deviceState->m_glNamedBufferData (buffer, size, data, usage);
+    s_deviceConfig.m_glNamedBufferData (buffer, size, data, usage);
   }
 }
 
@@ -747,10 +695,9 @@ void glNamedBufferData (GLuint buffer, GLsizeiptr size, const void * data, GLenu
 void glNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, const void * data)
 {
   // GL_ARB_direct_state_access - glNamedBufferSubData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedBufferSubData)
+  if (s_deviceConfig.m_glNamedBufferSubData)
   {
-    deviceState->m_glNamedBufferSubData (buffer, offset, size, data);
+    s_deviceConfig.m_glNamedBufferSubData (buffer, offset, size, data);
   }
 }
 
@@ -761,10 +708,9 @@ void glNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, cons
 void glCopyNamedBufferSubData (GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
   // GL_ARB_direct_state_access - glCopyNamedBufferSubData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCopyNamedBufferSubData)
+  if (s_deviceConfig.m_glCopyNamedBufferSubData)
   {
-    deviceState->m_glCopyNamedBufferSubData (readBuffer, writeBuffer, readOffset, writeOffset, size);
+    s_deviceConfig.m_glCopyNamedBufferSubData (readBuffer, writeBuffer, readOffset, writeOffset, size);
   }
 }
 
@@ -775,10 +721,9 @@ void glCopyNamedBufferSubData (GLuint readBuffer, GLuint writeBuffer, GLintptr r
 void glClearNamedBufferData (GLuint buffer, GLenum internalformat, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_direct_state_access - glClearNamedBufferData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearNamedBufferData)
+  if (s_deviceConfig.m_glClearNamedBufferData)
   {
-    deviceState->m_glClearNamedBufferData (buffer, internalformat, format, type, data);
+    s_deviceConfig.m_glClearNamedBufferData (buffer, internalformat, format, type, data);
   }
 }
 
@@ -789,10 +734,9 @@ void glClearNamedBufferData (GLuint buffer, GLenum internalformat, GLenum format
 void glClearNamedBufferSubData (GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_direct_state_access - glClearNamedBufferSubData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearNamedBufferSubData)
+  if (s_deviceConfig.m_glClearNamedBufferSubData)
   {
-    deviceState->m_glClearNamedBufferSubData (buffer, internalformat, offset, size, format, type, data);
+    s_deviceConfig.m_glClearNamedBufferSubData (buffer, internalformat, offset, size, format, type, data);
   }
 }
 
@@ -803,10 +747,9 @@ void glClearNamedBufferSubData (GLuint buffer, GLenum internalformat, GLintptr o
 void * glMapNamedBuffer (GLuint buffer, GLenum access)
 {
   // GL_ARB_direct_state_access - glMapNamedBuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMapNamedBuffer)
+  if (s_deviceConfig.m_glMapNamedBuffer)
   {
-    return deviceState->m_glMapNamedBuffer (buffer, access);
+    return s_deviceConfig.m_glMapNamedBuffer (buffer, access);
   }
   return ((void *)0);
 }
@@ -818,10 +761,9 @@ void * glMapNamedBuffer (GLuint buffer, GLenum access)
 void * glMapNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access)
 {
   // GL_ARB_direct_state_access - glMapNamedBufferRange
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMapNamedBufferRange)
+  if (s_deviceConfig.m_glMapNamedBufferRange)
   {
-    return deviceState->m_glMapNamedBufferRange (buffer, offset, length, access);
+    return s_deviceConfig.m_glMapNamedBufferRange (buffer, offset, length, access);
   }
   return ((void *)0);
 }
@@ -833,10 +775,9 @@ void * glMapNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length,
 GLboolean glUnmapNamedBuffer (GLuint buffer)
 {
   // GL_ARB_direct_state_access - glUnmapNamedBuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUnmapNamedBuffer)
+  if (s_deviceConfig.m_glUnmapNamedBuffer)
   {
-    return deviceState->m_glUnmapNamedBuffer (buffer);
+    return s_deviceConfig.m_glUnmapNamedBuffer (buffer);
   }
   return ((GLboolean)0);
 }
@@ -848,10 +789,9 @@ GLboolean glUnmapNamedBuffer (GLuint buffer)
 void glFlushMappedNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length)
 {
   // GL_ARB_direct_state_access - glFlushMappedNamedBufferRange
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glFlushMappedNamedBufferRange)
+  if (s_deviceConfig.m_glFlushMappedNamedBufferRange)
   {
-    deviceState->m_glFlushMappedNamedBufferRange (buffer, offset, length);
+    s_deviceConfig.m_glFlushMappedNamedBufferRange (buffer, offset, length);
   }
 }
 
@@ -862,10 +802,9 @@ void glFlushMappedNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr l
 void glGetNamedBufferParameteriv (GLuint buffer, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetNamedBufferParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetNamedBufferParameteriv)
+  if (s_deviceConfig.m_glGetNamedBufferParameteriv)
   {
-    deviceState->m_glGetNamedBufferParameteriv (buffer, pname, params);
+    s_deviceConfig.m_glGetNamedBufferParameteriv (buffer, pname, params);
   }
 }
 
@@ -876,10 +815,9 @@ void glGetNamedBufferParameteriv (GLuint buffer, GLenum pname, GLint * params)
 void glGetNamedBufferParameteri64v (GLuint buffer, GLenum pname, GLint64 * params)
 {
   // GL_ARB_direct_state_access - glGetNamedBufferParameteri64v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetNamedBufferParameteri64v)
+  if (s_deviceConfig.m_glGetNamedBufferParameteri64v)
   {
-    deviceState->m_glGetNamedBufferParameteri64v (buffer, pname, params);
+    s_deviceConfig.m_glGetNamedBufferParameteri64v (buffer, pname, params);
   }
 }
 
@@ -890,10 +828,9 @@ void glGetNamedBufferParameteri64v (GLuint buffer, GLenum pname, GLint64 * param
 void glGetNamedBufferPointerv (GLuint buffer, GLenum pname, void ** params)
 {
   // GL_ARB_direct_state_access - glGetNamedBufferPointerv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetNamedBufferPointerv)
+  if (s_deviceConfig.m_glGetNamedBufferPointerv)
   {
-    deviceState->m_glGetNamedBufferPointerv (buffer, pname, params);
+    s_deviceConfig.m_glGetNamedBufferPointerv (buffer, pname, params);
   }
 }
 
@@ -904,10 +841,9 @@ void glGetNamedBufferPointerv (GLuint buffer, GLenum pname, void ** params)
 void glGetNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, void * data)
 {
   // GL_ARB_direct_state_access - glGetNamedBufferSubData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetNamedBufferSubData)
+  if (s_deviceConfig.m_glGetNamedBufferSubData)
   {
-    deviceState->m_glGetNamedBufferSubData (buffer, offset, size, data);
+    s_deviceConfig.m_glGetNamedBufferSubData (buffer, offset, size, data);
   }
 }
 
@@ -918,10 +854,9 @@ void glGetNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, v
 void glCreateFramebuffers (GLsizei n, GLuint * framebuffers)
 {
   // GL_ARB_direct_state_access - glCreateFramebuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateFramebuffers)
+  if (s_deviceConfig.m_glCreateFramebuffers)
   {
-    deviceState->m_glCreateFramebuffers (n, framebuffers);
+    s_deviceConfig.m_glCreateFramebuffers (n, framebuffers);
   }
 }
 
@@ -932,10 +867,9 @@ void glCreateFramebuffers (GLsizei n, GLuint * framebuffers)
 void glNamedFramebufferRenderbuffer (GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferRenderbuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedFramebufferRenderbuffer)
+  if (s_deviceConfig.m_glNamedFramebufferRenderbuffer)
   {
-    deviceState->m_glNamedFramebufferRenderbuffer (framebuffer, attachment, renderbuffertarget, renderbuffer);
+    s_deviceConfig.m_glNamedFramebufferRenderbuffer (framebuffer, attachment, renderbuffertarget, renderbuffer);
   }
 }
 
@@ -946,10 +880,9 @@ void glNamedFramebufferRenderbuffer (GLuint framebuffer, GLenum attachment, GLen
 void glNamedFramebufferParameteri (GLuint framebuffer, GLenum pname, GLint param)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferParameteri
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedFramebufferParameteri)
+  if (s_deviceConfig.m_glNamedFramebufferParameteri)
   {
-    deviceState->m_glNamedFramebufferParameteri (framebuffer, pname, param);
+    s_deviceConfig.m_glNamedFramebufferParameteri (framebuffer, pname, param);
   }
 }
 
@@ -960,10 +893,9 @@ void glNamedFramebufferParameteri (GLuint framebuffer, GLenum pname, GLint param
 void glNamedFramebufferTexture (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferTexture
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedFramebufferTexture)
+  if (s_deviceConfig.m_glNamedFramebufferTexture)
   {
-    deviceState->m_glNamedFramebufferTexture (framebuffer, attachment, texture, level);
+    s_deviceConfig.m_glNamedFramebufferTexture (framebuffer, attachment, texture, level);
   }
 }
 
@@ -974,10 +906,9 @@ void glNamedFramebufferTexture (GLuint framebuffer, GLenum attachment, GLuint te
 void glNamedFramebufferTextureLayer (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferTextureLayer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedFramebufferTextureLayer)
+  if (s_deviceConfig.m_glNamedFramebufferTextureLayer)
   {
-    deviceState->m_glNamedFramebufferTextureLayer (framebuffer, attachment, texture, level, layer);
+    s_deviceConfig.m_glNamedFramebufferTextureLayer (framebuffer, attachment, texture, level, layer);
   }
 }
 
@@ -988,10 +919,9 @@ void glNamedFramebufferTextureLayer (GLuint framebuffer, GLenum attachment, GLui
 void glNamedFramebufferDrawBuffer (GLuint framebuffer, GLenum buf)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferDrawBuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedFramebufferDrawBuffer)
+  if (s_deviceConfig.m_glNamedFramebufferDrawBuffer)
   {
-    deviceState->m_glNamedFramebufferDrawBuffer (framebuffer, buf);
+    s_deviceConfig.m_glNamedFramebufferDrawBuffer (framebuffer, buf);
   }
 }
 
@@ -1002,10 +932,9 @@ void glNamedFramebufferDrawBuffer (GLuint framebuffer, GLenum buf)
 void glNamedFramebufferDrawBuffers (GLuint framebuffer, GLsizei n, const GLenum * bufs)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferDrawBuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedFramebufferDrawBuffers)
+  if (s_deviceConfig.m_glNamedFramebufferDrawBuffers)
   {
-    deviceState->m_glNamedFramebufferDrawBuffers (framebuffer, n, bufs);
+    s_deviceConfig.m_glNamedFramebufferDrawBuffers (framebuffer, n, bufs);
   }
 }
 
@@ -1016,10 +945,9 @@ void glNamedFramebufferDrawBuffers (GLuint framebuffer, GLsizei n, const GLenum 
 void glNamedFramebufferReadBuffer (GLuint framebuffer, GLenum src)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferReadBuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedFramebufferReadBuffer)
+  if (s_deviceConfig.m_glNamedFramebufferReadBuffer)
   {
-    deviceState->m_glNamedFramebufferReadBuffer (framebuffer, src);
+    s_deviceConfig.m_glNamedFramebufferReadBuffer (framebuffer, src);
   }
 }
 
@@ -1030,10 +958,9 @@ void glNamedFramebufferReadBuffer (GLuint framebuffer, GLenum src)
 void glInvalidateNamedFramebufferData (GLuint framebuffer, GLsizei numAttachments, const GLenum * attachments)
 {
   // GL_ARB_direct_state_access - glInvalidateNamedFramebufferData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glInvalidateNamedFramebufferData)
+  if (s_deviceConfig.m_glInvalidateNamedFramebufferData)
   {
-    deviceState->m_glInvalidateNamedFramebufferData (framebuffer, numAttachments, attachments);
+    s_deviceConfig.m_glInvalidateNamedFramebufferData (framebuffer, numAttachments, attachments);
   }
 }
 
@@ -1044,10 +971,9 @@ void glInvalidateNamedFramebufferData (GLuint framebuffer, GLsizei numAttachment
 void glInvalidateNamedFramebufferSubData (GLuint framebuffer, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glInvalidateNamedFramebufferSubData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glInvalidateNamedFramebufferSubData)
+  if (s_deviceConfig.m_glInvalidateNamedFramebufferSubData)
   {
-    deviceState->m_glInvalidateNamedFramebufferSubData (framebuffer, numAttachments, attachments, x, y, width, height);
+    s_deviceConfig.m_glInvalidateNamedFramebufferSubData (framebuffer, numAttachments, attachments, x, y, width, height);
   }
 }
 
@@ -1058,10 +984,9 @@ void glInvalidateNamedFramebufferSubData (GLuint framebuffer, GLsizei numAttachm
 void glClearNamedFramebufferiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLint * value)
 {
   // GL_ARB_direct_state_access - glClearNamedFramebufferiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearNamedFramebufferiv)
+  if (s_deviceConfig.m_glClearNamedFramebufferiv)
   {
-    deviceState->m_glClearNamedFramebufferiv (framebuffer, buffer, drawbuffer, value);
+    s_deviceConfig.m_glClearNamedFramebufferiv (framebuffer, buffer, drawbuffer, value);
   }
 }
 
@@ -1072,10 +997,9 @@ void glClearNamedFramebufferiv (GLuint framebuffer, GLenum buffer, GLint drawbuf
 void glClearNamedFramebufferuiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLuint * value)
 {
   // GL_ARB_direct_state_access - glClearNamedFramebufferuiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearNamedFramebufferuiv)
+  if (s_deviceConfig.m_glClearNamedFramebufferuiv)
   {
-    deviceState->m_glClearNamedFramebufferuiv (framebuffer, buffer, drawbuffer, value);
+    s_deviceConfig.m_glClearNamedFramebufferuiv (framebuffer, buffer, drawbuffer, value);
   }
 }
 
@@ -1086,10 +1010,9 @@ void glClearNamedFramebufferuiv (GLuint framebuffer, GLenum buffer, GLint drawbu
 void glClearNamedFramebufferfv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLfloat * value)
 {
   // GL_ARB_direct_state_access - glClearNamedFramebufferfv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearNamedFramebufferfv)
+  if (s_deviceConfig.m_glClearNamedFramebufferfv)
   {
-    deviceState->m_glClearNamedFramebufferfv (framebuffer, buffer, drawbuffer, value);
+    s_deviceConfig.m_glClearNamedFramebufferfv (framebuffer, buffer, drawbuffer, value);
   }
 }
 
@@ -1100,10 +1023,9 @@ void glClearNamedFramebufferfv (GLuint framebuffer, GLenum buffer, GLint drawbuf
 void glClearNamedFramebufferfi (GLuint framebuffer, GLenum buffer, const GLfloat depth, GLint stencil)
 {
   // GL_ARB_direct_state_access - glClearNamedFramebufferfi
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClearNamedFramebufferfi)
+  if (s_deviceConfig.m_glClearNamedFramebufferfi)
   {
-    deviceState->m_glClearNamedFramebufferfi (framebuffer, buffer, depth, stencil);
+    s_deviceConfig.m_glClearNamedFramebufferfi (framebuffer, buffer, depth, stencil);
   }
 }
 
@@ -1114,10 +1036,9 @@ void glClearNamedFramebufferfi (GLuint framebuffer, GLenum buffer, const GLfloat
 void glBlitNamedFramebuffer (GLuint readFramebuffer, GLuint drawFramebuffer, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
   // GL_ARB_direct_state_access - glBlitNamedFramebuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBlitNamedFramebuffer)
+  if (s_deviceConfig.m_glBlitNamedFramebuffer)
   {
-    deviceState->m_glBlitNamedFramebuffer (readFramebuffer, drawFramebuffer, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+    s_deviceConfig.m_glBlitNamedFramebuffer (readFramebuffer, drawFramebuffer, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
 }
 
@@ -1128,10 +1049,9 @@ void glBlitNamedFramebuffer (GLuint readFramebuffer, GLuint drawFramebuffer, GLi
 GLenum glCheckNamedFramebufferStatus (GLuint framebuffer, GLenum target)
 {
   // GL_ARB_direct_state_access - glCheckNamedFramebufferStatus
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCheckNamedFramebufferStatus)
+  if (s_deviceConfig.m_glCheckNamedFramebufferStatus)
   {
-    return deviceState->m_glCheckNamedFramebufferStatus (framebuffer, target);
+    return s_deviceConfig.m_glCheckNamedFramebufferStatus (framebuffer, target);
   }
   return ((GLenum)0);
 }
@@ -1143,10 +1063,9 @@ GLenum glCheckNamedFramebufferStatus (GLuint framebuffer, GLenum target)
 void glGetNamedFramebufferParameteriv (GLuint framebuffer, GLenum pname, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetNamedFramebufferParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetNamedFramebufferParameteriv)
+  if (s_deviceConfig.m_glGetNamedFramebufferParameteriv)
   {
-    deviceState->m_glGetNamedFramebufferParameteriv (framebuffer, pname, param);
+    s_deviceConfig.m_glGetNamedFramebufferParameteriv (framebuffer, pname, param);
   }
 }
 
@@ -1157,10 +1076,9 @@ void glGetNamedFramebufferParameteriv (GLuint framebuffer, GLenum pname, GLint *
 void glGetNamedFramebufferAttachmentParameteriv (GLuint framebuffer, GLenum attachment, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetNamedFramebufferAttachmentParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetNamedFramebufferAttachmentParameteriv)
+  if (s_deviceConfig.m_glGetNamedFramebufferAttachmentParameteriv)
   {
-    deviceState->m_glGetNamedFramebufferAttachmentParameteriv (framebuffer, attachment, pname, params);
+    s_deviceConfig.m_glGetNamedFramebufferAttachmentParameteriv (framebuffer, attachment, pname, params);
   }
 }
 
@@ -1171,10 +1089,9 @@ void glGetNamedFramebufferAttachmentParameteriv (GLuint framebuffer, GLenum atta
 void glCreateRenderbuffers (GLsizei n, GLuint * renderbuffers)
 {
   // GL_ARB_direct_state_access - glCreateRenderbuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateRenderbuffers)
+  if (s_deviceConfig.m_glCreateRenderbuffers)
   {
-    deviceState->m_glCreateRenderbuffers (n, renderbuffers);
+    s_deviceConfig.m_glCreateRenderbuffers (n, renderbuffers);
   }
 }
 
@@ -1185,10 +1102,9 @@ void glCreateRenderbuffers (GLsizei n, GLuint * renderbuffers)
 void glNamedRenderbufferStorage (GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glNamedRenderbufferStorage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedRenderbufferStorage)
+  if (s_deviceConfig.m_glNamedRenderbufferStorage)
   {
-    deviceState->m_glNamedRenderbufferStorage (renderbuffer, internalformat, width, height);
+    s_deviceConfig.m_glNamedRenderbufferStorage (renderbuffer, internalformat, width, height);
   }
 }
 
@@ -1199,10 +1115,9 @@ void glNamedRenderbufferStorage (GLuint renderbuffer, GLenum internalformat, GLs
 void glNamedRenderbufferStorageMultisample (GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glNamedRenderbufferStorageMultisample
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedRenderbufferStorageMultisample)
+  if (s_deviceConfig.m_glNamedRenderbufferStorageMultisample)
   {
-    deviceState->m_glNamedRenderbufferStorageMultisample (renderbuffer, samples, internalformat, width, height);
+    s_deviceConfig.m_glNamedRenderbufferStorageMultisample (renderbuffer, samples, internalformat, width, height);
   }
 }
 
@@ -1213,10 +1128,9 @@ void glNamedRenderbufferStorageMultisample (GLuint renderbuffer, GLsizei samples
 void glGetNamedRenderbufferParameteriv (GLuint renderbuffer, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetNamedRenderbufferParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetNamedRenderbufferParameteriv)
+  if (s_deviceConfig.m_glGetNamedRenderbufferParameteriv)
   {
-    deviceState->m_glGetNamedRenderbufferParameteriv (renderbuffer, pname, params);
+    s_deviceConfig.m_glGetNamedRenderbufferParameteriv (renderbuffer, pname, params);
   }
 }
 
@@ -1227,10 +1141,9 @@ void glGetNamedRenderbufferParameteriv (GLuint renderbuffer, GLenum pname, GLint
 void glCreateTextures (GLenum target, GLsizei n, GLuint * textures)
 {
   // GL_ARB_direct_state_access - glCreateTextures
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateTextures)
+  if (s_deviceConfig.m_glCreateTextures)
   {
-    deviceState->m_glCreateTextures (target, n, textures);
+    s_deviceConfig.m_glCreateTextures (target, n, textures);
   }
 }
 
@@ -1241,10 +1154,9 @@ void glCreateTextures (GLenum target, GLsizei n, GLuint * textures)
 void glTextureBuffer (GLuint texture, GLenum internalformat, GLuint buffer)
 {
   // GL_ARB_direct_state_access - glTextureBuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureBuffer)
+  if (s_deviceConfig.m_glTextureBuffer)
   {
-    deviceState->m_glTextureBuffer (texture, internalformat, buffer);
+    s_deviceConfig.m_glTextureBuffer (texture, internalformat, buffer);
   }
 }
 
@@ -1255,10 +1167,9 @@ void glTextureBuffer (GLuint texture, GLenum internalformat, GLuint buffer)
 void glTextureBufferRange (GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
   // GL_ARB_direct_state_access - glTextureBufferRange
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureBufferRange)
+  if (s_deviceConfig.m_glTextureBufferRange)
   {
-    deviceState->m_glTextureBufferRange (texture, internalformat, buffer, offset, size);
+    s_deviceConfig.m_glTextureBufferRange (texture, internalformat, buffer, offset, size);
   }
 }
 
@@ -1269,10 +1180,9 @@ void glTextureBufferRange (GLuint texture, GLenum internalformat, GLuint buffer,
 void glTextureStorage1D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width)
 {
   // GL_ARB_direct_state_access - glTextureStorage1D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureStorage1D)
+  if (s_deviceConfig.m_glTextureStorage1D)
   {
-    deviceState->m_glTextureStorage1D (texture, levels, internalformat, width);
+    s_deviceConfig.m_glTextureStorage1D (texture, levels, internalformat, width);
   }
 }
 
@@ -1283,10 +1193,9 @@ void glTextureStorage1D (GLuint texture, GLsizei levels, GLenum internalformat, 
 void glTextureStorage2D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glTextureStorage2D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureStorage2D)
+  if (s_deviceConfig.m_glTextureStorage2D)
   {
-    deviceState->m_glTextureStorage2D (texture, levels, internalformat, width, height);
+    s_deviceConfig.m_glTextureStorage2D (texture, levels, internalformat, width, height);
   }
 }
 
@@ -1297,10 +1206,9 @@ void glTextureStorage2D (GLuint texture, GLsizei levels, GLenum internalformat, 
 void glTextureStorage3D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
 {
   // GL_ARB_direct_state_access - glTextureStorage3D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureStorage3D)
+  if (s_deviceConfig.m_glTextureStorage3D)
   {
-    deviceState->m_glTextureStorage3D (texture, levels, internalformat, width, height, depth);
+    s_deviceConfig.m_glTextureStorage3D (texture, levels, internalformat, width, height, depth);
   }
 }
 
@@ -1311,10 +1219,9 @@ void glTextureStorage3D (GLuint texture, GLsizei levels, GLenum internalformat, 
 void glTextureStorage2DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
 {
   // GL_ARB_direct_state_access - glTextureStorage2DMultisample
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureStorage2DMultisample)
+  if (s_deviceConfig.m_glTextureStorage2DMultisample)
   {
-    deviceState->m_glTextureStorage2DMultisample (texture, samples, internalformat, width, height, fixedsamplelocations);
+    s_deviceConfig.m_glTextureStorage2DMultisample (texture, samples, internalformat, width, height, fixedsamplelocations);
   }
 }
 
@@ -1325,10 +1232,9 @@ void glTextureStorage2DMultisample (GLuint texture, GLsizei samples, GLenum inte
 void glTextureStorage3DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
 {
   // GL_ARB_direct_state_access - glTextureStorage3DMultisample
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureStorage3DMultisample)
+  if (s_deviceConfig.m_glTextureStorage3DMultisample)
   {
-    deviceState->m_glTextureStorage3DMultisample (texture, samples, internalformat, width, height, depth, fixedsamplelocations);
+    s_deviceConfig.m_glTextureStorage3DMultisample (texture, samples, internalformat, width, height, depth, fixedsamplelocations);
   }
 }
 
@@ -1339,10 +1245,9 @@ void glTextureStorage3DMultisample (GLuint texture, GLsizei samples, GLenum inte
 void glTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void * pixels)
 {
   // GL_ARB_direct_state_access - glTextureSubImage1D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureSubImage1D)
+  if (s_deviceConfig.m_glTextureSubImage1D)
   {
-    deviceState->m_glTextureSubImage1D (texture, level, xoffset, width, format, type, pixels);
+    s_deviceConfig.m_glTextureSubImage1D (texture, level, xoffset, width, format, type, pixels);
   }
 }
 
@@ -1353,10 +1258,9 @@ void glTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei wi
 void glTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void * pixels)
 {
   // GL_ARB_direct_state_access - glTextureSubImage2D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureSubImage2D)
+  if (s_deviceConfig.m_glTextureSubImage2D)
   {
-    deviceState->m_glTextureSubImage2D (texture, level, xoffset, yoffset, width, height, format, type, pixels);
+    s_deviceConfig.m_glTextureSubImage2D (texture, level, xoffset, yoffset, width, height, format, type, pixels);
   }
 }
 
@@ -1367,10 +1271,9 @@ void glTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoff
 void glTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * pixels)
 {
   // GL_ARB_direct_state_access - glTextureSubImage3D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureSubImage3D)
+  if (s_deviceConfig.m_glTextureSubImage3D)
   {
-    deviceState->m_glTextureSubImage3D (texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+    s_deviceConfig.m_glTextureSubImage3D (texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
   }
 }
 
@@ -1381,10 +1284,9 @@ void glTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoff
 void glCompressedTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void * data)
 {
   // GL_ARB_direct_state_access - glCompressedTextureSubImage1D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCompressedTextureSubImage1D)
+  if (s_deviceConfig.m_glCompressedTextureSubImage1D)
   {
-    deviceState->m_glCompressedTextureSubImage1D (texture, level, xoffset, width, format, imageSize, data);
+    s_deviceConfig.m_glCompressedTextureSubImage1D (texture, level, xoffset, width, format, imageSize, data);
   }
 }
 
@@ -1395,10 +1297,9 @@ void glCompressedTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, 
 void glCompressedTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void * data)
 {
   // GL_ARB_direct_state_access - glCompressedTextureSubImage2D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCompressedTextureSubImage2D)
+  if (s_deviceConfig.m_glCompressedTextureSubImage2D)
   {
-    deviceState->m_glCompressedTextureSubImage2D (texture, level, xoffset, yoffset, width, height, format, imageSize, data);
+    s_deviceConfig.m_glCompressedTextureSubImage2D (texture, level, xoffset, yoffset, width, height, format, imageSize, data);
   }
 }
 
@@ -1409,10 +1310,9 @@ void glCompressedTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, 
 void glCompressedTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void * data)
 {
   // GL_ARB_direct_state_access - glCompressedTextureSubImage3D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCompressedTextureSubImage3D)
+  if (s_deviceConfig.m_glCompressedTextureSubImage3D)
   {
-    deviceState->m_glCompressedTextureSubImage3D (texture, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
+    s_deviceConfig.m_glCompressedTextureSubImage3D (texture, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
   }
 }
 
@@ -1423,10 +1323,9 @@ void glCompressedTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, 
 void glCopyTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)
 {
   // GL_ARB_direct_state_access - glCopyTextureSubImage1D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCopyTextureSubImage1D)
+  if (s_deviceConfig.m_glCopyTextureSubImage1D)
   {
-    deviceState->m_glCopyTextureSubImage1D (texture, level, xoffset, x, y, width);
+    s_deviceConfig.m_glCopyTextureSubImage1D (texture, level, xoffset, x, y, width);
   }
 }
 
@@ -1437,10 +1336,9 @@ void glCopyTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLint 
 void glCopyTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glCopyTextureSubImage2D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCopyTextureSubImage2D)
+  if (s_deviceConfig.m_glCopyTextureSubImage2D)
   {
-    deviceState->m_glCopyTextureSubImage2D (texture, level, xoffset, yoffset, x, y, width, height);
+    s_deviceConfig.m_glCopyTextureSubImage2D (texture, level, xoffset, yoffset, x, y, width, height);
   }
 }
 
@@ -1451,10 +1349,9 @@ void glCopyTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint 
 void glCopyTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glCopyTextureSubImage3D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCopyTextureSubImage3D)
+  if (s_deviceConfig.m_glCopyTextureSubImage3D)
   {
-    deviceState->m_glCopyTextureSubImage3D (texture, level, xoffset, yoffset, zoffset, x, y, width, height);
+    s_deviceConfig.m_glCopyTextureSubImage3D (texture, level, xoffset, yoffset, zoffset, x, y, width, height);
   }
 }
 
@@ -1465,10 +1362,9 @@ void glCopyTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint 
 void glTextureParameterf (GLuint texture, GLenum pname, GLfloat param)
 {
   // GL_ARB_direct_state_access - glTextureParameterf
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureParameterf)
+  if (s_deviceConfig.m_glTextureParameterf)
   {
-    deviceState->m_glTextureParameterf (texture, pname, param);
+    s_deviceConfig.m_glTextureParameterf (texture, pname, param);
   }
 }
 
@@ -1479,10 +1375,9 @@ void glTextureParameterf (GLuint texture, GLenum pname, GLfloat param)
 void glTextureParameterfv (GLuint texture, GLenum pname, const GLfloat * param)
 {
   // GL_ARB_direct_state_access - glTextureParameterfv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureParameterfv)
+  if (s_deviceConfig.m_glTextureParameterfv)
   {
-    deviceState->m_glTextureParameterfv (texture, pname, param);
+    s_deviceConfig.m_glTextureParameterfv (texture, pname, param);
   }
 }
 
@@ -1493,10 +1388,9 @@ void glTextureParameterfv (GLuint texture, GLenum pname, const GLfloat * param)
 void glTextureParameteri (GLuint texture, GLenum pname, GLint param)
 {
   // GL_ARB_direct_state_access - glTextureParameteri
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureParameteri)
+  if (s_deviceConfig.m_glTextureParameteri)
   {
-    deviceState->m_glTextureParameteri (texture, pname, param);
+    s_deviceConfig.m_glTextureParameteri (texture, pname, param);
   }
 }
 
@@ -1507,10 +1401,9 @@ void glTextureParameteri (GLuint texture, GLenum pname, GLint param)
 void glTextureParameterIiv (GLuint texture, GLenum pname, const GLint * params)
 {
   // GL_ARB_direct_state_access - glTextureParameterIiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureParameterIiv)
+  if (s_deviceConfig.m_glTextureParameterIiv)
   {
-    deviceState->m_glTextureParameterIiv (texture, pname, params);
+    s_deviceConfig.m_glTextureParameterIiv (texture, pname, params);
   }
 }
 
@@ -1521,10 +1414,9 @@ void glTextureParameterIiv (GLuint texture, GLenum pname, const GLint * params)
 void glTextureParameterIuiv (GLuint texture, GLenum pname, const GLuint * params)
 {
   // GL_ARB_direct_state_access - glTextureParameterIuiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureParameterIuiv)
+  if (s_deviceConfig.m_glTextureParameterIuiv)
   {
-    deviceState->m_glTextureParameterIuiv (texture, pname, params);
+    s_deviceConfig.m_glTextureParameterIuiv (texture, pname, params);
   }
 }
 
@@ -1535,10 +1427,9 @@ void glTextureParameterIuiv (GLuint texture, GLenum pname, const GLuint * params
 void glTextureParameteriv (GLuint texture, GLenum pname, const GLint * param)
 {
   // GL_ARB_direct_state_access - glTextureParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureParameteriv)
+  if (s_deviceConfig.m_glTextureParameteriv)
   {
-    deviceState->m_glTextureParameteriv (texture, pname, param);
+    s_deviceConfig.m_glTextureParameteriv (texture, pname, param);
   }
 }
 
@@ -1549,10 +1440,9 @@ void glTextureParameteriv (GLuint texture, GLenum pname, const GLint * param)
 void glGenerateTextureMipmap (GLuint texture)
 {
   // GL_ARB_direct_state_access - glGenerateTextureMipmap
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGenerateTextureMipmap)
+  if (s_deviceConfig.m_glGenerateTextureMipmap)
   {
-    deviceState->m_glGenerateTextureMipmap (texture);
+    s_deviceConfig.m_glGenerateTextureMipmap (texture);
   }
 }
 
@@ -1563,10 +1453,9 @@ void glGenerateTextureMipmap (GLuint texture)
 void glBindTextureUnit (GLuint unit, GLuint texture)
 {
   // GL_ARB_direct_state_access - glBindTextureUnit
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindTextureUnit)
+  if (s_deviceConfig.m_glBindTextureUnit)
   {
-    deviceState->m_glBindTextureUnit (unit, texture);
+    s_deviceConfig.m_glBindTextureUnit (unit, texture);
   }
 }
 
@@ -1577,10 +1466,9 @@ void glBindTextureUnit (GLuint unit, GLuint texture)
 void glGetTextureImage (GLuint texture, GLint level, GLenum format, GLenum type, GLsizei bufSize, void * pixels)
 {
   // GL_ARB_direct_state_access - glGetTextureImage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureImage)
+  if (s_deviceConfig.m_glGetTextureImage)
   {
-    deviceState->m_glGetTextureImage (texture, level, format, type, bufSize, pixels);
+    s_deviceConfig.m_glGetTextureImage (texture, level, format, type, bufSize, pixels);
   }
 }
 
@@ -1591,10 +1479,9 @@ void glGetTextureImage (GLuint texture, GLint level, GLenum format, GLenum type,
 void glGetCompressedTextureImage (GLuint texture, GLint level, GLsizei bufSize, void * pixels)
 {
   // GL_ARB_direct_state_access - glGetCompressedTextureImage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetCompressedTextureImage)
+  if (s_deviceConfig.m_glGetCompressedTextureImage)
   {
-    deviceState->m_glGetCompressedTextureImage (texture, level, bufSize, pixels);
+    s_deviceConfig.m_glGetCompressedTextureImage (texture, level, bufSize, pixels);
   }
 }
 
@@ -1605,10 +1492,9 @@ void glGetCompressedTextureImage (GLuint texture, GLint level, GLsizei bufSize, 
 void glGetTextureLevelParameterfv (GLuint texture, GLint level, GLenum pname, GLfloat * params)
 {
   // GL_ARB_direct_state_access - glGetTextureLevelParameterfv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureLevelParameterfv)
+  if (s_deviceConfig.m_glGetTextureLevelParameterfv)
   {
-    deviceState->m_glGetTextureLevelParameterfv (texture, level, pname, params);
+    s_deviceConfig.m_glGetTextureLevelParameterfv (texture, level, pname, params);
   }
 }
 
@@ -1619,10 +1505,9 @@ void glGetTextureLevelParameterfv (GLuint texture, GLint level, GLenum pname, GL
 void glGetTextureLevelParameteriv (GLuint texture, GLint level, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetTextureLevelParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureLevelParameteriv)
+  if (s_deviceConfig.m_glGetTextureLevelParameteriv)
   {
-    deviceState->m_glGetTextureLevelParameteriv (texture, level, pname, params);
+    s_deviceConfig.m_glGetTextureLevelParameteriv (texture, level, pname, params);
   }
 }
 
@@ -1633,10 +1518,9 @@ void glGetTextureLevelParameteriv (GLuint texture, GLint level, GLenum pname, GL
 void glGetTextureParameterfv (GLuint texture, GLenum pname, GLfloat * params)
 {
   // GL_ARB_direct_state_access - glGetTextureParameterfv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureParameterfv)
+  if (s_deviceConfig.m_glGetTextureParameterfv)
   {
-    deviceState->m_glGetTextureParameterfv (texture, pname, params);
+    s_deviceConfig.m_glGetTextureParameterfv (texture, pname, params);
   }
 }
 
@@ -1647,10 +1531,9 @@ void glGetTextureParameterfv (GLuint texture, GLenum pname, GLfloat * params)
 void glGetTextureParameterIiv (GLuint texture, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetTextureParameterIiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureParameterIiv)
+  if (s_deviceConfig.m_glGetTextureParameterIiv)
   {
-    deviceState->m_glGetTextureParameterIiv (texture, pname, params);
+    s_deviceConfig.m_glGetTextureParameterIiv (texture, pname, params);
   }
 }
 
@@ -1661,10 +1544,9 @@ void glGetTextureParameterIiv (GLuint texture, GLenum pname, GLint * params)
 void glGetTextureParameterIuiv (GLuint texture, GLenum pname, GLuint * params)
 {
   // GL_ARB_direct_state_access - glGetTextureParameterIuiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureParameterIuiv)
+  if (s_deviceConfig.m_glGetTextureParameterIuiv)
   {
-    deviceState->m_glGetTextureParameterIuiv (texture, pname, params);
+    s_deviceConfig.m_glGetTextureParameterIuiv (texture, pname, params);
   }
 }
 
@@ -1675,10 +1557,9 @@ void glGetTextureParameterIuiv (GLuint texture, GLenum pname, GLuint * params)
 void glGetTextureParameteriv (GLuint texture, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetTextureParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureParameteriv)
+  if (s_deviceConfig.m_glGetTextureParameteriv)
   {
-    deviceState->m_glGetTextureParameteriv (texture, pname, params);
+    s_deviceConfig.m_glGetTextureParameteriv (texture, pname, params);
   }
 }
 
@@ -1689,10 +1570,9 @@ void glGetTextureParameteriv (GLuint texture, GLenum pname, GLint * params)
 void glCreateVertexArrays (GLsizei n, GLuint * arrays)
 {
   // GL_ARB_direct_state_access - glCreateVertexArrays
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateVertexArrays)
+  if (s_deviceConfig.m_glCreateVertexArrays)
   {
-    deviceState->m_glCreateVertexArrays (n, arrays);
+    s_deviceConfig.m_glCreateVertexArrays (n, arrays);
   }
 }
 
@@ -1703,10 +1583,9 @@ void glCreateVertexArrays (GLsizei n, GLuint * arrays)
 void glDisableVertexArrayAttrib (GLuint vaobj, GLuint index)
 {
   // GL_ARB_direct_state_access - glDisableVertexArrayAttrib
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDisableVertexArrayAttrib)
+  if (s_deviceConfig.m_glDisableVertexArrayAttrib)
   {
-    deviceState->m_glDisableVertexArrayAttrib (vaobj, index);
+    s_deviceConfig.m_glDisableVertexArrayAttrib (vaobj, index);
   }
 }
 
@@ -1717,10 +1596,9 @@ void glDisableVertexArrayAttrib (GLuint vaobj, GLuint index)
 void glEnableVertexArrayAttrib (GLuint vaobj, GLuint index)
 {
   // GL_ARB_direct_state_access - glEnableVertexArrayAttrib
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glEnableVertexArrayAttrib)
+  if (s_deviceConfig.m_glEnableVertexArrayAttrib)
   {
-    deviceState->m_glEnableVertexArrayAttrib (vaobj, index);
+    s_deviceConfig.m_glEnableVertexArrayAttrib (vaobj, index);
   }
 }
 
@@ -1731,10 +1609,9 @@ void glEnableVertexArrayAttrib (GLuint vaobj, GLuint index)
 void glVertexArrayElementBuffer (GLuint vaobj, GLuint buffer)
 {
   // GL_ARB_direct_state_access - glVertexArrayElementBuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexArrayElementBuffer)
+  if (s_deviceConfig.m_glVertexArrayElementBuffer)
   {
-    deviceState->m_glVertexArrayElementBuffer (vaobj, buffer);
+    s_deviceConfig.m_glVertexArrayElementBuffer (vaobj, buffer);
   }
 }
 
@@ -1745,10 +1622,9 @@ void glVertexArrayElementBuffer (GLuint vaobj, GLuint buffer)
 void glVertexArrayVertexBuffer (GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride)
 {
   // GL_ARB_direct_state_access - glVertexArrayVertexBuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexArrayVertexBuffer)
+  if (s_deviceConfig.m_glVertexArrayVertexBuffer)
   {
-    deviceState->m_glVertexArrayVertexBuffer (vaobj, bindingindex, buffer, offset, stride);
+    s_deviceConfig.m_glVertexArrayVertexBuffer (vaobj, bindingindex, buffer, offset, stride);
   }
 }
 
@@ -1759,10 +1635,9 @@ void glVertexArrayVertexBuffer (GLuint vaobj, GLuint bindingindex, GLuint buffer
 void glVertexArrayVertexBuffers (GLuint vaobj, GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizei * strides)
 {
   // GL_ARB_direct_state_access - glVertexArrayVertexBuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexArrayVertexBuffers)
+  if (s_deviceConfig.m_glVertexArrayVertexBuffers)
   {
-    deviceState->m_glVertexArrayVertexBuffers (vaobj, first, count, buffers, offsets, strides);
+    s_deviceConfig.m_glVertexArrayVertexBuffers (vaobj, first, count, buffers, offsets, strides);
   }
 }
 
@@ -1773,10 +1648,9 @@ void glVertexArrayVertexBuffers (GLuint vaobj, GLuint first, GLsizei count, cons
 void glVertexArrayAttribBinding (GLuint vaobj, GLuint attribindex, GLuint bindingindex)
 {
   // GL_ARB_direct_state_access - glVertexArrayAttribBinding
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexArrayAttribBinding)
+  if (s_deviceConfig.m_glVertexArrayAttribBinding)
   {
-    deviceState->m_glVertexArrayAttribBinding (vaobj, attribindex, bindingindex);
+    s_deviceConfig.m_glVertexArrayAttribBinding (vaobj, attribindex, bindingindex);
   }
 }
 
@@ -1787,10 +1661,9 @@ void glVertexArrayAttribBinding (GLuint vaobj, GLuint attribindex, GLuint bindin
 void glVertexArrayAttribFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
 {
   // GL_ARB_direct_state_access - glVertexArrayAttribFormat
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexArrayAttribFormat)
+  if (s_deviceConfig.m_glVertexArrayAttribFormat)
   {
-    deviceState->m_glVertexArrayAttribFormat (vaobj, attribindex, size, type, normalized, relativeoffset);
+    s_deviceConfig.m_glVertexArrayAttribFormat (vaobj, attribindex, size, type, normalized, relativeoffset);
   }
 }
 
@@ -1801,10 +1674,9 @@ void glVertexArrayAttribFormat (GLuint vaobj, GLuint attribindex, GLint size, GL
 void glVertexArrayAttribIFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
 {
   // GL_ARB_direct_state_access - glVertexArrayAttribIFormat
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexArrayAttribIFormat)
+  if (s_deviceConfig.m_glVertexArrayAttribIFormat)
   {
-    deviceState->m_glVertexArrayAttribIFormat (vaobj, attribindex, size, type, relativeoffset);
+    s_deviceConfig.m_glVertexArrayAttribIFormat (vaobj, attribindex, size, type, relativeoffset);
   }
 }
 
@@ -1815,10 +1687,9 @@ void glVertexArrayAttribIFormat (GLuint vaobj, GLuint attribindex, GLint size, G
 void glVertexArrayAttribLFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
 {
   // GL_ARB_direct_state_access - glVertexArrayAttribLFormat
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexArrayAttribLFormat)
+  if (s_deviceConfig.m_glVertexArrayAttribLFormat)
   {
-    deviceState->m_glVertexArrayAttribLFormat (vaobj, attribindex, size, type, relativeoffset);
+    s_deviceConfig.m_glVertexArrayAttribLFormat (vaobj, attribindex, size, type, relativeoffset);
   }
 }
 
@@ -1829,10 +1700,9 @@ void glVertexArrayAttribLFormat (GLuint vaobj, GLuint attribindex, GLint size, G
 void glVertexArrayBindingDivisor (GLuint vaobj, GLuint bindingindex, GLuint divisor)
 {
   // GL_ARB_direct_state_access - glVertexArrayBindingDivisor
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexArrayBindingDivisor)
+  if (s_deviceConfig.m_glVertexArrayBindingDivisor)
   {
-    deviceState->m_glVertexArrayBindingDivisor (vaobj, bindingindex, divisor);
+    s_deviceConfig.m_glVertexArrayBindingDivisor (vaobj, bindingindex, divisor);
   }
 }
 
@@ -1843,10 +1713,9 @@ void glVertexArrayBindingDivisor (GLuint vaobj, GLuint bindingindex, GLuint divi
 void glGetVertexArrayiv (GLuint vaobj, GLenum pname, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetVertexArrayiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetVertexArrayiv)
+  if (s_deviceConfig.m_glGetVertexArrayiv)
   {
-    deviceState->m_glGetVertexArrayiv (vaobj, pname, param);
+    s_deviceConfig.m_glGetVertexArrayiv (vaobj, pname, param);
   }
 }
 
@@ -1857,10 +1726,9 @@ void glGetVertexArrayiv (GLuint vaobj, GLenum pname, GLint * param)
 void glGetVertexArrayIndexediv (GLuint vaobj, GLuint index, GLenum pname, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetVertexArrayIndexediv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetVertexArrayIndexediv)
+  if (s_deviceConfig.m_glGetVertexArrayIndexediv)
   {
-    deviceState->m_glGetVertexArrayIndexediv (vaobj, index, pname, param);
+    s_deviceConfig.m_glGetVertexArrayIndexediv (vaobj, index, pname, param);
   }
 }
 
@@ -1871,10 +1739,9 @@ void glGetVertexArrayIndexediv (GLuint vaobj, GLuint index, GLenum pname, GLint 
 void glGetVertexArrayIndexed64iv (GLuint vaobj, GLuint index, GLenum pname, GLint64 * param)
 {
   // GL_ARB_direct_state_access - glGetVertexArrayIndexed64iv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetVertexArrayIndexed64iv)
+  if (s_deviceConfig.m_glGetVertexArrayIndexed64iv)
   {
-    deviceState->m_glGetVertexArrayIndexed64iv (vaobj, index, pname, param);
+    s_deviceConfig.m_glGetVertexArrayIndexed64iv (vaobj, index, pname, param);
   }
 }
 
@@ -1885,10 +1752,9 @@ void glGetVertexArrayIndexed64iv (GLuint vaobj, GLuint index, GLenum pname, GLin
 void glCreateSamplers (GLsizei n, GLuint * samplers)
 {
   // GL_ARB_direct_state_access - glCreateSamplers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateSamplers)
+  if (s_deviceConfig.m_glCreateSamplers)
   {
-    deviceState->m_glCreateSamplers (n, samplers);
+    s_deviceConfig.m_glCreateSamplers (n, samplers);
   }
 }
 
@@ -1899,10 +1765,9 @@ void glCreateSamplers (GLsizei n, GLuint * samplers)
 void glCreateProgramPipelines (GLsizei n, GLuint * pipelines)
 {
   // GL_ARB_direct_state_access - glCreateProgramPipelines
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateProgramPipelines)
+  if (s_deviceConfig.m_glCreateProgramPipelines)
   {
-    deviceState->m_glCreateProgramPipelines (n, pipelines);
+    s_deviceConfig.m_glCreateProgramPipelines (n, pipelines);
   }
 }
 
@@ -1913,10 +1778,9 @@ void glCreateProgramPipelines (GLsizei n, GLuint * pipelines)
 void glCreateQueries (GLenum target, GLsizei n, GLuint * ids)
 {
   // GL_ARB_direct_state_access - glCreateQueries
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateQueries)
+  if (s_deviceConfig.m_glCreateQueries)
   {
-    deviceState->m_glCreateQueries (target, n, ids);
+    s_deviceConfig.m_glCreateQueries (target, n, ids);
   }
 }
 
@@ -1927,10 +1791,9 @@ void glCreateQueries (GLenum target, GLsizei n, GLuint * ids)
 void glGetQueryBufferObjecti64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
 {
   // GL_ARB_direct_state_access - glGetQueryBufferObjecti64v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetQueryBufferObjecti64v)
+  if (s_deviceConfig.m_glGetQueryBufferObjecti64v)
   {
-    deviceState->m_glGetQueryBufferObjecti64v (id, buffer, pname, offset);
+    s_deviceConfig.m_glGetQueryBufferObjecti64v (id, buffer, pname, offset);
   }
 }
 
@@ -1941,10 +1804,9 @@ void glGetQueryBufferObjecti64v (GLuint id, GLuint buffer, GLenum pname, GLintpt
 void glGetQueryBufferObjectiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
 {
   // GL_ARB_direct_state_access - glGetQueryBufferObjectiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetQueryBufferObjectiv)
+  if (s_deviceConfig.m_glGetQueryBufferObjectiv)
   {
-    deviceState->m_glGetQueryBufferObjectiv (id, buffer, pname, offset);
+    s_deviceConfig.m_glGetQueryBufferObjectiv (id, buffer, pname, offset);
   }
 }
 
@@ -1955,10 +1817,9 @@ void glGetQueryBufferObjectiv (GLuint id, GLuint buffer, GLenum pname, GLintptr 
 void glGetQueryBufferObjectui64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
 {
   // GL_ARB_direct_state_access - glGetQueryBufferObjectui64v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetQueryBufferObjectui64v)
+  if (s_deviceConfig.m_glGetQueryBufferObjectui64v)
   {
-    deviceState->m_glGetQueryBufferObjectui64v (id, buffer, pname, offset);
+    s_deviceConfig.m_glGetQueryBufferObjectui64v (id, buffer, pname, offset);
   }
 }
 
@@ -1969,10 +1830,9 @@ void glGetQueryBufferObjectui64v (GLuint id, GLuint buffer, GLenum pname, GLintp
 void glGetQueryBufferObjectuiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
 {
   // GL_ARB_direct_state_access - glGetQueryBufferObjectuiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetQueryBufferObjectuiv)
+  if (s_deviceConfig.m_glGetQueryBufferObjectuiv)
   {
-    deviceState->m_glGetQueryBufferObjectuiv (id, buffer, pname, offset);
+    s_deviceConfig.m_glGetQueryBufferObjectuiv (id, buffer, pname, offset);
   }
 }
 
@@ -1983,10 +1843,9 @@ void glGetQueryBufferObjectuiv (GLuint id, GLuint buffer, GLenum pname, GLintptr
 void glBlendEquationiARB (GLuint buf, GLenum mode)
 {
   // GL_ARB_draw_buffers_blend - glBlendEquationiARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBlendEquationiARB)
+  if (s_deviceConfig.m_glBlendEquationiARB)
   {
-    deviceState->m_glBlendEquationiARB (buf, mode);
+    s_deviceConfig.m_glBlendEquationiARB (buf, mode);
   }
 }
 
@@ -1997,10 +1856,9 @@ void glBlendEquationiARB (GLuint buf, GLenum mode)
 void glBlendEquationSeparateiARB (GLuint buf, GLenum modeRGB, GLenum modeAlpha)
 {
   // GL_ARB_draw_buffers_blend - glBlendEquationSeparateiARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBlendEquationSeparateiARB)
+  if (s_deviceConfig.m_glBlendEquationSeparateiARB)
   {
-    deviceState->m_glBlendEquationSeparateiARB (buf, modeRGB, modeAlpha);
+    s_deviceConfig.m_glBlendEquationSeparateiARB (buf, modeRGB, modeAlpha);
   }
 }
 
@@ -2011,10 +1869,9 @@ void glBlendEquationSeparateiARB (GLuint buf, GLenum modeRGB, GLenum modeAlpha)
 void glBlendFunciARB (GLuint buf, GLenum src, GLenum dst)
 {
   // GL_ARB_draw_buffers_blend - glBlendFunciARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBlendFunciARB)
+  if (s_deviceConfig.m_glBlendFunciARB)
   {
-    deviceState->m_glBlendFunciARB (buf, src, dst);
+    s_deviceConfig.m_glBlendFunciARB (buf, src, dst);
   }
 }
 
@@ -2025,10 +1882,9 @@ void glBlendFunciARB (GLuint buf, GLenum src, GLenum dst)
 void glBlendFuncSeparateiARB (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
 {
   // GL_ARB_draw_buffers_blend - glBlendFuncSeparateiARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBlendFuncSeparateiARB)
+  if (s_deviceConfig.m_glBlendFuncSeparateiARB)
   {
-    deviceState->m_glBlendFuncSeparateiARB (buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
+    s_deviceConfig.m_glBlendFuncSeparateiARB (buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
   }
 }
 
@@ -2039,10 +1895,9 @@ void glBlendFuncSeparateiARB (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum s
 void glDrawElementsBaseVertex (GLenum mode, GLsizei count, GLenum type, const void * indices, GLint basevertex)
 {
   // GL_ARB_draw_elements_base_vertex - glDrawElementsBaseVertex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawElementsBaseVertex)
+  if (s_deviceConfig.m_glDrawElementsBaseVertex)
   {
-    deviceState->m_glDrawElementsBaseVertex (mode, count, type, indices, basevertex);
+    s_deviceConfig.m_glDrawElementsBaseVertex (mode, count, type, indices, basevertex);
   }
 }
 
@@ -2053,10 +1908,9 @@ void glDrawElementsBaseVertex (GLenum mode, GLsizei count, GLenum type, const vo
 void glDrawRangeElementsBaseVertex (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices, GLint basevertex)
 {
   // GL_ARB_draw_elements_base_vertex - glDrawRangeElementsBaseVertex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawRangeElementsBaseVertex)
+  if (s_deviceConfig.m_glDrawRangeElementsBaseVertex)
   {
-    deviceState->m_glDrawRangeElementsBaseVertex (mode, start, end, count, type, indices, basevertex);
+    s_deviceConfig.m_glDrawRangeElementsBaseVertex (mode, start, end, count, type, indices, basevertex);
   }
 }
 
@@ -2067,10 +1921,9 @@ void glDrawRangeElementsBaseVertex (GLenum mode, GLuint start, GLuint end, GLsiz
 void glDrawElementsInstancedBaseVertex (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex)
 {
   // GL_ARB_draw_elements_base_vertex - glDrawElementsInstancedBaseVertex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawElementsInstancedBaseVertex)
+  if (s_deviceConfig.m_glDrawElementsInstancedBaseVertex)
   {
-    deviceState->m_glDrawElementsInstancedBaseVertex (mode, count, type, indices, instancecount, basevertex);
+    s_deviceConfig.m_glDrawElementsInstancedBaseVertex (mode, count, type, indices, instancecount, basevertex);
   }
 }
 
@@ -2081,10 +1934,9 @@ void glDrawElementsInstancedBaseVertex (GLenum mode, GLsizei count, GLenum type,
 void glMultiDrawElementsBaseVertex (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei drawcount, const GLint * basevertex)
 {
   // GL_ARB_draw_elements_base_vertex - glMultiDrawElementsBaseVertex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMultiDrawElementsBaseVertex)
+  if (s_deviceConfig.m_glMultiDrawElementsBaseVertex)
   {
-    deviceState->m_glMultiDrawElementsBaseVertex (mode, count, type, indices, drawcount, basevertex);
+    s_deviceConfig.m_glMultiDrawElementsBaseVertex (mode, count, type, indices, drawcount, basevertex);
   }
 }
 
@@ -2095,10 +1947,9 @@ void glMultiDrawElementsBaseVertex (GLenum mode, const GLsizei * count, GLenum t
 void glDrawArraysIndirect (GLenum mode, const void * indirect)
 {
   // GL_ARB_draw_indirect - glDrawArraysIndirect
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawArraysIndirect)
+  if (s_deviceConfig.m_glDrawArraysIndirect)
   {
-    deviceState->m_glDrawArraysIndirect (mode, indirect);
+    s_deviceConfig.m_glDrawArraysIndirect (mode, indirect);
   }
 }
 
@@ -2109,10 +1960,9 @@ void glDrawArraysIndirect (GLenum mode, const void * indirect)
 void glDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect)
 {
   // GL_ARB_draw_indirect - glDrawElementsIndirect
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawElementsIndirect)
+  if (s_deviceConfig.m_glDrawElementsIndirect)
   {
-    deviceState->m_glDrawElementsIndirect (mode, type, indirect);
+    s_deviceConfig.m_glDrawElementsIndirect (mode, type, indirect);
   }
 }
 
@@ -2123,10 +1973,9 @@ void glDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect)
 void glFramebufferParameteri (GLenum target, GLenum pname, GLint param)
 {
   // GL_ARB_framebuffer_no_attachments - glFramebufferParameteri
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glFramebufferParameteri)
+  if (s_deviceConfig.m_glFramebufferParameteri)
   {
-    deviceState->m_glFramebufferParameteri (target, pname, param);
+    s_deviceConfig.m_glFramebufferParameteri (target, pname, param);
   }
 }
 
@@ -2137,10 +1986,9 @@ void glFramebufferParameteri (GLenum target, GLenum pname, GLint param)
 void glGetFramebufferParameteriv (GLenum target, GLenum pname, GLint * params)
 {
   // GL_ARB_framebuffer_no_attachments - glGetFramebufferParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetFramebufferParameteriv)
+  if (s_deviceConfig.m_glGetFramebufferParameteriv)
   {
-    deviceState->m_glGetFramebufferParameteriv (target, pname, params);
+    s_deviceConfig.m_glGetFramebufferParameteriv (target, pname, params);
   }
 }
 
@@ -2151,10 +1999,9 @@ void glGetFramebufferParameteriv (GLenum target, GLenum pname, GLint * params)
 GLboolean glIsRenderbuffer (GLuint renderbuffer)
 {
   // GL_ARB_framebuffer_object - glIsRenderbuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsRenderbuffer)
+  if (s_deviceConfig.m_glIsRenderbuffer)
   {
-    return deviceState->m_glIsRenderbuffer (renderbuffer);
+    return s_deviceConfig.m_glIsRenderbuffer (renderbuffer);
   }
   return ((GLboolean)0);
 }
@@ -2166,10 +2013,9 @@ GLboolean glIsRenderbuffer (GLuint renderbuffer)
 void glBindRenderbuffer (GLenum target, GLuint renderbuffer)
 {
   // GL_ARB_framebuffer_object - glBindRenderbuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindRenderbuffer)
+  if (s_deviceConfig.m_glBindRenderbuffer)
   {
-    deviceState->m_glBindRenderbuffer (target, renderbuffer);
+    s_deviceConfig.m_glBindRenderbuffer (target, renderbuffer);
   }
 }
 
@@ -2180,10 +2026,9 @@ void glBindRenderbuffer (GLenum target, GLuint renderbuffer)
 void glDeleteRenderbuffers (GLsizei n, const GLuint * renderbuffers)
 {
   // GL_ARB_framebuffer_object - glDeleteRenderbuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDeleteRenderbuffers)
+  if (s_deviceConfig.m_glDeleteRenderbuffers)
   {
-    deviceState->m_glDeleteRenderbuffers (n, renderbuffers);
+    s_deviceConfig.m_glDeleteRenderbuffers (n, renderbuffers);
   }
 }
 
@@ -2194,10 +2039,9 @@ void glDeleteRenderbuffers (GLsizei n, const GLuint * renderbuffers)
 void glGenRenderbuffers (GLsizei n, GLuint * renderbuffers)
 {
   // GL_ARB_framebuffer_object - glGenRenderbuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGenRenderbuffers)
+  if (s_deviceConfig.m_glGenRenderbuffers)
   {
-    deviceState->m_glGenRenderbuffers (n, renderbuffers);
+    s_deviceConfig.m_glGenRenderbuffers (n, renderbuffers);
   }
 }
 
@@ -2208,10 +2052,9 @@ void glGenRenderbuffers (GLsizei n, GLuint * renderbuffers)
 void glRenderbufferStorage (GLenum target, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_framebuffer_object - glRenderbufferStorage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glRenderbufferStorage)
+  if (s_deviceConfig.m_glRenderbufferStorage)
   {
-    deviceState->m_glRenderbufferStorage (target, internalformat, width, height);
+    s_deviceConfig.m_glRenderbufferStorage (target, internalformat, width, height);
   }
 }
 
@@ -2222,10 +2065,9 @@ void glRenderbufferStorage (GLenum target, GLenum internalformat, GLsizei width,
 void glGetRenderbufferParameteriv (GLenum target, GLenum pname, GLint * params)
 {
   // GL_ARB_framebuffer_object - glGetRenderbufferParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetRenderbufferParameteriv)
+  if (s_deviceConfig.m_glGetRenderbufferParameteriv)
   {
-    deviceState->m_glGetRenderbufferParameteriv (target, pname, params);
+    s_deviceConfig.m_glGetRenderbufferParameteriv (target, pname, params);
   }
 }
 
@@ -2236,10 +2078,9 @@ void glGetRenderbufferParameteriv (GLenum target, GLenum pname, GLint * params)
 GLboolean glIsFramebuffer (GLuint framebuffer)
 {
   // GL_ARB_framebuffer_object - glIsFramebuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsFramebuffer)
+  if (s_deviceConfig.m_glIsFramebuffer)
   {
-    return deviceState->m_glIsFramebuffer (framebuffer);
+    return s_deviceConfig.m_glIsFramebuffer (framebuffer);
   }
   return ((GLboolean)0);
 }
@@ -2251,10 +2092,9 @@ GLboolean glIsFramebuffer (GLuint framebuffer)
 void glBindFramebuffer (GLenum target, GLuint framebuffer)
 {
   // GL_ARB_framebuffer_object - glBindFramebuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindFramebuffer)
+  if (s_deviceConfig.m_glBindFramebuffer)
   {
-    deviceState->m_glBindFramebuffer (target, framebuffer);
+    s_deviceConfig.m_glBindFramebuffer (target, framebuffer);
   }
 }
 
@@ -2265,10 +2105,9 @@ void glBindFramebuffer (GLenum target, GLuint framebuffer)
 void glDeleteFramebuffers (GLsizei n, const GLuint * framebuffers)
 {
   // GL_ARB_framebuffer_object - glDeleteFramebuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDeleteFramebuffers)
+  if (s_deviceConfig.m_glDeleteFramebuffers)
   {
-    deviceState->m_glDeleteFramebuffers (n, framebuffers);
+    s_deviceConfig.m_glDeleteFramebuffers (n, framebuffers);
   }
 }
 
@@ -2279,10 +2118,9 @@ void glDeleteFramebuffers (GLsizei n, const GLuint * framebuffers)
 void glGenFramebuffers (GLsizei n, GLuint * framebuffers)
 {
   // GL_ARB_framebuffer_object - glGenFramebuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGenFramebuffers)
+  if (s_deviceConfig.m_glGenFramebuffers)
   {
-    deviceState->m_glGenFramebuffers (n, framebuffers);
+    s_deviceConfig.m_glGenFramebuffers (n, framebuffers);
   }
 }
 
@@ -2293,10 +2131,9 @@ void glGenFramebuffers (GLsizei n, GLuint * framebuffers)
 GLenum glCheckFramebufferStatus (GLenum target)
 {
   // GL_ARB_framebuffer_object - glCheckFramebufferStatus
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCheckFramebufferStatus)
+  if (s_deviceConfig.m_glCheckFramebufferStatus)
   {
-    return deviceState->m_glCheckFramebufferStatus (target);
+    return s_deviceConfig.m_glCheckFramebufferStatus (target);
   }
   return ((GLenum)0);
 }
@@ -2308,10 +2145,9 @@ GLenum glCheckFramebufferStatus (GLenum target)
 void glFramebufferTexture1D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 {
   // GL_ARB_framebuffer_object - glFramebufferTexture1D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glFramebufferTexture1D)
+  if (s_deviceConfig.m_glFramebufferTexture1D)
   {
-    deviceState->m_glFramebufferTexture1D (target, attachment, textarget, texture, level);
+    s_deviceConfig.m_glFramebufferTexture1D (target, attachment, textarget, texture, level);
   }
 }
 
@@ -2322,10 +2158,9 @@ void glFramebufferTexture1D (GLenum target, GLenum attachment, GLenum textarget,
 void glFramebufferTexture2D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 {
   // GL_ARB_framebuffer_object - glFramebufferTexture2D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glFramebufferTexture2D)
+  if (s_deviceConfig.m_glFramebufferTexture2D)
   {
-    deviceState->m_glFramebufferTexture2D (target, attachment, textarget, texture, level);
+    s_deviceConfig.m_glFramebufferTexture2D (target, attachment, textarget, texture, level);
   }
 }
 
@@ -2336,10 +2171,9 @@ void glFramebufferTexture2D (GLenum target, GLenum attachment, GLenum textarget,
 void glFramebufferTexture3D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset)
 {
   // GL_ARB_framebuffer_object - glFramebufferTexture3D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glFramebufferTexture3D)
+  if (s_deviceConfig.m_glFramebufferTexture3D)
   {
-    deviceState->m_glFramebufferTexture3D (target, attachment, textarget, texture, level, zoffset);
+    s_deviceConfig.m_glFramebufferTexture3D (target, attachment, textarget, texture, level, zoffset);
   }
 }
 
@@ -2350,10 +2184,9 @@ void glFramebufferTexture3D (GLenum target, GLenum attachment, GLenum textarget,
 void glFramebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)
 {
   // GL_ARB_framebuffer_object - glFramebufferRenderbuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glFramebufferRenderbuffer)
+  if (s_deviceConfig.m_glFramebufferRenderbuffer)
   {
-    deviceState->m_glFramebufferRenderbuffer (target, attachment, renderbuffertarget, renderbuffer);
+    s_deviceConfig.m_glFramebufferRenderbuffer (target, attachment, renderbuffertarget, renderbuffer);
   }
 }
 
@@ -2364,10 +2197,9 @@ void glFramebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderb
 void glGetFramebufferAttachmentParameteriv (GLenum target, GLenum attachment, GLenum pname, GLint * params)
 {
   // GL_ARB_framebuffer_object - glGetFramebufferAttachmentParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetFramebufferAttachmentParameteriv)
+  if (s_deviceConfig.m_glGetFramebufferAttachmentParameteriv)
   {
-    deviceState->m_glGetFramebufferAttachmentParameteriv (target, attachment, pname, params);
+    s_deviceConfig.m_glGetFramebufferAttachmentParameteriv (target, attachment, pname, params);
   }
 }
 
@@ -2378,10 +2210,9 @@ void glGetFramebufferAttachmentParameteriv (GLenum target, GLenum attachment, GL
 void glGenerateMipmap (GLenum target)
 {
   // GL_ARB_framebuffer_object - glGenerateMipmap
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGenerateMipmap)
+  if (s_deviceConfig.m_glGenerateMipmap)
   {
-    deviceState->m_glGenerateMipmap (target);
+    s_deviceConfig.m_glGenerateMipmap (target);
   }
 }
 
@@ -2392,10 +2223,9 @@ void glGenerateMipmap (GLenum target)
 void glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
   // GL_ARB_framebuffer_object - glBlitFramebuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBlitFramebuffer)
+  if (s_deviceConfig.m_glBlitFramebuffer)
   {
-    deviceState->m_glBlitFramebuffer (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+    s_deviceConfig.m_glBlitFramebuffer (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
 }
 
@@ -2406,10 +2236,9 @@ void glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLin
 void glRenderbufferStorageMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_framebuffer_object - glRenderbufferStorageMultisample
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glRenderbufferStorageMultisample)
+  if (s_deviceConfig.m_glRenderbufferStorageMultisample)
   {
-    deviceState->m_glRenderbufferStorageMultisample (target, samples, internalformat, width, height);
+    s_deviceConfig.m_glRenderbufferStorageMultisample (target, samples, internalformat, width, height);
   }
 }
 
@@ -2420,10 +2249,9 @@ void glRenderbufferStorageMultisample (GLenum target, GLsizei samples, GLenum in
 void glFramebufferTextureLayer (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer)
 {
   // GL_ARB_framebuffer_object - glFramebufferTextureLayer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glFramebufferTextureLayer)
+  if (s_deviceConfig.m_glFramebufferTextureLayer)
   {
-    deviceState->m_glFramebufferTextureLayer (target, attachment, texture, level, layer);
+    s_deviceConfig.m_glFramebufferTextureLayer (target, attachment, texture, level, layer);
   }
 }
 
@@ -2434,10 +2262,9 @@ void glFramebufferTextureLayer (GLenum target, GLenum attachment, GLuint texture
 void glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei * length, GLenum * binaryFormat, void * binary)
 {
   // GL_ARB_get_program_binary - glGetProgramBinary
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramBinary)
+  if (s_deviceConfig.m_glGetProgramBinary)
   {
-    deviceState->m_glGetProgramBinary (program, bufSize, length, binaryFormat, binary);
+    s_deviceConfig.m_glGetProgramBinary (program, bufSize, length, binaryFormat, binary);
   }
 }
 
@@ -2448,10 +2275,9 @@ void glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei * length, GLen
 void glProgramBinary (GLuint program, GLenum binaryFormat, const void * binary, GLsizei length)
 {
   // GL_ARB_get_program_binary - glProgramBinary
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramBinary)
+  if (s_deviceConfig.m_glProgramBinary)
   {
-    deviceState->m_glProgramBinary (program, binaryFormat, binary, length);
+    s_deviceConfig.m_glProgramBinary (program, binaryFormat, binary, length);
   }
 }
 
@@ -2462,10 +2288,9 @@ void glProgramBinary (GLuint program, GLenum binaryFormat, const void * binary, 
 void glProgramParameteri (GLuint program, GLenum pname, GLint value)
 {
   // GL_ARB_get_program_binary - glProgramParameteri
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramParameteri)
+  if (s_deviceConfig.m_glProgramParameteri)
   {
-    deviceState->m_glProgramParameteri (program, pname, value);
+    s_deviceConfig.m_glProgramParameteri (program, pname, value);
   }
 }
 
@@ -2476,10 +2301,9 @@ void glProgramParameteri (GLuint program, GLenum pname, GLint value)
 void glGetTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, GLsizei bufSize, void * pixels)
 {
   // GL_ARB_get_texture_sub_image - glGetTextureSubImage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetTextureSubImage)
+  if (s_deviceConfig.m_glGetTextureSubImage)
   {
-    deviceState->m_glGetTextureSubImage (texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, bufSize, pixels);
+    s_deviceConfig.m_glGetTextureSubImage (texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, bufSize, pixels);
   }
 }
 
@@ -2490,10 +2314,9 @@ void glGetTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yof
 void glGetCompressedTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei bufSize, void * pixels)
 {
   // GL_ARB_get_texture_sub_image - glGetCompressedTextureSubImage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetCompressedTextureSubImage)
+  if (s_deviceConfig.m_glGetCompressedTextureSubImage)
   {
-    deviceState->m_glGetCompressedTextureSubImage (texture, level, xoffset, yoffset, zoffset, width, height, depth, bufSize, pixels);
+    s_deviceConfig.m_glGetCompressedTextureSubImage (texture, level, xoffset, yoffset, zoffset, width, height, depth, bufSize, pixels);
   }
 }
 
@@ -2504,10 +2327,9 @@ void glGetCompressedTextureSubImage (GLuint texture, GLint level, GLint xoffset,
 void glUniform1d (GLint location, GLdouble x)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform1d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniform1d)
+  if (s_deviceConfig.m_glUniform1d)
   {
-    deviceState->m_glUniform1d (location, x);
+    s_deviceConfig.m_glUniform1d (location, x);
   }
 }
 
@@ -2518,10 +2340,9 @@ void glUniform1d (GLint location, GLdouble x)
 void glUniform2d (GLint location, GLdouble x, GLdouble y)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform2d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniform2d)
+  if (s_deviceConfig.m_glUniform2d)
   {
-    deviceState->m_glUniform2d (location, x, y);
+    s_deviceConfig.m_glUniform2d (location, x, y);
   }
 }
 
@@ -2532,10 +2353,9 @@ void glUniform2d (GLint location, GLdouble x, GLdouble y)
 void glUniform3d (GLint location, GLdouble x, GLdouble y, GLdouble z)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform3d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniform3d)
+  if (s_deviceConfig.m_glUniform3d)
   {
-    deviceState->m_glUniform3d (location, x, y, z);
+    s_deviceConfig.m_glUniform3d (location, x, y, z);
   }
 }
 
@@ -2546,10 +2366,9 @@ void glUniform3d (GLint location, GLdouble x, GLdouble y, GLdouble z)
 void glUniform4d (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform4d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniform4d)
+  if (s_deviceConfig.m_glUniform4d)
   {
-    deviceState->m_glUniform4d (location, x, y, z, w);
+    s_deviceConfig.m_glUniform4d (location, x, y, z, w);
   }
 }
 
@@ -2560,10 +2379,9 @@ void glUniform4d (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w
 void glUniform1dv (GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform1dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniform1dv)
+  if (s_deviceConfig.m_glUniform1dv)
   {
-    deviceState->m_glUniform1dv (location, count, value);
+    s_deviceConfig.m_glUniform1dv (location, count, value);
   }
 }
 
@@ -2574,10 +2392,9 @@ void glUniform1dv (GLint location, GLsizei count, const GLdouble * value)
 void glUniform2dv (GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform2dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniform2dv)
+  if (s_deviceConfig.m_glUniform2dv)
   {
-    deviceState->m_glUniform2dv (location, count, value);
+    s_deviceConfig.m_glUniform2dv (location, count, value);
   }
 }
 
@@ -2588,10 +2405,9 @@ void glUniform2dv (GLint location, GLsizei count, const GLdouble * value)
 void glUniform3dv (GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform3dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniform3dv)
+  if (s_deviceConfig.m_glUniform3dv)
   {
-    deviceState->m_glUniform3dv (location, count, value);
+    s_deviceConfig.m_glUniform3dv (location, count, value);
   }
 }
 
@@ -2602,10 +2418,9 @@ void glUniform3dv (GLint location, GLsizei count, const GLdouble * value)
 void glUniform4dv (GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform4dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniform4dv)
+  if (s_deviceConfig.m_glUniform4dv)
   {
-    deviceState->m_glUniform4dv (location, count, value);
+    s_deviceConfig.m_glUniform4dv (location, count, value);
   }
 }
 
@@ -2616,10 +2431,9 @@ void glUniform4dv (GLint location, GLsizei count, const GLdouble * value)
 void glUniformMatrix2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix2dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformMatrix2dv)
+  if (s_deviceConfig.m_glUniformMatrix2dv)
   {
-    deviceState->m_glUniformMatrix2dv (location, count, transpose, value);
+    s_deviceConfig.m_glUniformMatrix2dv (location, count, transpose, value);
   }
 }
 
@@ -2630,10 +2444,9 @@ void glUniformMatrix2dv (GLint location, GLsizei count, GLboolean transpose, con
 void glUniformMatrix3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix3dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformMatrix3dv)
+  if (s_deviceConfig.m_glUniformMatrix3dv)
   {
-    deviceState->m_glUniformMatrix3dv (location, count, transpose, value);
+    s_deviceConfig.m_glUniformMatrix3dv (location, count, transpose, value);
   }
 }
 
@@ -2644,10 +2457,9 @@ void glUniformMatrix3dv (GLint location, GLsizei count, GLboolean transpose, con
 void glUniformMatrix4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix4dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformMatrix4dv)
+  if (s_deviceConfig.m_glUniformMatrix4dv)
   {
-    deviceState->m_glUniformMatrix4dv (location, count, transpose, value);
+    s_deviceConfig.m_glUniformMatrix4dv (location, count, transpose, value);
   }
 }
 
@@ -2658,10 +2470,9 @@ void glUniformMatrix4dv (GLint location, GLsizei count, GLboolean transpose, con
 void glUniformMatrix2x3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix2x3dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformMatrix2x3dv)
+  if (s_deviceConfig.m_glUniformMatrix2x3dv)
   {
-    deviceState->m_glUniformMatrix2x3dv (location, count, transpose, value);
+    s_deviceConfig.m_glUniformMatrix2x3dv (location, count, transpose, value);
   }
 }
 
@@ -2672,10 +2483,9 @@ void glUniformMatrix2x3dv (GLint location, GLsizei count, GLboolean transpose, c
 void glUniformMatrix2x4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix2x4dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformMatrix2x4dv)
+  if (s_deviceConfig.m_glUniformMatrix2x4dv)
   {
-    deviceState->m_glUniformMatrix2x4dv (location, count, transpose, value);
+    s_deviceConfig.m_glUniformMatrix2x4dv (location, count, transpose, value);
   }
 }
 
@@ -2686,10 +2496,9 @@ void glUniformMatrix2x4dv (GLint location, GLsizei count, GLboolean transpose, c
 void glUniformMatrix3x2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix3x2dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformMatrix3x2dv)
+  if (s_deviceConfig.m_glUniformMatrix3x2dv)
   {
-    deviceState->m_glUniformMatrix3x2dv (location, count, transpose, value);
+    s_deviceConfig.m_glUniformMatrix3x2dv (location, count, transpose, value);
   }
 }
 
@@ -2700,10 +2509,9 @@ void glUniformMatrix3x2dv (GLint location, GLsizei count, GLboolean transpose, c
 void glUniformMatrix3x4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix3x4dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformMatrix3x4dv)
+  if (s_deviceConfig.m_glUniformMatrix3x4dv)
   {
-    deviceState->m_glUniformMatrix3x4dv (location, count, transpose, value);
+    s_deviceConfig.m_glUniformMatrix3x4dv (location, count, transpose, value);
   }
 }
 
@@ -2714,10 +2522,9 @@ void glUniformMatrix3x4dv (GLint location, GLsizei count, GLboolean transpose, c
 void glUniformMatrix4x2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix4x2dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformMatrix4x2dv)
+  if (s_deviceConfig.m_glUniformMatrix4x2dv)
   {
-    deviceState->m_glUniformMatrix4x2dv (location, count, transpose, value);
+    s_deviceConfig.m_glUniformMatrix4x2dv (location, count, transpose, value);
   }
 }
 
@@ -2728,10 +2535,9 @@ void glUniformMatrix4x2dv (GLint location, GLsizei count, GLboolean transpose, c
 void glUniformMatrix4x3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix4x3dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformMatrix4x3dv)
+  if (s_deviceConfig.m_glUniformMatrix4x3dv)
   {
-    deviceState->m_glUniformMatrix4x3dv (location, count, transpose, value);
+    s_deviceConfig.m_glUniformMatrix4x3dv (location, count, transpose, value);
   }
 }
 
@@ -2742,10 +2548,9 @@ void glUniformMatrix4x3dv (GLint location, GLsizei count, GLboolean transpose, c
 void glGetUniformdv (GLuint program, GLint location, GLdouble * params)
 {
   // GL_ARB_gpu_shader_fp64 - glGetUniformdv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetUniformdv)
+  if (s_deviceConfig.m_glGetUniformdv)
   {
-    deviceState->m_glGetUniformdv (program, location, params);
+    s_deviceConfig.m_glGetUniformdv (program, location, params);
   }
 }
 
@@ -2756,10 +2561,9 @@ void glGetUniformdv (GLuint program, GLint location, GLdouble * params)
 void glBlendColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
 {
   // GL_ARB_imaging - glBlendColor
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBlendColor)
+  if (s_deviceConfig.m_glBlendColor)
   {
-    deviceState->m_glBlendColor (red, green, blue, alpha);
+    s_deviceConfig.m_glBlendColor (red, green, blue, alpha);
   }
 }
 
@@ -2770,10 +2574,9 @@ void glBlendColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
 void glBlendEquation (GLenum mode)
 {
   // GL_ARB_imaging - glBlendEquation
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBlendEquation)
+  if (s_deviceConfig.m_glBlendEquation)
   {
-    deviceState->m_glBlendEquation (mode);
+    s_deviceConfig.m_glBlendEquation (mode);
   }
 }
 
@@ -2784,10 +2587,9 @@ void glBlendEquation (GLenum mode)
 void glMultiDrawArraysIndirectCountARB (GLenum mode, GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride)
 {
   // GL_ARB_indirect_parameters - glMultiDrawArraysIndirectCountARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMultiDrawArraysIndirectCountARB)
+  if (s_deviceConfig.m_glMultiDrawArraysIndirectCountARB)
   {
-    deviceState->m_glMultiDrawArraysIndirectCountARB (mode, indirect, drawcount, maxdrawcount, stride);
+    s_deviceConfig.m_glMultiDrawArraysIndirectCountARB (mode, indirect, drawcount, maxdrawcount, stride);
   }
 }
 
@@ -2798,10 +2600,9 @@ void glMultiDrawArraysIndirectCountARB (GLenum mode, GLintptr indirect, GLintptr
 void glMultiDrawElementsIndirectCountARB (GLenum mode, GLenum type, GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride)
 {
   // GL_ARB_indirect_parameters - glMultiDrawElementsIndirectCountARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMultiDrawElementsIndirectCountARB)
+  if (s_deviceConfig.m_glMultiDrawElementsIndirectCountARB)
   {
-    deviceState->m_glMultiDrawElementsIndirectCountARB (mode, type, indirect, drawcount, maxdrawcount, stride);
+    s_deviceConfig.m_glMultiDrawElementsIndirectCountARB (mode, type, indirect, drawcount, maxdrawcount, stride);
   }
 }
 
@@ -2812,10 +2613,9 @@ void glMultiDrawElementsIndirectCountARB (GLenum mode, GLenum type, GLintptr ind
 void glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint * params)
 {
   // GL_ARB_internalformat_query - glGetInternalformativ
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetInternalformativ)
+  if (s_deviceConfig.m_glGetInternalformativ)
   {
-    deviceState->m_glGetInternalformativ (target, internalformat, pname, bufSize, params);
+    s_deviceConfig.m_glGetInternalformativ (target, internalformat, pname, bufSize, params);
   }
 }
 
@@ -2826,10 +2626,9 @@ void glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, 
 void glGetInternalformati64v (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint64 * params)
 {
   // GL_ARB_internalformat_query2 - glGetInternalformati64v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetInternalformati64v)
+  if (s_deviceConfig.m_glGetInternalformati64v)
   {
-    deviceState->m_glGetInternalformati64v (target, internalformat, pname, bufSize, params);
+    s_deviceConfig.m_glGetInternalformati64v (target, internalformat, pname, bufSize, params);
   }
 }
 
@@ -2840,10 +2639,9 @@ void glGetInternalformati64v (GLenum target, GLenum internalformat, GLenum pname
 void glInvalidateTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth)
 {
   // GL_ARB_invalidate_subdata - glInvalidateTexSubImage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glInvalidateTexSubImage)
+  if (s_deviceConfig.m_glInvalidateTexSubImage)
   {
-    deviceState->m_glInvalidateTexSubImage (texture, level, xoffset, yoffset, zoffset, width, height, depth);
+    s_deviceConfig.m_glInvalidateTexSubImage (texture, level, xoffset, yoffset, zoffset, width, height, depth);
   }
 }
 
@@ -2854,10 +2652,9 @@ void glInvalidateTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint 
 void glInvalidateTexImage (GLuint texture, GLint level)
 {
   // GL_ARB_invalidate_subdata - glInvalidateTexImage
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glInvalidateTexImage)
+  if (s_deviceConfig.m_glInvalidateTexImage)
   {
-    deviceState->m_glInvalidateTexImage (texture, level);
+    s_deviceConfig.m_glInvalidateTexImage (texture, level);
   }
 }
 
@@ -2868,10 +2665,9 @@ void glInvalidateTexImage (GLuint texture, GLint level)
 void glInvalidateBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr length)
 {
   // GL_ARB_invalidate_subdata - glInvalidateBufferSubData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glInvalidateBufferSubData)
+  if (s_deviceConfig.m_glInvalidateBufferSubData)
   {
-    deviceState->m_glInvalidateBufferSubData (buffer, offset, length);
+    s_deviceConfig.m_glInvalidateBufferSubData (buffer, offset, length);
   }
 }
 
@@ -2882,10 +2678,9 @@ void glInvalidateBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr lengt
 void glInvalidateBufferData (GLuint buffer)
 {
   // GL_ARB_invalidate_subdata - glInvalidateBufferData
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glInvalidateBufferData)
+  if (s_deviceConfig.m_glInvalidateBufferData)
   {
-    deviceState->m_glInvalidateBufferData (buffer);
+    s_deviceConfig.m_glInvalidateBufferData (buffer);
   }
 }
 
@@ -2896,10 +2691,9 @@ void glInvalidateBufferData (GLuint buffer)
 void glInvalidateFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments)
 {
   // GL_ARB_invalidate_subdata - glInvalidateFramebuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glInvalidateFramebuffer)
+  if (s_deviceConfig.m_glInvalidateFramebuffer)
   {
-    deviceState->m_glInvalidateFramebuffer (target, numAttachments, attachments);
+    s_deviceConfig.m_glInvalidateFramebuffer (target, numAttachments, attachments);
   }
 }
 
@@ -2910,10 +2704,9 @@ void glInvalidateFramebuffer (GLenum target, GLsizei numAttachments, const GLenu
 void glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height)
 {
   // GL_ARB_invalidate_subdata - glInvalidateSubFramebuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glInvalidateSubFramebuffer)
+  if (s_deviceConfig.m_glInvalidateSubFramebuffer)
   {
-    deviceState->m_glInvalidateSubFramebuffer (target, numAttachments, attachments, x, y, width, height);
+    s_deviceConfig.m_glInvalidateSubFramebuffer (target, numAttachments, attachments, x, y, width, height);
   }
 }
 
@@ -2924,10 +2717,9 @@ void glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachments, const GL
 void * glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)
 {
   // GL_ARB_map_buffer_range - glMapBufferRange
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMapBufferRange)
+  if (s_deviceConfig.m_glMapBufferRange)
   {
-    return deviceState->m_glMapBufferRange (target, offset, length, access);
+    return s_deviceConfig.m_glMapBufferRange (target, offset, length, access);
   }
   return ((void *)0);
 }
@@ -2939,10 +2731,9 @@ void * glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr length, GLbi
 void glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsizeiptr length)
 {
   // GL_ARB_map_buffer_range - glFlushMappedBufferRange
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glFlushMappedBufferRange)
+  if (s_deviceConfig.m_glFlushMappedBufferRange)
   {
-    deviceState->m_glFlushMappedBufferRange (target, offset, length);
+    s_deviceConfig.m_glFlushMappedBufferRange (target, offset, length);
   }
 }
 
@@ -2953,10 +2744,9 @@ void glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsizeiptr length
 void glBindBuffersBase (GLenum target, GLuint first, GLsizei count, const GLuint * buffers)
 {
   // GL_ARB_multi_bind - glBindBuffersBase
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindBuffersBase)
+  if (s_deviceConfig.m_glBindBuffersBase)
   {
-    deviceState->m_glBindBuffersBase (target, first, count, buffers);
+    s_deviceConfig.m_glBindBuffersBase (target, first, count, buffers);
   }
 }
 
@@ -2967,10 +2757,9 @@ void glBindBuffersBase (GLenum target, GLuint first, GLsizei count, const GLuint
 void glBindBuffersRange (GLenum target, GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizeiptr * sizes)
 {
   // GL_ARB_multi_bind - glBindBuffersRange
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindBuffersRange)
+  if (s_deviceConfig.m_glBindBuffersRange)
   {
-    deviceState->m_glBindBuffersRange (target, first, count, buffers, offsets, sizes);
+    s_deviceConfig.m_glBindBuffersRange (target, first, count, buffers, offsets, sizes);
   }
 }
 
@@ -2981,10 +2770,9 @@ void glBindBuffersRange (GLenum target, GLuint first, GLsizei count, const GLuin
 void glBindTextures (GLuint first, GLsizei count, const GLuint * textures)
 {
   // GL_ARB_multi_bind - glBindTextures
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindTextures)
+  if (s_deviceConfig.m_glBindTextures)
   {
-    deviceState->m_glBindTextures (first, count, textures);
+    s_deviceConfig.m_glBindTextures (first, count, textures);
   }
 }
 
@@ -2995,10 +2783,9 @@ void glBindTextures (GLuint first, GLsizei count, const GLuint * textures)
 void glBindSamplers (GLuint first, GLsizei count, const GLuint * samplers)
 {
   // GL_ARB_multi_bind - glBindSamplers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindSamplers)
+  if (s_deviceConfig.m_glBindSamplers)
   {
-    deviceState->m_glBindSamplers (first, count, samplers);
+    s_deviceConfig.m_glBindSamplers (first, count, samplers);
   }
 }
 
@@ -3009,10 +2796,9 @@ void glBindSamplers (GLuint first, GLsizei count, const GLuint * samplers)
 void glBindImageTextures (GLuint first, GLsizei count, const GLuint * textures)
 {
   // GL_ARB_multi_bind - glBindImageTextures
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindImageTextures)
+  if (s_deviceConfig.m_glBindImageTextures)
   {
-    deviceState->m_glBindImageTextures (first, count, textures);
+    s_deviceConfig.m_glBindImageTextures (first, count, textures);
   }
 }
 
@@ -3023,10 +2809,9 @@ void glBindImageTextures (GLuint first, GLsizei count, const GLuint * textures)
 void glBindVertexBuffers (GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizei * strides)
 {
   // GL_ARB_multi_bind - glBindVertexBuffers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindVertexBuffers)
+  if (s_deviceConfig.m_glBindVertexBuffers)
   {
-    deviceState->m_glBindVertexBuffers (first, count, buffers, offsets, strides);
+    s_deviceConfig.m_glBindVertexBuffers (first, count, buffers, offsets, strides);
   }
 }
 
@@ -3037,10 +2822,9 @@ void glBindVertexBuffers (GLuint first, GLsizei count, const GLuint * buffers, c
 void glMultiDrawArraysIndirect (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride)
 {
   // GL_ARB_multi_draw_indirect - glMultiDrawArraysIndirect
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMultiDrawArraysIndirect)
+  if (s_deviceConfig.m_glMultiDrawArraysIndirect)
   {
-    deviceState->m_glMultiDrawArraysIndirect (mode, indirect, drawcount, stride);
+    s_deviceConfig.m_glMultiDrawArraysIndirect (mode, indirect, drawcount, stride);
   }
 }
 
@@ -3051,10 +2835,9 @@ void glMultiDrawArraysIndirect (GLenum mode, const void * indirect, GLsizei draw
 void glMultiDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect, GLsizei drawcount, GLsizei stride)
 {
   // GL_ARB_multi_draw_indirect - glMultiDrawElementsIndirect
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMultiDrawElementsIndirect)
+  if (s_deviceConfig.m_glMultiDrawElementsIndirect)
   {
-    deviceState->m_glMultiDrawElementsIndirect (mode, type, indirect, drawcount, stride);
+    s_deviceConfig.m_glMultiDrawElementsIndirect (mode, type, indirect, drawcount, stride);
   }
 }
 
@@ -3065,10 +2848,9 @@ void glMultiDrawElementsIndirect (GLenum mode, GLenum type, const void * indirec
 void glGetProgramInterfaceiv (GLuint program, GLenum programInterface, GLenum pname, GLint * params)
 {
   // GL_ARB_program_interface_query - glGetProgramInterfaceiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramInterfaceiv)
+  if (s_deviceConfig.m_glGetProgramInterfaceiv)
   {
-    deviceState->m_glGetProgramInterfaceiv (program, programInterface, pname, params);
+    s_deviceConfig.m_glGetProgramInterfaceiv (program, programInterface, pname, params);
   }
 }
 
@@ -3079,10 +2861,9 @@ void glGetProgramInterfaceiv (GLuint program, GLenum programInterface, GLenum pn
 GLuint glGetProgramResourceIndex (GLuint program, GLenum programInterface, const GLchar * name)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceIndex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramResourceIndex)
+  if (s_deviceConfig.m_glGetProgramResourceIndex)
   {
-    return deviceState->m_glGetProgramResourceIndex (program, programInterface, name);
+    return s_deviceConfig.m_glGetProgramResourceIndex (program, programInterface, name);
   }
   return ((GLuint)0);
 }
@@ -3094,10 +2875,9 @@ GLuint glGetProgramResourceIndex (GLuint program, GLenum programInterface, const
 void glGetProgramResourceName (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei * length, GLchar * name)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceName
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramResourceName)
+  if (s_deviceConfig.m_glGetProgramResourceName)
   {
-    deviceState->m_glGetProgramResourceName (program, programInterface, index, bufSize, length, name);
+    s_deviceConfig.m_glGetProgramResourceName (program, programInterface, index, bufSize, length, name);
   }
 }
 
@@ -3108,10 +2888,9 @@ void glGetProgramResourceName (GLuint program, GLenum programInterface, GLuint i
 void glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLint * params)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramResourceiv)
+  if (s_deviceConfig.m_glGetProgramResourceiv)
   {
-    deviceState->m_glGetProgramResourceiv (program, programInterface, index, propCount, props, bufSize, length, params);
+    s_deviceConfig.m_glGetProgramResourceiv (program, programInterface, index, propCount, props, bufSize, length, params);
   }
 }
 
@@ -3122,10 +2901,9 @@ void glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint ind
 GLint glGetProgramResourceLocation (GLuint program, GLenum programInterface, const GLchar * name)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceLocation
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramResourceLocation)
+  if (s_deviceConfig.m_glGetProgramResourceLocation)
   {
-    return deviceState->m_glGetProgramResourceLocation (program, programInterface, name);
+    return s_deviceConfig.m_glGetProgramResourceLocation (program, programInterface, name);
   }
   return ((GLint)0);
 }
@@ -3137,10 +2915,9 @@ GLint glGetProgramResourceLocation (GLuint program, GLenum programInterface, con
 GLint glGetProgramResourceLocationIndex (GLuint program, GLenum programInterface, const GLchar * name)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceLocationIndex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramResourceLocationIndex)
+  if (s_deviceConfig.m_glGetProgramResourceLocationIndex)
   {
-    return deviceState->m_glGetProgramResourceLocationIndex (program, programInterface, name);
+    return s_deviceConfig.m_glGetProgramResourceLocationIndex (program, programInterface, name);
   }
   return ((GLint)0);
 }
@@ -3152,10 +2929,9 @@ GLint glGetProgramResourceLocationIndex (GLuint program, GLenum programInterface
 void glProvokingVertex (GLenum mode)
 {
   // GL_ARB_provoking_vertex - glProvokingVertex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProvokingVertex)
+  if (s_deviceConfig.m_glProvokingVertex)
   {
-    deviceState->m_glProvokingVertex (mode);
+    s_deviceConfig.m_glProvokingVertex (mode);
   }
 }
 
@@ -3166,10 +2942,9 @@ void glProvokingVertex (GLenum mode)
 GLenum glGetGraphicsResetStatusARB ()
 {
   // GL_ARB_robustness - glGetGraphicsResetStatusARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetGraphicsResetStatusARB)
+  if (s_deviceConfig.m_glGetGraphicsResetStatusARB)
   {
-    return deviceState->m_glGetGraphicsResetStatusARB ();
+    return s_deviceConfig.m_glGetGraphicsResetStatusARB ();
   }
   return ((GLenum)0);
 }
@@ -3181,10 +2956,9 @@ GLenum glGetGraphicsResetStatusARB ()
 void glGetnTexImageARB (GLenum target, GLint level, GLenum format, GLenum type, GLsizei bufSize, void * img)
 {
   // GL_ARB_robustness - glGetnTexImageARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetnTexImageARB)
+  if (s_deviceConfig.m_glGetnTexImageARB)
   {
-    deviceState->m_glGetnTexImageARB (target, level, format, type, bufSize, img);
+    s_deviceConfig.m_glGetnTexImageARB (target, level, format, type, bufSize, img);
   }
 }
 
@@ -3195,10 +2969,9 @@ void glGetnTexImageARB (GLenum target, GLint level, GLenum format, GLenum type, 
 void glReadnPixelsARB (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data)
 {
   // GL_ARB_robustness - glReadnPixelsARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glReadnPixelsARB)
+  if (s_deviceConfig.m_glReadnPixelsARB)
   {
-    deviceState->m_glReadnPixelsARB (x, y, width, height, format, type, bufSize, data);
+    s_deviceConfig.m_glReadnPixelsARB (x, y, width, height, format, type, bufSize, data);
   }
 }
 
@@ -3209,10 +2982,9 @@ void glReadnPixelsARB (GLint x, GLint y, GLsizei width, GLsizei height, GLenum f
 void glGetnCompressedTexImageARB (GLenum target, GLint lod, GLsizei bufSize, void * img)
 {
   // GL_ARB_robustness - glGetnCompressedTexImageARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetnCompressedTexImageARB)
+  if (s_deviceConfig.m_glGetnCompressedTexImageARB)
   {
-    deviceState->m_glGetnCompressedTexImageARB (target, lod, bufSize, img);
+    s_deviceConfig.m_glGetnCompressedTexImageARB (target, lod, bufSize, img);
   }
 }
 
@@ -3223,10 +2995,9 @@ void glGetnCompressedTexImageARB (GLenum target, GLint lod, GLsizei bufSize, voi
 void glGetnUniformfvARB (GLuint program, GLint location, GLsizei bufSize, GLfloat * params)
 {
   // GL_ARB_robustness - glGetnUniformfvARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetnUniformfvARB)
+  if (s_deviceConfig.m_glGetnUniformfvARB)
   {
-    deviceState->m_glGetnUniformfvARB (program, location, bufSize, params);
+    s_deviceConfig.m_glGetnUniformfvARB (program, location, bufSize, params);
   }
 }
 
@@ -3237,10 +3008,9 @@ void glGetnUniformfvARB (GLuint program, GLint location, GLsizei bufSize, GLfloa
 void glGetnUniformivARB (GLuint program, GLint location, GLsizei bufSize, GLint * params)
 {
   // GL_ARB_robustness - glGetnUniformivARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetnUniformivARB)
+  if (s_deviceConfig.m_glGetnUniformivARB)
   {
-    deviceState->m_glGetnUniformivARB (program, location, bufSize, params);
+    s_deviceConfig.m_glGetnUniformivARB (program, location, bufSize, params);
   }
 }
 
@@ -3251,10 +3021,9 @@ void glGetnUniformivARB (GLuint program, GLint location, GLsizei bufSize, GLint 
 void glGetnUniformuivARB (GLuint program, GLint location, GLsizei bufSize, GLuint * params)
 {
   // GL_ARB_robustness - glGetnUniformuivARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetnUniformuivARB)
+  if (s_deviceConfig.m_glGetnUniformuivARB)
   {
-    deviceState->m_glGetnUniformuivARB (program, location, bufSize, params);
+    s_deviceConfig.m_glGetnUniformuivARB (program, location, bufSize, params);
   }
 }
 
@@ -3265,10 +3034,9 @@ void glGetnUniformuivARB (GLuint program, GLint location, GLsizei bufSize, GLuin
 void glGetnUniformdvARB (GLuint program, GLint location, GLsizei bufSize, GLdouble * params)
 {
   // GL_ARB_robustness - glGetnUniformdvARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetnUniformdvARB)
+  if (s_deviceConfig.m_glGetnUniformdvARB)
   {
-    deviceState->m_glGetnUniformdvARB (program, location, bufSize, params);
+    s_deviceConfig.m_glGetnUniformdvARB (program, location, bufSize, params);
   }
 }
 
@@ -3279,10 +3047,9 @@ void glGetnUniformdvARB (GLuint program, GLint location, GLsizei bufSize, GLdoub
 void glMinSampleShadingARB (GLfloat value)
 {
   // GL_ARB_sample_shading - glMinSampleShadingARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMinSampleShadingARB)
+  if (s_deviceConfig.m_glMinSampleShadingARB)
   {
-    deviceState->m_glMinSampleShadingARB (value);
+    s_deviceConfig.m_glMinSampleShadingARB (value);
   }
 }
 
@@ -3293,10 +3060,9 @@ void glMinSampleShadingARB (GLfloat value)
 void glGenSamplers (GLsizei count, GLuint * samplers)
 {
   // GL_ARB_sampler_objects - glGenSamplers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGenSamplers)
+  if (s_deviceConfig.m_glGenSamplers)
   {
-    deviceState->m_glGenSamplers (count, samplers);
+    s_deviceConfig.m_glGenSamplers (count, samplers);
   }
 }
 
@@ -3307,10 +3073,9 @@ void glGenSamplers (GLsizei count, GLuint * samplers)
 void glDeleteSamplers (GLsizei count, const GLuint * samplers)
 {
   // GL_ARB_sampler_objects - glDeleteSamplers
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDeleteSamplers)
+  if (s_deviceConfig.m_glDeleteSamplers)
   {
-    deviceState->m_glDeleteSamplers (count, samplers);
+    s_deviceConfig.m_glDeleteSamplers (count, samplers);
   }
 }
 
@@ -3321,10 +3086,9 @@ void glDeleteSamplers (GLsizei count, const GLuint * samplers)
 GLboolean glIsSampler (GLuint sampler)
 {
   // GL_ARB_sampler_objects - glIsSampler
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsSampler)
+  if (s_deviceConfig.m_glIsSampler)
   {
-    return deviceState->m_glIsSampler (sampler);
+    return s_deviceConfig.m_glIsSampler (sampler);
   }
   return ((GLboolean)0);
 }
@@ -3336,10 +3100,9 @@ GLboolean glIsSampler (GLuint sampler)
 void glBindSampler (GLuint unit, GLuint sampler)
 {
   // GL_ARB_sampler_objects - glBindSampler
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindSampler)
+  if (s_deviceConfig.m_glBindSampler)
   {
-    deviceState->m_glBindSampler (unit, sampler);
+    s_deviceConfig.m_glBindSampler (unit, sampler);
   }
 }
 
@@ -3350,10 +3113,9 @@ void glBindSampler (GLuint unit, GLuint sampler)
 void glSamplerParameteri (GLuint sampler, GLenum pname, GLint param)
 {
   // GL_ARB_sampler_objects - glSamplerParameteri
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glSamplerParameteri)
+  if (s_deviceConfig.m_glSamplerParameteri)
   {
-    deviceState->m_glSamplerParameteri (sampler, pname, param);
+    s_deviceConfig.m_glSamplerParameteri (sampler, pname, param);
   }
 }
 
@@ -3364,10 +3126,9 @@ void glSamplerParameteri (GLuint sampler, GLenum pname, GLint param)
 void glSamplerParameteriv (GLuint sampler, GLenum pname, const GLint * param)
 {
   // GL_ARB_sampler_objects - glSamplerParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glSamplerParameteriv)
+  if (s_deviceConfig.m_glSamplerParameteriv)
   {
-    deviceState->m_glSamplerParameteriv (sampler, pname, param);
+    s_deviceConfig.m_glSamplerParameteriv (sampler, pname, param);
   }
 }
 
@@ -3378,10 +3139,9 @@ void glSamplerParameteriv (GLuint sampler, GLenum pname, const GLint * param)
 void glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat param)
 {
   // GL_ARB_sampler_objects - glSamplerParameterf
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glSamplerParameterf)
+  if (s_deviceConfig.m_glSamplerParameterf)
   {
-    deviceState->m_glSamplerParameterf (sampler, pname, param);
+    s_deviceConfig.m_glSamplerParameterf (sampler, pname, param);
   }
 }
 
@@ -3392,10 +3152,9 @@ void glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat param)
 void glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfloat * param)
 {
   // GL_ARB_sampler_objects - glSamplerParameterfv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glSamplerParameterfv)
+  if (s_deviceConfig.m_glSamplerParameterfv)
   {
-    deviceState->m_glSamplerParameterfv (sampler, pname, param);
+    s_deviceConfig.m_glSamplerParameterfv (sampler, pname, param);
   }
 }
 
@@ -3406,10 +3165,9 @@ void glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfloat * param)
 void glSamplerParameterIiv (GLuint sampler, GLenum pname, const GLint * param)
 {
   // GL_ARB_sampler_objects - glSamplerParameterIiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glSamplerParameterIiv)
+  if (s_deviceConfig.m_glSamplerParameterIiv)
   {
-    deviceState->m_glSamplerParameterIiv (sampler, pname, param);
+    s_deviceConfig.m_glSamplerParameterIiv (sampler, pname, param);
   }
 }
 
@@ -3420,10 +3178,9 @@ void glSamplerParameterIiv (GLuint sampler, GLenum pname, const GLint * param)
 void glSamplerParameterIuiv (GLuint sampler, GLenum pname, const GLuint * param)
 {
   // GL_ARB_sampler_objects - glSamplerParameterIuiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glSamplerParameterIuiv)
+  if (s_deviceConfig.m_glSamplerParameterIuiv)
   {
-    deviceState->m_glSamplerParameterIuiv (sampler, pname, param);
+    s_deviceConfig.m_glSamplerParameterIuiv (sampler, pname, param);
   }
 }
 
@@ -3434,10 +3191,9 @@ void glSamplerParameterIuiv (GLuint sampler, GLenum pname, const GLuint * param)
 void glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint * params)
 {
   // GL_ARB_sampler_objects - glGetSamplerParameteriv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetSamplerParameteriv)
+  if (s_deviceConfig.m_glGetSamplerParameteriv)
   {
-    deviceState->m_glGetSamplerParameteriv (sampler, pname, params);
+    s_deviceConfig.m_glGetSamplerParameteriv (sampler, pname, params);
   }
 }
 
@@ -3448,10 +3204,9 @@ void glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint * params)
 void glGetSamplerParameterIiv (GLuint sampler, GLenum pname, GLint * params)
 {
   // GL_ARB_sampler_objects - glGetSamplerParameterIiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetSamplerParameterIiv)
+  if (s_deviceConfig.m_glGetSamplerParameterIiv)
   {
-    deviceState->m_glGetSamplerParameterIiv (sampler, pname, params);
+    s_deviceConfig.m_glGetSamplerParameterIiv (sampler, pname, params);
   }
 }
 
@@ -3462,10 +3217,9 @@ void glGetSamplerParameterIiv (GLuint sampler, GLenum pname, GLint * params)
 void glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat * params)
 {
   // GL_ARB_sampler_objects - glGetSamplerParameterfv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetSamplerParameterfv)
+  if (s_deviceConfig.m_glGetSamplerParameterfv)
   {
-    deviceState->m_glGetSamplerParameterfv (sampler, pname, params);
+    s_deviceConfig.m_glGetSamplerParameterfv (sampler, pname, params);
   }
 }
 
@@ -3476,10 +3230,9 @@ void glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat * params)
 void glGetSamplerParameterIuiv (GLuint sampler, GLenum pname, GLuint * params)
 {
   // GL_ARB_sampler_objects - glGetSamplerParameterIuiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetSamplerParameterIuiv)
+  if (s_deviceConfig.m_glGetSamplerParameterIuiv)
   {
-    deviceState->m_glGetSamplerParameterIuiv (sampler, pname, params);
+    s_deviceConfig.m_glGetSamplerParameterIuiv (sampler, pname, params);
   }
 }
 
@@ -3490,10 +3243,9 @@ void glGetSamplerParameterIuiv (GLuint sampler, GLenum pname, GLuint * params)
 void glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint program)
 {
   // GL_ARB_separate_shader_objects - glUseProgramStages
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUseProgramStages)
+  if (s_deviceConfig.m_glUseProgramStages)
   {
-    deviceState->m_glUseProgramStages (pipeline, stages, program);
+    s_deviceConfig.m_glUseProgramStages (pipeline, stages, program);
   }
 }
 
@@ -3504,10 +3256,9 @@ void glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint program)
 void glActiveShaderProgram (GLuint pipeline, GLuint program)
 {
   // GL_ARB_separate_shader_objects - glActiveShaderProgram
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glActiveShaderProgram)
+  if (s_deviceConfig.m_glActiveShaderProgram)
   {
-    deviceState->m_glActiveShaderProgram (pipeline, program);
+    s_deviceConfig.m_glActiveShaderProgram (pipeline, program);
   }
 }
 
@@ -3518,10 +3269,9 @@ void glActiveShaderProgram (GLuint pipeline, GLuint program)
 GLuint glCreateShaderProgramv (GLenum type, GLsizei count, const GLchar *const* strings)
 {
   // GL_ARB_separate_shader_objects - glCreateShaderProgramv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCreateShaderProgramv)
+  if (s_deviceConfig.m_glCreateShaderProgramv)
   {
-    return deviceState->m_glCreateShaderProgramv (type, count, strings);
+    return s_deviceConfig.m_glCreateShaderProgramv (type, count, strings);
   }
   return ((GLuint)0);
 }
@@ -3533,10 +3283,9 @@ GLuint glCreateShaderProgramv (GLenum type, GLsizei count, const GLchar *const* 
 void glBindProgramPipeline (GLuint pipeline)
 {
   // GL_ARB_separate_shader_objects - glBindProgramPipeline
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindProgramPipeline)
+  if (s_deviceConfig.m_glBindProgramPipeline)
   {
-    deviceState->m_glBindProgramPipeline (pipeline);
+    s_deviceConfig.m_glBindProgramPipeline (pipeline);
   }
 }
 
@@ -3547,10 +3296,9 @@ void glBindProgramPipeline (GLuint pipeline)
 void glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines)
 {
   // GL_ARB_separate_shader_objects - glDeleteProgramPipelines
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDeleteProgramPipelines)
+  if (s_deviceConfig.m_glDeleteProgramPipelines)
   {
-    deviceState->m_glDeleteProgramPipelines (n, pipelines);
+    s_deviceConfig.m_glDeleteProgramPipelines (n, pipelines);
   }
 }
 
@@ -3561,10 +3309,9 @@ void glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines)
 void glGenProgramPipelines (GLsizei n, GLuint * pipelines)
 {
   // GL_ARB_separate_shader_objects - glGenProgramPipelines
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGenProgramPipelines)
+  if (s_deviceConfig.m_glGenProgramPipelines)
   {
-    deviceState->m_glGenProgramPipelines (n, pipelines);
+    s_deviceConfig.m_glGenProgramPipelines (n, pipelines);
   }
 }
 
@@ -3575,10 +3322,9 @@ void glGenProgramPipelines (GLsizei n, GLuint * pipelines)
 GLboolean glIsProgramPipeline (GLuint pipeline)
 {
   // GL_ARB_separate_shader_objects - glIsProgramPipeline
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsProgramPipeline)
+  if (s_deviceConfig.m_glIsProgramPipeline)
   {
-    return deviceState->m_glIsProgramPipeline (pipeline);
+    return s_deviceConfig.m_glIsProgramPipeline (pipeline);
   }
   return ((GLboolean)0);
 }
@@ -3590,10 +3336,9 @@ GLboolean glIsProgramPipeline (GLuint pipeline)
 void glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint * params)
 {
   // GL_ARB_separate_shader_objects - glGetProgramPipelineiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramPipelineiv)
+  if (s_deviceConfig.m_glGetProgramPipelineiv)
   {
-    deviceState->m_glGetProgramPipelineiv (pipeline, pname, params);
+    s_deviceConfig.m_glGetProgramPipelineiv (pipeline, pname, params);
   }
 }
 
@@ -3604,10 +3349,9 @@ void glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint * params)
 void glProgramUniform1i (GLuint program, GLint location, GLint v0)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1i
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform1i)
+  if (s_deviceConfig.m_glProgramUniform1i)
   {
-    deviceState->m_glProgramUniform1i (program, location, v0);
+    s_deviceConfig.m_glProgramUniform1i (program, location, v0);
   }
 }
 
@@ -3618,10 +3362,9 @@ void glProgramUniform1i (GLuint program, GLint location, GLint v0)
 void glProgramUniform1iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1iv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform1iv)
+  if (s_deviceConfig.m_glProgramUniform1iv)
   {
-    deviceState->m_glProgramUniform1iv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform1iv (program, location, count, value);
   }
 }
 
@@ -3632,10 +3375,9 @@ void glProgramUniform1iv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform1f (GLuint program, GLint location, GLfloat v0)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1f
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform1f)
+  if (s_deviceConfig.m_glProgramUniform1f)
   {
-    deviceState->m_glProgramUniform1f (program, location, v0);
+    s_deviceConfig.m_glProgramUniform1f (program, location, v0);
   }
 }
 
@@ -3646,10 +3388,9 @@ void glProgramUniform1f (GLuint program, GLint location, GLfloat v0)
 void glProgramUniform1fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform1fv)
+  if (s_deviceConfig.m_glProgramUniform1fv)
   {
-    deviceState->m_glProgramUniform1fv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform1fv (program, location, count, value);
   }
 }
 
@@ -3660,10 +3401,9 @@ void glProgramUniform1fv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform1d (GLuint program, GLint location, GLdouble v0)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform1d)
+  if (s_deviceConfig.m_glProgramUniform1d)
   {
-    deviceState->m_glProgramUniform1d (program, location, v0);
+    s_deviceConfig.m_glProgramUniform1d (program, location, v0);
   }
 }
 
@@ -3674,10 +3414,9 @@ void glProgramUniform1d (GLuint program, GLint location, GLdouble v0)
 void glProgramUniform1dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform1dv)
+  if (s_deviceConfig.m_glProgramUniform1dv)
   {
-    deviceState->m_glProgramUniform1dv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform1dv (program, location, count, value);
   }
 }
 
@@ -3688,10 +3427,9 @@ void glProgramUniform1dv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform1ui (GLuint program, GLint location, GLuint v0)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1ui
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform1ui)
+  if (s_deviceConfig.m_glProgramUniform1ui)
   {
-    deviceState->m_glProgramUniform1ui (program, location, v0);
+    s_deviceConfig.m_glProgramUniform1ui (program, location, v0);
   }
 }
 
@@ -3702,10 +3440,9 @@ void glProgramUniform1ui (GLuint program, GLint location, GLuint v0)
 void glProgramUniform1uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1uiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform1uiv)
+  if (s_deviceConfig.m_glProgramUniform1uiv)
   {
-    deviceState->m_glProgramUniform1uiv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform1uiv (program, location, count, value);
   }
 }
 
@@ -3716,10 +3453,9 @@ void glProgramUniform1uiv (GLuint program, GLint location, GLsizei count, const 
 void glProgramUniform2i (GLuint program, GLint location, GLint v0, GLint v1)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2i
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform2i)
+  if (s_deviceConfig.m_glProgramUniform2i)
   {
-    deviceState->m_glProgramUniform2i (program, location, v0, v1);
+    s_deviceConfig.m_glProgramUniform2i (program, location, v0, v1);
   }
 }
 
@@ -3730,10 +3466,9 @@ void glProgramUniform2i (GLuint program, GLint location, GLint v0, GLint v1)
 void glProgramUniform2iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2iv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform2iv)
+  if (s_deviceConfig.m_glProgramUniform2iv)
   {
-    deviceState->m_glProgramUniform2iv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform2iv (program, location, count, value);
   }
 }
 
@@ -3744,10 +3479,9 @@ void glProgramUniform2iv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform2f (GLuint program, GLint location, GLfloat v0, GLfloat v1)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2f
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform2f)
+  if (s_deviceConfig.m_glProgramUniform2f)
   {
-    deviceState->m_glProgramUniform2f (program, location, v0, v1);
+    s_deviceConfig.m_glProgramUniform2f (program, location, v0, v1);
   }
 }
 
@@ -3758,10 +3492,9 @@ void glProgramUniform2f (GLuint program, GLint location, GLfloat v0, GLfloat v1)
 void glProgramUniform2fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform2fv)
+  if (s_deviceConfig.m_glProgramUniform2fv)
   {
-    deviceState->m_glProgramUniform2fv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform2fv (program, location, count, value);
   }
 }
 
@@ -3772,10 +3505,9 @@ void glProgramUniform2fv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform2d (GLuint program, GLint location, GLdouble v0, GLdouble v1)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform2d)
+  if (s_deviceConfig.m_glProgramUniform2d)
   {
-    deviceState->m_glProgramUniform2d (program, location, v0, v1);
+    s_deviceConfig.m_glProgramUniform2d (program, location, v0, v1);
   }
 }
 
@@ -3786,10 +3518,9 @@ void glProgramUniform2d (GLuint program, GLint location, GLdouble v0, GLdouble v
 void glProgramUniform2dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform2dv)
+  if (s_deviceConfig.m_glProgramUniform2dv)
   {
-    deviceState->m_glProgramUniform2dv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform2dv (program, location, count, value);
   }
 }
 
@@ -3800,10 +3531,9 @@ void glProgramUniform2dv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform2ui (GLuint program, GLint location, GLuint v0, GLuint v1)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2ui
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform2ui)
+  if (s_deviceConfig.m_glProgramUniform2ui)
   {
-    deviceState->m_glProgramUniform2ui (program, location, v0, v1);
+    s_deviceConfig.m_glProgramUniform2ui (program, location, v0, v1);
   }
 }
 
@@ -3814,10 +3544,9 @@ void glProgramUniform2ui (GLuint program, GLint location, GLuint v0, GLuint v1)
 void glProgramUniform2uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2uiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform2uiv)
+  if (s_deviceConfig.m_glProgramUniform2uiv)
   {
-    deviceState->m_glProgramUniform2uiv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform2uiv (program, location, count, value);
   }
 }
 
@@ -3828,10 +3557,9 @@ void glProgramUniform2uiv (GLuint program, GLint location, GLsizei count, const 
 void glProgramUniform3i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3i
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform3i)
+  if (s_deviceConfig.m_glProgramUniform3i)
   {
-    deviceState->m_glProgramUniform3i (program, location, v0, v1, v2);
+    s_deviceConfig.m_glProgramUniform3i (program, location, v0, v1, v2);
   }
 }
 
@@ -3842,10 +3570,9 @@ void glProgramUniform3i (GLuint program, GLint location, GLint v0, GLint v1, GLi
 void glProgramUniform3iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3iv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform3iv)
+  if (s_deviceConfig.m_glProgramUniform3iv)
   {
-    deviceState->m_glProgramUniform3iv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform3iv (program, location, count, value);
   }
 }
 
@@ -3856,10 +3583,9 @@ void glProgramUniform3iv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform3f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3f
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform3f)
+  if (s_deviceConfig.m_glProgramUniform3f)
   {
-    deviceState->m_glProgramUniform3f (program, location, v0, v1, v2);
+    s_deviceConfig.m_glProgramUniform3f (program, location, v0, v1, v2);
   }
 }
 
@@ -3870,10 +3596,9 @@ void glProgramUniform3f (GLuint program, GLint location, GLfloat v0, GLfloat v1,
 void glProgramUniform3fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform3fv)
+  if (s_deviceConfig.m_glProgramUniform3fv)
   {
-    deviceState->m_glProgramUniform3fv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform3fv (program, location, count, value);
   }
 }
 
@@ -3884,10 +3609,9 @@ void glProgramUniform3fv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform3d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform3d)
+  if (s_deviceConfig.m_glProgramUniform3d)
   {
-    deviceState->m_glProgramUniform3d (program, location, v0, v1, v2);
+    s_deviceConfig.m_glProgramUniform3d (program, location, v0, v1, v2);
   }
 }
 
@@ -3898,10 +3622,9 @@ void glProgramUniform3d (GLuint program, GLint location, GLdouble v0, GLdouble v
 void glProgramUniform3dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform3dv)
+  if (s_deviceConfig.m_glProgramUniform3dv)
   {
-    deviceState->m_glProgramUniform3dv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform3dv (program, location, count, value);
   }
 }
 
@@ -3912,10 +3635,9 @@ void glProgramUniform3dv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform3ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3ui
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform3ui)
+  if (s_deviceConfig.m_glProgramUniform3ui)
   {
-    deviceState->m_glProgramUniform3ui (program, location, v0, v1, v2);
+    s_deviceConfig.m_glProgramUniform3ui (program, location, v0, v1, v2);
   }
 }
 
@@ -3926,10 +3648,9 @@ void glProgramUniform3ui (GLuint program, GLint location, GLuint v0, GLuint v1, 
 void glProgramUniform3uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3uiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform3uiv)
+  if (s_deviceConfig.m_glProgramUniform3uiv)
   {
-    deviceState->m_glProgramUniform3uiv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform3uiv (program, location, count, value);
   }
 }
 
@@ -3940,10 +3661,9 @@ void glProgramUniform3uiv (GLuint program, GLint location, GLsizei count, const 
 void glProgramUniform4i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4i
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform4i)
+  if (s_deviceConfig.m_glProgramUniform4i)
   {
-    deviceState->m_glProgramUniform4i (program, location, v0, v1, v2, v3);
+    s_deviceConfig.m_glProgramUniform4i (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -3954,10 +3674,9 @@ void glProgramUniform4i (GLuint program, GLint location, GLint v0, GLint v1, GLi
 void glProgramUniform4iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4iv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform4iv)
+  if (s_deviceConfig.m_glProgramUniform4iv)
   {
-    deviceState->m_glProgramUniform4iv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform4iv (program, location, count, value);
   }
 }
 
@@ -3968,10 +3687,9 @@ void glProgramUniform4iv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform4f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4f
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform4f)
+  if (s_deviceConfig.m_glProgramUniform4f)
   {
-    deviceState->m_glProgramUniform4f (program, location, v0, v1, v2, v3);
+    s_deviceConfig.m_glProgramUniform4f (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -3982,10 +3700,9 @@ void glProgramUniform4f (GLuint program, GLint location, GLfloat v0, GLfloat v1,
 void glProgramUniform4fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform4fv)
+  if (s_deviceConfig.m_glProgramUniform4fv)
   {
-    deviceState->m_glProgramUniform4fv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform4fv (program, location, count, value);
   }
 }
 
@@ -3996,10 +3713,9 @@ void glProgramUniform4fv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform4d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform4d)
+  if (s_deviceConfig.m_glProgramUniform4d)
   {
-    deviceState->m_glProgramUniform4d (program, location, v0, v1, v2, v3);
+    s_deviceConfig.m_glProgramUniform4d (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -4010,10 +3726,9 @@ void glProgramUniform4d (GLuint program, GLint location, GLdouble v0, GLdouble v
 void glProgramUniform4dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform4dv)
+  if (s_deviceConfig.m_glProgramUniform4dv)
   {
-    deviceState->m_glProgramUniform4dv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform4dv (program, location, count, value);
   }
 }
 
@@ -4024,10 +3739,9 @@ void glProgramUniform4dv (GLuint program, GLint location, GLsizei count, const G
 void glProgramUniform4ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4ui
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform4ui)
+  if (s_deviceConfig.m_glProgramUniform4ui)
   {
-    deviceState->m_glProgramUniform4ui (program, location, v0, v1, v2, v3);
+    s_deviceConfig.m_glProgramUniform4ui (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -4038,10 +3752,9 @@ void glProgramUniform4ui (GLuint program, GLint location, GLuint v0, GLuint v1, 
 void glProgramUniform4uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4uiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniform4uiv)
+  if (s_deviceConfig.m_glProgramUniform4uiv)
   {
-    deviceState->m_glProgramUniform4uiv (program, location, count, value);
+    s_deviceConfig.m_glProgramUniform4uiv (program, location, count, value);
   }
 }
 
@@ -4052,10 +3765,9 @@ void glProgramUniform4uiv (GLuint program, GLint location, GLsizei count, const 
 void glProgramUniformMatrix2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix2fv)
+  if (s_deviceConfig.m_glProgramUniformMatrix2fv)
   {
-    deviceState->m_glProgramUniformMatrix2fv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix2fv (program, location, count, transpose, value);
   }
 }
 
@@ -4066,10 +3778,9 @@ void glProgramUniformMatrix2fv (GLuint program, GLint location, GLsizei count, G
 void glProgramUniformMatrix3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix3fv)
+  if (s_deviceConfig.m_glProgramUniformMatrix3fv)
   {
-    deviceState->m_glProgramUniformMatrix3fv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix3fv (program, location, count, transpose, value);
   }
 }
 
@@ -4080,10 +3791,9 @@ void glProgramUniformMatrix3fv (GLuint program, GLint location, GLsizei count, G
 void glProgramUniformMatrix4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix4fv)
+  if (s_deviceConfig.m_glProgramUniformMatrix4fv)
   {
-    deviceState->m_glProgramUniformMatrix4fv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix4fv (program, location, count, transpose, value);
   }
 }
 
@@ -4094,10 +3804,9 @@ void glProgramUniformMatrix4fv (GLuint program, GLint location, GLsizei count, G
 void glProgramUniformMatrix2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix2dv)
+  if (s_deviceConfig.m_glProgramUniformMatrix2dv)
   {
-    deviceState->m_glProgramUniformMatrix2dv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix2dv (program, location, count, transpose, value);
   }
 }
 
@@ -4108,10 +3817,9 @@ void glProgramUniformMatrix2dv (GLuint program, GLint location, GLsizei count, G
 void glProgramUniformMatrix3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix3dv)
+  if (s_deviceConfig.m_glProgramUniformMatrix3dv)
   {
-    deviceState->m_glProgramUniformMatrix3dv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix3dv (program, location, count, transpose, value);
   }
 }
 
@@ -4122,10 +3830,9 @@ void glProgramUniformMatrix3dv (GLuint program, GLint location, GLsizei count, G
 void glProgramUniformMatrix4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix4dv)
+  if (s_deviceConfig.m_glProgramUniformMatrix4dv)
   {
-    deviceState->m_glProgramUniformMatrix4dv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix4dv (program, location, count, transpose, value);
   }
 }
 
@@ -4136,10 +3843,9 @@ void glProgramUniformMatrix4dv (GLuint program, GLint location, GLsizei count, G
 void glProgramUniformMatrix2x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2x3fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix2x3fv)
+  if (s_deviceConfig.m_glProgramUniformMatrix2x3fv)
   {
-    deviceState->m_glProgramUniformMatrix2x3fv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix2x3fv (program, location, count, transpose, value);
   }
 }
 
@@ -4150,10 +3856,9 @@ void glProgramUniformMatrix2x3fv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix3x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3x2fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix3x2fv)
+  if (s_deviceConfig.m_glProgramUniformMatrix3x2fv)
   {
-    deviceState->m_glProgramUniformMatrix3x2fv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix3x2fv (program, location, count, transpose, value);
   }
 }
 
@@ -4164,10 +3869,9 @@ void glProgramUniformMatrix3x2fv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix2x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2x4fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix2x4fv)
+  if (s_deviceConfig.m_glProgramUniformMatrix2x4fv)
   {
-    deviceState->m_glProgramUniformMatrix2x4fv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix2x4fv (program, location, count, transpose, value);
   }
 }
 
@@ -4178,10 +3882,9 @@ void glProgramUniformMatrix2x4fv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix4x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4x2fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix4x2fv)
+  if (s_deviceConfig.m_glProgramUniformMatrix4x2fv)
   {
-    deviceState->m_glProgramUniformMatrix4x2fv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix4x2fv (program, location, count, transpose, value);
   }
 }
 
@@ -4192,10 +3895,9 @@ void glProgramUniformMatrix4x2fv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix3x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3x4fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix3x4fv)
+  if (s_deviceConfig.m_glProgramUniformMatrix3x4fv)
   {
-    deviceState->m_glProgramUniformMatrix3x4fv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix3x4fv (program, location, count, transpose, value);
   }
 }
 
@@ -4206,10 +3908,9 @@ void glProgramUniformMatrix3x4fv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix4x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4x3fv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix4x3fv)
+  if (s_deviceConfig.m_glProgramUniformMatrix4x3fv)
   {
-    deviceState->m_glProgramUniformMatrix4x3fv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix4x3fv (program, location, count, transpose, value);
   }
 }
 
@@ -4220,10 +3921,9 @@ void glProgramUniformMatrix4x3fv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix2x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2x3dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix2x3dv)
+  if (s_deviceConfig.m_glProgramUniformMatrix2x3dv)
   {
-    deviceState->m_glProgramUniformMatrix2x3dv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix2x3dv (program, location, count, transpose, value);
   }
 }
 
@@ -4234,10 +3934,9 @@ void glProgramUniformMatrix2x3dv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix3x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3x2dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix3x2dv)
+  if (s_deviceConfig.m_glProgramUniformMatrix3x2dv)
   {
-    deviceState->m_glProgramUniformMatrix3x2dv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix3x2dv (program, location, count, transpose, value);
   }
 }
 
@@ -4248,10 +3947,9 @@ void glProgramUniformMatrix3x2dv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix2x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2x4dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix2x4dv)
+  if (s_deviceConfig.m_glProgramUniformMatrix2x4dv)
   {
-    deviceState->m_glProgramUniformMatrix2x4dv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix2x4dv (program, location, count, transpose, value);
   }
 }
 
@@ -4262,10 +3960,9 @@ void glProgramUniformMatrix2x4dv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix4x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4x2dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix4x2dv)
+  if (s_deviceConfig.m_glProgramUniformMatrix4x2dv)
   {
-    deviceState->m_glProgramUniformMatrix4x2dv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix4x2dv (program, location, count, transpose, value);
   }
 }
 
@@ -4276,10 +3973,9 @@ void glProgramUniformMatrix4x2dv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix3x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3x4dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix3x4dv)
+  if (s_deviceConfig.m_glProgramUniformMatrix3x4dv)
   {
-    deviceState->m_glProgramUniformMatrix3x4dv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix3x4dv (program, location, count, transpose, value);
   }
 }
 
@@ -4290,10 +3986,9 @@ void glProgramUniformMatrix3x4dv (GLuint program, GLint location, GLsizei count,
 void glProgramUniformMatrix4x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4x3dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glProgramUniformMatrix4x3dv)
+  if (s_deviceConfig.m_glProgramUniformMatrix4x3dv)
   {
-    deviceState->m_glProgramUniformMatrix4x3dv (program, location, count, transpose, value);
+    s_deviceConfig.m_glProgramUniformMatrix4x3dv (program, location, count, transpose, value);
   }
 }
 
@@ -4304,10 +3999,9 @@ void glProgramUniformMatrix4x3dv (GLuint program, GLint location, GLsizei count,
 void glValidateProgramPipeline (GLuint pipeline)
 {
   // GL_ARB_separate_shader_objects - glValidateProgramPipeline
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glValidateProgramPipeline)
+  if (s_deviceConfig.m_glValidateProgramPipeline)
   {
-    deviceState->m_glValidateProgramPipeline (pipeline);
+    s_deviceConfig.m_glValidateProgramPipeline (pipeline);
   }
 }
 
@@ -4318,10 +4012,9 @@ void glValidateProgramPipeline (GLuint pipeline)
 void glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, GLsizei * length, GLchar * infoLog)
 {
   // GL_ARB_separate_shader_objects - glGetProgramPipelineInfoLog
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramPipelineInfoLog)
+  if (s_deviceConfig.m_glGetProgramPipelineInfoLog)
   {
-    deviceState->m_glGetProgramPipelineInfoLog (pipeline, bufSize, length, infoLog);
+    s_deviceConfig.m_glGetProgramPipelineInfoLog (pipeline, bufSize, length, infoLog);
   }
 }
 
@@ -4332,10 +4025,9 @@ void glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, GLsizei * le
 void glGetActiveAtomicCounterBufferiv (GLuint program, GLuint bufferIndex, GLenum pname, GLint * params)
 {
   // GL_ARB_shader_atomic_counters - glGetActiveAtomicCounterBufferiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetActiveAtomicCounterBufferiv)
+  if (s_deviceConfig.m_glGetActiveAtomicCounterBufferiv)
   {
-    deviceState->m_glGetActiveAtomicCounterBufferiv (program, bufferIndex, pname, params);
+    s_deviceConfig.m_glGetActiveAtomicCounterBufferiv (program, bufferIndex, pname, params);
   }
 }
 
@@ -4346,10 +4038,9 @@ void glGetActiveAtomicCounterBufferiv (GLuint program, GLuint bufferIndex, GLenu
 void glBindImageTexture (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)
 {
   // GL_ARB_shader_image_load_store - glBindImageTexture
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindImageTexture)
+  if (s_deviceConfig.m_glBindImageTexture)
   {
-    deviceState->m_glBindImageTexture (unit, texture, level, layered, layer, access, format);
+    s_deviceConfig.m_glBindImageTexture (unit, texture, level, layered, layer, access, format);
   }
 }
 
@@ -4360,10 +4051,9 @@ void glBindImageTexture (GLuint unit, GLuint texture, GLint level, GLboolean lay
 void glMemoryBarrier (GLbitfield barriers)
 {
   // GL_ARB_shader_image_load_store - glMemoryBarrier
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glMemoryBarrier)
+  if (s_deviceConfig.m_glMemoryBarrier)
   {
-    deviceState->m_glMemoryBarrier (barriers);
+    s_deviceConfig.m_glMemoryBarrier (barriers);
   }
 }
 
@@ -4374,10 +4064,9 @@ void glMemoryBarrier (GLbitfield barriers)
 void glShaderStorageBlockBinding (GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding)
 {
   // GL_ARB_shader_storage_buffer_object - glShaderStorageBlockBinding
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glShaderStorageBlockBinding)
+  if (s_deviceConfig.m_glShaderStorageBlockBinding)
   {
-    deviceState->m_glShaderStorageBlockBinding (program, storageBlockIndex, storageBlockBinding);
+    s_deviceConfig.m_glShaderStorageBlockBinding (program, storageBlockIndex, storageBlockBinding);
   }
 }
 
@@ -4388,10 +4077,9 @@ void glShaderStorageBlockBinding (GLuint program, GLuint storageBlockIndex, GLui
 GLint glGetSubroutineUniformLocation (GLuint program, GLenum shadertype, const GLchar * name)
 {
   // GL_ARB_shader_subroutine - glGetSubroutineUniformLocation
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetSubroutineUniformLocation)
+  if (s_deviceConfig.m_glGetSubroutineUniformLocation)
   {
-    return deviceState->m_glGetSubroutineUniformLocation (program, shadertype, name);
+    return s_deviceConfig.m_glGetSubroutineUniformLocation (program, shadertype, name);
   }
   return ((GLint)0);
 }
@@ -4403,10 +4091,9 @@ GLint glGetSubroutineUniformLocation (GLuint program, GLenum shadertype, const G
 GLuint glGetSubroutineIndex (GLuint program, GLenum shadertype, const GLchar * name)
 {
   // GL_ARB_shader_subroutine - glGetSubroutineIndex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetSubroutineIndex)
+  if (s_deviceConfig.m_glGetSubroutineIndex)
   {
-    return deviceState->m_glGetSubroutineIndex (program, shadertype, name);
+    return s_deviceConfig.m_glGetSubroutineIndex (program, shadertype, name);
   }
   return ((GLuint)0);
 }
@@ -4418,10 +4105,9 @@ GLuint glGetSubroutineIndex (GLuint program, GLenum shadertype, const GLchar * n
 void glGetActiveSubroutineUniformiv (GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint * values)
 {
   // GL_ARB_shader_subroutine - glGetActiveSubroutineUniformiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetActiveSubroutineUniformiv)
+  if (s_deviceConfig.m_glGetActiveSubroutineUniformiv)
   {
-    deviceState->m_glGetActiveSubroutineUniformiv (program, shadertype, index, pname, values);
+    s_deviceConfig.m_glGetActiveSubroutineUniformiv (program, shadertype, index, pname, values);
   }
 }
 
@@ -4432,10 +4118,9 @@ void glGetActiveSubroutineUniformiv (GLuint program, GLenum shadertype, GLuint i
 void glGetActiveSubroutineUniformName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei * length, GLchar * name)
 {
   // GL_ARB_shader_subroutine - glGetActiveSubroutineUniformName
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetActiveSubroutineUniformName)
+  if (s_deviceConfig.m_glGetActiveSubroutineUniformName)
   {
-    deviceState->m_glGetActiveSubroutineUniformName (program, shadertype, index, bufsize, length, name);
+    s_deviceConfig.m_glGetActiveSubroutineUniformName (program, shadertype, index, bufsize, length, name);
   }
 }
 
@@ -4446,10 +4131,9 @@ void glGetActiveSubroutineUniformName (GLuint program, GLenum shadertype, GLuint
 void glGetActiveSubroutineName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei * length, GLchar * name)
 {
   // GL_ARB_shader_subroutine - glGetActiveSubroutineName
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetActiveSubroutineName)
+  if (s_deviceConfig.m_glGetActiveSubroutineName)
   {
-    deviceState->m_glGetActiveSubroutineName (program, shadertype, index, bufsize, length, name);
+    s_deviceConfig.m_glGetActiveSubroutineName (program, shadertype, index, bufsize, length, name);
   }
 }
 
@@ -4460,10 +4144,9 @@ void glGetActiveSubroutineName (GLuint program, GLenum shadertype, GLuint index,
 void glUniformSubroutinesuiv (GLenum shadertype, GLsizei count, const GLuint * indices)
 {
   // GL_ARB_shader_subroutine - glUniformSubroutinesuiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformSubroutinesuiv)
+  if (s_deviceConfig.m_glUniformSubroutinesuiv)
   {
-    deviceState->m_glUniformSubroutinesuiv (shadertype, count, indices);
+    s_deviceConfig.m_glUniformSubroutinesuiv (shadertype, count, indices);
   }
 }
 
@@ -4474,10 +4157,9 @@ void glUniformSubroutinesuiv (GLenum shadertype, GLsizei count, const GLuint * i
 void glGetUniformSubroutineuiv (GLenum shadertype, GLint location, GLuint * params)
 {
   // GL_ARB_shader_subroutine - glGetUniformSubroutineuiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetUniformSubroutineuiv)
+  if (s_deviceConfig.m_glGetUniformSubroutineuiv)
   {
-    deviceState->m_glGetUniformSubroutineuiv (shadertype, location, params);
+    s_deviceConfig.m_glGetUniformSubroutineuiv (shadertype, location, params);
   }
 }
 
@@ -4488,10 +4170,9 @@ void glGetUniformSubroutineuiv (GLenum shadertype, GLint location, GLuint * para
 void glGetProgramStageiv (GLuint program, GLenum shadertype, GLenum pname, GLint * values)
 {
   // GL_ARB_shader_subroutine - glGetProgramStageiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetProgramStageiv)
+  if (s_deviceConfig.m_glGetProgramStageiv)
   {
-    deviceState->m_glGetProgramStageiv (program, shadertype, pname, values);
+    s_deviceConfig.m_glGetProgramStageiv (program, shadertype, pname, values);
   }
 }
 
@@ -4502,10 +4183,9 @@ void glGetProgramStageiv (GLuint program, GLenum shadertype, GLenum pname, GLint
 void glNamedStringARB (GLenum type, GLint namelen, const GLchar * name, GLint stringlen, const GLchar * string)
 {
   // GL_ARB_shading_language_include - glNamedStringARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedStringARB)
+  if (s_deviceConfig.m_glNamedStringARB)
   {
-    deviceState->m_glNamedStringARB (type, namelen, name, stringlen, string);
+    s_deviceConfig.m_glNamedStringARB (type, namelen, name, stringlen, string);
   }
 }
 
@@ -4516,10 +4196,9 @@ void glNamedStringARB (GLenum type, GLint namelen, const GLchar * name, GLint st
 void glDeleteNamedStringARB (GLint namelen, const GLchar * name)
 {
   // GL_ARB_shading_language_include - glDeleteNamedStringARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDeleteNamedStringARB)
+  if (s_deviceConfig.m_glDeleteNamedStringARB)
   {
-    deviceState->m_glDeleteNamedStringARB (namelen, name);
+    s_deviceConfig.m_glDeleteNamedStringARB (namelen, name);
   }
 }
 
@@ -4530,10 +4209,9 @@ void glDeleteNamedStringARB (GLint namelen, const GLchar * name)
 void glCompileShaderIncludeARB (GLuint shader, GLsizei count, const GLchar *const* path, const GLint * length)
 {
   // GL_ARB_shading_language_include - glCompileShaderIncludeARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glCompileShaderIncludeARB)
+  if (s_deviceConfig.m_glCompileShaderIncludeARB)
   {
-    deviceState->m_glCompileShaderIncludeARB (shader, count, path, length);
+    s_deviceConfig.m_glCompileShaderIncludeARB (shader, count, path, length);
   }
 }
 
@@ -4544,10 +4222,9 @@ void glCompileShaderIncludeARB (GLuint shader, GLsizei count, const GLchar *cons
 GLboolean glIsNamedStringARB (GLint namelen, const GLchar * name)
 {
   // GL_ARB_shading_language_include - glIsNamedStringARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsNamedStringARB)
+  if (s_deviceConfig.m_glIsNamedStringARB)
   {
-    return deviceState->m_glIsNamedStringARB (namelen, name);
+    return s_deviceConfig.m_glIsNamedStringARB (namelen, name);
   }
   return ((GLboolean)0);
 }
@@ -4559,10 +4236,9 @@ GLboolean glIsNamedStringARB (GLint namelen, const GLchar * name)
 void glGetNamedStringARB (GLint namelen, const GLchar * name, GLsizei bufSize, GLint * stringlen, GLchar * string)
 {
   // GL_ARB_shading_language_include - glGetNamedStringARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetNamedStringARB)
+  if (s_deviceConfig.m_glGetNamedStringARB)
   {
-    deviceState->m_glGetNamedStringARB (namelen, name, bufSize, stringlen, string);
+    s_deviceConfig.m_glGetNamedStringARB (namelen, name, bufSize, stringlen, string);
   }
 }
 
@@ -4573,10 +4249,9 @@ void glGetNamedStringARB (GLint namelen, const GLchar * name, GLsizei bufSize, G
 void glGetNamedStringivARB (GLint namelen, const GLchar * name, GLenum pname, GLint * params)
 {
   // GL_ARB_shading_language_include - glGetNamedStringivARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetNamedStringivARB)
+  if (s_deviceConfig.m_glGetNamedStringivARB)
   {
-    deviceState->m_glGetNamedStringivARB (namelen, name, pname, params);
+    s_deviceConfig.m_glGetNamedStringivARB (namelen, name, pname, params);
   }
 }
 
@@ -4587,10 +4262,9 @@ void glGetNamedStringivARB (GLint namelen, const GLchar * name, GLenum pname, GL
 void glBufferPageCommitmentARB (GLenum target, GLintptr offset, GLsizeiptr size, GLboolean commit)
 {
   // GL_ARB_sparse_buffer - glBufferPageCommitmentARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBufferPageCommitmentARB)
+  if (s_deviceConfig.m_glBufferPageCommitmentARB)
   {
-    deviceState->m_glBufferPageCommitmentARB (target, offset, size, commit);
+    s_deviceConfig.m_glBufferPageCommitmentARB (target, offset, size, commit);
   }
 }
 
@@ -4601,10 +4275,9 @@ void glBufferPageCommitmentARB (GLenum target, GLintptr offset, GLsizeiptr size,
 void glNamedBufferPageCommitmentEXT (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit)
 {
   // GL_ARB_sparse_buffer - glNamedBufferPageCommitmentEXT
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedBufferPageCommitmentEXT)
+  if (s_deviceConfig.m_glNamedBufferPageCommitmentEXT)
   {
-    deviceState->m_glNamedBufferPageCommitmentEXT (buffer, offset, size, commit);
+    s_deviceConfig.m_glNamedBufferPageCommitmentEXT (buffer, offset, size, commit);
   }
 }
 
@@ -4615,10 +4288,9 @@ void glNamedBufferPageCommitmentEXT (GLuint buffer, GLintptr offset, GLsizeiptr 
 void glNamedBufferPageCommitmentARB (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit)
 {
   // GL_ARB_sparse_buffer - glNamedBufferPageCommitmentARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glNamedBufferPageCommitmentARB)
+  if (s_deviceConfig.m_glNamedBufferPageCommitmentARB)
   {
-    deviceState->m_glNamedBufferPageCommitmentARB (buffer, offset, size, commit);
+    s_deviceConfig.m_glNamedBufferPageCommitmentARB (buffer, offset, size, commit);
   }
 }
 
@@ -4629,10 +4301,9 @@ void glNamedBufferPageCommitmentARB (GLuint buffer, GLintptr offset, GLsizeiptr 
 void glTexPageCommitmentARB (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit)
 {
   // GL_ARB_sparse_texture - glTexPageCommitmentARB
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTexPageCommitmentARB)
+  if (s_deviceConfig.m_glTexPageCommitmentARB)
   {
-    deviceState->m_glTexPageCommitmentARB (target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
+    s_deviceConfig.m_glTexPageCommitmentARB (target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
   }
 }
 
@@ -4643,10 +4314,9 @@ void glTexPageCommitmentARB (GLenum target, GLint level, GLint xoffset, GLint yo
 GLsync glFenceSync (GLenum condition, GLbitfield flags)
 {
   // GL_ARB_sync - glFenceSync
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glFenceSync)
+  if (s_deviceConfig.m_glFenceSync)
   {
-    return deviceState->m_glFenceSync (condition, flags);
+    return s_deviceConfig.m_glFenceSync (condition, flags);
   }
   return ((GLsync)0);
 }
@@ -4658,10 +4328,9 @@ GLsync glFenceSync (GLenum condition, GLbitfield flags)
 GLboolean glIsSync (GLsync sync)
 {
   // GL_ARB_sync - glIsSync
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsSync)
+  if (s_deviceConfig.m_glIsSync)
   {
-    return deviceState->m_glIsSync (sync);
+    return s_deviceConfig.m_glIsSync (sync);
   }
   return ((GLboolean)0);
 }
@@ -4673,10 +4342,9 @@ GLboolean glIsSync (GLsync sync)
 void glDeleteSync (GLsync sync)
 {
   // GL_ARB_sync - glDeleteSync
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDeleteSync)
+  if (s_deviceConfig.m_glDeleteSync)
   {
-    deviceState->m_glDeleteSync (sync);
+    s_deviceConfig.m_glDeleteSync (sync);
   }
 }
 
@@ -4687,10 +4355,9 @@ void glDeleteSync (GLsync sync)
 GLenum glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 {
   // GL_ARB_sync - glClientWaitSync
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glClientWaitSync)
+  if (s_deviceConfig.m_glClientWaitSync)
   {
-    return deviceState->m_glClientWaitSync (sync, flags, timeout);
+    return s_deviceConfig.m_glClientWaitSync (sync, flags, timeout);
   }
   return ((GLenum)0);
 }
@@ -4702,10 +4369,9 @@ GLenum glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 void glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 {
   // GL_ARB_sync - glWaitSync
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glWaitSync)
+  if (s_deviceConfig.m_glWaitSync)
   {
-    deviceState->m_glWaitSync (sync, flags, timeout);
+    s_deviceConfig.m_glWaitSync (sync, flags, timeout);
   }
 }
 
@@ -4716,10 +4382,9 @@ void glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 void glGetInteger64v (GLenum pname, GLint64 * data)
 {
   // GL_ARB_sync - glGetInteger64v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetInteger64v)
+  if (s_deviceConfig.m_glGetInteger64v)
   {
-    deviceState->m_glGetInteger64v (pname, data);
+    s_deviceConfig.m_glGetInteger64v (pname, data);
   }
 }
 
@@ -4730,10 +4395,9 @@ void glGetInteger64v (GLenum pname, GLint64 * data)
 void glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values)
 {
   // GL_ARB_sync - glGetSynciv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetSynciv)
+  if (s_deviceConfig.m_glGetSynciv)
   {
-    deviceState->m_glGetSynciv (sync, pname, bufSize, length, values);
+    s_deviceConfig.m_glGetSynciv (sync, pname, bufSize, length, values);
   }
 }
 
@@ -4744,10 +4408,9 @@ void glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, 
 void glPatchParameteri (GLenum pname, GLint value)
 {
   // GL_ARB_tessellation_shader - glPatchParameteri
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glPatchParameteri)
+  if (s_deviceConfig.m_glPatchParameteri)
   {
-    deviceState->m_glPatchParameteri (pname, value);
+    s_deviceConfig.m_glPatchParameteri (pname, value);
   }
 }
 
@@ -4758,10 +4421,9 @@ void glPatchParameteri (GLenum pname, GLint value)
 void glPatchParameterfv (GLenum pname, const GLfloat * values)
 {
   // GL_ARB_tessellation_shader - glPatchParameterfv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glPatchParameterfv)
+  if (s_deviceConfig.m_glPatchParameterfv)
   {
-    deviceState->m_glPatchParameterfv (pname, values);
+    s_deviceConfig.m_glPatchParameterfv (pname, values);
   }
 }
 
@@ -4772,10 +4434,9 @@ void glPatchParameterfv (GLenum pname, const GLfloat * values)
 void glTextureBarrier ()
 {
   // GL_ARB_texture_barrier - glTextureBarrier
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureBarrier)
+  if (s_deviceConfig.m_glTextureBarrier)
   {
-    deviceState->m_glTextureBarrier ();
+    s_deviceConfig.m_glTextureBarrier ();
   }
 }
 
@@ -4786,10 +4447,9 @@ void glTextureBarrier ()
 void glTexBufferRange (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
   // GL_ARB_texture_buffer_range - glTexBufferRange
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTexBufferRange)
+  if (s_deviceConfig.m_glTexBufferRange)
   {
-    deviceState->m_glTexBufferRange (target, internalformat, buffer, offset, size);
+    s_deviceConfig.m_glTexBufferRange (target, internalformat, buffer, offset, size);
   }
 }
 
@@ -4800,10 +4460,9 @@ void glTexBufferRange (GLenum target, GLenum internalformat, GLuint buffer, GLin
 void glTexImage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
 {
   // GL_ARB_texture_multisample - glTexImage2DMultisample
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTexImage2DMultisample)
+  if (s_deviceConfig.m_glTexImage2DMultisample)
   {
-    deviceState->m_glTexImage2DMultisample (target, samples, internalformat, width, height, fixedsamplelocations);
+    s_deviceConfig.m_glTexImage2DMultisample (target, samples, internalformat, width, height, fixedsamplelocations);
   }
 }
 
@@ -4814,10 +4473,9 @@ void glTexImage2DMultisample (GLenum target, GLsizei samples, GLenum internalfor
 void glTexImage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
 {
   // GL_ARB_texture_multisample - glTexImage3DMultisample
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTexImage3DMultisample)
+  if (s_deviceConfig.m_glTexImage3DMultisample)
   {
-    deviceState->m_glTexImage3DMultisample (target, samples, internalformat, width, height, depth, fixedsamplelocations);
+    s_deviceConfig.m_glTexImage3DMultisample (target, samples, internalformat, width, height, depth, fixedsamplelocations);
   }
 }
 
@@ -4828,10 +4486,9 @@ void glTexImage3DMultisample (GLenum target, GLsizei samples, GLenum internalfor
 void glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val)
 {
   // GL_ARB_texture_multisample - glGetMultisamplefv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetMultisamplefv)
+  if (s_deviceConfig.m_glGetMultisamplefv)
   {
-    deviceState->m_glGetMultisamplefv (pname, index, val);
+    s_deviceConfig.m_glGetMultisamplefv (pname, index, val);
   }
 }
 
@@ -4842,10 +4499,9 @@ void glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val)
 void glSampleMaski (GLuint maskNumber, GLbitfield mask)
 {
   // GL_ARB_texture_multisample - glSampleMaski
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glSampleMaski)
+  if (s_deviceConfig.m_glSampleMaski)
   {
-    deviceState->m_glSampleMaski (maskNumber, mask);
+    s_deviceConfig.m_glSampleMaski (maskNumber, mask);
   }
 }
 
@@ -4856,10 +4512,9 @@ void glSampleMaski (GLuint maskNumber, GLbitfield mask)
 void glTexStorage1D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width)
 {
   // GL_ARB_texture_storage - glTexStorage1D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTexStorage1D)
+  if (s_deviceConfig.m_glTexStorage1D)
   {
-    deviceState->m_glTexStorage1D (target, levels, internalformat, width);
+    s_deviceConfig.m_glTexStorage1D (target, levels, internalformat, width);
   }
 }
 
@@ -4870,10 +4525,9 @@ void glTexStorage1D (GLenum target, GLsizei levels, GLenum internalformat, GLsiz
 void glTexStorage2D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_texture_storage - glTexStorage2D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTexStorage2D)
+  if (s_deviceConfig.m_glTexStorage2D)
   {
-    deviceState->m_glTexStorage2D (target, levels, internalformat, width, height);
+    s_deviceConfig.m_glTexStorage2D (target, levels, internalformat, width, height);
   }
 }
 
@@ -4884,10 +4538,9 @@ void glTexStorage2D (GLenum target, GLsizei levels, GLenum internalformat, GLsiz
 void glTexStorage3D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
 {
   // GL_ARB_texture_storage - glTexStorage3D
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTexStorage3D)
+  if (s_deviceConfig.m_glTexStorage3D)
   {
-    deviceState->m_glTexStorage3D (target, levels, internalformat, width, height, depth);
+    s_deviceConfig.m_glTexStorage3D (target, levels, internalformat, width, height, depth);
   }
 }
 
@@ -4898,10 +4551,9 @@ void glTexStorage3D (GLenum target, GLsizei levels, GLenum internalformat, GLsiz
 void glTexStorage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
 {
   // GL_ARB_texture_storage_multisample - glTexStorage2DMultisample
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTexStorage2DMultisample)
+  if (s_deviceConfig.m_glTexStorage2DMultisample)
   {
-    deviceState->m_glTexStorage2DMultisample (target, samples, internalformat, width, height, fixedsamplelocations);
+    s_deviceConfig.m_glTexStorage2DMultisample (target, samples, internalformat, width, height, fixedsamplelocations);
   }
 }
 
@@ -4912,10 +4564,9 @@ void glTexStorage2DMultisample (GLenum target, GLsizei samples, GLenum internalf
 void glTexStorage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
 {
   // GL_ARB_texture_storage_multisample - glTexStorage3DMultisample
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTexStorage3DMultisample)
+  if (s_deviceConfig.m_glTexStorage3DMultisample)
   {
-    deviceState->m_glTexStorage3DMultisample (target, samples, internalformat, width, height, depth, fixedsamplelocations);
+    s_deviceConfig.m_glTexStorage3DMultisample (target, samples, internalformat, width, height, depth, fixedsamplelocations);
   }
 }
 
@@ -4926,10 +4577,9 @@ void glTexStorage3DMultisample (GLenum target, GLsizei samples, GLenum internalf
 void glTextureView (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers)
 {
   // GL_ARB_texture_view - glTextureView
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glTextureView)
+  if (s_deviceConfig.m_glTextureView)
   {
-    deviceState->m_glTextureView (texture, target, origtexture, internalformat, minlevel, numlevels, minlayer, numlayers);
+    s_deviceConfig.m_glTextureView (texture, target, origtexture, internalformat, minlevel, numlevels, minlayer, numlayers);
   }
 }
 
@@ -4940,10 +4590,9 @@ void glTextureView (GLuint texture, GLenum target, GLuint origtexture, GLenum in
 void glQueryCounter (GLuint id, GLenum target)
 {
   // GL_ARB_timer_query - glQueryCounter
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glQueryCounter)
+  if (s_deviceConfig.m_glQueryCounter)
   {
-    deviceState->m_glQueryCounter (id, target);
+    s_deviceConfig.m_glQueryCounter (id, target);
   }
 }
 
@@ -4954,10 +4603,9 @@ void glQueryCounter (GLuint id, GLenum target)
 void glGetQueryObjecti64v (GLuint id, GLenum pname, GLint64 * params)
 {
   // GL_ARB_timer_query - glGetQueryObjecti64v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetQueryObjecti64v)
+  if (s_deviceConfig.m_glGetQueryObjecti64v)
   {
-    deviceState->m_glGetQueryObjecti64v (id, pname, params);
+    s_deviceConfig.m_glGetQueryObjecti64v (id, pname, params);
   }
 }
 
@@ -4968,10 +4616,9 @@ void glGetQueryObjecti64v (GLuint id, GLenum pname, GLint64 * params)
 void glGetQueryObjectui64v (GLuint id, GLenum pname, GLuint64 * params)
 {
   // GL_ARB_timer_query - glGetQueryObjectui64v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetQueryObjectui64v)
+  if (s_deviceConfig.m_glGetQueryObjectui64v)
   {
-    deviceState->m_glGetQueryObjectui64v (id, pname, params);
+    s_deviceConfig.m_glGetQueryObjectui64v (id, pname, params);
   }
 }
 
@@ -4982,10 +4629,9 @@ void glGetQueryObjectui64v (GLuint id, GLenum pname, GLuint64 * params)
 void glBindTransformFeedback (GLenum target, GLuint id)
 {
   // GL_ARB_transform_feedback2 - glBindTransformFeedback
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindTransformFeedback)
+  if (s_deviceConfig.m_glBindTransformFeedback)
   {
-    deviceState->m_glBindTransformFeedback (target, id);
+    s_deviceConfig.m_glBindTransformFeedback (target, id);
   }
 }
 
@@ -4996,10 +4642,9 @@ void glBindTransformFeedback (GLenum target, GLuint id)
 void glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids)
 {
   // GL_ARB_transform_feedback2 - glDeleteTransformFeedbacks
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDeleteTransformFeedbacks)
+  if (s_deviceConfig.m_glDeleteTransformFeedbacks)
   {
-    deviceState->m_glDeleteTransformFeedbacks (n, ids);
+    s_deviceConfig.m_glDeleteTransformFeedbacks (n, ids);
   }
 }
 
@@ -5010,10 +4655,9 @@ void glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids)
 void glGenTransformFeedbacks (GLsizei n, GLuint * ids)
 {
   // GL_ARB_transform_feedback2 - glGenTransformFeedbacks
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGenTransformFeedbacks)
+  if (s_deviceConfig.m_glGenTransformFeedbacks)
   {
-    deviceState->m_glGenTransformFeedbacks (n, ids);
+    s_deviceConfig.m_glGenTransformFeedbacks (n, ids);
   }
 }
 
@@ -5024,10 +4668,9 @@ void glGenTransformFeedbacks (GLsizei n, GLuint * ids)
 GLboolean glIsTransformFeedback (GLuint id)
 {
   // GL_ARB_transform_feedback2 - glIsTransformFeedback
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsTransformFeedback)
+  if (s_deviceConfig.m_glIsTransformFeedback)
   {
-    return deviceState->m_glIsTransformFeedback (id);
+    return s_deviceConfig.m_glIsTransformFeedback (id);
   }
   return ((GLboolean)0);
 }
@@ -5039,10 +4682,9 @@ GLboolean glIsTransformFeedback (GLuint id)
 void glPauseTransformFeedback ()
 {
   // GL_ARB_transform_feedback2 - glPauseTransformFeedback
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glPauseTransformFeedback)
+  if (s_deviceConfig.m_glPauseTransformFeedback)
   {
-    deviceState->m_glPauseTransformFeedback ();
+    s_deviceConfig.m_glPauseTransformFeedback ();
   }
 }
 
@@ -5053,10 +4695,9 @@ void glPauseTransformFeedback ()
 void glResumeTransformFeedback ()
 {
   // GL_ARB_transform_feedback2 - glResumeTransformFeedback
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glResumeTransformFeedback)
+  if (s_deviceConfig.m_glResumeTransformFeedback)
   {
-    deviceState->m_glResumeTransformFeedback ();
+    s_deviceConfig.m_glResumeTransformFeedback ();
   }
 }
 
@@ -5067,10 +4708,9 @@ void glResumeTransformFeedback ()
 void glDrawTransformFeedback (GLenum mode, GLuint id)
 {
   // GL_ARB_transform_feedback2 - glDrawTransformFeedback
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawTransformFeedback)
+  if (s_deviceConfig.m_glDrawTransformFeedback)
   {
-    deviceState->m_glDrawTransformFeedback (mode, id);
+    s_deviceConfig.m_glDrawTransformFeedback (mode, id);
   }
 }
 
@@ -5081,10 +4721,9 @@ void glDrawTransformFeedback (GLenum mode, GLuint id)
 void glDrawTransformFeedbackStream (GLenum mode, GLuint id, GLuint stream)
 {
   // GL_ARB_transform_feedback3 - glDrawTransformFeedbackStream
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawTransformFeedbackStream)
+  if (s_deviceConfig.m_glDrawTransformFeedbackStream)
   {
-    deviceState->m_glDrawTransformFeedbackStream (mode, id, stream);
+    s_deviceConfig.m_glDrawTransformFeedbackStream (mode, id, stream);
   }
 }
 
@@ -5095,10 +4734,9 @@ void glDrawTransformFeedbackStream (GLenum mode, GLuint id, GLuint stream)
 void glBeginQueryIndexed (GLenum target, GLuint index, GLuint id)
 {
   // GL_ARB_transform_feedback3 - glBeginQueryIndexed
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBeginQueryIndexed)
+  if (s_deviceConfig.m_glBeginQueryIndexed)
   {
-    deviceState->m_glBeginQueryIndexed (target, index, id);
+    s_deviceConfig.m_glBeginQueryIndexed (target, index, id);
   }
 }
 
@@ -5109,10 +4747,9 @@ void glBeginQueryIndexed (GLenum target, GLuint index, GLuint id)
 void glEndQueryIndexed (GLenum target, GLuint index)
 {
   // GL_ARB_transform_feedback3 - glEndQueryIndexed
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glEndQueryIndexed)
+  if (s_deviceConfig.m_glEndQueryIndexed)
   {
-    deviceState->m_glEndQueryIndexed (target, index);
+    s_deviceConfig.m_glEndQueryIndexed (target, index);
   }
 }
 
@@ -5123,10 +4760,9 @@ void glEndQueryIndexed (GLenum target, GLuint index)
 void glGetQueryIndexediv (GLenum target, GLuint index, GLenum pname, GLint * params)
 {
   // GL_ARB_transform_feedback3 - glGetQueryIndexediv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetQueryIndexediv)
+  if (s_deviceConfig.m_glGetQueryIndexediv)
   {
-    deviceState->m_glGetQueryIndexediv (target, index, pname, params);
+    s_deviceConfig.m_glGetQueryIndexediv (target, index, pname, params);
   }
 }
 
@@ -5137,10 +4773,9 @@ void glGetQueryIndexediv (GLenum target, GLuint index, GLenum pname, GLint * par
 void glDrawTransformFeedbackInstanced (GLenum mode, GLuint id, GLsizei instancecount)
 {
   // GL_ARB_transform_feedback_instanced - glDrawTransformFeedbackInstanced
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawTransformFeedbackInstanced)
+  if (s_deviceConfig.m_glDrawTransformFeedbackInstanced)
   {
-    deviceState->m_glDrawTransformFeedbackInstanced (mode, id, instancecount);
+    s_deviceConfig.m_glDrawTransformFeedbackInstanced (mode, id, instancecount);
   }
 }
 
@@ -5151,10 +4786,9 @@ void glDrawTransformFeedbackInstanced (GLenum mode, GLuint id, GLsizei instancec
 void glDrawTransformFeedbackStreamInstanced (GLenum mode, GLuint id, GLuint stream, GLsizei instancecount)
 {
   // GL_ARB_transform_feedback_instanced - glDrawTransformFeedbackStreamInstanced
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDrawTransformFeedbackStreamInstanced)
+  if (s_deviceConfig.m_glDrawTransformFeedbackStreamInstanced)
   {
-    deviceState->m_glDrawTransformFeedbackStreamInstanced (mode, id, stream, instancecount);
+    s_deviceConfig.m_glDrawTransformFeedbackStreamInstanced (mode, id, stream, instancecount);
   }
 }
 
@@ -5165,10 +4799,9 @@ void glDrawTransformFeedbackStreamInstanced (GLenum mode, GLuint id, GLuint stre
 void glGetUniformIndices (GLuint program, GLsizei uniformCount, const GLchar *const* uniformNames, GLuint * uniformIndices)
 {
   // GL_ARB_uniform_buffer_object - glGetUniformIndices
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetUniformIndices)
+  if (s_deviceConfig.m_glGetUniformIndices)
   {
-    deviceState->m_glGetUniformIndices (program, uniformCount, uniformNames, uniformIndices);
+    s_deviceConfig.m_glGetUniformIndices (program, uniformCount, uniformNames, uniformIndices);
   }
 }
 
@@ -5179,10 +4812,9 @@ void glGetUniformIndices (GLuint program, GLsizei uniformCount, const GLchar *co
 void glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, const GLuint * uniformIndices, GLenum pname, GLint * params)
 {
   // GL_ARB_uniform_buffer_object - glGetActiveUniformsiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetActiveUniformsiv)
+  if (s_deviceConfig.m_glGetActiveUniformsiv)
   {
-    deviceState->m_glGetActiveUniformsiv (program, uniformCount, uniformIndices, pname, params);
+    s_deviceConfig.m_glGetActiveUniformsiv (program, uniformCount, uniformIndices, pname, params);
   }
 }
 
@@ -5193,10 +4825,9 @@ void glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, const GLuint *
 void glGetActiveUniformName (GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformName)
 {
   // GL_ARB_uniform_buffer_object - glGetActiveUniformName
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetActiveUniformName)
+  if (s_deviceConfig.m_glGetActiveUniformName)
   {
-    deviceState->m_glGetActiveUniformName (program, uniformIndex, bufSize, length, uniformName);
+    s_deviceConfig.m_glGetActiveUniformName (program, uniformIndex, bufSize, length, uniformName);
   }
 }
 
@@ -5207,10 +4838,9 @@ void glGetActiveUniformName (GLuint program, GLuint uniformIndex, GLsizei bufSiz
 GLuint glGetUniformBlockIndex (GLuint program, const GLchar * uniformBlockName)
 {
   // GL_ARB_uniform_buffer_object - glGetUniformBlockIndex
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetUniformBlockIndex)
+  if (s_deviceConfig.m_glGetUniformBlockIndex)
   {
-    return deviceState->m_glGetUniformBlockIndex (program, uniformBlockName);
+    return s_deviceConfig.m_glGetUniformBlockIndex (program, uniformBlockName);
   }
   return ((GLuint)0);
 }
@@ -5222,10 +4852,9 @@ GLuint glGetUniformBlockIndex (GLuint program, const GLchar * uniformBlockName)
 void glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint * params)
 {
   // GL_ARB_uniform_buffer_object - glGetActiveUniformBlockiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetActiveUniformBlockiv)
+  if (s_deviceConfig.m_glGetActiveUniformBlockiv)
   {
-    deviceState->m_glGetActiveUniformBlockiv (program, uniformBlockIndex, pname, params);
+    s_deviceConfig.m_glGetActiveUniformBlockiv (program, uniformBlockIndex, pname, params);
   }
 }
 
@@ -5236,10 +4865,9 @@ void glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlockIndex, GLenum
 void glGetActiveUniformBlockName (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformBlockName)
 {
   // GL_ARB_uniform_buffer_object - glGetActiveUniformBlockName
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetActiveUniformBlockName)
+  if (s_deviceConfig.m_glGetActiveUniformBlockName)
   {
-    deviceState->m_glGetActiveUniformBlockName (program, uniformBlockIndex, bufSize, length, uniformBlockName);
+    s_deviceConfig.m_glGetActiveUniformBlockName (program, uniformBlockIndex, bufSize, length, uniformBlockName);
   }
 }
 
@@ -5250,10 +4878,9 @@ void glGetActiveUniformBlockName (GLuint program, GLuint uniformBlockIndex, GLsi
 void glUniformBlockBinding (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding)
 {
   // GL_ARB_uniform_buffer_object - glUniformBlockBinding
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glUniformBlockBinding)
+  if (s_deviceConfig.m_glUniformBlockBinding)
   {
-    deviceState->m_glUniformBlockBinding (program, uniformBlockIndex, uniformBlockBinding);
+    s_deviceConfig.m_glUniformBlockBinding (program, uniformBlockIndex, uniformBlockBinding);
   }
 }
 
@@ -5264,10 +4891,9 @@ void glUniformBlockBinding (GLuint program, GLuint uniformBlockIndex, GLuint uni
 void glBindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
   // GL_ARB_uniform_buffer_object - glBindBufferRange
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindBufferRange)
+  if (s_deviceConfig.m_glBindBufferRange)
   {
-    deviceState->m_glBindBufferRange (target, index, buffer, offset, size);
+    s_deviceConfig.m_glBindBufferRange (target, index, buffer, offset, size);
   }
 }
 
@@ -5278,10 +4904,9 @@ void glBindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr off
 void glBindBufferBase (GLenum target, GLuint index, GLuint buffer)
 {
   // GL_ARB_uniform_buffer_object - glBindBufferBase
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindBufferBase)
+  if (s_deviceConfig.m_glBindBufferBase)
   {
-    deviceState->m_glBindBufferBase (target, index, buffer);
+    s_deviceConfig.m_glBindBufferBase (target, index, buffer);
   }
 }
 
@@ -5292,10 +4917,9 @@ void glBindBufferBase (GLenum target, GLuint index, GLuint buffer)
 void glGetIntegeri_v (GLenum target, GLuint index, GLint * data)
 {
   // GL_ARB_uniform_buffer_object - glGetIntegeri_v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetIntegeri_v)
+  if (s_deviceConfig.m_glGetIntegeri_v)
   {
-    deviceState->m_glGetIntegeri_v (target, index, data);
+    s_deviceConfig.m_glGetIntegeri_v (target, index, data);
   }
 }
 
@@ -5306,10 +4930,9 @@ void glGetIntegeri_v (GLenum target, GLuint index, GLint * data)
 void glBindVertexArray (GLuint array)
 {
   // GL_ARB_vertex_array_object - glBindVertexArray
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindVertexArray)
+  if (s_deviceConfig.m_glBindVertexArray)
   {
-    deviceState->m_glBindVertexArray (array);
+    s_deviceConfig.m_glBindVertexArray (array);
   }
 }
 
@@ -5320,10 +4943,9 @@ void glBindVertexArray (GLuint array)
 void glDeleteVertexArrays (GLsizei n, const GLuint * arrays)
 {
   // GL_ARB_vertex_array_object - glDeleteVertexArrays
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDeleteVertexArrays)
+  if (s_deviceConfig.m_glDeleteVertexArrays)
   {
-    deviceState->m_glDeleteVertexArrays (n, arrays);
+    s_deviceConfig.m_glDeleteVertexArrays (n, arrays);
   }
 }
 
@@ -5334,10 +4956,9 @@ void glDeleteVertexArrays (GLsizei n, const GLuint * arrays)
 void glGenVertexArrays (GLsizei n, GLuint * arrays)
 {
   // GL_ARB_vertex_array_object - glGenVertexArrays
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGenVertexArrays)
+  if (s_deviceConfig.m_glGenVertexArrays)
   {
-    deviceState->m_glGenVertexArrays (n, arrays);
+    s_deviceConfig.m_glGenVertexArrays (n, arrays);
   }
 }
 
@@ -5348,10 +4969,9 @@ void glGenVertexArrays (GLsizei n, GLuint * arrays)
 GLboolean glIsVertexArray (GLuint array)
 {
   // GL_ARB_vertex_array_object - glIsVertexArray
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glIsVertexArray)
+  if (s_deviceConfig.m_glIsVertexArray)
   {
-    return deviceState->m_glIsVertexArray (array);
+    return s_deviceConfig.m_glIsVertexArray (array);
   }
   return ((GLboolean)0);
 }
@@ -5363,10 +4983,9 @@ GLboolean glIsVertexArray (GLuint array)
 void glVertexAttribL1d (GLuint index, GLdouble x)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL1d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL1d)
+  if (s_deviceConfig.m_glVertexAttribL1d)
   {
-    deviceState->m_glVertexAttribL1d (index, x);
+    s_deviceConfig.m_glVertexAttribL1d (index, x);
   }
 }
 
@@ -5377,10 +4996,9 @@ void glVertexAttribL1d (GLuint index, GLdouble x)
 void glVertexAttribL2d (GLuint index, GLdouble x, GLdouble y)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL2d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL2d)
+  if (s_deviceConfig.m_glVertexAttribL2d)
   {
-    deviceState->m_glVertexAttribL2d (index, x, y);
+    s_deviceConfig.m_glVertexAttribL2d (index, x, y);
   }
 }
 
@@ -5391,10 +5009,9 @@ void glVertexAttribL2d (GLuint index, GLdouble x, GLdouble y)
 void glVertexAttribL3d (GLuint index, GLdouble x, GLdouble y, GLdouble z)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL3d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL3d)
+  if (s_deviceConfig.m_glVertexAttribL3d)
   {
-    deviceState->m_glVertexAttribL3d (index, x, y, z);
+    s_deviceConfig.m_glVertexAttribL3d (index, x, y, z);
   }
 }
 
@@ -5405,10 +5022,9 @@ void glVertexAttribL3d (GLuint index, GLdouble x, GLdouble y, GLdouble z)
 void glVertexAttribL4d (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL4d
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL4d)
+  if (s_deviceConfig.m_glVertexAttribL4d)
   {
-    deviceState->m_glVertexAttribL4d (index, x, y, z, w);
+    s_deviceConfig.m_glVertexAttribL4d (index, x, y, z, w);
   }
 }
 
@@ -5419,10 +5035,9 @@ void glVertexAttribL4d (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdoub
 void glVertexAttribL1dv (GLuint index, const GLdouble * v)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL1dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL1dv)
+  if (s_deviceConfig.m_glVertexAttribL1dv)
   {
-    deviceState->m_glVertexAttribL1dv (index, v);
+    s_deviceConfig.m_glVertexAttribL1dv (index, v);
   }
 }
 
@@ -5433,10 +5048,9 @@ void glVertexAttribL1dv (GLuint index, const GLdouble * v)
 void glVertexAttribL2dv (GLuint index, const GLdouble * v)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL2dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL2dv)
+  if (s_deviceConfig.m_glVertexAttribL2dv)
   {
-    deviceState->m_glVertexAttribL2dv (index, v);
+    s_deviceConfig.m_glVertexAttribL2dv (index, v);
   }
 }
 
@@ -5447,10 +5061,9 @@ void glVertexAttribL2dv (GLuint index, const GLdouble * v)
 void glVertexAttribL3dv (GLuint index, const GLdouble * v)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL3dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL3dv)
+  if (s_deviceConfig.m_glVertexAttribL3dv)
   {
-    deviceState->m_glVertexAttribL3dv (index, v);
+    s_deviceConfig.m_glVertexAttribL3dv (index, v);
   }
 }
 
@@ -5461,10 +5074,9 @@ void glVertexAttribL3dv (GLuint index, const GLdouble * v)
 void glVertexAttribL4dv (GLuint index, const GLdouble * v)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL4dv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribL4dv)
+  if (s_deviceConfig.m_glVertexAttribL4dv)
   {
-    deviceState->m_glVertexAttribL4dv (index, v);
+    s_deviceConfig.m_glVertexAttribL4dv (index, v);
   }
 }
 
@@ -5475,10 +5087,9 @@ void glVertexAttribL4dv (GLuint index, const GLdouble * v)
 void glVertexAttribLPointer (GLuint index, GLint size, GLenum type, GLsizei stride, const void * pointer)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribLPointer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribLPointer)
+  if (s_deviceConfig.m_glVertexAttribLPointer)
   {
-    deviceState->m_glVertexAttribLPointer (index, size, type, stride, pointer);
+    s_deviceConfig.m_glVertexAttribLPointer (index, size, type, stride, pointer);
   }
 }
 
@@ -5489,10 +5100,9 @@ void glVertexAttribLPointer (GLuint index, GLint size, GLenum type, GLsizei stri
 void glGetVertexAttribLdv (GLuint index, GLenum pname, GLdouble * params)
 {
   // GL_ARB_vertex_attrib_64bit - glGetVertexAttribLdv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetVertexAttribLdv)
+  if (s_deviceConfig.m_glGetVertexAttribLdv)
   {
-    deviceState->m_glGetVertexAttribLdv (index, pname, params);
+    s_deviceConfig.m_glGetVertexAttribLdv (index, pname, params);
   }
 }
 
@@ -5503,10 +5113,9 @@ void glGetVertexAttribLdv (GLuint index, GLenum pname, GLdouble * params)
 void glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride)
 {
   // GL_ARB_vertex_attrib_binding - glBindVertexBuffer
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glBindVertexBuffer)
+  if (s_deviceConfig.m_glBindVertexBuffer)
   {
-    deviceState->m_glBindVertexBuffer (bindingindex, buffer, offset, stride);
+    s_deviceConfig.m_glBindVertexBuffer (bindingindex, buffer, offset, stride);
   }
 }
 
@@ -5517,10 +5126,9 @@ void glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr offset, GL
 void glVertexAttribFormat (GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
 {
   // GL_ARB_vertex_attrib_binding - glVertexAttribFormat
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribFormat)
+  if (s_deviceConfig.m_glVertexAttribFormat)
   {
-    deviceState->m_glVertexAttribFormat (attribindex, size, type, normalized, relativeoffset);
+    s_deviceConfig.m_glVertexAttribFormat (attribindex, size, type, normalized, relativeoffset);
   }
 }
 
@@ -5531,10 +5139,9 @@ void glVertexAttribFormat (GLuint attribindex, GLint size, GLenum type, GLboolea
 void glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
 {
   // GL_ARB_vertex_attrib_binding - glVertexAttribIFormat
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribIFormat)
+  if (s_deviceConfig.m_glVertexAttribIFormat)
   {
-    deviceState->m_glVertexAttribIFormat (attribindex, size, type, relativeoffset);
+    s_deviceConfig.m_glVertexAttribIFormat (attribindex, size, type, relativeoffset);
   }
 }
 
@@ -5545,10 +5152,9 @@ void glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum type, GLuint 
 void glVertexAttribLFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
 {
   // GL_ARB_vertex_attrib_binding - glVertexAttribLFormat
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribLFormat)
+  if (s_deviceConfig.m_glVertexAttribLFormat)
   {
-    deviceState->m_glVertexAttribLFormat (attribindex, size, type, relativeoffset);
+    s_deviceConfig.m_glVertexAttribLFormat (attribindex, size, type, relativeoffset);
   }
 }
 
@@ -5559,10 +5165,9 @@ void glVertexAttribLFormat (GLuint attribindex, GLint size, GLenum type, GLuint 
 void glVertexAttribBinding (GLuint attribindex, GLuint bindingindex)
 {
   // GL_ARB_vertex_attrib_binding - glVertexAttribBinding
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribBinding)
+  if (s_deviceConfig.m_glVertexAttribBinding)
   {
-    deviceState->m_glVertexAttribBinding (attribindex, bindingindex);
+    s_deviceConfig.m_glVertexAttribBinding (attribindex, bindingindex);
   }
 }
 
@@ -5573,10 +5178,9 @@ void glVertexAttribBinding (GLuint attribindex, GLuint bindingindex)
 void glVertexBindingDivisor (GLuint bindingindex, GLuint divisor)
 {
   // GL_ARB_vertex_attrib_binding - glVertexBindingDivisor
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexBindingDivisor)
+  if (s_deviceConfig.m_glVertexBindingDivisor)
   {
-    deviceState->m_glVertexBindingDivisor (bindingindex, divisor);
+    s_deviceConfig.m_glVertexBindingDivisor (bindingindex, divisor);
   }
 }
 
@@ -5587,10 +5191,9 @@ void glVertexBindingDivisor (GLuint bindingindex, GLuint divisor)
 void glVertexAttribP1ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP1ui
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribP1ui)
+  if (s_deviceConfig.m_glVertexAttribP1ui)
   {
-    deviceState->m_glVertexAttribP1ui (index, type, normalized, value);
+    s_deviceConfig.m_glVertexAttribP1ui (index, type, normalized, value);
   }
 }
 
@@ -5601,10 +5204,9 @@ void glVertexAttribP1ui (GLuint index, GLenum type, GLboolean normalized, GLuint
 void glVertexAttribP1uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP1uiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribP1uiv)
+  if (s_deviceConfig.m_glVertexAttribP1uiv)
   {
-    deviceState->m_glVertexAttribP1uiv (index, type, normalized, value);
+    s_deviceConfig.m_glVertexAttribP1uiv (index, type, normalized, value);
   }
 }
 
@@ -5615,10 +5217,9 @@ void glVertexAttribP1uiv (GLuint index, GLenum type, GLboolean normalized, const
 void glVertexAttribP2ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP2ui
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribP2ui)
+  if (s_deviceConfig.m_glVertexAttribP2ui)
   {
-    deviceState->m_glVertexAttribP2ui (index, type, normalized, value);
+    s_deviceConfig.m_glVertexAttribP2ui (index, type, normalized, value);
   }
 }
 
@@ -5629,10 +5230,9 @@ void glVertexAttribP2ui (GLuint index, GLenum type, GLboolean normalized, GLuint
 void glVertexAttribP2uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP2uiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribP2uiv)
+  if (s_deviceConfig.m_glVertexAttribP2uiv)
   {
-    deviceState->m_glVertexAttribP2uiv (index, type, normalized, value);
+    s_deviceConfig.m_glVertexAttribP2uiv (index, type, normalized, value);
   }
 }
 
@@ -5643,10 +5243,9 @@ void glVertexAttribP2uiv (GLuint index, GLenum type, GLboolean normalized, const
 void glVertexAttribP3ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP3ui
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribP3ui)
+  if (s_deviceConfig.m_glVertexAttribP3ui)
   {
-    deviceState->m_glVertexAttribP3ui (index, type, normalized, value);
+    s_deviceConfig.m_glVertexAttribP3ui (index, type, normalized, value);
   }
 }
 
@@ -5657,10 +5256,9 @@ void glVertexAttribP3ui (GLuint index, GLenum type, GLboolean normalized, GLuint
 void glVertexAttribP3uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP3uiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribP3uiv)
+  if (s_deviceConfig.m_glVertexAttribP3uiv)
   {
-    deviceState->m_glVertexAttribP3uiv (index, type, normalized, value);
+    s_deviceConfig.m_glVertexAttribP3uiv (index, type, normalized, value);
   }
 }
 
@@ -5671,10 +5269,9 @@ void glVertexAttribP3uiv (GLuint index, GLenum type, GLboolean normalized, const
 void glVertexAttribP4ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP4ui
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribP4ui)
+  if (s_deviceConfig.m_glVertexAttribP4ui)
   {
-    deviceState->m_glVertexAttribP4ui (index, type, normalized, value);
+    s_deviceConfig.m_glVertexAttribP4ui (index, type, normalized, value);
   }
 }
 
@@ -5685,10 +5282,9 @@ void glVertexAttribP4ui (GLuint index, GLenum type, GLboolean normalized, GLuint
 void glVertexAttribP4uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP4uiv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glVertexAttribP4uiv)
+  if (s_deviceConfig.m_glVertexAttribP4uiv)
   {
-    deviceState->m_glVertexAttribP4uiv (index, type, normalized, value);
+    s_deviceConfig.m_glVertexAttribP4uiv (index, type, normalized, value);
   }
 }
 
@@ -5699,10 +5295,9 @@ void glVertexAttribP4uiv (GLuint index, GLenum type, GLboolean normalized, const
 void glViewportArrayv (GLuint first, GLsizei count, const GLfloat * v)
 {
   // GL_ARB_viewport_array - glViewportArrayv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glViewportArrayv)
+  if (s_deviceConfig.m_glViewportArrayv)
   {
-    deviceState->m_glViewportArrayv (first, count, v);
+    s_deviceConfig.m_glViewportArrayv (first, count, v);
   }
 }
 
@@ -5713,10 +5308,9 @@ void glViewportArrayv (GLuint first, GLsizei count, const GLfloat * v)
 void glViewportIndexedf (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)
 {
   // GL_ARB_viewport_array - glViewportIndexedf
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glViewportIndexedf)
+  if (s_deviceConfig.m_glViewportIndexedf)
   {
-    deviceState->m_glViewportIndexedf (index, x, y, w, h);
+    s_deviceConfig.m_glViewportIndexedf (index, x, y, w, h);
   }
 }
 
@@ -5727,10 +5321,9 @@ void glViewportIndexedf (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat 
 void glViewportIndexedfv (GLuint index, const GLfloat * v)
 {
   // GL_ARB_viewport_array - glViewportIndexedfv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glViewportIndexedfv)
+  if (s_deviceConfig.m_glViewportIndexedfv)
   {
-    deviceState->m_glViewportIndexedfv (index, v);
+    s_deviceConfig.m_glViewportIndexedfv (index, v);
   }
 }
 
@@ -5741,10 +5334,9 @@ void glViewportIndexedfv (GLuint index, const GLfloat * v)
 void glScissorArrayv (GLuint first, GLsizei count, const GLint * v)
 {
   // GL_ARB_viewport_array - glScissorArrayv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glScissorArrayv)
+  if (s_deviceConfig.m_glScissorArrayv)
   {
-    deviceState->m_glScissorArrayv (first, count, v);
+    s_deviceConfig.m_glScissorArrayv (first, count, v);
   }
 }
 
@@ -5755,10 +5347,9 @@ void glScissorArrayv (GLuint first, GLsizei count, const GLint * v)
 void glScissorIndexed (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height)
 {
   // GL_ARB_viewport_array - glScissorIndexed
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glScissorIndexed)
+  if (s_deviceConfig.m_glScissorIndexed)
   {
-    deviceState->m_glScissorIndexed (index, left, bottom, width, height);
+    s_deviceConfig.m_glScissorIndexed (index, left, bottom, width, height);
   }
 }
 
@@ -5769,10 +5360,9 @@ void glScissorIndexed (GLuint index, GLint left, GLint bottom, GLsizei width, GL
 void glScissorIndexedv (GLuint index, const GLint * v)
 {
   // GL_ARB_viewport_array - glScissorIndexedv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glScissorIndexedv)
+  if (s_deviceConfig.m_glScissorIndexedv)
   {
-    deviceState->m_glScissorIndexedv (index, v);
+    s_deviceConfig.m_glScissorIndexedv (index, v);
   }
 }
 
@@ -5783,10 +5373,9 @@ void glScissorIndexedv (GLuint index, const GLint * v)
 void glDepthRangeArrayv (GLuint first, GLsizei count, const GLdouble * v)
 {
   // GL_ARB_viewport_array - glDepthRangeArrayv
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDepthRangeArrayv)
+  if (s_deviceConfig.m_glDepthRangeArrayv)
   {
-    deviceState->m_glDepthRangeArrayv (first, count, v);
+    s_deviceConfig.m_glDepthRangeArrayv (first, count, v);
   }
 }
 
@@ -5797,10 +5386,9 @@ void glDepthRangeArrayv (GLuint first, GLsizei count, const GLdouble * v)
 void glDepthRangeIndexed (GLuint index, GLdouble n, GLdouble f)
 {
   // GL_ARB_viewport_array - glDepthRangeIndexed
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glDepthRangeIndexed)
+  if (s_deviceConfig.m_glDepthRangeIndexed)
   {
-    deviceState->m_glDepthRangeIndexed (index, n, f);
+    s_deviceConfig.m_glDepthRangeIndexed (index, n, f);
   }
 }
 
@@ -5811,10 +5399,9 @@ void glDepthRangeIndexed (GLuint index, GLdouble n, GLdouble f)
 void glGetFloati_v (GLenum target, GLuint index, GLfloat * data)
 {
   // GL_ARB_viewport_array - glGetFloati_v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetFloati_v)
+  if (s_deviceConfig.m_glGetFloati_v)
   {
-    deviceState->m_glGetFloati_v (target, index, data);
+    s_deviceConfig.m_glGetFloati_v (target, index, data);
   }
 }
 
@@ -5825,10 +5412,9 @@ void glGetFloati_v (GLenum target, GLuint index, GLfloat * data)
 void glGetDoublei_v (GLenum target, GLuint index, GLdouble * data)
 {
   // GL_ARB_viewport_array - glGetDoublei_v
-  const glew::glcore::DeviceState *deviceState = glew::glcore::GetDeviceState ();
-  if (deviceState && deviceState->m_glGetDoublei_v)
+  if (s_deviceConfig.m_glGetDoublei_v)
   {
-    deviceState->m_glGetDoublei_v (target, index, data);
+    s_deviceConfig.m_glGetDoublei_v (target, index, data);
   }
 }
 

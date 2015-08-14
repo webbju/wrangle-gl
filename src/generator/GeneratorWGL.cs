@@ -67,7 +67,11 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n#include <windows.h>\n");
 
-      writer.Write ("\n#include <GL/gl.h>\n\n");
+      writer.Write ("\n#include <GL/gl.h>\n");
+
+      writer.Write ("\n#undef wglUseFontBitmaps\n");
+
+      writer.Write ("\n#undef wglUseFontOutlines\n\n");
 
       base.ExportCpp (ref writer);
     }

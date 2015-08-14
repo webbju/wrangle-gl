@@ -11,10 +11,9 @@
 XVisualInfo * glXChooseVisual (Display * dpy, int screen, int * attribList)
 {
   // GLX_VERSION_1_0 - glXChooseVisual
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXChooseVisual)
+  if (s_deviceConfig.m_glXChooseVisual)
   {
-    return deviceState->m_glXChooseVisual (dpy, screen, attribList);
+    return s_deviceConfig.m_glXChooseVisual (dpy, screen, attribList);
   }
   return ((XVisualInfo *)0);
 }
@@ -26,10 +25,9 @@ XVisualInfo * glXChooseVisual (Display * dpy, int screen, int * attribList)
 GLXContext glXCreateContext (Display * dpy, XVisualInfo * vis, GLXContext shareList, Bool direct)
 {
   // GLX_VERSION_1_0 - glXCreateContext
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateContext)
+  if (s_deviceConfig.m_glXCreateContext)
   {
-    return deviceState->m_glXCreateContext (dpy, vis, shareList, direct);
+    return s_deviceConfig.m_glXCreateContext (dpy, vis, shareList, direct);
   }
   return ((GLXContext)0);
 }
@@ -41,10 +39,9 @@ GLXContext glXCreateContext (Display * dpy, XVisualInfo * vis, GLXContext shareL
 void glXDestroyContext (Display * dpy, GLXContext ctx)
 {
   // GLX_VERSION_1_0 - glXDestroyContext
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDestroyContext)
+  if (s_deviceConfig.m_glXDestroyContext)
   {
-    deviceState->m_glXDestroyContext (dpy, ctx);
+    s_deviceConfig.m_glXDestroyContext (dpy, ctx);
   }
 }
 
@@ -55,10 +52,9 @@ void glXDestroyContext (Display * dpy, GLXContext ctx)
 Bool glXMakeCurrent (Display * dpy, GLXDrawable drawable, GLXContext ctx)
 {
   // GLX_VERSION_1_0 - glXMakeCurrent
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXMakeCurrent)
+  if (s_deviceConfig.m_glXMakeCurrent)
   {
-    return deviceState->m_glXMakeCurrent (dpy, drawable, ctx);
+    return s_deviceConfig.m_glXMakeCurrent (dpy, drawable, ctx);
   }
   return ((Bool)0);
 }
@@ -70,10 +66,9 @@ Bool glXMakeCurrent (Display * dpy, GLXDrawable drawable, GLXContext ctx)
 void glXCopyContext (Display * dpy, GLXContext src, GLXContext dst, unsigned long mask)
 {
   // GLX_VERSION_1_0 - glXCopyContext
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCopyContext)
+  if (s_deviceConfig.m_glXCopyContext)
   {
-    deviceState->m_glXCopyContext (dpy, src, dst, mask);
+    s_deviceConfig.m_glXCopyContext (dpy, src, dst, mask);
   }
 }
 
@@ -84,10 +79,9 @@ void glXCopyContext (Display * dpy, GLXContext src, GLXContext dst, unsigned lon
 void glXSwapBuffers (Display * dpy, GLXDrawable drawable)
 {
   // GLX_VERSION_1_0 - glXSwapBuffers
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXSwapBuffers)
+  if (s_deviceConfig.m_glXSwapBuffers)
   {
-    deviceState->m_glXSwapBuffers (dpy, drawable);
+    s_deviceConfig.m_glXSwapBuffers (dpy, drawable);
   }
 }
 
@@ -98,10 +92,9 @@ void glXSwapBuffers (Display * dpy, GLXDrawable drawable)
 GLXPixmap glXCreateGLXPixmap (Display * dpy, XVisualInfo * visual, Pixmap pixmap)
 {
   // GLX_VERSION_1_0 - glXCreateGLXPixmap
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateGLXPixmap)
+  if (s_deviceConfig.m_glXCreateGLXPixmap)
   {
-    return deviceState->m_glXCreateGLXPixmap (dpy, visual, pixmap);
+    return s_deviceConfig.m_glXCreateGLXPixmap (dpy, visual, pixmap);
   }
   return ((GLXPixmap)0);
 }
@@ -113,10 +106,9 @@ GLXPixmap glXCreateGLXPixmap (Display * dpy, XVisualInfo * visual, Pixmap pixmap
 void glXDestroyGLXPixmap (Display * dpy, GLXPixmap pixmap)
 {
   // GLX_VERSION_1_0 - glXDestroyGLXPixmap
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDestroyGLXPixmap)
+  if (s_deviceConfig.m_glXDestroyGLXPixmap)
   {
-    deviceState->m_glXDestroyGLXPixmap (dpy, pixmap);
+    s_deviceConfig.m_glXDestroyGLXPixmap (dpy, pixmap);
   }
 }
 
@@ -127,10 +119,9 @@ void glXDestroyGLXPixmap (Display * dpy, GLXPixmap pixmap)
 Bool glXQueryExtension (Display * dpy, int * errorb, int * event)
 {
   // GLX_VERSION_1_0 - glXQueryExtension
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryExtension)
+  if (s_deviceConfig.m_glXQueryExtension)
   {
-    return deviceState->m_glXQueryExtension (dpy, errorb, event);
+    return s_deviceConfig.m_glXQueryExtension (dpy, errorb, event);
   }
   return ((Bool)0);
 }
@@ -142,10 +133,9 @@ Bool glXQueryExtension (Display * dpy, int * errorb, int * event)
 Bool glXQueryVersion (Display * dpy, int * maj, int * min)
 {
   // GLX_VERSION_1_0 - glXQueryVersion
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryVersion)
+  if (s_deviceConfig.m_glXQueryVersion)
   {
-    return deviceState->m_glXQueryVersion (dpy, maj, min);
+    return s_deviceConfig.m_glXQueryVersion (dpy, maj, min);
   }
   return ((Bool)0);
 }
@@ -157,10 +147,9 @@ Bool glXQueryVersion (Display * dpy, int * maj, int * min)
 Bool glXIsDirect (Display * dpy, GLXContext ctx)
 {
   // GLX_VERSION_1_0 - glXIsDirect
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXIsDirect)
+  if (s_deviceConfig.m_glXIsDirect)
   {
-    return deviceState->m_glXIsDirect (dpy, ctx);
+    return s_deviceConfig.m_glXIsDirect (dpy, ctx);
   }
   return ((Bool)0);
 }
@@ -172,10 +161,9 @@ Bool glXIsDirect (Display * dpy, GLXContext ctx)
 int glXGetConfig (Display * dpy, XVisualInfo * visual, int attrib, int * value)
 {
   // GLX_VERSION_1_0 - glXGetConfig
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetConfig)
+  if (s_deviceConfig.m_glXGetConfig)
   {
-    return deviceState->m_glXGetConfig (dpy, visual, attrib, value);
+    return s_deviceConfig.m_glXGetConfig (dpy, visual, attrib, value);
   }
   return ((int )0);
 }
@@ -187,10 +175,9 @@ int glXGetConfig (Display * dpy, XVisualInfo * visual, int attrib, int * value)
 GLXContext glXGetCurrentContext ()
 {
   // GLX_VERSION_1_0 - glXGetCurrentContext
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetCurrentContext)
+  if (s_deviceConfig.m_glXGetCurrentContext)
   {
-    return deviceState->m_glXGetCurrentContext ();
+    return s_deviceConfig.m_glXGetCurrentContext ();
   }
   return ((GLXContext)0);
 }
@@ -202,10 +189,9 @@ GLXContext glXGetCurrentContext ()
 GLXDrawable glXGetCurrentDrawable ()
 {
   // GLX_VERSION_1_0 - glXGetCurrentDrawable
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetCurrentDrawable)
+  if (s_deviceConfig.m_glXGetCurrentDrawable)
   {
-    return deviceState->m_glXGetCurrentDrawable ();
+    return s_deviceConfig.m_glXGetCurrentDrawable ();
   }
   return ((GLXDrawable)0);
 }
@@ -217,10 +203,9 @@ GLXDrawable glXGetCurrentDrawable ()
 void glXWaitGL ()
 {
   // GLX_VERSION_1_0 - glXWaitGL
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXWaitGL)
+  if (s_deviceConfig.m_glXWaitGL)
   {
-    deviceState->m_glXWaitGL ();
+    s_deviceConfig.m_glXWaitGL ();
   }
 }
 
@@ -231,10 +216,9 @@ void glXWaitGL ()
 void glXWaitX ()
 {
   // GLX_VERSION_1_0 - glXWaitX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXWaitX)
+  if (s_deviceConfig.m_glXWaitX)
   {
-    deviceState->m_glXWaitX ();
+    s_deviceConfig.m_glXWaitX ();
   }
 }
 
@@ -245,10 +229,9 @@ void glXWaitX ()
 void glXUseXFont (Font font, int first, int count, int list)
 {
   // GLX_VERSION_1_0 - glXUseXFont
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXUseXFont)
+  if (s_deviceConfig.m_glXUseXFont)
   {
-    deviceState->m_glXUseXFont (font, first, count, list);
+    s_deviceConfig.m_glXUseXFont (font, first, count, list);
   }
 }
 
@@ -259,10 +242,9 @@ void glXUseXFont (Font font, int first, int count, int list)
 const char * glXQueryExtensionsString (Display * dpy, int screen)
 {
   // GLX_VERSION_1_1 - glXQueryExtensionsString
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryExtensionsString)
+  if (s_deviceConfig.m_glXQueryExtensionsString)
   {
-    return deviceState->m_glXQueryExtensionsString (dpy, screen);
+    return s_deviceConfig.m_glXQueryExtensionsString (dpy, screen);
   }
   return ((const char *)0);
 }
@@ -274,10 +256,9 @@ const char * glXQueryExtensionsString (Display * dpy, int screen)
 const char * glXQueryServerString (Display * dpy, int screen, int name)
 {
   // GLX_VERSION_1_1 - glXQueryServerString
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryServerString)
+  if (s_deviceConfig.m_glXQueryServerString)
   {
-    return deviceState->m_glXQueryServerString (dpy, screen, name);
+    return s_deviceConfig.m_glXQueryServerString (dpy, screen, name);
   }
   return ((const char *)0);
 }
@@ -289,10 +270,9 @@ const char * glXQueryServerString (Display * dpy, int screen, int name)
 const char * glXGetClientString (Display * dpy, int name)
 {
   // GLX_VERSION_1_1 - glXGetClientString
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetClientString)
+  if (s_deviceConfig.m_glXGetClientString)
   {
-    return deviceState->m_glXGetClientString (dpy, name);
+    return s_deviceConfig.m_glXGetClientString (dpy, name);
   }
   return ((const char *)0);
 }
@@ -304,10 +284,9 @@ const char * glXGetClientString (Display * dpy, int name)
 Display * glXGetCurrentDisplay ()
 {
   // GLX_VERSION_1_2 - glXGetCurrentDisplay
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetCurrentDisplay)
+  if (s_deviceConfig.m_glXGetCurrentDisplay)
   {
-    return deviceState->m_glXGetCurrentDisplay ();
+    return s_deviceConfig.m_glXGetCurrentDisplay ();
   }
   return ((Display *)0);
 }
@@ -319,10 +298,9 @@ Display * glXGetCurrentDisplay ()
 GLXFBConfig * glXGetFBConfigs (Display * dpy, int screen, int * nelements)
 {
   // GLX_VERSION_1_3 - glXGetFBConfigs
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetFBConfigs)
+  if (s_deviceConfig.m_glXGetFBConfigs)
   {
-    return deviceState->m_glXGetFBConfigs (dpy, screen, nelements);
+    return s_deviceConfig.m_glXGetFBConfigs (dpy, screen, nelements);
   }
   return ((GLXFBConfig *)0);
 }
@@ -334,10 +312,9 @@ GLXFBConfig * glXGetFBConfigs (Display * dpy, int screen, int * nelements)
 GLXFBConfig * glXChooseFBConfig (Display * dpy, int screen, const int * attrib_list, int * nelements)
 {
   // GLX_VERSION_1_3 - glXChooseFBConfig
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXChooseFBConfig)
+  if (s_deviceConfig.m_glXChooseFBConfig)
   {
-    return deviceState->m_glXChooseFBConfig (dpy, screen, attrib_list, nelements);
+    return s_deviceConfig.m_glXChooseFBConfig (dpy, screen, attrib_list, nelements);
   }
   return ((GLXFBConfig *)0);
 }
@@ -349,10 +326,9 @@ GLXFBConfig * glXChooseFBConfig (Display * dpy, int screen, const int * attrib_l
 int glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int attribute, int * value)
 {
   // GLX_VERSION_1_3 - glXGetFBConfigAttrib
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetFBConfigAttrib)
+  if (s_deviceConfig.m_glXGetFBConfigAttrib)
   {
-    return deviceState->m_glXGetFBConfigAttrib (dpy, config, attribute, value);
+    return s_deviceConfig.m_glXGetFBConfigAttrib (dpy, config, attribute, value);
   }
   return ((int )0);
 }
@@ -364,10 +340,9 @@ int glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int attribute, int 
 XVisualInfo * glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config)
 {
   // GLX_VERSION_1_3 - glXGetVisualFromFBConfig
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetVisualFromFBConfig)
+  if (s_deviceConfig.m_glXGetVisualFromFBConfig)
   {
-    return deviceState->m_glXGetVisualFromFBConfig (dpy, config);
+    return s_deviceConfig.m_glXGetVisualFromFBConfig (dpy, config);
   }
   return ((XVisualInfo *)0);
 }
@@ -379,10 +354,9 @@ XVisualInfo * glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config)
 GLXWindow glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const int * attrib_list)
 {
   // GLX_VERSION_1_3 - glXCreateWindow
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateWindow)
+  if (s_deviceConfig.m_glXCreateWindow)
   {
-    return deviceState->m_glXCreateWindow (dpy, config, win, attrib_list);
+    return s_deviceConfig.m_glXCreateWindow (dpy, config, win, attrib_list);
   }
   return ((GLXWindow)0);
 }
@@ -394,10 +368,9 @@ GLXWindow glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const 
 void glXDestroyWindow (Display * dpy, GLXWindow win)
 {
   // GLX_VERSION_1_3 - glXDestroyWindow
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDestroyWindow)
+  if (s_deviceConfig.m_glXDestroyWindow)
   {
-    deviceState->m_glXDestroyWindow (dpy, win);
+    s_deviceConfig.m_glXDestroyWindow (dpy, win);
   }
 }
 
@@ -408,10 +381,9 @@ void glXDestroyWindow (Display * dpy, GLXWindow win)
 GLXPixmap glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attrib_list)
 {
   // GLX_VERSION_1_3 - glXCreatePixmap
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreatePixmap)
+  if (s_deviceConfig.m_glXCreatePixmap)
   {
-    return deviceState->m_glXCreatePixmap (dpy, config, pixmap, attrib_list);
+    return s_deviceConfig.m_glXCreatePixmap (dpy, config, pixmap, attrib_list);
   }
   return ((GLXPixmap)0);
 }
@@ -423,10 +395,9 @@ GLXPixmap glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, con
 void glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
 {
   // GLX_VERSION_1_3 - glXDestroyPixmap
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDestroyPixmap)
+  if (s_deviceConfig.m_glXDestroyPixmap)
   {
-    deviceState->m_glXDestroyPixmap (dpy, pixmap);
+    s_deviceConfig.m_glXDestroyPixmap (dpy, pixmap);
   }
 }
 
@@ -437,10 +408,9 @@ void glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
 GLXPbuffer glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attrib_list)
 {
   // GLX_VERSION_1_3 - glXCreatePbuffer
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreatePbuffer)
+  if (s_deviceConfig.m_glXCreatePbuffer)
   {
-    return deviceState->m_glXCreatePbuffer (dpy, config, attrib_list);
+    return s_deviceConfig.m_glXCreatePbuffer (dpy, config, attrib_list);
   }
   return ((GLXPbuffer)0);
 }
@@ -452,10 +422,9 @@ GLXPbuffer glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attr
 void glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
 {
   // GLX_VERSION_1_3 - glXDestroyPbuffer
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDestroyPbuffer)
+  if (s_deviceConfig.m_glXDestroyPbuffer)
   {
-    deviceState->m_glXDestroyPbuffer (dpy, pbuf);
+    s_deviceConfig.m_glXDestroyPbuffer (dpy, pbuf);
   }
 }
 
@@ -466,10 +435,9 @@ void glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
 void glXQueryDrawable (Display * dpy, GLXDrawable draw, int attribute, unsigned int * value)
 {
   // GLX_VERSION_1_3 - glXQueryDrawable
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryDrawable)
+  if (s_deviceConfig.m_glXQueryDrawable)
   {
-    deviceState->m_glXQueryDrawable (dpy, draw, attribute, value);
+    s_deviceConfig.m_glXQueryDrawable (dpy, draw, attribute, value);
   }
 }
 
@@ -480,10 +448,9 @@ void glXQueryDrawable (Display * dpy, GLXDrawable draw, int attribute, unsigned 
 GLXContext glXCreateNewContext (Display * dpy, GLXFBConfig config, int render_type, GLXContext share_list, Bool direct)
 {
   // GLX_VERSION_1_3 - glXCreateNewContext
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateNewContext)
+  if (s_deviceConfig.m_glXCreateNewContext)
   {
-    return deviceState->m_glXCreateNewContext (dpy, config, render_type, share_list, direct);
+    return s_deviceConfig.m_glXCreateNewContext (dpy, config, render_type, share_list, direct);
   }
   return ((GLXContext)0);
 }
@@ -495,10 +462,9 @@ GLXContext glXCreateNewContext (Display * dpy, GLXFBConfig config, int render_ty
 Bool glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
 {
   // GLX_VERSION_1_3 - glXMakeContextCurrent
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXMakeContextCurrent)
+  if (s_deviceConfig.m_glXMakeContextCurrent)
   {
-    return deviceState->m_glXMakeContextCurrent (dpy, draw, read, ctx);
+    return s_deviceConfig.m_glXMakeContextCurrent (dpy, draw, read, ctx);
   }
   return ((Bool)0);
 }
@@ -510,10 +476,9 @@ Bool glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, G
 GLXDrawable glXGetCurrentReadDrawable ()
 {
   // GLX_VERSION_1_3 - glXGetCurrentReadDrawable
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetCurrentReadDrawable)
+  if (s_deviceConfig.m_glXGetCurrentReadDrawable)
   {
-    return deviceState->m_glXGetCurrentReadDrawable ();
+    return s_deviceConfig.m_glXGetCurrentReadDrawable ();
   }
   return ((GLXDrawable)0);
 }
@@ -525,10 +490,9 @@ GLXDrawable glXGetCurrentReadDrawable ()
 int glXQueryContext (Display * dpy, GLXContext ctx, int attribute, int * value)
 {
   // GLX_VERSION_1_3 - glXQueryContext
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryContext)
+  if (s_deviceConfig.m_glXQueryContext)
   {
-    return deviceState->m_glXQueryContext (dpy, ctx, attribute, value);
+    return s_deviceConfig.m_glXQueryContext (dpy, ctx, attribute, value);
   }
   return ((int )0);
 }
@@ -540,10 +504,9 @@ int glXQueryContext (Display * dpy, GLXContext ctx, int attribute, int * value)
 void glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long event_mask)
 {
   // GLX_VERSION_1_3 - glXSelectEvent
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXSelectEvent)
+  if (s_deviceConfig.m_glXSelectEvent)
   {
-    deviceState->m_glXSelectEvent (dpy, draw, event_mask);
+    s_deviceConfig.m_glXSelectEvent (dpy, draw, event_mask);
   }
 }
 
@@ -554,10 +517,9 @@ void glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long event_mask)
 void glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event_mask)
 {
   // GLX_VERSION_1_3 - glXGetSelectedEvent
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetSelectedEvent)
+  if (s_deviceConfig.m_glXGetSelectedEvent)
   {
-    deviceState->m_glXGetSelectedEvent (dpy, draw, event_mask);
+    s_deviceConfig.m_glXGetSelectedEvent (dpy, draw, event_mask);
   }
 }
 
@@ -568,10 +530,9 @@ void glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event
 __GLXextFuncPtr glXGetProcAddress (const GLubyte * procName)
 {
   // GLX_VERSION_1_4 - glXGetProcAddress
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetProcAddress)
+  if (s_deviceConfig.m_glXGetProcAddress)
   {
-    return deviceState->m_glXGetProcAddress (procName);
+    return s_deviceConfig.m_glXGetProcAddress (procName);
   }
   return ((__GLXextFuncPtr)0);
 }
@@ -583,10 +544,9 @@ __GLXextFuncPtr glXGetProcAddress (const GLubyte * procName)
 unsigned int glXGetGPUIDsAMD (unsigned int maxCount, unsigned int * ids)
 {
   // GLX_AMD_gpu_association - glXGetGPUIDsAMD
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetGPUIDsAMD)
+  if (s_deviceConfig.m_glXGetGPUIDsAMD)
   {
-    return deviceState->m_glXGetGPUIDsAMD (maxCount, ids);
+    return s_deviceConfig.m_glXGetGPUIDsAMD (maxCount, ids);
   }
   return ((unsigned int )0);
 }
@@ -598,10 +558,9 @@ unsigned int glXGetGPUIDsAMD (unsigned int maxCount, unsigned int * ids)
 int glXGetGPUInfoAMD (unsigned int id, int property, GLenum dataType, unsigned int size, void * data)
 {
   // GLX_AMD_gpu_association - glXGetGPUInfoAMD
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetGPUInfoAMD)
+  if (s_deviceConfig.m_glXGetGPUInfoAMD)
   {
-    return deviceState->m_glXGetGPUInfoAMD (id, property, dataType, size, data);
+    return s_deviceConfig.m_glXGetGPUInfoAMD (id, property, dataType, size, data);
   }
   return ((int )0);
 }
@@ -613,10 +572,9 @@ int glXGetGPUInfoAMD (unsigned int id, int property, GLenum dataType, unsigned i
 unsigned int glXGetContextGPUIDAMD (GLXContext ctx)
 {
   // GLX_AMD_gpu_association - glXGetContextGPUIDAMD
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetContextGPUIDAMD)
+  if (s_deviceConfig.m_glXGetContextGPUIDAMD)
   {
-    return deviceState->m_glXGetContextGPUIDAMD (ctx);
+    return s_deviceConfig.m_glXGetContextGPUIDAMD (ctx);
   }
   return ((unsigned int )0);
 }
@@ -628,10 +586,9 @@ unsigned int glXGetContextGPUIDAMD (GLXContext ctx)
 GLXContext glXCreateAssociatedContextAMD (unsigned int id, GLXContext share_list)
 {
   // GLX_AMD_gpu_association - glXCreateAssociatedContextAMD
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateAssociatedContextAMD)
+  if (s_deviceConfig.m_glXCreateAssociatedContextAMD)
   {
-    return deviceState->m_glXCreateAssociatedContextAMD (id, share_list);
+    return s_deviceConfig.m_glXCreateAssociatedContextAMD (id, share_list);
   }
   return ((GLXContext)0);
 }
@@ -643,10 +600,9 @@ GLXContext glXCreateAssociatedContextAMD (unsigned int id, GLXContext share_list
 GLXContext glXCreateAssociatedContextAttribsAMD (unsigned int id, GLXContext share_context, const int * attribList)
 {
   // GLX_AMD_gpu_association - glXCreateAssociatedContextAttribsAMD
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateAssociatedContextAttribsAMD)
+  if (s_deviceConfig.m_glXCreateAssociatedContextAttribsAMD)
   {
-    return deviceState->m_glXCreateAssociatedContextAttribsAMD (id, share_context, attribList);
+    return s_deviceConfig.m_glXCreateAssociatedContextAttribsAMD (id, share_context, attribList);
   }
   return ((GLXContext)0);
 }
@@ -658,10 +614,9 @@ GLXContext glXCreateAssociatedContextAttribsAMD (unsigned int id, GLXContext sha
 Bool glXDeleteAssociatedContextAMD (GLXContext ctx)
 {
   // GLX_AMD_gpu_association - glXDeleteAssociatedContextAMD
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDeleteAssociatedContextAMD)
+  if (s_deviceConfig.m_glXDeleteAssociatedContextAMD)
   {
-    return deviceState->m_glXDeleteAssociatedContextAMD (ctx);
+    return s_deviceConfig.m_glXDeleteAssociatedContextAMD (ctx);
   }
   return ((Bool)0);
 }
@@ -673,10 +628,9 @@ Bool glXDeleteAssociatedContextAMD (GLXContext ctx)
 Bool glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
 {
   // GLX_AMD_gpu_association - glXMakeAssociatedContextCurrentAMD
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXMakeAssociatedContextCurrentAMD)
+  if (s_deviceConfig.m_glXMakeAssociatedContextCurrentAMD)
   {
-    return deviceState->m_glXMakeAssociatedContextCurrentAMD (ctx);
+    return s_deviceConfig.m_glXMakeAssociatedContextCurrentAMD (ctx);
   }
   return ((Bool)0);
 }
@@ -688,10 +642,9 @@ Bool glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
 GLXContext glXGetCurrentAssociatedContextAMD ()
 {
   // GLX_AMD_gpu_association - glXGetCurrentAssociatedContextAMD
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetCurrentAssociatedContextAMD)
+  if (s_deviceConfig.m_glXGetCurrentAssociatedContextAMD)
   {
-    return deviceState->m_glXGetCurrentAssociatedContextAMD ();
+    return s_deviceConfig.m_glXGetCurrentAssociatedContextAMD ();
   }
   return ((GLXContext)0);
 }
@@ -703,10 +656,9 @@ GLXContext glXGetCurrentAssociatedContextAMD ()
 void glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
   // GLX_AMD_gpu_association - glXBlitContextFramebufferAMD
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXBlitContextFramebufferAMD)
+  if (s_deviceConfig.m_glXBlitContextFramebufferAMD)
   {
-    deviceState->m_glXBlitContextFramebufferAMD (dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+    s_deviceConfig.m_glXBlitContextFramebufferAMD (dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
 }
 
@@ -717,10 +669,9 @@ void glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, 
 GLXContext glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list)
 {
   // GLX_ARB_create_context - glXCreateContextAttribsARB
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateContextAttribsARB)
+  if (s_deviceConfig.m_glXCreateContextAttribsARB)
   {
-    return deviceState->m_glXCreateContextAttribsARB (dpy, config, share_context, direct, attrib_list);
+    return s_deviceConfig.m_glXCreateContextAttribsARB (dpy, config, share_context, direct, attrib_list);
   }
   return ((GLXContext)0);
 }
@@ -732,10 +683,9 @@ GLXContext glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXCon
 __GLXextFuncPtr glXGetProcAddressARB (const GLubyte * procName)
 {
   // GLX_ARB_get_proc_address - glXGetProcAddressARB
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetProcAddressARB)
+  if (s_deviceConfig.m_glXGetProcAddressARB)
   {
-    return deviceState->m_glXGetProcAddressARB (procName);
+    return s_deviceConfig.m_glXGetProcAddressARB (procName);
   }
   return ((__GLXextFuncPtr)0);
 }
@@ -747,10 +697,9 @@ __GLXextFuncPtr glXGetProcAddressARB (const GLubyte * procName)
 Display * glXGetCurrentDisplayEXT ()
 {
   // GLX_EXT_import_context - glXGetCurrentDisplayEXT
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetCurrentDisplayEXT)
+  if (s_deviceConfig.m_glXGetCurrentDisplayEXT)
   {
-    return deviceState->m_glXGetCurrentDisplayEXT ();
+    return s_deviceConfig.m_glXGetCurrentDisplayEXT ();
   }
   return ((Display *)0);
 }
@@ -762,10 +711,9 @@ Display * glXGetCurrentDisplayEXT ()
 int glXQueryContextInfoEXT (Display * dpy, GLXContext context, int attribute, int * value)
 {
   // GLX_EXT_import_context - glXQueryContextInfoEXT
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryContextInfoEXT)
+  if (s_deviceConfig.m_glXQueryContextInfoEXT)
   {
-    return deviceState->m_glXQueryContextInfoEXT (dpy, context, attribute, value);
+    return s_deviceConfig.m_glXQueryContextInfoEXT (dpy, context, attribute, value);
   }
   return ((int )0);
 }
@@ -777,10 +725,9 @@ int glXQueryContextInfoEXT (Display * dpy, GLXContext context, int attribute, in
 GLXContextID glXGetContextIDEXT (const GLXContext context)
 {
   // GLX_EXT_import_context - glXGetContextIDEXT
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetContextIDEXT)
+  if (s_deviceConfig.m_glXGetContextIDEXT)
   {
-    return deviceState->m_glXGetContextIDEXT (context);
+    return s_deviceConfig.m_glXGetContextIDEXT (context);
   }
   return ((GLXContextID)0);
 }
@@ -792,10 +739,9 @@ GLXContextID glXGetContextIDEXT (const GLXContext context)
 GLXContext glXImportContextEXT (Display * dpy, GLXContextID contextID)
 {
   // GLX_EXT_import_context - glXImportContextEXT
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXImportContextEXT)
+  if (s_deviceConfig.m_glXImportContextEXT)
   {
-    return deviceState->m_glXImportContextEXT (dpy, contextID);
+    return s_deviceConfig.m_glXImportContextEXT (dpy, contextID);
   }
   return ((GLXContext)0);
 }
@@ -807,10 +753,9 @@ GLXContext glXImportContextEXT (Display * dpy, GLXContextID contextID)
 void glXFreeContextEXT (Display * dpy, GLXContext context)
 {
   // GLX_EXT_import_context - glXFreeContextEXT
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXFreeContextEXT)
+  if (s_deviceConfig.m_glXFreeContextEXT)
   {
-    deviceState->m_glXFreeContextEXT (dpy, context);
+    s_deviceConfig.m_glXFreeContextEXT (dpy, context);
   }
 }
 
@@ -821,10 +766,9 @@ void glXFreeContextEXT (Display * dpy, GLXContext context)
 void glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int interval)
 {
   // GLX_EXT_swap_control - glXSwapIntervalEXT
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXSwapIntervalEXT)
+  if (s_deviceConfig.m_glXSwapIntervalEXT)
   {
-    deviceState->m_glXSwapIntervalEXT (dpy, drawable, interval);
+    s_deviceConfig.m_glXSwapIntervalEXT (dpy, drawable, interval);
   }
 }
 
@@ -835,10 +779,9 @@ void glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int interval)
 void glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer, const int * attrib_list)
 {
   // GLX_EXT_texture_from_pixmap - glXBindTexImageEXT
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXBindTexImageEXT)
+  if (s_deviceConfig.m_glXBindTexImageEXT)
   {
-    deviceState->m_glXBindTexImageEXT (dpy, drawable, buffer, attrib_list);
+    s_deviceConfig.m_glXBindTexImageEXT (dpy, drawable, buffer, attrib_list);
   }
 }
 
@@ -849,10 +792,9 @@ void glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer, const 
 void glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer)
 {
   // GLX_EXT_texture_from_pixmap - glXReleaseTexImageEXT
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXReleaseTexImageEXT)
+  if (s_deviceConfig.m_glXReleaseTexImageEXT)
   {
-    deviceState->m_glXReleaseTexImageEXT (dpy, drawable, buffer);
+    s_deviceConfig.m_glXReleaseTexImageEXT (dpy, drawable, buffer);
   }
 }
 
@@ -863,10 +805,9 @@ void glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer)
 unsigned int glXGetAGPOffsetMESA (const void * pointer)
 {
   // GLX_MESA_agp_offset - glXGetAGPOffsetMESA
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetAGPOffsetMESA)
+  if (s_deviceConfig.m_glXGetAGPOffsetMESA)
   {
-    return deviceState->m_glXGetAGPOffsetMESA (pointer);
+    return s_deviceConfig.m_glXGetAGPOffsetMESA (pointer);
   }
   return ((unsigned int )0);
 }
@@ -878,10 +819,9 @@ unsigned int glXGetAGPOffsetMESA (const void * pointer)
 void glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int x, int y, int width, int height)
 {
   // GLX_MESA_copy_sub_buffer - glXCopySubBufferMESA
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCopySubBufferMESA)
+  if (s_deviceConfig.m_glXCopySubBufferMESA)
   {
-    deviceState->m_glXCopySubBufferMESA (dpy, drawable, x, y, width, height);
+    s_deviceConfig.m_glXCopySubBufferMESA (dpy, drawable, x, y, width, height);
   }
 }
 
@@ -892,10 +832,9 @@ void glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int x, int y, in
 GLXPixmap glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap)
 {
   // GLX_MESA_pixmap_colormap - glXCreateGLXPixmapMESA
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateGLXPixmapMESA)
+  if (s_deviceConfig.m_glXCreateGLXPixmapMESA)
   {
-    return deviceState->m_glXCreateGLXPixmapMESA (dpy, visual, pixmap, cmap);
+    return s_deviceConfig.m_glXCreateGLXPixmapMESA (dpy, visual, pixmap, cmap);
   }
   return ((GLXPixmap)0);
 }
@@ -907,10 +846,9 @@ GLXPixmap glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pi
 Bool glXQueryCurrentRendererIntegerMESA (int attribute, unsigned int * value)
 {
   // GLX_MESA_query_renderer - glXQueryCurrentRendererIntegerMESA
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryCurrentRendererIntegerMESA)
+  if (s_deviceConfig.m_glXQueryCurrentRendererIntegerMESA)
   {
-    return deviceState->m_glXQueryCurrentRendererIntegerMESA (attribute, value);
+    return s_deviceConfig.m_glXQueryCurrentRendererIntegerMESA (attribute, value);
   }
   return ((Bool)0);
 }
@@ -922,10 +860,9 @@ Bool glXQueryCurrentRendererIntegerMESA (int attribute, unsigned int * value)
 const char * glXQueryCurrentRendererStringMESA (int attribute)
 {
   // GLX_MESA_query_renderer - glXQueryCurrentRendererStringMESA
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryCurrentRendererStringMESA)
+  if (s_deviceConfig.m_glXQueryCurrentRendererStringMESA)
   {
-    return deviceState->m_glXQueryCurrentRendererStringMESA (attribute);
+    return s_deviceConfig.m_glXQueryCurrentRendererStringMESA (attribute);
   }
   return ((const char *)0);
 }
@@ -937,10 +874,9 @@ const char * glXQueryCurrentRendererStringMESA (int attribute)
 Bool glXQueryRendererIntegerMESA (Display * dpy, int screen, int renderer, int attribute, unsigned int * value)
 {
   // GLX_MESA_query_renderer - glXQueryRendererIntegerMESA
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryRendererIntegerMESA)
+  if (s_deviceConfig.m_glXQueryRendererIntegerMESA)
   {
-    return deviceState->m_glXQueryRendererIntegerMESA (dpy, screen, renderer, attribute, value);
+    return s_deviceConfig.m_glXQueryRendererIntegerMESA (dpy, screen, renderer, attribute, value);
   }
   return ((Bool)0);
 }
@@ -952,10 +888,9 @@ Bool glXQueryRendererIntegerMESA (Display * dpy, int screen, int renderer, int a
 const char * glXQueryRendererStringMESA (Display * dpy, int screen, int renderer, int attribute)
 {
   // GLX_MESA_query_renderer - glXQueryRendererStringMESA
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryRendererStringMESA)
+  if (s_deviceConfig.m_glXQueryRendererStringMESA)
   {
-    return deviceState->m_glXQueryRendererStringMESA (dpy, screen, renderer, attribute);
+    return s_deviceConfig.m_glXQueryRendererStringMESA (dpy, screen, renderer, attribute);
   }
   return ((const char *)0);
 }
@@ -967,10 +902,9 @@ const char * glXQueryRendererStringMESA (Display * dpy, int screen, int renderer
 Bool glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
 {
   // GLX_MESA_release_buffers - glXReleaseBuffersMESA
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXReleaseBuffersMESA)
+  if (s_deviceConfig.m_glXReleaseBuffersMESA)
   {
-    return deviceState->m_glXReleaseBuffersMESA (dpy, drawable);
+    return s_deviceConfig.m_glXReleaseBuffersMESA (dpy, drawable);
   }
   return ((Bool)0);
 }
@@ -982,10 +916,9 @@ Bool glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
 Bool glXSet3DfxModeMESA (int mode)
 {
   // GLX_MESA_set_3dfx_mode - glXSet3DfxModeMESA
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXSet3DfxModeMESA)
+  if (s_deviceConfig.m_glXSet3DfxModeMESA)
   {
-    return deviceState->m_glXSet3DfxModeMESA (mode);
+    return s_deviceConfig.m_glXSet3DfxModeMESA (mode);
   }
   return ((Bool)0);
 }
@@ -997,10 +930,9 @@ Bool glXSet3DfxModeMESA (int mode)
 void glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
   // GLX_NV_copy_buffer - glXCopyBufferSubDataNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCopyBufferSubDataNV)
+  if (s_deviceConfig.m_glXCopyBufferSubDataNV)
   {
-    deviceState->m_glXCopyBufferSubDataNV (dpy, readCtx, writeCtx, readTarget, writeTarget, readOffset, writeOffset, size);
+    s_deviceConfig.m_glXCopyBufferSubDataNV (dpy, readCtx, writeCtx, readTarget, writeTarget, readOffset, writeOffset, size);
   }
 }
 
@@ -1011,10 +943,9 @@ void glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext write
 void glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
   // GLX_NV_copy_buffer - glXNamedCopyBufferSubDataNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXNamedCopyBufferSubDataNV)
+  if (s_deviceConfig.m_glXNamedCopyBufferSubDataNV)
   {
-    deviceState->m_glXNamedCopyBufferSubDataNV (dpy, readCtx, writeCtx, readBuffer, writeBuffer, readOffset, writeOffset, size);
+    s_deviceConfig.m_glXNamedCopyBufferSubDataNV (dpy, readCtx, writeCtx, readBuffer, writeBuffer, readOffset, writeOffset, size);
   }
 }
 
@@ -1025,10 +956,9 @@ void glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext 
 void glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth)
 {
   // GLX_NV_copy_image - glXCopyImageSubDataNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCopyImageSubDataNV)
+  if (s_deviceConfig.m_glXCopyImageSubDataNV)
   {
-    deviceState->m_glXCopyImageSubDataNV (dpy, srcCtx, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstCtx, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
+    s_deviceConfig.m_glXCopyImageSubDataNV (dpy, srcCtx, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstCtx, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
   }
 }
 
@@ -1039,10 +969,9 @@ void glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GL
 Bool glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds)
 {
   // GLX_NV_delay_before_swap - glXDelayBeforeSwapNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDelayBeforeSwapNV)
+  if (s_deviceConfig.m_glXDelayBeforeSwapNV)
   {
-    return deviceState->m_glXDelayBeforeSwapNV (dpy, drawable, seconds);
+    return s_deviceConfig.m_glXDelayBeforeSwapNV (dpy, drawable, seconds);
   }
   return ((Bool)0);
 }
@@ -1054,10 +983,9 @@ Bool glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds)
 unsigned int * glXEnumerateVideoDevicesNV (Display * dpy, int screen, int * nelements)
 {
   // GLX_NV_present_video - glXEnumerateVideoDevicesNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXEnumerateVideoDevicesNV)
+  if (s_deviceConfig.m_glXEnumerateVideoDevicesNV)
   {
-    return deviceState->m_glXEnumerateVideoDevicesNV (dpy, screen, nelements);
+    return s_deviceConfig.m_glXEnumerateVideoDevicesNV (dpy, screen, nelements);
   }
   return ((unsigned int *)0);
 }
@@ -1069,10 +997,9 @@ unsigned int * glXEnumerateVideoDevicesNV (Display * dpy, int screen, int * nele
 int glXBindVideoDeviceNV (Display * dpy, unsigned int video_slot, unsigned int video_device, const int * attrib_list)
 {
   // GLX_NV_present_video - glXBindVideoDeviceNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXBindVideoDeviceNV)
+  if (s_deviceConfig.m_glXBindVideoDeviceNV)
   {
-    return deviceState->m_glXBindVideoDeviceNV (dpy, video_slot, video_device, attrib_list);
+    return s_deviceConfig.m_glXBindVideoDeviceNV (dpy, video_slot, video_device, attrib_list);
   }
   return ((int )0);
 }
@@ -1084,10 +1011,9 @@ int glXBindVideoDeviceNV (Display * dpy, unsigned int video_slot, unsigned int v
 Bool glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group)
 {
   // GLX_NV_swap_group - glXJoinSwapGroupNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXJoinSwapGroupNV)
+  if (s_deviceConfig.m_glXJoinSwapGroupNV)
   {
-    return deviceState->m_glXJoinSwapGroupNV (dpy, drawable, group);
+    return s_deviceConfig.m_glXJoinSwapGroupNV (dpy, drawable, group);
   }
   return ((Bool)0);
 }
@@ -1099,10 +1025,9 @@ Bool glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group)
 Bool glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier)
 {
   // GLX_NV_swap_group - glXBindSwapBarrierNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXBindSwapBarrierNV)
+  if (s_deviceConfig.m_glXBindSwapBarrierNV)
   {
-    return deviceState->m_glXBindSwapBarrierNV (dpy, group, barrier);
+    return s_deviceConfig.m_glXBindSwapBarrierNV (dpy, group, barrier);
   }
   return ((Bool)0);
 }
@@ -1114,10 +1039,9 @@ Bool glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier)
 Bool glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier)
 {
   // GLX_NV_swap_group - glXQuerySwapGroupNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQuerySwapGroupNV)
+  if (s_deviceConfig.m_glXQuerySwapGroupNV)
   {
-    return deviceState->m_glXQuerySwapGroupNV (dpy, drawable, group, barrier);
+    return s_deviceConfig.m_glXQuerySwapGroupNV (dpy, drawable, group, barrier);
   }
   return ((Bool)0);
 }
@@ -1129,10 +1053,9 @@ Bool glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, G
 Bool glXQueryMaxSwapGroupsNV (Display * dpy, int screen, GLuint * maxGroups, GLuint * maxBarriers)
 {
   // GLX_NV_swap_group - glXQueryMaxSwapGroupsNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryMaxSwapGroupsNV)
+  if (s_deviceConfig.m_glXQueryMaxSwapGroupsNV)
   {
-    return deviceState->m_glXQueryMaxSwapGroupsNV (dpy, screen, maxGroups, maxBarriers);
+    return s_deviceConfig.m_glXQueryMaxSwapGroupsNV (dpy, screen, maxGroups, maxBarriers);
   }
   return ((Bool)0);
 }
@@ -1144,10 +1067,9 @@ Bool glXQueryMaxSwapGroupsNV (Display * dpy, int screen, GLuint * maxGroups, GLu
 Bool glXQueryFrameCountNV (Display * dpy, int screen, GLuint * count)
 {
   // GLX_NV_swap_group - glXQueryFrameCountNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryFrameCountNV)
+  if (s_deviceConfig.m_glXQueryFrameCountNV)
   {
-    return deviceState->m_glXQueryFrameCountNV (dpy, screen, count);
+    return s_deviceConfig.m_glXQueryFrameCountNV (dpy, screen, count);
   }
   return ((Bool)0);
 }
@@ -1159,10 +1081,9 @@ Bool glXQueryFrameCountNV (Display * dpy, int screen, GLuint * count)
 Bool glXResetFrameCountNV (Display * dpy, int screen)
 {
   // GLX_NV_swap_group - glXResetFrameCountNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXResetFrameCountNV)
+  if (s_deviceConfig.m_glXResetFrameCountNV)
   {
-    return deviceState->m_glXResetFrameCountNV (dpy, screen);
+    return s_deviceConfig.m_glXResetFrameCountNV (dpy, screen);
   }
   return ((Bool)0);
 }
@@ -1174,10 +1095,9 @@ Bool glXResetFrameCountNV (Display * dpy, int screen)
 int glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int video_capture_slot, GLXVideoCaptureDeviceNV device)
 {
   // GLX_NV_video_capture - glXBindVideoCaptureDeviceNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXBindVideoCaptureDeviceNV)
+  if (s_deviceConfig.m_glXBindVideoCaptureDeviceNV)
   {
-    return deviceState->m_glXBindVideoCaptureDeviceNV (dpy, video_capture_slot, device);
+    return s_deviceConfig.m_glXBindVideoCaptureDeviceNV (dpy, video_capture_slot, device);
   }
   return ((int )0);
 }
@@ -1189,10 +1109,9 @@ int glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int video_capture_slot,
 GLXVideoCaptureDeviceNV * glXEnumerateVideoCaptureDevicesNV (Display * dpy, int screen, int * nelements)
 {
   // GLX_NV_video_capture - glXEnumerateVideoCaptureDevicesNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXEnumerateVideoCaptureDevicesNV)
+  if (s_deviceConfig.m_glXEnumerateVideoCaptureDevicesNV)
   {
-    return deviceState->m_glXEnumerateVideoCaptureDevicesNV (dpy, screen, nelements);
+    return s_deviceConfig.m_glXEnumerateVideoCaptureDevicesNV (dpy, screen, nelements);
   }
   return ((GLXVideoCaptureDeviceNV *)0);
 }
@@ -1204,10 +1123,9 @@ GLXVideoCaptureDeviceNV * glXEnumerateVideoCaptureDevicesNV (Display * dpy, int 
 void glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
 {
   // GLX_NV_video_capture - glXLockVideoCaptureDeviceNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXLockVideoCaptureDeviceNV)
+  if (s_deviceConfig.m_glXLockVideoCaptureDeviceNV)
   {
-    deviceState->m_glXLockVideoCaptureDeviceNV (dpy, device);
+    s_deviceConfig.m_glXLockVideoCaptureDeviceNV (dpy, device);
   }
 }
 
@@ -1218,10 +1136,9 @@ void glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
 int glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device, int attribute, int * value)
 {
   // GLX_NV_video_capture - glXQueryVideoCaptureDeviceNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryVideoCaptureDeviceNV)
+  if (s_deviceConfig.m_glXQueryVideoCaptureDeviceNV)
   {
-    return deviceState->m_glXQueryVideoCaptureDeviceNV (dpy, device, attribute, value);
+    return s_deviceConfig.m_glXQueryVideoCaptureDeviceNV (dpy, device, attribute, value);
   }
   return ((int )0);
 }
@@ -1233,10 +1150,9 @@ int glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device,
 void glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
 {
   // GLX_NV_video_capture - glXReleaseVideoCaptureDeviceNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXReleaseVideoCaptureDeviceNV)
+  if (s_deviceConfig.m_glXReleaseVideoCaptureDeviceNV)
   {
-    deviceState->m_glXReleaseVideoCaptureDeviceNV (dpy, device);
+    s_deviceConfig.m_glXReleaseVideoCaptureDeviceNV (dpy, device);
   }
 }
 
@@ -1247,10 +1163,9 @@ void glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV devi
 int glXGetVideoDeviceNV (Display * dpy, int screen, int numVideoDevices, GLXVideoDeviceNV * pVideoDevice)
 {
   // GLX_NV_video_out - glXGetVideoDeviceNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetVideoDeviceNV)
+  if (s_deviceConfig.m_glXGetVideoDeviceNV)
   {
-    return deviceState->m_glXGetVideoDeviceNV (dpy, screen, numVideoDevices, pVideoDevice);
+    return s_deviceConfig.m_glXGetVideoDeviceNV (dpy, screen, numVideoDevices, pVideoDevice);
   }
   return ((int )0);
 }
@@ -1262,10 +1177,9 @@ int glXGetVideoDeviceNV (Display * dpy, int screen, int numVideoDevices, GLXVide
 int glXReleaseVideoDeviceNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice)
 {
   // GLX_NV_video_out - glXReleaseVideoDeviceNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXReleaseVideoDeviceNV)
+  if (s_deviceConfig.m_glXReleaseVideoDeviceNV)
   {
-    return deviceState->m_glXReleaseVideoDeviceNV (dpy, screen, VideoDevice);
+    return s_deviceConfig.m_glXReleaseVideoDeviceNV (dpy, screen, VideoDevice);
   }
   return ((int )0);
 }
@@ -1277,10 +1191,9 @@ int glXReleaseVideoDeviceNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDe
 int glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int iVideoBuffer)
 {
   // GLX_NV_video_out - glXBindVideoImageNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXBindVideoImageNV)
+  if (s_deviceConfig.m_glXBindVideoImageNV)
   {
-    return deviceState->m_glXBindVideoImageNV (dpy, VideoDevice, pbuf, iVideoBuffer);
+    return s_deviceConfig.m_glXBindVideoImageNV (dpy, VideoDevice, pbuf, iVideoBuffer);
   }
   return ((int )0);
 }
@@ -1292,10 +1205,9 @@ int glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer
 int glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
 {
   // GLX_NV_video_out - glXReleaseVideoImageNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXReleaseVideoImageNV)
+  if (s_deviceConfig.m_glXReleaseVideoImageNV)
   {
-    return deviceState->m_glXReleaseVideoImageNV (dpy, pbuf);
+    return s_deviceConfig.m_glXReleaseVideoImageNV (dpy, pbuf);
   }
   return ((int )0);
 }
@@ -1307,10 +1219,9 @@ int glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
 int glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int iBufferType, unsigned long * pulCounterPbuffer, GLboolean bBlock)
 {
   // GLX_NV_video_out - glXSendPbufferToVideoNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXSendPbufferToVideoNV)
+  if (s_deviceConfig.m_glXSendPbufferToVideoNV)
   {
-    return deviceState->m_glXSendPbufferToVideoNV (dpy, pbuf, iBufferType, pulCounterPbuffer, bBlock);
+    return s_deviceConfig.m_glXSendPbufferToVideoNV (dpy, pbuf, iBufferType, pulCounterPbuffer, bBlock);
   }
   return ((int )0);
 }
@@ -1322,10 +1233,9 @@ int glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int iBufferType, un
 int glXGetVideoInfoNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo)
 {
   // GLX_NV_video_out - glXGetVideoInfoNV
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetVideoInfoNV)
+  if (s_deviceConfig.m_glXGetVideoInfoNV)
   {
-    return deviceState->m_glXGetVideoInfoNV (dpy, screen, VideoDevice, pulCounterOutputPbuffer, pulCounterOutputVideo);
+    return s_deviceConfig.m_glXGetVideoInfoNV (dpy, screen, VideoDevice, pulCounterOutputPbuffer, pulCounterOutputVideo);
   }
   return ((int )0);
 }
@@ -1337,10 +1247,9 @@ int glXGetVideoInfoNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice, 
 Bool glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc)
 {
   // GLX_OML_sync_control - glXGetSyncValuesOML
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetSyncValuesOML)
+  if (s_deviceConfig.m_glXGetSyncValuesOML)
   {
-    return deviceState->m_glXGetSyncValuesOML (dpy, drawable, ust, msc, sbc);
+    return s_deviceConfig.m_glXGetSyncValuesOML (dpy, drawable, ust, msc, sbc);
   }
   return ((Bool)0);
 }
@@ -1352,10 +1261,9 @@ Bool glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, in
 Bool glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator)
 {
   // GLX_OML_sync_control - glXGetMscRateOML
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetMscRateOML)
+  if (s_deviceConfig.m_glXGetMscRateOML)
   {
-    return deviceState->m_glXGetMscRateOML (dpy, drawable, numerator, denominator);
+    return s_deviceConfig.m_glXGetMscRateOML (dpy, drawable, numerator, denominator);
   }
   return ((Bool)0);
 }
@@ -1367,10 +1275,9 @@ Bool glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator,
 int64_t glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder)
 {
   // GLX_OML_sync_control - glXSwapBuffersMscOML
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXSwapBuffersMscOML)
+  if (s_deviceConfig.m_glXSwapBuffersMscOML)
   {
-    return deviceState->m_glXSwapBuffersMscOML (dpy, drawable, target_msc, divisor, remainder);
+    return s_deviceConfig.m_glXSwapBuffersMscOML (dpy, drawable, target_msc, divisor, remainder);
   }
   return ((int64_t)0);
 }
@@ -1382,10 +1289,9 @@ int64_t glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t targe
 Bool glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc)
 {
   // GLX_OML_sync_control - glXWaitForMscOML
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXWaitForMscOML)
+  if (s_deviceConfig.m_glXWaitForMscOML)
   {
-    return deviceState->m_glXWaitForMscOML (dpy, drawable, target_msc, divisor, remainder, ust, msc, sbc);
+    return s_deviceConfig.m_glXWaitForMscOML (dpy, drawable, target_msc, divisor, remainder, ust, msc, sbc);
   }
   return ((Bool)0);
 }
@@ -1397,10 +1303,9 @@ Bool glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, 
 Bool glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc)
 {
   // GLX_OML_sync_control - glXWaitForSbcOML
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXWaitForSbcOML)
+  if (s_deviceConfig.m_glXWaitForSbcOML)
   {
-    return deviceState->m_glXWaitForSbcOML (dpy, drawable, target_sbc, ust, msc, sbc);
+    return s_deviceConfig.m_glXWaitForSbcOML (dpy, drawable, target_sbc, ust, msc, sbc);
   }
   return ((Bool)0);
 }
@@ -1412,10 +1317,9 @@ Bool glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, 
 void glXCushionSGI (Display * dpy, Window window, float cushion)
 {
   // GLX_SGI_cushion - glXCushionSGI
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCushionSGI)
+  if (s_deviceConfig.m_glXCushionSGI)
   {
-    deviceState->m_glXCushionSGI (dpy, window, cushion);
+    s_deviceConfig.m_glXCushionSGI (dpy, window, cushion);
   }
 }
 
@@ -1426,10 +1330,9 @@ void glXCushionSGI (Display * dpy, Window window, float cushion)
 Bool glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
 {
   // GLX_SGI_make_current_read - glXMakeCurrentReadSGI
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXMakeCurrentReadSGI)
+  if (s_deviceConfig.m_glXMakeCurrentReadSGI)
   {
-    return deviceState->m_glXMakeCurrentReadSGI (dpy, draw, read, ctx);
+    return s_deviceConfig.m_glXMakeCurrentReadSGI (dpy, draw, read, ctx);
   }
   return ((Bool)0);
 }
@@ -1441,10 +1344,9 @@ Bool glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, G
 GLXDrawable glXGetCurrentReadDrawableSGI ()
 {
   // GLX_SGI_make_current_read - glXGetCurrentReadDrawableSGI
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetCurrentReadDrawableSGI)
+  if (s_deviceConfig.m_glXGetCurrentReadDrawableSGI)
   {
-    return deviceState->m_glXGetCurrentReadDrawableSGI ();
+    return s_deviceConfig.m_glXGetCurrentReadDrawableSGI ();
   }
   return ((GLXDrawable)0);
 }
@@ -1456,10 +1358,9 @@ GLXDrawable glXGetCurrentReadDrawableSGI ()
 int glXSwapIntervalSGI (int interval)
 {
   // GLX_SGI_swap_control - glXSwapIntervalSGI
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXSwapIntervalSGI)
+  if (s_deviceConfig.m_glXSwapIntervalSGI)
   {
-    return deviceState->m_glXSwapIntervalSGI (interval);
+    return s_deviceConfig.m_glXSwapIntervalSGI (interval);
   }
   return ((int )0);
 }
@@ -1471,10 +1372,9 @@ int glXSwapIntervalSGI (int interval)
 int glXGetVideoSyncSGI (unsigned int * count)
 {
   // GLX_SGI_video_sync - glXGetVideoSyncSGI
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetVideoSyncSGI)
+  if (s_deviceConfig.m_glXGetVideoSyncSGI)
   {
-    return deviceState->m_glXGetVideoSyncSGI (count);
+    return s_deviceConfig.m_glXGetVideoSyncSGI (count);
   }
   return ((int )0);
 }
@@ -1486,10 +1386,9 @@ int glXGetVideoSyncSGI (unsigned int * count)
 int glXWaitVideoSyncSGI (int divisor, int remainder, unsigned int * count)
 {
   // GLX_SGI_video_sync - glXWaitVideoSyncSGI
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXWaitVideoSyncSGI)
+  if (s_deviceConfig.m_glXWaitVideoSyncSGI)
   {
-    return deviceState->m_glXWaitVideoSyncSGI (divisor, remainder, count);
+    return s_deviceConfig.m_glXWaitVideoSyncSGI (divisor, remainder, count);
   }
   return ((int )0);
 }
@@ -1501,10 +1400,9 @@ int glXWaitVideoSyncSGI (int divisor, int remainder, unsigned int * count)
 Bool glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams * params, DMbuffer dmbuffer)
 {
   // GLX_SGIX_dmbuffer - glXAssociateDMPbufferSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXAssociateDMPbufferSGIX)
+  if (s_deviceConfig.m_glXAssociateDMPbufferSGIX)
   {
-    return deviceState->m_glXAssociateDMPbufferSGIX (dpy, pbuffer, params, dmbuffer);
+    return s_deviceConfig.m_glXAssociateDMPbufferSGIX (dpy, pbuffer, params, dmbuffer);
   }
   return ((Bool)0);
 }
@@ -1516,10 +1414,9 @@ Bool glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams 
 int glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int attribute, int * value)
 {
   // GLX_SGIX_fbconfig - glXGetFBConfigAttribSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetFBConfigAttribSGIX)
+  if (s_deviceConfig.m_glXGetFBConfigAttribSGIX)
   {
-    return deviceState->m_glXGetFBConfigAttribSGIX (dpy, config, attribute, value);
+    return s_deviceConfig.m_glXGetFBConfigAttribSGIX (dpy, config, attribute, value);
   }
   return ((int )0);
 }
@@ -1531,10 +1428,9 @@ int glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int attribu
 GLXFBConfigSGIX * glXChooseFBConfigSGIX (Display * dpy, int screen, int * attrib_list, int * nelements)
 {
   // GLX_SGIX_fbconfig - glXChooseFBConfigSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXChooseFBConfigSGIX)
+  if (s_deviceConfig.m_glXChooseFBConfigSGIX)
   {
-    return deviceState->m_glXChooseFBConfigSGIX (dpy, screen, attrib_list, nelements);
+    return s_deviceConfig.m_glXChooseFBConfigSGIX (dpy, screen, attrib_list, nelements);
   }
   return ((GLXFBConfigSGIX *)0);
 }
@@ -1546,10 +1442,9 @@ GLXFBConfigSGIX * glXChooseFBConfigSGIX (Display * dpy, int screen, int * attrib
 GLXPixmap glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap)
 {
   // GLX_SGIX_fbconfig - glXCreateGLXPixmapWithConfigSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateGLXPixmapWithConfigSGIX)
+  if (s_deviceConfig.m_glXCreateGLXPixmapWithConfigSGIX)
   {
-    return deviceState->m_glXCreateGLXPixmapWithConfigSGIX (dpy, config, pixmap);
+    return s_deviceConfig.m_glXCreateGLXPixmapWithConfigSGIX (dpy, config, pixmap);
   }
   return ((GLXPixmap)0);
 }
@@ -1561,10 +1456,9 @@ GLXPixmap glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX confi
 GLXContext glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, int render_type, GLXContext share_list, Bool direct)
 {
   // GLX_SGIX_fbconfig - glXCreateContextWithConfigSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateContextWithConfigSGIX)
+  if (s_deviceConfig.m_glXCreateContextWithConfigSGIX)
   {
-    return deviceState->m_glXCreateContextWithConfigSGIX (dpy, config, render_type, share_list, direct);
+    return s_deviceConfig.m_glXCreateContextWithConfigSGIX (dpy, config, render_type, share_list, direct);
   }
   return ((GLXContext)0);
 }
@@ -1576,10 +1470,9 @@ GLXContext glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config
 XVisualInfo * glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX config)
 {
   // GLX_SGIX_fbconfig - glXGetVisualFromFBConfigSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetVisualFromFBConfigSGIX)
+  if (s_deviceConfig.m_glXGetVisualFromFBConfigSGIX)
   {
-    return deviceState->m_glXGetVisualFromFBConfigSGIX (dpy, config);
+    return s_deviceConfig.m_glXGetVisualFromFBConfigSGIX (dpy, config);
   }
   return ((XVisualInfo *)0);
 }
@@ -1591,10 +1484,9 @@ XVisualInfo * glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX confi
 GLXFBConfigSGIX glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis)
 {
   // GLX_SGIX_fbconfig - glXGetFBConfigFromVisualSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetFBConfigFromVisualSGIX)
+  if (s_deviceConfig.m_glXGetFBConfigFromVisualSGIX)
   {
-    return deviceState->m_glXGetFBConfigFromVisualSGIX (dpy, vis);
+    return s_deviceConfig.m_glXGetFBConfigFromVisualSGIX (dpy, vis);
   }
   return ((GLXFBConfigSGIX)0);
 }
@@ -1606,10 +1498,9 @@ GLXFBConfigSGIX glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis)
 GLXHyperpipeNetworkSGIX * glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npipes)
 {
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeNetworkSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryHyperpipeNetworkSGIX)
+  if (s_deviceConfig.m_glXQueryHyperpipeNetworkSGIX)
   {
-    return deviceState->m_glXQueryHyperpipeNetworkSGIX (dpy, npipes);
+    return s_deviceConfig.m_glXQueryHyperpipeNetworkSGIX (dpy, npipes);
   }
   return ((GLXHyperpipeNetworkSGIX *)0);
 }
@@ -1621,10 +1512,9 @@ GLXHyperpipeNetworkSGIX * glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npi
 int glXHyperpipeConfigSGIX (Display * dpy, int networkId, int npipes, GLXHyperpipeConfigSGIX * cfg, int * hpId)
 {
   // GLX_SGIX_hyperpipe - glXHyperpipeConfigSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXHyperpipeConfigSGIX)
+  if (s_deviceConfig.m_glXHyperpipeConfigSGIX)
   {
-    return deviceState->m_glXHyperpipeConfigSGIX (dpy, networkId, npipes, cfg, hpId);
+    return s_deviceConfig.m_glXHyperpipeConfigSGIX (dpy, networkId, npipes, cfg, hpId);
   }
   return ((int )0);
 }
@@ -1636,10 +1526,9 @@ int glXHyperpipeConfigSGIX (Display * dpy, int networkId, int npipes, GLXHyperpi
 GLXHyperpipeConfigSGIX * glXQueryHyperpipeConfigSGIX (Display * dpy, int hpId, int * npipes)
 {
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeConfigSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryHyperpipeConfigSGIX)
+  if (s_deviceConfig.m_glXQueryHyperpipeConfigSGIX)
   {
-    return deviceState->m_glXQueryHyperpipeConfigSGIX (dpy, hpId, npipes);
+    return s_deviceConfig.m_glXQueryHyperpipeConfigSGIX (dpy, hpId, npipes);
   }
   return ((GLXHyperpipeConfigSGIX *)0);
 }
@@ -1651,10 +1540,9 @@ GLXHyperpipeConfigSGIX * glXQueryHyperpipeConfigSGIX (Display * dpy, int hpId, i
 int glXDestroyHyperpipeConfigSGIX (Display * dpy, int hpId)
 {
   // GLX_SGIX_hyperpipe - glXDestroyHyperpipeConfigSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDestroyHyperpipeConfigSGIX)
+  if (s_deviceConfig.m_glXDestroyHyperpipeConfigSGIX)
   {
-    return deviceState->m_glXDestroyHyperpipeConfigSGIX (dpy, hpId);
+    return s_deviceConfig.m_glXDestroyHyperpipeConfigSGIX (dpy, hpId);
   }
   return ((int )0);
 }
@@ -1666,10 +1554,9 @@ int glXDestroyHyperpipeConfigSGIX (Display * dpy, int hpId)
 int glXBindHyperpipeSGIX (Display * dpy, int hpId)
 {
   // GLX_SGIX_hyperpipe - glXBindHyperpipeSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXBindHyperpipeSGIX)
+  if (s_deviceConfig.m_glXBindHyperpipeSGIX)
   {
-    return deviceState->m_glXBindHyperpipeSGIX (dpy, hpId);
+    return s_deviceConfig.m_glXBindHyperpipeSGIX (dpy, hpId);
   }
   return ((int )0);
 }
@@ -1681,10 +1568,9 @@ int glXBindHyperpipeSGIX (Display * dpy, int hpId)
 int glXQueryHyperpipeBestAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * attribList, void * returnAttribList)
 {
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeBestAttribSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryHyperpipeBestAttribSGIX)
+  if (s_deviceConfig.m_glXQueryHyperpipeBestAttribSGIX)
   {
-    return deviceState->m_glXQueryHyperpipeBestAttribSGIX (dpy, timeSlice, attrib, size, attribList, returnAttribList);
+    return s_deviceConfig.m_glXQueryHyperpipeBestAttribSGIX (dpy, timeSlice, attrib, size, attribList, returnAttribList);
   }
   return ((int )0);
 }
@@ -1696,10 +1582,9 @@ int glXQueryHyperpipeBestAttribSGIX (Display * dpy, int timeSlice, int attrib, i
 int glXHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * attribList)
 {
   // GLX_SGIX_hyperpipe - glXHyperpipeAttribSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXHyperpipeAttribSGIX)
+  if (s_deviceConfig.m_glXHyperpipeAttribSGIX)
   {
-    return deviceState->m_glXHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, attribList);
+    return s_deviceConfig.m_glXHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, attribList);
   }
   return ((int )0);
 }
@@ -1711,10 +1596,9 @@ int glXHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, 
 int glXQueryHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * returnAttribList)
 {
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeAttribSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryHyperpipeAttribSGIX)
+  if (s_deviceConfig.m_glXQueryHyperpipeAttribSGIX)
   {
-    return deviceState->m_glXQueryHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, returnAttribList);
+    return s_deviceConfig.m_glXQueryHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, returnAttribList);
   }
   return ((int )0);
 }
@@ -1726,10 +1610,9 @@ int glXQueryHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int s
 GLXPbufferSGIX glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, unsigned int width, unsigned int height, int * attrib_list)
 {
   // GLX_SGIX_pbuffer - glXCreateGLXPbufferSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateGLXPbufferSGIX)
+  if (s_deviceConfig.m_glXCreateGLXPbufferSGIX)
   {
-    return deviceState->m_glXCreateGLXPbufferSGIX (dpy, config, width, height, attrib_list);
+    return s_deviceConfig.m_glXCreateGLXPbufferSGIX (dpy, config, width, height, attrib_list);
   }
   return ((GLXPbufferSGIX)0);
 }
@@ -1741,10 +1624,9 @@ GLXPbufferSGIX glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, u
 void glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
 {
   // GLX_SGIX_pbuffer - glXDestroyGLXPbufferSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDestroyGLXPbufferSGIX)
+  if (s_deviceConfig.m_glXDestroyGLXPbufferSGIX)
   {
-    deviceState->m_glXDestroyGLXPbufferSGIX (dpy, pbuf);
+    s_deviceConfig.m_glXDestroyGLXPbufferSGIX (dpy, pbuf);
   }
 }
 
@@ -1755,10 +1637,9 @@ void glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
 int glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value)
 {
   // GLX_SGIX_pbuffer - glXQueryGLXPbufferSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryGLXPbufferSGIX)
+  if (s_deviceConfig.m_glXQueryGLXPbufferSGIX)
   {
-    return deviceState->m_glXQueryGLXPbufferSGIX (dpy, pbuf, attribute, value);
+    return s_deviceConfig.m_glXQueryGLXPbufferSGIX (dpy, pbuf, attribute, value);
   }
   return ((int )0);
 }
@@ -1770,10 +1651,9 @@ int glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int attribute, u
 void glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long mask)
 {
   // GLX_SGIX_pbuffer - glXSelectEventSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXSelectEventSGIX)
+  if (s_deviceConfig.m_glXSelectEventSGIX)
   {
-    deviceState->m_glXSelectEventSGIX (dpy, drawable, mask);
+    s_deviceConfig.m_glXSelectEventSGIX (dpy, drawable, mask);
   }
 }
 
@@ -1784,10 +1664,9 @@ void glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long mask
 void glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long * mask)
 {
   // GLX_SGIX_pbuffer - glXGetSelectedEventSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetSelectedEventSGIX)
+  if (s_deviceConfig.m_glXGetSelectedEventSGIX)
   {
-    deviceState->m_glXGetSelectedEventSGIX (dpy, drawable, mask);
+    s_deviceConfig.m_glXGetSelectedEventSGIX (dpy, drawable, mask);
   }
 }
 
@@ -1798,10 +1677,9 @@ void glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long
 void glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int barrier)
 {
   // GLX_SGIX_swap_barrier - glXBindSwapBarrierSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXBindSwapBarrierSGIX)
+  if (s_deviceConfig.m_glXBindSwapBarrierSGIX)
   {
-    deviceState->m_glXBindSwapBarrierSGIX (dpy, drawable, barrier);
+    s_deviceConfig.m_glXBindSwapBarrierSGIX (dpy, drawable, barrier);
   }
 }
 
@@ -1812,10 +1690,9 @@ void glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int barrier)
 Bool glXQueryMaxSwapBarriersSGIX (Display * dpy, int screen, int * max)
 {
   // GLX_SGIX_swap_barrier - glXQueryMaxSwapBarriersSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryMaxSwapBarriersSGIX)
+  if (s_deviceConfig.m_glXQueryMaxSwapBarriersSGIX)
   {
-    return deviceState->m_glXQueryMaxSwapBarriersSGIX (dpy, screen, max);
+    return s_deviceConfig.m_glXQueryMaxSwapBarriersSGIX (dpy, screen, max);
   }
   return ((Bool)0);
 }
@@ -1827,10 +1704,9 @@ Bool glXQueryMaxSwapBarriersSGIX (Display * dpy, int screen, int * max)
 void glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable member)
 {
   // GLX_SGIX_swap_group - glXJoinSwapGroupSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXJoinSwapGroupSGIX)
+  if (s_deviceConfig.m_glXJoinSwapGroupSGIX)
   {
-    deviceState->m_glXJoinSwapGroupSGIX (dpy, drawable, member);
+    s_deviceConfig.m_glXJoinSwapGroupSGIX (dpy, drawable, member);
   }
 }
 
@@ -1841,10 +1717,9 @@ void glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable memb
 int glXBindChannelToWindowSGIX (Display * display, int screen, int channel, Window window)
 {
   // GLX_SGIX_video_resize - glXBindChannelToWindowSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXBindChannelToWindowSGIX)
+  if (s_deviceConfig.m_glXBindChannelToWindowSGIX)
   {
-    return deviceState->m_glXBindChannelToWindowSGIX (display, screen, channel, window);
+    return s_deviceConfig.m_glXBindChannelToWindowSGIX (display, screen, channel, window);
   }
   return ((int )0);
 }
@@ -1856,10 +1731,9 @@ int glXBindChannelToWindowSGIX (Display * display, int screen, int channel, Wind
 int glXChannelRectSGIX (Display * display, int screen, int channel, int x, int y, int w, int h)
 {
   // GLX_SGIX_video_resize - glXChannelRectSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXChannelRectSGIX)
+  if (s_deviceConfig.m_glXChannelRectSGIX)
   {
-    return deviceState->m_glXChannelRectSGIX (display, screen, channel, x, y, w, h);
+    return s_deviceConfig.m_glXChannelRectSGIX (display, screen, channel, x, y, w, h);
   }
   return ((int )0);
 }
@@ -1871,10 +1745,9 @@ int glXChannelRectSGIX (Display * display, int screen, int channel, int x, int y
 int glXQueryChannelRectSGIX (Display * display, int screen, int channel, int * dx, int * dy, int * dw, int * dh)
 {
   // GLX_SGIX_video_resize - glXQueryChannelRectSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryChannelRectSGIX)
+  if (s_deviceConfig.m_glXQueryChannelRectSGIX)
   {
-    return deviceState->m_glXQueryChannelRectSGIX (display, screen, channel, dx, dy, dw, dh);
+    return s_deviceConfig.m_glXQueryChannelRectSGIX (display, screen, channel, dx, dy, dw, dh);
   }
   return ((int )0);
 }
@@ -1886,10 +1759,9 @@ int glXQueryChannelRectSGIX (Display * display, int screen, int channel, int * d
 int glXQueryChannelDeltasSGIX (Display * display, int screen, int channel, int * x, int * y, int * w, int * h)
 {
   // GLX_SGIX_video_resize - glXQueryChannelDeltasSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXQueryChannelDeltasSGIX)
+  if (s_deviceConfig.m_glXQueryChannelDeltasSGIX)
   {
-    return deviceState->m_glXQueryChannelDeltasSGIX (display, screen, channel, x, y, w, h);
+    return s_deviceConfig.m_glXQueryChannelDeltasSGIX (display, screen, channel, x, y, w, h);
   }
   return ((int )0);
 }
@@ -1901,10 +1773,9 @@ int glXQueryChannelDeltasSGIX (Display * display, int screen, int channel, int *
 int glXChannelRectSyncSGIX (Display * display, int screen, int channel, GLenum synctype)
 {
   // GLX_SGIX_video_resize - glXChannelRectSyncSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXChannelRectSyncSGIX)
+  if (s_deviceConfig.m_glXChannelRectSyncSGIX)
   {
-    return deviceState->m_glXChannelRectSyncSGIX (display, screen, channel, synctype);
+    return s_deviceConfig.m_glXChannelRectSyncSGIX (display, screen, channel, synctype);
   }
   return ((int )0);
 }
@@ -1916,10 +1787,9 @@ int glXChannelRectSyncSGIX (Display * display, int screen, int channel, GLenum s
 GLXVideoSourceSGIX glXCreateGLXVideoSourceSGIX (Display * display, int screen, VLServer server, VLPath path, int nodeClass, VLNode drainNode)
 {
   // GLX_SGIX_video_source - glXCreateGLXVideoSourceSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXCreateGLXVideoSourceSGIX)
+  if (s_deviceConfig.m_glXCreateGLXVideoSourceSGIX)
   {
-    return deviceState->m_glXCreateGLXVideoSourceSGIX (display, screen, server, path, nodeClass, drainNode);
+    return s_deviceConfig.m_glXCreateGLXVideoSourceSGIX (display, screen, server, path, nodeClass, drainNode);
   }
   return ((GLXVideoSourceSGIX)0);
 }
@@ -1931,10 +1801,9 @@ GLXVideoSourceSGIX glXCreateGLXVideoSourceSGIX (Display * display, int screen, V
 void glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosource)
 {
   // GLX_SGIX_video_source - glXDestroyGLXVideoSourceSGIX
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXDestroyGLXVideoSourceSGIX)
+  if (s_deviceConfig.m_glXDestroyGLXVideoSourceSGIX)
   {
-    deviceState->m_glXDestroyGLXVideoSourceSGIX (dpy, glxvideosource);
+    s_deviceConfig.m_glXDestroyGLXVideoSourceSGIX (dpy, glxvideosource);
   }
 }
 
@@ -1945,10 +1814,9 @@ void glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosou
 Status glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex)
 {
   // GLX_SUN_get_transparent_index - glXGetTransparentIndexSUN
-  const glew::glx::DeviceState *deviceState = glew::glx::GetDeviceState ();
-  if (deviceState && deviceState->m_glXGetTransparentIndexSUN)
+  if (s_deviceConfig.m_glXGetTransparentIndexSUN)
   {
-    return deviceState->m_glXGetTransparentIndexSUN (dpy, overlay, underlay, pTransparentIndex);
+    return s_deviceConfig.m_glXGetTransparentIndexSUN (dpy, overlay, underlay, pTransparentIndex);
   }
   return ((Status)0);
 }

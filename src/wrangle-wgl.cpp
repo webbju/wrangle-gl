@@ -6,6 +6,10 @@
 
 #include <GL/gl.h>
 
+#undef wglUseFontBitmaps
+
+#undef wglUseFontOutlines
+
 #include <wrangle-wgl.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -15,10 +19,9 @@
 int ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd)
 {
   // WGL_VERSION_1_0 - ChoosePixelFormat
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_ChoosePixelFormat)
+  if (s_deviceConfig.m_ChoosePixelFormat)
   {
-    return deviceState->m_ChoosePixelFormat (hDc, pPfd);
+    return s_deviceConfig.m_ChoosePixelFormat (hDc, pPfd);
   }
   return ((int )0);
 }
@@ -30,10 +33,9 @@ int ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd)
 int DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd)
 {
   // WGL_VERSION_1_0 - DescribePixelFormat
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_DescribePixelFormat)
+  if (s_deviceConfig.m_DescribePixelFormat)
   {
-    return deviceState->m_DescribePixelFormat (hdc, ipfd, cjpfd, ppfd);
+    return s_deviceConfig.m_DescribePixelFormat (hdc, ipfd, cjpfd, ppfd);
   }
   return ((int )0);
 }
@@ -45,10 +47,9 @@ int DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIP
 UINT GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd)
 {
   // WGL_VERSION_1_0 - GetEnhMetaFilePixelFormat
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_GetEnhMetaFilePixelFormat)
+  if (s_deviceConfig.m_GetEnhMetaFilePixelFormat)
   {
-    return deviceState->m_GetEnhMetaFilePixelFormat (hemf, ppfd);
+    return s_deviceConfig.m_GetEnhMetaFilePixelFormat (hemf, ppfd);
   }
   return ((UINT)0);
 }
@@ -60,10 +61,9 @@ UINT GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR *
 int GetPixelFormat (HDC hdc)
 {
   // WGL_VERSION_1_0 - GetPixelFormat
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_GetPixelFormat)
+  if (s_deviceConfig.m_GetPixelFormat)
   {
-    return deviceState->m_GetPixelFormat (hdc);
+    return s_deviceConfig.m_GetPixelFormat (hdc);
   }
   return ((int )0);
 }
@@ -75,10 +75,9 @@ int GetPixelFormat (HDC hdc)
 BOOL SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd)
 {
   // WGL_VERSION_1_0 - SetPixelFormat
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_SetPixelFormat)
+  if (s_deviceConfig.m_SetPixelFormat)
   {
-    return deviceState->m_SetPixelFormat (hdc, ipfd, ppfd);
+    return s_deviceConfig.m_SetPixelFormat (hdc, ipfd, ppfd);
   }
   return ((BOOL)0);
 }
@@ -90,10 +89,9 @@ BOOL SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd)
 BOOL SwapBuffers (HDC hdc)
 {
   // WGL_VERSION_1_0 - SwapBuffers
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_SwapBuffers)
+  if (s_deviceConfig.m_SwapBuffers)
   {
-    return deviceState->m_SwapBuffers (hdc);
+    return s_deviceConfig.m_SwapBuffers (hdc);
   }
   return ((BOOL)0);
 }
@@ -105,10 +103,9 @@ BOOL SwapBuffers (HDC hdc)
 BOOL wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask)
 {
   // WGL_VERSION_1_0 - wglCopyContext
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCopyContext)
+  if (s_deviceConfig.m_wglCopyContext)
   {
-    return deviceState->m_wglCopyContext (hglrcSrc, hglrcDst, mask);
+    return s_deviceConfig.m_wglCopyContext (hglrcSrc, hglrcDst, mask);
   }
   return ((BOOL)0);
 }
@@ -120,10 +117,9 @@ BOOL wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask)
 HGLRC wglCreateContext (HDC hDc)
 {
   // WGL_VERSION_1_0 - wglCreateContext
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreateContext)
+  if (s_deviceConfig.m_wglCreateContext)
   {
-    return deviceState->m_wglCreateContext (hDc);
+    return s_deviceConfig.m_wglCreateContext (hDc);
   }
   return ((HGLRC)0);
 }
@@ -135,10 +131,9 @@ HGLRC wglCreateContext (HDC hDc)
 HGLRC wglCreateLayerContext (HDC hDc, int level)
 {
   // WGL_VERSION_1_0 - wglCreateLayerContext
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreateLayerContext)
+  if (s_deviceConfig.m_wglCreateLayerContext)
   {
-    return deviceState->m_wglCreateLayerContext (hDc, level);
+    return s_deviceConfig.m_wglCreateLayerContext (hDc, level);
   }
   return ((HGLRC)0);
 }
@@ -150,10 +145,9 @@ HGLRC wglCreateLayerContext (HDC hDc, int level)
 BOOL wglDeleteContext (HGLRC oldContext)
 {
   // WGL_VERSION_1_0 - wglDeleteContext
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDeleteContext)
+  if (s_deviceConfig.m_wglDeleteContext)
   {
-    return deviceState->m_wglDeleteContext (oldContext);
+    return s_deviceConfig.m_wglDeleteContext (oldContext);
   }
   return ((BOOL)0);
 }
@@ -165,10 +159,9 @@ BOOL wglDeleteContext (HGLRC oldContext)
 BOOL wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, const LAYERPLANEDESCRIPTOR * plpd)
 {
   // WGL_VERSION_1_0 - wglDescribeLayerPlane
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDescribeLayerPlane)
+  if (s_deviceConfig.m_wglDescribeLayerPlane)
   {
-    return deviceState->m_wglDescribeLayerPlane (hDc, pixelFormat, layerPlane, nBytes, plpd);
+    return s_deviceConfig.m_wglDescribeLayerPlane (hDc, pixelFormat, layerPlane, nBytes, plpd);
   }
   return ((BOOL)0);
 }
@@ -180,10 +173,9 @@ BOOL wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nByte
 HGLRC wglGetCurrentContext ()
 {
   // WGL_VERSION_1_0 - wglGetCurrentContext
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetCurrentContext)
+  if (s_deviceConfig.m_wglGetCurrentContext)
   {
-    return deviceState->m_wglGetCurrentContext ();
+    return s_deviceConfig.m_wglGetCurrentContext ();
   }
   return ((HGLRC)0);
 }
@@ -195,10 +187,9 @@ HGLRC wglGetCurrentContext ()
 HDC wglGetCurrentDC ()
 {
   // WGL_VERSION_1_0 - wglGetCurrentDC
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetCurrentDC)
+  if (s_deviceConfig.m_wglGetCurrentDC)
   {
-    return deviceState->m_wglGetCurrentDC ();
+    return s_deviceConfig.m_wglGetCurrentDC ();
   }
   return ((HDC)0);
 }
@@ -210,10 +201,9 @@ HDC wglGetCurrentDC ()
 int wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr)
 {
   // WGL_VERSION_1_0 - wglGetLayerPaletteEntries
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetLayerPaletteEntries)
+  if (s_deviceConfig.m_wglGetLayerPaletteEntries)
   {
-    return deviceState->m_wglGetLayerPaletteEntries (hdc, iLayerPlane, iStart, cEntries, pcr);
+    return s_deviceConfig.m_wglGetLayerPaletteEntries (hdc, iLayerPlane, iStart, cEntries, pcr);
   }
   return ((int )0);
 }
@@ -225,10 +215,9 @@ int wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntrie
 PROC wglGetProcAddress (LPCSTR lpszProc)
 {
   // WGL_VERSION_1_0 - wglGetProcAddress
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetProcAddress)
+  if (s_deviceConfig.m_wglGetProcAddress)
   {
-    return deviceState->m_wglGetProcAddress (lpszProc);
+    return s_deviceConfig.m_wglGetProcAddress (lpszProc);
   }
   return ((PROC)0);
 }
@@ -240,10 +229,9 @@ PROC wglGetProcAddress (LPCSTR lpszProc)
 BOOL wglMakeCurrent (HDC hDc, HGLRC newContext)
 {
   // WGL_VERSION_1_0 - wglMakeCurrent
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglMakeCurrent)
+  if (s_deviceConfig.m_wglMakeCurrent)
   {
-    return deviceState->m_wglMakeCurrent (hDc, newContext);
+    return s_deviceConfig.m_wglMakeCurrent (hDc, newContext);
   }
   return ((BOOL)0);
 }
@@ -255,10 +243,9 @@ BOOL wglMakeCurrent (HDC hDc, HGLRC newContext)
 BOOL wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize)
 {
   // WGL_VERSION_1_0 - wglRealizeLayerPalette
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglRealizeLayerPalette)
+  if (s_deviceConfig.m_wglRealizeLayerPalette)
   {
-    return deviceState->m_wglRealizeLayerPalette (hdc, iLayerPlane, bRealize);
+    return s_deviceConfig.m_wglRealizeLayerPalette (hdc, iLayerPlane, bRealize);
   }
   return ((BOOL)0);
 }
@@ -270,10 +257,9 @@ BOOL wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize)
 int wglSetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr)
 {
   // WGL_VERSION_1_0 - wglSetLayerPaletteEntries
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSetLayerPaletteEntries)
+  if (s_deviceConfig.m_wglSetLayerPaletteEntries)
   {
-    return deviceState->m_wglSetLayerPaletteEntries (hdc, iLayerPlane, iStart, cEntries, pcr);
+    return s_deviceConfig.m_wglSetLayerPaletteEntries (hdc, iLayerPlane, iStart, cEntries, pcr);
   }
   return ((int )0);
 }
@@ -285,10 +271,9 @@ int wglSetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntrie
 BOOL wglShareLists (HGLRC hrcSrvShare, HGLRC hrcSrvSource)
 {
   // WGL_VERSION_1_0 - wglShareLists
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglShareLists)
+  if (s_deviceConfig.m_wglShareLists)
   {
-    return deviceState->m_wglShareLists (hrcSrvShare, hrcSrvSource);
+    return s_deviceConfig.m_wglShareLists (hrcSrvShare, hrcSrvSource);
   }
   return ((BOOL)0);
 }
@@ -300,10 +285,9 @@ BOOL wglShareLists (HGLRC hrcSrvShare, HGLRC hrcSrvSource)
 BOOL wglSwapLayerBuffers (HDC hdc, UINT fuFlags)
 {
   // WGL_VERSION_1_0 - wglSwapLayerBuffers
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSwapLayerBuffers)
+  if (s_deviceConfig.m_wglSwapLayerBuffers)
   {
-    return deviceState->m_wglSwapLayerBuffers (hdc, fuFlags);
+    return s_deviceConfig.m_wglSwapLayerBuffers (hdc, fuFlags);
   }
   return ((BOOL)0);
 }
@@ -315,10 +299,9 @@ BOOL wglSwapLayerBuffers (HDC hdc, UINT fuFlags)
 BOOL wglUseFontBitmaps (HDC hDC, DWORD first, DWORD count, DWORD listBase)
 {
   // WGL_VERSION_1_0 - wglUseFontBitmaps
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglUseFontBitmaps)
+  if (s_deviceConfig.m_wglUseFontBitmaps)
   {
-    return deviceState->m_wglUseFontBitmaps (hDC, first, count, listBase);
+    return s_deviceConfig.m_wglUseFontBitmaps (hDC, first, count, listBase);
   }
   return ((BOOL)0);
 }
@@ -330,10 +313,9 @@ BOOL wglUseFontBitmaps (HDC hDC, DWORD first, DWORD count, DWORD listBase)
 BOOL wglUseFontBitmapsA (HDC hDC, DWORD first, DWORD count, DWORD listBase)
 {
   // WGL_VERSION_1_0 - wglUseFontBitmapsA
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglUseFontBitmapsA)
+  if (s_deviceConfig.m_wglUseFontBitmapsA)
   {
-    return deviceState->m_wglUseFontBitmapsA (hDC, first, count, listBase);
+    return s_deviceConfig.m_wglUseFontBitmapsA (hDC, first, count, listBase);
   }
   return ((BOOL)0);
 }
@@ -345,10 +327,9 @@ BOOL wglUseFontBitmapsA (HDC hDC, DWORD first, DWORD count, DWORD listBase)
 BOOL wglUseFontBitmapsW (HDC hDC, DWORD first, DWORD count, DWORD listBase)
 {
   // WGL_VERSION_1_0 - wglUseFontBitmapsW
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglUseFontBitmapsW)
+  if (s_deviceConfig.m_wglUseFontBitmapsW)
   {
-    return deviceState->m_wglUseFontBitmapsW (hDC, first, count, listBase);
+    return s_deviceConfig.m_wglUseFontBitmapsW (hDC, first, count, listBase);
   }
   return ((BOOL)0);
 }
@@ -360,10 +341,9 @@ BOOL wglUseFontBitmapsW (HDC hDC, DWORD first, DWORD count, DWORD listBase)
 BOOL wglUseFontOutlines (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
 {
   // WGL_VERSION_1_0 - wglUseFontOutlines
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglUseFontOutlines)
+  if (s_deviceConfig.m_wglUseFontOutlines)
   {
-    return deviceState->m_wglUseFontOutlines (hDC, first, count, listBase, deviation, extrusion, format, lpgmf);
+    return s_deviceConfig.m_wglUseFontOutlines (hDC, first, count, listBase, deviation, extrusion, format, lpgmf);
   }
   return ((BOOL)0);
 }
@@ -375,10 +355,9 @@ BOOL wglUseFontOutlines (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOA
 BOOL wglUseFontOutlinesA (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
 {
   // WGL_VERSION_1_0 - wglUseFontOutlinesA
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglUseFontOutlinesA)
+  if (s_deviceConfig.m_wglUseFontOutlinesA)
   {
-    return deviceState->m_wglUseFontOutlinesA (hDC, first, count, listBase, deviation, extrusion, format, lpgmf);
+    return s_deviceConfig.m_wglUseFontOutlinesA (hDC, first, count, listBase, deviation, extrusion, format, lpgmf);
   }
   return ((BOOL)0);
 }
@@ -390,10 +369,9 @@ BOOL wglUseFontOutlinesA (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLO
 BOOL wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
 {
   // WGL_VERSION_1_0 - wglUseFontOutlinesW
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglUseFontOutlinesW)
+  if (s_deviceConfig.m_wglUseFontOutlinesW)
   {
-    return deviceState->m_wglUseFontOutlinesW (hDC, first, count, listBase, deviation, extrusion, format, lpgmf);
+    return s_deviceConfig.m_wglUseFontOutlinesW (hDC, first, count, listBase, deviation, extrusion, format, lpgmf);
   }
   return ((BOOL)0);
 }
@@ -405,10 +383,9 @@ BOOL wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLO
 BOOL wglSetStereoEmitterState3DL (HDC hDC, UINT uState)
 {
   // WGL_3DL_stereo_control - wglSetStereoEmitterState3DL
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSetStereoEmitterState3DL)
+  if (s_deviceConfig.m_wglSetStereoEmitterState3DL)
   {
-    return deviceState->m_wglSetStereoEmitterState3DL (hDC, uState);
+    return s_deviceConfig.m_wglSetStereoEmitterState3DL (hDC, uState);
   }
   return ((BOOL)0);
 }
@@ -420,10 +397,9 @@ BOOL wglSetStereoEmitterState3DL (HDC hDC, UINT uState)
 UINT wglGetGPUIDsAMD (UINT maxCount, UINT * ids)
 {
   // WGL_AMD_gpu_association - wglGetGPUIDsAMD
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetGPUIDsAMD)
+  if (s_deviceConfig.m_wglGetGPUIDsAMD)
   {
-    return deviceState->m_wglGetGPUIDsAMD (maxCount, ids);
+    return s_deviceConfig.m_wglGetGPUIDsAMD (maxCount, ids);
   }
   return ((UINT)0);
 }
@@ -435,10 +411,9 @@ UINT wglGetGPUIDsAMD (UINT maxCount, UINT * ids)
 INT wglGetGPUInfoAMD (UINT id, int property, GLenum dataType, UINT size, void * data)
 {
   // WGL_AMD_gpu_association - wglGetGPUInfoAMD
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetGPUInfoAMD)
+  if (s_deviceConfig.m_wglGetGPUInfoAMD)
   {
-    return deviceState->m_wglGetGPUInfoAMD (id, property, dataType, size, data);
+    return s_deviceConfig.m_wglGetGPUInfoAMD (id, property, dataType, size, data);
   }
   return ((INT)0);
 }
@@ -450,10 +425,9 @@ INT wglGetGPUInfoAMD (UINT id, int property, GLenum dataType, UINT size, void * 
 UINT wglGetContextGPUIDAMD (HGLRC hglrc)
 {
   // WGL_AMD_gpu_association - wglGetContextGPUIDAMD
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetContextGPUIDAMD)
+  if (s_deviceConfig.m_wglGetContextGPUIDAMD)
   {
-    return deviceState->m_wglGetContextGPUIDAMD (hglrc);
+    return s_deviceConfig.m_wglGetContextGPUIDAMD (hglrc);
   }
   return ((UINT)0);
 }
@@ -465,10 +439,9 @@ UINT wglGetContextGPUIDAMD (HGLRC hglrc)
 HGLRC wglCreateAssociatedContextAMD (UINT id)
 {
   // WGL_AMD_gpu_association - wglCreateAssociatedContextAMD
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreateAssociatedContextAMD)
+  if (s_deviceConfig.m_wglCreateAssociatedContextAMD)
   {
-    return deviceState->m_wglCreateAssociatedContextAMD (id);
+    return s_deviceConfig.m_wglCreateAssociatedContextAMD (id);
   }
   return ((HGLRC)0);
 }
@@ -480,10 +453,9 @@ HGLRC wglCreateAssociatedContextAMD (UINT id)
 HGLRC wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const int * attribList)
 {
   // WGL_AMD_gpu_association - wglCreateAssociatedContextAttribsAMD
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreateAssociatedContextAttribsAMD)
+  if (s_deviceConfig.m_wglCreateAssociatedContextAttribsAMD)
   {
-    return deviceState->m_wglCreateAssociatedContextAttribsAMD (id, hShareContext, attribList);
+    return s_deviceConfig.m_wglCreateAssociatedContextAttribsAMD (id, hShareContext, attribList);
   }
   return ((HGLRC)0);
 }
@@ -495,10 +467,9 @@ HGLRC wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const 
 BOOL wglDeleteAssociatedContextAMD (HGLRC hglrc)
 {
   // WGL_AMD_gpu_association - wglDeleteAssociatedContextAMD
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDeleteAssociatedContextAMD)
+  if (s_deviceConfig.m_wglDeleteAssociatedContextAMD)
   {
-    return deviceState->m_wglDeleteAssociatedContextAMD (hglrc);
+    return s_deviceConfig.m_wglDeleteAssociatedContextAMD (hglrc);
   }
   return ((BOOL)0);
 }
@@ -510,10 +481,9 @@ BOOL wglDeleteAssociatedContextAMD (HGLRC hglrc)
 BOOL wglMakeAssociatedContextCurrentAMD (HGLRC hglrc)
 {
   // WGL_AMD_gpu_association - wglMakeAssociatedContextCurrentAMD
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglMakeAssociatedContextCurrentAMD)
+  if (s_deviceConfig.m_wglMakeAssociatedContextCurrentAMD)
   {
-    return deviceState->m_wglMakeAssociatedContextCurrentAMD (hglrc);
+    return s_deviceConfig.m_wglMakeAssociatedContextCurrentAMD (hglrc);
   }
   return ((BOOL)0);
 }
@@ -525,10 +495,9 @@ BOOL wglMakeAssociatedContextCurrentAMD (HGLRC hglrc)
 HGLRC wglGetCurrentAssociatedContextAMD ()
 {
   // WGL_AMD_gpu_association - wglGetCurrentAssociatedContextAMD
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetCurrentAssociatedContextAMD)
+  if (s_deviceConfig.m_wglGetCurrentAssociatedContextAMD)
   {
-    return deviceState->m_wglGetCurrentAssociatedContextAMD ();
+    return s_deviceConfig.m_wglGetCurrentAssociatedContextAMD ();
   }
   return ((HGLRC)0);
 }
@@ -540,10 +509,9 @@ HGLRC wglGetCurrentAssociatedContextAMD ()
 VOID wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
   // WGL_AMD_gpu_association - wglBlitContextFramebufferAMD
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglBlitContextFramebufferAMD)
+  if (s_deviceConfig.m_wglBlitContextFramebufferAMD)
   {
-    return deviceState->m_wglBlitContextFramebufferAMD (dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+    return s_deviceConfig.m_wglBlitContextFramebufferAMD (dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
   return ((VOID)0);
 }
@@ -555,10 +523,9 @@ VOID wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint
 HANDLE wglCreateBufferRegionARB (HDC hDC, int iLayerPlane, UINT uType)
 {
   // WGL_ARB_buffer_region - wglCreateBufferRegionARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreateBufferRegionARB)
+  if (s_deviceConfig.m_wglCreateBufferRegionARB)
   {
-    return deviceState->m_wglCreateBufferRegionARB (hDC, iLayerPlane, uType);
+    return s_deviceConfig.m_wglCreateBufferRegionARB (hDC, iLayerPlane, uType);
   }
   return ((HANDLE)0);
 }
@@ -570,10 +537,9 @@ HANDLE wglCreateBufferRegionARB (HDC hDC, int iLayerPlane, UINT uType)
 VOID wglDeleteBufferRegionARB (HANDLE hRegion)
 {
   // WGL_ARB_buffer_region - wglDeleteBufferRegionARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDeleteBufferRegionARB)
+  if (s_deviceConfig.m_wglDeleteBufferRegionARB)
   {
-    return deviceState->m_wglDeleteBufferRegionARB (hRegion);
+    return s_deviceConfig.m_wglDeleteBufferRegionARB (hRegion);
   }
   return ((VOID)0);
 }
@@ -585,10 +551,9 @@ VOID wglDeleteBufferRegionARB (HANDLE hRegion)
 BOOL wglSaveBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height)
 {
   // WGL_ARB_buffer_region - wglSaveBufferRegionARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSaveBufferRegionARB)
+  if (s_deviceConfig.m_wglSaveBufferRegionARB)
   {
-    return deviceState->m_wglSaveBufferRegionARB (hRegion, x, y, width, height);
+    return s_deviceConfig.m_wglSaveBufferRegionARB (hRegion, x, y, width, height);
   }
   return ((BOOL)0);
 }
@@ -600,10 +565,9 @@ BOOL wglSaveBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height
 BOOL wglRestoreBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height, int xSrc, int ySrc)
 {
   // WGL_ARB_buffer_region - wglRestoreBufferRegionARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglRestoreBufferRegionARB)
+  if (s_deviceConfig.m_wglRestoreBufferRegionARB)
   {
-    return deviceState->m_wglRestoreBufferRegionARB (hRegion, x, y, width, height, xSrc, ySrc);
+    return s_deviceConfig.m_wglRestoreBufferRegionARB (hRegion, x, y, width, height, xSrc, ySrc);
   }
   return ((BOOL)0);
 }
@@ -615,10 +579,9 @@ BOOL wglRestoreBufferRegionARB (HANDLE hRegion, int x, int y, int width, int hei
 HGLRC wglCreateContextAttribsARB (HDC hDC, HGLRC hShareContext, const int * attribList)
 {
   // WGL_ARB_create_context - wglCreateContextAttribsARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreateContextAttribsARB)
+  if (s_deviceConfig.m_wglCreateContextAttribsARB)
   {
-    return deviceState->m_wglCreateContextAttribsARB (hDC, hShareContext, attribList);
+    return s_deviceConfig.m_wglCreateContextAttribsARB (hDC, hShareContext, attribList);
   }
   return ((HGLRC)0);
 }
@@ -630,10 +593,9 @@ HGLRC wglCreateContextAttribsARB (HDC hDC, HGLRC hShareContext, const int * attr
 const char * wglGetExtensionsStringARB (HDC hdc)
 {
   // WGL_ARB_extensions_string - wglGetExtensionsStringARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetExtensionsStringARB)
+  if (s_deviceConfig.m_wglGetExtensionsStringARB)
   {
-    return deviceState->m_wglGetExtensionsStringARB (hdc);
+    return s_deviceConfig.m_wglGetExtensionsStringARB (hdc);
   }
   return ((const char *)0);
 }
@@ -645,10 +607,9 @@ const char * wglGetExtensionsStringARB (HDC hdc)
 BOOL wglMakeContextCurrentARB (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
 {
   // WGL_ARB_make_current_read - wglMakeContextCurrentARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglMakeContextCurrentARB)
+  if (s_deviceConfig.m_wglMakeContextCurrentARB)
   {
-    return deviceState->m_wglMakeContextCurrentARB (hDrawDC, hReadDC, hglrc);
+    return s_deviceConfig.m_wglMakeContextCurrentARB (hDrawDC, hReadDC, hglrc);
   }
   return ((BOOL)0);
 }
@@ -660,10 +621,9 @@ BOOL wglMakeContextCurrentARB (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
 HDC wglGetCurrentReadDCARB ()
 {
   // WGL_ARB_make_current_read - wglGetCurrentReadDCARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetCurrentReadDCARB)
+  if (s_deviceConfig.m_wglGetCurrentReadDCARB)
   {
-    return deviceState->m_wglGetCurrentReadDCARB ();
+    return s_deviceConfig.m_wglGetCurrentReadDCARB ();
   }
   return ((HDC)0);
 }
@@ -675,10 +635,9 @@ HDC wglGetCurrentReadDCARB ()
 HPBUFFERARB wglCreatePbufferARB (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList)
 {
   // WGL_ARB_pbuffer - wglCreatePbufferARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreatePbufferARB)
+  if (s_deviceConfig.m_wglCreatePbufferARB)
   {
-    return deviceState->m_wglCreatePbufferARB (hDC, iPixelFormat, iWidth, iHeight, piAttribList);
+    return s_deviceConfig.m_wglCreatePbufferARB (hDC, iPixelFormat, iWidth, iHeight, piAttribList);
   }
   return ((HPBUFFERARB)0);
 }
@@ -690,10 +649,9 @@ HPBUFFERARB wglCreatePbufferARB (HDC hDC, int iPixelFormat, int iWidth, int iHei
 HDC wglGetPbufferDCARB (HPBUFFERARB hPbuffer)
 {
   // WGL_ARB_pbuffer - wglGetPbufferDCARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetPbufferDCARB)
+  if (s_deviceConfig.m_wglGetPbufferDCARB)
   {
-    return deviceState->m_wglGetPbufferDCARB (hPbuffer);
+    return s_deviceConfig.m_wglGetPbufferDCARB (hPbuffer);
   }
   return ((HDC)0);
 }
@@ -705,10 +663,9 @@ HDC wglGetPbufferDCARB (HPBUFFERARB hPbuffer)
 int wglReleasePbufferDCARB (HPBUFFERARB hPbuffer, HDC hDC)
 {
   // WGL_ARB_pbuffer - wglReleasePbufferDCARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglReleasePbufferDCARB)
+  if (s_deviceConfig.m_wglReleasePbufferDCARB)
   {
-    return deviceState->m_wglReleasePbufferDCARB (hPbuffer, hDC);
+    return s_deviceConfig.m_wglReleasePbufferDCARB (hPbuffer, hDC);
   }
   return ((int )0);
 }
@@ -720,10 +677,9 @@ int wglReleasePbufferDCARB (HPBUFFERARB hPbuffer, HDC hDC)
 BOOL wglDestroyPbufferARB (HPBUFFERARB hPbuffer)
 {
   // WGL_ARB_pbuffer - wglDestroyPbufferARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDestroyPbufferARB)
+  if (s_deviceConfig.m_wglDestroyPbufferARB)
   {
-    return deviceState->m_wglDestroyPbufferARB (hPbuffer);
+    return s_deviceConfig.m_wglDestroyPbufferARB (hPbuffer);
   }
   return ((BOOL)0);
 }
@@ -735,10 +691,9 @@ BOOL wglDestroyPbufferARB (HPBUFFERARB hPbuffer)
 BOOL wglQueryPbufferARB (HPBUFFERARB hPbuffer, int iAttribute, int * piValue)
 {
   // WGL_ARB_pbuffer - wglQueryPbufferARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQueryPbufferARB)
+  if (s_deviceConfig.m_wglQueryPbufferARB)
   {
-    return deviceState->m_wglQueryPbufferARB (hPbuffer, iAttribute, piValue);
+    return s_deviceConfig.m_wglQueryPbufferARB (hPbuffer, iAttribute, piValue);
   }
   return ((BOOL)0);
 }
@@ -750,10 +705,9 @@ BOOL wglQueryPbufferARB (HPBUFFERARB hPbuffer, int iAttribute, int * piValue)
 BOOL wglGetPixelFormatAttribivARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, int * piValues)
 {
   // WGL_ARB_pixel_format - wglGetPixelFormatAttribivARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetPixelFormatAttribivARB)
+  if (s_deviceConfig.m_wglGetPixelFormatAttribivARB)
   {
-    return deviceState->m_wglGetPixelFormatAttribivARB (hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, piValues);
+    return s_deviceConfig.m_wglGetPixelFormatAttribivARB (hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, piValues);
   }
   return ((BOOL)0);
 }
@@ -765,10 +719,9 @@ BOOL wglGetPixelFormatAttribivARB (HDC hdc, int iPixelFormat, int iLayerPlane, U
 BOOL wglGetPixelFormatAttribfvARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, FLOAT * pfValues)
 {
   // WGL_ARB_pixel_format - wglGetPixelFormatAttribfvARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetPixelFormatAttribfvARB)
+  if (s_deviceConfig.m_wglGetPixelFormatAttribfvARB)
   {
-    return deviceState->m_wglGetPixelFormatAttribfvARB (hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, pfValues);
+    return s_deviceConfig.m_wglGetPixelFormatAttribfvARB (hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, pfValues);
   }
   return ((BOOL)0);
 }
@@ -780,10 +733,9 @@ BOOL wglGetPixelFormatAttribfvARB (HDC hdc, int iPixelFormat, int iLayerPlane, U
 BOOL wglChoosePixelFormatARB (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats)
 {
   // WGL_ARB_pixel_format - wglChoosePixelFormatARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglChoosePixelFormatARB)
+  if (s_deviceConfig.m_wglChoosePixelFormatARB)
   {
-    return deviceState->m_wglChoosePixelFormatARB (hdc, piAttribIList, pfAttribFList, nMaxFormats, piFormats, nNumFormats);
+    return s_deviceConfig.m_wglChoosePixelFormatARB (hdc, piAttribIList, pfAttribFList, nMaxFormats, piFormats, nNumFormats);
   }
   return ((BOOL)0);
 }
@@ -795,10 +747,9 @@ BOOL wglChoosePixelFormatARB (HDC hdc, const int * piAttribIList, const FLOAT * 
 BOOL wglBindTexImageARB (HPBUFFERARB hPbuffer, int iBuffer)
 {
   // WGL_ARB_render_texture - wglBindTexImageARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglBindTexImageARB)
+  if (s_deviceConfig.m_wglBindTexImageARB)
   {
-    return deviceState->m_wglBindTexImageARB (hPbuffer, iBuffer);
+    return s_deviceConfig.m_wglBindTexImageARB (hPbuffer, iBuffer);
   }
   return ((BOOL)0);
 }
@@ -810,10 +761,9 @@ BOOL wglBindTexImageARB (HPBUFFERARB hPbuffer, int iBuffer)
 BOOL wglReleaseTexImageARB (HPBUFFERARB hPbuffer, int iBuffer)
 {
   // WGL_ARB_render_texture - wglReleaseTexImageARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglReleaseTexImageARB)
+  if (s_deviceConfig.m_wglReleaseTexImageARB)
   {
-    return deviceState->m_wglReleaseTexImageARB (hPbuffer, iBuffer);
+    return s_deviceConfig.m_wglReleaseTexImageARB (hPbuffer, iBuffer);
   }
   return ((BOOL)0);
 }
@@ -825,10 +775,9 @@ BOOL wglReleaseTexImageARB (HPBUFFERARB hPbuffer, int iBuffer)
 BOOL wglSetPbufferAttribARB (HPBUFFERARB hPbuffer, const int * piAttribList)
 {
   // WGL_ARB_render_texture - wglSetPbufferAttribARB
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSetPbufferAttribARB)
+  if (s_deviceConfig.m_wglSetPbufferAttribARB)
   {
-    return deviceState->m_wglSetPbufferAttribARB (hPbuffer, piAttribList);
+    return s_deviceConfig.m_wglSetPbufferAttribARB (hPbuffer, piAttribList);
   }
   return ((BOOL)0);
 }
@@ -840,10 +789,9 @@ BOOL wglSetPbufferAttribARB (HPBUFFERARB hPbuffer, const int * piAttribList)
 GLboolean wglCreateDisplayColorTableEXT (GLushort id)
 {
   // WGL_EXT_display_color_table - wglCreateDisplayColorTableEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreateDisplayColorTableEXT)
+  if (s_deviceConfig.m_wglCreateDisplayColorTableEXT)
   {
-    return deviceState->m_wglCreateDisplayColorTableEXT (id);
+    return s_deviceConfig.m_wglCreateDisplayColorTableEXT (id);
   }
   return ((GLboolean)0);
 }
@@ -855,10 +803,9 @@ GLboolean wglCreateDisplayColorTableEXT (GLushort id)
 GLboolean wglLoadDisplayColorTableEXT (const GLushort * table, GLuint length)
 {
   // WGL_EXT_display_color_table - wglLoadDisplayColorTableEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglLoadDisplayColorTableEXT)
+  if (s_deviceConfig.m_wglLoadDisplayColorTableEXT)
   {
-    return deviceState->m_wglLoadDisplayColorTableEXT (table, length);
+    return s_deviceConfig.m_wglLoadDisplayColorTableEXT (table, length);
   }
   return ((GLboolean)0);
 }
@@ -870,10 +817,9 @@ GLboolean wglLoadDisplayColorTableEXT (const GLushort * table, GLuint length)
 GLboolean wglBindDisplayColorTableEXT (GLushort id)
 {
   // WGL_EXT_display_color_table - wglBindDisplayColorTableEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglBindDisplayColorTableEXT)
+  if (s_deviceConfig.m_wglBindDisplayColorTableEXT)
   {
-    return deviceState->m_wglBindDisplayColorTableEXT (id);
+    return s_deviceConfig.m_wglBindDisplayColorTableEXT (id);
   }
   return ((GLboolean)0);
 }
@@ -885,10 +831,9 @@ GLboolean wglBindDisplayColorTableEXT (GLushort id)
 VOID wglDestroyDisplayColorTableEXT (GLushort id)
 {
   // WGL_EXT_display_color_table - wglDestroyDisplayColorTableEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDestroyDisplayColorTableEXT)
+  if (s_deviceConfig.m_wglDestroyDisplayColorTableEXT)
   {
-    return deviceState->m_wglDestroyDisplayColorTableEXT (id);
+    return s_deviceConfig.m_wglDestroyDisplayColorTableEXT (id);
   }
   return ((VOID)0);
 }
@@ -900,10 +845,9 @@ VOID wglDestroyDisplayColorTableEXT (GLushort id)
 const char * wglGetExtensionsStringEXT ()
 {
   // WGL_EXT_extensions_string - wglGetExtensionsStringEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetExtensionsStringEXT)
+  if (s_deviceConfig.m_wglGetExtensionsStringEXT)
   {
-    return deviceState->m_wglGetExtensionsStringEXT ();
+    return s_deviceConfig.m_wglGetExtensionsStringEXT ();
   }
   return ((const char *)0);
 }
@@ -915,10 +859,9 @@ const char * wglGetExtensionsStringEXT ()
 BOOL wglMakeContextCurrentEXT (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
 {
   // WGL_EXT_make_current_read - wglMakeContextCurrentEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglMakeContextCurrentEXT)
+  if (s_deviceConfig.m_wglMakeContextCurrentEXT)
   {
-    return deviceState->m_wglMakeContextCurrentEXT (hDrawDC, hReadDC, hglrc);
+    return s_deviceConfig.m_wglMakeContextCurrentEXT (hDrawDC, hReadDC, hglrc);
   }
   return ((BOOL)0);
 }
@@ -930,10 +873,9 @@ BOOL wglMakeContextCurrentEXT (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
 HDC wglGetCurrentReadDCEXT ()
 {
   // WGL_EXT_make_current_read - wglGetCurrentReadDCEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetCurrentReadDCEXT)
+  if (s_deviceConfig.m_wglGetCurrentReadDCEXT)
   {
-    return deviceState->m_wglGetCurrentReadDCEXT ();
+    return s_deviceConfig.m_wglGetCurrentReadDCEXT ();
   }
   return ((HDC)0);
 }
@@ -945,10 +887,9 @@ HDC wglGetCurrentReadDCEXT ()
 HPBUFFEREXT wglCreatePbufferEXT (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList)
 {
   // WGL_EXT_pbuffer - wglCreatePbufferEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreatePbufferEXT)
+  if (s_deviceConfig.m_wglCreatePbufferEXT)
   {
-    return deviceState->m_wglCreatePbufferEXT (hDC, iPixelFormat, iWidth, iHeight, piAttribList);
+    return s_deviceConfig.m_wglCreatePbufferEXT (hDC, iPixelFormat, iWidth, iHeight, piAttribList);
   }
   return ((HPBUFFEREXT)0);
 }
@@ -960,10 +901,9 @@ HPBUFFEREXT wglCreatePbufferEXT (HDC hDC, int iPixelFormat, int iWidth, int iHei
 HDC wglGetPbufferDCEXT (HPBUFFEREXT hPbuffer)
 {
   // WGL_EXT_pbuffer - wglGetPbufferDCEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetPbufferDCEXT)
+  if (s_deviceConfig.m_wglGetPbufferDCEXT)
   {
-    return deviceState->m_wglGetPbufferDCEXT (hPbuffer);
+    return s_deviceConfig.m_wglGetPbufferDCEXT (hPbuffer);
   }
   return ((HDC)0);
 }
@@ -975,10 +915,9 @@ HDC wglGetPbufferDCEXT (HPBUFFEREXT hPbuffer)
 int wglReleasePbufferDCEXT (HPBUFFEREXT hPbuffer, HDC hDC)
 {
   // WGL_EXT_pbuffer - wglReleasePbufferDCEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglReleasePbufferDCEXT)
+  if (s_deviceConfig.m_wglReleasePbufferDCEXT)
   {
-    return deviceState->m_wglReleasePbufferDCEXT (hPbuffer, hDC);
+    return s_deviceConfig.m_wglReleasePbufferDCEXT (hPbuffer, hDC);
   }
   return ((int )0);
 }
@@ -990,10 +929,9 @@ int wglReleasePbufferDCEXT (HPBUFFEREXT hPbuffer, HDC hDC)
 BOOL wglDestroyPbufferEXT (HPBUFFEREXT hPbuffer)
 {
   // WGL_EXT_pbuffer - wglDestroyPbufferEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDestroyPbufferEXT)
+  if (s_deviceConfig.m_wglDestroyPbufferEXT)
   {
-    return deviceState->m_wglDestroyPbufferEXT (hPbuffer);
+    return s_deviceConfig.m_wglDestroyPbufferEXT (hPbuffer);
   }
   return ((BOOL)0);
 }
@@ -1005,10 +943,9 @@ BOOL wglDestroyPbufferEXT (HPBUFFEREXT hPbuffer)
 BOOL wglQueryPbufferEXT (HPBUFFEREXT hPbuffer, int iAttribute, int * piValue)
 {
   // WGL_EXT_pbuffer - wglQueryPbufferEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQueryPbufferEXT)
+  if (s_deviceConfig.m_wglQueryPbufferEXT)
   {
-    return deviceState->m_wglQueryPbufferEXT (hPbuffer, iAttribute, piValue);
+    return s_deviceConfig.m_wglQueryPbufferEXT (hPbuffer, iAttribute, piValue);
   }
   return ((BOOL)0);
 }
@@ -1020,10 +957,9 @@ BOOL wglQueryPbufferEXT (HPBUFFEREXT hPbuffer, int iAttribute, int * piValue)
 BOOL wglGetPixelFormatAttribivEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, int * piValues)
 {
   // WGL_EXT_pixel_format - wglGetPixelFormatAttribivEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetPixelFormatAttribivEXT)
+  if (s_deviceConfig.m_wglGetPixelFormatAttribivEXT)
   {
-    return deviceState->m_wglGetPixelFormatAttribivEXT (hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, piValues);
+    return s_deviceConfig.m_wglGetPixelFormatAttribivEXT (hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, piValues);
   }
   return ((BOOL)0);
 }
@@ -1035,10 +971,9 @@ BOOL wglGetPixelFormatAttribivEXT (HDC hdc, int iPixelFormat, int iLayerPlane, U
 BOOL wglGetPixelFormatAttribfvEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, FLOAT * pfValues)
 {
   // WGL_EXT_pixel_format - wglGetPixelFormatAttribfvEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetPixelFormatAttribfvEXT)
+  if (s_deviceConfig.m_wglGetPixelFormatAttribfvEXT)
   {
-    return deviceState->m_wglGetPixelFormatAttribfvEXT (hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, pfValues);
+    return s_deviceConfig.m_wglGetPixelFormatAttribfvEXT (hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, pfValues);
   }
   return ((BOOL)0);
 }
@@ -1050,10 +985,9 @@ BOOL wglGetPixelFormatAttribfvEXT (HDC hdc, int iPixelFormat, int iLayerPlane, U
 BOOL wglChoosePixelFormatEXT (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats)
 {
   // WGL_EXT_pixel_format - wglChoosePixelFormatEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglChoosePixelFormatEXT)
+  if (s_deviceConfig.m_wglChoosePixelFormatEXT)
   {
-    return deviceState->m_wglChoosePixelFormatEXT (hdc, piAttribIList, pfAttribFList, nMaxFormats, piFormats, nNumFormats);
+    return s_deviceConfig.m_wglChoosePixelFormatEXT (hdc, piAttribIList, pfAttribFList, nMaxFormats, piFormats, nNumFormats);
   }
   return ((BOOL)0);
 }
@@ -1065,10 +999,9 @@ BOOL wglChoosePixelFormatEXT (HDC hdc, const int * piAttribIList, const FLOAT * 
 BOOL wglSwapIntervalEXT (int interval)
 {
   // WGL_EXT_swap_control - wglSwapIntervalEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSwapIntervalEXT)
+  if (s_deviceConfig.m_wglSwapIntervalEXT)
   {
-    return deviceState->m_wglSwapIntervalEXT (interval);
+    return s_deviceConfig.m_wglSwapIntervalEXT (interval);
   }
   return ((BOOL)0);
 }
@@ -1080,10 +1013,9 @@ BOOL wglSwapIntervalEXT (int interval)
 int wglGetSwapIntervalEXT ()
 {
   // WGL_EXT_swap_control - wglGetSwapIntervalEXT
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetSwapIntervalEXT)
+  if (s_deviceConfig.m_wglGetSwapIntervalEXT)
   {
-    return deviceState->m_wglGetSwapIntervalEXT ();
+    return s_deviceConfig.m_wglGetSwapIntervalEXT ();
   }
   return ((int )0);
 }
@@ -1095,10 +1027,9 @@ int wglGetSwapIntervalEXT ()
 BOOL wglGetDigitalVideoParametersI3D (HDC hDC, int iAttribute, int * piValue)
 {
   // WGL_I3D_digital_video_control - wglGetDigitalVideoParametersI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetDigitalVideoParametersI3D)
+  if (s_deviceConfig.m_wglGetDigitalVideoParametersI3D)
   {
-    return deviceState->m_wglGetDigitalVideoParametersI3D (hDC, iAttribute, piValue);
+    return s_deviceConfig.m_wglGetDigitalVideoParametersI3D (hDC, iAttribute, piValue);
   }
   return ((BOOL)0);
 }
@@ -1110,10 +1041,9 @@ BOOL wglGetDigitalVideoParametersI3D (HDC hDC, int iAttribute, int * piValue)
 BOOL wglSetDigitalVideoParametersI3D (HDC hDC, int iAttribute, const int * piValue)
 {
   // WGL_I3D_digital_video_control - wglSetDigitalVideoParametersI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSetDigitalVideoParametersI3D)
+  if (s_deviceConfig.m_wglSetDigitalVideoParametersI3D)
   {
-    return deviceState->m_wglSetDigitalVideoParametersI3D (hDC, iAttribute, piValue);
+    return s_deviceConfig.m_wglSetDigitalVideoParametersI3D (hDC, iAttribute, piValue);
   }
   return ((BOOL)0);
 }
@@ -1125,10 +1055,9 @@ BOOL wglSetDigitalVideoParametersI3D (HDC hDC, int iAttribute, const int * piVal
 BOOL wglGetGammaTableParametersI3D (HDC hDC, int iAttribute, int * piValue)
 {
   // WGL_I3D_gamma - wglGetGammaTableParametersI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetGammaTableParametersI3D)
+  if (s_deviceConfig.m_wglGetGammaTableParametersI3D)
   {
-    return deviceState->m_wglGetGammaTableParametersI3D (hDC, iAttribute, piValue);
+    return s_deviceConfig.m_wglGetGammaTableParametersI3D (hDC, iAttribute, piValue);
   }
   return ((BOOL)0);
 }
@@ -1140,10 +1069,9 @@ BOOL wglGetGammaTableParametersI3D (HDC hDC, int iAttribute, int * piValue)
 BOOL wglSetGammaTableParametersI3D (HDC hDC, int iAttribute, const int * piValue)
 {
   // WGL_I3D_gamma - wglSetGammaTableParametersI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSetGammaTableParametersI3D)
+  if (s_deviceConfig.m_wglSetGammaTableParametersI3D)
   {
-    return deviceState->m_wglSetGammaTableParametersI3D (hDC, iAttribute, piValue);
+    return s_deviceConfig.m_wglSetGammaTableParametersI3D (hDC, iAttribute, piValue);
   }
   return ((BOOL)0);
 }
@@ -1155,10 +1083,9 @@ BOOL wglSetGammaTableParametersI3D (HDC hDC, int iAttribute, const int * piValue
 BOOL wglGetGammaTableI3D (HDC hDC, int iEntries, USHORT * puRed, USHORT * puGreen, USHORT * puBlue)
 {
   // WGL_I3D_gamma - wglGetGammaTableI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetGammaTableI3D)
+  if (s_deviceConfig.m_wglGetGammaTableI3D)
   {
-    return deviceState->m_wglGetGammaTableI3D (hDC, iEntries, puRed, puGreen, puBlue);
+    return s_deviceConfig.m_wglGetGammaTableI3D (hDC, iEntries, puRed, puGreen, puBlue);
   }
   return ((BOOL)0);
 }
@@ -1170,10 +1097,9 @@ BOOL wglGetGammaTableI3D (HDC hDC, int iEntries, USHORT * puRed, USHORT * puGree
 BOOL wglSetGammaTableI3D (HDC hDC, int iEntries, const USHORT * puRed, const USHORT * puGreen, const USHORT * puBlue)
 {
   // WGL_I3D_gamma - wglSetGammaTableI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSetGammaTableI3D)
+  if (s_deviceConfig.m_wglSetGammaTableI3D)
   {
-    return deviceState->m_wglSetGammaTableI3D (hDC, iEntries, puRed, puGreen, puBlue);
+    return s_deviceConfig.m_wglSetGammaTableI3D (hDC, iEntries, puRed, puGreen, puBlue);
   }
   return ((BOOL)0);
 }
@@ -1185,10 +1111,9 @@ BOOL wglSetGammaTableI3D (HDC hDC, int iEntries, const USHORT * puRed, const USH
 BOOL wglEnableGenlockI3D (HDC hDC)
 {
   // WGL_I3D_genlock - wglEnableGenlockI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglEnableGenlockI3D)
+  if (s_deviceConfig.m_wglEnableGenlockI3D)
   {
-    return deviceState->m_wglEnableGenlockI3D (hDC);
+    return s_deviceConfig.m_wglEnableGenlockI3D (hDC);
   }
   return ((BOOL)0);
 }
@@ -1200,10 +1125,9 @@ BOOL wglEnableGenlockI3D (HDC hDC)
 BOOL wglDisableGenlockI3D (HDC hDC)
 {
   // WGL_I3D_genlock - wglDisableGenlockI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDisableGenlockI3D)
+  if (s_deviceConfig.m_wglDisableGenlockI3D)
   {
-    return deviceState->m_wglDisableGenlockI3D (hDC);
+    return s_deviceConfig.m_wglDisableGenlockI3D (hDC);
   }
   return ((BOOL)0);
 }
@@ -1215,10 +1139,9 @@ BOOL wglDisableGenlockI3D (HDC hDC)
 BOOL wglIsEnabledGenlockI3D (HDC hDC, BOOL * pFlag)
 {
   // WGL_I3D_genlock - wglIsEnabledGenlockI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglIsEnabledGenlockI3D)
+  if (s_deviceConfig.m_wglIsEnabledGenlockI3D)
   {
-    return deviceState->m_wglIsEnabledGenlockI3D (hDC, pFlag);
+    return s_deviceConfig.m_wglIsEnabledGenlockI3D (hDC, pFlag);
   }
   return ((BOOL)0);
 }
@@ -1230,10 +1153,9 @@ BOOL wglIsEnabledGenlockI3D (HDC hDC, BOOL * pFlag)
 BOOL wglGenlockSourceI3D (HDC hDC, UINT uSource)
 {
   // WGL_I3D_genlock - wglGenlockSourceI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGenlockSourceI3D)
+  if (s_deviceConfig.m_wglGenlockSourceI3D)
   {
-    return deviceState->m_wglGenlockSourceI3D (hDC, uSource);
+    return s_deviceConfig.m_wglGenlockSourceI3D (hDC, uSource);
   }
   return ((BOOL)0);
 }
@@ -1245,10 +1167,9 @@ BOOL wglGenlockSourceI3D (HDC hDC, UINT uSource)
 BOOL wglGetGenlockSourceI3D (HDC hDC, UINT * uSource)
 {
   // WGL_I3D_genlock - wglGetGenlockSourceI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetGenlockSourceI3D)
+  if (s_deviceConfig.m_wglGetGenlockSourceI3D)
   {
-    return deviceState->m_wglGetGenlockSourceI3D (hDC, uSource);
+    return s_deviceConfig.m_wglGetGenlockSourceI3D (hDC, uSource);
   }
   return ((BOOL)0);
 }
@@ -1260,10 +1181,9 @@ BOOL wglGetGenlockSourceI3D (HDC hDC, UINT * uSource)
 BOOL wglGenlockSourceEdgeI3D (HDC hDC, UINT uEdge)
 {
   // WGL_I3D_genlock - wglGenlockSourceEdgeI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGenlockSourceEdgeI3D)
+  if (s_deviceConfig.m_wglGenlockSourceEdgeI3D)
   {
-    return deviceState->m_wglGenlockSourceEdgeI3D (hDC, uEdge);
+    return s_deviceConfig.m_wglGenlockSourceEdgeI3D (hDC, uEdge);
   }
   return ((BOOL)0);
 }
@@ -1275,10 +1195,9 @@ BOOL wglGenlockSourceEdgeI3D (HDC hDC, UINT uEdge)
 BOOL wglGetGenlockSourceEdgeI3D (HDC hDC, UINT * uEdge)
 {
   // WGL_I3D_genlock - wglGetGenlockSourceEdgeI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetGenlockSourceEdgeI3D)
+  if (s_deviceConfig.m_wglGetGenlockSourceEdgeI3D)
   {
-    return deviceState->m_wglGetGenlockSourceEdgeI3D (hDC, uEdge);
+    return s_deviceConfig.m_wglGetGenlockSourceEdgeI3D (hDC, uEdge);
   }
   return ((BOOL)0);
 }
@@ -1290,10 +1209,9 @@ BOOL wglGetGenlockSourceEdgeI3D (HDC hDC, UINT * uEdge)
 BOOL wglGenlockSampleRateI3D (HDC hDC, UINT uRate)
 {
   // WGL_I3D_genlock - wglGenlockSampleRateI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGenlockSampleRateI3D)
+  if (s_deviceConfig.m_wglGenlockSampleRateI3D)
   {
-    return deviceState->m_wglGenlockSampleRateI3D (hDC, uRate);
+    return s_deviceConfig.m_wglGenlockSampleRateI3D (hDC, uRate);
   }
   return ((BOOL)0);
 }
@@ -1305,10 +1223,9 @@ BOOL wglGenlockSampleRateI3D (HDC hDC, UINT uRate)
 BOOL wglGetGenlockSampleRateI3D (HDC hDC, UINT * uRate)
 {
   // WGL_I3D_genlock - wglGetGenlockSampleRateI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetGenlockSampleRateI3D)
+  if (s_deviceConfig.m_wglGetGenlockSampleRateI3D)
   {
-    return deviceState->m_wglGetGenlockSampleRateI3D (hDC, uRate);
+    return s_deviceConfig.m_wglGetGenlockSampleRateI3D (hDC, uRate);
   }
   return ((BOOL)0);
 }
@@ -1320,10 +1237,9 @@ BOOL wglGetGenlockSampleRateI3D (HDC hDC, UINT * uRate)
 BOOL wglGenlockSourceDelayI3D (HDC hDC, UINT uDelay)
 {
   // WGL_I3D_genlock - wglGenlockSourceDelayI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGenlockSourceDelayI3D)
+  if (s_deviceConfig.m_wglGenlockSourceDelayI3D)
   {
-    return deviceState->m_wglGenlockSourceDelayI3D (hDC, uDelay);
+    return s_deviceConfig.m_wglGenlockSourceDelayI3D (hDC, uDelay);
   }
   return ((BOOL)0);
 }
@@ -1335,10 +1251,9 @@ BOOL wglGenlockSourceDelayI3D (HDC hDC, UINT uDelay)
 BOOL wglGetGenlockSourceDelayI3D (HDC hDC, UINT * uDelay)
 {
   // WGL_I3D_genlock - wglGetGenlockSourceDelayI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetGenlockSourceDelayI3D)
+  if (s_deviceConfig.m_wglGetGenlockSourceDelayI3D)
   {
-    return deviceState->m_wglGetGenlockSourceDelayI3D (hDC, uDelay);
+    return s_deviceConfig.m_wglGetGenlockSourceDelayI3D (hDC, uDelay);
   }
   return ((BOOL)0);
 }
@@ -1350,10 +1265,9 @@ BOOL wglGetGenlockSourceDelayI3D (HDC hDC, UINT * uDelay)
 BOOL wglQueryGenlockMaxSourceDelayI3D (HDC hDC, UINT * uMaxLineDelay, UINT * uMaxPixelDelay)
 {
   // WGL_I3D_genlock - wglQueryGenlockMaxSourceDelayI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQueryGenlockMaxSourceDelayI3D)
+  if (s_deviceConfig.m_wglQueryGenlockMaxSourceDelayI3D)
   {
-    return deviceState->m_wglQueryGenlockMaxSourceDelayI3D (hDC, uMaxLineDelay, uMaxPixelDelay);
+    return s_deviceConfig.m_wglQueryGenlockMaxSourceDelayI3D (hDC, uMaxLineDelay, uMaxPixelDelay);
   }
   return ((BOOL)0);
 }
@@ -1365,10 +1279,9 @@ BOOL wglQueryGenlockMaxSourceDelayI3D (HDC hDC, UINT * uMaxLineDelay, UINT * uMa
 LPVOID wglCreateImageBufferI3D (HDC hDC, DWORD dwSize, UINT uFlags)
 {
   // WGL_I3D_image_buffer - wglCreateImageBufferI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreateImageBufferI3D)
+  if (s_deviceConfig.m_wglCreateImageBufferI3D)
   {
-    return deviceState->m_wglCreateImageBufferI3D (hDC, dwSize, uFlags);
+    return s_deviceConfig.m_wglCreateImageBufferI3D (hDC, dwSize, uFlags);
   }
   return ((LPVOID)0);
 }
@@ -1380,10 +1293,9 @@ LPVOID wglCreateImageBufferI3D (HDC hDC, DWORD dwSize, UINT uFlags)
 BOOL wglDestroyImageBufferI3D (HDC hDC, LPVOID pAddress)
 {
   // WGL_I3D_image_buffer - wglDestroyImageBufferI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDestroyImageBufferI3D)
+  if (s_deviceConfig.m_wglDestroyImageBufferI3D)
   {
-    return deviceState->m_wglDestroyImageBufferI3D (hDC, pAddress);
+    return s_deviceConfig.m_wglDestroyImageBufferI3D (hDC, pAddress);
   }
   return ((BOOL)0);
 }
@@ -1395,10 +1307,9 @@ BOOL wglDestroyImageBufferI3D (HDC hDC, LPVOID pAddress)
 BOOL wglAssociateImageBufferEventsI3D (HDC hDC, const HANDLE * pEvent, const LPVOID * pAddress, const DWORD * pSize, UINT count)
 {
   // WGL_I3D_image_buffer - wglAssociateImageBufferEventsI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglAssociateImageBufferEventsI3D)
+  if (s_deviceConfig.m_wglAssociateImageBufferEventsI3D)
   {
-    return deviceState->m_wglAssociateImageBufferEventsI3D (hDC, pEvent, pAddress, pSize, count);
+    return s_deviceConfig.m_wglAssociateImageBufferEventsI3D (hDC, pEvent, pAddress, pSize, count);
   }
   return ((BOOL)0);
 }
@@ -1410,10 +1321,9 @@ BOOL wglAssociateImageBufferEventsI3D (HDC hDC, const HANDLE * pEvent, const LPV
 BOOL wglReleaseImageBufferEventsI3D (HDC hDC, const LPVOID * pAddress, UINT count)
 {
   // WGL_I3D_image_buffer - wglReleaseImageBufferEventsI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglReleaseImageBufferEventsI3D)
+  if (s_deviceConfig.m_wglReleaseImageBufferEventsI3D)
   {
-    return deviceState->m_wglReleaseImageBufferEventsI3D (hDC, pAddress, count);
+    return s_deviceConfig.m_wglReleaseImageBufferEventsI3D (hDC, pAddress, count);
   }
   return ((BOOL)0);
 }
@@ -1425,10 +1335,9 @@ BOOL wglReleaseImageBufferEventsI3D (HDC hDC, const LPVOID * pAddress, UINT coun
 BOOL wglEnableFrameLockI3D ()
 {
   // WGL_I3D_swap_frame_lock - wglEnableFrameLockI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglEnableFrameLockI3D)
+  if (s_deviceConfig.m_wglEnableFrameLockI3D)
   {
-    return deviceState->m_wglEnableFrameLockI3D ();
+    return s_deviceConfig.m_wglEnableFrameLockI3D ();
   }
   return ((BOOL)0);
 }
@@ -1440,10 +1349,9 @@ BOOL wglEnableFrameLockI3D ()
 BOOL wglDisableFrameLockI3D ()
 {
   // WGL_I3D_swap_frame_lock - wglDisableFrameLockI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDisableFrameLockI3D)
+  if (s_deviceConfig.m_wglDisableFrameLockI3D)
   {
-    return deviceState->m_wglDisableFrameLockI3D ();
+    return s_deviceConfig.m_wglDisableFrameLockI3D ();
   }
   return ((BOOL)0);
 }
@@ -1455,10 +1363,9 @@ BOOL wglDisableFrameLockI3D ()
 BOOL wglIsEnabledFrameLockI3D (BOOL * pFlag)
 {
   // WGL_I3D_swap_frame_lock - wglIsEnabledFrameLockI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglIsEnabledFrameLockI3D)
+  if (s_deviceConfig.m_wglIsEnabledFrameLockI3D)
   {
-    return deviceState->m_wglIsEnabledFrameLockI3D (pFlag);
+    return s_deviceConfig.m_wglIsEnabledFrameLockI3D (pFlag);
   }
   return ((BOOL)0);
 }
@@ -1470,10 +1377,9 @@ BOOL wglIsEnabledFrameLockI3D (BOOL * pFlag)
 BOOL wglQueryFrameLockMasterI3D (BOOL * pFlag)
 {
   // WGL_I3D_swap_frame_lock - wglQueryFrameLockMasterI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQueryFrameLockMasterI3D)
+  if (s_deviceConfig.m_wglQueryFrameLockMasterI3D)
   {
-    return deviceState->m_wglQueryFrameLockMasterI3D (pFlag);
+    return s_deviceConfig.m_wglQueryFrameLockMasterI3D (pFlag);
   }
   return ((BOOL)0);
 }
@@ -1485,10 +1391,9 @@ BOOL wglQueryFrameLockMasterI3D (BOOL * pFlag)
 BOOL wglGetFrameUsageI3D (float * pUsage)
 {
   // WGL_I3D_swap_frame_usage - wglGetFrameUsageI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetFrameUsageI3D)
+  if (s_deviceConfig.m_wglGetFrameUsageI3D)
   {
-    return deviceState->m_wglGetFrameUsageI3D (pUsage);
+    return s_deviceConfig.m_wglGetFrameUsageI3D (pUsage);
   }
   return ((BOOL)0);
 }
@@ -1500,10 +1405,9 @@ BOOL wglGetFrameUsageI3D (float * pUsage)
 BOOL wglBeginFrameTrackingI3D ()
 {
   // WGL_I3D_swap_frame_usage - wglBeginFrameTrackingI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglBeginFrameTrackingI3D)
+  if (s_deviceConfig.m_wglBeginFrameTrackingI3D)
   {
-    return deviceState->m_wglBeginFrameTrackingI3D ();
+    return s_deviceConfig.m_wglBeginFrameTrackingI3D ();
   }
   return ((BOOL)0);
 }
@@ -1515,10 +1419,9 @@ BOOL wglBeginFrameTrackingI3D ()
 BOOL wglEndFrameTrackingI3D ()
 {
   // WGL_I3D_swap_frame_usage - wglEndFrameTrackingI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglEndFrameTrackingI3D)
+  if (s_deviceConfig.m_wglEndFrameTrackingI3D)
   {
-    return deviceState->m_wglEndFrameTrackingI3D ();
+    return s_deviceConfig.m_wglEndFrameTrackingI3D ();
   }
   return ((BOOL)0);
 }
@@ -1530,10 +1433,9 @@ BOOL wglEndFrameTrackingI3D ()
 BOOL wglQueryFrameTrackingI3D (DWORD * pFrameCount, DWORD * pMissedFrames, float * pLastMissedUsage)
 {
   // WGL_I3D_swap_frame_usage - wglQueryFrameTrackingI3D
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQueryFrameTrackingI3D)
+  if (s_deviceConfig.m_wglQueryFrameTrackingI3D)
   {
-    return deviceState->m_wglQueryFrameTrackingI3D (pFrameCount, pMissedFrames, pLastMissedUsage);
+    return s_deviceConfig.m_wglQueryFrameTrackingI3D (pFrameCount, pMissedFrames, pLastMissedUsage);
   }
   return ((BOOL)0);
 }
@@ -1545,10 +1447,9 @@ BOOL wglQueryFrameTrackingI3D (DWORD * pFrameCount, DWORD * pMissedFrames, float
 BOOL wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth)
 {
   // WGL_NV_copy_image - wglCopyImageSubDataNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCopyImageSubDataNV)
+  if (s_deviceConfig.m_wglCopyImageSubDataNV)
   {
-    return deviceState->m_wglCopyImageSubDataNV (hSrcRC, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, hDstRC, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
+    return s_deviceConfig.m_wglCopyImageSubDataNV (hSrcRC, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, hDstRC, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
   }
   return ((BOOL)0);
 }
@@ -1560,10 +1461,9 @@ BOOL wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLin
 BOOL wglDelayBeforeSwapNV (HDC hDC, GLfloat seconds)
 {
   // WGL_NV_delay_before_swap - wglDelayBeforeSwapNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDelayBeforeSwapNV)
+  if (s_deviceConfig.m_wglDelayBeforeSwapNV)
   {
-    return deviceState->m_wglDelayBeforeSwapNV (hDC, seconds);
+    return s_deviceConfig.m_wglDelayBeforeSwapNV (hDC, seconds);
   }
   return ((BOOL)0);
 }
@@ -1575,10 +1475,9 @@ BOOL wglDelayBeforeSwapNV (HDC hDC, GLfloat seconds)
 BOOL wglDXSetResourceShareHandleNV (void * dxObject, HANDLE shareHandle)
 {
   // WGL_NV_DX_interop - wglDXSetResourceShareHandleNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDXSetResourceShareHandleNV)
+  if (s_deviceConfig.m_wglDXSetResourceShareHandleNV)
   {
-    return deviceState->m_wglDXSetResourceShareHandleNV (dxObject, shareHandle);
+    return s_deviceConfig.m_wglDXSetResourceShareHandleNV (dxObject, shareHandle);
   }
   return ((BOOL)0);
 }
@@ -1590,10 +1489,9 @@ BOOL wglDXSetResourceShareHandleNV (void * dxObject, HANDLE shareHandle)
 HANDLE wglDXOpenDeviceNV (void * dxDevice)
 {
   // WGL_NV_DX_interop - wglDXOpenDeviceNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDXOpenDeviceNV)
+  if (s_deviceConfig.m_wglDXOpenDeviceNV)
   {
-    return deviceState->m_wglDXOpenDeviceNV (dxDevice);
+    return s_deviceConfig.m_wglDXOpenDeviceNV (dxDevice);
   }
   return ((HANDLE)0);
 }
@@ -1605,10 +1503,9 @@ HANDLE wglDXOpenDeviceNV (void * dxDevice)
 BOOL wglDXCloseDeviceNV (HANDLE hDevice)
 {
   // WGL_NV_DX_interop - wglDXCloseDeviceNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDXCloseDeviceNV)
+  if (s_deviceConfig.m_wglDXCloseDeviceNV)
   {
-    return deviceState->m_wglDXCloseDeviceNV (hDevice);
+    return s_deviceConfig.m_wglDXCloseDeviceNV (hDevice);
   }
   return ((BOOL)0);
 }
@@ -1620,10 +1517,9 @@ BOOL wglDXCloseDeviceNV (HANDLE hDevice)
 HANDLE wglDXRegisterObjectNV (HANDLE hDevice, void * dxObject, GLuint name, GLenum type, GLenum access)
 {
   // WGL_NV_DX_interop - wglDXRegisterObjectNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDXRegisterObjectNV)
+  if (s_deviceConfig.m_wglDXRegisterObjectNV)
   {
-    return deviceState->m_wglDXRegisterObjectNV (hDevice, dxObject, name, type, access);
+    return s_deviceConfig.m_wglDXRegisterObjectNV (hDevice, dxObject, name, type, access);
   }
   return ((HANDLE)0);
 }
@@ -1635,10 +1531,9 @@ HANDLE wglDXRegisterObjectNV (HANDLE hDevice, void * dxObject, GLuint name, GLen
 BOOL wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject)
 {
   // WGL_NV_DX_interop - wglDXUnregisterObjectNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDXUnregisterObjectNV)
+  if (s_deviceConfig.m_wglDXUnregisterObjectNV)
   {
-    return deviceState->m_wglDXUnregisterObjectNV (hDevice, hObject);
+    return s_deviceConfig.m_wglDXUnregisterObjectNV (hDevice, hObject);
   }
   return ((BOOL)0);
 }
@@ -1650,10 +1545,9 @@ BOOL wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject)
 BOOL wglDXObjectAccessNV (HANDLE hObject, GLenum access)
 {
   // WGL_NV_DX_interop - wglDXObjectAccessNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDXObjectAccessNV)
+  if (s_deviceConfig.m_wglDXObjectAccessNV)
   {
-    return deviceState->m_wglDXObjectAccessNV (hObject, access);
+    return s_deviceConfig.m_wglDXObjectAccessNV (hObject, access);
   }
   return ((BOOL)0);
 }
@@ -1665,10 +1559,9 @@ BOOL wglDXObjectAccessNV (HANDLE hObject, GLenum access)
 BOOL wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
 {
   // WGL_NV_DX_interop - wglDXLockObjectsNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDXLockObjectsNV)
+  if (s_deviceConfig.m_wglDXLockObjectsNV)
   {
-    return deviceState->m_wglDXLockObjectsNV (hDevice, count, hObjects);
+    return s_deviceConfig.m_wglDXLockObjectsNV (hDevice, count, hObjects);
   }
   return ((BOOL)0);
 }
@@ -1680,10 +1573,9 @@ BOOL wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
 BOOL wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
 {
   // WGL_NV_DX_interop - wglDXUnlockObjectsNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDXUnlockObjectsNV)
+  if (s_deviceConfig.m_wglDXUnlockObjectsNV)
   {
-    return deviceState->m_wglDXUnlockObjectsNV (hDevice, count, hObjects);
+    return s_deviceConfig.m_wglDXUnlockObjectsNV (hDevice, count, hObjects);
   }
   return ((BOOL)0);
 }
@@ -1695,10 +1587,9 @@ BOOL wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
 BOOL wglEnumGpusNV (UINT iGpuIndex, HGPUNV * phGpu)
 {
   // WGL_NV_gpu_affinity - wglEnumGpusNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglEnumGpusNV)
+  if (s_deviceConfig.m_wglEnumGpusNV)
   {
-    return deviceState->m_wglEnumGpusNV (iGpuIndex, phGpu);
+    return s_deviceConfig.m_wglEnumGpusNV (iGpuIndex, phGpu);
   }
   return ((BOOL)0);
 }
@@ -1710,10 +1601,9 @@ BOOL wglEnumGpusNV (UINT iGpuIndex, HGPUNV * phGpu)
 BOOL wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDeviceIndex, PGPU_DEVICE lpGpuDevice)
 {
   // WGL_NV_gpu_affinity - wglEnumGpuDevicesNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglEnumGpuDevicesNV)
+  if (s_deviceConfig.m_wglEnumGpuDevicesNV)
   {
-    return deviceState->m_wglEnumGpuDevicesNV (hGpu, iDeviceIndex, lpGpuDevice);
+    return s_deviceConfig.m_wglEnumGpuDevicesNV (hGpu, iDeviceIndex, lpGpuDevice);
   }
   return ((BOOL)0);
 }
@@ -1725,10 +1615,9 @@ BOOL wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDeviceIndex, PGPU_DEVICE lpGpuDevic
 HDC wglCreateAffinityDCNV (const HGPUNV * phGpuList)
 {
   // WGL_NV_gpu_affinity - wglCreateAffinityDCNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglCreateAffinityDCNV)
+  if (s_deviceConfig.m_wglCreateAffinityDCNV)
   {
-    return deviceState->m_wglCreateAffinityDCNV (phGpuList);
+    return s_deviceConfig.m_wglCreateAffinityDCNV (phGpuList);
   }
   return ((HDC)0);
 }
@@ -1740,10 +1629,9 @@ HDC wglCreateAffinityDCNV (const HGPUNV * phGpuList)
 BOOL wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu)
 {
   // WGL_NV_gpu_affinity - wglEnumGpusFromAffinityDCNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglEnumGpusFromAffinityDCNV)
+  if (s_deviceConfig.m_wglEnumGpusFromAffinityDCNV)
   {
-    return deviceState->m_wglEnumGpusFromAffinityDCNV (hAffinityDC, iGpuIndex, hGpu);
+    return s_deviceConfig.m_wglEnumGpusFromAffinityDCNV (hAffinityDC, iGpuIndex, hGpu);
   }
   return ((BOOL)0);
 }
@@ -1755,10 +1643,9 @@ BOOL wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu
 BOOL wglDeleteDCNV (HDC hdc)
 {
   // WGL_NV_gpu_affinity - wglDeleteDCNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglDeleteDCNV)
+  if (s_deviceConfig.m_wglDeleteDCNV)
   {
-    return deviceState->m_wglDeleteDCNV (hdc);
+    return s_deviceConfig.m_wglDeleteDCNV (hdc);
   }
   return ((BOOL)0);
 }
@@ -1770,10 +1657,9 @@ BOOL wglDeleteDCNV (HDC hdc)
 int wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList)
 {
   // WGL_NV_present_video - wglEnumerateVideoDevicesNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglEnumerateVideoDevicesNV)
+  if (s_deviceConfig.m_wglEnumerateVideoDevicesNV)
   {
-    return deviceState->m_wglEnumerateVideoDevicesNV (hDC, phDeviceList);
+    return s_deviceConfig.m_wglEnumerateVideoDevicesNV (hDC, phDeviceList);
   }
   return ((int )0);
 }
@@ -1785,10 +1671,9 @@ int wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList)
 BOOL wglBindVideoDeviceNV (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList)
 {
   // WGL_NV_present_video - wglBindVideoDeviceNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglBindVideoDeviceNV)
+  if (s_deviceConfig.m_wglBindVideoDeviceNV)
   {
-    return deviceState->m_wglBindVideoDeviceNV (hDC, uVideoSlot, hVideoDevice, piAttribList);
+    return s_deviceConfig.m_wglBindVideoDeviceNV (hDC, uVideoSlot, hVideoDevice, piAttribList);
   }
   return ((BOOL)0);
 }
@@ -1800,10 +1685,9 @@ BOOL wglBindVideoDeviceNV (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICEN
 BOOL wglQueryCurrentContextNV (int iAttribute, int * piValue)
 {
   // WGL_NV_present_video - wglQueryCurrentContextNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQueryCurrentContextNV)
+  if (s_deviceConfig.m_wglQueryCurrentContextNV)
   {
-    return deviceState->m_wglQueryCurrentContextNV (iAttribute, piValue);
+    return s_deviceConfig.m_wglQueryCurrentContextNV (iAttribute, piValue);
   }
   return ((BOOL)0);
 }
@@ -1815,10 +1699,9 @@ BOOL wglQueryCurrentContextNV (int iAttribute, int * piValue)
 BOOL wglJoinSwapGroupNV (HDC hDC, GLuint group)
 {
   // WGL_NV_swap_group - wglJoinSwapGroupNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglJoinSwapGroupNV)
+  if (s_deviceConfig.m_wglJoinSwapGroupNV)
   {
-    return deviceState->m_wglJoinSwapGroupNV (hDC, group);
+    return s_deviceConfig.m_wglJoinSwapGroupNV (hDC, group);
   }
   return ((BOOL)0);
 }
@@ -1830,10 +1713,9 @@ BOOL wglJoinSwapGroupNV (HDC hDC, GLuint group)
 BOOL wglBindSwapBarrierNV (GLuint group, GLuint barrier)
 {
   // WGL_NV_swap_group - wglBindSwapBarrierNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglBindSwapBarrierNV)
+  if (s_deviceConfig.m_wglBindSwapBarrierNV)
   {
-    return deviceState->m_wglBindSwapBarrierNV (group, barrier);
+    return s_deviceConfig.m_wglBindSwapBarrierNV (group, barrier);
   }
   return ((BOOL)0);
 }
@@ -1845,10 +1727,9 @@ BOOL wglBindSwapBarrierNV (GLuint group, GLuint barrier)
 BOOL wglQuerySwapGroupNV (HDC hDC, GLuint * group, GLuint * barrier)
 {
   // WGL_NV_swap_group - wglQuerySwapGroupNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQuerySwapGroupNV)
+  if (s_deviceConfig.m_wglQuerySwapGroupNV)
   {
-    return deviceState->m_wglQuerySwapGroupNV (hDC, group, barrier);
+    return s_deviceConfig.m_wglQuerySwapGroupNV (hDC, group, barrier);
   }
   return ((BOOL)0);
 }
@@ -1860,10 +1741,9 @@ BOOL wglQuerySwapGroupNV (HDC hDC, GLuint * group, GLuint * barrier)
 BOOL wglQueryMaxSwapGroupsNV (HDC hDC, GLuint * maxGroups, GLuint * maxBarriers)
 {
   // WGL_NV_swap_group - wglQueryMaxSwapGroupsNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQueryMaxSwapGroupsNV)
+  if (s_deviceConfig.m_wglQueryMaxSwapGroupsNV)
   {
-    return deviceState->m_wglQueryMaxSwapGroupsNV (hDC, maxGroups, maxBarriers);
+    return s_deviceConfig.m_wglQueryMaxSwapGroupsNV (hDC, maxGroups, maxBarriers);
   }
   return ((BOOL)0);
 }
@@ -1875,10 +1755,9 @@ BOOL wglQueryMaxSwapGroupsNV (HDC hDC, GLuint * maxGroups, GLuint * maxBarriers)
 BOOL wglQueryFrameCountNV (HDC hDC, GLuint * count)
 {
   // WGL_NV_swap_group - wglQueryFrameCountNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQueryFrameCountNV)
+  if (s_deviceConfig.m_wglQueryFrameCountNV)
   {
-    return deviceState->m_wglQueryFrameCountNV (hDC, count);
+    return s_deviceConfig.m_wglQueryFrameCountNV (hDC, count);
   }
   return ((BOOL)0);
 }
@@ -1890,10 +1769,9 @@ BOOL wglQueryFrameCountNV (HDC hDC, GLuint * count)
 BOOL wglResetFrameCountNV (HDC hDC)
 {
   // WGL_NV_swap_group - wglResetFrameCountNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglResetFrameCountNV)
+  if (s_deviceConfig.m_wglResetFrameCountNV)
   {
-    return deviceState->m_wglResetFrameCountNV (hDC);
+    return s_deviceConfig.m_wglResetFrameCountNV (hDC);
   }
   return ((BOOL)0);
 }
@@ -1905,10 +1783,9 @@ BOOL wglResetFrameCountNV (HDC hDC)
 BOOL wglBindVideoCaptureDeviceNV (UINT uVideoSlot, HVIDEOINPUTDEVICENV hDevice)
 {
   // WGL_NV_video_capture - wglBindVideoCaptureDeviceNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglBindVideoCaptureDeviceNV)
+  if (s_deviceConfig.m_wglBindVideoCaptureDeviceNV)
   {
-    return deviceState->m_wglBindVideoCaptureDeviceNV (uVideoSlot, hDevice);
+    return s_deviceConfig.m_wglBindVideoCaptureDeviceNV (uVideoSlot, hDevice);
   }
   return ((BOOL)0);
 }
@@ -1920,10 +1797,9 @@ BOOL wglBindVideoCaptureDeviceNV (UINT uVideoSlot, HVIDEOINPUTDEVICENV hDevice)
 UINT wglEnumerateVideoCaptureDevicesNV (HDC hDc, HVIDEOINPUTDEVICENV * phDeviceList)
 {
   // WGL_NV_video_capture - wglEnumerateVideoCaptureDevicesNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglEnumerateVideoCaptureDevicesNV)
+  if (s_deviceConfig.m_wglEnumerateVideoCaptureDevicesNV)
   {
-    return deviceState->m_wglEnumerateVideoCaptureDevicesNV (hDc, phDeviceList);
+    return s_deviceConfig.m_wglEnumerateVideoCaptureDevicesNV (hDc, phDeviceList);
   }
   return ((UINT)0);
 }
@@ -1935,10 +1811,9 @@ UINT wglEnumerateVideoCaptureDevicesNV (HDC hDc, HVIDEOINPUTDEVICENV * phDeviceL
 BOOL wglLockVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
 {
   // WGL_NV_video_capture - wglLockVideoCaptureDeviceNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglLockVideoCaptureDeviceNV)
+  if (s_deviceConfig.m_wglLockVideoCaptureDeviceNV)
   {
-    return deviceState->m_wglLockVideoCaptureDeviceNV (hDc, hDevice);
+    return s_deviceConfig.m_wglLockVideoCaptureDeviceNV (hDc, hDevice);
   }
   return ((BOOL)0);
 }
@@ -1950,10 +1825,9 @@ BOOL wglLockVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
 BOOL wglQueryVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice, int iAttribute, int * piValue)
 {
   // WGL_NV_video_capture - wglQueryVideoCaptureDeviceNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglQueryVideoCaptureDeviceNV)
+  if (s_deviceConfig.m_wglQueryVideoCaptureDeviceNV)
   {
-    return deviceState->m_wglQueryVideoCaptureDeviceNV (hDc, hDevice, iAttribute, piValue);
+    return s_deviceConfig.m_wglQueryVideoCaptureDeviceNV (hDc, hDevice, iAttribute, piValue);
   }
   return ((BOOL)0);
 }
@@ -1965,10 +1839,9 @@ BOOL wglQueryVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice, int iAt
 BOOL wglReleaseVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
 {
   // WGL_NV_video_capture - wglReleaseVideoCaptureDeviceNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglReleaseVideoCaptureDeviceNV)
+  if (s_deviceConfig.m_wglReleaseVideoCaptureDeviceNV)
   {
-    return deviceState->m_wglReleaseVideoCaptureDeviceNV (hDc, hDevice);
+    return s_deviceConfig.m_wglReleaseVideoCaptureDeviceNV (hDc, hDevice);
   }
   return ((BOOL)0);
 }
@@ -1980,10 +1853,9 @@ BOOL wglReleaseVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
 BOOL wglGetVideoDeviceNV (HDC hDC, int numDevices, HPVIDEODEV * hVideoDevice)
 {
   // WGL_NV_video_output - wglGetVideoDeviceNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetVideoDeviceNV)
+  if (s_deviceConfig.m_wglGetVideoDeviceNV)
   {
-    return deviceState->m_wglGetVideoDeviceNV (hDC, numDevices, hVideoDevice);
+    return s_deviceConfig.m_wglGetVideoDeviceNV (hDC, numDevices, hVideoDevice);
   }
   return ((BOOL)0);
 }
@@ -1995,10 +1867,9 @@ BOOL wglGetVideoDeviceNV (HDC hDC, int numDevices, HPVIDEODEV * hVideoDevice)
 BOOL wglReleaseVideoDeviceNV (HPVIDEODEV hVideoDevice)
 {
   // WGL_NV_video_output - wglReleaseVideoDeviceNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglReleaseVideoDeviceNV)
+  if (s_deviceConfig.m_wglReleaseVideoDeviceNV)
   {
-    return deviceState->m_wglReleaseVideoDeviceNV (hVideoDevice);
+    return s_deviceConfig.m_wglReleaseVideoDeviceNV (hVideoDevice);
   }
   return ((BOOL)0);
 }
@@ -2010,10 +1881,9 @@ BOOL wglReleaseVideoDeviceNV (HPVIDEODEV hVideoDevice)
 BOOL wglBindVideoImageNV (HPVIDEODEV hVideoDevice, HPBUFFERARB hPbuffer, int iVideoBuffer)
 {
   // WGL_NV_video_output - wglBindVideoImageNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglBindVideoImageNV)
+  if (s_deviceConfig.m_wglBindVideoImageNV)
   {
-    return deviceState->m_wglBindVideoImageNV (hVideoDevice, hPbuffer, iVideoBuffer);
+    return s_deviceConfig.m_wglBindVideoImageNV (hVideoDevice, hPbuffer, iVideoBuffer);
   }
   return ((BOOL)0);
 }
@@ -2025,10 +1895,9 @@ BOOL wglBindVideoImageNV (HPVIDEODEV hVideoDevice, HPBUFFERARB hPbuffer, int iVi
 BOOL wglReleaseVideoImageNV (HPBUFFERARB hPbuffer, int iVideoBuffer)
 {
   // WGL_NV_video_output - wglReleaseVideoImageNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglReleaseVideoImageNV)
+  if (s_deviceConfig.m_wglReleaseVideoImageNV)
   {
-    return deviceState->m_wglReleaseVideoImageNV (hPbuffer, iVideoBuffer);
+    return s_deviceConfig.m_wglReleaseVideoImageNV (hPbuffer, iVideoBuffer);
   }
   return ((BOOL)0);
 }
@@ -2040,10 +1909,9 @@ BOOL wglReleaseVideoImageNV (HPBUFFERARB hPbuffer, int iVideoBuffer)
 BOOL wglSendPbufferToVideoNV (HPBUFFERARB hPbuffer, int iBufferType, unsigned long * pulCounterPbuffer, BOOL bBlock)
 {
   // WGL_NV_video_output - wglSendPbufferToVideoNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSendPbufferToVideoNV)
+  if (s_deviceConfig.m_wglSendPbufferToVideoNV)
   {
-    return deviceState->m_wglSendPbufferToVideoNV (hPbuffer, iBufferType, pulCounterPbuffer, bBlock);
+    return s_deviceConfig.m_wglSendPbufferToVideoNV (hPbuffer, iBufferType, pulCounterPbuffer, bBlock);
   }
   return ((BOOL)0);
 }
@@ -2055,10 +1923,9 @@ BOOL wglSendPbufferToVideoNV (HPBUFFERARB hPbuffer, int iBufferType, unsigned lo
 BOOL wglGetVideoInfoNV (HPVIDEODEV hpVideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo)
 {
   // WGL_NV_video_output - wglGetVideoInfoNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetVideoInfoNV)
+  if (s_deviceConfig.m_wglGetVideoInfoNV)
   {
-    return deviceState->m_wglGetVideoInfoNV (hpVideoDevice, pulCounterOutputPbuffer, pulCounterOutputVideo);
+    return s_deviceConfig.m_wglGetVideoInfoNV (hpVideoDevice, pulCounterOutputPbuffer, pulCounterOutputVideo);
   }
   return ((BOOL)0);
 }
@@ -2070,10 +1937,9 @@ BOOL wglGetVideoInfoNV (HPVIDEODEV hpVideoDevice, unsigned long * pulCounterOutp
 void * wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority)
 {
   // WGL_NV_vertex_array_range - wglAllocateMemoryNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglAllocateMemoryNV)
+  if (s_deviceConfig.m_wglAllocateMemoryNV)
   {
-    return deviceState->m_wglAllocateMemoryNV (size, readfreq, writefreq, priority);
+    return s_deviceConfig.m_wglAllocateMemoryNV (size, readfreq, writefreq, priority);
   }
   return ((void *)0);
 }
@@ -2085,10 +1951,9 @@ void * wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, G
 void wglFreeMemoryNV (void * pointer)
 {
   // WGL_NV_vertex_array_range - wglFreeMemoryNV
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglFreeMemoryNV)
+  if (s_deviceConfig.m_wglFreeMemoryNV)
   {
-    deviceState->m_wglFreeMemoryNV (pointer);
+    s_deviceConfig.m_wglFreeMemoryNV (pointer);
   }
 }
 
@@ -2099,10 +1964,9 @@ void wglFreeMemoryNV (void * pointer)
 BOOL wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc)
 {
   // WGL_OML_sync_control - wglGetSyncValuesOML
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetSyncValuesOML)
+  if (s_deviceConfig.m_wglGetSyncValuesOML)
   {
-    return deviceState->m_wglGetSyncValuesOML (hdc, ust, msc, sbc);
+    return s_deviceConfig.m_wglGetSyncValuesOML (hdc, ust, msc, sbc);
   }
   return ((BOOL)0);
 }
@@ -2114,10 +1978,9 @@ BOOL wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc)
 BOOL wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator)
 {
   // WGL_OML_sync_control - wglGetMscRateOML
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglGetMscRateOML)
+  if (s_deviceConfig.m_wglGetMscRateOML)
   {
-    return deviceState->m_wglGetMscRateOML (hdc, numerator, denominator);
+    return s_deviceConfig.m_wglGetMscRateOML (hdc, numerator, denominator);
   }
   return ((BOOL)0);
 }
@@ -2129,10 +1992,9 @@ BOOL wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator)
 INT64 wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder)
 {
   // WGL_OML_sync_control - wglSwapBuffersMscOML
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSwapBuffersMscOML)
+  if (s_deviceConfig.m_wglSwapBuffersMscOML)
   {
-    return deviceState->m_wglSwapBuffersMscOML (hdc, target_msc, divisor, remainder);
+    return s_deviceConfig.m_wglSwapBuffersMscOML (hdc, target_msc, divisor, remainder);
   }
   return ((INT64)0);
 }
@@ -2144,10 +2006,9 @@ INT64 wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 rema
 INT64 wglSwapLayerBuffersMscOML (HDC hdc, int fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder)
 {
   // WGL_OML_sync_control - wglSwapLayerBuffersMscOML
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglSwapLayerBuffersMscOML)
+  if (s_deviceConfig.m_wglSwapLayerBuffersMscOML)
   {
-    return deviceState->m_wglSwapLayerBuffersMscOML (hdc, fuPlanes, target_msc, divisor, remainder);
+    return s_deviceConfig.m_wglSwapLayerBuffersMscOML (hdc, fuPlanes, target_msc, divisor, remainder);
   }
   return ((INT64)0);
 }
@@ -2159,10 +2020,9 @@ INT64 wglSwapLayerBuffersMscOML (HDC hdc, int fuPlanes, INT64 target_msc, INT64 
 BOOL wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder, INT64 * ust, INT64 * msc, INT64 * sbc)
 {
   // WGL_OML_sync_control - wglWaitForMscOML
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglWaitForMscOML)
+  if (s_deviceConfig.m_wglWaitForMscOML)
   {
-    return deviceState->m_wglWaitForMscOML (hdc, target_msc, divisor, remainder, ust, msc, sbc);
+    return s_deviceConfig.m_wglWaitForMscOML (hdc, target_msc, divisor, remainder, ust, msc, sbc);
   }
   return ((BOOL)0);
 }
@@ -2174,10 +2034,9 @@ BOOL wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder
 BOOL wglWaitForSbcOML (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT64 * sbc)
 {
   // WGL_OML_sync_control - wglWaitForSbcOML
-  const glew::wgl::DeviceState *deviceState = glew::wgl::GetDeviceState ();
-  if (deviceState && deviceState->m_wglWaitForSbcOML)
+  if (s_deviceConfig.m_wglWaitForSbcOML)
   {
-    return deviceState->m_wglWaitForSbcOML (hdc, target_sbc, ust, msc, sbc);
+    return s_deviceConfig.m_wglWaitForSbcOML (hdc, target_sbc, ust, msc, sbc);
   }
   return ((BOOL)0);
 }

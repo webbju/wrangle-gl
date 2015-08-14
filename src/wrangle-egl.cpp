@@ -11,10 +11,9 @@
 EGLBoolean eglChooseConfig (EGLDisplay dpy, const EGLint * attrib_list, EGLConfig * configs, EGLint config_size, EGLint * num_config)
 {
   // EGL_VERSION_1_0 - eglChooseConfig
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglChooseConfig)
+  if (s_deviceConfig.m_eglChooseConfig)
   {
-    return deviceState->m_eglChooseConfig (dpy, attrib_list, configs, config_size, num_config);
+    return s_deviceConfig.m_eglChooseConfig (dpy, attrib_list, configs, config_size, num_config);
   }
   return ((EGLBoolean)0);
 }
@@ -26,10 +25,9 @@ EGLBoolean eglChooseConfig (EGLDisplay dpy, const EGLint * attrib_list, EGLConfi
 EGLBoolean eglCopyBuffers (EGLDisplay dpy, EGLSurface surface, EGLNativePixmapType target)
 {
   // EGL_VERSION_1_0 - eglCopyBuffers
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCopyBuffers)
+  if (s_deviceConfig.m_eglCopyBuffers)
   {
-    return deviceState->m_eglCopyBuffers (dpy, surface, target);
+    return s_deviceConfig.m_eglCopyBuffers (dpy, surface, target);
   }
   return ((EGLBoolean)0);
 }
@@ -41,10 +39,9 @@ EGLBoolean eglCopyBuffers (EGLDisplay dpy, EGLSurface surface, EGLNativePixmapTy
 EGLContext eglCreateContext (EGLDisplay dpy, EGLConfig config, EGLContext share_context, const EGLint * attrib_list)
 {
   // EGL_VERSION_1_0 - eglCreateContext
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateContext)
+  if (s_deviceConfig.m_eglCreateContext)
   {
-    return deviceState->m_eglCreateContext (dpy, config, share_context, attrib_list);
+    return s_deviceConfig.m_eglCreateContext (dpy, config, share_context, attrib_list);
   }
   return ((EGLContext)0);
 }
@@ -56,10 +53,9 @@ EGLContext eglCreateContext (EGLDisplay dpy, EGLConfig config, EGLContext share_
 EGLSurface eglCreatePbufferSurface (EGLDisplay dpy, EGLConfig config, const EGLint * attrib_list)
 {
   // EGL_VERSION_1_0 - eglCreatePbufferSurface
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreatePbufferSurface)
+  if (s_deviceConfig.m_eglCreatePbufferSurface)
   {
-    return deviceState->m_eglCreatePbufferSurface (dpy, config, attrib_list);
+    return s_deviceConfig.m_eglCreatePbufferSurface (dpy, config, attrib_list);
   }
   return ((EGLSurface)0);
 }
@@ -71,10 +67,9 @@ EGLSurface eglCreatePbufferSurface (EGLDisplay dpy, EGLConfig config, const EGLi
 EGLSurface eglCreatePixmapSurface (EGLDisplay dpy, EGLConfig config, EGLNativePixmapType pixmap, const EGLint * attrib_list)
 {
   // EGL_VERSION_1_0 - eglCreatePixmapSurface
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreatePixmapSurface)
+  if (s_deviceConfig.m_eglCreatePixmapSurface)
   {
-    return deviceState->m_eglCreatePixmapSurface (dpy, config, pixmap, attrib_list);
+    return s_deviceConfig.m_eglCreatePixmapSurface (dpy, config, pixmap, attrib_list);
   }
   return ((EGLSurface)0);
 }
@@ -86,10 +81,9 @@ EGLSurface eglCreatePixmapSurface (EGLDisplay dpy, EGLConfig config, EGLNativePi
 EGLSurface eglCreateWindowSurface (EGLDisplay dpy, EGLConfig config, EGLNativeWindowType win, const EGLint * attrib_list)
 {
   // EGL_VERSION_1_0 - eglCreateWindowSurface
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateWindowSurface)
+  if (s_deviceConfig.m_eglCreateWindowSurface)
   {
-    return deviceState->m_eglCreateWindowSurface (dpy, config, win, attrib_list);
+    return s_deviceConfig.m_eglCreateWindowSurface (dpy, config, win, attrib_list);
   }
   return ((EGLSurface)0);
 }
@@ -101,10 +95,9 @@ EGLSurface eglCreateWindowSurface (EGLDisplay dpy, EGLConfig config, EGLNativeWi
 EGLBoolean eglDestroyContext (EGLDisplay dpy, EGLContext ctx)
 {
   // EGL_VERSION_1_0 - eglDestroyContext
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglDestroyContext)
+  if (s_deviceConfig.m_eglDestroyContext)
   {
-    return deviceState->m_eglDestroyContext (dpy, ctx);
+    return s_deviceConfig.m_eglDestroyContext (dpy, ctx);
   }
   return ((EGLBoolean)0);
 }
@@ -116,10 +109,9 @@ EGLBoolean eglDestroyContext (EGLDisplay dpy, EGLContext ctx)
 EGLBoolean eglDestroySurface (EGLDisplay dpy, EGLSurface surface)
 {
   // EGL_VERSION_1_0 - eglDestroySurface
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglDestroySurface)
+  if (s_deviceConfig.m_eglDestroySurface)
   {
-    return deviceState->m_eglDestroySurface (dpy, surface);
+    return s_deviceConfig.m_eglDestroySurface (dpy, surface);
   }
   return ((EGLBoolean)0);
 }
@@ -131,10 +123,9 @@ EGLBoolean eglDestroySurface (EGLDisplay dpy, EGLSurface surface)
 EGLBoolean eglGetConfigAttrib (EGLDisplay dpy, EGLConfig config, EGLint attribute, EGLint * value)
 {
   // EGL_VERSION_1_0 - eglGetConfigAttrib
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetConfigAttrib)
+  if (s_deviceConfig.m_eglGetConfigAttrib)
   {
-    return deviceState->m_eglGetConfigAttrib (dpy, config, attribute, value);
+    return s_deviceConfig.m_eglGetConfigAttrib (dpy, config, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -146,10 +137,9 @@ EGLBoolean eglGetConfigAttrib (EGLDisplay dpy, EGLConfig config, EGLint attribut
 EGLBoolean eglGetConfigs (EGLDisplay dpy, EGLConfig * configs, EGLint config_size, EGLint * num_config)
 {
   // EGL_VERSION_1_0 - eglGetConfigs
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetConfigs)
+  if (s_deviceConfig.m_eglGetConfigs)
   {
-    return deviceState->m_eglGetConfigs (dpy, configs, config_size, num_config);
+    return s_deviceConfig.m_eglGetConfigs (dpy, configs, config_size, num_config);
   }
   return ((EGLBoolean)0);
 }
@@ -161,10 +151,9 @@ EGLBoolean eglGetConfigs (EGLDisplay dpy, EGLConfig * configs, EGLint config_siz
 EGLDisplay eglGetCurrentDisplay ()
 {
   // EGL_VERSION_1_0 - eglGetCurrentDisplay
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetCurrentDisplay)
+  if (s_deviceConfig.m_eglGetCurrentDisplay)
   {
-    return deviceState->m_eglGetCurrentDisplay ();
+    return s_deviceConfig.m_eglGetCurrentDisplay ();
   }
   return ((EGLDisplay)0);
 }
@@ -176,10 +165,9 @@ EGLDisplay eglGetCurrentDisplay ()
 EGLSurface eglGetCurrentSurface (EGLint readdraw)
 {
   // EGL_VERSION_1_0 - eglGetCurrentSurface
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetCurrentSurface)
+  if (s_deviceConfig.m_eglGetCurrentSurface)
   {
-    return deviceState->m_eglGetCurrentSurface (readdraw);
+    return s_deviceConfig.m_eglGetCurrentSurface (readdraw);
   }
   return ((EGLSurface)0);
 }
@@ -191,10 +179,9 @@ EGLSurface eglGetCurrentSurface (EGLint readdraw)
 EGLDisplay eglGetDisplay (EGLNativeDisplayType display_id)
 {
   // EGL_VERSION_1_0 - eglGetDisplay
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetDisplay)
+  if (s_deviceConfig.m_eglGetDisplay)
   {
-    return deviceState->m_eglGetDisplay (display_id);
+    return s_deviceConfig.m_eglGetDisplay (display_id);
   }
   return ((EGLDisplay)0);
 }
@@ -206,10 +193,9 @@ EGLDisplay eglGetDisplay (EGLNativeDisplayType display_id)
 EGLint eglGetError ()
 {
   // EGL_VERSION_1_0 - eglGetError
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetError)
+  if (s_deviceConfig.m_eglGetError)
   {
-    return deviceState->m_eglGetError ();
+    return s_deviceConfig.m_eglGetError ();
   }
   return ((EGLint)0);
 }
@@ -221,10 +207,9 @@ EGLint eglGetError ()
 __eglMustCastToProperFunctionPointerType eglGetProcAddress (const char * procname)
 {
   // EGL_VERSION_1_0 - eglGetProcAddress
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetProcAddress)
+  if (s_deviceConfig.m_eglGetProcAddress)
   {
-    return deviceState->m_eglGetProcAddress (procname);
+    return s_deviceConfig.m_eglGetProcAddress (procname);
   }
   return ((__eglMustCastToProperFunctionPointerType)0);
 }
@@ -236,10 +221,9 @@ __eglMustCastToProperFunctionPointerType eglGetProcAddress (const char * procnam
 EGLBoolean eglInitialize (EGLDisplay dpy, EGLint * major, EGLint * minor)
 {
   // EGL_VERSION_1_0 - eglInitialize
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglInitialize)
+  if (s_deviceConfig.m_eglInitialize)
   {
-    return deviceState->m_eglInitialize (dpy, major, minor);
+    return s_deviceConfig.m_eglInitialize (dpy, major, minor);
   }
   return ((EGLBoolean)0);
 }
@@ -251,10 +235,9 @@ EGLBoolean eglInitialize (EGLDisplay dpy, EGLint * major, EGLint * minor)
 EGLBoolean eglMakeCurrent (EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGLContext ctx)
 {
   // EGL_VERSION_1_0 - eglMakeCurrent
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglMakeCurrent)
+  if (s_deviceConfig.m_eglMakeCurrent)
   {
-    return deviceState->m_eglMakeCurrent (dpy, draw, read, ctx);
+    return s_deviceConfig.m_eglMakeCurrent (dpy, draw, read, ctx);
   }
   return ((EGLBoolean)0);
 }
@@ -266,10 +249,9 @@ EGLBoolean eglMakeCurrent (EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGL
 EGLBoolean eglQueryContext (EGLDisplay dpy, EGLContext ctx, EGLint attribute, EGLint * value)
 {
   // EGL_VERSION_1_0 - eglQueryContext
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryContext)
+  if (s_deviceConfig.m_eglQueryContext)
   {
-    return deviceState->m_eglQueryContext (dpy, ctx, attribute, value);
+    return s_deviceConfig.m_eglQueryContext (dpy, ctx, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -281,10 +263,9 @@ EGLBoolean eglQueryContext (EGLDisplay dpy, EGLContext ctx, EGLint attribute, EG
 const char * eglQueryString (EGLDisplay dpy, EGLint name)
 {
   // EGL_VERSION_1_0 - eglQueryString
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryString)
+  if (s_deviceConfig.m_eglQueryString)
   {
-    return deviceState->m_eglQueryString (dpy, name);
+    return s_deviceConfig.m_eglQueryString (dpy, name);
   }
   return ((const char *)0);
 }
@@ -296,10 +277,9 @@ const char * eglQueryString (EGLDisplay dpy, EGLint name)
 EGLBoolean eglQuerySurface (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint * value)
 {
   // EGL_VERSION_1_0 - eglQuerySurface
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQuerySurface)
+  if (s_deviceConfig.m_eglQuerySurface)
   {
-    return deviceState->m_eglQuerySurface (dpy, surface, attribute, value);
+    return s_deviceConfig.m_eglQuerySurface (dpy, surface, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -311,10 +291,9 @@ EGLBoolean eglQuerySurface (EGLDisplay dpy, EGLSurface surface, EGLint attribute
 EGLBoolean eglSwapBuffers (EGLDisplay dpy, EGLSurface surface)
 {
   // EGL_VERSION_1_0 - eglSwapBuffers
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSwapBuffers)
+  if (s_deviceConfig.m_eglSwapBuffers)
   {
-    return deviceState->m_eglSwapBuffers (dpy, surface);
+    return s_deviceConfig.m_eglSwapBuffers (dpy, surface);
   }
   return ((EGLBoolean)0);
 }
@@ -326,10 +305,9 @@ EGLBoolean eglSwapBuffers (EGLDisplay dpy, EGLSurface surface)
 EGLBoolean eglTerminate (EGLDisplay dpy)
 {
   // EGL_VERSION_1_0 - eglTerminate
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglTerminate)
+  if (s_deviceConfig.m_eglTerminate)
   {
-    return deviceState->m_eglTerminate (dpy);
+    return s_deviceConfig.m_eglTerminate (dpy);
   }
   return ((EGLBoolean)0);
 }
@@ -341,10 +319,9 @@ EGLBoolean eglTerminate (EGLDisplay dpy)
 EGLBoolean eglWaitGL ()
 {
   // EGL_VERSION_1_0 - eglWaitGL
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglWaitGL)
+  if (s_deviceConfig.m_eglWaitGL)
   {
-    return deviceState->m_eglWaitGL ();
+    return s_deviceConfig.m_eglWaitGL ();
   }
   return ((EGLBoolean)0);
 }
@@ -356,10 +333,9 @@ EGLBoolean eglWaitGL ()
 EGLBoolean eglWaitNative (EGLint engine)
 {
   // EGL_VERSION_1_0 - eglWaitNative
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglWaitNative)
+  if (s_deviceConfig.m_eglWaitNative)
   {
-    return deviceState->m_eglWaitNative (engine);
+    return s_deviceConfig.m_eglWaitNative (engine);
   }
   return ((EGLBoolean)0);
 }
@@ -371,10 +347,9 @@ EGLBoolean eglWaitNative (EGLint engine)
 EGLBoolean eglBindTexImage (EGLDisplay dpy, EGLSurface surface, EGLint buffer)
 {
   // EGL_VERSION_1_1 - eglBindTexImage
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglBindTexImage)
+  if (s_deviceConfig.m_eglBindTexImage)
   {
-    return deviceState->m_eglBindTexImage (dpy, surface, buffer);
+    return s_deviceConfig.m_eglBindTexImage (dpy, surface, buffer);
   }
   return ((EGLBoolean)0);
 }
@@ -386,10 +361,9 @@ EGLBoolean eglBindTexImage (EGLDisplay dpy, EGLSurface surface, EGLint buffer)
 EGLBoolean eglReleaseTexImage (EGLDisplay dpy, EGLSurface surface, EGLint buffer)
 {
   // EGL_VERSION_1_1 - eglReleaseTexImage
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglReleaseTexImage)
+  if (s_deviceConfig.m_eglReleaseTexImage)
   {
-    return deviceState->m_eglReleaseTexImage (dpy, surface, buffer);
+    return s_deviceConfig.m_eglReleaseTexImage (dpy, surface, buffer);
   }
   return ((EGLBoolean)0);
 }
@@ -401,10 +375,9 @@ EGLBoolean eglReleaseTexImage (EGLDisplay dpy, EGLSurface surface, EGLint buffer
 EGLBoolean eglSurfaceAttrib (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint value)
 {
   // EGL_VERSION_1_1 - eglSurfaceAttrib
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSurfaceAttrib)
+  if (s_deviceConfig.m_eglSurfaceAttrib)
   {
-    return deviceState->m_eglSurfaceAttrib (dpy, surface, attribute, value);
+    return s_deviceConfig.m_eglSurfaceAttrib (dpy, surface, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -416,10 +389,9 @@ EGLBoolean eglSurfaceAttrib (EGLDisplay dpy, EGLSurface surface, EGLint attribut
 EGLBoolean eglSwapInterval (EGLDisplay dpy, EGLint interval)
 {
   // EGL_VERSION_1_1 - eglSwapInterval
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSwapInterval)
+  if (s_deviceConfig.m_eglSwapInterval)
   {
-    return deviceState->m_eglSwapInterval (dpy, interval);
+    return s_deviceConfig.m_eglSwapInterval (dpy, interval);
   }
   return ((EGLBoolean)0);
 }
@@ -431,10 +403,9 @@ EGLBoolean eglSwapInterval (EGLDisplay dpy, EGLint interval)
 EGLBoolean eglBindAPI (EGLenum api)
 {
   // EGL_VERSION_1_2 - eglBindAPI
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglBindAPI)
+  if (s_deviceConfig.m_eglBindAPI)
   {
-    return deviceState->m_eglBindAPI (api);
+    return s_deviceConfig.m_eglBindAPI (api);
   }
   return ((EGLBoolean)0);
 }
@@ -446,10 +417,9 @@ EGLBoolean eglBindAPI (EGLenum api)
 EGLenum eglQueryAPI ()
 {
   // EGL_VERSION_1_2 - eglQueryAPI
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryAPI)
+  if (s_deviceConfig.m_eglQueryAPI)
   {
-    return deviceState->m_eglQueryAPI ();
+    return s_deviceConfig.m_eglQueryAPI ();
   }
   return ((EGLenum)0);
 }
@@ -461,10 +431,9 @@ EGLenum eglQueryAPI ()
 EGLSurface eglCreatePbufferFromClientBuffer (EGLDisplay dpy, EGLenum buftype, EGLClientBuffer buffer, EGLConfig config, const EGLint * attrib_list)
 {
   // EGL_VERSION_1_2 - eglCreatePbufferFromClientBuffer
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreatePbufferFromClientBuffer)
+  if (s_deviceConfig.m_eglCreatePbufferFromClientBuffer)
   {
-    return deviceState->m_eglCreatePbufferFromClientBuffer (dpy, buftype, buffer, config, attrib_list);
+    return s_deviceConfig.m_eglCreatePbufferFromClientBuffer (dpy, buftype, buffer, config, attrib_list);
   }
   return ((EGLSurface)0);
 }
@@ -476,10 +445,9 @@ EGLSurface eglCreatePbufferFromClientBuffer (EGLDisplay dpy, EGLenum buftype, EG
 EGLBoolean eglReleaseThread ()
 {
   // EGL_VERSION_1_2 - eglReleaseThread
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglReleaseThread)
+  if (s_deviceConfig.m_eglReleaseThread)
   {
-    return deviceState->m_eglReleaseThread ();
+    return s_deviceConfig.m_eglReleaseThread ();
   }
   return ((EGLBoolean)0);
 }
@@ -491,10 +459,9 @@ EGLBoolean eglReleaseThread ()
 EGLBoolean eglWaitClient ()
 {
   // EGL_VERSION_1_2 - eglWaitClient
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglWaitClient)
+  if (s_deviceConfig.m_eglWaitClient)
   {
-    return deviceState->m_eglWaitClient ();
+    return s_deviceConfig.m_eglWaitClient ();
   }
   return ((EGLBoolean)0);
 }
@@ -506,10 +473,9 @@ EGLBoolean eglWaitClient ()
 EGLContext eglGetCurrentContext ()
 {
   // EGL_VERSION_1_4 - eglGetCurrentContext
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetCurrentContext)
+  if (s_deviceConfig.m_eglGetCurrentContext)
   {
-    return deviceState->m_eglGetCurrentContext ();
+    return s_deviceConfig.m_eglGetCurrentContext ();
   }
   return ((EGLContext)0);
 }
@@ -521,10 +487,9 @@ EGLContext eglGetCurrentContext ()
 EGLSync eglCreateSync (EGLDisplay dpy, EGLenum type, const EGLAttrib * attrib_list)
 {
   // EGL_VERSION_1_5 - eglCreateSync
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateSync)
+  if (s_deviceConfig.m_eglCreateSync)
   {
-    return deviceState->m_eglCreateSync (dpy, type, attrib_list);
+    return s_deviceConfig.m_eglCreateSync (dpy, type, attrib_list);
   }
   return ((EGLSync)0);
 }
@@ -536,10 +501,9 @@ EGLSync eglCreateSync (EGLDisplay dpy, EGLenum type, const EGLAttrib * attrib_li
 EGLBoolean eglDestroySync (EGLDisplay dpy, EGLSync sync)
 {
   // EGL_VERSION_1_5 - eglDestroySync
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglDestroySync)
+  if (s_deviceConfig.m_eglDestroySync)
   {
-    return deviceState->m_eglDestroySync (dpy, sync);
+    return s_deviceConfig.m_eglDestroySync (dpy, sync);
   }
   return ((EGLBoolean)0);
 }
@@ -551,10 +515,9 @@ EGLBoolean eglDestroySync (EGLDisplay dpy, EGLSync sync)
 EGLint eglClientWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags, EGLTime timeout)
 {
   // EGL_VERSION_1_5 - eglClientWaitSync
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglClientWaitSync)
+  if (s_deviceConfig.m_eglClientWaitSync)
   {
-    return deviceState->m_eglClientWaitSync (dpy, sync, flags, timeout);
+    return s_deviceConfig.m_eglClientWaitSync (dpy, sync, flags, timeout);
   }
   return ((EGLint)0);
 }
@@ -566,10 +529,9 @@ EGLint eglClientWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags, EGLTime ti
 EGLBoolean eglGetSyncAttrib (EGLDisplay dpy, EGLSync sync, EGLint attribute, EGLAttrib * value)
 {
   // EGL_VERSION_1_5 - eglGetSyncAttrib
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetSyncAttrib)
+  if (s_deviceConfig.m_eglGetSyncAttrib)
   {
-    return deviceState->m_eglGetSyncAttrib (dpy, sync, attribute, value);
+    return s_deviceConfig.m_eglGetSyncAttrib (dpy, sync, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -581,10 +543,9 @@ EGLBoolean eglGetSyncAttrib (EGLDisplay dpy, EGLSync sync, EGLint attribute, EGL
 EGLImage eglCreateImage (EGLDisplay dpy, EGLContext ctx, EGLenum target, EGLClientBuffer buffer, const EGLAttrib * attrib_list)
 {
   // EGL_VERSION_1_5 - eglCreateImage
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateImage)
+  if (s_deviceConfig.m_eglCreateImage)
   {
-    return deviceState->m_eglCreateImage (dpy, ctx, target, buffer, attrib_list);
+    return s_deviceConfig.m_eglCreateImage (dpy, ctx, target, buffer, attrib_list);
   }
   return ((EGLImage)0);
 }
@@ -596,10 +557,9 @@ EGLImage eglCreateImage (EGLDisplay dpy, EGLContext ctx, EGLenum target, EGLClie
 EGLBoolean eglDestroyImage (EGLDisplay dpy, EGLImage image)
 {
   // EGL_VERSION_1_5 - eglDestroyImage
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglDestroyImage)
+  if (s_deviceConfig.m_eglDestroyImage)
   {
-    return deviceState->m_eglDestroyImage (dpy, image);
+    return s_deviceConfig.m_eglDestroyImage (dpy, image);
   }
   return ((EGLBoolean)0);
 }
@@ -611,10 +571,9 @@ EGLBoolean eglDestroyImage (EGLDisplay dpy, EGLImage image)
 EGLDisplay eglGetPlatformDisplay (EGLenum platform, void * native_display, const EGLAttrib * attrib_list)
 {
   // EGL_VERSION_1_5 - eglGetPlatformDisplay
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetPlatformDisplay)
+  if (s_deviceConfig.m_eglGetPlatformDisplay)
   {
-    return deviceState->m_eglGetPlatformDisplay (platform, native_display, attrib_list);
+    return s_deviceConfig.m_eglGetPlatformDisplay (platform, native_display, attrib_list);
   }
   return ((EGLDisplay)0);
 }
@@ -626,10 +585,9 @@ EGLDisplay eglGetPlatformDisplay (EGLenum platform, void * native_display, const
 EGLSurface eglCreatePlatformWindowSurface (EGLDisplay dpy, EGLConfig config, void * native_window, const EGLAttrib * attrib_list)
 {
   // EGL_VERSION_1_5 - eglCreatePlatformWindowSurface
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreatePlatformWindowSurface)
+  if (s_deviceConfig.m_eglCreatePlatformWindowSurface)
   {
-    return deviceState->m_eglCreatePlatformWindowSurface (dpy, config, native_window, attrib_list);
+    return s_deviceConfig.m_eglCreatePlatformWindowSurface (dpy, config, native_window, attrib_list);
   }
   return ((EGLSurface)0);
 }
@@ -641,10 +599,9 @@ EGLSurface eglCreatePlatformWindowSurface (EGLDisplay dpy, EGLConfig config, voi
 EGLSurface eglCreatePlatformPixmapSurface (EGLDisplay dpy, EGLConfig config, void * native_pixmap, const EGLAttrib * attrib_list)
 {
   // EGL_VERSION_1_5 - eglCreatePlatformPixmapSurface
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreatePlatformPixmapSurface)
+  if (s_deviceConfig.m_eglCreatePlatformPixmapSurface)
   {
-    return deviceState->m_eglCreatePlatformPixmapSurface (dpy, config, native_pixmap, attrib_list);
+    return s_deviceConfig.m_eglCreatePlatformPixmapSurface (dpy, config, native_pixmap, attrib_list);
   }
   return ((EGLSurface)0);
 }
@@ -656,10 +613,9 @@ EGLSurface eglCreatePlatformPixmapSurface (EGLDisplay dpy, EGLConfig config, voi
 EGLBoolean eglWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags)
 {
   // EGL_VERSION_1_5 - eglWaitSync
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglWaitSync)
+  if (s_deviceConfig.m_eglWaitSync)
   {
-    return deviceState->m_eglWaitSync (dpy, sync, flags);
+    return s_deviceConfig.m_eglWaitSync (dpy, sync, flags);
   }
   return ((EGLBoolean)0);
 }
@@ -671,10 +627,9 @@ EGLBoolean eglWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags)
 void eglSetBlobCacheFuncsANDROID (EGLDisplay dpy, EGLSetBlobFuncANDROID set, EGLGetBlobFuncANDROID get)
 {
   // EGL_ANDROID_blob_cache - eglSetBlobCacheFuncsANDROID
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSetBlobCacheFuncsANDROID)
+  if (s_deviceConfig.m_eglSetBlobCacheFuncsANDROID)
   {
-    deviceState->m_eglSetBlobCacheFuncsANDROID (dpy, set, get);
+    s_deviceConfig.m_eglSetBlobCacheFuncsANDROID (dpy, set, get);
   }
 }
 
@@ -685,10 +640,9 @@ void eglSetBlobCacheFuncsANDROID (EGLDisplay dpy, EGLSetBlobFuncANDROID set, EGL
 EGLint eglDupNativeFenceFDANDROID (EGLDisplay dpy, EGLSyncKHR sync)
 {
   // EGL_ANDROID_native_fence_sync - eglDupNativeFenceFDANDROID
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglDupNativeFenceFDANDROID)
+  if (s_deviceConfig.m_eglDupNativeFenceFDANDROID)
   {
-    return deviceState->m_eglDupNativeFenceFDANDROID (dpy, sync);
+    return s_deviceConfig.m_eglDupNativeFenceFDANDROID (dpy, sync);
   }
   return ((EGLint)0);
 }
@@ -700,10 +654,9 @@ EGLint eglDupNativeFenceFDANDROID (EGLDisplay dpy, EGLSyncKHR sync)
 EGLBoolean eglQuerySurfacePointerANGLE (EGLDisplay dpy, EGLSurface surface, EGLint attribute, void ** value)
 {
   // EGL_ANGLE_query_surface_pointer - eglQuerySurfacePointerANGLE
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQuerySurfacePointerANGLE)
+  if (s_deviceConfig.m_eglQuerySurfacePointerANGLE)
   {
-    return deviceState->m_eglQuerySurfacePointerANGLE (dpy, surface, attribute, value);
+    return s_deviceConfig.m_eglQuerySurfacePointerANGLE (dpy, surface, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -715,10 +668,9 @@ EGLBoolean eglQuerySurfacePointerANGLE (EGLDisplay dpy, EGLSurface surface, EGLi
 EGLBoolean eglQueryDeviceAttribEXT (EGLDeviceEXT device, EGLint attribute, EGLAttrib * value)
 {
   // EGL_EXT_device_base - eglQueryDeviceAttribEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryDeviceAttribEXT)
+  if (s_deviceConfig.m_eglQueryDeviceAttribEXT)
   {
-    return deviceState->m_eglQueryDeviceAttribEXT (device, attribute, value);
+    return s_deviceConfig.m_eglQueryDeviceAttribEXT (device, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -730,10 +682,9 @@ EGLBoolean eglQueryDeviceAttribEXT (EGLDeviceEXT device, EGLint attribute, EGLAt
 const char * eglQueryDeviceStringEXT (EGLDeviceEXT device, EGLint name)
 {
   // EGL_EXT_device_base - eglQueryDeviceStringEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryDeviceStringEXT)
+  if (s_deviceConfig.m_eglQueryDeviceStringEXT)
   {
-    return deviceState->m_eglQueryDeviceStringEXT (device, name);
+    return s_deviceConfig.m_eglQueryDeviceStringEXT (device, name);
   }
   return ((const char *)0);
 }
@@ -745,10 +696,9 @@ const char * eglQueryDeviceStringEXT (EGLDeviceEXT device, EGLint name)
 EGLBoolean eglQueryDevicesEXT (EGLint max_devices, EGLDeviceEXT * devices, EGLint * num_devices)
 {
   // EGL_EXT_device_base - eglQueryDevicesEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryDevicesEXT)
+  if (s_deviceConfig.m_eglQueryDevicesEXT)
   {
-    return deviceState->m_eglQueryDevicesEXT (max_devices, devices, num_devices);
+    return s_deviceConfig.m_eglQueryDevicesEXT (max_devices, devices, num_devices);
   }
   return ((EGLBoolean)0);
 }
@@ -760,10 +710,9 @@ EGLBoolean eglQueryDevicesEXT (EGLint max_devices, EGLDeviceEXT * devices, EGLin
 EGLBoolean eglQueryDisplayAttribEXT (EGLDisplay dpy, EGLint attribute, EGLAttrib * value)
 {
   // EGL_EXT_device_base - eglQueryDisplayAttribEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryDisplayAttribEXT)
+  if (s_deviceConfig.m_eglQueryDisplayAttribEXT)
   {
-    return deviceState->m_eglQueryDisplayAttribEXT (dpy, attribute, value);
+    return s_deviceConfig.m_eglQueryDisplayAttribEXT (dpy, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -775,10 +724,9 @@ EGLBoolean eglQueryDisplayAttribEXT (EGLDisplay dpy, EGLint attribute, EGLAttrib
 EGLBoolean eglGetOutputLayersEXT (EGLDisplay dpy, const EGLAttrib * attrib_list, EGLOutputLayerEXT * layers, EGLint max_layers, EGLint * num_layers)
 {
   // EGL_EXT_output_base - eglGetOutputLayersEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetOutputLayersEXT)
+  if (s_deviceConfig.m_eglGetOutputLayersEXT)
   {
-    return deviceState->m_eglGetOutputLayersEXT (dpy, attrib_list, layers, max_layers, num_layers);
+    return s_deviceConfig.m_eglGetOutputLayersEXT (dpy, attrib_list, layers, max_layers, num_layers);
   }
   return ((EGLBoolean)0);
 }
@@ -790,10 +738,9 @@ EGLBoolean eglGetOutputLayersEXT (EGLDisplay dpy, const EGLAttrib * attrib_list,
 EGLBoolean eglGetOutputPortsEXT (EGLDisplay dpy, const EGLAttrib * attrib_list, EGLOutputPortEXT * ports, EGLint max_ports, EGLint * num_ports)
 {
   // EGL_EXT_output_base - eglGetOutputPortsEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetOutputPortsEXT)
+  if (s_deviceConfig.m_eglGetOutputPortsEXT)
   {
-    return deviceState->m_eglGetOutputPortsEXT (dpy, attrib_list, ports, max_ports, num_ports);
+    return s_deviceConfig.m_eglGetOutputPortsEXT (dpy, attrib_list, ports, max_ports, num_ports);
   }
   return ((EGLBoolean)0);
 }
@@ -805,10 +752,9 @@ EGLBoolean eglGetOutputPortsEXT (EGLDisplay dpy, const EGLAttrib * attrib_list, 
 EGLBoolean eglOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGLint attribute, EGLAttrib value)
 {
   // EGL_EXT_output_base - eglOutputLayerAttribEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglOutputLayerAttribEXT)
+  if (s_deviceConfig.m_eglOutputLayerAttribEXT)
   {
-    return deviceState->m_eglOutputLayerAttribEXT (dpy, layer, attribute, value);
+    return s_deviceConfig.m_eglOutputLayerAttribEXT (dpy, layer, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -820,10 +766,9 @@ EGLBoolean eglOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGL
 EGLBoolean eglQueryOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGLint attribute, EGLAttrib * value)
 {
   // EGL_EXT_output_base - eglQueryOutputLayerAttribEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryOutputLayerAttribEXT)
+  if (s_deviceConfig.m_eglQueryOutputLayerAttribEXT)
   {
-    return deviceState->m_eglQueryOutputLayerAttribEXT (dpy, layer, attribute, value);
+    return s_deviceConfig.m_eglQueryOutputLayerAttribEXT (dpy, layer, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -835,10 +780,9 @@ EGLBoolean eglQueryOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT layer
 const char * eglQueryOutputLayerStringEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGLint name)
 {
   // EGL_EXT_output_base - eglQueryOutputLayerStringEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryOutputLayerStringEXT)
+  if (s_deviceConfig.m_eglQueryOutputLayerStringEXT)
   {
-    return deviceState->m_eglQueryOutputLayerStringEXT (dpy, layer, name);
+    return s_deviceConfig.m_eglQueryOutputLayerStringEXT (dpy, layer, name);
   }
   return ((const char *)0);
 }
@@ -850,10 +794,9 @@ const char * eglQueryOutputLayerStringEXT (EGLDisplay dpy, EGLOutputLayerEXT lay
 EGLBoolean eglOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint attribute, EGLAttrib value)
 {
   // EGL_EXT_output_base - eglOutputPortAttribEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglOutputPortAttribEXT)
+  if (s_deviceConfig.m_eglOutputPortAttribEXT)
   {
-    return deviceState->m_eglOutputPortAttribEXT (dpy, port, attribute, value);
+    return s_deviceConfig.m_eglOutputPortAttribEXT (dpy, port, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -865,10 +808,9 @@ EGLBoolean eglOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint
 EGLBoolean eglQueryOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint attribute, EGLAttrib * value)
 {
   // EGL_EXT_output_base - eglQueryOutputPortAttribEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryOutputPortAttribEXT)
+  if (s_deviceConfig.m_eglQueryOutputPortAttribEXT)
   {
-    return deviceState->m_eglQueryOutputPortAttribEXT (dpy, port, attribute, value);
+    return s_deviceConfig.m_eglQueryOutputPortAttribEXT (dpy, port, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -880,10 +822,9 @@ EGLBoolean eglQueryOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT port, E
 const char * eglQueryOutputPortStringEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint name)
 {
   // EGL_EXT_output_base - eglQueryOutputPortStringEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryOutputPortStringEXT)
+  if (s_deviceConfig.m_eglQueryOutputPortStringEXT)
   {
-    return deviceState->m_eglQueryOutputPortStringEXT (dpy, port, name);
+    return s_deviceConfig.m_eglQueryOutputPortStringEXT (dpy, port, name);
   }
   return ((const char *)0);
 }
@@ -895,10 +836,9 @@ const char * eglQueryOutputPortStringEXT (EGLDisplay dpy, EGLOutputPortEXT port,
 EGLDisplay eglGetPlatformDisplayEXT (EGLenum platform, void * native_display, const EGLint * attrib_list)
 {
   // EGL_EXT_platform_base - eglGetPlatformDisplayEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetPlatformDisplayEXT)
+  if (s_deviceConfig.m_eglGetPlatformDisplayEXT)
   {
-    return deviceState->m_eglGetPlatformDisplayEXT (platform, native_display, attrib_list);
+    return s_deviceConfig.m_eglGetPlatformDisplayEXT (platform, native_display, attrib_list);
   }
   return ((EGLDisplay)0);
 }
@@ -910,10 +850,9 @@ EGLDisplay eglGetPlatformDisplayEXT (EGLenum platform, void * native_display, co
 EGLSurface eglCreatePlatformWindowSurfaceEXT (EGLDisplay dpy, EGLConfig config, void * native_window, const EGLint * attrib_list)
 {
   // EGL_EXT_platform_base - eglCreatePlatformWindowSurfaceEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreatePlatformWindowSurfaceEXT)
+  if (s_deviceConfig.m_eglCreatePlatformWindowSurfaceEXT)
   {
-    return deviceState->m_eglCreatePlatformWindowSurfaceEXT (dpy, config, native_window, attrib_list);
+    return s_deviceConfig.m_eglCreatePlatformWindowSurfaceEXT (dpy, config, native_window, attrib_list);
   }
   return ((EGLSurface)0);
 }
@@ -925,10 +864,9 @@ EGLSurface eglCreatePlatformWindowSurfaceEXT (EGLDisplay dpy, EGLConfig config, 
 EGLSurface eglCreatePlatformPixmapSurfaceEXT (EGLDisplay dpy, EGLConfig config, void * native_pixmap, const EGLint * attrib_list)
 {
   // EGL_EXT_platform_base - eglCreatePlatformPixmapSurfaceEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreatePlatformPixmapSurfaceEXT)
+  if (s_deviceConfig.m_eglCreatePlatformPixmapSurfaceEXT)
   {
-    return deviceState->m_eglCreatePlatformPixmapSurfaceEXT (dpy, config, native_pixmap, attrib_list);
+    return s_deviceConfig.m_eglCreatePlatformPixmapSurfaceEXT (dpy, config, native_pixmap, attrib_list);
   }
   return ((EGLSurface)0);
 }
@@ -940,10 +878,9 @@ EGLSurface eglCreatePlatformPixmapSurfaceEXT (EGLDisplay dpy, EGLConfig config, 
 EGLBoolean eglStreamConsumerOutputEXT (EGLDisplay dpy, EGLStreamKHR stream, EGLOutputLayerEXT layer)
 {
   // EGL_EXT_stream_consumer_egloutput - eglStreamConsumerOutputEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglStreamConsumerOutputEXT)
+  if (s_deviceConfig.m_eglStreamConsumerOutputEXT)
   {
-    return deviceState->m_eglStreamConsumerOutputEXT (dpy, stream, layer);
+    return s_deviceConfig.m_eglStreamConsumerOutputEXT (dpy, stream, layer);
   }
   return ((EGLBoolean)0);
 }
@@ -955,10 +892,9 @@ EGLBoolean eglStreamConsumerOutputEXT (EGLDisplay dpy, EGLStreamKHR stream, EGLO
 EGLBoolean eglSwapBuffersWithDamageEXT (EGLDisplay dpy, EGLSurface surface, EGLint * rects, EGLint n_rects)
 {
   // EGL_EXT_swap_buffers_with_damage - eglSwapBuffersWithDamageEXT
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSwapBuffersWithDamageEXT)
+  if (s_deviceConfig.m_eglSwapBuffersWithDamageEXT)
   {
-    return deviceState->m_eglSwapBuffersWithDamageEXT (dpy, surface, rects, n_rects);
+    return s_deviceConfig.m_eglSwapBuffersWithDamageEXT (dpy, surface, rects, n_rects);
   }
   return ((EGLBoolean)0);
 }
@@ -970,10 +906,9 @@ EGLBoolean eglSwapBuffersWithDamageEXT (EGLDisplay dpy, EGLSurface surface, EGLi
 EGLSurface eglCreatePixmapSurfaceHI (EGLDisplay dpy, EGLConfig config, struct EGLClientPixmapHI * pixmap)
 {
   // EGL_HI_clientpixmap - eglCreatePixmapSurfaceHI
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreatePixmapSurfaceHI)
+  if (s_deviceConfig.m_eglCreatePixmapSurfaceHI)
   {
-    return deviceState->m_eglCreatePixmapSurfaceHI (dpy, config, pixmap);
+    return s_deviceConfig.m_eglCreatePixmapSurfaceHI (dpy, config, pixmap);
   }
   return ((EGLSurface)0);
 }
@@ -985,10 +920,9 @@ EGLSurface eglCreatePixmapSurfaceHI (EGLDisplay dpy, EGLConfig config, struct EG
 EGLSyncKHR eglCreateSync64KHR (EGLDisplay dpy, EGLenum type, const EGLAttribKHR * attrib_list)
 {
   // EGL_KHR_cl_event2 - eglCreateSync64KHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateSync64KHR)
+  if (s_deviceConfig.m_eglCreateSync64KHR)
   {
-    return deviceState->m_eglCreateSync64KHR (dpy, type, attrib_list);
+    return s_deviceConfig.m_eglCreateSync64KHR (dpy, type, attrib_list);
   }
   return ((EGLSyncKHR)0);
 }
@@ -1000,10 +934,9 @@ EGLSyncKHR eglCreateSync64KHR (EGLDisplay dpy, EGLenum type, const EGLAttribKHR 
 EGLSyncKHR eglCreateSyncKHR (EGLDisplay dpy, EGLenum type, const EGLint * attrib_list)
 {
   // EGL_KHR_fence_sync - eglCreateSyncKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateSyncKHR)
+  if (s_deviceConfig.m_eglCreateSyncKHR)
   {
-    return deviceState->m_eglCreateSyncKHR (dpy, type, attrib_list);
+    return s_deviceConfig.m_eglCreateSyncKHR (dpy, type, attrib_list);
   }
   return ((EGLSyncKHR)0);
 }
@@ -1015,10 +948,9 @@ EGLSyncKHR eglCreateSyncKHR (EGLDisplay dpy, EGLenum type, const EGLint * attrib
 EGLBoolean eglDestroySyncKHR (EGLDisplay dpy, EGLSyncKHR sync)
 {
   // EGL_KHR_fence_sync - eglDestroySyncKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglDestroySyncKHR)
+  if (s_deviceConfig.m_eglDestroySyncKHR)
   {
-    return deviceState->m_eglDestroySyncKHR (dpy, sync);
+    return s_deviceConfig.m_eglDestroySyncKHR (dpy, sync);
   }
   return ((EGLBoolean)0);
 }
@@ -1030,10 +962,9 @@ EGLBoolean eglDestroySyncKHR (EGLDisplay dpy, EGLSyncKHR sync)
 EGLint eglClientWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags, EGLTimeKHR timeout)
 {
   // EGL_KHR_fence_sync - eglClientWaitSyncKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglClientWaitSyncKHR)
+  if (s_deviceConfig.m_eglClientWaitSyncKHR)
   {
-    return deviceState->m_eglClientWaitSyncKHR (dpy, sync, flags, timeout);
+    return s_deviceConfig.m_eglClientWaitSyncKHR (dpy, sync, flags, timeout);
   }
   return ((EGLint)0);
 }
@@ -1045,10 +976,9 @@ EGLint eglClientWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags, EGLT
 EGLBoolean eglGetSyncAttribKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint attribute, EGLint * value)
 {
   // EGL_KHR_fence_sync - eglGetSyncAttribKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetSyncAttribKHR)
+  if (s_deviceConfig.m_eglGetSyncAttribKHR)
   {
-    return deviceState->m_eglGetSyncAttribKHR (dpy, sync, attribute, value);
+    return s_deviceConfig.m_eglGetSyncAttribKHR (dpy, sync, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -1060,10 +990,9 @@ EGLBoolean eglGetSyncAttribKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint attribut
 EGLImageKHR eglCreateImageKHR (EGLDisplay dpy, EGLContext ctx, EGLenum target, EGLClientBuffer buffer, const EGLint * attrib_list)
 {
   // EGL_KHR_image - eglCreateImageKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateImageKHR)
+  if (s_deviceConfig.m_eglCreateImageKHR)
   {
-    return deviceState->m_eglCreateImageKHR (dpy, ctx, target, buffer, attrib_list);
+    return s_deviceConfig.m_eglCreateImageKHR (dpy, ctx, target, buffer, attrib_list);
   }
   return ((EGLImageKHR)0);
 }
@@ -1075,10 +1004,9 @@ EGLImageKHR eglCreateImageKHR (EGLDisplay dpy, EGLContext ctx, EGLenum target, E
 EGLBoolean eglDestroyImageKHR (EGLDisplay dpy, EGLImageKHR image)
 {
   // EGL_KHR_image - eglDestroyImageKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglDestroyImageKHR)
+  if (s_deviceConfig.m_eglDestroyImageKHR)
   {
-    return deviceState->m_eglDestroyImageKHR (dpy, image);
+    return s_deviceConfig.m_eglDestroyImageKHR (dpy, image);
   }
   return ((EGLBoolean)0);
 }
@@ -1090,10 +1018,9 @@ EGLBoolean eglDestroyImageKHR (EGLDisplay dpy, EGLImageKHR image)
 EGLBoolean eglLockSurfaceKHR (EGLDisplay dpy, EGLSurface surface, const EGLint * attrib_list)
 {
   // EGL_KHR_lock_surface - eglLockSurfaceKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglLockSurfaceKHR)
+  if (s_deviceConfig.m_eglLockSurfaceKHR)
   {
-    return deviceState->m_eglLockSurfaceKHR (dpy, surface, attrib_list);
+    return s_deviceConfig.m_eglLockSurfaceKHR (dpy, surface, attrib_list);
   }
   return ((EGLBoolean)0);
 }
@@ -1105,10 +1032,9 @@ EGLBoolean eglLockSurfaceKHR (EGLDisplay dpy, EGLSurface surface, const EGLint *
 EGLBoolean eglUnlockSurfaceKHR (EGLDisplay dpy, EGLSurface surface)
 {
   // EGL_KHR_lock_surface - eglUnlockSurfaceKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglUnlockSurfaceKHR)
+  if (s_deviceConfig.m_eglUnlockSurfaceKHR)
   {
-    return deviceState->m_eglUnlockSurfaceKHR (dpy, surface);
+    return s_deviceConfig.m_eglUnlockSurfaceKHR (dpy, surface);
   }
   return ((EGLBoolean)0);
 }
@@ -1120,10 +1046,9 @@ EGLBoolean eglUnlockSurfaceKHR (EGLDisplay dpy, EGLSurface surface)
 EGLBoolean eglQuerySurface64KHR (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLAttribKHR * value)
 {
   // EGL_KHR_lock_surface3 - eglQuerySurface64KHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQuerySurface64KHR)
+  if (s_deviceConfig.m_eglQuerySurface64KHR)
   {
-    return deviceState->m_eglQuerySurface64KHR (dpy, surface, attribute, value);
+    return s_deviceConfig.m_eglQuerySurface64KHR (dpy, surface, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -1135,10 +1060,9 @@ EGLBoolean eglQuerySurface64KHR (EGLDisplay dpy, EGLSurface surface, EGLint attr
 EGLBoolean eglSetDamageRegionKHR (EGLDisplay dpy, EGLSurface surface, EGLint * rects, EGLint n_rects)
 {
   // EGL_KHR_partial_update - eglSetDamageRegionKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSetDamageRegionKHR)
+  if (s_deviceConfig.m_eglSetDamageRegionKHR)
   {
-    return deviceState->m_eglSetDamageRegionKHR (dpy, surface, rects, n_rects);
+    return s_deviceConfig.m_eglSetDamageRegionKHR (dpy, surface, rects, n_rects);
   }
   return ((EGLBoolean)0);
 }
@@ -1150,10 +1074,9 @@ EGLBoolean eglSetDamageRegionKHR (EGLDisplay dpy, EGLSurface surface, EGLint * r
 EGLBoolean eglSignalSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLenum mode)
 {
   // EGL_KHR_reusable_sync - eglSignalSyncKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSignalSyncKHR)
+  if (s_deviceConfig.m_eglSignalSyncKHR)
   {
-    return deviceState->m_eglSignalSyncKHR (dpy, sync, mode);
+    return s_deviceConfig.m_eglSignalSyncKHR (dpy, sync, mode);
   }
   return ((EGLBoolean)0);
 }
@@ -1165,10 +1088,9 @@ EGLBoolean eglSignalSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLenum mode)
 EGLStreamKHR eglCreateStreamKHR (EGLDisplay dpy, const EGLint * attrib_list)
 {
   // EGL_KHR_stream - eglCreateStreamKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateStreamKHR)
+  if (s_deviceConfig.m_eglCreateStreamKHR)
   {
-    return deviceState->m_eglCreateStreamKHR (dpy, attrib_list);
+    return s_deviceConfig.m_eglCreateStreamKHR (dpy, attrib_list);
   }
   return ((EGLStreamKHR)0);
 }
@@ -1180,10 +1102,9 @@ EGLStreamKHR eglCreateStreamKHR (EGLDisplay dpy, const EGLint * attrib_list)
 EGLBoolean eglDestroyStreamKHR (EGLDisplay dpy, EGLStreamKHR stream)
 {
   // EGL_KHR_stream - eglDestroyStreamKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglDestroyStreamKHR)
+  if (s_deviceConfig.m_eglDestroyStreamKHR)
   {
-    return deviceState->m_eglDestroyStreamKHR (dpy, stream);
+    return s_deviceConfig.m_eglDestroyStreamKHR (dpy, stream);
   }
   return ((EGLBoolean)0);
 }
@@ -1195,10 +1116,9 @@ EGLBoolean eglDestroyStreamKHR (EGLDisplay dpy, EGLStreamKHR stream)
 EGLBoolean eglStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLint value)
 {
   // EGL_KHR_stream - eglStreamAttribKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglStreamAttribKHR)
+  if (s_deviceConfig.m_eglStreamAttribKHR)
   {
-    return deviceState->m_eglStreamAttribKHR (dpy, stream, attribute, value);
+    return s_deviceConfig.m_eglStreamAttribKHR (dpy, stream, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -1210,10 +1130,9 @@ EGLBoolean eglStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attr
 EGLBoolean eglQueryStreamKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLint * value)
 {
   // EGL_KHR_stream - eglQueryStreamKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryStreamKHR)
+  if (s_deviceConfig.m_eglQueryStreamKHR)
   {
-    return deviceState->m_eglQueryStreamKHR (dpy, stream, attribute, value);
+    return s_deviceConfig.m_eglQueryStreamKHR (dpy, stream, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -1225,10 +1144,9 @@ EGLBoolean eglQueryStreamKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attri
 EGLBoolean eglQueryStreamu64KHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLuint64KHR * value)
 {
   // EGL_KHR_stream - eglQueryStreamu64KHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryStreamu64KHR)
+  if (s_deviceConfig.m_eglQueryStreamu64KHR)
   {
-    return deviceState->m_eglQueryStreamu64KHR (dpy, stream, attribute, value);
+    return s_deviceConfig.m_eglQueryStreamu64KHR (dpy, stream, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -1240,10 +1158,9 @@ EGLBoolean eglQueryStreamu64KHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum at
 EGLBoolean eglStreamConsumerGLTextureExternalKHR (EGLDisplay dpy, EGLStreamKHR stream)
 {
   // EGL_KHR_stream_consumer_gltexture - eglStreamConsumerGLTextureExternalKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglStreamConsumerGLTextureExternalKHR)
+  if (s_deviceConfig.m_eglStreamConsumerGLTextureExternalKHR)
   {
-    return deviceState->m_eglStreamConsumerGLTextureExternalKHR (dpy, stream);
+    return s_deviceConfig.m_eglStreamConsumerGLTextureExternalKHR (dpy, stream);
   }
   return ((EGLBoolean)0);
 }
@@ -1255,10 +1172,9 @@ EGLBoolean eglStreamConsumerGLTextureExternalKHR (EGLDisplay dpy, EGLStreamKHR s
 EGLBoolean eglStreamConsumerAcquireKHR (EGLDisplay dpy, EGLStreamKHR stream)
 {
   // EGL_KHR_stream_consumer_gltexture - eglStreamConsumerAcquireKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglStreamConsumerAcquireKHR)
+  if (s_deviceConfig.m_eglStreamConsumerAcquireKHR)
   {
-    return deviceState->m_eglStreamConsumerAcquireKHR (dpy, stream);
+    return s_deviceConfig.m_eglStreamConsumerAcquireKHR (dpy, stream);
   }
   return ((EGLBoolean)0);
 }
@@ -1270,10 +1186,9 @@ EGLBoolean eglStreamConsumerAcquireKHR (EGLDisplay dpy, EGLStreamKHR stream)
 EGLBoolean eglStreamConsumerReleaseKHR (EGLDisplay dpy, EGLStreamKHR stream)
 {
   // EGL_KHR_stream_consumer_gltexture - eglStreamConsumerReleaseKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglStreamConsumerReleaseKHR)
+  if (s_deviceConfig.m_eglStreamConsumerReleaseKHR)
   {
-    return deviceState->m_eglStreamConsumerReleaseKHR (dpy, stream);
+    return s_deviceConfig.m_eglStreamConsumerReleaseKHR (dpy, stream);
   }
   return ((EGLBoolean)0);
 }
@@ -1285,10 +1200,9 @@ EGLBoolean eglStreamConsumerReleaseKHR (EGLDisplay dpy, EGLStreamKHR stream)
 EGLNativeFileDescriptorKHR eglGetStreamFileDescriptorKHR (EGLDisplay dpy, EGLStreamKHR stream)
 {
   // EGL_KHR_stream_cross_process_fd - eglGetStreamFileDescriptorKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetStreamFileDescriptorKHR)
+  if (s_deviceConfig.m_eglGetStreamFileDescriptorKHR)
   {
-    return deviceState->m_eglGetStreamFileDescriptorKHR (dpy, stream);
+    return s_deviceConfig.m_eglGetStreamFileDescriptorKHR (dpy, stream);
   }
   return ((EGLNativeFileDescriptorKHR)0);
 }
@@ -1300,10 +1214,9 @@ EGLNativeFileDescriptorKHR eglGetStreamFileDescriptorKHR (EGLDisplay dpy, EGLStr
 EGLStreamKHR eglCreateStreamFromFileDescriptorKHR (EGLDisplay dpy, EGLNativeFileDescriptorKHR file_descriptor)
 {
   // EGL_KHR_stream_cross_process_fd - eglCreateStreamFromFileDescriptorKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateStreamFromFileDescriptorKHR)
+  if (s_deviceConfig.m_eglCreateStreamFromFileDescriptorKHR)
   {
-    return deviceState->m_eglCreateStreamFromFileDescriptorKHR (dpy, file_descriptor);
+    return s_deviceConfig.m_eglCreateStreamFromFileDescriptorKHR (dpy, file_descriptor);
   }
   return ((EGLStreamKHR)0);
 }
@@ -1315,10 +1228,9 @@ EGLStreamKHR eglCreateStreamFromFileDescriptorKHR (EGLDisplay dpy, EGLNativeFile
 EGLBoolean eglQueryStreamTimeKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLTimeKHR * value)
 {
   // EGL_KHR_stream_fifo - eglQueryStreamTimeKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryStreamTimeKHR)
+  if (s_deviceConfig.m_eglQueryStreamTimeKHR)
   {
-    return deviceState->m_eglQueryStreamTimeKHR (dpy, stream, attribute, value);
+    return s_deviceConfig.m_eglQueryStreamTimeKHR (dpy, stream, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -1330,10 +1242,9 @@ EGLBoolean eglQueryStreamTimeKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum a
 EGLSurface eglCreateStreamProducerSurfaceKHR (EGLDisplay dpy, EGLConfig config, EGLStreamKHR stream, const EGLint * attrib_list)
 {
   // EGL_KHR_stream_producer_eglsurface - eglCreateStreamProducerSurfaceKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateStreamProducerSurfaceKHR)
+  if (s_deviceConfig.m_eglCreateStreamProducerSurfaceKHR)
   {
-    return deviceState->m_eglCreateStreamProducerSurfaceKHR (dpy, config, stream, attrib_list);
+    return s_deviceConfig.m_eglCreateStreamProducerSurfaceKHR (dpy, config, stream, attrib_list);
   }
   return ((EGLSurface)0);
 }
@@ -1345,10 +1256,9 @@ EGLSurface eglCreateStreamProducerSurfaceKHR (EGLDisplay dpy, EGLConfig config, 
 EGLBoolean eglSwapBuffersWithDamageKHR (EGLDisplay dpy, EGLSurface surface, EGLint * rects, EGLint n_rects)
 {
   // EGL_KHR_swap_buffers_with_damage - eglSwapBuffersWithDamageKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSwapBuffersWithDamageKHR)
+  if (s_deviceConfig.m_eglSwapBuffersWithDamageKHR)
   {
-    return deviceState->m_eglSwapBuffersWithDamageKHR (dpy, surface, rects, n_rects);
+    return s_deviceConfig.m_eglSwapBuffersWithDamageKHR (dpy, surface, rects, n_rects);
   }
   return ((EGLBoolean)0);
 }
@@ -1360,10 +1270,9 @@ EGLBoolean eglSwapBuffersWithDamageKHR (EGLDisplay dpy, EGLSurface surface, EGLi
 EGLint eglWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags)
 {
   // EGL_KHR_wait_sync - eglWaitSyncKHR
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglWaitSyncKHR)
+  if (s_deviceConfig.m_eglWaitSyncKHR)
   {
-    return deviceState->m_eglWaitSyncKHR (dpy, sync, flags);
+    return s_deviceConfig.m_eglWaitSyncKHR (dpy, sync, flags);
   }
   return ((EGLint)0);
 }
@@ -1375,10 +1284,9 @@ EGLint eglWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags)
 EGLImageKHR eglCreateDRMImageMESA (EGLDisplay dpy, const EGLint * attrib_list)
 {
   // EGL_MESA_drm_image - eglCreateDRMImageMESA
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateDRMImageMESA)
+  if (s_deviceConfig.m_eglCreateDRMImageMESA)
   {
-    return deviceState->m_eglCreateDRMImageMESA (dpy, attrib_list);
+    return s_deviceConfig.m_eglCreateDRMImageMESA (dpy, attrib_list);
   }
   return ((EGLImageKHR)0);
 }
@@ -1390,10 +1298,9 @@ EGLImageKHR eglCreateDRMImageMESA (EGLDisplay dpy, const EGLint * attrib_list)
 EGLBoolean eglExportDRMImageMESA (EGLDisplay dpy, EGLImageKHR image, EGLint * name, EGLint * handle, EGLint * stride)
 {
   // EGL_MESA_drm_image - eglExportDRMImageMESA
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglExportDRMImageMESA)
+  if (s_deviceConfig.m_eglExportDRMImageMESA)
   {
-    return deviceState->m_eglExportDRMImageMESA (dpy, image, name, handle, stride);
+    return s_deviceConfig.m_eglExportDRMImageMESA (dpy, image, name, handle, stride);
   }
   return ((EGLBoolean)0);
 }
@@ -1405,10 +1312,9 @@ EGLBoolean eglExportDRMImageMESA (EGLDisplay dpy, EGLImageKHR image, EGLint * na
 EGLBoolean eglExportDMABUFImageQueryMESA (EGLDisplay dpy, EGLImageKHR image, int * fourcc, int * num_planes, EGLuint64KHR * modifiers)
 {
   // EGL_MESA_image_dma_buf_export - eglExportDMABUFImageQueryMESA
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglExportDMABUFImageQueryMESA)
+  if (s_deviceConfig.m_eglExportDMABUFImageQueryMESA)
   {
-    return deviceState->m_eglExportDMABUFImageQueryMESA (dpy, image, fourcc, num_planes, modifiers);
+    return s_deviceConfig.m_eglExportDMABUFImageQueryMESA (dpy, image, fourcc, num_planes, modifiers);
   }
   return ((EGLBoolean)0);
 }
@@ -1420,10 +1326,9 @@ EGLBoolean eglExportDMABUFImageQueryMESA (EGLDisplay dpy, EGLImageKHR image, int
 EGLBoolean eglExportDMABUFImageMESA (EGLDisplay dpy, EGLImageKHR image, int * fds, EGLint * strides, EGLint * offsets)
 {
   // EGL_MESA_image_dma_buf_export - eglExportDMABUFImageMESA
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglExportDMABUFImageMESA)
+  if (s_deviceConfig.m_eglExportDMABUFImageMESA)
   {
-    return deviceState->m_eglExportDMABUFImageMESA (dpy, image, fds, strides, offsets);
+    return s_deviceConfig.m_eglExportDMABUFImageMESA (dpy, image, fds, strides, offsets);
   }
   return ((EGLBoolean)0);
 }
@@ -1435,10 +1340,9 @@ EGLBoolean eglExportDMABUFImageMESA (EGLDisplay dpy, EGLImageKHR image, int * fd
 EGLBoolean eglSwapBuffersRegionNOK (EGLDisplay dpy, EGLSurface surface, EGLint numRects, const EGLint * rects)
 {
   // EGL_NOK_swap_region - eglSwapBuffersRegionNOK
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSwapBuffersRegionNOK)
+  if (s_deviceConfig.m_eglSwapBuffersRegionNOK)
   {
-    return deviceState->m_eglSwapBuffersRegionNOK (dpy, surface, numRects, rects);
+    return s_deviceConfig.m_eglSwapBuffersRegionNOK (dpy, surface, numRects, rects);
   }
   return ((EGLBoolean)0);
 }
@@ -1450,10 +1354,9 @@ EGLBoolean eglSwapBuffersRegionNOK (EGLDisplay dpy, EGLSurface surface, EGLint n
 EGLBoolean eglSwapBuffersRegion2NOK (EGLDisplay dpy, EGLSurface surface, EGLint numRects, const EGLint * rects)
 {
   // EGL_NOK_swap_region2 - eglSwapBuffersRegion2NOK
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSwapBuffersRegion2NOK)
+  if (s_deviceConfig.m_eglSwapBuffersRegion2NOK)
   {
-    return deviceState->m_eglSwapBuffersRegion2NOK (dpy, surface, numRects, rects);
+    return s_deviceConfig.m_eglSwapBuffersRegion2NOK (dpy, surface, numRects, rects);
   }
   return ((EGLBoolean)0);
 }
@@ -1465,10 +1368,9 @@ EGLBoolean eglSwapBuffersRegion2NOK (EGLDisplay dpy, EGLSurface surface, EGLint 
 EGLBoolean eglQueryNativeDisplayNV (EGLDisplay dpy, EGLNativeDisplayType * display_id)
 {
   // EGL_NV_native_query - eglQueryNativeDisplayNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryNativeDisplayNV)
+  if (s_deviceConfig.m_eglQueryNativeDisplayNV)
   {
-    return deviceState->m_eglQueryNativeDisplayNV (dpy, display_id);
+    return s_deviceConfig.m_eglQueryNativeDisplayNV (dpy, display_id);
   }
   return ((EGLBoolean)0);
 }
@@ -1480,10 +1382,9 @@ EGLBoolean eglQueryNativeDisplayNV (EGLDisplay dpy, EGLNativeDisplayType * displ
 EGLBoolean eglQueryNativeWindowNV (EGLDisplay dpy, EGLSurface surf, EGLNativeWindowType * window)
 {
   // EGL_NV_native_query - eglQueryNativeWindowNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryNativeWindowNV)
+  if (s_deviceConfig.m_eglQueryNativeWindowNV)
   {
-    return deviceState->m_eglQueryNativeWindowNV (dpy, surf, window);
+    return s_deviceConfig.m_eglQueryNativeWindowNV (dpy, surf, window);
   }
   return ((EGLBoolean)0);
 }
@@ -1495,10 +1396,9 @@ EGLBoolean eglQueryNativeWindowNV (EGLDisplay dpy, EGLSurface surf, EGLNativeWin
 EGLBoolean eglQueryNativePixmapNV (EGLDisplay dpy, EGLSurface surf, EGLNativePixmapType * pixmap)
 {
   // EGL_NV_native_query - eglQueryNativePixmapNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglQueryNativePixmapNV)
+  if (s_deviceConfig.m_eglQueryNativePixmapNV)
   {
-    return deviceState->m_eglQueryNativePixmapNV (dpy, surf, pixmap);
+    return s_deviceConfig.m_eglQueryNativePixmapNV (dpy, surf, pixmap);
   }
   return ((EGLBoolean)0);
 }
@@ -1510,10 +1410,9 @@ EGLBoolean eglQueryNativePixmapNV (EGLDisplay dpy, EGLSurface surf, EGLNativePix
 EGLBoolean eglPostSubBufferNV (EGLDisplay dpy, EGLSurface surface, EGLint x, EGLint y, EGLint width, EGLint height)
 {
   // EGL_NV_post_sub_buffer - eglPostSubBufferNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglPostSubBufferNV)
+  if (s_deviceConfig.m_eglPostSubBufferNV)
   {
-    return deviceState->m_eglPostSubBufferNV (dpy, surface, x, y, width, height);
+    return s_deviceConfig.m_eglPostSubBufferNV (dpy, surface, x, y, width, height);
   }
   return ((EGLBoolean)0);
 }
@@ -1525,10 +1424,9 @@ EGLBoolean eglPostSubBufferNV (EGLDisplay dpy, EGLSurface surface, EGLint x, EGL
 EGLSyncKHR eglCreateStreamSyncNV (EGLDisplay dpy, EGLStreamKHR stream, EGLenum type, const EGLint * attrib_list)
 {
   // EGL_NV_stream_sync - eglCreateStreamSyncNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateStreamSyncNV)
+  if (s_deviceConfig.m_eglCreateStreamSyncNV)
   {
-    return deviceState->m_eglCreateStreamSyncNV (dpy, stream, type, attrib_list);
+    return s_deviceConfig.m_eglCreateStreamSyncNV (dpy, stream, type, attrib_list);
   }
   return ((EGLSyncKHR)0);
 }
@@ -1540,10 +1438,9 @@ EGLSyncKHR eglCreateStreamSyncNV (EGLDisplay dpy, EGLStreamKHR stream, EGLenum t
 EGLSyncNV eglCreateFenceSyncNV (EGLDisplay dpy, EGLenum condition, const EGLint * attrib_list)
 {
   // EGL_NV_sync - eglCreateFenceSyncNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglCreateFenceSyncNV)
+  if (s_deviceConfig.m_eglCreateFenceSyncNV)
   {
-    return deviceState->m_eglCreateFenceSyncNV (dpy, condition, attrib_list);
+    return s_deviceConfig.m_eglCreateFenceSyncNV (dpy, condition, attrib_list);
   }
   return ((EGLSyncNV)0);
 }
@@ -1555,10 +1452,9 @@ EGLSyncNV eglCreateFenceSyncNV (EGLDisplay dpy, EGLenum condition, const EGLint 
 EGLBoolean eglDestroySyncNV (EGLSyncNV sync)
 {
   // EGL_NV_sync - eglDestroySyncNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglDestroySyncNV)
+  if (s_deviceConfig.m_eglDestroySyncNV)
   {
-    return deviceState->m_eglDestroySyncNV (sync);
+    return s_deviceConfig.m_eglDestroySyncNV (sync);
   }
   return ((EGLBoolean)0);
 }
@@ -1570,10 +1466,9 @@ EGLBoolean eglDestroySyncNV (EGLSyncNV sync)
 EGLBoolean eglFenceNV (EGLSyncNV sync)
 {
   // EGL_NV_sync - eglFenceNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglFenceNV)
+  if (s_deviceConfig.m_eglFenceNV)
   {
-    return deviceState->m_eglFenceNV (sync);
+    return s_deviceConfig.m_eglFenceNV (sync);
   }
   return ((EGLBoolean)0);
 }
@@ -1585,10 +1480,9 @@ EGLBoolean eglFenceNV (EGLSyncNV sync)
 EGLint eglClientWaitSyncNV (EGLSyncNV sync, EGLint flags, EGLTimeNV timeout)
 {
   // EGL_NV_sync - eglClientWaitSyncNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglClientWaitSyncNV)
+  if (s_deviceConfig.m_eglClientWaitSyncNV)
   {
-    return deviceState->m_eglClientWaitSyncNV (sync, flags, timeout);
+    return s_deviceConfig.m_eglClientWaitSyncNV (sync, flags, timeout);
   }
   return ((EGLint)0);
 }
@@ -1600,10 +1494,9 @@ EGLint eglClientWaitSyncNV (EGLSyncNV sync, EGLint flags, EGLTimeNV timeout)
 EGLBoolean eglSignalSyncNV (EGLSyncNV sync, EGLenum mode)
 {
   // EGL_NV_sync - eglSignalSyncNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglSignalSyncNV)
+  if (s_deviceConfig.m_eglSignalSyncNV)
   {
-    return deviceState->m_eglSignalSyncNV (sync, mode);
+    return s_deviceConfig.m_eglSignalSyncNV (sync, mode);
   }
   return ((EGLBoolean)0);
 }
@@ -1615,10 +1508,9 @@ EGLBoolean eglSignalSyncNV (EGLSyncNV sync, EGLenum mode)
 EGLBoolean eglGetSyncAttribNV (EGLSyncNV sync, EGLint attribute, EGLint * value)
 {
   // EGL_NV_sync - eglGetSyncAttribNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetSyncAttribNV)
+  if (s_deviceConfig.m_eglGetSyncAttribNV)
   {
-    return deviceState->m_eglGetSyncAttribNV (sync, attribute, value);
+    return s_deviceConfig.m_eglGetSyncAttribNV (sync, attribute, value);
   }
   return ((EGLBoolean)0);
 }
@@ -1630,10 +1522,9 @@ EGLBoolean eglGetSyncAttribNV (EGLSyncNV sync, EGLint attribute, EGLint * value)
 EGLuint64NV eglGetSystemTimeFrequencyNV ()
 {
   // EGL_NV_system_time - eglGetSystemTimeFrequencyNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetSystemTimeFrequencyNV)
+  if (s_deviceConfig.m_eglGetSystemTimeFrequencyNV)
   {
-    return deviceState->m_eglGetSystemTimeFrequencyNV ();
+    return s_deviceConfig.m_eglGetSystemTimeFrequencyNV ();
   }
   return ((EGLuint64NV)0);
 }
@@ -1645,10 +1536,9 @@ EGLuint64NV eglGetSystemTimeFrequencyNV ()
 EGLuint64NV eglGetSystemTimeNV ()
 {
   // EGL_NV_system_time - eglGetSystemTimeNV
-  const glew::egl::DeviceState *deviceState = glew::egl::GetDeviceState ();
-  if (deviceState && deviceState->m_eglGetSystemTimeNV)
+  if (s_deviceConfig.m_eglGetSystemTimeNV)
   {
-    return deviceState->m_eglGetSystemTimeNV ();
+    return s_deviceConfig.m_eglGetSystemTimeNV ();
   }
   return ((EGLuint64NV)0);
 }

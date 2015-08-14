@@ -182,6 +182,8 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
+      writer.Write ("\n");
+
       // 
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
       // 
@@ -241,7 +243,7 @@ namespace wrangle_gl_generator
               continue;
             }
 
-            writer.Write (string.Format ("\n// {0}\n", keypair.Key));
+            
 
             StringBuilder commandFuncPointerBuilder = new StringBuilder ();
 
@@ -259,7 +261,7 @@ namespace wrangle_gl_generator
 
               GetFullCommandPrototype (command, out returnType, out parameters);
 
-              commandFuncPointerBuilder.AppendFormat ("typedef {0} {1} ({2} {3}) (", m_funcPointerApiEntryPrefix, returnType, m_funcPointerApiEntryPostfix, mangedFunctionPointer);
+              commandFuncPointerBuilder.AppendFormat ("typedef {0} {1} ({2} {3}) /* {4} */ (", m_funcPointerApiEntryPrefix, returnType, m_funcPointerApiEntryPostfix, mangedFunctionPointer, command);
 
               if (parameters.Count > 0)
               {
@@ -279,6 +281,8 @@ namespace wrangle_gl_generator
               }
 
               commandFuncPointerBuilder.Append (")");
+
+              commandFuncPointerBuilder.Replace ("  ", " ");
 
               writer.Write (string.Format ("{0};\n", commandFuncPointerBuilder.ToString ()));
             }
@@ -313,16 +317,12 @@ namespace wrangle_gl_generator
       writer.Write ("    };\n\n");
 
       // 
-      // 'DeviceState' class.
+      // 'DeviceConfig' class: Default API.
       // 
 
       WriteCommentDivider (ref writer, 4);
 
-      writer.Write (string.Format ("\n    class DeviceState\n    {{\n"));
-
-      writer.Write (string.Format ("    private:\n\n"));
-
-      writer.Write (string.Format ("      bool m_featureSupported [glew::{0}::FeatureSet::{1}{2}_{3}];\n\n", m_api [0], "GLEW_", m_api [0].ToUpperInvariant (), "FeatureSetCount"));
+      writer.Write (string.Format ("\n    class DeviceConfig\n    {{\n"));
 
       writer.Write (string.Format ("    public:\n\n"));
 
@@ -330,9 +330,11 @@ namespace wrangle_gl_generator
 
       writer.Write (string.Format ("      bool IsSupported (const char *feature);\n\n"));
 
+      writer.Write (string.Format ("      bool m_featureSupported [glew::{0}::FeatureSet::{1}{2}_{3}];\n\n", m_api [0], "GLEW_", m_api [0].ToUpperInvariant (), "FeatureSetCount"));
+
+
       // 
-      // 'DeviceState' class
-      // Feature and extension function prototypes.
+      // 'DeviceConfig' class: Feature and extension function prototypes.
       // 
 
       if (featureAndExtensionNodes.Count > 0)
@@ -397,15 +399,17 @@ namespace wrangle_gl_generator
       // Standard GLEW header API.
       // 
 
-      writer.Write (string.Format ("\n  public:\n\n    static void Initialise (glew::{0}::DeviceState *deviceState);\n\n", m_api [0]));
+      writer.Write (string.Format ("\n  public:\n\n    static void Initialise ();\n\n", m_api [0]));
 
       writer.Write (string.Format ("    static void Deinitialise ();\n\n"));
 
-      writer.Write (string.Format ("    static const glew::{0}::DeviceState *GetDeviceState () {{ return s_deviceState; }}\n", m_api [0]));
+      writer.Write (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig) {{ s_deviceConfig = deviceConfig; }}\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static glew::{0}::DeviceConfig &GetConfig () {{ return s_deviceConfig; }}\n", m_api [0]));
 
       writer.Write (string.Format ("\n  protected:\n\n", m_api [0]));
 
-      writer.Write (string.Format ("    static glew::{0}::DeviceState *s_deviceState;\n\n", m_api [0]));
+      writer.Write (string.Format ("    static glew::{0}::DeviceConfig s_deviceConfig;\n\n", m_api [0]));
 
       WriteCommentDivider (ref writer, 4);
 
@@ -626,8 +630,6 @@ namespace wrangle_gl_generator
 
               writer.Write (string.Format ("  // {0} - {1}\n", keypair.Key, command));
 
-              writer.Write (string.Format ("  const glew::{0}::DeviceState *deviceState = glew::{0}::GetDeviceState ();\n", m_api [0]));
-
               StringBuilder paramBuilder = new StringBuilder ();
 
               if (parameters.Count > 0)
@@ -652,11 +654,11 @@ namespace wrangle_gl_generator
                 }
               }
 
-              writer.Write (string.Format ("  if (deviceState && deviceState->m_{0})\n  {{\n", command));
+              writer.Write (string.Format ("  if (s_deviceConfig.m_{0})\n  {{\n", command));
 
               writer.Write (string.Format ("    {0}", (voidFunction ? "" : "return ")));
 
-              writer.Write (string.Format ("deviceState->m_{0} ({1});\n  }}\n", command, paramBuilder.ToString ()));
+              writer.Write (string.Format ("s_deviceConfig.m_{0} ({1});\n  }}\n", command, paramBuilder.ToString ()));
 
               if (!voidFunction)
               {
@@ -676,7 +678,7 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private bool IsApiSupported (string apiList)
+    protected bool IsApiSupported (string apiList)
     {
       string [] queriedApis = apiList.Split (new char [] {'|'}, StringSplitOptions.RemoveEmptyEntries);
 
@@ -697,8 +699,8 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    private string GetFullCommandPrototype (string command)
+
+    protected string GetFullCommandPrototype (string command)
     {
       string returnType = null;
 
@@ -711,7 +713,7 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private string GetFullCommandPrototype (string command, out string returnType, out Dictionary <string, string> parameters)
+    protected string GetFullCommandPrototype (string command, out string returnType, out Dictionary<string, string> parameters)
     {
       XmlNode commandNode = null;
 
