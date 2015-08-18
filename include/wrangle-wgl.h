@@ -17,32 +17,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-typedef int (WINAPI * PFNCHOOSEPIXELFORMATPROC) /* ChoosePixelFormat */ (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd);
-typedef int (WINAPI * PFNDESCRIBEPIXELFORMATPROC) /* DescribePixelFormat */ (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd);
-typedef UINT (WINAPI * PFNGETENHMETAFILEPIXELFORMATPROC) /* GetEnhMetaFilePixelFormat */ (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd);
-typedef int (WINAPI * PFNGETPIXELFORMATPROC) /* GetPixelFormat */ (HDC hdc);
-typedef BOOL (WINAPI * PFNSETPIXELFORMATPROC) /* SetPixelFormat */ (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd);
-typedef BOOL (WINAPI * PFNSWAPBUFFERSPROC) /* SwapBuffers */ (HDC hdc);
-typedef BOOL (WINAPI * PFNWGLCOPYCONTEXTPROC) /* wglCopyContext */ (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask);
-typedef HGLRC (WINAPI * PFNWGLCREATECONTEXTPROC) /* wglCreateContext */ (HDC hDc);
-typedef HGLRC (WINAPI * PFNWGLCREATELAYERCONTEXTPROC) /* wglCreateLayerContext */ (HDC hDc, int level);
-typedef BOOL (WINAPI * PFNWGLDELETECONTEXTPROC) /* wglDeleteContext */ (HGLRC oldContext);
-typedef BOOL (WINAPI * PFNWGLDESCRIBELAYERPLANEPROC) /* wglDescribeLayerPlane */ (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, const LAYERPLANEDESCRIPTOR * plpd);
-typedef HGLRC (WINAPI * PFNWGLGETCURRENTCONTEXTPROC) /* wglGetCurrentContext */ ();
-typedef HDC (WINAPI * PFNWGLGETCURRENTDCPROC) /* wglGetCurrentDC */ ();
-typedef int (WINAPI * PFNWGLGETLAYERPALETTEENTRIESPROC) /* wglGetLayerPaletteEntries */ (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
-typedef PROC (WINAPI * PFNWGLGETPROCADDRESSPROC) /* wglGetProcAddress */ (LPCSTR lpszProc);
-typedef BOOL (WINAPI * PFNWGLMAKECURRENTPROC) /* wglMakeCurrent */ (HDC hDc, HGLRC newContext);
-typedef BOOL (WINAPI * PFNWGLREALIZELAYERPALETTEPROC) /* wglRealizeLayerPalette */ (HDC hdc, int iLayerPlane, BOOL bRealize);
-typedef int (WINAPI * PFNWGLSETLAYERPALETTEENTRIESPROC) /* wglSetLayerPaletteEntries */ (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
-typedef BOOL (WINAPI * PFNWGLSHARELISTSPROC) /* wglShareLists */ (HGLRC hrcSrvShare, HGLRC hrcSrvSource);
-typedef BOOL (WINAPI * PFNWGLSWAPLAYERBUFFERSPROC) /* wglSwapLayerBuffers */ (HDC hdc, UINT fuFlags);
-typedef BOOL (WINAPI * PFNWGLUSEFONTBITMAPSPROC) /* wglUseFontBitmaps */ (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-typedef BOOL (WINAPI * PFNWGLUSEFONTBITMAPSAPROC) /* wglUseFontBitmapsA */ (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-typedef BOOL (WINAPI * PFNWGLUSEFONTBITMAPSWPROC) /* wglUseFontBitmapsW */ (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-typedef BOOL (WINAPI * PFNWGLUSEFONTOUTLINESPROC) /* wglUseFontOutlines */ (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
-typedef BOOL (WINAPI * PFNWGLUSEFONTOUTLINESAPROC) /* wglUseFontOutlinesA */ (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
-typedef BOOL (WINAPI * PFNWGLUSEFONTOUTLINESWPROC) /* wglUseFontOutlinesW */ (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
 typedef BOOL (WINAPI * PFNWGLSETSTEREOEMITTERSTATE3DLPROC) /* wglSetStereoEmitterState3DL */ (HDC hDC, UINT uState);
 typedef UINT (WINAPI * PFNWGLGETGPUIDSAMDPROC) /* wglGetGPUIDsAMD */ (UINT maxCount, UINT * ids);
 typedef INT (WINAPI * PFNWGLGETGPUINFOAMDPROC) /* wglGetGPUInfoAMD */ (UINT id, int property, GLenum dataType, UINT size, void * data);
@@ -244,38 +218,8 @@ namespace glew
     {
     public:
 
-      bool IsSupported (glew::wgl::FeatureSet feature);
-
-      bool IsSupported (const char *feature);
-
       bool m_featureSupported [glew::wgl::FeatureSet::GLEW_WGL_FeatureSetCount];
 
-      PFNCHOOSEPIXELFORMATPROC m_ChoosePixelFormat;
-      PFNDESCRIBEPIXELFORMATPROC m_DescribePixelFormat;
-      PFNGETENHMETAFILEPIXELFORMATPROC m_GetEnhMetaFilePixelFormat;
-      PFNGETPIXELFORMATPROC m_GetPixelFormat;
-      PFNSETPIXELFORMATPROC m_SetPixelFormat;
-      PFNSWAPBUFFERSPROC m_SwapBuffers;
-      PFNWGLCOPYCONTEXTPROC m_wglCopyContext;
-      PFNWGLCREATECONTEXTPROC m_wglCreateContext;
-      PFNWGLCREATELAYERCONTEXTPROC m_wglCreateLayerContext;
-      PFNWGLDELETECONTEXTPROC m_wglDeleteContext;
-      PFNWGLDESCRIBELAYERPLANEPROC m_wglDescribeLayerPlane;
-      PFNWGLGETCURRENTCONTEXTPROC m_wglGetCurrentContext;
-      PFNWGLGETCURRENTDCPROC m_wglGetCurrentDC;
-      PFNWGLGETLAYERPALETTEENTRIESPROC m_wglGetLayerPaletteEntries;
-      PFNWGLGETPROCADDRESSPROC m_wglGetProcAddress;
-      PFNWGLMAKECURRENTPROC m_wglMakeCurrent;
-      PFNWGLREALIZELAYERPALETTEPROC m_wglRealizeLayerPalette;
-      PFNWGLSETLAYERPALETTEENTRIESPROC m_wglSetLayerPaletteEntries;
-      PFNWGLSHARELISTSPROC m_wglShareLists;
-      PFNWGLSWAPLAYERBUFFERSPROC m_wglSwapLayerBuffers;
-      PFNWGLUSEFONTBITMAPSPROC m_wglUseFontBitmaps;
-      PFNWGLUSEFONTBITMAPSAPROC m_wglUseFontBitmapsA;
-      PFNWGLUSEFONTBITMAPSWPROC m_wglUseFontBitmapsW;
-      PFNWGLUSEFONTOUTLINESPROC m_wglUseFontOutlines;
-      PFNWGLUSEFONTOUTLINESAPROC m_wglUseFontOutlinesA;
-      PFNWGLUSEFONTOUTLINESWPROC m_wglUseFontOutlinesW;
       PFNWGLSETSTEREOEMITTERSTATE3DLPROC m_wglSetStereoEmitterState3DL;
       PFNWGLGETGPUIDSAMDPROC m_wglGetGPUIDsAMD;
       PFNWGLGETGPUINFOAMDPROC m_wglGetGPUInfoAMD;
@@ -421,151 +365,125 @@ namespace glew
 
   public:
 
-    int ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd);
-    int DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd);
-    UINT GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd);
-    int GetPixelFormat (HDC hdc);
-    BOOL SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd);
-    BOOL SwapBuffers (HDC hdc);
-    BOOL wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask);
-    HGLRC wglCreateContext (HDC hDc);
-    HGLRC wglCreateLayerContext (HDC hDc, int level);
-    BOOL wglDeleteContext (HGLRC oldContext);
-    BOOL wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, const LAYERPLANEDESCRIPTOR * plpd);
-    HGLRC wglGetCurrentContext ();
-    HDC wglGetCurrentDC ();
-    int wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
-    PROC wglGetProcAddress (LPCSTR lpszProc);
-    BOOL wglMakeCurrent (HDC hDc, HGLRC newContext);
-    BOOL wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize);
-    int wglSetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
-    BOOL wglShareLists (HGLRC hrcSrvShare, HGLRC hrcSrvSource);
-    BOOL wglSwapLayerBuffers (HDC hdc, UINT fuFlags);
-    BOOL wglUseFontBitmaps (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-    BOOL wglUseFontBitmapsA (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-    BOOL wglUseFontBitmapsW (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-    BOOL wglUseFontOutlines (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
-    BOOL wglUseFontOutlinesA (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
-    BOOL wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
-    BOOL wglSetStereoEmitterState3DL (HDC hDC, UINT uState);
-    UINT wglGetGPUIDsAMD (UINT maxCount, UINT * ids);
-    INT wglGetGPUInfoAMD (UINT id, int property, GLenum dataType, UINT size, void * data);
-    UINT wglGetContextGPUIDAMD (HGLRC hglrc);
-    HGLRC wglCreateAssociatedContextAMD (UINT id);
-    HGLRC wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const int * attribList);
-    BOOL wglDeleteAssociatedContextAMD (HGLRC hglrc);
-    BOOL wglMakeAssociatedContextCurrentAMD (HGLRC hglrc);
-    HGLRC wglGetCurrentAssociatedContextAMD ();
-    VOID wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
-    HANDLE wglCreateBufferRegionARB (HDC hDC, int iLayerPlane, UINT uType);
-    VOID wglDeleteBufferRegionARB (HANDLE hRegion);
-    BOOL wglSaveBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height);
-    BOOL wglRestoreBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height, int xSrc, int ySrc);
-    HGLRC wglCreateContextAttribsARB (HDC hDC, HGLRC hShareContext, const int * attribList);
-    const char * wglGetExtensionsStringARB (HDC hdc);
-    BOOL wglMakeContextCurrentARB (HDC hDrawDC, HDC hReadDC, HGLRC hglrc);
-    HDC wglGetCurrentReadDCARB ();
-    HPBUFFERARB wglCreatePbufferARB (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList);
-    HDC wglGetPbufferDCARB (HPBUFFERARB hPbuffer);
-    int wglReleasePbufferDCARB (HPBUFFERARB hPbuffer, HDC hDC);
-    BOOL wglDestroyPbufferARB (HPBUFFERARB hPbuffer);
-    BOOL wglQueryPbufferARB (HPBUFFERARB hPbuffer, int iAttribute, int * piValue);
-    BOOL wglGetPixelFormatAttribivARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, int * piValues);
-    BOOL wglGetPixelFormatAttribfvARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, FLOAT * pfValues);
-    BOOL wglChoosePixelFormatARB (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats);
-    BOOL wglBindTexImageARB (HPBUFFERARB hPbuffer, int iBuffer);
-    BOOL wglReleaseTexImageARB (HPBUFFERARB hPbuffer, int iBuffer);
-    BOOL wglSetPbufferAttribARB (HPBUFFERARB hPbuffer, const int * piAttribList);
-    GLboolean wglCreateDisplayColorTableEXT (GLushort id);
-    GLboolean wglLoadDisplayColorTableEXT (const GLushort * table, GLuint length);
-    GLboolean wglBindDisplayColorTableEXT (GLushort id);
-    VOID wglDestroyDisplayColorTableEXT (GLushort id);
-    const char * wglGetExtensionsStringEXT ();
-    BOOL wglMakeContextCurrentEXT (HDC hDrawDC, HDC hReadDC, HGLRC hglrc);
-    HDC wglGetCurrentReadDCEXT ();
-    HPBUFFEREXT wglCreatePbufferEXT (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList);
-    HDC wglGetPbufferDCEXT (HPBUFFEREXT hPbuffer);
-    int wglReleasePbufferDCEXT (HPBUFFEREXT hPbuffer, HDC hDC);
-    BOOL wglDestroyPbufferEXT (HPBUFFEREXT hPbuffer);
-    BOOL wglQueryPbufferEXT (HPBUFFEREXT hPbuffer, int iAttribute, int * piValue);
-    BOOL wglGetPixelFormatAttribivEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, int * piValues);
-    BOOL wglGetPixelFormatAttribfvEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, FLOAT * pfValues);
-    BOOL wglChoosePixelFormatEXT (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats);
-    BOOL wglSwapIntervalEXT (int interval);
-    int wglGetSwapIntervalEXT ();
-    BOOL wglGetDigitalVideoParametersI3D (HDC hDC, int iAttribute, int * piValue);
-    BOOL wglSetDigitalVideoParametersI3D (HDC hDC, int iAttribute, const int * piValue);
-    BOOL wglGetGammaTableParametersI3D (HDC hDC, int iAttribute, int * piValue);
-    BOOL wglSetGammaTableParametersI3D (HDC hDC, int iAttribute, const int * piValue);
-    BOOL wglGetGammaTableI3D (HDC hDC, int iEntries, USHORT * puRed, USHORT * puGreen, USHORT * puBlue);
-    BOOL wglSetGammaTableI3D (HDC hDC, int iEntries, const USHORT * puRed, const USHORT * puGreen, const USHORT * puBlue);
-    BOOL wglEnableGenlockI3D (HDC hDC);
-    BOOL wglDisableGenlockI3D (HDC hDC);
-    BOOL wglIsEnabledGenlockI3D (HDC hDC, BOOL * pFlag);
-    BOOL wglGenlockSourceI3D (HDC hDC, UINT uSource);
-    BOOL wglGetGenlockSourceI3D (HDC hDC, UINT * uSource);
-    BOOL wglGenlockSourceEdgeI3D (HDC hDC, UINT uEdge);
-    BOOL wglGetGenlockSourceEdgeI3D (HDC hDC, UINT * uEdge);
-    BOOL wglGenlockSampleRateI3D (HDC hDC, UINT uRate);
-    BOOL wglGetGenlockSampleRateI3D (HDC hDC, UINT * uRate);
-    BOOL wglGenlockSourceDelayI3D (HDC hDC, UINT uDelay);
-    BOOL wglGetGenlockSourceDelayI3D (HDC hDC, UINT * uDelay);
-    BOOL wglQueryGenlockMaxSourceDelayI3D (HDC hDC, UINT * uMaxLineDelay, UINT * uMaxPixelDelay);
-    LPVOID wglCreateImageBufferI3D (HDC hDC, DWORD dwSize, UINT uFlags);
-    BOOL wglDestroyImageBufferI3D (HDC hDC, LPVOID pAddress);
-    BOOL wglAssociateImageBufferEventsI3D (HDC hDC, const HANDLE * pEvent, const LPVOID * pAddress, const DWORD * pSize, UINT count);
-    BOOL wglReleaseImageBufferEventsI3D (HDC hDC, const LPVOID * pAddress, UINT count);
-    BOOL wglEnableFrameLockI3D ();
-    BOOL wglDisableFrameLockI3D ();
-    BOOL wglIsEnabledFrameLockI3D (BOOL * pFlag);
-    BOOL wglQueryFrameLockMasterI3D (BOOL * pFlag);
-    BOOL wglGetFrameUsageI3D (float * pUsage);
-    BOOL wglBeginFrameTrackingI3D ();
-    BOOL wglEndFrameTrackingI3D ();
-    BOOL wglQueryFrameTrackingI3D (DWORD * pFrameCount, DWORD * pMissedFrames, float * pLastMissedUsage);
-    BOOL wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
-    BOOL wglDelayBeforeSwapNV (HDC hDC, GLfloat seconds);
-    BOOL wglDXSetResourceShareHandleNV (void * dxObject, HANDLE shareHandle);
-    HANDLE wglDXOpenDeviceNV (void * dxDevice);
-    BOOL wglDXCloseDeviceNV (HANDLE hDevice);
-    HANDLE wglDXRegisterObjectNV (HANDLE hDevice, void * dxObject, GLuint name, GLenum type, GLenum access);
-    BOOL wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject);
-    BOOL wglDXObjectAccessNV (HANDLE hObject, GLenum access);
-    BOOL wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects);
-    BOOL wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects);
-    BOOL wglEnumGpusNV (UINT iGpuIndex, HGPUNV * phGpu);
-    BOOL wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDeviceIndex, PGPU_DEVICE lpGpuDevice);
-    HDC wglCreateAffinityDCNV (const HGPUNV * phGpuList);
-    BOOL wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu);
-    BOOL wglDeleteDCNV (HDC hdc);
-    int wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList);
-    BOOL wglBindVideoDeviceNV (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList);
-    BOOL wglQueryCurrentContextNV (int iAttribute, int * piValue);
-    BOOL wglJoinSwapGroupNV (HDC hDC, GLuint group);
-    BOOL wglBindSwapBarrierNV (GLuint group, GLuint barrier);
-    BOOL wglQuerySwapGroupNV (HDC hDC, GLuint * group, GLuint * barrier);
-    BOOL wglQueryMaxSwapGroupsNV (HDC hDC, GLuint * maxGroups, GLuint * maxBarriers);
-    BOOL wglQueryFrameCountNV (HDC hDC, GLuint * count);
-    BOOL wglResetFrameCountNV (HDC hDC);
-    BOOL wglBindVideoCaptureDeviceNV (UINT uVideoSlot, HVIDEOINPUTDEVICENV hDevice);
-    UINT wglEnumerateVideoCaptureDevicesNV (HDC hDc, HVIDEOINPUTDEVICENV * phDeviceList);
-    BOOL wglLockVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice);
-    BOOL wglQueryVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice, int iAttribute, int * piValue);
-    BOOL wglReleaseVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice);
-    BOOL wglGetVideoDeviceNV (HDC hDC, int numDevices, HPVIDEODEV * hVideoDevice);
-    BOOL wglReleaseVideoDeviceNV (HPVIDEODEV hVideoDevice);
-    BOOL wglBindVideoImageNV (HPVIDEODEV hVideoDevice, HPBUFFERARB hPbuffer, int iVideoBuffer);
-    BOOL wglReleaseVideoImageNV (HPBUFFERARB hPbuffer, int iVideoBuffer);
-    BOOL wglSendPbufferToVideoNV (HPBUFFERARB hPbuffer, int iBufferType, unsigned long * pulCounterPbuffer, BOOL bBlock);
-    BOOL wglGetVideoInfoNV (HPVIDEODEV hpVideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo);
-    void * wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority);
-    void wglFreeMemoryNV (void * pointer);
-    BOOL wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc);
-    BOOL wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator);
-    INT64 wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder);
-    INT64 wglSwapLayerBuffersMscOML (HDC hdc, int fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder);
-    BOOL wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder, INT64 * ust, INT64 * msc, INT64 * sbc);
-    BOOL wglWaitForSbcOML (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT64 * sbc);
+    static BOOL wglSetStereoEmitterState3DL (HDC hDC, UINT uState);
+    static UINT wglGetGPUIDsAMD (UINT maxCount, UINT * ids);
+    static INT wglGetGPUInfoAMD (UINT id, int property, GLenum dataType, UINT size, void * data);
+    static UINT wglGetContextGPUIDAMD (HGLRC hglrc);
+    static HGLRC wglCreateAssociatedContextAMD (UINT id);
+    static HGLRC wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const int * attribList);
+    static BOOL wglDeleteAssociatedContextAMD (HGLRC hglrc);
+    static BOOL wglMakeAssociatedContextCurrentAMD (HGLRC hglrc);
+    static HGLRC wglGetCurrentAssociatedContextAMD ();
+    static VOID wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+    static HANDLE wglCreateBufferRegionARB (HDC hDC, int iLayerPlane, UINT uType);
+    static VOID wglDeleteBufferRegionARB (HANDLE hRegion);
+    static BOOL wglSaveBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height);
+    static BOOL wglRestoreBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height, int xSrc, int ySrc);
+    static HGLRC wglCreateContextAttribsARB (HDC hDC, HGLRC hShareContext, const int * attribList);
+    static const char * wglGetExtensionsStringARB (HDC hdc);
+    static BOOL wglMakeContextCurrentARB (HDC hDrawDC, HDC hReadDC, HGLRC hglrc);
+    static HDC wglGetCurrentReadDCARB ();
+    static HPBUFFERARB wglCreatePbufferARB (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList);
+    static HDC wglGetPbufferDCARB (HPBUFFERARB hPbuffer);
+    static int wglReleasePbufferDCARB (HPBUFFERARB hPbuffer, HDC hDC);
+    static BOOL wglDestroyPbufferARB (HPBUFFERARB hPbuffer);
+    static BOOL wglQueryPbufferARB (HPBUFFERARB hPbuffer, int iAttribute, int * piValue);
+    static BOOL wglGetPixelFormatAttribivARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, int * piValues);
+    static BOOL wglGetPixelFormatAttribfvARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, FLOAT * pfValues);
+    static BOOL wglChoosePixelFormatARB (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats);
+    static BOOL wglBindTexImageARB (HPBUFFERARB hPbuffer, int iBuffer);
+    static BOOL wglReleaseTexImageARB (HPBUFFERARB hPbuffer, int iBuffer);
+    static BOOL wglSetPbufferAttribARB (HPBUFFERARB hPbuffer, const int * piAttribList);
+    static GLboolean wglCreateDisplayColorTableEXT (GLushort id);
+    static GLboolean wglLoadDisplayColorTableEXT (const GLushort * table, GLuint length);
+    static GLboolean wglBindDisplayColorTableEXT (GLushort id);
+    static VOID wglDestroyDisplayColorTableEXT (GLushort id);
+    static const char * wglGetExtensionsStringEXT ();
+    static BOOL wglMakeContextCurrentEXT (HDC hDrawDC, HDC hReadDC, HGLRC hglrc);
+    static HDC wglGetCurrentReadDCEXT ();
+    static HPBUFFEREXT wglCreatePbufferEXT (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList);
+    static HDC wglGetPbufferDCEXT (HPBUFFEREXT hPbuffer);
+    static int wglReleasePbufferDCEXT (HPBUFFEREXT hPbuffer, HDC hDC);
+    static BOOL wglDestroyPbufferEXT (HPBUFFEREXT hPbuffer);
+    static BOOL wglQueryPbufferEXT (HPBUFFEREXT hPbuffer, int iAttribute, int * piValue);
+    static BOOL wglGetPixelFormatAttribivEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, int * piValues);
+    static BOOL wglGetPixelFormatAttribfvEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, FLOAT * pfValues);
+    static BOOL wglChoosePixelFormatEXT (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats);
+    static BOOL wglSwapIntervalEXT (int interval);
+    static int wglGetSwapIntervalEXT ();
+    static BOOL wglGetDigitalVideoParametersI3D (HDC hDC, int iAttribute, int * piValue);
+    static BOOL wglSetDigitalVideoParametersI3D (HDC hDC, int iAttribute, const int * piValue);
+    static BOOL wglGetGammaTableParametersI3D (HDC hDC, int iAttribute, int * piValue);
+    static BOOL wglSetGammaTableParametersI3D (HDC hDC, int iAttribute, const int * piValue);
+    static BOOL wglGetGammaTableI3D (HDC hDC, int iEntries, USHORT * puRed, USHORT * puGreen, USHORT * puBlue);
+    static BOOL wglSetGammaTableI3D (HDC hDC, int iEntries, const USHORT * puRed, const USHORT * puGreen, const USHORT * puBlue);
+    static BOOL wglEnableGenlockI3D (HDC hDC);
+    static BOOL wglDisableGenlockI3D (HDC hDC);
+    static BOOL wglIsEnabledGenlockI3D (HDC hDC, BOOL * pFlag);
+    static BOOL wglGenlockSourceI3D (HDC hDC, UINT uSource);
+    static BOOL wglGetGenlockSourceI3D (HDC hDC, UINT * uSource);
+    static BOOL wglGenlockSourceEdgeI3D (HDC hDC, UINT uEdge);
+    static BOOL wglGetGenlockSourceEdgeI3D (HDC hDC, UINT * uEdge);
+    static BOOL wglGenlockSampleRateI3D (HDC hDC, UINT uRate);
+    static BOOL wglGetGenlockSampleRateI3D (HDC hDC, UINT * uRate);
+    static BOOL wglGenlockSourceDelayI3D (HDC hDC, UINT uDelay);
+    static BOOL wglGetGenlockSourceDelayI3D (HDC hDC, UINT * uDelay);
+    static BOOL wglQueryGenlockMaxSourceDelayI3D (HDC hDC, UINT * uMaxLineDelay, UINT * uMaxPixelDelay);
+    static LPVOID wglCreateImageBufferI3D (HDC hDC, DWORD dwSize, UINT uFlags);
+    static BOOL wglDestroyImageBufferI3D (HDC hDC, LPVOID pAddress);
+    static BOOL wglAssociateImageBufferEventsI3D (HDC hDC, const HANDLE * pEvent, const LPVOID * pAddress, const DWORD * pSize, UINT count);
+    static BOOL wglReleaseImageBufferEventsI3D (HDC hDC, const LPVOID * pAddress, UINT count);
+    static BOOL wglEnableFrameLockI3D ();
+    static BOOL wglDisableFrameLockI3D ();
+    static BOOL wglIsEnabledFrameLockI3D (BOOL * pFlag);
+    static BOOL wglQueryFrameLockMasterI3D (BOOL * pFlag);
+    static BOOL wglGetFrameUsageI3D (float * pUsage);
+    static BOOL wglBeginFrameTrackingI3D ();
+    static BOOL wglEndFrameTrackingI3D ();
+    static BOOL wglQueryFrameTrackingI3D (DWORD * pFrameCount, DWORD * pMissedFrames, float * pLastMissedUsage);
+    static BOOL wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
+    static BOOL wglDelayBeforeSwapNV (HDC hDC, GLfloat seconds);
+    static BOOL wglDXSetResourceShareHandleNV (void * dxObject, HANDLE shareHandle);
+    static HANDLE wglDXOpenDeviceNV (void * dxDevice);
+    static BOOL wglDXCloseDeviceNV (HANDLE hDevice);
+    static HANDLE wglDXRegisterObjectNV (HANDLE hDevice, void * dxObject, GLuint name, GLenum type, GLenum access);
+    static BOOL wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject);
+    static BOOL wglDXObjectAccessNV (HANDLE hObject, GLenum access);
+    static BOOL wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects);
+    static BOOL wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects);
+    static BOOL wglEnumGpusNV (UINT iGpuIndex, HGPUNV * phGpu);
+    static BOOL wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDeviceIndex, PGPU_DEVICE lpGpuDevice);
+    static HDC wglCreateAffinityDCNV (const HGPUNV * phGpuList);
+    static BOOL wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu);
+    static BOOL wglDeleteDCNV (HDC hdc);
+    static int wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList);
+    static BOOL wglBindVideoDeviceNV (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList);
+    static BOOL wglQueryCurrentContextNV (int iAttribute, int * piValue);
+    static BOOL wglJoinSwapGroupNV (HDC hDC, GLuint group);
+    static BOOL wglBindSwapBarrierNV (GLuint group, GLuint barrier);
+    static BOOL wglQuerySwapGroupNV (HDC hDC, GLuint * group, GLuint * barrier);
+    static BOOL wglQueryMaxSwapGroupsNV (HDC hDC, GLuint * maxGroups, GLuint * maxBarriers);
+    static BOOL wglQueryFrameCountNV (HDC hDC, GLuint * count);
+    static BOOL wglResetFrameCountNV (HDC hDC);
+    static BOOL wglBindVideoCaptureDeviceNV (UINT uVideoSlot, HVIDEOINPUTDEVICENV hDevice);
+    static UINT wglEnumerateVideoCaptureDevicesNV (HDC hDc, HVIDEOINPUTDEVICENV * phDeviceList);
+    static BOOL wglLockVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice);
+    static BOOL wglQueryVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice, int iAttribute, int * piValue);
+    static BOOL wglReleaseVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice);
+    static BOOL wglGetVideoDeviceNV (HDC hDC, int numDevices, HPVIDEODEV * hVideoDevice);
+    static BOOL wglReleaseVideoDeviceNV (HPVIDEODEV hVideoDevice);
+    static BOOL wglBindVideoImageNV (HPVIDEODEV hVideoDevice, HPBUFFERARB hPbuffer, int iVideoBuffer);
+    static BOOL wglReleaseVideoImageNV (HPBUFFERARB hPbuffer, int iVideoBuffer);
+    static BOOL wglSendPbufferToVideoNV (HPBUFFERARB hPbuffer, int iBufferType, unsigned long * pulCounterPbuffer, BOOL bBlock);
+    static BOOL wglGetVideoInfoNV (HPVIDEODEV hpVideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo);
+    static void * wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority);
+    static void wglFreeMemoryNV (void * pointer);
+    static BOOL wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc);
+    static BOOL wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator);
+    static INT64 wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder);
+    static INT64 wglSwapLayerBuffersMscOML (HDC hdc, int fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder);
+    static BOOL wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder, INT64 * ust, INT64 * msc, INT64 * sbc);
+    static BOOL wglWaitForSbcOML (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT64 * sbc);
   };
 }
 
@@ -573,32 +491,61 @@ namespace glew
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define ChoosePixelFormat glew::wgl::ChoosePixelFormat
-#define DescribePixelFormat glew::wgl::DescribePixelFormat
-#define GetEnhMetaFilePixelFormat glew::wgl::GetEnhMetaFilePixelFormat
-#define GetPixelFormat glew::wgl::GetPixelFormat
-#define SetPixelFormat glew::wgl::SetPixelFormat
-#define SwapBuffers glew::wgl::SwapBuffers
-#define wglCopyContext glew::wgl::wglCopyContext
-#define wglCreateContext glew::wgl::wglCreateContext
-#define wglCreateLayerContext glew::wgl::wglCreateLayerContext
-#define wglDeleteContext glew::wgl::wglDeleteContext
-#define wglDescribeLayerPlane glew::wgl::wglDescribeLayerPlane
-#define wglGetCurrentContext glew::wgl::wglGetCurrentContext
-#define wglGetCurrentDC glew::wgl::wglGetCurrentDC
-#define wglGetLayerPaletteEntries glew::wgl::wglGetLayerPaletteEntries
-#define wglGetProcAddress glew::wgl::wglGetProcAddress
-#define wglMakeCurrent glew::wgl::wglMakeCurrent
-#define wglRealizeLayerPalette glew::wgl::wglRealizeLayerPalette
-#define wglSetLayerPaletteEntries glew::wgl::wglSetLayerPaletteEntries
-#define wglShareLists glew::wgl::wglShareLists
-#define wglSwapLayerBuffers glew::wgl::wglSwapLayerBuffers
-#define wglUseFontBitmaps glew::wgl::wglUseFontBitmaps
-#define wglUseFontBitmapsA glew::wgl::wglUseFontBitmapsA
-#define wglUseFontBitmapsW glew::wgl::wglUseFontBitmapsW
-#define wglUseFontOutlines glew::wgl::wglUseFontOutlines
-#define wglUseFontOutlinesA glew::wgl::wglUseFontOutlinesA
-#define wglUseFontOutlinesW glew::wgl::wglUseFontOutlinesW
+#define GLEW_WGL_VERSION_1_0 glew::wgl::GLEW_WGL_VERSION_1_0
+#define GLEW_WGL_3DFX_multisample glew::wgl::GLEW_WGL_3DFX_multisample
+#define GLEW_WGL_3DL_stereo_control glew::wgl::GLEW_WGL_3DL_stereo_control
+#define GLEW_WGL_AMD_gpu_association glew::wgl::GLEW_WGL_AMD_gpu_association
+#define GLEW_WGL_ARB_buffer_region glew::wgl::GLEW_WGL_ARB_buffer_region
+#define GLEW_WGL_ARB_context_flush_control glew::wgl::GLEW_WGL_ARB_context_flush_control
+#define GLEW_WGL_ARB_create_context glew::wgl::GLEW_WGL_ARB_create_context
+#define GLEW_WGL_ARB_create_context_profile glew::wgl::GLEW_WGL_ARB_create_context_profile
+#define GLEW_WGL_ARB_create_context_robustness glew::wgl::GLEW_WGL_ARB_create_context_robustness
+#define GLEW_WGL_ARB_extensions_string glew::wgl::GLEW_WGL_ARB_extensions_string
+#define GLEW_WGL_ARB_framebuffer_sRGB glew::wgl::GLEW_WGL_ARB_framebuffer_sRGB
+#define GLEW_WGL_ARB_make_current_read glew::wgl::GLEW_WGL_ARB_make_current_read
+#define GLEW_WGL_ARB_multisample glew::wgl::GLEW_WGL_ARB_multisample
+#define GLEW_WGL_ARB_pbuffer glew::wgl::GLEW_WGL_ARB_pbuffer
+#define GLEW_WGL_ARB_pixel_format glew::wgl::GLEW_WGL_ARB_pixel_format
+#define GLEW_WGL_ARB_pixel_format_float glew::wgl::GLEW_WGL_ARB_pixel_format_float
+#define GLEW_WGL_ARB_render_texture glew::wgl::GLEW_WGL_ARB_render_texture
+#define GLEW_WGL_ARB_robustness_application_isolation glew::wgl::GLEW_WGL_ARB_robustness_application_isolation
+#define GLEW_WGL_ARB_robustness_share_group_isolation glew::wgl::GLEW_WGL_ARB_robustness_share_group_isolation
+#define GLEW_WGL_ATI_pixel_format_float glew::wgl::GLEW_WGL_ATI_pixel_format_float
+#define GLEW_WGL_EXT_create_context_es_profile glew::wgl::GLEW_WGL_EXT_create_context_es_profile
+#define GLEW_WGL_EXT_create_context_es2_profile glew::wgl::GLEW_WGL_EXT_create_context_es2_profile
+#define GLEW_WGL_EXT_depth_float glew::wgl::GLEW_WGL_EXT_depth_float
+#define GLEW_WGL_EXT_display_color_table glew::wgl::GLEW_WGL_EXT_display_color_table
+#define GLEW_WGL_EXT_extensions_string glew::wgl::GLEW_WGL_EXT_extensions_string
+#define GLEW_WGL_EXT_framebuffer_sRGB glew::wgl::GLEW_WGL_EXT_framebuffer_sRGB
+#define GLEW_WGL_EXT_make_current_read glew::wgl::GLEW_WGL_EXT_make_current_read
+#define GLEW_WGL_EXT_multisample glew::wgl::GLEW_WGL_EXT_multisample
+#define GLEW_WGL_EXT_pbuffer glew::wgl::GLEW_WGL_EXT_pbuffer
+#define GLEW_WGL_EXT_pixel_format glew::wgl::GLEW_WGL_EXT_pixel_format
+#define GLEW_WGL_EXT_pixel_format_packed_float glew::wgl::GLEW_WGL_EXT_pixel_format_packed_float
+#define GLEW_WGL_EXT_swap_control glew::wgl::GLEW_WGL_EXT_swap_control
+#define GLEW_WGL_EXT_swap_control_tear glew::wgl::GLEW_WGL_EXT_swap_control_tear
+#define GLEW_WGL_I3D_digital_video_control glew::wgl::GLEW_WGL_I3D_digital_video_control
+#define GLEW_WGL_I3D_gamma glew::wgl::GLEW_WGL_I3D_gamma
+#define GLEW_WGL_I3D_genlock glew::wgl::GLEW_WGL_I3D_genlock
+#define GLEW_WGL_I3D_image_buffer glew::wgl::GLEW_WGL_I3D_image_buffer
+#define GLEW_WGL_I3D_swap_frame_lock glew::wgl::GLEW_WGL_I3D_swap_frame_lock
+#define GLEW_WGL_I3D_swap_frame_usage glew::wgl::GLEW_WGL_I3D_swap_frame_usage
+#define GLEW_WGL_NV_copy_image glew::wgl::GLEW_WGL_NV_copy_image
+#define GLEW_WGL_NV_delay_before_swap glew::wgl::GLEW_WGL_NV_delay_before_swap
+#define GLEW_WGL_NV_DX_interop glew::wgl::GLEW_WGL_NV_DX_interop
+#define GLEW_WGL_NV_DX_interop2 glew::wgl::GLEW_WGL_NV_DX_interop2
+#define GLEW_WGL_NV_float_buffer glew::wgl::GLEW_WGL_NV_float_buffer
+#define GLEW_WGL_NV_gpu_affinity glew::wgl::GLEW_WGL_NV_gpu_affinity
+#define GLEW_WGL_NV_multisample_coverage glew::wgl::GLEW_WGL_NV_multisample_coverage
+#define GLEW_WGL_NV_present_video glew::wgl::GLEW_WGL_NV_present_video
+#define GLEW_WGL_NV_render_depth_texture glew::wgl::GLEW_WGL_NV_render_depth_texture
+#define GLEW_WGL_NV_render_texture_rectangle glew::wgl::GLEW_WGL_NV_render_texture_rectangle
+#define GLEW_WGL_NV_swap_group glew::wgl::GLEW_WGL_NV_swap_group
+#define GLEW_WGL_NV_video_capture glew::wgl::GLEW_WGL_NV_video_capture
+#define GLEW_WGL_NV_video_output glew::wgl::GLEW_WGL_NV_video_output
+#define GLEW_WGL_NV_vertex_array_range glew::wgl::GLEW_WGL_NV_vertex_array_range
+#define GLEW_WGL_OML_sync_control glew::wgl::GLEW_WGL_OML_sync_control
+
 #define wglSetStereoEmitterState3DL glew::wgl::wglSetStereoEmitterState3DL
 #define wglGetGPUIDsAMD glew::wgl::wglGetGPUIDsAMD
 #define wglGetGPUInfoAMD glew::wgl::wglGetGPUInfoAMD

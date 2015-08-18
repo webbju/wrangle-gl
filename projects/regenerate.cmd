@@ -16,7 +16,7 @@ cmake ..\.. -G "Visual Studio 12" -A "x64"
 
 cd ..\visual-studio-androidpp
 
-cmake ..\.. -G "Visual Studio 12" -DCMAKE_TOOLCHAIN_FILE=..\cmake\visual-studio-androidpp.cmake
+::cmake ..\.. -G "Visual Studio 12" -DCMAKE_TOOLCHAIN_FILE=..\cmake\visual-studio-androidpp.cmake
 
 cd ..
 

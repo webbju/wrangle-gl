@@ -66,11 +66,9 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
-      writer.Write ("\n");
+      writer.Write ("\n#include <string>\n\n#include <unordered_set>\n\n");
 
       base.ExportCpp (ref writer);
-
-      WriteCommentDivider (ref writer);
 
       writer.Write ("\n");
 
@@ -78,9 +76,97 @@ namespace wrangle_gl_generator
       // glew::gles::Initialise
       // 
 
-      writer.Write ("void glew::gles::Initialise ()\n{\n");
+      writer.Write ("glew::gles::DeviceConfig glew::gles::s_deviceConfig;\n\n");
+
+      WriteCommentDivider (ref writer);
+
+      writer.Write ("\nvoid glew::gles::Initialise ()\n{\n");
 
       writer.Write ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));\n\n");
+
+      writer.Write (@"  // 
+  // Determine current driver's feature reporting.
+  // 
+
+  #undef glGetString
+
+  PFNGLGETSTRINGPROC _glGetString = (PFNGLGETSTRINGPROC) glew::GetProcAddress (""glGetString"");
+
+  const GLubyte *glVersion = _glGetString (GL_VERSION);
+
+  const bool es20Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 2"", 11) == 0);
+  const bool es30Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 3"", 11) == 0);
+  const bool es31Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 3.1"", 13) == 0);
+
+  s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = es20Supported;
+  s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = es30Supported;
+  s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = es31Supported;
+
+  // 
+  // Evaluate extension support.
+  // 
+
+  std::unordered_set <std::string> supportedExtensions;
+
+  const GLubyte *glExtensions = _glGetString (GL_EXTENSIONS);
+
+  const size_t glExtensionsLen = glExtensions ? strlen ((const char *) glExtensions) : 0;
+
+  if (glExtensionsLen)
+  {
+    GLubyte *thisExtStart = (GLubyte *) glExtensions;
+
+    GLubyte *thisExtEnd = NULL;
+
+    char thisExtBuffer [128];
+
+    memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
+
+    do 
+    {
+      const char * seperator = strchr ((const char *) thisExtStart, ' ');
+
+      if (seperator)
+      {
+        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (GLubyte));
+
+        strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+
+        thisExtBuffer [min (len, 127)] = '\0';
+
+        thisExtEnd = (GLubyte *) seperator + 1; // skip tab character
+      }
+      else
+      {
+        const size_t len = strlen ((const char *) thisExtStart);
+
+        strncpy (thisExtBuffer, (const char *) thisExtStart, len);
+
+        thisExtBuffer [min (len + 1, 127)] = '\0';
+
+        thisExtEnd = NULL;
+      }
+
+      std::string thisExt (thisExtBuffer);
+
+      if (supportedExtensions.find (thisExt) == supportedExtensions.end ())
+      {
+        supportedExtensions.insert (thisExt);
+      }
+
+      thisExtStart = thisExtEnd;
+    }
+    while ((thisExtStart && *thisExtStart != '\0') && (thisExtEnd && *thisExtEnd != '\0'));
+  }
+
+");
+
+      foreach (var keypair in m_extensionNodesLookup)
+      {
+        writer.Write (string.Format ("  s_deviceConfig.m_featureSupported [GLEW_{0}] = (supportedExtensions.find (\"{0}\") != supportedExtensions.end ());\n", keypair.Key));
+      }
+
+      writer.Write ("\n");
 
       // 
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
@@ -112,6 +198,13 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          {
+            continue; // Skip any initial (base spec) versions.
+          }
+
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
@@ -141,11 +234,13 @@ namespace wrangle_gl_generator
 
             writer.Write (string.Format ("  // {0}\n", keypair.Key));
 
+            writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
+
             foreach (XmlNode commandNode in requireCommandNodes)
             {
               string command = commandNode.Attributes ["name"].Value;
 
-              writer.Write (string.Format ("  #undef {0}\n", command));
+              writer.Write (string.Format ("    #undef {0}\n", command));
             }
 
             foreach (XmlNode commandNode in requireCommandNodes)
@@ -154,36 +249,23 @@ namespace wrangle_gl_generator
 
               string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
 
-              writer.Write (string.Format ("  s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glew::GetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
             }
 
-            writer.Write ("\n");
+            writer.Write ("  }\n\n");
           }
         }
       }
 
-      writer.Write ("  // \n  // Determine current driver's feature reporting.\n  // \n\n");
+      writer.Write ("}\n\n");
 
-      writer.Write ("  const GLubyte *glVersion = s_deviceConfig.m_glGetString (GL_VERSION);\n\n");
+      WriteCommentDivider (ref writer);
 
-      writer.Write ("  const GLubyte *glExtensions = s_deviceConfig.m_glGetString (GL_EXTENSIONS);\n\n");
+      // 
+      // glew::gles::Deinitialise
+      // 
 
-      writer.Write ("  bool es20Supported = strncasecmp ((const char *) glVersion, \"OpenGL ES 2\", 11);\n");
-
-      writer.Write ("  bool es30Supported = strncasecmp ((const char *) glVersion, \"OpenGL ES 3\", 11);\n");
-
-      writer.Write ("  bool es31Supported = strncasecmp ((const char *) glVersion, \"OpenGL ES 3.1\", 13);\n\n");
-
-      writer.Write ("  s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = es20Supported;\n");
-
-      writer.Write ("  s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = es30Supported;\n");
-
-      writer.Write ("  s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = es31Supported;\n\n");
-
-      foreach (var keypair in m_extensionNodesLookup)
-      {
-        writer.Write (string.Format ("  s_deviceConfig.m_featureSupported [GLEW_{0}] = IsExtensionSupported (\"{0}\");\n", keypair.Key));
-      }
+      writer.Write ("\nvoid glew::gles::Deinitialise ()\n{\n");
 
       writer.Write ("}\n\n");
 

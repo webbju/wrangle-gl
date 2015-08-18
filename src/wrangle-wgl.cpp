@@ -2,6 +2,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include <string>
+
+#include <unordered_set>
+
 #include <windows.h>
 
 #include <GL/gl.h>
@@ -10,371 +14,9 @@
 
 #undef wglUseFontOutlines
 
+#include <wrangle.h>
+
 #include <wrangle-wgl.h>
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-int ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd)
-{
-  // WGL_VERSION_1_0 - ChoosePixelFormat
-  if (s_deviceConfig.m_ChoosePixelFormat)
-  {
-    return s_deviceConfig.m_ChoosePixelFormat (hDc, pPfd);
-  }
-  return ((int )0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-int DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd)
-{
-  // WGL_VERSION_1_0 - DescribePixelFormat
-  if (s_deviceConfig.m_DescribePixelFormat)
-  {
-    return s_deviceConfig.m_DescribePixelFormat (hdc, ipfd, cjpfd, ppfd);
-  }
-  return ((int )0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-UINT GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd)
-{
-  // WGL_VERSION_1_0 - GetEnhMetaFilePixelFormat
-  if (s_deviceConfig.m_GetEnhMetaFilePixelFormat)
-  {
-    return s_deviceConfig.m_GetEnhMetaFilePixelFormat (hemf, ppfd);
-  }
-  return ((UINT)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-int GetPixelFormat (HDC hdc)
-{
-  // WGL_VERSION_1_0 - GetPixelFormat
-  if (s_deviceConfig.m_GetPixelFormat)
-  {
-    return s_deviceConfig.m_GetPixelFormat (hdc);
-  }
-  return ((int )0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd)
-{
-  // WGL_VERSION_1_0 - SetPixelFormat
-  if (s_deviceConfig.m_SetPixelFormat)
-  {
-    return s_deviceConfig.m_SetPixelFormat (hdc, ipfd, ppfd);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL SwapBuffers (HDC hdc)
-{
-  // WGL_VERSION_1_0 - SwapBuffers
-  if (s_deviceConfig.m_SwapBuffers)
-  {
-    return s_deviceConfig.m_SwapBuffers (hdc);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask)
-{
-  // WGL_VERSION_1_0 - wglCopyContext
-  if (s_deviceConfig.m_wglCopyContext)
-  {
-    return s_deviceConfig.m_wglCopyContext (hglrcSrc, hglrcDst, mask);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-HGLRC wglCreateContext (HDC hDc)
-{
-  // WGL_VERSION_1_0 - wglCreateContext
-  if (s_deviceConfig.m_wglCreateContext)
-  {
-    return s_deviceConfig.m_wglCreateContext (hDc);
-  }
-  return ((HGLRC)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-HGLRC wglCreateLayerContext (HDC hDc, int level)
-{
-  // WGL_VERSION_1_0 - wglCreateLayerContext
-  if (s_deviceConfig.m_wglCreateLayerContext)
-  {
-    return s_deviceConfig.m_wglCreateLayerContext (hDc, level);
-  }
-  return ((HGLRC)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglDeleteContext (HGLRC oldContext)
-{
-  // WGL_VERSION_1_0 - wglDeleteContext
-  if (s_deviceConfig.m_wglDeleteContext)
-  {
-    return s_deviceConfig.m_wglDeleteContext (oldContext);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, const LAYERPLANEDESCRIPTOR * plpd)
-{
-  // WGL_VERSION_1_0 - wglDescribeLayerPlane
-  if (s_deviceConfig.m_wglDescribeLayerPlane)
-  {
-    return s_deviceConfig.m_wglDescribeLayerPlane (hDc, pixelFormat, layerPlane, nBytes, plpd);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-HGLRC wglGetCurrentContext ()
-{
-  // WGL_VERSION_1_0 - wglGetCurrentContext
-  if (s_deviceConfig.m_wglGetCurrentContext)
-  {
-    return s_deviceConfig.m_wglGetCurrentContext ();
-  }
-  return ((HGLRC)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-HDC wglGetCurrentDC ()
-{
-  // WGL_VERSION_1_0 - wglGetCurrentDC
-  if (s_deviceConfig.m_wglGetCurrentDC)
-  {
-    return s_deviceConfig.m_wglGetCurrentDC ();
-  }
-  return ((HDC)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-int wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr)
-{
-  // WGL_VERSION_1_0 - wglGetLayerPaletteEntries
-  if (s_deviceConfig.m_wglGetLayerPaletteEntries)
-  {
-    return s_deviceConfig.m_wglGetLayerPaletteEntries (hdc, iLayerPlane, iStart, cEntries, pcr);
-  }
-  return ((int )0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-PROC wglGetProcAddress (LPCSTR lpszProc)
-{
-  // WGL_VERSION_1_0 - wglGetProcAddress
-  if (s_deviceConfig.m_wglGetProcAddress)
-  {
-    return s_deviceConfig.m_wglGetProcAddress (lpszProc);
-  }
-  return ((PROC)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglMakeCurrent (HDC hDc, HGLRC newContext)
-{
-  // WGL_VERSION_1_0 - wglMakeCurrent
-  if (s_deviceConfig.m_wglMakeCurrent)
-  {
-    return s_deviceConfig.m_wglMakeCurrent (hDc, newContext);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize)
-{
-  // WGL_VERSION_1_0 - wglRealizeLayerPalette
-  if (s_deviceConfig.m_wglRealizeLayerPalette)
-  {
-    return s_deviceConfig.m_wglRealizeLayerPalette (hdc, iLayerPlane, bRealize);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-int wglSetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr)
-{
-  // WGL_VERSION_1_0 - wglSetLayerPaletteEntries
-  if (s_deviceConfig.m_wglSetLayerPaletteEntries)
-  {
-    return s_deviceConfig.m_wglSetLayerPaletteEntries (hdc, iLayerPlane, iStart, cEntries, pcr);
-  }
-  return ((int )0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglShareLists (HGLRC hrcSrvShare, HGLRC hrcSrvSource)
-{
-  // WGL_VERSION_1_0 - wglShareLists
-  if (s_deviceConfig.m_wglShareLists)
-  {
-    return s_deviceConfig.m_wglShareLists (hrcSrvShare, hrcSrvSource);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglSwapLayerBuffers (HDC hdc, UINT fuFlags)
-{
-  // WGL_VERSION_1_0 - wglSwapLayerBuffers
-  if (s_deviceConfig.m_wglSwapLayerBuffers)
-  {
-    return s_deviceConfig.m_wglSwapLayerBuffers (hdc, fuFlags);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglUseFontBitmaps (HDC hDC, DWORD first, DWORD count, DWORD listBase)
-{
-  // WGL_VERSION_1_0 - wglUseFontBitmaps
-  if (s_deviceConfig.m_wglUseFontBitmaps)
-  {
-    return s_deviceConfig.m_wglUseFontBitmaps (hDC, first, count, listBase);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglUseFontBitmapsA (HDC hDC, DWORD first, DWORD count, DWORD listBase)
-{
-  // WGL_VERSION_1_0 - wglUseFontBitmapsA
-  if (s_deviceConfig.m_wglUseFontBitmapsA)
-  {
-    return s_deviceConfig.m_wglUseFontBitmapsA (hDC, first, count, listBase);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglUseFontBitmapsW (HDC hDC, DWORD first, DWORD count, DWORD listBase)
-{
-  // WGL_VERSION_1_0 - wglUseFontBitmapsW
-  if (s_deviceConfig.m_wglUseFontBitmapsW)
-  {
-    return s_deviceConfig.m_wglUseFontBitmapsW (hDC, first, count, listBase);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglUseFontOutlines (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
-{
-  // WGL_VERSION_1_0 - wglUseFontOutlines
-  if (s_deviceConfig.m_wglUseFontOutlines)
-  {
-    return s_deviceConfig.m_wglUseFontOutlines (hDC, first, count, listBase, deviation, extrusion, format, lpgmf);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglUseFontOutlinesA (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
-{
-  // WGL_VERSION_1_0 - wglUseFontOutlinesA
-  if (s_deviceConfig.m_wglUseFontOutlinesA)
-  {
-    return s_deviceConfig.m_wglUseFontOutlinesA (hDC, first, count, listBase, deviation, extrusion, format, lpgmf);
-  }
-  return ((BOOL)0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-BOOL wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
-{
-  // WGL_VERSION_1_0 - wglUseFontOutlinesW
-  if (s_deviceConfig.m_wglUseFontOutlinesW)
-  {
-    return s_deviceConfig.m_wglUseFontOutlinesW (hDC, first, count, listBase, deviation, extrusion, format, lpgmf);
-  }
-  return ((BOOL)0);
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2039,6 +1681,555 @@ BOOL wglWaitForSbcOML (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT6
     return s_deviceConfig.m_wglWaitForSbcOML (hdc, target_sbc, ust, msc, sbc);
   }
   return ((BOOL)0);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+glew::wgl::DeviceConfig glew::wgl::s_deviceConfig;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void glew::wgl::Initialise ()
+{
+  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));
+
+  // 
+  // Determine current driver's feature reporting.
+  // 
+
+  PFNWGLGETEXTENSIONSSTRINGARBPROC _wglewGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) glew::GetProcAddress ("wglGetExtensionsStringARB");
+
+  PFNWGLGETEXTENSIONSSTRINGEXTPROC _wglewGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) glew::GetProcAddress ("wglGetExtensionsStringEXT");
+
+  PFNWGLGETCURRENTDCPROC _wglGetCurrentDC = (PFNWGLGETCURRENTDCPROC) glew::GetProcAddress ("wglGetCurrentDC");
+
+  s_deviceConfig.m_featureSupported [GLEW_WGL_VERSION_1_0] = true;
+
+  // 
+  // Evaluate extension support.
+  // 
+
+  std::unordered_set <std::string> supportedExtensions;
+
+  const GLubyte *wglExtensions = (const GLubyte*)"";
+
+  if (_wglewGetExtensionsStringEXT != NULL)
+  {
+    wglExtensions = (const GLubyte*) _wglewGetExtensionsStringEXT ();
+  }
+  else if (_wglewGetExtensionsStringARB != NULL)
+  {
+    wglExtensions = (const GLubyte*) _wglewGetExtensionsStringARB (_wglGetCurrentDC());
+  }
+
+  const size_t wglExtensionsLen = wglExtensions ? strlen ((const char *) wglExtensions) : 0;
+
+  if (wglExtensionsLen)
+  {
+    GLubyte *thisExtStart = (GLubyte *) wglExtensions;
+
+    GLubyte *thisExtEnd = NULL;
+
+    char thisExtBuffer [128];
+
+    memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
+
+    do 
+    {
+      const char * seperator = strchr ((const char *) thisExtStart, ' ');
+
+      if (seperator)
+      {
+        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (GLubyte));
+
+        strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+
+        thisExtBuffer [min (len, 127)] = '\0';
+
+        thisExtEnd = (GLubyte *) seperator + 1; // skip tab character
+      }
+      else
+      {
+        const size_t len = strlen ((const char *) thisExtStart);
+
+        strncpy (thisExtBuffer, (const char *) thisExtStart, len);
+
+        thisExtBuffer [min (len + 1, 127)] = '\0';
+
+        thisExtEnd = NULL;
+      }
+
+      std::string thisExt (thisExtBuffer);
+
+      if (supportedExtensions.find (thisExt) == supportedExtensions.end ())
+      {
+        supportedExtensions.insert (thisExt);
+      }
+
+      thisExtStart = thisExtEnd;
+    }
+    while ((thisExtStart && *thisExtStart != '\0') && (thisExtEnd && *thisExtEnd != '\0'));
+  }
+
+  s_deviceConfig.m_featureSupported [GLEW_WGL_3DFX_multisample] = (supportedExtensions.find ("WGL_3DFX_multisample") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_3DL_stereo_control] = (supportedExtensions.find ("WGL_3DL_stereo_control") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_AMD_gpu_association] = (supportedExtensions.find ("WGL_AMD_gpu_association") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_buffer_region] = (supportedExtensions.find ("WGL_ARB_buffer_region") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_context_flush_control] = (supportedExtensions.find ("WGL_ARB_context_flush_control") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context] = (supportedExtensions.find ("WGL_ARB_create_context") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context_profile] = (supportedExtensions.find ("WGL_ARB_create_context_profile") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context_robustness] = (supportedExtensions.find ("WGL_ARB_create_context_robustness") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_extensions_string] = (supportedExtensions.find ("WGL_ARB_extensions_string") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_framebuffer_sRGB] = (supportedExtensions.find ("WGL_ARB_framebuffer_sRGB") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_make_current_read] = (supportedExtensions.find ("WGL_ARB_make_current_read") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_multisample] = (supportedExtensions.find ("WGL_ARB_multisample") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pbuffer] = (supportedExtensions.find ("WGL_ARB_pbuffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pixel_format] = (supportedExtensions.find ("WGL_ARB_pixel_format") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pixel_format_float] = (supportedExtensions.find ("WGL_ARB_pixel_format_float") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_render_texture] = (supportedExtensions.find ("WGL_ARB_render_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_robustness_application_isolation] = (supportedExtensions.find ("WGL_ARB_robustness_application_isolation") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_robustness_share_group_isolation] = (supportedExtensions.find ("WGL_ARB_robustness_share_group_isolation") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ATI_pixel_format_float] = (supportedExtensions.find ("WGL_ATI_pixel_format_float") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_create_context_es_profile] = (supportedExtensions.find ("WGL_EXT_create_context_es_profile") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_create_context_es2_profile] = (supportedExtensions.find ("WGL_EXT_create_context_es2_profile") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_depth_float] = (supportedExtensions.find ("WGL_EXT_depth_float") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_display_color_table] = (supportedExtensions.find ("WGL_EXT_display_color_table") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_extensions_string] = (supportedExtensions.find ("WGL_EXT_extensions_string") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_framebuffer_sRGB] = (supportedExtensions.find ("WGL_EXT_framebuffer_sRGB") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_make_current_read] = (supportedExtensions.find ("WGL_EXT_make_current_read") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_multisample] = (supportedExtensions.find ("WGL_EXT_multisample") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pbuffer] = (supportedExtensions.find ("WGL_EXT_pbuffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pixel_format] = (supportedExtensions.find ("WGL_EXT_pixel_format") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pixel_format_packed_float] = (supportedExtensions.find ("WGL_EXT_pixel_format_packed_float") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_swap_control] = (supportedExtensions.find ("WGL_EXT_swap_control") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_swap_control_tear] = (supportedExtensions.find ("WGL_EXT_swap_control_tear") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_digital_video_control] = (supportedExtensions.find ("WGL_I3D_digital_video_control") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_gamma] = (supportedExtensions.find ("WGL_I3D_gamma") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_genlock] = (supportedExtensions.find ("WGL_I3D_genlock") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_image_buffer] = (supportedExtensions.find ("WGL_I3D_image_buffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_lock] = (supportedExtensions.find ("WGL_I3D_swap_frame_lock") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_usage] = (supportedExtensions.find ("WGL_I3D_swap_frame_usage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_copy_image] = (supportedExtensions.find ("WGL_NV_copy_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_delay_before_swap] = (supportedExtensions.find ("WGL_NV_delay_before_swap") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_DX_interop] = (supportedExtensions.find ("WGL_NV_DX_interop") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_DX_interop2] = (supportedExtensions.find ("WGL_NV_DX_interop2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_float_buffer] = (supportedExtensions.find ("WGL_NV_float_buffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_gpu_affinity] = (supportedExtensions.find ("WGL_NV_gpu_affinity") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_multisample_coverage] = (supportedExtensions.find ("WGL_NV_multisample_coverage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_present_video] = (supportedExtensions.find ("WGL_NV_present_video") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_render_depth_texture] = (supportedExtensions.find ("WGL_NV_render_depth_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_render_texture_rectangle] = (supportedExtensions.find ("WGL_NV_render_texture_rectangle") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_swap_group] = (supportedExtensions.find ("WGL_NV_swap_group") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_capture] = (supportedExtensions.find ("WGL_NV_video_capture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_output] = (supportedExtensions.find ("WGL_NV_video_output") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_vertex_array_range] = (supportedExtensions.find ("WGL_NV_vertex_array_range") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_OML_sync_control] = (supportedExtensions.find ("WGL_OML_sync_control") != supportedExtensions.end ());
+
+  // WGL_3DL_stereo_control
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_3DL_stereo_control])
+  {
+    #undef wglSetStereoEmitterState3DL
+    s_deviceConfig.m_wglSetStereoEmitterState3DL = (PFNWGLSETSTEREOEMITTERSTATE3DLPROC) glew::GetProcAddress ("wglSetStereoEmitterState3DL");
+  }
+
+  // WGL_AMD_gpu_association
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_AMD_gpu_association])
+  {
+    #undef wglGetGPUIDsAMD
+    #undef wglGetGPUInfoAMD
+    #undef wglGetContextGPUIDAMD
+    #undef wglCreateAssociatedContextAMD
+    #undef wglCreateAssociatedContextAttribsAMD
+    #undef wglDeleteAssociatedContextAMD
+    #undef wglMakeAssociatedContextCurrentAMD
+    #undef wglGetCurrentAssociatedContextAMD
+    #undef wglBlitContextFramebufferAMD
+    s_deviceConfig.m_wglGetGPUIDsAMD = (PFNWGLGETGPUIDSAMDPROC) glew::GetProcAddress ("wglGetGPUIDsAMD");
+    s_deviceConfig.m_wglGetGPUInfoAMD = (PFNWGLGETGPUINFOAMDPROC) glew::GetProcAddress ("wglGetGPUInfoAMD");
+    s_deviceConfig.m_wglGetContextGPUIDAMD = (PFNWGLGETCONTEXTGPUIDAMDPROC) glew::GetProcAddress ("wglGetContextGPUIDAMD");
+    s_deviceConfig.m_wglCreateAssociatedContextAMD = (PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC) glew::GetProcAddress ("wglCreateAssociatedContextAMD");
+    s_deviceConfig.m_wglCreateAssociatedContextAttribsAMD = (PFNWGLCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) glew::GetProcAddress ("wglCreateAssociatedContextAttribsAMD");
+    s_deviceConfig.m_wglDeleteAssociatedContextAMD = (PFNWGLDELETEASSOCIATEDCONTEXTAMDPROC) glew::GetProcAddress ("wglDeleteAssociatedContextAMD");
+    s_deviceConfig.m_wglMakeAssociatedContextCurrentAMD = (PFNWGLMAKEASSOCIATEDCONTEXTCURRENTAMDPROC) glew::GetProcAddress ("wglMakeAssociatedContextCurrentAMD");
+    s_deviceConfig.m_wglGetCurrentAssociatedContextAMD = (PFNWGLGETCURRENTASSOCIATEDCONTEXTAMDPROC) glew::GetProcAddress ("wglGetCurrentAssociatedContextAMD");
+    s_deviceConfig.m_wglBlitContextFramebufferAMD = (PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC) glew::GetProcAddress ("wglBlitContextFramebufferAMD");
+  }
+
+  // WGL_ARB_buffer_region
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_buffer_region])
+  {
+    #undef wglCreateBufferRegionARB
+    #undef wglDeleteBufferRegionARB
+    #undef wglSaveBufferRegionARB
+    #undef wglRestoreBufferRegionARB
+    s_deviceConfig.m_wglCreateBufferRegionARB = (PFNWGLCREATEBUFFERREGIONARBPROC) glew::GetProcAddress ("wglCreateBufferRegionARB");
+    s_deviceConfig.m_wglDeleteBufferRegionARB = (PFNWGLDELETEBUFFERREGIONARBPROC) glew::GetProcAddress ("wglDeleteBufferRegionARB");
+    s_deviceConfig.m_wglSaveBufferRegionARB = (PFNWGLSAVEBUFFERREGIONARBPROC) glew::GetProcAddress ("wglSaveBufferRegionARB");
+    s_deviceConfig.m_wglRestoreBufferRegionARB = (PFNWGLRESTOREBUFFERREGIONARBPROC) glew::GetProcAddress ("wglRestoreBufferRegionARB");
+  }
+
+  // WGL_ARB_create_context
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context])
+  {
+    #undef wglCreateContextAttribsARB
+    s_deviceConfig.m_wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC) glew::GetProcAddress ("wglCreateContextAttribsARB");
+  }
+
+  // WGL_ARB_extensions_string
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_extensions_string])
+  {
+    #undef wglGetExtensionsStringARB
+    s_deviceConfig.m_wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) glew::GetProcAddress ("wglGetExtensionsStringARB");
+  }
+
+  // WGL_ARB_make_current_read
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_make_current_read])
+  {
+    #undef wglMakeContextCurrentARB
+    #undef wglGetCurrentReadDCARB
+    s_deviceConfig.m_wglMakeContextCurrentARB = (PFNWGLMAKECONTEXTCURRENTARBPROC) glew::GetProcAddress ("wglMakeContextCurrentARB");
+    s_deviceConfig.m_wglGetCurrentReadDCARB = (PFNWGLGETCURRENTREADDCARBPROC) glew::GetProcAddress ("wglGetCurrentReadDCARB");
+  }
+
+  // WGL_ARB_pbuffer
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pbuffer])
+  {
+    #undef wglCreatePbufferARB
+    #undef wglGetPbufferDCARB
+    #undef wglReleasePbufferDCARB
+    #undef wglDestroyPbufferARB
+    #undef wglQueryPbufferARB
+    s_deviceConfig.m_wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC) glew::GetProcAddress ("wglCreatePbufferARB");
+    s_deviceConfig.m_wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC) glew::GetProcAddress ("wglGetPbufferDCARB");
+    s_deviceConfig.m_wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC) glew::GetProcAddress ("wglReleasePbufferDCARB");
+    s_deviceConfig.m_wglDestroyPbufferARB = (PFNWGLDESTROYPBUFFERARBPROC) glew::GetProcAddress ("wglDestroyPbufferARB");
+    s_deviceConfig.m_wglQueryPbufferARB = (PFNWGLQUERYPBUFFERARBPROC) glew::GetProcAddress ("wglQueryPbufferARB");
+  }
+
+  // WGL_ARB_pixel_format
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pixel_format])
+  {
+    #undef wglGetPixelFormatAttribivARB
+    #undef wglGetPixelFormatAttribfvARB
+    #undef wglChoosePixelFormatARB
+    s_deviceConfig.m_wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC) glew::GetProcAddress ("wglGetPixelFormatAttribivARB");
+    s_deviceConfig.m_wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC) glew::GetProcAddress ("wglGetPixelFormatAttribfvARB");
+    s_deviceConfig.m_wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC) glew::GetProcAddress ("wglChoosePixelFormatARB");
+  }
+
+  // WGL_ARB_render_texture
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_render_texture])
+  {
+    #undef wglBindTexImageARB
+    #undef wglReleaseTexImageARB
+    #undef wglSetPbufferAttribARB
+    s_deviceConfig.m_wglBindTexImageARB = (PFNWGLBINDTEXIMAGEARBPROC) glew::GetProcAddress ("wglBindTexImageARB");
+    s_deviceConfig.m_wglReleaseTexImageARB = (PFNWGLRELEASETEXIMAGEARBPROC) glew::GetProcAddress ("wglReleaseTexImageARB");
+    s_deviceConfig.m_wglSetPbufferAttribARB = (PFNWGLSETPBUFFERATTRIBARBPROC) glew::GetProcAddress ("wglSetPbufferAttribARB");
+  }
+
+  // WGL_EXT_display_color_table
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_display_color_table])
+  {
+    #undef wglCreateDisplayColorTableEXT
+    #undef wglLoadDisplayColorTableEXT
+    #undef wglBindDisplayColorTableEXT
+    #undef wglDestroyDisplayColorTableEXT
+    s_deviceConfig.m_wglCreateDisplayColorTableEXT = (PFNWGLCREATEDISPLAYCOLORTABLEEXTPROC) glew::GetProcAddress ("wglCreateDisplayColorTableEXT");
+    s_deviceConfig.m_wglLoadDisplayColorTableEXT = (PFNWGLLOADDISPLAYCOLORTABLEEXTPROC) glew::GetProcAddress ("wglLoadDisplayColorTableEXT");
+    s_deviceConfig.m_wglBindDisplayColorTableEXT = (PFNWGLBINDDISPLAYCOLORTABLEEXTPROC) glew::GetProcAddress ("wglBindDisplayColorTableEXT");
+    s_deviceConfig.m_wglDestroyDisplayColorTableEXT = (PFNWGLDESTROYDISPLAYCOLORTABLEEXTPROC) glew::GetProcAddress ("wglDestroyDisplayColorTableEXT");
+  }
+
+  // WGL_EXT_extensions_string
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_extensions_string])
+  {
+    #undef wglGetExtensionsStringEXT
+    s_deviceConfig.m_wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) glew::GetProcAddress ("wglGetExtensionsStringEXT");
+  }
+
+  // WGL_EXT_make_current_read
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_make_current_read])
+  {
+    #undef wglMakeContextCurrentEXT
+    #undef wglGetCurrentReadDCEXT
+    s_deviceConfig.m_wglMakeContextCurrentEXT = (PFNWGLMAKECONTEXTCURRENTEXTPROC) glew::GetProcAddress ("wglMakeContextCurrentEXT");
+    s_deviceConfig.m_wglGetCurrentReadDCEXT = (PFNWGLGETCURRENTREADDCEXTPROC) glew::GetProcAddress ("wglGetCurrentReadDCEXT");
+  }
+
+  // WGL_EXT_pbuffer
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pbuffer])
+  {
+    #undef wglCreatePbufferEXT
+    #undef wglGetPbufferDCEXT
+    #undef wglReleasePbufferDCEXT
+    #undef wglDestroyPbufferEXT
+    #undef wglQueryPbufferEXT
+    s_deviceConfig.m_wglCreatePbufferEXT = (PFNWGLCREATEPBUFFEREXTPROC) glew::GetProcAddress ("wglCreatePbufferEXT");
+    s_deviceConfig.m_wglGetPbufferDCEXT = (PFNWGLGETPBUFFERDCEXTPROC) glew::GetProcAddress ("wglGetPbufferDCEXT");
+    s_deviceConfig.m_wglReleasePbufferDCEXT = (PFNWGLRELEASEPBUFFERDCEXTPROC) glew::GetProcAddress ("wglReleasePbufferDCEXT");
+    s_deviceConfig.m_wglDestroyPbufferEXT = (PFNWGLDESTROYPBUFFEREXTPROC) glew::GetProcAddress ("wglDestroyPbufferEXT");
+    s_deviceConfig.m_wglQueryPbufferEXT = (PFNWGLQUERYPBUFFEREXTPROC) glew::GetProcAddress ("wglQueryPbufferEXT");
+  }
+
+  // WGL_EXT_pixel_format
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pixel_format])
+  {
+    #undef wglGetPixelFormatAttribivEXT
+    #undef wglGetPixelFormatAttribfvEXT
+    #undef wglChoosePixelFormatEXT
+    s_deviceConfig.m_wglGetPixelFormatAttribivEXT = (PFNWGLGETPIXELFORMATATTRIBIVEXTPROC) glew::GetProcAddress ("wglGetPixelFormatAttribivEXT");
+    s_deviceConfig.m_wglGetPixelFormatAttribfvEXT = (PFNWGLGETPIXELFORMATATTRIBFVEXTPROC) glew::GetProcAddress ("wglGetPixelFormatAttribfvEXT");
+    s_deviceConfig.m_wglChoosePixelFormatEXT = (PFNWGLCHOOSEPIXELFORMATEXTPROC) glew::GetProcAddress ("wglChoosePixelFormatEXT");
+  }
+
+  // WGL_EXT_swap_control
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_swap_control])
+  {
+    #undef wglSwapIntervalEXT
+    #undef wglGetSwapIntervalEXT
+    s_deviceConfig.m_wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC) glew::GetProcAddress ("wglSwapIntervalEXT");
+    s_deviceConfig.m_wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC) glew::GetProcAddress ("wglGetSwapIntervalEXT");
+  }
+
+  // WGL_I3D_digital_video_control
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_digital_video_control])
+  {
+    #undef wglGetDigitalVideoParametersI3D
+    #undef wglSetDigitalVideoParametersI3D
+    s_deviceConfig.m_wglGetDigitalVideoParametersI3D = (PFNWGLGETDIGITALVIDEOPARAMETERSI3DPROC) glew::GetProcAddress ("wglGetDigitalVideoParametersI3D");
+    s_deviceConfig.m_wglSetDigitalVideoParametersI3D = (PFNWGLSETDIGITALVIDEOPARAMETERSI3DPROC) glew::GetProcAddress ("wglSetDigitalVideoParametersI3D");
+  }
+
+  // WGL_I3D_gamma
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_gamma])
+  {
+    #undef wglGetGammaTableParametersI3D
+    #undef wglSetGammaTableParametersI3D
+    #undef wglGetGammaTableI3D
+    #undef wglSetGammaTableI3D
+    s_deviceConfig.m_wglGetGammaTableParametersI3D = (PFNWGLGETGAMMATABLEPARAMETERSI3DPROC) glew::GetProcAddress ("wglGetGammaTableParametersI3D");
+    s_deviceConfig.m_wglSetGammaTableParametersI3D = (PFNWGLSETGAMMATABLEPARAMETERSI3DPROC) glew::GetProcAddress ("wglSetGammaTableParametersI3D");
+    s_deviceConfig.m_wglGetGammaTableI3D = (PFNWGLGETGAMMATABLEI3DPROC) glew::GetProcAddress ("wglGetGammaTableI3D");
+    s_deviceConfig.m_wglSetGammaTableI3D = (PFNWGLSETGAMMATABLEI3DPROC) glew::GetProcAddress ("wglSetGammaTableI3D");
+  }
+
+  // WGL_I3D_genlock
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_genlock])
+  {
+    #undef wglEnableGenlockI3D
+    #undef wglDisableGenlockI3D
+    #undef wglIsEnabledGenlockI3D
+    #undef wglGenlockSourceI3D
+    #undef wglGetGenlockSourceI3D
+    #undef wglGenlockSourceEdgeI3D
+    #undef wglGetGenlockSourceEdgeI3D
+    #undef wglGenlockSampleRateI3D
+    #undef wglGetGenlockSampleRateI3D
+    #undef wglGenlockSourceDelayI3D
+    #undef wglGetGenlockSourceDelayI3D
+    #undef wglQueryGenlockMaxSourceDelayI3D
+    s_deviceConfig.m_wglEnableGenlockI3D = (PFNWGLENABLEGENLOCKI3DPROC) glew::GetProcAddress ("wglEnableGenlockI3D");
+    s_deviceConfig.m_wglDisableGenlockI3D = (PFNWGLDISABLEGENLOCKI3DPROC) glew::GetProcAddress ("wglDisableGenlockI3D");
+    s_deviceConfig.m_wglIsEnabledGenlockI3D = (PFNWGLISENABLEDGENLOCKI3DPROC) glew::GetProcAddress ("wglIsEnabledGenlockI3D");
+    s_deviceConfig.m_wglGenlockSourceI3D = (PFNWGLGENLOCKSOURCEI3DPROC) glew::GetProcAddress ("wglGenlockSourceI3D");
+    s_deviceConfig.m_wglGetGenlockSourceI3D = (PFNWGLGETGENLOCKSOURCEI3DPROC) glew::GetProcAddress ("wglGetGenlockSourceI3D");
+    s_deviceConfig.m_wglGenlockSourceEdgeI3D = (PFNWGLGENLOCKSOURCEEDGEI3DPROC) glew::GetProcAddress ("wglGenlockSourceEdgeI3D");
+    s_deviceConfig.m_wglGetGenlockSourceEdgeI3D = (PFNWGLGETGENLOCKSOURCEEDGEI3DPROC) glew::GetProcAddress ("wglGetGenlockSourceEdgeI3D");
+    s_deviceConfig.m_wglGenlockSampleRateI3D = (PFNWGLGENLOCKSAMPLERATEI3DPROC) glew::GetProcAddress ("wglGenlockSampleRateI3D");
+    s_deviceConfig.m_wglGetGenlockSampleRateI3D = (PFNWGLGETGENLOCKSAMPLERATEI3DPROC) glew::GetProcAddress ("wglGetGenlockSampleRateI3D");
+    s_deviceConfig.m_wglGenlockSourceDelayI3D = (PFNWGLGENLOCKSOURCEDELAYI3DPROC) glew::GetProcAddress ("wglGenlockSourceDelayI3D");
+    s_deviceConfig.m_wglGetGenlockSourceDelayI3D = (PFNWGLGETGENLOCKSOURCEDELAYI3DPROC) glew::GetProcAddress ("wglGetGenlockSourceDelayI3D");
+    s_deviceConfig.m_wglQueryGenlockMaxSourceDelayI3D = (PFNWGLQUERYGENLOCKMAXSOURCEDELAYI3DPROC) glew::GetProcAddress ("wglQueryGenlockMaxSourceDelayI3D");
+  }
+
+  // WGL_I3D_image_buffer
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_image_buffer])
+  {
+    #undef wglCreateImageBufferI3D
+    #undef wglDestroyImageBufferI3D
+    #undef wglAssociateImageBufferEventsI3D
+    #undef wglReleaseImageBufferEventsI3D
+    s_deviceConfig.m_wglCreateImageBufferI3D = (PFNWGLCREATEIMAGEBUFFERI3DPROC) glew::GetProcAddress ("wglCreateImageBufferI3D");
+    s_deviceConfig.m_wglDestroyImageBufferI3D = (PFNWGLDESTROYIMAGEBUFFERI3DPROC) glew::GetProcAddress ("wglDestroyImageBufferI3D");
+    s_deviceConfig.m_wglAssociateImageBufferEventsI3D = (PFNWGLASSOCIATEIMAGEBUFFEREVENTSI3DPROC) glew::GetProcAddress ("wglAssociateImageBufferEventsI3D");
+    s_deviceConfig.m_wglReleaseImageBufferEventsI3D = (PFNWGLRELEASEIMAGEBUFFEREVENTSI3DPROC) glew::GetProcAddress ("wglReleaseImageBufferEventsI3D");
+  }
+
+  // WGL_I3D_swap_frame_lock
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_lock])
+  {
+    #undef wglEnableFrameLockI3D
+    #undef wglDisableFrameLockI3D
+    #undef wglIsEnabledFrameLockI3D
+    #undef wglQueryFrameLockMasterI3D
+    s_deviceConfig.m_wglEnableFrameLockI3D = (PFNWGLENABLEFRAMELOCKI3DPROC) glew::GetProcAddress ("wglEnableFrameLockI3D");
+    s_deviceConfig.m_wglDisableFrameLockI3D = (PFNWGLDISABLEFRAMELOCKI3DPROC) glew::GetProcAddress ("wglDisableFrameLockI3D");
+    s_deviceConfig.m_wglIsEnabledFrameLockI3D = (PFNWGLISENABLEDFRAMELOCKI3DPROC) glew::GetProcAddress ("wglIsEnabledFrameLockI3D");
+    s_deviceConfig.m_wglQueryFrameLockMasterI3D = (PFNWGLQUERYFRAMELOCKMASTERI3DPROC) glew::GetProcAddress ("wglQueryFrameLockMasterI3D");
+  }
+
+  // WGL_I3D_swap_frame_usage
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_usage])
+  {
+    #undef wglGetFrameUsageI3D
+    #undef wglBeginFrameTrackingI3D
+    #undef wglEndFrameTrackingI3D
+    #undef wglQueryFrameTrackingI3D
+    s_deviceConfig.m_wglGetFrameUsageI3D = (PFNWGLGETFRAMEUSAGEI3DPROC) glew::GetProcAddress ("wglGetFrameUsageI3D");
+    s_deviceConfig.m_wglBeginFrameTrackingI3D = (PFNWGLBEGINFRAMETRACKINGI3DPROC) glew::GetProcAddress ("wglBeginFrameTrackingI3D");
+    s_deviceConfig.m_wglEndFrameTrackingI3D = (PFNWGLENDFRAMETRACKINGI3DPROC) glew::GetProcAddress ("wglEndFrameTrackingI3D");
+    s_deviceConfig.m_wglQueryFrameTrackingI3D = (PFNWGLQUERYFRAMETRACKINGI3DPROC) glew::GetProcAddress ("wglQueryFrameTrackingI3D");
+  }
+
+  // WGL_NV_copy_image
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_copy_image])
+  {
+    #undef wglCopyImageSubDataNV
+    s_deviceConfig.m_wglCopyImageSubDataNV = (PFNWGLCOPYIMAGESUBDATANVPROC) glew::GetProcAddress ("wglCopyImageSubDataNV");
+  }
+
+  // WGL_NV_delay_before_swap
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_delay_before_swap])
+  {
+    #undef wglDelayBeforeSwapNV
+    s_deviceConfig.m_wglDelayBeforeSwapNV = (PFNWGLDELAYBEFORESWAPNVPROC) glew::GetProcAddress ("wglDelayBeforeSwapNV");
+  }
+
+  // WGL_NV_DX_interop
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_DX_interop])
+  {
+    #undef wglDXSetResourceShareHandleNV
+    #undef wglDXOpenDeviceNV
+    #undef wglDXCloseDeviceNV
+    #undef wglDXRegisterObjectNV
+    #undef wglDXUnregisterObjectNV
+    #undef wglDXObjectAccessNV
+    #undef wglDXLockObjectsNV
+    #undef wglDXUnlockObjectsNV
+    s_deviceConfig.m_wglDXSetResourceShareHandleNV = (PFNWGLDXSETRESOURCESHAREHANDLENVPROC) glew::GetProcAddress ("wglDXSetResourceShareHandleNV");
+    s_deviceConfig.m_wglDXOpenDeviceNV = (PFNWGLDXOPENDEVICENVPROC) glew::GetProcAddress ("wglDXOpenDeviceNV");
+    s_deviceConfig.m_wglDXCloseDeviceNV = (PFNWGLDXCLOSEDEVICENVPROC) glew::GetProcAddress ("wglDXCloseDeviceNV");
+    s_deviceConfig.m_wglDXRegisterObjectNV = (PFNWGLDXREGISTEROBJECTNVPROC) glew::GetProcAddress ("wglDXRegisterObjectNV");
+    s_deviceConfig.m_wglDXUnregisterObjectNV = (PFNWGLDXUNREGISTEROBJECTNVPROC) glew::GetProcAddress ("wglDXUnregisterObjectNV");
+    s_deviceConfig.m_wglDXObjectAccessNV = (PFNWGLDXOBJECTACCESSNVPROC) glew::GetProcAddress ("wglDXObjectAccessNV");
+    s_deviceConfig.m_wglDXLockObjectsNV = (PFNWGLDXLOCKOBJECTSNVPROC) glew::GetProcAddress ("wglDXLockObjectsNV");
+    s_deviceConfig.m_wglDXUnlockObjectsNV = (PFNWGLDXUNLOCKOBJECTSNVPROC) glew::GetProcAddress ("wglDXUnlockObjectsNV");
+  }
+
+  // WGL_NV_gpu_affinity
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_gpu_affinity])
+  {
+    #undef wglEnumGpusNV
+    #undef wglEnumGpuDevicesNV
+    #undef wglCreateAffinityDCNV
+    #undef wglEnumGpusFromAffinityDCNV
+    #undef wglDeleteDCNV
+    s_deviceConfig.m_wglEnumGpusNV = (PFNWGLENUMGPUSNVPROC) glew::GetProcAddress ("wglEnumGpusNV");
+    s_deviceConfig.m_wglEnumGpuDevicesNV = (PFNWGLENUMGPUDEVICESNVPROC) glew::GetProcAddress ("wglEnumGpuDevicesNV");
+    s_deviceConfig.m_wglCreateAffinityDCNV = (PFNWGLCREATEAFFINITYDCNVPROC) glew::GetProcAddress ("wglCreateAffinityDCNV");
+    s_deviceConfig.m_wglEnumGpusFromAffinityDCNV = (PFNWGLENUMGPUSFROMAFFINITYDCNVPROC) glew::GetProcAddress ("wglEnumGpusFromAffinityDCNV");
+    s_deviceConfig.m_wglDeleteDCNV = (PFNWGLDELETEDCNVPROC) glew::GetProcAddress ("wglDeleteDCNV");
+  }
+
+  // WGL_NV_present_video
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_present_video])
+  {
+    #undef wglEnumerateVideoDevicesNV
+    #undef wglBindVideoDeviceNV
+    #undef wglQueryCurrentContextNV
+    s_deviceConfig.m_wglEnumerateVideoDevicesNV = (PFNWGLENUMERATEVIDEODEVICESNVPROC) glew::GetProcAddress ("wglEnumerateVideoDevicesNV");
+    s_deviceConfig.m_wglBindVideoDeviceNV = (PFNWGLBINDVIDEODEVICENVPROC) glew::GetProcAddress ("wglBindVideoDeviceNV");
+    s_deviceConfig.m_wglQueryCurrentContextNV = (PFNWGLQUERYCURRENTCONTEXTNVPROC) glew::GetProcAddress ("wglQueryCurrentContextNV");
+  }
+
+  // WGL_NV_swap_group
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_swap_group])
+  {
+    #undef wglJoinSwapGroupNV
+    #undef wglBindSwapBarrierNV
+    #undef wglQuerySwapGroupNV
+    #undef wglQueryMaxSwapGroupsNV
+    #undef wglQueryFrameCountNV
+    #undef wglResetFrameCountNV
+    s_deviceConfig.m_wglJoinSwapGroupNV = (PFNWGLJOINSWAPGROUPNVPROC) glew::GetProcAddress ("wglJoinSwapGroupNV");
+    s_deviceConfig.m_wglBindSwapBarrierNV = (PFNWGLBINDSWAPBARRIERNVPROC) glew::GetProcAddress ("wglBindSwapBarrierNV");
+    s_deviceConfig.m_wglQuerySwapGroupNV = (PFNWGLQUERYSWAPGROUPNVPROC) glew::GetProcAddress ("wglQuerySwapGroupNV");
+    s_deviceConfig.m_wglQueryMaxSwapGroupsNV = (PFNWGLQUERYMAXSWAPGROUPSNVPROC) glew::GetProcAddress ("wglQueryMaxSwapGroupsNV");
+    s_deviceConfig.m_wglQueryFrameCountNV = (PFNWGLQUERYFRAMECOUNTNVPROC) glew::GetProcAddress ("wglQueryFrameCountNV");
+    s_deviceConfig.m_wglResetFrameCountNV = (PFNWGLRESETFRAMECOUNTNVPROC) glew::GetProcAddress ("wglResetFrameCountNV");
+  }
+
+  // WGL_NV_video_capture
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_capture])
+  {
+    #undef wglBindVideoCaptureDeviceNV
+    #undef wglEnumerateVideoCaptureDevicesNV
+    #undef wglLockVideoCaptureDeviceNV
+    #undef wglQueryVideoCaptureDeviceNV
+    #undef wglReleaseVideoCaptureDeviceNV
+    s_deviceConfig.m_wglBindVideoCaptureDeviceNV = (PFNWGLBINDVIDEOCAPTUREDEVICENVPROC) glew::GetProcAddress ("wglBindVideoCaptureDeviceNV");
+    s_deviceConfig.m_wglEnumerateVideoCaptureDevicesNV = (PFNWGLENUMERATEVIDEOCAPTUREDEVICESNVPROC) glew::GetProcAddress ("wglEnumerateVideoCaptureDevicesNV");
+    s_deviceConfig.m_wglLockVideoCaptureDeviceNV = (PFNWGLLOCKVIDEOCAPTUREDEVICENVPROC) glew::GetProcAddress ("wglLockVideoCaptureDeviceNV");
+    s_deviceConfig.m_wglQueryVideoCaptureDeviceNV = (PFNWGLQUERYVIDEOCAPTUREDEVICENVPROC) glew::GetProcAddress ("wglQueryVideoCaptureDeviceNV");
+    s_deviceConfig.m_wglReleaseVideoCaptureDeviceNV = (PFNWGLRELEASEVIDEOCAPTUREDEVICENVPROC) glew::GetProcAddress ("wglReleaseVideoCaptureDeviceNV");
+  }
+
+  // WGL_NV_video_output
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_output])
+  {
+    #undef wglGetVideoDeviceNV
+    #undef wglReleaseVideoDeviceNV
+    #undef wglBindVideoImageNV
+    #undef wglReleaseVideoImageNV
+    #undef wglSendPbufferToVideoNV
+    #undef wglGetVideoInfoNV
+    s_deviceConfig.m_wglGetVideoDeviceNV = (PFNWGLGETVIDEODEVICENVPROC) glew::GetProcAddress ("wglGetVideoDeviceNV");
+    s_deviceConfig.m_wglReleaseVideoDeviceNV = (PFNWGLRELEASEVIDEODEVICENVPROC) glew::GetProcAddress ("wglReleaseVideoDeviceNV");
+    s_deviceConfig.m_wglBindVideoImageNV = (PFNWGLBINDVIDEOIMAGENVPROC) glew::GetProcAddress ("wglBindVideoImageNV");
+    s_deviceConfig.m_wglReleaseVideoImageNV = (PFNWGLRELEASEVIDEOIMAGENVPROC) glew::GetProcAddress ("wglReleaseVideoImageNV");
+    s_deviceConfig.m_wglSendPbufferToVideoNV = (PFNWGLSENDPBUFFERTOVIDEONVPROC) glew::GetProcAddress ("wglSendPbufferToVideoNV");
+    s_deviceConfig.m_wglGetVideoInfoNV = (PFNWGLGETVIDEOINFONVPROC) glew::GetProcAddress ("wglGetVideoInfoNV");
+  }
+
+  // WGL_NV_vertex_array_range
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_vertex_array_range])
+  {
+    #undef wglAllocateMemoryNV
+    #undef wglFreeMemoryNV
+    s_deviceConfig.m_wglAllocateMemoryNV = (PFNWGLALLOCATEMEMORYNVPROC) glew::GetProcAddress ("wglAllocateMemoryNV");
+    s_deviceConfig.m_wglFreeMemoryNV = (PFNWGLFREEMEMORYNVPROC) glew::GetProcAddress ("wglFreeMemoryNV");
+  }
+
+  // WGL_OML_sync_control
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_OML_sync_control])
+  {
+    #undef wglGetSyncValuesOML
+    #undef wglGetMscRateOML
+    #undef wglSwapBuffersMscOML
+    #undef wglSwapLayerBuffersMscOML
+    #undef wglWaitForMscOML
+    #undef wglWaitForSbcOML
+    s_deviceConfig.m_wglGetSyncValuesOML = (PFNWGLGETSYNCVALUESOMLPROC) glew::GetProcAddress ("wglGetSyncValuesOML");
+    s_deviceConfig.m_wglGetMscRateOML = (PFNWGLGETMSCRATEOMLPROC) glew::GetProcAddress ("wglGetMscRateOML");
+    s_deviceConfig.m_wglSwapBuffersMscOML = (PFNWGLSWAPBUFFERSMSCOMLPROC) glew::GetProcAddress ("wglSwapBuffersMscOML");
+    s_deviceConfig.m_wglSwapLayerBuffersMscOML = (PFNWGLSWAPLAYERBUFFERSMSCOMLPROC) glew::GetProcAddress ("wglSwapLayerBuffersMscOML");
+    s_deviceConfig.m_wglWaitForMscOML = (PFNWGLWAITFORMSCOMLPROC) glew::GetProcAddress ("wglWaitForMscOML");
+    s_deviceConfig.m_wglWaitForSbcOML = (PFNWGLWAITFORSBCOMLPROC) glew::GetProcAddress ("wglWaitForSbcOML");
+  }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void glew::wgl::Deinitialise ()
+{
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

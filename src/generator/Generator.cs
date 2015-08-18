@@ -97,7 +97,7 @@ namespace wrangle_gl_generator
 
             if ((enumApiNode != null) && (!IsApiSupported (enumApiNode.Value)))
             {
-              continue;
+              continue; // Skip non-supported APIs.
             }
 
             string enumNodeName = enumNode.Attributes ["name"].Value;
@@ -143,7 +143,7 @@ namespace wrangle_gl_generator
 
           if ((featureApiNode != null) && (!IsApiSupported (featureApiNode.Value)))
           {
-            continue;
+            continue; // Skip non-supported APIs.
           }
 
           string featureNodeName = featureNode.Attributes ["name"].Value;
@@ -216,6 +216,13 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          {
+            continue; // Skip any initial (base spec) versions.
+          }
+
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
@@ -233,7 +240,7 @@ namespace wrangle_gl_generator
 
             if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
             {
-              continue;
+              continue; // Skip non-supported APIs.
             }
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
@@ -242,8 +249,6 @@ namespace wrangle_gl_generator
             {
               continue;
             }
-
-            
 
             StringBuilder commandFuncPointerBuilder = new StringBuilder ();
 
@@ -326,12 +331,7 @@ namespace wrangle_gl_generator
 
       writer.Write (string.Format ("    public:\n\n"));
 
-      writer.Write (string.Format ("      bool IsSupported (glew::{0}::FeatureSet feature);\n\n", m_api [0]));
-
-      writer.Write (string.Format ("      bool IsSupported (const char *feature);\n\n"));
-
       writer.Write (string.Format ("      bool m_featureSupported [glew::{0}::FeatureSet::{1}{2}_{3}];\n\n", m_api [0], "GLEW_", m_api [0].ToUpperInvariant (), "FeatureSetCount"));
-
 
       // 
       // 'DeviceConfig' class: Feature and extension function prototypes.
@@ -344,6 +344,13 @@ namespace wrangle_gl_generator
         foreach (var keypair in featureAndExtensionNodes)
         {
           XmlNode featureNode = keypair.Value;
+
+          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          {
+            continue; // Skip any initial (base spec) versions.
+          }
 
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
@@ -362,7 +369,7 @@ namespace wrangle_gl_generator
 
             if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
             {
-              continue;
+              continue; // Skip non-supported APIs.
             }
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
@@ -427,6 +434,13 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          {
+            continue; // Skip any initial (base spec) versions.
+          }
+
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
@@ -444,7 +458,7 @@ namespace wrangle_gl_generator
 
             if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
             {
-              continue;
+              continue; // Skip non-supported APIs.
             }
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
@@ -464,7 +478,7 @@ namespace wrangle_gl_generator
               {
                 prototypes.Add (command);
 
-                writer.Write (string.Format ("    {0};\n", GetFullCommandPrototype (command)));
+                writer.Write (string.Format ("    static {0};\n", GetFullCommandPrototype (command)));
               }
             }
           }
@@ -483,11 +497,28 @@ namespace wrangle_gl_generator
 
       if (featureAndExtensionNodes.Count > 0)
       {
+        foreach (string key in featureAndExtensionNodes.Keys)
+        {
+          writer.Write (string.Format ("#define {0}{1} glew::{2}::{0}{1}\n", "GLEW_", key, m_api [0]));
+        }
+      }
+
+      writer.Write ("\n");
+
+      if (featureAndExtensionNodes.Count > 0)
+      {
         HashSet<string> prototypes = new HashSet<string> ();
 
         foreach (var keypair in featureAndExtensionNodes)
         {
           XmlNode featureNode = keypair.Value;
+
+          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          {
+            continue; // Skip any initial (base spec) versions.
+          }
 
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
@@ -506,7 +537,7 @@ namespace wrangle_gl_generator
 
             if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
             {
-              continue;
+              continue; // Skip non-supported APIs.
             }
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
@@ -542,6 +573,8 @@ namespace wrangle_gl_generator
 
     public virtual void ExportCpp (ref StreamWriter writer)
     {
+      writer.Write (string.Format ("#include <wrangle.h>\n\n"));
+
       writer.Write (string.Format ("#include <wrangle-{0}.h>\n\n", m_api [0]));
 
       WriteCommentDivider (ref writer);
@@ -580,6 +613,13 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          {
+            continue; // Skip any initial (base spec) versions.
+          }
+
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
@@ -597,7 +637,7 @@ namespace wrangle_gl_generator
 
             if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
             {
-              continue;
+              continue; // Skip non-supported APIs.
             }
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");

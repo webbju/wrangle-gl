@@ -17,23 +17,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-typedef XVisualInfo * ( PFNGLXCHOOSEVISUALPROC) /* glXChooseVisual */ (Display * dpy, int screen, int * attribList);
-typedef GLXContext ( PFNGLXCREATECONTEXTPROC) /* glXCreateContext */ (Display * dpy, XVisualInfo * vis, GLXContext shareList, Bool direct);
-typedef void ( PFNGLXDESTROYCONTEXTPROC) /* glXDestroyContext */ (Display * dpy, GLXContext ctx);
-typedef Bool ( PFNGLXMAKECURRENTPROC) /* glXMakeCurrent */ (Display * dpy, GLXDrawable drawable, GLXContext ctx);
-typedef void ( PFNGLXCOPYCONTEXTPROC) /* glXCopyContext */ (Display * dpy, GLXContext src, GLXContext dst, unsigned long mask);
-typedef void ( PFNGLXSWAPBUFFERSPROC) /* glXSwapBuffers */ (Display * dpy, GLXDrawable drawable);
-typedef GLXPixmap ( PFNGLXCREATEGLXPIXMAPPROC) /* glXCreateGLXPixmap */ (Display * dpy, XVisualInfo * visual, Pixmap pixmap);
-typedef void ( PFNGLXDESTROYGLXPIXMAPPROC) /* glXDestroyGLXPixmap */ (Display * dpy, GLXPixmap pixmap);
-typedef Bool ( PFNGLXQUERYEXTENSIONPROC) /* glXQueryExtension */ (Display * dpy, int * errorb, int * event);
-typedef Bool ( PFNGLXQUERYVERSIONPROC) /* glXQueryVersion */ (Display * dpy, int * maj, int * min);
-typedef Bool ( PFNGLXISDIRECTPROC) /* glXIsDirect */ (Display * dpy, GLXContext ctx);
-typedef int ( PFNGLXGETCONFIGPROC) /* glXGetConfig */ (Display * dpy, XVisualInfo * visual, int attrib, int * value);
-typedef GLXContext ( PFNGLXGETCURRENTCONTEXTPROC) /* glXGetCurrentContext */ ();
-typedef GLXDrawable ( PFNGLXGETCURRENTDRAWABLEPROC) /* glXGetCurrentDrawable */ ();
-typedef void ( PFNGLXWAITGLPROC) /* glXWaitGL */ ();
-typedef void ( PFNGLXWAITXPROC) /* glXWaitX */ ();
-typedef void ( PFNGLXUSEXFONTPROC) /* glXUseXFont */ (Font font, int first, int count, int list);
 typedef const char * ( PFNGLXQUERYEXTENSIONSSTRINGPROC) /* glXQueryExtensionsString */ (Display * dpy, int screen);
 typedef const char * ( PFNGLXQUERYSERVERSTRINGPROC) /* glXQueryServerString */ (Display * dpy, int screen, int name);
 typedef const char * ( PFNGLXGETCLIENTSTRINGPROC) /* glXGetClientString */ (Display * dpy, int name);
@@ -242,29 +225,8 @@ namespace glew
     {
     public:
 
-      bool IsSupported (glew::glx::FeatureSet feature);
-
-      bool IsSupported (const char *feature);
-
       bool m_featureSupported [glew::glx::FeatureSet::GLEW_GLX_FeatureSetCount];
 
-      PFNGLXCHOOSEVISUALPROC m_glXChooseVisual;
-      PFNGLXCREATECONTEXTPROC m_glXCreateContext;
-      PFNGLXDESTROYCONTEXTPROC m_glXDestroyContext;
-      PFNGLXMAKECURRENTPROC m_glXMakeCurrent;
-      PFNGLXCOPYCONTEXTPROC m_glXCopyContext;
-      PFNGLXSWAPBUFFERSPROC m_glXSwapBuffers;
-      PFNGLXCREATEGLXPIXMAPPROC m_glXCreateGLXPixmap;
-      PFNGLXDESTROYGLXPIXMAPPROC m_glXDestroyGLXPixmap;
-      PFNGLXQUERYEXTENSIONPROC m_glXQueryExtension;
-      PFNGLXQUERYVERSIONPROC m_glXQueryVersion;
-      PFNGLXISDIRECTPROC m_glXIsDirect;
-      PFNGLXGETCONFIGPROC m_glXGetConfig;
-      PFNGLXGETCURRENTCONTEXTPROC m_glXGetCurrentContext;
-      PFNGLXGETCURRENTDRAWABLEPROC m_glXGetCurrentDrawable;
-      PFNGLXWAITGLPROC m_glXWaitGL;
-      PFNGLXWAITXPROC m_glXWaitX;
-      PFNGLXUSEXFONTPROC m_glXUseXFont;
       PFNGLXQUERYEXTENSIONSSTRINGPROC m_glXQueryExtensionsString;
       PFNGLXQUERYSERVERSTRINGPROC m_glXQueryServerString;
       PFNGLXGETCLIENTSTRINGPROC m_glXGetClientString;
@@ -406,138 +368,121 @@ namespace glew
 
   public:
 
-    XVisualInfo * glXChooseVisual (Display * dpy, int screen, int * attribList);
-    GLXContext glXCreateContext (Display * dpy, XVisualInfo * vis, GLXContext shareList, Bool direct);
-    void glXDestroyContext (Display * dpy, GLXContext ctx);
-    Bool glXMakeCurrent (Display * dpy, GLXDrawable drawable, GLXContext ctx);
-    void glXCopyContext (Display * dpy, GLXContext src, GLXContext dst, unsigned long mask);
-    void glXSwapBuffers (Display * dpy, GLXDrawable drawable);
-    GLXPixmap glXCreateGLXPixmap (Display * dpy, XVisualInfo * visual, Pixmap pixmap);
-    void glXDestroyGLXPixmap (Display * dpy, GLXPixmap pixmap);
-    Bool glXQueryExtension (Display * dpy, int * errorb, int * event);
-    Bool glXQueryVersion (Display * dpy, int * maj, int * min);
-    Bool glXIsDirect (Display * dpy, GLXContext ctx);
-    int glXGetConfig (Display * dpy, XVisualInfo * visual, int attrib, int * value);
-    GLXContext glXGetCurrentContext ();
-    GLXDrawable glXGetCurrentDrawable ();
-    void glXWaitGL ();
-    void glXWaitX ();
-    void glXUseXFont (Font font, int first, int count, int list);
-    const char * glXQueryExtensionsString (Display * dpy, int screen);
-    const char * glXQueryServerString (Display * dpy, int screen, int name);
-    const char * glXGetClientString (Display * dpy, int name);
-    Display * glXGetCurrentDisplay ();
-    GLXFBConfig * glXGetFBConfigs (Display * dpy, int screen, int * nelements);
-    GLXFBConfig * glXChooseFBConfig (Display * dpy, int screen, const int * attrib_list, int * nelements);
-    int glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int attribute, int * value);
-    XVisualInfo * glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config);
-    GLXWindow glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const int * attrib_list);
-    void glXDestroyWindow (Display * dpy, GLXWindow win);
-    GLXPixmap glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attrib_list);
-    void glXDestroyPixmap (Display * dpy, GLXPixmap pixmap);
-    GLXPbuffer glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attrib_list);
-    void glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf);
-    void glXQueryDrawable (Display * dpy, GLXDrawable draw, int attribute, unsigned int * value);
-    GLXContext glXCreateNewContext (Display * dpy, GLXFBConfig config, int render_type, GLXContext share_list, Bool direct);
-    Bool glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx);
-    GLXDrawable glXGetCurrentReadDrawable ();
-    int glXQueryContext (Display * dpy, GLXContext ctx, int attribute, int * value);
-    void glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long event_mask);
-    void glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event_mask);
-    __GLXextFuncPtr glXGetProcAddress (const GLubyte * procName);
-    unsigned int glXGetGPUIDsAMD (unsigned int maxCount, unsigned int * ids);
-    int glXGetGPUInfoAMD (unsigned int id, int property, GLenum dataType, unsigned int size, void * data);
-    unsigned int glXGetContextGPUIDAMD (GLXContext ctx);
-    GLXContext glXCreateAssociatedContextAMD (unsigned int id, GLXContext share_list);
-    GLXContext glXCreateAssociatedContextAttribsAMD (unsigned int id, GLXContext share_context, const int * attribList);
-    Bool glXDeleteAssociatedContextAMD (GLXContext ctx);
-    Bool glXMakeAssociatedContextCurrentAMD (GLXContext ctx);
-    GLXContext glXGetCurrentAssociatedContextAMD ();
-    void glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
-    GLXContext glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list);
-    __GLXextFuncPtr glXGetProcAddressARB (const GLubyte * procName);
-    Display * glXGetCurrentDisplayEXT ();
-    int glXQueryContextInfoEXT (Display * dpy, GLXContext context, int attribute, int * value);
-    GLXContextID glXGetContextIDEXT (const GLXContext context);
-    GLXContext glXImportContextEXT (Display * dpy, GLXContextID contextID);
-    void glXFreeContextEXT (Display * dpy, GLXContext context);
-    void glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int interval);
-    void glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer, const int * attrib_list);
-    void glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer);
-    unsigned int glXGetAGPOffsetMESA (const void * pointer);
-    void glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int x, int y, int width, int height);
-    GLXPixmap glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap);
-    Bool glXQueryCurrentRendererIntegerMESA (int attribute, unsigned int * value);
-    const char * glXQueryCurrentRendererStringMESA (int attribute);
-    Bool glXQueryRendererIntegerMESA (Display * dpy, int screen, int renderer, int attribute, unsigned int * value);
-    const char * glXQueryRendererStringMESA (Display * dpy, int screen, int renderer, int attribute);
-    Bool glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable);
-    Bool glXSet3DfxModeMESA (int mode);
-    void glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
-    void glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
-    void glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
-    Bool glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds);
-    unsigned int * glXEnumerateVideoDevicesNV (Display * dpy, int screen, int * nelements);
-    int glXBindVideoDeviceNV (Display * dpy, unsigned int video_slot, unsigned int video_device, const int * attrib_list);
-    Bool glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group);
-    Bool glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier);
-    Bool glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier);
-    Bool glXQueryMaxSwapGroupsNV (Display * dpy, int screen, GLuint * maxGroups, GLuint * maxBarriers);
-    Bool glXQueryFrameCountNV (Display * dpy, int screen, GLuint * count);
-    Bool glXResetFrameCountNV (Display * dpy, int screen);
-    int glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int video_capture_slot, GLXVideoCaptureDeviceNV device);
-    GLXVideoCaptureDeviceNV * glXEnumerateVideoCaptureDevicesNV (Display * dpy, int screen, int * nelements);
-    void glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device);
-    int glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device, int attribute, int * value);
-    void glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device);
-    int glXGetVideoDeviceNV (Display * dpy, int screen, int numVideoDevices, GLXVideoDeviceNV * pVideoDevice);
-    int glXReleaseVideoDeviceNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice);
-    int glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int iVideoBuffer);
-    int glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf);
-    int glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int iBufferType, unsigned long * pulCounterPbuffer, GLboolean bBlock);
-    int glXGetVideoInfoNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo);
-    Bool glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc);
-    Bool glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator);
-    int64_t glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder);
-    Bool glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc);
-    Bool glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc);
-    void glXCushionSGI (Display * dpy, Window window, float cushion);
-    Bool glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx);
-    GLXDrawable glXGetCurrentReadDrawableSGI ();
-    int glXSwapIntervalSGI (int interval);
-    int glXGetVideoSyncSGI (unsigned int * count);
-    int glXWaitVideoSyncSGI (int divisor, int remainder, unsigned int * count);
-    Bool glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams * params, DMbuffer dmbuffer);
-    int glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int attribute, int * value);
-    GLXFBConfigSGIX * glXChooseFBConfigSGIX (Display * dpy, int screen, int * attrib_list, int * nelements);
-    GLXPixmap glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap);
-    GLXContext glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, int render_type, GLXContext share_list, Bool direct);
-    XVisualInfo * glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX config);
-    GLXFBConfigSGIX glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis);
-    GLXHyperpipeNetworkSGIX * glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npipes);
-    int glXHyperpipeConfigSGIX (Display * dpy, int networkId, int npipes, GLXHyperpipeConfigSGIX * cfg, int * hpId);
-    GLXHyperpipeConfigSGIX * glXQueryHyperpipeConfigSGIX (Display * dpy, int hpId, int * npipes);
-    int glXDestroyHyperpipeConfigSGIX (Display * dpy, int hpId);
-    int glXBindHyperpipeSGIX (Display * dpy, int hpId);
-    int glXQueryHyperpipeBestAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * attribList, void * returnAttribList);
-    int glXHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * attribList);
-    int glXQueryHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * returnAttribList);
-    GLXPbufferSGIX glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, unsigned int width, unsigned int height, int * attrib_list);
-    void glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf);
-    int glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value);
-    void glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long mask);
-    void glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long * mask);
-    void glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int barrier);
-    Bool glXQueryMaxSwapBarriersSGIX (Display * dpy, int screen, int * max);
-    void glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable member);
-    int glXBindChannelToWindowSGIX (Display * display, int screen, int channel, Window window);
-    int glXChannelRectSGIX (Display * display, int screen, int channel, int x, int y, int w, int h);
-    int glXQueryChannelRectSGIX (Display * display, int screen, int channel, int * dx, int * dy, int * dw, int * dh);
-    int glXQueryChannelDeltasSGIX (Display * display, int screen, int channel, int * x, int * y, int * w, int * h);
-    int glXChannelRectSyncSGIX (Display * display, int screen, int channel, GLenum synctype);
-    GLXVideoSourceSGIX glXCreateGLXVideoSourceSGIX (Display * display, int screen, VLServer server, VLPath path, int nodeClass, VLNode drainNode);
-    void glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosource);
-    Status glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex);
+    static const char * glXQueryExtensionsString (Display * dpy, int screen);
+    static const char * glXQueryServerString (Display * dpy, int screen, int name);
+    static const char * glXGetClientString (Display * dpy, int name);
+    static Display * glXGetCurrentDisplay ();
+    static GLXFBConfig * glXGetFBConfigs (Display * dpy, int screen, int * nelements);
+    static GLXFBConfig * glXChooseFBConfig (Display * dpy, int screen, const int * attrib_list, int * nelements);
+    static int glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int attribute, int * value);
+    static XVisualInfo * glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config);
+    static GLXWindow glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const int * attrib_list);
+    static void glXDestroyWindow (Display * dpy, GLXWindow win);
+    static GLXPixmap glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attrib_list);
+    static void glXDestroyPixmap (Display * dpy, GLXPixmap pixmap);
+    static GLXPbuffer glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attrib_list);
+    static void glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf);
+    static void glXQueryDrawable (Display * dpy, GLXDrawable draw, int attribute, unsigned int * value);
+    static GLXContext glXCreateNewContext (Display * dpy, GLXFBConfig config, int render_type, GLXContext share_list, Bool direct);
+    static Bool glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx);
+    static GLXDrawable glXGetCurrentReadDrawable ();
+    static int glXQueryContext (Display * dpy, GLXContext ctx, int attribute, int * value);
+    static void glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long event_mask);
+    static void glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event_mask);
+    static __GLXextFuncPtr glXGetProcAddress (const GLubyte * procName);
+    static unsigned int glXGetGPUIDsAMD (unsigned int maxCount, unsigned int * ids);
+    static int glXGetGPUInfoAMD (unsigned int id, int property, GLenum dataType, unsigned int size, void * data);
+    static unsigned int glXGetContextGPUIDAMD (GLXContext ctx);
+    static GLXContext glXCreateAssociatedContextAMD (unsigned int id, GLXContext share_list);
+    static GLXContext glXCreateAssociatedContextAttribsAMD (unsigned int id, GLXContext share_context, const int * attribList);
+    static Bool glXDeleteAssociatedContextAMD (GLXContext ctx);
+    static Bool glXMakeAssociatedContextCurrentAMD (GLXContext ctx);
+    static GLXContext glXGetCurrentAssociatedContextAMD ();
+    static void glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+    static GLXContext glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list);
+    static __GLXextFuncPtr glXGetProcAddressARB (const GLubyte * procName);
+    static Display * glXGetCurrentDisplayEXT ();
+    static int glXQueryContextInfoEXT (Display * dpy, GLXContext context, int attribute, int * value);
+    static GLXContextID glXGetContextIDEXT (const GLXContext context);
+    static GLXContext glXImportContextEXT (Display * dpy, GLXContextID contextID);
+    static void glXFreeContextEXT (Display * dpy, GLXContext context);
+    static void glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int interval);
+    static void glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer, const int * attrib_list);
+    static void glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer);
+    static unsigned int glXGetAGPOffsetMESA (const void * pointer);
+    static void glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int x, int y, int width, int height);
+    static GLXPixmap glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap);
+    static Bool glXQueryCurrentRendererIntegerMESA (int attribute, unsigned int * value);
+    static const char * glXQueryCurrentRendererStringMESA (int attribute);
+    static Bool glXQueryRendererIntegerMESA (Display * dpy, int screen, int renderer, int attribute, unsigned int * value);
+    static const char * glXQueryRendererStringMESA (Display * dpy, int screen, int renderer, int attribute);
+    static Bool glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable);
+    static Bool glXSet3DfxModeMESA (int mode);
+    static void glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+    static void glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
+    static void glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
+    static Bool glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds);
+    static unsigned int * glXEnumerateVideoDevicesNV (Display * dpy, int screen, int * nelements);
+    static int glXBindVideoDeviceNV (Display * dpy, unsigned int video_slot, unsigned int video_device, const int * attrib_list);
+    static Bool glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group);
+    static Bool glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier);
+    static Bool glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier);
+    static Bool glXQueryMaxSwapGroupsNV (Display * dpy, int screen, GLuint * maxGroups, GLuint * maxBarriers);
+    static Bool glXQueryFrameCountNV (Display * dpy, int screen, GLuint * count);
+    static Bool glXResetFrameCountNV (Display * dpy, int screen);
+    static int glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int video_capture_slot, GLXVideoCaptureDeviceNV device);
+    static GLXVideoCaptureDeviceNV * glXEnumerateVideoCaptureDevicesNV (Display * dpy, int screen, int * nelements);
+    static void glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device);
+    static int glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device, int attribute, int * value);
+    static void glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device);
+    static int glXGetVideoDeviceNV (Display * dpy, int screen, int numVideoDevices, GLXVideoDeviceNV * pVideoDevice);
+    static int glXReleaseVideoDeviceNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice);
+    static int glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int iVideoBuffer);
+    static int glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf);
+    static int glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int iBufferType, unsigned long * pulCounterPbuffer, GLboolean bBlock);
+    static int glXGetVideoInfoNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo);
+    static Bool glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc);
+    static Bool glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator);
+    static int64_t glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder);
+    static Bool glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc);
+    static Bool glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc);
+    static void glXCushionSGI (Display * dpy, Window window, float cushion);
+    static Bool glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx);
+    static GLXDrawable glXGetCurrentReadDrawableSGI ();
+    static int glXSwapIntervalSGI (int interval);
+    static int glXGetVideoSyncSGI (unsigned int * count);
+    static int glXWaitVideoSyncSGI (int divisor, int remainder, unsigned int * count);
+    static Bool glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams * params, DMbuffer dmbuffer);
+    static int glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int attribute, int * value);
+    static GLXFBConfigSGIX * glXChooseFBConfigSGIX (Display * dpy, int screen, int * attrib_list, int * nelements);
+    static GLXPixmap glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap);
+    static GLXContext glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, int render_type, GLXContext share_list, Bool direct);
+    static XVisualInfo * glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX config);
+    static GLXFBConfigSGIX glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis);
+    static GLXHyperpipeNetworkSGIX * glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npipes);
+    static int glXHyperpipeConfigSGIX (Display * dpy, int networkId, int npipes, GLXHyperpipeConfigSGIX * cfg, int * hpId);
+    static GLXHyperpipeConfigSGIX * glXQueryHyperpipeConfigSGIX (Display * dpy, int hpId, int * npipes);
+    static int glXDestroyHyperpipeConfigSGIX (Display * dpy, int hpId);
+    static int glXBindHyperpipeSGIX (Display * dpy, int hpId);
+    static int glXQueryHyperpipeBestAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * attribList, void * returnAttribList);
+    static int glXHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * attribList);
+    static int glXQueryHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * returnAttribList);
+    static GLXPbufferSGIX glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, unsigned int width, unsigned int height, int * attrib_list);
+    static void glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf);
+    static int glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value);
+    static void glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long mask);
+    static void glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long * mask);
+    static void glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int barrier);
+    static Bool glXQueryMaxSwapBarriersSGIX (Display * dpy, int screen, int * max);
+    static void glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable member);
+    static int glXBindChannelToWindowSGIX (Display * display, int screen, int channel, Window window);
+    static int glXChannelRectSGIX (Display * display, int screen, int channel, int x, int y, int w, int h);
+    static int glXQueryChannelRectSGIX (Display * display, int screen, int channel, int * dx, int * dy, int * dw, int * dh);
+    static int glXQueryChannelDeltasSGIX (Display * display, int screen, int channel, int * x, int * y, int * w, int * h);
+    static int glXChannelRectSyncSGIX (Display * display, int screen, int channel, GLenum synctype);
+    static GLXVideoSourceSGIX glXCreateGLXVideoSourceSGIX (Display * display, int screen, VLServer server, VLPath path, int nodeClass, VLNode drainNode);
+    static void glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosource);
+    static Status glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex);
   };
 }
 
@@ -545,23 +490,72 @@ namespace glew
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define glXChooseVisual glew::glx::glXChooseVisual
-#define glXCreateContext glew::glx::glXCreateContext
-#define glXDestroyContext glew::glx::glXDestroyContext
-#define glXMakeCurrent glew::glx::glXMakeCurrent
-#define glXCopyContext glew::glx::glXCopyContext
-#define glXSwapBuffers glew::glx::glXSwapBuffers
-#define glXCreateGLXPixmap glew::glx::glXCreateGLXPixmap
-#define glXDestroyGLXPixmap glew::glx::glXDestroyGLXPixmap
-#define glXQueryExtension glew::glx::glXQueryExtension
-#define glXQueryVersion glew::glx::glXQueryVersion
-#define glXIsDirect glew::glx::glXIsDirect
-#define glXGetConfig glew::glx::glXGetConfig
-#define glXGetCurrentContext glew::glx::glXGetCurrentContext
-#define glXGetCurrentDrawable glew::glx::glXGetCurrentDrawable
-#define glXWaitGL glew::glx::glXWaitGL
-#define glXWaitX glew::glx::glXWaitX
-#define glXUseXFont glew::glx::glXUseXFont
+#define GLEW_GLX_VERSION_1_0 glew::glx::GLEW_GLX_VERSION_1_0
+#define GLEW_GLX_VERSION_1_1 glew::glx::GLEW_GLX_VERSION_1_1
+#define GLEW_GLX_VERSION_1_2 glew::glx::GLEW_GLX_VERSION_1_2
+#define GLEW_GLX_VERSION_1_3 glew::glx::GLEW_GLX_VERSION_1_3
+#define GLEW_GLX_VERSION_1_4 glew::glx::GLEW_GLX_VERSION_1_4
+#define GLEW_GLX_3DFX_multisample glew::glx::GLEW_GLX_3DFX_multisample
+#define GLEW_GLX_AMD_gpu_association glew::glx::GLEW_GLX_AMD_gpu_association
+#define GLEW_GLX_ARB_context_flush_control glew::glx::GLEW_GLX_ARB_context_flush_control
+#define GLEW_GLX_ARB_create_context glew::glx::GLEW_GLX_ARB_create_context
+#define GLEW_GLX_ARB_create_context_profile glew::glx::GLEW_GLX_ARB_create_context_profile
+#define GLEW_GLX_ARB_create_context_robustness glew::glx::GLEW_GLX_ARB_create_context_robustness
+#define GLEW_GLX_ARB_fbconfig_float glew::glx::GLEW_GLX_ARB_fbconfig_float
+#define GLEW_GLX_ARB_framebuffer_sRGB glew::glx::GLEW_GLX_ARB_framebuffer_sRGB
+#define GLEW_GLX_ARB_get_proc_address glew::glx::GLEW_GLX_ARB_get_proc_address
+#define GLEW_GLX_ARB_multisample glew::glx::GLEW_GLX_ARB_multisample
+#define GLEW_GLX_ARB_robustness_application_isolation glew::glx::GLEW_GLX_ARB_robustness_application_isolation
+#define GLEW_GLX_ARB_robustness_share_group_isolation glew::glx::GLEW_GLX_ARB_robustness_share_group_isolation
+#define GLEW_GLX_ARB_vertex_buffer_object glew::glx::GLEW_GLX_ARB_vertex_buffer_object
+#define GLEW_GLX_EXT_buffer_age glew::glx::GLEW_GLX_EXT_buffer_age
+#define GLEW_GLX_EXT_create_context_es_profile glew::glx::GLEW_GLX_EXT_create_context_es_profile
+#define GLEW_GLX_EXT_create_context_es2_profile glew::glx::GLEW_GLX_EXT_create_context_es2_profile
+#define GLEW_GLX_EXT_fbconfig_packed_float glew::glx::GLEW_GLX_EXT_fbconfig_packed_float
+#define GLEW_GLX_EXT_framebuffer_sRGB glew::glx::GLEW_GLX_EXT_framebuffer_sRGB
+#define GLEW_GLX_EXT_import_context glew::glx::GLEW_GLX_EXT_import_context
+#define GLEW_GLX_EXT_stereo_tree glew::glx::GLEW_GLX_EXT_stereo_tree
+#define GLEW_GLX_EXT_swap_control glew::glx::GLEW_GLX_EXT_swap_control
+#define GLEW_GLX_EXT_swap_control_tear glew::glx::GLEW_GLX_EXT_swap_control_tear
+#define GLEW_GLX_EXT_texture_from_pixmap glew::glx::GLEW_GLX_EXT_texture_from_pixmap
+#define GLEW_GLX_EXT_visual_info glew::glx::GLEW_GLX_EXT_visual_info
+#define GLEW_GLX_EXT_visual_rating glew::glx::GLEW_GLX_EXT_visual_rating
+#define GLEW_GLX_INTEL_swap_event glew::glx::GLEW_GLX_INTEL_swap_event
+#define GLEW_GLX_MESA_agp_offset glew::glx::GLEW_GLX_MESA_agp_offset
+#define GLEW_GLX_MESA_copy_sub_buffer glew::glx::GLEW_GLX_MESA_copy_sub_buffer
+#define GLEW_GLX_MESA_pixmap_colormap glew::glx::GLEW_GLX_MESA_pixmap_colormap
+#define GLEW_GLX_MESA_query_renderer glew::glx::GLEW_GLX_MESA_query_renderer
+#define GLEW_GLX_MESA_release_buffers glew::glx::GLEW_GLX_MESA_release_buffers
+#define GLEW_GLX_MESA_set_3dfx_mode glew::glx::GLEW_GLX_MESA_set_3dfx_mode
+#define GLEW_GLX_NV_copy_buffer glew::glx::GLEW_GLX_NV_copy_buffer
+#define GLEW_GLX_NV_copy_image glew::glx::GLEW_GLX_NV_copy_image
+#define GLEW_GLX_NV_delay_before_swap glew::glx::GLEW_GLX_NV_delay_before_swap
+#define GLEW_GLX_NV_float_buffer glew::glx::GLEW_GLX_NV_float_buffer
+#define GLEW_GLX_NV_multisample_coverage glew::glx::GLEW_GLX_NV_multisample_coverage
+#define GLEW_GLX_NV_present_video glew::glx::GLEW_GLX_NV_present_video
+#define GLEW_GLX_NV_swap_group glew::glx::GLEW_GLX_NV_swap_group
+#define GLEW_GLX_NV_video_capture glew::glx::GLEW_GLX_NV_video_capture
+#define GLEW_GLX_NV_video_out glew::glx::GLEW_GLX_NV_video_out
+#define GLEW_GLX_OML_swap_method glew::glx::GLEW_GLX_OML_swap_method
+#define GLEW_GLX_OML_sync_control glew::glx::GLEW_GLX_OML_sync_control
+#define GLEW_GLX_SGI_cushion glew::glx::GLEW_GLX_SGI_cushion
+#define GLEW_GLX_SGI_make_current_read glew::glx::GLEW_GLX_SGI_make_current_read
+#define GLEW_GLX_SGI_swap_control glew::glx::GLEW_GLX_SGI_swap_control
+#define GLEW_GLX_SGI_video_sync glew::glx::GLEW_GLX_SGI_video_sync
+#define GLEW_GLX_SGIS_blended_overlay glew::glx::GLEW_GLX_SGIS_blended_overlay
+#define GLEW_GLX_SGIS_multisample glew::glx::GLEW_GLX_SGIS_multisample
+#define GLEW_GLX_SGIS_shared_multisample glew::glx::GLEW_GLX_SGIS_shared_multisample
+#define GLEW_GLX_SGIX_dmbuffer glew::glx::GLEW_GLX_SGIX_dmbuffer
+#define GLEW_GLX_SGIX_fbconfig glew::glx::GLEW_GLX_SGIX_fbconfig
+#define GLEW_GLX_SGIX_hyperpipe glew::glx::GLEW_GLX_SGIX_hyperpipe
+#define GLEW_GLX_SGIX_pbuffer glew::glx::GLEW_GLX_SGIX_pbuffer
+#define GLEW_GLX_SGIX_swap_barrier glew::glx::GLEW_GLX_SGIX_swap_barrier
+#define GLEW_GLX_SGIX_swap_group glew::glx::GLEW_GLX_SGIX_swap_group
+#define GLEW_GLX_SGIX_video_resize glew::glx::GLEW_GLX_SGIX_video_resize
+#define GLEW_GLX_SGIX_video_source glew::glx::GLEW_GLX_SGIX_video_source
+#define GLEW_GLX_SGIX_visual_select_group glew::glx::GLEW_GLX_SGIX_visual_select_group
+#define GLEW_GLX_SUN_get_transparent_index glew::glx::GLEW_GLX_SUN_get_transparent_index
+
 #define glXQueryExtensionsString glew::glx::glXQueryExtensionsString
 #define glXQueryServerString glew::glx::glXQueryServerString
 #define glXGetClientString glew::glx::glXGetClientString

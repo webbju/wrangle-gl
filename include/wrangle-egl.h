@@ -17,30 +17,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLCHOOSECONFIGPROC) /* eglChooseConfig */ (EGLDisplay dpy, const EGLint * attrib_list, EGLConfig * configs, EGLint config_size, EGLint * num_config);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLCOPYBUFFERSPROC) /* eglCopyBuffers */ (EGLDisplay dpy, EGLSurface surface, EGLNativePixmapType target);
-typedef EGLContext (EGLAPIENTRYP PFNEGLCREATECONTEXTPROC) /* eglCreateContext */ (EGLDisplay dpy, EGLConfig config, EGLContext share_context, const EGLint * attrib_list);
-typedef EGLSurface (EGLAPIENTRYP PFNEGLCREATEPBUFFERSURFACEPROC) /* eglCreatePbufferSurface */ (EGLDisplay dpy, EGLConfig config, const EGLint * attrib_list);
-typedef EGLSurface (EGLAPIENTRYP PFNEGLCREATEPIXMAPSURFACEPROC) /* eglCreatePixmapSurface */ (EGLDisplay dpy, EGLConfig config, EGLNativePixmapType pixmap, const EGLint * attrib_list);
-typedef EGLSurface (EGLAPIENTRYP PFNEGLCREATEWINDOWSURFACEPROC) /* eglCreateWindowSurface */ (EGLDisplay dpy, EGLConfig config, EGLNativeWindowType win, const EGLint * attrib_list);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLDESTROYCONTEXTPROC) /* eglDestroyContext */ (EGLDisplay dpy, EGLContext ctx);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLDESTROYSURFACEPROC) /* eglDestroySurface */ (EGLDisplay dpy, EGLSurface surface);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLGETCONFIGATTRIBPROC) /* eglGetConfigAttrib */ (EGLDisplay dpy, EGLConfig config, EGLint attribute, EGLint * value);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLGETCONFIGSPROC) /* eglGetConfigs */ (EGLDisplay dpy, EGLConfig * configs, EGLint config_size, EGLint * num_config);
-typedef EGLDisplay (EGLAPIENTRYP PFNEGLGETCURRENTDISPLAYPROC) /* eglGetCurrentDisplay */ ();
-typedef EGLSurface (EGLAPIENTRYP PFNEGLGETCURRENTSURFACEPROC) /* eglGetCurrentSurface */ (EGLint readdraw);
-typedef EGLDisplay (EGLAPIENTRYP PFNEGLGETDISPLAYPROC) /* eglGetDisplay */ (EGLNativeDisplayType display_id);
-typedef EGLint (EGLAPIENTRYP PFNEGLGETERRORPROC) /* eglGetError */ ();
-typedef __eglMustCastToProperFunctionPointerType (EGLAPIENTRYP PFNEGLGETPROCADDRESSPROC) /* eglGetProcAddress */ (const char * procname);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLINITIALIZEPROC) /* eglInitialize */ (EGLDisplay dpy, EGLint * major, EGLint * minor);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLMAKECURRENTPROC) /* eglMakeCurrent */ (EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGLContext ctx);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYCONTEXTPROC) /* eglQueryContext */ (EGLDisplay dpy, EGLContext ctx, EGLint attribute, EGLint * value);
-typedef const char * (EGLAPIENTRYP PFNEGLQUERYSTRINGPROC) /* eglQueryString */ (EGLDisplay dpy, EGLint name);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYSURFACEPROC) /* eglQuerySurface */ (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint * value);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLSWAPBUFFERSPROC) /* eglSwapBuffers */ (EGLDisplay dpy, EGLSurface surface);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLTERMINATEPROC) /* eglTerminate */ (EGLDisplay dpy);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLWAITGLPROC) /* eglWaitGL */ ();
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLWAITNATIVEPROC) /* eglWaitNative */ (EGLint engine);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLBINDTEXIMAGEPROC) /* eglBindTexImage */ (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLRELEASETEXIMAGEPROC) /* eglReleaseTexImage */ (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLSURFACEATTRIBPROC) /* eglSurfaceAttrib */ (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint value);
@@ -263,36 +239,8 @@ namespace glew
     {
     public:
 
-      bool IsSupported (glew::egl::FeatureSet feature);
-
-      bool IsSupported (const char *feature);
-
       bool m_featureSupported [glew::egl::FeatureSet::GLEW_EGL_FeatureSetCount];
 
-      PFNEGLCHOOSECONFIGPROC m_eglChooseConfig;
-      PFNEGLCOPYBUFFERSPROC m_eglCopyBuffers;
-      PFNEGLCREATECONTEXTPROC m_eglCreateContext;
-      PFNEGLCREATEPBUFFERSURFACEPROC m_eglCreatePbufferSurface;
-      PFNEGLCREATEPIXMAPSURFACEPROC m_eglCreatePixmapSurface;
-      PFNEGLCREATEWINDOWSURFACEPROC m_eglCreateWindowSurface;
-      PFNEGLDESTROYCONTEXTPROC m_eglDestroyContext;
-      PFNEGLDESTROYSURFACEPROC m_eglDestroySurface;
-      PFNEGLGETCONFIGATTRIBPROC m_eglGetConfigAttrib;
-      PFNEGLGETCONFIGSPROC m_eglGetConfigs;
-      PFNEGLGETCURRENTDISPLAYPROC m_eglGetCurrentDisplay;
-      PFNEGLGETCURRENTSURFACEPROC m_eglGetCurrentSurface;
-      PFNEGLGETDISPLAYPROC m_eglGetDisplay;
-      PFNEGLGETERRORPROC m_eglGetError;
-      PFNEGLGETPROCADDRESSPROC m_eglGetProcAddress;
-      PFNEGLINITIALIZEPROC m_eglInitialize;
-      PFNEGLMAKECURRENTPROC m_eglMakeCurrent;
-      PFNEGLQUERYCONTEXTPROC m_eglQueryContext;
-      PFNEGLQUERYSTRINGPROC m_eglQueryString;
-      PFNEGLQUERYSURFACEPROC m_eglQuerySurface;
-      PFNEGLSWAPBUFFERSPROC m_eglSwapBuffers;
-      PFNEGLTERMINATEPROC m_eglTerminate;
-      PFNEGLWAITGLPROC m_eglWaitGL;
-      PFNEGLWAITNATIVEPROC m_eglWaitNative;
       PFNEGLBINDTEXIMAGEPROC m_eglBindTexImage;
       PFNEGLRELEASETEXIMAGEPROC m_eglReleaseTexImage;
       PFNEGLSURFACEATTRIBPROC m_eglSurfaceAttrib;
@@ -405,116 +353,92 @@ namespace glew
 
   public:
 
-    EGLBoolean eglChooseConfig (EGLDisplay dpy, const EGLint * attrib_list, EGLConfig * configs, EGLint config_size, EGLint * num_config);
-    EGLBoolean eglCopyBuffers (EGLDisplay dpy, EGLSurface surface, EGLNativePixmapType target);
-    EGLContext eglCreateContext (EGLDisplay dpy, EGLConfig config, EGLContext share_context, const EGLint * attrib_list);
-    EGLSurface eglCreatePbufferSurface (EGLDisplay dpy, EGLConfig config, const EGLint * attrib_list);
-    EGLSurface eglCreatePixmapSurface (EGLDisplay dpy, EGLConfig config, EGLNativePixmapType pixmap, const EGLint * attrib_list);
-    EGLSurface eglCreateWindowSurface (EGLDisplay dpy, EGLConfig config, EGLNativeWindowType win, const EGLint * attrib_list);
-    EGLBoolean eglDestroyContext (EGLDisplay dpy, EGLContext ctx);
-    EGLBoolean eglDestroySurface (EGLDisplay dpy, EGLSurface surface);
-    EGLBoolean eglGetConfigAttrib (EGLDisplay dpy, EGLConfig config, EGLint attribute, EGLint * value);
-    EGLBoolean eglGetConfigs (EGLDisplay dpy, EGLConfig * configs, EGLint config_size, EGLint * num_config);
-    EGLDisplay eglGetCurrentDisplay ();
-    EGLSurface eglGetCurrentSurface (EGLint readdraw);
-    EGLDisplay eglGetDisplay (EGLNativeDisplayType display_id);
-    EGLint eglGetError ();
-    __eglMustCastToProperFunctionPointerType eglGetProcAddress (const char * procname);
-    EGLBoolean eglInitialize (EGLDisplay dpy, EGLint * major, EGLint * minor);
-    EGLBoolean eglMakeCurrent (EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGLContext ctx);
-    EGLBoolean eglQueryContext (EGLDisplay dpy, EGLContext ctx, EGLint attribute, EGLint * value);
-    const char * eglQueryString (EGLDisplay dpy, EGLint name);
-    EGLBoolean eglQuerySurface (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint * value);
-    EGLBoolean eglSwapBuffers (EGLDisplay dpy, EGLSurface surface);
-    EGLBoolean eglTerminate (EGLDisplay dpy);
-    EGLBoolean eglWaitGL ();
-    EGLBoolean eglWaitNative (EGLint engine);
-    EGLBoolean eglBindTexImage (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
-    EGLBoolean eglReleaseTexImage (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
-    EGLBoolean eglSurfaceAttrib (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint value);
-    EGLBoolean eglSwapInterval (EGLDisplay dpy, EGLint interval);
-    EGLBoolean eglBindAPI (EGLenum api);
-    EGLenum eglQueryAPI ();
-    EGLSurface eglCreatePbufferFromClientBuffer (EGLDisplay dpy, EGLenum buftype, EGLClientBuffer buffer, EGLConfig config, const EGLint * attrib_list);
-    EGLBoolean eglReleaseThread ();
-    EGLBoolean eglWaitClient ();
-    EGLContext eglGetCurrentContext ();
-    EGLSync eglCreateSync (EGLDisplay dpy, EGLenum type, const EGLAttrib * attrib_list);
-    EGLBoolean eglDestroySync (EGLDisplay dpy, EGLSync sync);
-    EGLint eglClientWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags, EGLTime timeout);
-    EGLBoolean eglGetSyncAttrib (EGLDisplay dpy, EGLSync sync, EGLint attribute, EGLAttrib * value);
-    EGLImage eglCreateImage (EGLDisplay dpy, EGLContext ctx, EGLenum target, EGLClientBuffer buffer, const EGLAttrib * attrib_list);
-    EGLBoolean eglDestroyImage (EGLDisplay dpy, EGLImage image);
-    EGLDisplay eglGetPlatformDisplay (EGLenum platform, void * native_display, const EGLAttrib * attrib_list);
-    EGLSurface eglCreatePlatformWindowSurface (EGLDisplay dpy, EGLConfig config, void * native_window, const EGLAttrib * attrib_list);
-    EGLSurface eglCreatePlatformPixmapSurface (EGLDisplay dpy, EGLConfig config, void * native_pixmap, const EGLAttrib * attrib_list);
-    EGLBoolean eglWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags);
-    void eglSetBlobCacheFuncsANDROID (EGLDisplay dpy, EGLSetBlobFuncANDROID set, EGLGetBlobFuncANDROID get);
-    EGLint eglDupNativeFenceFDANDROID (EGLDisplay dpy, EGLSyncKHR sync);
-    EGLBoolean eglQuerySurfacePointerANGLE (EGLDisplay dpy, EGLSurface surface, EGLint attribute, void ** value);
-    EGLBoolean eglQueryDeviceAttribEXT (EGLDeviceEXT device, EGLint attribute, EGLAttrib * value);
-    const char * eglQueryDeviceStringEXT (EGLDeviceEXT device, EGLint name);
-    EGLBoolean eglQueryDevicesEXT (EGLint max_devices, EGLDeviceEXT * devices, EGLint * num_devices);
-    EGLBoolean eglQueryDisplayAttribEXT (EGLDisplay dpy, EGLint attribute, EGLAttrib * value);
-    EGLBoolean eglGetOutputLayersEXT (EGLDisplay dpy, const EGLAttrib * attrib_list, EGLOutputLayerEXT * layers, EGLint max_layers, EGLint * num_layers);
-    EGLBoolean eglGetOutputPortsEXT (EGLDisplay dpy, const EGLAttrib * attrib_list, EGLOutputPortEXT * ports, EGLint max_ports, EGLint * num_ports);
-    EGLBoolean eglOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGLint attribute, EGLAttrib value);
-    EGLBoolean eglQueryOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGLint attribute, EGLAttrib * value);
-    const char * eglQueryOutputLayerStringEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGLint name);
-    EGLBoolean eglOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint attribute, EGLAttrib value);
-    EGLBoolean eglQueryOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint attribute, EGLAttrib * value);
-    const char * eglQueryOutputPortStringEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint name);
-    EGLDisplay eglGetPlatformDisplayEXT (EGLenum platform, void * native_display, const EGLint * attrib_list);
-    EGLSurface eglCreatePlatformWindowSurfaceEXT (EGLDisplay dpy, EGLConfig config, void * native_window, const EGLint * attrib_list);
-    EGLSurface eglCreatePlatformPixmapSurfaceEXT (EGLDisplay dpy, EGLConfig config, void * native_pixmap, const EGLint * attrib_list);
-    EGLBoolean eglStreamConsumerOutputEXT (EGLDisplay dpy, EGLStreamKHR stream, EGLOutputLayerEXT layer);
-    EGLBoolean eglSwapBuffersWithDamageEXT (EGLDisplay dpy, EGLSurface surface, EGLint * rects, EGLint n_rects);
-    EGLSurface eglCreatePixmapSurfaceHI (EGLDisplay dpy, EGLConfig config, struct EGLClientPixmapHI * pixmap);
-    EGLSyncKHR eglCreateSync64KHR (EGLDisplay dpy, EGLenum type, const EGLAttribKHR * attrib_list);
-    EGLSyncKHR eglCreateSyncKHR (EGLDisplay dpy, EGLenum type, const EGLint * attrib_list);
-    EGLBoolean eglDestroySyncKHR (EGLDisplay dpy, EGLSyncKHR sync);
-    EGLint eglClientWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags, EGLTimeKHR timeout);
-    EGLBoolean eglGetSyncAttribKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint attribute, EGLint * value);
-    EGLImageKHR eglCreateImageKHR (EGLDisplay dpy, EGLContext ctx, EGLenum target, EGLClientBuffer buffer, const EGLint * attrib_list);
-    EGLBoolean eglDestroyImageKHR (EGLDisplay dpy, EGLImageKHR image);
-    EGLBoolean eglLockSurfaceKHR (EGLDisplay dpy, EGLSurface surface, const EGLint * attrib_list);
-    EGLBoolean eglUnlockSurfaceKHR (EGLDisplay dpy, EGLSurface surface);
-    EGLBoolean eglQuerySurface64KHR (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLAttribKHR * value);
-    EGLBoolean eglSetDamageRegionKHR (EGLDisplay dpy, EGLSurface surface, EGLint * rects, EGLint n_rects);
-    EGLBoolean eglSignalSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLenum mode);
-    EGLStreamKHR eglCreateStreamKHR (EGLDisplay dpy, const EGLint * attrib_list);
-    EGLBoolean eglDestroyStreamKHR (EGLDisplay dpy, EGLStreamKHR stream);
-    EGLBoolean eglStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLint value);
-    EGLBoolean eglQueryStreamKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLint * value);
-    EGLBoolean eglQueryStreamu64KHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLuint64KHR * value);
-    EGLBoolean eglStreamConsumerGLTextureExternalKHR (EGLDisplay dpy, EGLStreamKHR stream);
-    EGLBoolean eglStreamConsumerAcquireKHR (EGLDisplay dpy, EGLStreamKHR stream);
-    EGLBoolean eglStreamConsumerReleaseKHR (EGLDisplay dpy, EGLStreamKHR stream);
-    EGLNativeFileDescriptorKHR eglGetStreamFileDescriptorKHR (EGLDisplay dpy, EGLStreamKHR stream);
-    EGLStreamKHR eglCreateStreamFromFileDescriptorKHR (EGLDisplay dpy, EGLNativeFileDescriptorKHR file_descriptor);
-    EGLBoolean eglQueryStreamTimeKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLTimeKHR * value);
-    EGLSurface eglCreateStreamProducerSurfaceKHR (EGLDisplay dpy, EGLConfig config, EGLStreamKHR stream, const EGLint * attrib_list);
-    EGLBoolean eglSwapBuffersWithDamageKHR (EGLDisplay dpy, EGLSurface surface, EGLint * rects, EGLint n_rects);
-    EGLint eglWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags);
-    EGLImageKHR eglCreateDRMImageMESA (EGLDisplay dpy, const EGLint * attrib_list);
-    EGLBoolean eglExportDRMImageMESA (EGLDisplay dpy, EGLImageKHR image, EGLint * name, EGLint * handle, EGLint * stride);
-    EGLBoolean eglExportDMABUFImageQueryMESA (EGLDisplay dpy, EGLImageKHR image, int * fourcc, int * num_planes, EGLuint64KHR * modifiers);
-    EGLBoolean eglExportDMABUFImageMESA (EGLDisplay dpy, EGLImageKHR image, int * fds, EGLint * strides, EGLint * offsets);
-    EGLBoolean eglSwapBuffersRegionNOK (EGLDisplay dpy, EGLSurface surface, EGLint numRects, const EGLint * rects);
-    EGLBoolean eglSwapBuffersRegion2NOK (EGLDisplay dpy, EGLSurface surface, EGLint numRects, const EGLint * rects);
-    EGLBoolean eglQueryNativeDisplayNV (EGLDisplay dpy, EGLNativeDisplayType * display_id);
-    EGLBoolean eglQueryNativeWindowNV (EGLDisplay dpy, EGLSurface surf, EGLNativeWindowType * window);
-    EGLBoolean eglQueryNativePixmapNV (EGLDisplay dpy, EGLSurface surf, EGLNativePixmapType * pixmap);
-    EGLBoolean eglPostSubBufferNV (EGLDisplay dpy, EGLSurface surface, EGLint x, EGLint y, EGLint width, EGLint height);
-    EGLSyncKHR eglCreateStreamSyncNV (EGLDisplay dpy, EGLStreamKHR stream, EGLenum type, const EGLint * attrib_list);
-    EGLSyncNV eglCreateFenceSyncNV (EGLDisplay dpy, EGLenum condition, const EGLint * attrib_list);
-    EGLBoolean eglDestroySyncNV (EGLSyncNV sync);
-    EGLBoolean eglFenceNV (EGLSyncNV sync);
-    EGLint eglClientWaitSyncNV (EGLSyncNV sync, EGLint flags, EGLTimeNV timeout);
-    EGLBoolean eglSignalSyncNV (EGLSyncNV sync, EGLenum mode);
-    EGLBoolean eglGetSyncAttribNV (EGLSyncNV sync, EGLint attribute, EGLint * value);
-    EGLuint64NV eglGetSystemTimeFrequencyNV ();
-    EGLuint64NV eglGetSystemTimeNV ();
+    static EGLBoolean eglBindTexImage (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
+    static EGLBoolean eglReleaseTexImage (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
+    static EGLBoolean eglSurfaceAttrib (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint value);
+    static EGLBoolean eglSwapInterval (EGLDisplay dpy, EGLint interval);
+    static EGLBoolean eglBindAPI (EGLenum api);
+    static EGLenum eglQueryAPI ();
+    static EGLSurface eglCreatePbufferFromClientBuffer (EGLDisplay dpy, EGLenum buftype, EGLClientBuffer buffer, EGLConfig config, const EGLint * attrib_list);
+    static EGLBoolean eglReleaseThread ();
+    static EGLBoolean eglWaitClient ();
+    static EGLContext eglGetCurrentContext ();
+    static EGLSync eglCreateSync (EGLDisplay dpy, EGLenum type, const EGLAttrib * attrib_list);
+    static EGLBoolean eglDestroySync (EGLDisplay dpy, EGLSync sync);
+    static EGLint eglClientWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags, EGLTime timeout);
+    static EGLBoolean eglGetSyncAttrib (EGLDisplay dpy, EGLSync sync, EGLint attribute, EGLAttrib * value);
+    static EGLImage eglCreateImage (EGLDisplay dpy, EGLContext ctx, EGLenum target, EGLClientBuffer buffer, const EGLAttrib * attrib_list);
+    static EGLBoolean eglDestroyImage (EGLDisplay dpy, EGLImage image);
+    static EGLDisplay eglGetPlatformDisplay (EGLenum platform, void * native_display, const EGLAttrib * attrib_list);
+    static EGLSurface eglCreatePlatformWindowSurface (EGLDisplay dpy, EGLConfig config, void * native_window, const EGLAttrib * attrib_list);
+    static EGLSurface eglCreatePlatformPixmapSurface (EGLDisplay dpy, EGLConfig config, void * native_pixmap, const EGLAttrib * attrib_list);
+    static EGLBoolean eglWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags);
+    static void eglSetBlobCacheFuncsANDROID (EGLDisplay dpy, EGLSetBlobFuncANDROID set, EGLGetBlobFuncANDROID get);
+    static EGLint eglDupNativeFenceFDANDROID (EGLDisplay dpy, EGLSyncKHR sync);
+    static EGLBoolean eglQuerySurfacePointerANGLE (EGLDisplay dpy, EGLSurface surface, EGLint attribute, void ** value);
+    static EGLBoolean eglQueryDeviceAttribEXT (EGLDeviceEXT device, EGLint attribute, EGLAttrib * value);
+    static const char * eglQueryDeviceStringEXT (EGLDeviceEXT device, EGLint name);
+    static EGLBoolean eglQueryDevicesEXT (EGLint max_devices, EGLDeviceEXT * devices, EGLint * num_devices);
+    static EGLBoolean eglQueryDisplayAttribEXT (EGLDisplay dpy, EGLint attribute, EGLAttrib * value);
+    static EGLBoolean eglGetOutputLayersEXT (EGLDisplay dpy, const EGLAttrib * attrib_list, EGLOutputLayerEXT * layers, EGLint max_layers, EGLint * num_layers);
+    static EGLBoolean eglGetOutputPortsEXT (EGLDisplay dpy, const EGLAttrib * attrib_list, EGLOutputPortEXT * ports, EGLint max_ports, EGLint * num_ports);
+    static EGLBoolean eglOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGLint attribute, EGLAttrib value);
+    static EGLBoolean eglQueryOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGLint attribute, EGLAttrib * value);
+    static const char * eglQueryOutputLayerStringEXT (EGLDisplay dpy, EGLOutputLayerEXT layer, EGLint name);
+    static EGLBoolean eglOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint attribute, EGLAttrib value);
+    static EGLBoolean eglQueryOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint attribute, EGLAttrib * value);
+    static const char * eglQueryOutputPortStringEXT (EGLDisplay dpy, EGLOutputPortEXT port, EGLint name);
+    static EGLDisplay eglGetPlatformDisplayEXT (EGLenum platform, void * native_display, const EGLint * attrib_list);
+    static EGLSurface eglCreatePlatformWindowSurfaceEXT (EGLDisplay dpy, EGLConfig config, void * native_window, const EGLint * attrib_list);
+    static EGLSurface eglCreatePlatformPixmapSurfaceEXT (EGLDisplay dpy, EGLConfig config, void * native_pixmap, const EGLint * attrib_list);
+    static EGLBoolean eglStreamConsumerOutputEXT (EGLDisplay dpy, EGLStreamKHR stream, EGLOutputLayerEXT layer);
+    static EGLBoolean eglSwapBuffersWithDamageEXT (EGLDisplay dpy, EGLSurface surface, EGLint * rects, EGLint n_rects);
+    static EGLSurface eglCreatePixmapSurfaceHI (EGLDisplay dpy, EGLConfig config, struct EGLClientPixmapHI * pixmap);
+    static EGLSyncKHR eglCreateSync64KHR (EGLDisplay dpy, EGLenum type, const EGLAttribKHR * attrib_list);
+    static EGLSyncKHR eglCreateSyncKHR (EGLDisplay dpy, EGLenum type, const EGLint * attrib_list);
+    static EGLBoolean eglDestroySyncKHR (EGLDisplay dpy, EGLSyncKHR sync);
+    static EGLint eglClientWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags, EGLTimeKHR timeout);
+    static EGLBoolean eglGetSyncAttribKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint attribute, EGLint * value);
+    static EGLImageKHR eglCreateImageKHR (EGLDisplay dpy, EGLContext ctx, EGLenum target, EGLClientBuffer buffer, const EGLint * attrib_list);
+    static EGLBoolean eglDestroyImageKHR (EGLDisplay dpy, EGLImageKHR image);
+    static EGLBoolean eglLockSurfaceKHR (EGLDisplay dpy, EGLSurface surface, const EGLint * attrib_list);
+    static EGLBoolean eglUnlockSurfaceKHR (EGLDisplay dpy, EGLSurface surface);
+    static EGLBoolean eglQuerySurface64KHR (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLAttribKHR * value);
+    static EGLBoolean eglSetDamageRegionKHR (EGLDisplay dpy, EGLSurface surface, EGLint * rects, EGLint n_rects);
+    static EGLBoolean eglSignalSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLenum mode);
+    static EGLStreamKHR eglCreateStreamKHR (EGLDisplay dpy, const EGLint * attrib_list);
+    static EGLBoolean eglDestroyStreamKHR (EGLDisplay dpy, EGLStreamKHR stream);
+    static EGLBoolean eglStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLint value);
+    static EGLBoolean eglQueryStreamKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLint * value);
+    static EGLBoolean eglQueryStreamu64KHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLuint64KHR * value);
+    static EGLBoolean eglStreamConsumerGLTextureExternalKHR (EGLDisplay dpy, EGLStreamKHR stream);
+    static EGLBoolean eglStreamConsumerAcquireKHR (EGLDisplay dpy, EGLStreamKHR stream);
+    static EGLBoolean eglStreamConsumerReleaseKHR (EGLDisplay dpy, EGLStreamKHR stream);
+    static EGLNativeFileDescriptorKHR eglGetStreamFileDescriptorKHR (EGLDisplay dpy, EGLStreamKHR stream);
+    static EGLStreamKHR eglCreateStreamFromFileDescriptorKHR (EGLDisplay dpy, EGLNativeFileDescriptorKHR file_descriptor);
+    static EGLBoolean eglQueryStreamTimeKHR (EGLDisplay dpy, EGLStreamKHR stream, EGLenum attribute, EGLTimeKHR * value);
+    static EGLSurface eglCreateStreamProducerSurfaceKHR (EGLDisplay dpy, EGLConfig config, EGLStreamKHR stream, const EGLint * attrib_list);
+    static EGLBoolean eglSwapBuffersWithDamageKHR (EGLDisplay dpy, EGLSurface surface, EGLint * rects, EGLint n_rects);
+    static EGLint eglWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags);
+    static EGLImageKHR eglCreateDRMImageMESA (EGLDisplay dpy, const EGLint * attrib_list);
+    static EGLBoolean eglExportDRMImageMESA (EGLDisplay dpy, EGLImageKHR image, EGLint * name, EGLint * handle, EGLint * stride);
+    static EGLBoolean eglExportDMABUFImageQueryMESA (EGLDisplay dpy, EGLImageKHR image, int * fourcc, int * num_planes, EGLuint64KHR * modifiers);
+    static EGLBoolean eglExportDMABUFImageMESA (EGLDisplay dpy, EGLImageKHR image, int * fds, EGLint * strides, EGLint * offsets);
+    static EGLBoolean eglSwapBuffersRegionNOK (EGLDisplay dpy, EGLSurface surface, EGLint numRects, const EGLint * rects);
+    static EGLBoolean eglSwapBuffersRegion2NOK (EGLDisplay dpy, EGLSurface surface, EGLint numRects, const EGLint * rects);
+    static EGLBoolean eglQueryNativeDisplayNV (EGLDisplay dpy, EGLNativeDisplayType * display_id);
+    static EGLBoolean eglQueryNativeWindowNV (EGLDisplay dpy, EGLSurface surf, EGLNativeWindowType * window);
+    static EGLBoolean eglQueryNativePixmapNV (EGLDisplay dpy, EGLSurface surf, EGLNativePixmapType * pixmap);
+    static EGLBoolean eglPostSubBufferNV (EGLDisplay dpy, EGLSurface surface, EGLint x, EGLint y, EGLint width, EGLint height);
+    static EGLSyncKHR eglCreateStreamSyncNV (EGLDisplay dpy, EGLStreamKHR stream, EGLenum type, const EGLint * attrib_list);
+    static EGLSyncNV eglCreateFenceSyncNV (EGLDisplay dpy, EGLenum condition, const EGLint * attrib_list);
+    static EGLBoolean eglDestroySyncNV (EGLSyncNV sync);
+    static EGLBoolean eglFenceNV (EGLSyncNV sync);
+    static EGLint eglClientWaitSyncNV (EGLSyncNV sync, EGLint flags, EGLTimeNV timeout);
+    static EGLBoolean eglSignalSyncNV (EGLSyncNV sync, EGLenum mode);
+    static EGLBoolean eglGetSyncAttribNV (EGLSyncNV sync, EGLint attribute, EGLint * value);
+    static EGLuint64NV eglGetSystemTimeFrequencyNV ();
+    static EGLuint64NV eglGetSystemTimeNV ();
   };
 }
 
@@ -522,30 +446,103 @@ namespace glew
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define eglChooseConfig glew::egl::eglChooseConfig
-#define eglCopyBuffers glew::egl::eglCopyBuffers
-#define eglCreateContext glew::egl::eglCreateContext
-#define eglCreatePbufferSurface glew::egl::eglCreatePbufferSurface
-#define eglCreatePixmapSurface glew::egl::eglCreatePixmapSurface
-#define eglCreateWindowSurface glew::egl::eglCreateWindowSurface
-#define eglDestroyContext glew::egl::eglDestroyContext
-#define eglDestroySurface glew::egl::eglDestroySurface
-#define eglGetConfigAttrib glew::egl::eglGetConfigAttrib
-#define eglGetConfigs glew::egl::eglGetConfigs
-#define eglGetCurrentDisplay glew::egl::eglGetCurrentDisplay
-#define eglGetCurrentSurface glew::egl::eglGetCurrentSurface
-#define eglGetDisplay glew::egl::eglGetDisplay
-#define eglGetError glew::egl::eglGetError
-#define eglGetProcAddress glew::egl::eglGetProcAddress
-#define eglInitialize glew::egl::eglInitialize
-#define eglMakeCurrent glew::egl::eglMakeCurrent
-#define eglQueryContext glew::egl::eglQueryContext
-#define eglQueryString glew::egl::eglQueryString
-#define eglQuerySurface glew::egl::eglQuerySurface
-#define eglSwapBuffers glew::egl::eglSwapBuffers
-#define eglTerminate glew::egl::eglTerminate
-#define eglWaitGL glew::egl::eglWaitGL
-#define eglWaitNative glew::egl::eglWaitNative
+#define GLEW_EGL_VERSION_1_0 glew::egl::GLEW_EGL_VERSION_1_0
+#define GLEW_EGL_VERSION_1_1 glew::egl::GLEW_EGL_VERSION_1_1
+#define GLEW_EGL_VERSION_1_2 glew::egl::GLEW_EGL_VERSION_1_2
+#define GLEW_EGL_VERSION_1_3 glew::egl::GLEW_EGL_VERSION_1_3
+#define GLEW_EGL_VERSION_1_4 glew::egl::GLEW_EGL_VERSION_1_4
+#define GLEW_EGL_VERSION_1_5 glew::egl::GLEW_EGL_VERSION_1_5
+#define GLEW_EGL_ANDROID_blob_cache glew::egl::GLEW_EGL_ANDROID_blob_cache
+#define GLEW_EGL_ANDROID_framebuffer_target glew::egl::GLEW_EGL_ANDROID_framebuffer_target
+#define GLEW_EGL_ANDROID_image_native_buffer glew::egl::GLEW_EGL_ANDROID_image_native_buffer
+#define GLEW_EGL_ANDROID_native_fence_sync glew::egl::GLEW_EGL_ANDROID_native_fence_sync
+#define GLEW_EGL_ANDROID_recordable glew::egl::GLEW_EGL_ANDROID_recordable
+#define GLEW_EGL_ANGLE_d3d_share_handle_client_buffer glew::egl::GLEW_EGL_ANGLE_d3d_share_handle_client_buffer
+#define GLEW_EGL_ANGLE_device_d3d glew::egl::GLEW_EGL_ANGLE_device_d3d
+#define GLEW_EGL_ANGLE_query_surface_pointer glew::egl::GLEW_EGL_ANGLE_query_surface_pointer
+#define GLEW_EGL_ANGLE_surface_d3d_texture_2d_share_handle glew::egl::GLEW_EGL_ANGLE_surface_d3d_texture_2d_share_handle
+#define GLEW_EGL_ANGLE_window_fixed_size glew::egl::GLEW_EGL_ANGLE_window_fixed_size
+#define GLEW_EGL_ARM_pixmap_multisample_discard glew::egl::GLEW_EGL_ARM_pixmap_multisample_discard
+#define GLEW_EGL_EXT_buffer_age glew::egl::GLEW_EGL_EXT_buffer_age
+#define GLEW_EGL_EXT_client_extensions glew::egl::GLEW_EGL_EXT_client_extensions
+#define GLEW_EGL_EXT_create_context_robustness glew::egl::GLEW_EGL_EXT_create_context_robustness
+#define GLEW_EGL_EXT_device_base glew::egl::GLEW_EGL_EXT_device_base
+#define GLEW_EGL_EXT_device_drm glew::egl::GLEW_EGL_EXT_device_drm
+#define GLEW_EGL_EXT_device_enumeration glew::egl::GLEW_EGL_EXT_device_enumeration
+#define GLEW_EGL_EXT_device_openwf glew::egl::GLEW_EGL_EXT_device_openwf
+#define GLEW_EGL_EXT_device_query glew::egl::GLEW_EGL_EXT_device_query
+#define GLEW_EGL_EXT_image_dma_buf_import glew::egl::GLEW_EGL_EXT_image_dma_buf_import
+#define GLEW_EGL_EXT_multiview_window glew::egl::GLEW_EGL_EXT_multiview_window
+#define GLEW_EGL_EXT_output_base glew::egl::GLEW_EGL_EXT_output_base
+#define GLEW_EGL_EXT_output_drm glew::egl::GLEW_EGL_EXT_output_drm
+#define GLEW_EGL_EXT_output_openwf glew::egl::GLEW_EGL_EXT_output_openwf
+#define GLEW_EGL_EXT_platform_base glew::egl::GLEW_EGL_EXT_platform_base
+#define GLEW_EGL_EXT_platform_device glew::egl::GLEW_EGL_EXT_platform_device
+#define GLEW_EGL_EXT_platform_wayland glew::egl::GLEW_EGL_EXT_platform_wayland
+#define GLEW_EGL_EXT_platform_x11 glew::egl::GLEW_EGL_EXT_platform_x11
+#define GLEW_EGL_EXT_protected_surface glew::egl::GLEW_EGL_EXT_protected_surface
+#define GLEW_EGL_EXT_stream_consumer_egloutput glew::egl::GLEW_EGL_EXT_stream_consumer_egloutput
+#define GLEW_EGL_EXT_swap_buffers_with_damage glew::egl::GLEW_EGL_EXT_swap_buffers_with_damage
+#define GLEW_EGL_EXT_yuv_surface glew::egl::GLEW_EGL_EXT_yuv_surface
+#define GLEW_EGL_HI_clientpixmap glew::egl::GLEW_EGL_HI_clientpixmap
+#define GLEW_EGL_HI_colorformats glew::egl::GLEW_EGL_HI_colorformats
+#define GLEW_EGL_IMG_context_priority glew::egl::GLEW_EGL_IMG_context_priority
+#define GLEW_EGL_KHR_cl_event glew::egl::GLEW_EGL_KHR_cl_event
+#define GLEW_EGL_KHR_cl_event2 glew::egl::GLEW_EGL_KHR_cl_event2
+#define GLEW_EGL_KHR_config_attribs glew::egl::GLEW_EGL_KHR_config_attribs
+#define GLEW_EGL_KHR_client_get_all_proc_addresses glew::egl::GLEW_EGL_KHR_client_get_all_proc_addresses
+#define GLEW_EGL_KHR_create_context glew::egl::GLEW_EGL_KHR_create_context
+#define GLEW_EGL_KHR_create_context_no_error glew::egl::GLEW_EGL_KHR_create_context_no_error
+#define GLEW_EGL_KHR_fence_sync glew::egl::GLEW_EGL_KHR_fence_sync
+#define GLEW_EGL_KHR_get_all_proc_addresses glew::egl::GLEW_EGL_KHR_get_all_proc_addresses
+#define GLEW_EGL_KHR_gl_colorspace glew::egl::GLEW_EGL_KHR_gl_colorspace
+#define GLEW_EGL_KHR_gl_renderbuffer_image glew::egl::GLEW_EGL_KHR_gl_renderbuffer_image
+#define GLEW_EGL_KHR_gl_texture_2D_image glew::egl::GLEW_EGL_KHR_gl_texture_2D_image
+#define GLEW_EGL_KHR_gl_texture_3D_image glew::egl::GLEW_EGL_KHR_gl_texture_3D_image
+#define GLEW_EGL_KHR_gl_texture_cubemap_image glew::egl::GLEW_EGL_KHR_gl_texture_cubemap_image
+#define GLEW_EGL_KHR_image glew::egl::GLEW_EGL_KHR_image
+#define GLEW_EGL_KHR_image_base glew::egl::GLEW_EGL_KHR_image_base
+#define GLEW_EGL_KHR_image_pixmap glew::egl::GLEW_EGL_KHR_image_pixmap
+#define GLEW_EGL_KHR_lock_surface glew::egl::GLEW_EGL_KHR_lock_surface
+#define GLEW_EGL_KHR_lock_surface2 glew::egl::GLEW_EGL_KHR_lock_surface2
+#define GLEW_EGL_KHR_lock_surface3 glew::egl::GLEW_EGL_KHR_lock_surface3
+#define GLEW_EGL_KHR_partial_update glew::egl::GLEW_EGL_KHR_partial_update
+#define GLEW_EGL_KHR_platform_android glew::egl::GLEW_EGL_KHR_platform_android
+#define GLEW_EGL_KHR_platform_gbm glew::egl::GLEW_EGL_KHR_platform_gbm
+#define GLEW_EGL_KHR_platform_wayland glew::egl::GLEW_EGL_KHR_platform_wayland
+#define GLEW_EGL_KHR_platform_x11 glew::egl::GLEW_EGL_KHR_platform_x11
+#define GLEW_EGL_KHR_reusable_sync glew::egl::GLEW_EGL_KHR_reusable_sync
+#define GLEW_EGL_KHR_stream glew::egl::GLEW_EGL_KHR_stream
+#define GLEW_EGL_KHR_stream_consumer_gltexture glew::egl::GLEW_EGL_KHR_stream_consumer_gltexture
+#define GLEW_EGL_KHR_stream_cross_process_fd glew::egl::GLEW_EGL_KHR_stream_cross_process_fd
+#define GLEW_EGL_KHR_stream_fifo glew::egl::GLEW_EGL_KHR_stream_fifo
+#define GLEW_EGL_KHR_stream_producer_aldatalocator glew::egl::GLEW_EGL_KHR_stream_producer_aldatalocator
+#define GLEW_EGL_KHR_stream_producer_eglsurface glew::egl::GLEW_EGL_KHR_stream_producer_eglsurface
+#define GLEW_EGL_KHR_surfaceless_context glew::egl::GLEW_EGL_KHR_surfaceless_context
+#define GLEW_EGL_KHR_swap_buffers_with_damage glew::egl::GLEW_EGL_KHR_swap_buffers_with_damage
+#define GLEW_EGL_KHR_vg_parent_image glew::egl::GLEW_EGL_KHR_vg_parent_image
+#define GLEW_EGL_KHR_wait_sync glew::egl::GLEW_EGL_KHR_wait_sync
+#define GLEW_EGL_MESA_drm_image glew::egl::GLEW_EGL_MESA_drm_image
+#define GLEW_EGL_MESA_image_dma_buf_export glew::egl::GLEW_EGL_MESA_image_dma_buf_export
+#define GLEW_EGL_MESA_platform_gbm glew::egl::GLEW_EGL_MESA_platform_gbm
+#define GLEW_EGL_NOK_swap_region glew::egl::GLEW_EGL_NOK_swap_region
+#define GLEW_EGL_NOK_swap_region2 glew::egl::GLEW_EGL_NOK_swap_region2
+#define GLEW_EGL_NOK_texture_from_pixmap glew::egl::GLEW_EGL_NOK_texture_from_pixmap
+#define GLEW_EGL_NV_3dvision_surface glew::egl::GLEW_EGL_NV_3dvision_surface
+#define GLEW_EGL_NV_coverage_sample glew::egl::GLEW_EGL_NV_coverage_sample
+#define GLEW_EGL_NV_coverage_sample_resolve glew::egl::GLEW_EGL_NV_coverage_sample_resolve
+#define GLEW_EGL_NV_cuda_event glew::egl::GLEW_EGL_NV_cuda_event
+#define GLEW_EGL_NV_depth_nonlinear glew::egl::GLEW_EGL_NV_depth_nonlinear
+#define GLEW_EGL_NV_device_cuda glew::egl::GLEW_EGL_NV_device_cuda
+#define GLEW_EGL_NV_native_query glew::egl::GLEW_EGL_NV_native_query
+#define GLEW_EGL_NV_post_convert_rounding glew::egl::GLEW_EGL_NV_post_convert_rounding
+#define GLEW_EGL_NV_post_sub_buffer glew::egl::GLEW_EGL_NV_post_sub_buffer
+#define GLEW_EGL_NV_stream_sync glew::egl::GLEW_EGL_NV_stream_sync
+#define GLEW_EGL_NV_sync glew::egl::GLEW_EGL_NV_sync
+#define GLEW_EGL_NV_system_time glew::egl::GLEW_EGL_NV_system_time
+#define GLEW_EGL_TIZEN_image_native_buffer glew::egl::GLEW_EGL_TIZEN_image_native_buffer
+#define GLEW_EGL_TIZEN_image_native_surface glew::egl::GLEW_EGL_TIZEN_image_native_surface
+
 #define eglBindTexImage glew::egl::eglBindTexImage
 #define eglReleaseTexImage glew::egl::eglReleaseTexImage
 #define eglSurfaceAttrib glew::egl::eglSurfaceAttrib
