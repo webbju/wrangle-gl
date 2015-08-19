@@ -17,6 +17,30 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+EGLAPI EGLBoolean EGLAPIENTRY eglChooseConfig (EGLDisplay dpy, const EGLint * attrib_list, EGLConfig * configs, EGLint config_size, EGLint * num_config);
+EGLAPI EGLBoolean EGLAPIENTRY eglCopyBuffers (EGLDisplay dpy, EGLSurface surface, EGLNativePixmapType target);
+EGLAPI EGLContext EGLAPIENTRY eglCreateContext (EGLDisplay dpy, EGLConfig config, EGLContext share_context, const EGLint * attrib_list);
+EGLAPI EGLSurface EGLAPIENTRY eglCreatePbufferSurface (EGLDisplay dpy, EGLConfig config, const EGLint * attrib_list);
+EGLAPI EGLSurface EGLAPIENTRY eglCreatePixmapSurface (EGLDisplay dpy, EGLConfig config, EGLNativePixmapType pixmap, const EGLint * attrib_list);
+EGLAPI EGLSurface EGLAPIENTRY eglCreateWindowSurface (EGLDisplay dpy, EGLConfig config, EGLNativeWindowType win, const EGLint * attrib_list);
+EGLAPI EGLBoolean EGLAPIENTRY eglDestroyContext (EGLDisplay dpy, EGLContext ctx);
+EGLAPI EGLBoolean EGLAPIENTRY eglDestroySurface (EGLDisplay dpy, EGLSurface surface);
+EGLAPI EGLBoolean EGLAPIENTRY eglGetConfigAttrib (EGLDisplay dpy, EGLConfig config, EGLint attribute, EGLint * value);
+EGLAPI EGLBoolean EGLAPIENTRY eglGetConfigs (EGLDisplay dpy, EGLConfig * configs, EGLint config_size, EGLint * num_config);
+EGLAPI EGLDisplay EGLAPIENTRY eglGetCurrentDisplay ();
+EGLAPI EGLSurface EGLAPIENTRY eglGetCurrentSurface (EGLint readdraw);
+EGLAPI EGLDisplay EGLAPIENTRY eglGetDisplay (EGLNativeDisplayType display_id);
+EGLAPI EGLint EGLAPIENTRY eglGetError ();
+EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char * procname);
+EGLAPI EGLBoolean EGLAPIENTRY eglInitialize (EGLDisplay dpy, EGLint * major, EGLint * minor);
+EGLAPI EGLBoolean EGLAPIENTRY eglMakeCurrent (EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGLContext ctx);
+EGLAPI EGLBoolean EGLAPIENTRY eglQueryContext (EGLDisplay dpy, EGLContext ctx, EGLint attribute, EGLint * value);
+EGLAPI const char * EGLAPIENTRY eglQueryString (EGLDisplay dpy, EGLint name);
+EGLAPI EGLBoolean EGLAPIENTRY eglQuerySurface (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint * value);
+EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers (EGLDisplay dpy, EGLSurface surface);
+EGLAPI EGLBoolean EGLAPIENTRY eglTerminate (EGLDisplay dpy);
+EGLAPI EGLBoolean EGLAPIENTRY eglWaitGL ();
+EGLAPI EGLBoolean EGLAPIENTRY eglWaitNative (EGLint engine);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLBINDTEXIMAGEPROC) /* eglBindTexImage */ (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLRELEASETEXIMAGEPROC) /* eglReleaseTexImage */ (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLSURFACEATTRIBPROC) /* eglSurfaceAttrib */ (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint value);
@@ -445,103 +469,6 @@ namespace glew
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#define GLEW_EGL_VERSION_1_0 glew::egl::GLEW_EGL_VERSION_1_0
-#define GLEW_EGL_VERSION_1_1 glew::egl::GLEW_EGL_VERSION_1_1
-#define GLEW_EGL_VERSION_1_2 glew::egl::GLEW_EGL_VERSION_1_2
-#define GLEW_EGL_VERSION_1_3 glew::egl::GLEW_EGL_VERSION_1_3
-#define GLEW_EGL_VERSION_1_4 glew::egl::GLEW_EGL_VERSION_1_4
-#define GLEW_EGL_VERSION_1_5 glew::egl::GLEW_EGL_VERSION_1_5
-#define GLEW_EGL_ANDROID_blob_cache glew::egl::GLEW_EGL_ANDROID_blob_cache
-#define GLEW_EGL_ANDROID_framebuffer_target glew::egl::GLEW_EGL_ANDROID_framebuffer_target
-#define GLEW_EGL_ANDROID_image_native_buffer glew::egl::GLEW_EGL_ANDROID_image_native_buffer
-#define GLEW_EGL_ANDROID_native_fence_sync glew::egl::GLEW_EGL_ANDROID_native_fence_sync
-#define GLEW_EGL_ANDROID_recordable glew::egl::GLEW_EGL_ANDROID_recordable
-#define GLEW_EGL_ANGLE_d3d_share_handle_client_buffer glew::egl::GLEW_EGL_ANGLE_d3d_share_handle_client_buffer
-#define GLEW_EGL_ANGLE_device_d3d glew::egl::GLEW_EGL_ANGLE_device_d3d
-#define GLEW_EGL_ANGLE_query_surface_pointer glew::egl::GLEW_EGL_ANGLE_query_surface_pointer
-#define GLEW_EGL_ANGLE_surface_d3d_texture_2d_share_handle glew::egl::GLEW_EGL_ANGLE_surface_d3d_texture_2d_share_handle
-#define GLEW_EGL_ANGLE_window_fixed_size glew::egl::GLEW_EGL_ANGLE_window_fixed_size
-#define GLEW_EGL_ARM_pixmap_multisample_discard glew::egl::GLEW_EGL_ARM_pixmap_multisample_discard
-#define GLEW_EGL_EXT_buffer_age glew::egl::GLEW_EGL_EXT_buffer_age
-#define GLEW_EGL_EXT_client_extensions glew::egl::GLEW_EGL_EXT_client_extensions
-#define GLEW_EGL_EXT_create_context_robustness glew::egl::GLEW_EGL_EXT_create_context_robustness
-#define GLEW_EGL_EXT_device_base glew::egl::GLEW_EGL_EXT_device_base
-#define GLEW_EGL_EXT_device_drm glew::egl::GLEW_EGL_EXT_device_drm
-#define GLEW_EGL_EXT_device_enumeration glew::egl::GLEW_EGL_EXT_device_enumeration
-#define GLEW_EGL_EXT_device_openwf glew::egl::GLEW_EGL_EXT_device_openwf
-#define GLEW_EGL_EXT_device_query glew::egl::GLEW_EGL_EXT_device_query
-#define GLEW_EGL_EXT_image_dma_buf_import glew::egl::GLEW_EGL_EXT_image_dma_buf_import
-#define GLEW_EGL_EXT_multiview_window glew::egl::GLEW_EGL_EXT_multiview_window
-#define GLEW_EGL_EXT_output_base glew::egl::GLEW_EGL_EXT_output_base
-#define GLEW_EGL_EXT_output_drm glew::egl::GLEW_EGL_EXT_output_drm
-#define GLEW_EGL_EXT_output_openwf glew::egl::GLEW_EGL_EXT_output_openwf
-#define GLEW_EGL_EXT_platform_base glew::egl::GLEW_EGL_EXT_platform_base
-#define GLEW_EGL_EXT_platform_device glew::egl::GLEW_EGL_EXT_platform_device
-#define GLEW_EGL_EXT_platform_wayland glew::egl::GLEW_EGL_EXT_platform_wayland
-#define GLEW_EGL_EXT_platform_x11 glew::egl::GLEW_EGL_EXT_platform_x11
-#define GLEW_EGL_EXT_protected_surface glew::egl::GLEW_EGL_EXT_protected_surface
-#define GLEW_EGL_EXT_stream_consumer_egloutput glew::egl::GLEW_EGL_EXT_stream_consumer_egloutput
-#define GLEW_EGL_EXT_swap_buffers_with_damage glew::egl::GLEW_EGL_EXT_swap_buffers_with_damage
-#define GLEW_EGL_EXT_yuv_surface glew::egl::GLEW_EGL_EXT_yuv_surface
-#define GLEW_EGL_HI_clientpixmap glew::egl::GLEW_EGL_HI_clientpixmap
-#define GLEW_EGL_HI_colorformats glew::egl::GLEW_EGL_HI_colorformats
-#define GLEW_EGL_IMG_context_priority glew::egl::GLEW_EGL_IMG_context_priority
-#define GLEW_EGL_KHR_cl_event glew::egl::GLEW_EGL_KHR_cl_event
-#define GLEW_EGL_KHR_cl_event2 glew::egl::GLEW_EGL_KHR_cl_event2
-#define GLEW_EGL_KHR_config_attribs glew::egl::GLEW_EGL_KHR_config_attribs
-#define GLEW_EGL_KHR_client_get_all_proc_addresses glew::egl::GLEW_EGL_KHR_client_get_all_proc_addresses
-#define GLEW_EGL_KHR_create_context glew::egl::GLEW_EGL_KHR_create_context
-#define GLEW_EGL_KHR_create_context_no_error glew::egl::GLEW_EGL_KHR_create_context_no_error
-#define GLEW_EGL_KHR_fence_sync glew::egl::GLEW_EGL_KHR_fence_sync
-#define GLEW_EGL_KHR_get_all_proc_addresses glew::egl::GLEW_EGL_KHR_get_all_proc_addresses
-#define GLEW_EGL_KHR_gl_colorspace glew::egl::GLEW_EGL_KHR_gl_colorspace
-#define GLEW_EGL_KHR_gl_renderbuffer_image glew::egl::GLEW_EGL_KHR_gl_renderbuffer_image
-#define GLEW_EGL_KHR_gl_texture_2D_image glew::egl::GLEW_EGL_KHR_gl_texture_2D_image
-#define GLEW_EGL_KHR_gl_texture_3D_image glew::egl::GLEW_EGL_KHR_gl_texture_3D_image
-#define GLEW_EGL_KHR_gl_texture_cubemap_image glew::egl::GLEW_EGL_KHR_gl_texture_cubemap_image
-#define GLEW_EGL_KHR_image glew::egl::GLEW_EGL_KHR_image
-#define GLEW_EGL_KHR_image_base glew::egl::GLEW_EGL_KHR_image_base
-#define GLEW_EGL_KHR_image_pixmap glew::egl::GLEW_EGL_KHR_image_pixmap
-#define GLEW_EGL_KHR_lock_surface glew::egl::GLEW_EGL_KHR_lock_surface
-#define GLEW_EGL_KHR_lock_surface2 glew::egl::GLEW_EGL_KHR_lock_surface2
-#define GLEW_EGL_KHR_lock_surface3 glew::egl::GLEW_EGL_KHR_lock_surface3
-#define GLEW_EGL_KHR_partial_update glew::egl::GLEW_EGL_KHR_partial_update
-#define GLEW_EGL_KHR_platform_android glew::egl::GLEW_EGL_KHR_platform_android
-#define GLEW_EGL_KHR_platform_gbm glew::egl::GLEW_EGL_KHR_platform_gbm
-#define GLEW_EGL_KHR_platform_wayland glew::egl::GLEW_EGL_KHR_platform_wayland
-#define GLEW_EGL_KHR_platform_x11 glew::egl::GLEW_EGL_KHR_platform_x11
-#define GLEW_EGL_KHR_reusable_sync glew::egl::GLEW_EGL_KHR_reusable_sync
-#define GLEW_EGL_KHR_stream glew::egl::GLEW_EGL_KHR_stream
-#define GLEW_EGL_KHR_stream_consumer_gltexture glew::egl::GLEW_EGL_KHR_stream_consumer_gltexture
-#define GLEW_EGL_KHR_stream_cross_process_fd glew::egl::GLEW_EGL_KHR_stream_cross_process_fd
-#define GLEW_EGL_KHR_stream_fifo glew::egl::GLEW_EGL_KHR_stream_fifo
-#define GLEW_EGL_KHR_stream_producer_aldatalocator glew::egl::GLEW_EGL_KHR_stream_producer_aldatalocator
-#define GLEW_EGL_KHR_stream_producer_eglsurface glew::egl::GLEW_EGL_KHR_stream_producer_eglsurface
-#define GLEW_EGL_KHR_surfaceless_context glew::egl::GLEW_EGL_KHR_surfaceless_context
-#define GLEW_EGL_KHR_swap_buffers_with_damage glew::egl::GLEW_EGL_KHR_swap_buffers_with_damage
-#define GLEW_EGL_KHR_vg_parent_image glew::egl::GLEW_EGL_KHR_vg_parent_image
-#define GLEW_EGL_KHR_wait_sync glew::egl::GLEW_EGL_KHR_wait_sync
-#define GLEW_EGL_MESA_drm_image glew::egl::GLEW_EGL_MESA_drm_image
-#define GLEW_EGL_MESA_image_dma_buf_export glew::egl::GLEW_EGL_MESA_image_dma_buf_export
-#define GLEW_EGL_MESA_platform_gbm glew::egl::GLEW_EGL_MESA_platform_gbm
-#define GLEW_EGL_NOK_swap_region glew::egl::GLEW_EGL_NOK_swap_region
-#define GLEW_EGL_NOK_swap_region2 glew::egl::GLEW_EGL_NOK_swap_region2
-#define GLEW_EGL_NOK_texture_from_pixmap glew::egl::GLEW_EGL_NOK_texture_from_pixmap
-#define GLEW_EGL_NV_3dvision_surface glew::egl::GLEW_EGL_NV_3dvision_surface
-#define GLEW_EGL_NV_coverage_sample glew::egl::GLEW_EGL_NV_coverage_sample
-#define GLEW_EGL_NV_coverage_sample_resolve glew::egl::GLEW_EGL_NV_coverage_sample_resolve
-#define GLEW_EGL_NV_cuda_event glew::egl::GLEW_EGL_NV_cuda_event
-#define GLEW_EGL_NV_depth_nonlinear glew::egl::GLEW_EGL_NV_depth_nonlinear
-#define GLEW_EGL_NV_device_cuda glew::egl::GLEW_EGL_NV_device_cuda
-#define GLEW_EGL_NV_native_query glew::egl::GLEW_EGL_NV_native_query
-#define GLEW_EGL_NV_post_convert_rounding glew::egl::GLEW_EGL_NV_post_convert_rounding
-#define GLEW_EGL_NV_post_sub_buffer glew::egl::GLEW_EGL_NV_post_sub_buffer
-#define GLEW_EGL_NV_stream_sync glew::egl::GLEW_EGL_NV_stream_sync
-#define GLEW_EGL_NV_sync glew::egl::GLEW_EGL_NV_sync
-#define GLEW_EGL_NV_system_time glew::egl::GLEW_EGL_NV_system_time
-#define GLEW_EGL_TIZEN_image_native_buffer glew::egl::GLEW_EGL_TIZEN_image_native_buffer
-#define GLEW_EGL_TIZEN_image_native_surface glew::egl::GLEW_EGL_TIZEN_image_native_surface
 
 #define eglBindTexImage glew::egl::eglBindTexImage
 #define eglReleaseTexImage glew::egl::eglReleaseTexImage

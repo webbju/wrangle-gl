@@ -2,7 +2,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include <wrangle.h>
+#include <string>
+
+#include <unordered_set>
 
 #include <wrangle-egl.h>
 
@@ -1207,6 +1209,625 @@ EGLuint64NV eglGetSystemTimeNV ()
     return s_deviceConfig.m_eglGetSystemTimeNV ();
   }
   return ((EGLuint64NV)0);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+glew::egl::DeviceConfig glew::egl::s_deviceConfig;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void glew::egl::Initialise ()
+{
+  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));
+
+  // 
+  // Determine current driver's feature reporting.
+  // 
+
+  //PFNEGLQUERYSTRINGPROC _eglQueryString = &eglQueryString;
+
+  const unsigned char *eglVersion = (const unsigned char*) "";
+
+  //if (_eglQueryString != 0)
+  {
+    eglVersion = (const unsigned char *) eglQueryString (EGL_NO_DISPLAY, EGL_VERSION);
+  }
+
+  const size_t eglVersionLen = strlen ((const char *) eglVersion);
+
+  if (eglVersionLen)
+  {
+#if _WIN32
+  #define strncasecmp _strnicmp
+#endif
+
+    const bool egl10Supported = (strncasecmp ((const char *) eglVersion, "1.0", 3) == 0);
+    const bool egl11Supported = (strncasecmp ((const char *) eglVersion, "1.1", 3) == 0);
+    const bool egl12Supported = (strncasecmp ((const char *) eglVersion, "1.2", 3) == 0);
+    const bool egl13Supported = (strncasecmp ((const char *) eglVersion, "1.3", 3) == 0);
+    const bool egl14Supported = (strncasecmp ((const char *) eglVersion, "1.4", 3) == 0);
+    const bool egl15Supported = (strncasecmp ((const char *) eglVersion, "1.5", 3) == 0);
+
+    s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_0] = egl10Supported;
+    s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_1] = egl11Supported;
+    s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_2] = egl12Supported;
+    s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_3] = egl13Supported;
+    s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_4] = egl14Supported;
+    s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] = egl15Supported;
+  }
+
+  // 
+  // Evaluate extension support.
+  // 
+
+  std::unordered_set <std::string> supportedExtensions;
+
+  const unsigned char *eglExtensions = (const unsigned char*) "";
+
+  //if (_eglQueryString != 0)
+  {
+    eglExtensions = (const unsigned char *) eglQueryString (EGL_NO_DISPLAY, EGL_EXTENSIONS);
+  }
+
+  const size_t eglExtensionsLen = strlen ((const char *) eglExtensions);
+
+  if (eglExtensionsLen)
+  {
+    unsigned char *thisExtStart = (unsigned char *) eglExtensions;
+
+    unsigned char *thisExtEnd = NULL;
+
+    char thisExtBuffer [128];
+
+    memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
+
+    do 
+    {
+      const char * seperator = strchr ((const char *) thisExtStart, ' ');
+
+      if (seperator)
+      {
+        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
+
+        strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+
+        thisExtBuffer [min (len, 127)] = '\0';
+
+        thisExtEnd = (unsigned char *) seperator + 1; // skip tab character
+      }
+      else
+      {
+        const size_t len = strlen ((const char *) thisExtStart);
+
+        strncpy (thisExtBuffer, (const char *) thisExtStart, len);
+
+        thisExtBuffer [min (len + 1, 127)] = '\0';
+
+        thisExtEnd = NULL;
+      }
+
+      std::string thisExt (thisExtBuffer);
+
+      if (supportedExtensions.find (thisExt) == supportedExtensions.end ())
+      {
+        supportedExtensions.insert (thisExt);
+      }
+
+      thisExtStart = thisExtEnd;
+    }
+    while ((thisExtStart && *thisExtStart != '\0') && (thisExtEnd && *thisExtEnd != '\0'));
+  }
+
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_blob_cache] = (supportedExtensions.find ("EGL_ANDROID_blob_cache") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_framebuffer_target] = (supportedExtensions.find ("EGL_ANDROID_framebuffer_target") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_image_native_buffer] = (supportedExtensions.find ("EGL_ANDROID_image_native_buffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_native_fence_sync] = (supportedExtensions.find ("EGL_ANDROID_native_fence_sync") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_recordable] = (supportedExtensions.find ("EGL_ANDROID_recordable") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANGLE_d3d_share_handle_client_buffer] = (supportedExtensions.find ("EGL_ANGLE_d3d_share_handle_client_buffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANGLE_device_d3d] = (supportedExtensions.find ("EGL_ANGLE_device_d3d") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANGLE_query_surface_pointer] = (supportedExtensions.find ("EGL_ANGLE_query_surface_pointer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANGLE_surface_d3d_texture_2d_share_handle] = (supportedExtensions.find ("EGL_ANGLE_surface_d3d_texture_2d_share_handle") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ANGLE_window_fixed_size] = (supportedExtensions.find ("EGL_ANGLE_window_fixed_size") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_ARM_pixmap_multisample_discard] = (supportedExtensions.find ("EGL_ARM_pixmap_multisample_discard") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_buffer_age] = (supportedExtensions.find ("EGL_EXT_buffer_age") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_client_extensions] = (supportedExtensions.find ("EGL_EXT_client_extensions") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_create_context_robustness] = (supportedExtensions.find ("EGL_EXT_create_context_robustness") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_base] = (supportedExtensions.find ("EGL_EXT_device_base") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_drm] = (supportedExtensions.find ("EGL_EXT_device_drm") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_enumeration] = (supportedExtensions.find ("EGL_EXT_device_enumeration") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_openwf] = (supportedExtensions.find ("EGL_EXT_device_openwf") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_query] = (supportedExtensions.find ("EGL_EXT_device_query") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_image_dma_buf_import] = (supportedExtensions.find ("EGL_EXT_image_dma_buf_import") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_multiview_window] = (supportedExtensions.find ("EGL_EXT_multiview_window") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_output_base] = (supportedExtensions.find ("EGL_EXT_output_base") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_output_drm] = (supportedExtensions.find ("EGL_EXT_output_drm") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_output_openwf] = (supportedExtensions.find ("EGL_EXT_output_openwf") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_platform_base] = (supportedExtensions.find ("EGL_EXT_platform_base") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_platform_device] = (supportedExtensions.find ("EGL_EXT_platform_device") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_platform_wayland] = (supportedExtensions.find ("EGL_EXT_platform_wayland") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_platform_x11] = (supportedExtensions.find ("EGL_EXT_platform_x11") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_protected_surface] = (supportedExtensions.find ("EGL_EXT_protected_surface") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_stream_consumer_egloutput] = (supportedExtensions.find ("EGL_EXT_stream_consumer_egloutput") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_swap_buffers_with_damage] = (supportedExtensions.find ("EGL_EXT_swap_buffers_with_damage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_yuv_surface] = (supportedExtensions.find ("EGL_EXT_yuv_surface") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_HI_clientpixmap] = (supportedExtensions.find ("EGL_HI_clientpixmap") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_HI_colorformats] = (supportedExtensions.find ("EGL_HI_colorformats") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_IMG_context_priority] = (supportedExtensions.find ("EGL_IMG_context_priority") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_cl_event] = (supportedExtensions.find ("EGL_KHR_cl_event") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_cl_event2] = (supportedExtensions.find ("EGL_KHR_cl_event2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_config_attribs] = (supportedExtensions.find ("EGL_KHR_config_attribs") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_client_get_all_proc_addresses] = (supportedExtensions.find ("EGL_KHR_client_get_all_proc_addresses") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_create_context] = (supportedExtensions.find ("EGL_KHR_create_context") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_create_context_no_error] = (supportedExtensions.find ("EGL_KHR_create_context_no_error") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_fence_sync] = (supportedExtensions.find ("EGL_KHR_fence_sync") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_get_all_proc_addresses] = (supportedExtensions.find ("EGL_KHR_get_all_proc_addresses") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_gl_colorspace] = (supportedExtensions.find ("EGL_KHR_gl_colorspace") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_gl_renderbuffer_image] = (supportedExtensions.find ("EGL_KHR_gl_renderbuffer_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_gl_texture_2D_image] = (supportedExtensions.find ("EGL_KHR_gl_texture_2D_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_gl_texture_3D_image] = (supportedExtensions.find ("EGL_KHR_gl_texture_3D_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_gl_texture_cubemap_image] = (supportedExtensions.find ("EGL_KHR_gl_texture_cubemap_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_image] = (supportedExtensions.find ("EGL_KHR_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_image_base] = (supportedExtensions.find ("EGL_KHR_image_base") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_image_pixmap] = (supportedExtensions.find ("EGL_KHR_image_pixmap") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface] = (supportedExtensions.find ("EGL_KHR_lock_surface") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface2] = (supportedExtensions.find ("EGL_KHR_lock_surface2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface3] = (supportedExtensions.find ("EGL_KHR_lock_surface3") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_partial_update] = (supportedExtensions.find ("EGL_KHR_partial_update") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_platform_android] = (supportedExtensions.find ("EGL_KHR_platform_android") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_platform_gbm] = (supportedExtensions.find ("EGL_KHR_platform_gbm") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_platform_wayland] = (supportedExtensions.find ("EGL_KHR_platform_wayland") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_platform_x11] = (supportedExtensions.find ("EGL_KHR_platform_x11") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_reusable_sync] = (supportedExtensions.find ("EGL_KHR_reusable_sync") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream] = (supportedExtensions.find ("EGL_KHR_stream") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_consumer_gltexture] = (supportedExtensions.find ("EGL_KHR_stream_consumer_gltexture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_cross_process_fd] = (supportedExtensions.find ("EGL_KHR_stream_cross_process_fd") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_fifo] = (supportedExtensions.find ("EGL_KHR_stream_fifo") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_producer_aldatalocator] = (supportedExtensions.find ("EGL_KHR_stream_producer_aldatalocator") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_producer_eglsurface] = (supportedExtensions.find ("EGL_KHR_stream_producer_eglsurface") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_surfaceless_context] = (supportedExtensions.find ("EGL_KHR_surfaceless_context") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_swap_buffers_with_damage] = (supportedExtensions.find ("EGL_KHR_swap_buffers_with_damage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_vg_parent_image] = (supportedExtensions.find ("EGL_KHR_vg_parent_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_wait_sync] = (supportedExtensions.find ("EGL_KHR_wait_sync") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_MESA_drm_image] = (supportedExtensions.find ("EGL_MESA_drm_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_MESA_image_dma_buf_export] = (supportedExtensions.find ("EGL_MESA_image_dma_buf_export") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_MESA_platform_gbm] = (supportedExtensions.find ("EGL_MESA_platform_gbm") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NOK_swap_region] = (supportedExtensions.find ("EGL_NOK_swap_region") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NOK_swap_region2] = (supportedExtensions.find ("EGL_NOK_swap_region2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NOK_texture_from_pixmap] = (supportedExtensions.find ("EGL_NOK_texture_from_pixmap") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_3dvision_surface] = (supportedExtensions.find ("EGL_NV_3dvision_surface") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_coverage_sample] = (supportedExtensions.find ("EGL_NV_coverage_sample") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_coverage_sample_resolve] = (supportedExtensions.find ("EGL_NV_coverage_sample_resolve") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_cuda_event] = (supportedExtensions.find ("EGL_NV_cuda_event") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_depth_nonlinear] = (supportedExtensions.find ("EGL_NV_depth_nonlinear") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_device_cuda] = (supportedExtensions.find ("EGL_NV_device_cuda") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_native_query] = (supportedExtensions.find ("EGL_NV_native_query") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_post_convert_rounding] = (supportedExtensions.find ("EGL_NV_post_convert_rounding") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_post_sub_buffer] = (supportedExtensions.find ("EGL_NV_post_sub_buffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_stream_sync] = (supportedExtensions.find ("EGL_NV_stream_sync") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_sync] = (supportedExtensions.find ("EGL_NV_sync") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_NV_system_time] = (supportedExtensions.find ("EGL_NV_system_time") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_TIZEN_image_native_buffer] = (supportedExtensions.find ("EGL_TIZEN_image_native_buffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_TIZEN_image_native_surface] = (supportedExtensions.find ("EGL_TIZEN_image_native_surface") != supportedExtensions.end ());
+
+  // EGL_VERSION_1_1
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_1])
+  {
+    #undef eglBindTexImage
+    #undef eglReleaseTexImage
+    #undef eglSurfaceAttrib
+    #undef eglSwapInterval
+    s_deviceConfig.m_eglBindTexImage = (PFNEGLBINDTEXIMAGEPROC) eglGetProcAddress ("eglBindTexImage");
+    s_deviceConfig.m_eglReleaseTexImage = (PFNEGLRELEASETEXIMAGEPROC) eglGetProcAddress ("eglReleaseTexImage");
+    s_deviceConfig.m_eglSurfaceAttrib = (PFNEGLSURFACEATTRIBPROC) eglGetProcAddress ("eglSurfaceAttrib");
+    s_deviceConfig.m_eglSwapInterval = (PFNEGLSWAPINTERVALPROC) eglGetProcAddress ("eglSwapInterval");
+  }
+
+  // EGL_VERSION_1_2
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_2])
+  {
+    #undef eglBindAPI
+    #undef eglQueryAPI
+    #undef eglCreatePbufferFromClientBuffer
+    #undef eglReleaseThread
+    #undef eglWaitClient
+    s_deviceConfig.m_eglBindAPI = (PFNEGLBINDAPIPROC) eglGetProcAddress ("eglBindAPI");
+    s_deviceConfig.m_eglQueryAPI = (PFNEGLQUERYAPIPROC) eglGetProcAddress ("eglQueryAPI");
+    s_deviceConfig.m_eglCreatePbufferFromClientBuffer = (PFNEGLCREATEPBUFFERFROMCLIENTBUFFERPROC) eglGetProcAddress ("eglCreatePbufferFromClientBuffer");
+    s_deviceConfig.m_eglReleaseThread = (PFNEGLRELEASETHREADPROC) eglGetProcAddress ("eglReleaseThread");
+    s_deviceConfig.m_eglWaitClient = (PFNEGLWAITCLIENTPROC) eglGetProcAddress ("eglWaitClient");
+  }
+
+  // EGL_VERSION_1_4
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_4])
+  {
+    #undef eglGetCurrentContext
+    s_deviceConfig.m_eglGetCurrentContext = (PFNEGLGETCURRENTCONTEXTPROC) eglGetProcAddress ("eglGetCurrentContext");
+  }
+
+  // EGL_VERSION_1_5
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5])
+  {
+    #undef eglCreateSync
+    #undef eglDestroySync
+    #undef eglClientWaitSync
+    #undef eglGetSyncAttrib
+    s_deviceConfig.m_eglCreateSync = (PFNEGLCREATESYNCPROC) eglGetProcAddress ("eglCreateSync");
+    s_deviceConfig.m_eglDestroySync = (PFNEGLDESTROYSYNCPROC) eglGetProcAddress ("eglDestroySync");
+    s_deviceConfig.m_eglClientWaitSync = (PFNEGLCLIENTWAITSYNCPROC) eglGetProcAddress ("eglClientWaitSync");
+    s_deviceConfig.m_eglGetSyncAttrib = (PFNEGLGETSYNCATTRIBPROC) eglGetProcAddress ("eglGetSyncAttrib");
+  }
+
+  // EGL_VERSION_1_5
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5])
+  {
+    #undef eglCreateImage
+    #undef eglDestroyImage
+    s_deviceConfig.m_eglCreateImage = (PFNEGLCREATEIMAGEPROC) eglGetProcAddress ("eglCreateImage");
+    s_deviceConfig.m_eglDestroyImage = (PFNEGLDESTROYIMAGEPROC) eglGetProcAddress ("eglDestroyImage");
+  }
+
+  // EGL_VERSION_1_5
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5])
+  {
+    #undef eglGetPlatformDisplay
+    #undef eglCreatePlatformWindowSurface
+    #undef eglCreatePlatformPixmapSurface
+    s_deviceConfig.m_eglGetPlatformDisplay = (PFNEGLGETPLATFORMDISPLAYPROC) eglGetProcAddress ("eglGetPlatformDisplay");
+    s_deviceConfig.m_eglCreatePlatformWindowSurface = (PFNEGLCREATEPLATFORMWINDOWSURFACEPROC) eglGetProcAddress ("eglCreatePlatformWindowSurface");
+    s_deviceConfig.m_eglCreatePlatformPixmapSurface = (PFNEGLCREATEPLATFORMPIXMAPSURFACEPROC) eglGetProcAddress ("eglCreatePlatformPixmapSurface");
+  }
+
+  // EGL_VERSION_1_5
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5])
+  {
+    #undef eglWaitSync
+    s_deviceConfig.m_eglWaitSync = (PFNEGLWAITSYNCPROC) eglGetProcAddress ("eglWaitSync");
+  }
+
+  // EGL_ANDROID_blob_cache
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_blob_cache])
+  {
+    #undef eglSetBlobCacheFuncsANDROID
+    s_deviceConfig.m_eglSetBlobCacheFuncsANDROID = (PFNEGLSETBLOBCACHEFUNCSANDROIDPROC) eglGetProcAddress ("eglSetBlobCacheFuncsANDROID");
+  }
+
+  // EGL_ANDROID_native_fence_sync
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_native_fence_sync])
+  {
+    #undef eglDupNativeFenceFDANDROID
+    s_deviceConfig.m_eglDupNativeFenceFDANDROID = (PFNEGLDUPNATIVEFENCEFDANDROIDPROC) eglGetProcAddress ("eglDupNativeFenceFDANDROID");
+  }
+
+  // EGL_ANGLE_query_surface_pointer
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_ANGLE_query_surface_pointer])
+  {
+    #undef eglQuerySurfacePointerANGLE
+    s_deviceConfig.m_eglQuerySurfacePointerANGLE = (PFNEGLQUERYSURFACEPOINTERANGLEPROC) eglGetProcAddress ("eglQuerySurfacePointerANGLE");
+  }
+
+  // EGL_EXT_device_base
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_base])
+  {
+    #undef eglQueryDeviceAttribEXT
+    #undef eglQueryDeviceStringEXT
+    #undef eglQueryDevicesEXT
+    #undef eglQueryDisplayAttribEXT
+    s_deviceConfig.m_eglQueryDeviceAttribEXT = (PFNEGLQUERYDEVICEATTRIBEXTPROC) eglGetProcAddress ("eglQueryDeviceAttribEXT");
+    s_deviceConfig.m_eglQueryDeviceStringEXT = (PFNEGLQUERYDEVICESTRINGEXTPROC) eglGetProcAddress ("eglQueryDeviceStringEXT");
+    s_deviceConfig.m_eglQueryDevicesEXT = (PFNEGLQUERYDEVICESEXTPROC) eglGetProcAddress ("eglQueryDevicesEXT");
+    s_deviceConfig.m_eglQueryDisplayAttribEXT = (PFNEGLQUERYDISPLAYATTRIBEXTPROC) eglGetProcAddress ("eglQueryDisplayAttribEXT");
+  }
+
+  // EGL_EXT_device_enumeration
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_enumeration])
+  {
+    #undef eglQueryDevicesEXT
+    s_deviceConfig.m_eglQueryDevicesEXT = (PFNEGLQUERYDEVICESEXTPROC) eglGetProcAddress ("eglQueryDevicesEXT");
+  }
+
+  // EGL_EXT_device_query
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_query])
+  {
+    #undef eglQueryDeviceAttribEXT
+    #undef eglQueryDeviceStringEXT
+    #undef eglQueryDisplayAttribEXT
+    s_deviceConfig.m_eglQueryDeviceAttribEXT = (PFNEGLQUERYDEVICEATTRIBEXTPROC) eglGetProcAddress ("eglQueryDeviceAttribEXT");
+    s_deviceConfig.m_eglQueryDeviceStringEXT = (PFNEGLQUERYDEVICESTRINGEXTPROC) eglGetProcAddress ("eglQueryDeviceStringEXT");
+    s_deviceConfig.m_eglQueryDisplayAttribEXT = (PFNEGLQUERYDISPLAYATTRIBEXTPROC) eglGetProcAddress ("eglQueryDisplayAttribEXT");
+  }
+
+  // EGL_EXT_output_base
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_output_base])
+  {
+    #undef eglGetOutputLayersEXT
+    #undef eglGetOutputPortsEXT
+    #undef eglOutputLayerAttribEXT
+    #undef eglQueryOutputLayerAttribEXT
+    #undef eglQueryOutputLayerStringEXT
+    #undef eglOutputPortAttribEXT
+    #undef eglQueryOutputPortAttribEXT
+    #undef eglQueryOutputPortStringEXT
+    s_deviceConfig.m_eglGetOutputLayersEXT = (PFNEGLGETOUTPUTLAYERSEXTPROC) eglGetProcAddress ("eglGetOutputLayersEXT");
+    s_deviceConfig.m_eglGetOutputPortsEXT = (PFNEGLGETOUTPUTPORTSEXTPROC) eglGetProcAddress ("eglGetOutputPortsEXT");
+    s_deviceConfig.m_eglOutputLayerAttribEXT = (PFNEGLOUTPUTLAYERATTRIBEXTPROC) eglGetProcAddress ("eglOutputLayerAttribEXT");
+    s_deviceConfig.m_eglQueryOutputLayerAttribEXT = (PFNEGLQUERYOUTPUTLAYERATTRIBEXTPROC) eglGetProcAddress ("eglQueryOutputLayerAttribEXT");
+    s_deviceConfig.m_eglQueryOutputLayerStringEXT = (PFNEGLQUERYOUTPUTLAYERSTRINGEXTPROC) eglGetProcAddress ("eglQueryOutputLayerStringEXT");
+    s_deviceConfig.m_eglOutputPortAttribEXT = (PFNEGLOUTPUTPORTATTRIBEXTPROC) eglGetProcAddress ("eglOutputPortAttribEXT");
+    s_deviceConfig.m_eglQueryOutputPortAttribEXT = (PFNEGLQUERYOUTPUTPORTATTRIBEXTPROC) eglGetProcAddress ("eglQueryOutputPortAttribEXT");
+    s_deviceConfig.m_eglQueryOutputPortStringEXT = (PFNEGLQUERYOUTPUTPORTSTRINGEXTPROC) eglGetProcAddress ("eglQueryOutputPortStringEXT");
+  }
+
+  // EGL_EXT_platform_base
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_platform_base])
+  {
+    #undef eglGetPlatformDisplayEXT
+    #undef eglCreatePlatformWindowSurfaceEXT
+    #undef eglCreatePlatformPixmapSurfaceEXT
+    s_deviceConfig.m_eglGetPlatformDisplayEXT = (PFNEGLGETPLATFORMDISPLAYEXTPROC) eglGetProcAddress ("eglGetPlatformDisplayEXT");
+    s_deviceConfig.m_eglCreatePlatformWindowSurfaceEXT = (PFNEGLCREATEPLATFORMWINDOWSURFACEEXTPROC) eglGetProcAddress ("eglCreatePlatformWindowSurfaceEXT");
+    s_deviceConfig.m_eglCreatePlatformPixmapSurfaceEXT = (PFNEGLCREATEPLATFORMPIXMAPSURFACEEXTPROC) eglGetProcAddress ("eglCreatePlatformPixmapSurfaceEXT");
+  }
+
+  // EGL_EXT_stream_consumer_egloutput
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_stream_consumer_egloutput])
+  {
+    #undef eglStreamConsumerOutputEXT
+    s_deviceConfig.m_eglStreamConsumerOutputEXT = (PFNEGLSTREAMCONSUMEROUTPUTEXTPROC) eglGetProcAddress ("eglStreamConsumerOutputEXT");
+  }
+
+  // EGL_EXT_swap_buffers_with_damage
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_swap_buffers_with_damage])
+  {
+    #undef eglSwapBuffersWithDamageEXT
+    s_deviceConfig.m_eglSwapBuffersWithDamageEXT = (PFNEGLSWAPBUFFERSWITHDAMAGEEXTPROC) eglGetProcAddress ("eglSwapBuffersWithDamageEXT");
+  }
+
+  // EGL_HI_clientpixmap
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_HI_clientpixmap])
+  {
+    #undef eglCreatePixmapSurfaceHI
+    s_deviceConfig.m_eglCreatePixmapSurfaceHI = (PFNEGLCREATEPIXMAPSURFACEHIPROC) eglGetProcAddress ("eglCreatePixmapSurfaceHI");
+  }
+
+  // EGL_KHR_cl_event2
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_cl_event2])
+  {
+    #undef eglCreateSync64KHR
+    s_deviceConfig.m_eglCreateSync64KHR = (PFNEGLCREATESYNC64KHRPROC) eglGetProcAddress ("eglCreateSync64KHR");
+  }
+
+  // EGL_KHR_fence_sync
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_fence_sync])
+  {
+    #undef eglCreateSyncKHR
+    #undef eglDestroySyncKHR
+    #undef eglClientWaitSyncKHR
+    #undef eglGetSyncAttribKHR
+    s_deviceConfig.m_eglCreateSyncKHR = (PFNEGLCREATESYNCKHRPROC) eglGetProcAddress ("eglCreateSyncKHR");
+    s_deviceConfig.m_eglDestroySyncKHR = (PFNEGLDESTROYSYNCKHRPROC) eglGetProcAddress ("eglDestroySyncKHR");
+    s_deviceConfig.m_eglClientWaitSyncKHR = (PFNEGLCLIENTWAITSYNCKHRPROC) eglGetProcAddress ("eglClientWaitSyncKHR");
+    s_deviceConfig.m_eglGetSyncAttribKHR = (PFNEGLGETSYNCATTRIBKHRPROC) eglGetProcAddress ("eglGetSyncAttribKHR");
+  }
+
+  // EGL_KHR_image
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_image])
+  {
+    #undef eglCreateImageKHR
+    #undef eglDestroyImageKHR
+    s_deviceConfig.m_eglCreateImageKHR = (PFNEGLCREATEIMAGEKHRPROC) eglGetProcAddress ("eglCreateImageKHR");
+    s_deviceConfig.m_eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC) eglGetProcAddress ("eglDestroyImageKHR");
+  }
+
+  // EGL_KHR_image_base
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_image_base])
+  {
+    #undef eglCreateImageKHR
+    #undef eglDestroyImageKHR
+    s_deviceConfig.m_eglCreateImageKHR = (PFNEGLCREATEIMAGEKHRPROC) eglGetProcAddress ("eglCreateImageKHR");
+    s_deviceConfig.m_eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC) eglGetProcAddress ("eglDestroyImageKHR");
+  }
+
+  // EGL_KHR_lock_surface
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface])
+  {
+    #undef eglLockSurfaceKHR
+    #undef eglUnlockSurfaceKHR
+    s_deviceConfig.m_eglLockSurfaceKHR = (PFNEGLLOCKSURFACEKHRPROC) eglGetProcAddress ("eglLockSurfaceKHR");
+    s_deviceConfig.m_eglUnlockSurfaceKHR = (PFNEGLUNLOCKSURFACEKHRPROC) eglGetProcAddress ("eglUnlockSurfaceKHR");
+  }
+
+  // EGL_KHR_lock_surface3
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface3])
+  {
+    #undef eglLockSurfaceKHR
+    #undef eglUnlockSurfaceKHR
+    #undef eglQuerySurface64KHR
+    s_deviceConfig.m_eglLockSurfaceKHR = (PFNEGLLOCKSURFACEKHRPROC) eglGetProcAddress ("eglLockSurfaceKHR");
+    s_deviceConfig.m_eglUnlockSurfaceKHR = (PFNEGLUNLOCKSURFACEKHRPROC) eglGetProcAddress ("eglUnlockSurfaceKHR");
+    s_deviceConfig.m_eglQuerySurface64KHR = (PFNEGLQUERYSURFACE64KHRPROC) eglGetProcAddress ("eglQuerySurface64KHR");
+  }
+
+  // EGL_KHR_partial_update
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_partial_update])
+  {
+    #undef eglSetDamageRegionKHR
+    s_deviceConfig.m_eglSetDamageRegionKHR = (PFNEGLSETDAMAGEREGIONKHRPROC) eglGetProcAddress ("eglSetDamageRegionKHR");
+  }
+
+  // EGL_KHR_reusable_sync
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_reusable_sync])
+  {
+    #undef eglCreateSyncKHR
+    #undef eglDestroySyncKHR
+    #undef eglClientWaitSyncKHR
+    #undef eglSignalSyncKHR
+    #undef eglGetSyncAttribKHR
+    s_deviceConfig.m_eglCreateSyncKHR = (PFNEGLCREATESYNCKHRPROC) eglGetProcAddress ("eglCreateSyncKHR");
+    s_deviceConfig.m_eglDestroySyncKHR = (PFNEGLDESTROYSYNCKHRPROC) eglGetProcAddress ("eglDestroySyncKHR");
+    s_deviceConfig.m_eglClientWaitSyncKHR = (PFNEGLCLIENTWAITSYNCKHRPROC) eglGetProcAddress ("eglClientWaitSyncKHR");
+    s_deviceConfig.m_eglSignalSyncKHR = (PFNEGLSIGNALSYNCKHRPROC) eglGetProcAddress ("eglSignalSyncKHR");
+    s_deviceConfig.m_eglGetSyncAttribKHR = (PFNEGLGETSYNCATTRIBKHRPROC) eglGetProcAddress ("eglGetSyncAttribKHR");
+  }
+
+  // EGL_KHR_stream
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream])
+  {
+    #undef eglCreateStreamKHR
+    #undef eglDestroyStreamKHR
+    #undef eglStreamAttribKHR
+    #undef eglQueryStreamKHR
+    #undef eglQueryStreamu64KHR
+    s_deviceConfig.m_eglCreateStreamKHR = (PFNEGLCREATESTREAMKHRPROC) eglGetProcAddress ("eglCreateStreamKHR");
+    s_deviceConfig.m_eglDestroyStreamKHR = (PFNEGLDESTROYSTREAMKHRPROC) eglGetProcAddress ("eglDestroyStreamKHR");
+    s_deviceConfig.m_eglStreamAttribKHR = (PFNEGLSTREAMATTRIBKHRPROC) eglGetProcAddress ("eglStreamAttribKHR");
+    s_deviceConfig.m_eglQueryStreamKHR = (PFNEGLQUERYSTREAMKHRPROC) eglGetProcAddress ("eglQueryStreamKHR");
+    s_deviceConfig.m_eglQueryStreamu64KHR = (PFNEGLQUERYSTREAMU64KHRPROC) eglGetProcAddress ("eglQueryStreamu64KHR");
+  }
+
+  // EGL_KHR_stream_consumer_gltexture
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_consumer_gltexture])
+  {
+    #undef eglStreamConsumerGLTextureExternalKHR
+    #undef eglStreamConsumerAcquireKHR
+    #undef eglStreamConsumerReleaseKHR
+    s_deviceConfig.m_eglStreamConsumerGLTextureExternalKHR = (PFNEGLSTREAMCONSUMERGLTEXTUREEXTERNALKHRPROC) eglGetProcAddress ("eglStreamConsumerGLTextureExternalKHR");
+    s_deviceConfig.m_eglStreamConsumerAcquireKHR = (PFNEGLSTREAMCONSUMERACQUIREKHRPROC) eglGetProcAddress ("eglStreamConsumerAcquireKHR");
+    s_deviceConfig.m_eglStreamConsumerReleaseKHR = (PFNEGLSTREAMCONSUMERRELEASEKHRPROC) eglGetProcAddress ("eglStreamConsumerReleaseKHR");
+  }
+
+  // EGL_KHR_stream_cross_process_fd
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_cross_process_fd])
+  {
+    #undef eglGetStreamFileDescriptorKHR
+    #undef eglCreateStreamFromFileDescriptorKHR
+    s_deviceConfig.m_eglGetStreamFileDescriptorKHR = (PFNEGLGETSTREAMFILEDESCRIPTORKHRPROC) eglGetProcAddress ("eglGetStreamFileDescriptorKHR");
+    s_deviceConfig.m_eglCreateStreamFromFileDescriptorKHR = (PFNEGLCREATESTREAMFROMFILEDESCRIPTORKHRPROC) eglGetProcAddress ("eglCreateStreamFromFileDescriptorKHR");
+  }
+
+  // EGL_KHR_stream_fifo
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_fifo])
+  {
+    #undef eglQueryStreamTimeKHR
+    s_deviceConfig.m_eglQueryStreamTimeKHR = (PFNEGLQUERYSTREAMTIMEKHRPROC) eglGetProcAddress ("eglQueryStreamTimeKHR");
+  }
+
+  // EGL_KHR_stream_producer_eglsurface
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_producer_eglsurface])
+  {
+    #undef eglCreateStreamProducerSurfaceKHR
+    s_deviceConfig.m_eglCreateStreamProducerSurfaceKHR = (PFNEGLCREATESTREAMPRODUCERSURFACEKHRPROC) eglGetProcAddress ("eglCreateStreamProducerSurfaceKHR");
+  }
+
+  // EGL_KHR_swap_buffers_with_damage
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_swap_buffers_with_damage])
+  {
+    #undef eglSwapBuffersWithDamageKHR
+    s_deviceConfig.m_eglSwapBuffersWithDamageKHR = (PFNEGLSWAPBUFFERSWITHDAMAGEKHRPROC) eglGetProcAddress ("eglSwapBuffersWithDamageKHR");
+  }
+
+  // EGL_KHR_wait_sync
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_wait_sync])
+  {
+    #undef eglWaitSyncKHR
+    s_deviceConfig.m_eglWaitSyncKHR = (PFNEGLWAITSYNCKHRPROC) eglGetProcAddress ("eglWaitSyncKHR");
+  }
+
+  // EGL_MESA_drm_image
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_MESA_drm_image])
+  {
+    #undef eglCreateDRMImageMESA
+    #undef eglExportDRMImageMESA
+    s_deviceConfig.m_eglCreateDRMImageMESA = (PFNEGLCREATEDRMIMAGEMESAPROC) eglGetProcAddress ("eglCreateDRMImageMESA");
+    s_deviceConfig.m_eglExportDRMImageMESA = (PFNEGLEXPORTDRMIMAGEMESAPROC) eglGetProcAddress ("eglExportDRMImageMESA");
+  }
+
+  // EGL_MESA_image_dma_buf_export
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_MESA_image_dma_buf_export])
+  {
+    #undef eglExportDMABUFImageQueryMESA
+    #undef eglExportDMABUFImageMESA
+    s_deviceConfig.m_eglExportDMABUFImageQueryMESA = (PFNEGLEXPORTDMABUFIMAGEQUERYMESAPROC) eglGetProcAddress ("eglExportDMABUFImageQueryMESA");
+    s_deviceConfig.m_eglExportDMABUFImageMESA = (PFNEGLEXPORTDMABUFIMAGEMESAPROC) eglGetProcAddress ("eglExportDMABUFImageMESA");
+  }
+
+  // EGL_NOK_swap_region
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NOK_swap_region])
+  {
+    #undef eglSwapBuffersRegionNOK
+    s_deviceConfig.m_eglSwapBuffersRegionNOK = (PFNEGLSWAPBUFFERSREGIONNOKPROC) eglGetProcAddress ("eglSwapBuffersRegionNOK");
+  }
+
+  // EGL_NOK_swap_region2
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NOK_swap_region2])
+  {
+    #undef eglSwapBuffersRegion2NOK
+    s_deviceConfig.m_eglSwapBuffersRegion2NOK = (PFNEGLSWAPBUFFERSREGION2NOKPROC) eglGetProcAddress ("eglSwapBuffersRegion2NOK");
+  }
+
+  // EGL_NV_native_query
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_native_query])
+  {
+    #undef eglQueryNativeDisplayNV
+    #undef eglQueryNativeWindowNV
+    #undef eglQueryNativePixmapNV
+    s_deviceConfig.m_eglQueryNativeDisplayNV = (PFNEGLQUERYNATIVEDISPLAYNVPROC) eglGetProcAddress ("eglQueryNativeDisplayNV");
+    s_deviceConfig.m_eglQueryNativeWindowNV = (PFNEGLQUERYNATIVEWINDOWNVPROC) eglGetProcAddress ("eglQueryNativeWindowNV");
+    s_deviceConfig.m_eglQueryNativePixmapNV = (PFNEGLQUERYNATIVEPIXMAPNVPROC) eglGetProcAddress ("eglQueryNativePixmapNV");
+  }
+
+  // EGL_NV_post_sub_buffer
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_post_sub_buffer])
+  {
+    #undef eglPostSubBufferNV
+    s_deviceConfig.m_eglPostSubBufferNV = (PFNEGLPOSTSUBBUFFERNVPROC) eglGetProcAddress ("eglPostSubBufferNV");
+  }
+
+  // EGL_NV_stream_sync
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_stream_sync])
+  {
+    #undef eglCreateStreamSyncNV
+    s_deviceConfig.m_eglCreateStreamSyncNV = (PFNEGLCREATESTREAMSYNCNVPROC) eglGetProcAddress ("eglCreateStreamSyncNV");
+  }
+
+  // EGL_NV_sync
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_sync])
+  {
+    #undef eglCreateFenceSyncNV
+    #undef eglDestroySyncNV
+    #undef eglFenceNV
+    #undef eglClientWaitSyncNV
+    #undef eglSignalSyncNV
+    #undef eglGetSyncAttribNV
+    s_deviceConfig.m_eglCreateFenceSyncNV = (PFNEGLCREATEFENCESYNCNVPROC) eglGetProcAddress ("eglCreateFenceSyncNV");
+    s_deviceConfig.m_eglDestroySyncNV = (PFNEGLDESTROYSYNCNVPROC) eglGetProcAddress ("eglDestroySyncNV");
+    s_deviceConfig.m_eglFenceNV = (PFNEGLFENCENVPROC) eglGetProcAddress ("eglFenceNV");
+    s_deviceConfig.m_eglClientWaitSyncNV = (PFNEGLCLIENTWAITSYNCNVPROC) eglGetProcAddress ("eglClientWaitSyncNV");
+    s_deviceConfig.m_eglSignalSyncNV = (PFNEGLSIGNALSYNCNVPROC) eglGetProcAddress ("eglSignalSyncNV");
+    s_deviceConfig.m_eglGetSyncAttribNV = (PFNEGLGETSYNCATTRIBNVPROC) eglGetProcAddress ("eglGetSyncAttribNV");
+  }
+
+  // EGL_NV_system_time
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_system_time])
+  {
+    #undef eglGetSystemTimeFrequencyNV
+    #undef eglGetSystemTimeNV
+    s_deviceConfig.m_eglGetSystemTimeFrequencyNV = (PFNEGLGETSYSTEMTIMEFREQUENCYNVPROC) eglGetProcAddress ("eglGetSystemTimeFrequencyNV");
+    s_deviceConfig.m_eglGetSystemTimeNV = (PFNEGLGETSYSTEMTIMENVPROC) eglGetProcAddress ("eglGetSystemTimeNV");
+  }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void glew::egl::Deinitialise ()
+{
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

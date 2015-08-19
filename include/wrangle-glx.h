@@ -17,6 +17,23 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+ XVisualInfo * glXChooseVisual (Display * dpy, int screen, int * attribList);
+ GLXContext glXCreateContext (Display * dpy, XVisualInfo * vis, GLXContext shareList, Bool direct);
+ void  glXDestroyContext (Display * dpy, GLXContext ctx);
+ Bool glXMakeCurrent (Display * dpy, GLXDrawable drawable, GLXContext ctx);
+ void  glXCopyContext (Display * dpy, GLXContext src, GLXContext dst, unsigned long mask);
+ void  glXSwapBuffers (Display * dpy, GLXDrawable drawable);
+ GLXPixmap glXCreateGLXPixmap (Display * dpy, XVisualInfo * visual, Pixmap pixmap);
+ void  glXDestroyGLXPixmap (Display * dpy, GLXPixmap pixmap);
+ Bool glXQueryExtension (Display * dpy, int * errorb, int * event);
+ Bool glXQueryVersion (Display * dpy, int * maj, int * min);
+ Bool glXIsDirect (Display * dpy, GLXContext ctx);
+ int  glXGetConfig (Display * dpy, XVisualInfo * visual, int attrib, int * value);
+ GLXContext glXGetCurrentContext ();
+ GLXDrawable glXGetCurrentDrawable ();
+ void  glXWaitGL ();
+ void  glXWaitX ();
+ void  glXUseXFont (Font font, int first, int count, int list);
 typedef const char * ( PFNGLXQUERYEXTENSIONSSTRINGPROC) /* glXQueryExtensionsString */ (Display * dpy, int screen);
 typedef const char * ( PFNGLXQUERYSERVERSTRINGPROC) /* glXQueryServerString */ (Display * dpy, int screen, int name);
 typedef const char * ( PFNGLXGETCLIENTSTRINGPROC) /* glXGetClientString */ (Display * dpy, int name);
@@ -489,72 +506,6 @@ namespace glew
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#define GLEW_GLX_VERSION_1_0 glew::glx::GLEW_GLX_VERSION_1_0
-#define GLEW_GLX_VERSION_1_1 glew::glx::GLEW_GLX_VERSION_1_1
-#define GLEW_GLX_VERSION_1_2 glew::glx::GLEW_GLX_VERSION_1_2
-#define GLEW_GLX_VERSION_1_3 glew::glx::GLEW_GLX_VERSION_1_3
-#define GLEW_GLX_VERSION_1_4 glew::glx::GLEW_GLX_VERSION_1_4
-#define GLEW_GLX_3DFX_multisample glew::glx::GLEW_GLX_3DFX_multisample
-#define GLEW_GLX_AMD_gpu_association glew::glx::GLEW_GLX_AMD_gpu_association
-#define GLEW_GLX_ARB_context_flush_control glew::glx::GLEW_GLX_ARB_context_flush_control
-#define GLEW_GLX_ARB_create_context glew::glx::GLEW_GLX_ARB_create_context
-#define GLEW_GLX_ARB_create_context_profile glew::glx::GLEW_GLX_ARB_create_context_profile
-#define GLEW_GLX_ARB_create_context_robustness glew::glx::GLEW_GLX_ARB_create_context_robustness
-#define GLEW_GLX_ARB_fbconfig_float glew::glx::GLEW_GLX_ARB_fbconfig_float
-#define GLEW_GLX_ARB_framebuffer_sRGB glew::glx::GLEW_GLX_ARB_framebuffer_sRGB
-#define GLEW_GLX_ARB_get_proc_address glew::glx::GLEW_GLX_ARB_get_proc_address
-#define GLEW_GLX_ARB_multisample glew::glx::GLEW_GLX_ARB_multisample
-#define GLEW_GLX_ARB_robustness_application_isolation glew::glx::GLEW_GLX_ARB_robustness_application_isolation
-#define GLEW_GLX_ARB_robustness_share_group_isolation glew::glx::GLEW_GLX_ARB_robustness_share_group_isolation
-#define GLEW_GLX_ARB_vertex_buffer_object glew::glx::GLEW_GLX_ARB_vertex_buffer_object
-#define GLEW_GLX_EXT_buffer_age glew::glx::GLEW_GLX_EXT_buffer_age
-#define GLEW_GLX_EXT_create_context_es_profile glew::glx::GLEW_GLX_EXT_create_context_es_profile
-#define GLEW_GLX_EXT_create_context_es2_profile glew::glx::GLEW_GLX_EXT_create_context_es2_profile
-#define GLEW_GLX_EXT_fbconfig_packed_float glew::glx::GLEW_GLX_EXT_fbconfig_packed_float
-#define GLEW_GLX_EXT_framebuffer_sRGB glew::glx::GLEW_GLX_EXT_framebuffer_sRGB
-#define GLEW_GLX_EXT_import_context glew::glx::GLEW_GLX_EXT_import_context
-#define GLEW_GLX_EXT_stereo_tree glew::glx::GLEW_GLX_EXT_stereo_tree
-#define GLEW_GLX_EXT_swap_control glew::glx::GLEW_GLX_EXT_swap_control
-#define GLEW_GLX_EXT_swap_control_tear glew::glx::GLEW_GLX_EXT_swap_control_tear
-#define GLEW_GLX_EXT_texture_from_pixmap glew::glx::GLEW_GLX_EXT_texture_from_pixmap
-#define GLEW_GLX_EXT_visual_info glew::glx::GLEW_GLX_EXT_visual_info
-#define GLEW_GLX_EXT_visual_rating glew::glx::GLEW_GLX_EXT_visual_rating
-#define GLEW_GLX_INTEL_swap_event glew::glx::GLEW_GLX_INTEL_swap_event
-#define GLEW_GLX_MESA_agp_offset glew::glx::GLEW_GLX_MESA_agp_offset
-#define GLEW_GLX_MESA_copy_sub_buffer glew::glx::GLEW_GLX_MESA_copy_sub_buffer
-#define GLEW_GLX_MESA_pixmap_colormap glew::glx::GLEW_GLX_MESA_pixmap_colormap
-#define GLEW_GLX_MESA_query_renderer glew::glx::GLEW_GLX_MESA_query_renderer
-#define GLEW_GLX_MESA_release_buffers glew::glx::GLEW_GLX_MESA_release_buffers
-#define GLEW_GLX_MESA_set_3dfx_mode glew::glx::GLEW_GLX_MESA_set_3dfx_mode
-#define GLEW_GLX_NV_copy_buffer glew::glx::GLEW_GLX_NV_copy_buffer
-#define GLEW_GLX_NV_copy_image glew::glx::GLEW_GLX_NV_copy_image
-#define GLEW_GLX_NV_delay_before_swap glew::glx::GLEW_GLX_NV_delay_before_swap
-#define GLEW_GLX_NV_float_buffer glew::glx::GLEW_GLX_NV_float_buffer
-#define GLEW_GLX_NV_multisample_coverage glew::glx::GLEW_GLX_NV_multisample_coverage
-#define GLEW_GLX_NV_present_video glew::glx::GLEW_GLX_NV_present_video
-#define GLEW_GLX_NV_swap_group glew::glx::GLEW_GLX_NV_swap_group
-#define GLEW_GLX_NV_video_capture glew::glx::GLEW_GLX_NV_video_capture
-#define GLEW_GLX_NV_video_out glew::glx::GLEW_GLX_NV_video_out
-#define GLEW_GLX_OML_swap_method glew::glx::GLEW_GLX_OML_swap_method
-#define GLEW_GLX_OML_sync_control glew::glx::GLEW_GLX_OML_sync_control
-#define GLEW_GLX_SGI_cushion glew::glx::GLEW_GLX_SGI_cushion
-#define GLEW_GLX_SGI_make_current_read glew::glx::GLEW_GLX_SGI_make_current_read
-#define GLEW_GLX_SGI_swap_control glew::glx::GLEW_GLX_SGI_swap_control
-#define GLEW_GLX_SGI_video_sync glew::glx::GLEW_GLX_SGI_video_sync
-#define GLEW_GLX_SGIS_blended_overlay glew::glx::GLEW_GLX_SGIS_blended_overlay
-#define GLEW_GLX_SGIS_multisample glew::glx::GLEW_GLX_SGIS_multisample
-#define GLEW_GLX_SGIS_shared_multisample glew::glx::GLEW_GLX_SGIS_shared_multisample
-#define GLEW_GLX_SGIX_dmbuffer glew::glx::GLEW_GLX_SGIX_dmbuffer
-#define GLEW_GLX_SGIX_fbconfig glew::glx::GLEW_GLX_SGIX_fbconfig
-#define GLEW_GLX_SGIX_hyperpipe glew::glx::GLEW_GLX_SGIX_hyperpipe
-#define GLEW_GLX_SGIX_pbuffer glew::glx::GLEW_GLX_SGIX_pbuffer
-#define GLEW_GLX_SGIX_swap_barrier glew::glx::GLEW_GLX_SGIX_swap_barrier
-#define GLEW_GLX_SGIX_swap_group glew::glx::GLEW_GLX_SGIX_swap_group
-#define GLEW_GLX_SGIX_video_resize glew::glx::GLEW_GLX_SGIX_video_resize
-#define GLEW_GLX_SGIX_video_source glew::glx::GLEW_GLX_SGIX_video_source
-#define GLEW_GLX_SGIX_visual_select_group glew::glx::GLEW_GLX_SGIX_visual_select_group
-#define GLEW_GLX_SUN_get_transparent_index glew::glx::GLEW_GLX_SUN_get_transparent_index
 
 #define glXQueryExtensionsString glew::glx::glXQueryExtensionsString
 #define glXQueryServerString glew::glx::glXQueryServerString

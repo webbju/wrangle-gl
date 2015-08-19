@@ -30,6 +30,12 @@ namespace wrangle_gl_generator
     public GeneratorGLES (string filename)
       : base (filename, new string [] { "gles", /*"gles1",*/ "gles2" })
     {
+      m_baseSpecVersion = 2.0f;
+
+      m_funcApiEntryPrefix = "GL_APICALL";
+
+      m_funcApiEntryPostfix = "GL_APIENTRY";
+
       m_funcPointerApiEntryPrefix = "";
 
       m_funcPointerApiEntryPostfix = "GL_APIENTRYP";
@@ -47,11 +53,19 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
+      //writer.Write ("\n#ifdef GL_GLEXT_PROTOTYPES\n#undef GL_GLEXT_PROTOTYPES\n#endif\n");
+
       writer.Write ("\n#include <GLES3/gl31.h>\n");
 
       writer.Write ("\n#include <GLES2/gl2ext.h>\n\n");
 
       base.ExportHpp (ref writer);
+
+      writer.Write ("\n#ifndef GLEW_USE_OPENGL_ES\n#define GLEW_USE_OPENGL_ES 1\n#endif\n");
+
+      writer.Write ("\n#include <wrangle.h>\n\n");
+
+      WriteCommentDivider (ref writer);
 
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
@@ -90,17 +104,29 @@ namespace wrangle_gl_generator
 
   #undef glGetString
 
-  PFNGLGETSTRINGPROC _glGetString = (PFNGLGETSTRINGPROC) glew::GetProcAddress (""glGetString"");
+  const unsigned char *glVersion = glGetString (GL_VERSION);
 
-  const GLubyte *glVersion = _glGetString (GL_VERSION);
+  if (!glVersion)
+  {
+    glVersion = (const unsigned char*) """";
+  }
 
-  const bool es20Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 2"", 11) == 0);
-  const bool es30Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 3"", 11) == 0);
-  const bool es31Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 3.1"", 13) == 0);
+  const size_t glVersionLen = strlen ((const char *) glVersion);
 
-  s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = es20Supported;
-  s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = es30Supported;
-  s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = es31Supported;
+  if (glVersionLen)
+  {
+#if _WIN32
+  #define strncasecmp _strnicmp
+#endif
+
+    const bool es20Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 2"", 11) == 0);
+    const bool es30Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 3"", 11) == 0);
+    const bool es31Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 3.1"", 13) == 0);
+
+    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = es20Supported;
+    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = es30Supported;
+    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = es31Supported;
+  }
 
   // 
   // Evaluate extension support.
@@ -108,15 +134,20 @@ namespace wrangle_gl_generator
 
   std::unordered_set <std::string> supportedExtensions;
 
-  const GLubyte *glExtensions = _glGetString (GL_EXTENSIONS);
+  const unsigned char *glExtensions = glGetString (GL_EXTENSIONS);
 
-  const size_t glExtensionsLen = glExtensions ? strlen ((const char *) glExtensions) : 0;
+  if (!glExtensions)
+  {
+    glExtensions = (const unsigned char*) """";
+  }
+
+  const size_t glExtensionsLen = strlen ((const char *) glExtensions);
 
   if (glExtensionsLen)
   {
-    GLubyte *thisExtStart = (GLubyte *) glExtensions;
+    unsigned char *thisExtStart = (unsigned char *) glExtensions;
 
-    GLubyte *thisExtEnd = NULL;
+    unsigned char *thisExtEnd = NULL;
 
     char thisExtBuffer [128];
 
@@ -128,13 +159,13 @@ namespace wrangle_gl_generator
 
       if (seperator)
       {
-        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (GLubyte));
+        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
 
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
 
         thisExtBuffer [min (len, 127)] = '\0';
 
-        thisExtEnd = (GLubyte *) seperator + 1; // skip tab character
+        thisExtEnd = (unsigned char *) seperator + 1; // skip tab character
       }
       else
       {
@@ -198,11 +229,27 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          // 
+          // Evaluate whether this feature is part of the 'base spec'.
+          // 
+
           XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
-          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          bool baseSpecFeatureSet = false;
+
+          if (featureNumberNode != null)
           {
-            continue; // Skip any initial (base spec) versions.
+            float version = m_baseSpecVersion;
+
+            if (float.TryParse (featureNumberNode.Value, out version))
+            {
+              baseSpecFeatureSet = version <= m_baseSpecVersion;
+            }
+          }
+
+          if (baseSpecFeatureSet)
+          {
+            continue; // Skip any base spec versions.
           }
 
           // 
@@ -249,7 +296,7 @@ namespace wrangle_gl_generator
 
               string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
 
-              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glew::GetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
             }
 
             writer.Write ("  }\n\n");

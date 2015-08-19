@@ -147,7 +147,46 @@ namespace wrangle_gl_generator
       }
 
       // 
-      // GL Core
+      // GL Core ARB
+      // 
+
+      try
+      {
+        string api = @"khronos\repository\api\gl.xml";
+
+        string hpp = @"include\wrangle-gl.h";
+
+        string cpp = @"src\wrangle-gl.cpp";
+
+        GeneratorGL generator = new GeneratorGL (api);
+
+        StreamWriter writer;
+
+        using (writer = new StreamWriter (hpp, false))
+        {
+          generator.ExportHpp (ref writer);
+
+          writer.Close ();
+        }
+
+        using (writer = new StreamWriter (cpp, false))
+        {
+          generator.ExportCpp (ref writer);
+
+          writer.Close ();
+        }
+      }
+      catch (Exception e)
+      {
+        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
+
+        Console.WriteLine (exception);
+
+        Trace.WriteLine (exception);
+      }
+
+      // 
+      // GL Core ARB
       // 
 
       try

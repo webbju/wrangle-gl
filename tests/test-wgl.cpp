@@ -4,6 +4,12 @@
 
 #define GLEW_USE_WGL 1
 
+#define GLEW_USE_OPENGL 1
+
+#define GLEW_USE_OPENGL_CORE 0
+
+#define GLEW_USE_OPENGL_ES 0
+
 #include <wrangle.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,7 +22,7 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int WinMain (__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd)
+int WINAPI WinMain (__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd)
 {
   MSG msg = {0};
   WNDCLASS wc = {0};
@@ -89,17 +95,22 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       glew::wgl::Initialise ();
 
+  #if 1 && WGL_ARB_create_context
       const glew::wgl::DeviceConfig &wglConfig = glew::wgl::GetConfig ();
 
-#if WGL_ARB_create_context && WGL_ARB_create_context_profile
-      if (wglConfig.m_featureSupported [GLEW_WGL_ARB_create_context]
-        && wglConfig.m_featureSupported [GLEW_WGL_ARB_create_context_profile])
+      if (wglConfig.m_featureSupported [glew::wgl::GLEW_WGL_ARB_create_context]
+    #if GLEW_USE_OPENGL_ES && WGL_ARB_create_context_profile
+        && wglConfig.m_featureSupported [glew::wgl::GLEW_WGL_ARB_create_context_profile]
+    #endif
+        )
       {
         int attribs [] =
         {
           WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
           WGL_CONTEXT_MINOR_VERSION_ARB, 1,
+        #if GLEW_USE_OPENGL_ES && WGL_ARB_create_context_profile
           WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_ES2_PROFILE_BIT_EXT,
+        #endif
           WGL_CONTEXT_FLAGS_ARB, 0,
           0
         };
@@ -114,6 +125,14 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         wglMakeCurrent (deviceContext, deviceRenderContext);
       }
+  #endif
+
+#if GLEW_USE_OPENGL
+      glew::gl::Initialise ();
+#elif GLEW_USE_OPENGL_CORE
+      glew::glcore::Initialise ();
+#elif GLEW_USE_OPENGL_ES
+      glew::gles::Initialise ();
 #endif
 
       const char *renderer = (const char *) glGetString (GL_RENDERER);
@@ -126,9 +145,13 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       (void) swapInterval;
 
-      //glew::glcore::Initialise ();
-
-      //glew::glcore::Deinitialise ();
+#if GLEW_USE_OPENGL
+      glew::gl::Deinitialise ();
+#elif GLEW_USE_OPENGL_CORE
+      glew::glcore::Deinitialise ();
+#elif GLEW_USE_OPENGL_ES
+      glew::gles::Deinitialise ();
+#endif
 
       glew::wgl::Deinitialise ();
 

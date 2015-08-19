@@ -2,7 +2,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include <wrangle.h>
+#include <string>
+
+#include <unordered_set>
 
 #include <wrangle-glcore.h>
 
@@ -5418,6 +5420,1436 @@ void glGetDoublei_v (GLenum target, GLuint index, GLdouble * data)
   {
     s_deviceConfig.m_glGetDoublei_v (target, index, data);
   }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+glew::glcore::DeviceConfig glew::glcore::s_deviceConfig;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void glew::glcore::Initialise ()
+{
+  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));
+
+  // 
+  // Determine current driver's feature reporting.
+  // 
+
+  #undef glGetString
+
+  const unsigned char *glVersion = glGetString (GL_VERSION);
+
+  if (!glVersion)
+  {
+    glVersion = (const unsigned char*) "";
+  }
+
+  const size_t glVersionLen = strlen ((const char *) glVersion);
+
+  /*if (glVersionLen)
+  {
+#if _WIN32
+  #define strncasecmp _strnicmp
+#endif
+
+    const bool es20Supported = (strncasecmp ((const char *) glVersion, "OpenGL ES 2", 11) == 0);
+    const bool es30Supported = (strncasecmp ((const char *) glVersion, "OpenGL ES 3", 11) == 0);
+    const bool es31Supported = (strncasecmp ((const char *) glVersion, "OpenGL ES 3.1", 13) == 0);
+
+    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = es20Supported;
+    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = es30Supported;
+    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = es31Supported;
+  }*/
+
+  // 
+  // Evaluate extension support.
+  // 
+
+  std::unordered_set <std::string> supportedExtensions;
+
+  const unsigned char *glExtensions = (const unsigned char*) glGetString (GL_EXTENSIONS);
+
+  if (!glExtensions)
+  {
+    glExtensions = (const unsigned char*) "";
+  }
+
+  const size_t glExtensionsLen = strlen ((const char *) glExtensions);
+
+  if (glExtensionsLen)
+  {
+    unsigned char *thisExtStart = (unsigned char *) glExtensions;
+
+    unsigned char *thisExtEnd = NULL;
+
+    char thisExtBuffer [128];
+
+    memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
+
+    do 
+    {
+      const char * seperator = strchr ((const char *) thisExtStart, ' ');
+
+      if (seperator)
+      {
+        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
+
+        strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+
+        thisExtBuffer [min (len, 127)] = '\0';
+
+        thisExtEnd = (unsigned char *) seperator + 1; // skip tab character
+      }
+      else
+      {
+        const size_t len = strlen ((const char *) thisExtStart);
+
+        strncpy (thisExtBuffer, (const char *) thisExtStart, len);
+
+        thisExtBuffer [min (len + 1, 127)] = '\0';
+
+        thisExtEnd = NULL;
+      }
+
+      std::string thisExt (thisExtBuffer);
+
+      if (supportedExtensions.find (thisExt) == supportedExtensions.end ())
+      {
+        supportedExtensions.insert (thisExt);
+      }
+
+      thisExtStart = thisExtEnd;
+    }
+    while ((thisExtStart && *thisExtStart != '\0') && (thisExtEnd && *thisExtEnd != '\0'));
+  }
+
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_ES2_compatibility] = (supportedExtensions.find ("GL_ARB_ES2_compatibility") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_ES3_1_compatibility] = (supportedExtensions.find ("GL_ARB_ES3_1_compatibility") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_ES3_compatibility] = (supportedExtensions.find ("GL_ARB_ES3_compatibility") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_arrays_of_arrays] = (supportedExtensions.find ("GL_ARB_arrays_of_arrays") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_base_instance] = (supportedExtensions.find ("GL_ARB_base_instance") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_bindless_texture] = (supportedExtensions.find ("GL_ARB_bindless_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_blend_func_extended] = (supportedExtensions.find ("GL_ARB_blend_func_extended") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_buffer_storage] = (supportedExtensions.find ("GL_ARB_buffer_storage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_cl_event] = (supportedExtensions.find ("GL_ARB_cl_event") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_clear_buffer_object] = (supportedExtensions.find ("GL_ARB_clear_buffer_object") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_clear_texture] = (supportedExtensions.find ("GL_ARB_clear_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_clip_control] = (supportedExtensions.find ("GL_ARB_clip_control") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_compressed_texture_pixel_storage] = (supportedExtensions.find ("GL_ARB_compressed_texture_pixel_storage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_compute_shader] = (supportedExtensions.find ("GL_ARB_compute_shader") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_compute_variable_group_size] = (supportedExtensions.find ("GL_ARB_compute_variable_group_size") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_conditional_render_inverted] = (supportedExtensions.find ("GL_ARB_conditional_render_inverted") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_conservative_depth] = (supportedExtensions.find ("GL_ARB_conservative_depth") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_copy_buffer] = (supportedExtensions.find ("GL_ARB_copy_buffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_copy_image] = (supportedExtensions.find ("GL_ARB_copy_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_cull_distance] = (supportedExtensions.find ("GL_ARB_cull_distance") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_debug_output] = (supportedExtensions.find ("GL_ARB_debug_output") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_depth_buffer_float] = (supportedExtensions.find ("GL_ARB_depth_buffer_float") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_depth_clamp] = (supportedExtensions.find ("GL_ARB_depth_clamp") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_derivative_control] = (supportedExtensions.find ("GL_ARB_derivative_control") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access] = (supportedExtensions.find ("GL_ARB_direct_state_access") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_draw_buffers_blend] = (supportedExtensions.find ("GL_ARB_draw_buffers_blend") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_draw_elements_base_vertex] = (supportedExtensions.find ("GL_ARB_draw_elements_base_vertex") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_draw_indirect] = (supportedExtensions.find ("GL_ARB_draw_indirect") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_enhanced_layouts] = (supportedExtensions.find ("GL_ARB_enhanced_layouts") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_explicit_attrib_location] = (supportedExtensions.find ("GL_ARB_explicit_attrib_location") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_explicit_uniform_location] = (supportedExtensions.find ("GL_ARB_explicit_uniform_location") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_fragment_coord_conventions] = (supportedExtensions.find ("GL_ARB_fragment_coord_conventions") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_fragment_layer_viewport] = (supportedExtensions.find ("GL_ARB_fragment_layer_viewport") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_framebuffer_no_attachments] = (supportedExtensions.find ("GL_ARB_framebuffer_no_attachments") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_framebuffer_object] = (supportedExtensions.find ("GL_ARB_framebuffer_object") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_framebuffer_sRGB] = (supportedExtensions.find ("GL_ARB_framebuffer_sRGB") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_get_program_binary] = (supportedExtensions.find ("GL_ARB_get_program_binary") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_get_texture_sub_image] = (supportedExtensions.find ("GL_ARB_get_texture_sub_image") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_gpu_shader5] = (supportedExtensions.find ("GL_ARB_gpu_shader5") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_gpu_shader_fp64] = (supportedExtensions.find ("GL_ARB_gpu_shader_fp64") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_half_float_vertex] = (supportedExtensions.find ("GL_ARB_half_float_vertex") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_imaging] = (supportedExtensions.find ("GL_ARB_imaging") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_indirect_parameters] = (supportedExtensions.find ("GL_ARB_indirect_parameters") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_internalformat_query] = (supportedExtensions.find ("GL_ARB_internalformat_query") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_internalformat_query2] = (supportedExtensions.find ("GL_ARB_internalformat_query2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_invalidate_subdata] = (supportedExtensions.find ("GL_ARB_invalidate_subdata") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_map_buffer_alignment] = (supportedExtensions.find ("GL_ARB_map_buffer_alignment") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_map_buffer_range] = (supportedExtensions.find ("GL_ARB_map_buffer_range") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_multi_bind] = (supportedExtensions.find ("GL_ARB_multi_bind") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_multi_draw_indirect] = (supportedExtensions.find ("GL_ARB_multi_draw_indirect") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_occlusion_query2] = (supportedExtensions.find ("GL_ARB_occlusion_query2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_pipeline_statistics_query] = (supportedExtensions.find ("GL_ARB_pipeline_statistics_query") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_program_interface_query] = (supportedExtensions.find ("GL_ARB_program_interface_query") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_provoking_vertex] = (supportedExtensions.find ("GL_ARB_provoking_vertex") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_query_buffer_object] = (supportedExtensions.find ("GL_ARB_query_buffer_object") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_robust_buffer_access_behavior] = (supportedExtensions.find ("GL_ARB_robust_buffer_access_behavior") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_robustness] = (supportedExtensions.find ("GL_ARB_robustness") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_robustness_isolation] = (supportedExtensions.find ("GL_ARB_robustness_isolation") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sample_shading] = (supportedExtensions.find ("GL_ARB_sample_shading") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sampler_objects] = (supportedExtensions.find ("GL_ARB_sampler_objects") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_seamless_cube_map] = (supportedExtensions.find ("GL_ARB_seamless_cube_map") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_seamless_cubemap_per_texture] = (supportedExtensions.find ("GL_ARB_seamless_cubemap_per_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_separate_shader_objects] = (supportedExtensions.find ("GL_ARB_separate_shader_objects") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_atomic_counters] = (supportedExtensions.find ("GL_ARB_shader_atomic_counters") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_bit_encoding] = (supportedExtensions.find ("GL_ARB_shader_bit_encoding") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_draw_parameters] = (supportedExtensions.find ("GL_ARB_shader_draw_parameters") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_group_vote] = (supportedExtensions.find ("GL_ARB_shader_group_vote") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_image_load_store] = (supportedExtensions.find ("GL_ARB_shader_image_load_store") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_image_size] = (supportedExtensions.find ("GL_ARB_shader_image_size") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_precision] = (supportedExtensions.find ("GL_ARB_shader_precision") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_stencil_export] = (supportedExtensions.find ("GL_ARB_shader_stencil_export") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_storage_buffer_object] = (supportedExtensions.find ("GL_ARB_shader_storage_buffer_object") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_subroutine] = (supportedExtensions.find ("GL_ARB_shader_subroutine") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_texture_image_samples] = (supportedExtensions.find ("GL_ARB_shader_texture_image_samples") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shading_language_420pack] = (supportedExtensions.find ("GL_ARB_shading_language_420pack") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shading_language_include] = (supportedExtensions.find ("GL_ARB_shading_language_include") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shading_language_packing] = (supportedExtensions.find ("GL_ARB_shading_language_packing") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_buffer] = (supportedExtensions.find ("GL_ARB_sparse_buffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_texture] = (supportedExtensions.find ("GL_ARB_sparse_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_stencil_texturing] = (supportedExtensions.find ("GL_ARB_stencil_texturing") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sync] = (supportedExtensions.find ("GL_ARB_sync") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_tessellation_shader] = (supportedExtensions.find ("GL_ARB_tessellation_shader") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_barrier] = (supportedExtensions.find ("GL_ARB_texture_barrier") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_buffer_object_rgb32] = (supportedExtensions.find ("GL_ARB_texture_buffer_object_rgb32") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_buffer_range] = (supportedExtensions.find ("GL_ARB_texture_buffer_range") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_compression_bptc] = (supportedExtensions.find ("GL_ARB_texture_compression_bptc") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_compression_rgtc] = (supportedExtensions.find ("GL_ARB_texture_compression_rgtc") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_cube_map_array] = (supportedExtensions.find ("GL_ARB_texture_cube_map_array") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_gather] = (supportedExtensions.find ("GL_ARB_texture_gather") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_mirror_clamp_to_edge] = (supportedExtensions.find ("GL_ARB_texture_mirror_clamp_to_edge") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_multisample] = (supportedExtensions.find ("GL_ARB_texture_multisample") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_query_levels] = (supportedExtensions.find ("GL_ARB_texture_query_levels") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_query_lod] = (supportedExtensions.find ("GL_ARB_texture_query_lod") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_rg] = (supportedExtensions.find ("GL_ARB_texture_rg") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_rgb10_a2ui] = (supportedExtensions.find ("GL_ARB_texture_rgb10_a2ui") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_stencil8] = (supportedExtensions.find ("GL_ARB_texture_stencil8") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_storage] = (supportedExtensions.find ("GL_ARB_texture_storage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_storage_multisample] = (supportedExtensions.find ("GL_ARB_texture_storage_multisample") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_swizzle] = (supportedExtensions.find ("GL_ARB_texture_swizzle") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_view] = (supportedExtensions.find ("GL_ARB_texture_view") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_timer_query] = (supportedExtensions.find ("GL_ARB_timer_query") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback2] = (supportedExtensions.find ("GL_ARB_transform_feedback2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback3] = (supportedExtensions.find ("GL_ARB_transform_feedback3") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback_instanced] = (supportedExtensions.find ("GL_ARB_transform_feedback_instanced") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback_overflow_query] = (supportedExtensions.find ("GL_ARB_transform_feedback_overflow_query") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_uniform_buffer_object] = (supportedExtensions.find ("GL_ARB_uniform_buffer_object") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_array_bgra] = (supportedExtensions.find ("GL_ARB_vertex_array_bgra") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_array_object] = (supportedExtensions.find ("GL_ARB_vertex_array_object") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_attrib_64bit] = (supportedExtensions.find ("GL_ARB_vertex_attrib_64bit") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_attrib_binding] = (supportedExtensions.find ("GL_ARB_vertex_attrib_binding") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_type_10f_11f_11f_rev] = (supportedExtensions.find ("GL_ARB_vertex_type_10f_11f_11f_rev") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_type_2_10_10_10_rev] = (supportedExtensions.find ("GL_ARB_vertex_type_2_10_10_10_rev") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARB_viewport_array] = (supportedExtensions.find ("GL_ARB_viewport_array") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_KHR_context_flush_control] = (supportedExtensions.find ("GL_KHR_context_flush_control") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_KHR_debug] = (supportedExtensions.find ("GL_KHR_debug") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_KHR_no_error] = (supportedExtensions.find ("GL_KHR_no_error") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_KHR_robust_buffer_access_behavior] = (supportedExtensions.find ("GL_KHR_robust_buffer_access_behavior") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_KHR_robustness] = (supportedExtensions.find ("GL_KHR_robustness") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_KHR_texture_compression_astc_hdr] = (supportedExtensions.find ("GL_KHR_texture_compression_astc_hdr") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_KHR_texture_compression_astc_ldr] = (supportedExtensions.find ("GL_KHR_texture_compression_astc_ldr") != supportedExtensions.end ());
+
+  // GL_ARB_ES2_compatibility
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_ES2_compatibility])
+  {
+    #undef glReleaseShaderCompiler
+    #undef glShaderBinary
+    #undef glGetShaderPrecisionFormat
+    #undef glDepthRangef
+    #undef glClearDepthf
+    s_deviceConfig.m_glReleaseShaderCompiler = (PFNGLRELEASESHADERCOMPILERPROC) glewGetProcAddress ("glReleaseShaderCompiler");
+    s_deviceConfig.m_glShaderBinary = (PFNGLSHADERBINARYPROC) glewGetProcAddress ("glShaderBinary");
+    s_deviceConfig.m_glGetShaderPrecisionFormat = (PFNGLGETSHADERPRECISIONFORMATPROC) glewGetProcAddress ("glGetShaderPrecisionFormat");
+    s_deviceConfig.m_glDepthRangef = (PFNGLDEPTHRANGEFPROC) glewGetProcAddress ("glDepthRangef");
+    s_deviceConfig.m_glClearDepthf = (PFNGLCLEARDEPTHFPROC) glewGetProcAddress ("glClearDepthf");
+  }
+
+  // GL_ARB_ES3_1_compatibility
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_ES3_1_compatibility])
+  {
+    #undef glMemoryBarrierByRegion
+    s_deviceConfig.m_glMemoryBarrierByRegion = (PFNGLMEMORYBARRIERBYREGIONPROC) glewGetProcAddress ("glMemoryBarrierByRegion");
+  }
+
+  // GL_ARB_base_instance
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_base_instance])
+  {
+    #undef glDrawArraysInstancedBaseInstance
+    #undef glDrawElementsInstancedBaseInstance
+    #undef glDrawElementsInstancedBaseVertexBaseInstance
+    s_deviceConfig.m_glDrawArraysInstancedBaseInstance = (PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC) glewGetProcAddress ("glDrawArraysInstancedBaseInstance");
+    s_deviceConfig.m_glDrawElementsInstancedBaseInstance = (PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC) glewGetProcAddress ("glDrawElementsInstancedBaseInstance");
+    s_deviceConfig.m_glDrawElementsInstancedBaseVertexBaseInstance = (PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC) glewGetProcAddress ("glDrawElementsInstancedBaseVertexBaseInstance");
+  }
+
+  // GL_ARB_bindless_texture
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_bindless_texture])
+  {
+    #undef glGetTextureHandleARB
+    #undef glGetTextureSamplerHandleARB
+    #undef glMakeTextureHandleResidentARB
+    #undef glMakeTextureHandleNonResidentARB
+    #undef glGetImageHandleARB
+    #undef glMakeImageHandleResidentARB
+    #undef glMakeImageHandleNonResidentARB
+    #undef glUniformHandleui64ARB
+    #undef glUniformHandleui64vARB
+    #undef glProgramUniformHandleui64ARB
+    #undef glProgramUniformHandleui64vARB
+    #undef glIsTextureHandleResidentARB
+    #undef glIsImageHandleResidentARB
+    #undef glVertexAttribL1ui64ARB
+    #undef glVertexAttribL1ui64vARB
+    #undef glGetVertexAttribLui64vARB
+    s_deviceConfig.m_glGetTextureHandleARB = (PFNGLGETTEXTUREHANDLEARBPROC) glewGetProcAddress ("glGetTextureHandleARB");
+    s_deviceConfig.m_glGetTextureSamplerHandleARB = (PFNGLGETTEXTURESAMPLERHANDLEARBPROC) glewGetProcAddress ("glGetTextureSamplerHandleARB");
+    s_deviceConfig.m_glMakeTextureHandleResidentARB = (PFNGLMAKETEXTUREHANDLERESIDENTARBPROC) glewGetProcAddress ("glMakeTextureHandleResidentARB");
+    s_deviceConfig.m_glMakeTextureHandleNonResidentARB = (PFNGLMAKETEXTUREHANDLENONRESIDENTARBPROC) glewGetProcAddress ("glMakeTextureHandleNonResidentARB");
+    s_deviceConfig.m_glGetImageHandleARB = (PFNGLGETIMAGEHANDLEARBPROC) glewGetProcAddress ("glGetImageHandleARB");
+    s_deviceConfig.m_glMakeImageHandleResidentARB = (PFNGLMAKEIMAGEHANDLERESIDENTARBPROC) glewGetProcAddress ("glMakeImageHandleResidentARB");
+    s_deviceConfig.m_glMakeImageHandleNonResidentARB = (PFNGLMAKEIMAGEHANDLENONRESIDENTARBPROC) glewGetProcAddress ("glMakeImageHandleNonResidentARB");
+    s_deviceConfig.m_glUniformHandleui64ARB = (PFNGLUNIFORMHANDLEUI64ARBPROC) glewGetProcAddress ("glUniformHandleui64ARB");
+    s_deviceConfig.m_glUniformHandleui64vARB = (PFNGLUNIFORMHANDLEUI64VARBPROC) glewGetProcAddress ("glUniformHandleui64vARB");
+    s_deviceConfig.m_glProgramUniformHandleui64ARB = (PFNGLPROGRAMUNIFORMHANDLEUI64ARBPROC) glewGetProcAddress ("glProgramUniformHandleui64ARB");
+    s_deviceConfig.m_glProgramUniformHandleui64vARB = (PFNGLPROGRAMUNIFORMHANDLEUI64VARBPROC) glewGetProcAddress ("glProgramUniformHandleui64vARB");
+    s_deviceConfig.m_glIsTextureHandleResidentARB = (PFNGLISTEXTUREHANDLERESIDENTARBPROC) glewGetProcAddress ("glIsTextureHandleResidentARB");
+    s_deviceConfig.m_glIsImageHandleResidentARB = (PFNGLISIMAGEHANDLERESIDENTARBPROC) glewGetProcAddress ("glIsImageHandleResidentARB");
+    s_deviceConfig.m_glVertexAttribL1ui64ARB = (PFNGLVERTEXATTRIBL1UI64ARBPROC) glewGetProcAddress ("glVertexAttribL1ui64ARB");
+    s_deviceConfig.m_glVertexAttribL1ui64vARB = (PFNGLVERTEXATTRIBL1UI64VARBPROC) glewGetProcAddress ("glVertexAttribL1ui64vARB");
+    s_deviceConfig.m_glGetVertexAttribLui64vARB = (PFNGLGETVERTEXATTRIBLUI64VARBPROC) glewGetProcAddress ("glGetVertexAttribLui64vARB");
+  }
+
+  // GL_ARB_blend_func_extended
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_blend_func_extended])
+  {
+    #undef glBindFragDataLocationIndexed
+    #undef glGetFragDataIndex
+    s_deviceConfig.m_glBindFragDataLocationIndexed = (PFNGLBINDFRAGDATALOCATIONINDEXEDPROC) glewGetProcAddress ("glBindFragDataLocationIndexed");
+    s_deviceConfig.m_glGetFragDataIndex = (PFNGLGETFRAGDATAINDEXPROC) glewGetProcAddress ("glGetFragDataIndex");
+  }
+
+  // GL_ARB_buffer_storage
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_buffer_storage])
+  {
+    #undef glBufferStorage
+    s_deviceConfig.m_glBufferStorage = (PFNGLBUFFERSTORAGEPROC) glewGetProcAddress ("glBufferStorage");
+  }
+
+  // GL_ARB_cl_event
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_cl_event])
+  {
+    #undef glCreateSyncFromCLeventARB
+    s_deviceConfig.m_glCreateSyncFromCLeventARB = (PFNGLCREATESYNCFROMCLEVENTARBPROC) glewGetProcAddress ("glCreateSyncFromCLeventARB");
+  }
+
+  // GL_ARB_clear_buffer_object
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_clear_buffer_object])
+  {
+    #undef glClearBufferData
+    #undef glClearBufferSubData
+    s_deviceConfig.m_glClearBufferData = (PFNGLCLEARBUFFERDATAPROC) glewGetProcAddress ("glClearBufferData");
+    s_deviceConfig.m_glClearBufferSubData = (PFNGLCLEARBUFFERSUBDATAPROC) glewGetProcAddress ("glClearBufferSubData");
+  }
+
+  // GL_ARB_clear_texture
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_clear_texture])
+  {
+    #undef glClearTexImage
+    #undef glClearTexSubImage
+    s_deviceConfig.m_glClearTexImage = (PFNGLCLEARTEXIMAGEPROC) glewGetProcAddress ("glClearTexImage");
+    s_deviceConfig.m_glClearTexSubImage = (PFNGLCLEARTEXSUBIMAGEPROC) glewGetProcAddress ("glClearTexSubImage");
+  }
+
+  // GL_ARB_clip_control
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_clip_control])
+  {
+    #undef glClipControl
+    s_deviceConfig.m_glClipControl = (PFNGLCLIPCONTROLPROC) glewGetProcAddress ("glClipControl");
+  }
+
+  // GL_ARB_compute_shader
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_compute_shader])
+  {
+    #undef glDispatchCompute
+    #undef glDispatchComputeIndirect
+    s_deviceConfig.m_glDispatchCompute = (PFNGLDISPATCHCOMPUTEPROC) glewGetProcAddress ("glDispatchCompute");
+    s_deviceConfig.m_glDispatchComputeIndirect = (PFNGLDISPATCHCOMPUTEINDIRECTPROC) glewGetProcAddress ("glDispatchComputeIndirect");
+  }
+
+  // GL_ARB_compute_variable_group_size
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_compute_variable_group_size])
+  {
+    #undef glDispatchComputeGroupSizeARB
+    s_deviceConfig.m_glDispatchComputeGroupSizeARB = (PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC) glewGetProcAddress ("glDispatchComputeGroupSizeARB");
+  }
+
+  // GL_ARB_copy_buffer
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_copy_buffer])
+  {
+    #undef glCopyBufferSubData
+    s_deviceConfig.m_glCopyBufferSubData = (PFNGLCOPYBUFFERSUBDATAPROC) glewGetProcAddress ("glCopyBufferSubData");
+  }
+
+  // GL_ARB_copy_image
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_copy_image])
+  {
+    #undef glCopyImageSubData
+    s_deviceConfig.m_glCopyImageSubData = (PFNGLCOPYIMAGESUBDATAPROC) glewGetProcAddress ("glCopyImageSubData");
+  }
+
+  // GL_ARB_debug_output
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_debug_output])
+  {
+    #undef glDebugMessageControlARB
+    #undef glDebugMessageInsertARB
+    #undef glDebugMessageCallbackARB
+    #undef glGetDebugMessageLogARB
+    s_deviceConfig.m_glDebugMessageControlARB = (PFNGLDEBUGMESSAGECONTROLARBPROC) glewGetProcAddress ("glDebugMessageControlARB");
+    s_deviceConfig.m_glDebugMessageInsertARB = (PFNGLDEBUGMESSAGEINSERTARBPROC) glewGetProcAddress ("glDebugMessageInsertARB");
+    s_deviceConfig.m_glDebugMessageCallbackARB = (PFNGLDEBUGMESSAGECALLBACKARBPROC) glewGetProcAddress ("glDebugMessageCallbackARB");
+    s_deviceConfig.m_glGetDebugMessageLogARB = (PFNGLGETDEBUGMESSAGELOGARBPROC) glewGetProcAddress ("glGetDebugMessageLogARB");
+  }
+
+  // GL_ARB_direct_state_access
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
+  {
+    #undef glCreateTransformFeedbacks
+    #undef glTransformFeedbackBufferBase
+    #undef glTransformFeedbackBufferRange
+    #undef glGetTransformFeedbackiv
+    #undef glGetTransformFeedbacki_v
+    #undef glGetTransformFeedbacki64_v
+    s_deviceConfig.m_glCreateTransformFeedbacks = (PFNGLCREATETRANSFORMFEEDBACKSPROC) glewGetProcAddress ("glCreateTransformFeedbacks");
+    s_deviceConfig.m_glTransformFeedbackBufferBase = (PFNGLTRANSFORMFEEDBACKBUFFERBASEPROC) glewGetProcAddress ("glTransformFeedbackBufferBase");
+    s_deviceConfig.m_glTransformFeedbackBufferRange = (PFNGLTRANSFORMFEEDBACKBUFFERRANGEPROC) glewGetProcAddress ("glTransformFeedbackBufferRange");
+    s_deviceConfig.m_glGetTransformFeedbackiv = (PFNGLGETTRANSFORMFEEDBACKIVPROC) glewGetProcAddress ("glGetTransformFeedbackiv");
+    s_deviceConfig.m_glGetTransformFeedbacki_v = (PFNGLGETTRANSFORMFEEDBACKI_VPROC) glewGetProcAddress ("glGetTransformFeedbacki_v");
+    s_deviceConfig.m_glGetTransformFeedbacki64_v = (PFNGLGETTRANSFORMFEEDBACKI64_VPROC) glewGetProcAddress ("glGetTransformFeedbacki64_v");
+  }
+
+  // GL_ARB_direct_state_access
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
+  {
+    #undef glCreateBuffers
+    #undef glNamedBufferStorage
+    #undef glNamedBufferData
+    #undef glNamedBufferSubData
+    #undef glCopyNamedBufferSubData
+    #undef glClearNamedBufferData
+    #undef glClearNamedBufferSubData
+    #undef glMapNamedBuffer
+    #undef glMapNamedBufferRange
+    #undef glUnmapNamedBuffer
+    #undef glFlushMappedNamedBufferRange
+    #undef glGetNamedBufferParameteriv
+    #undef glGetNamedBufferParameteri64v
+    #undef glGetNamedBufferPointerv
+    #undef glGetNamedBufferSubData
+    s_deviceConfig.m_glCreateBuffers = (PFNGLCREATEBUFFERSPROC) glewGetProcAddress ("glCreateBuffers");
+    s_deviceConfig.m_glNamedBufferStorage = (PFNGLNAMEDBUFFERSTORAGEPROC) glewGetProcAddress ("glNamedBufferStorage");
+    s_deviceConfig.m_glNamedBufferData = (PFNGLNAMEDBUFFERDATAPROC) glewGetProcAddress ("glNamedBufferData");
+    s_deviceConfig.m_glNamedBufferSubData = (PFNGLNAMEDBUFFERSUBDATAPROC) glewGetProcAddress ("glNamedBufferSubData");
+    s_deviceConfig.m_glCopyNamedBufferSubData = (PFNGLCOPYNAMEDBUFFERSUBDATAPROC) glewGetProcAddress ("glCopyNamedBufferSubData");
+    s_deviceConfig.m_glClearNamedBufferData = (PFNGLCLEARNAMEDBUFFERDATAPROC) glewGetProcAddress ("glClearNamedBufferData");
+    s_deviceConfig.m_glClearNamedBufferSubData = (PFNGLCLEARNAMEDBUFFERSUBDATAPROC) glewGetProcAddress ("glClearNamedBufferSubData");
+    s_deviceConfig.m_glMapNamedBuffer = (PFNGLMAPNAMEDBUFFERPROC) glewGetProcAddress ("glMapNamedBuffer");
+    s_deviceConfig.m_glMapNamedBufferRange = (PFNGLMAPNAMEDBUFFERRANGEPROC) glewGetProcAddress ("glMapNamedBufferRange");
+    s_deviceConfig.m_glUnmapNamedBuffer = (PFNGLUNMAPNAMEDBUFFERPROC) glewGetProcAddress ("glUnmapNamedBuffer");
+    s_deviceConfig.m_glFlushMappedNamedBufferRange = (PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC) glewGetProcAddress ("glFlushMappedNamedBufferRange");
+    s_deviceConfig.m_glGetNamedBufferParameteriv = (PFNGLGETNAMEDBUFFERPARAMETERIVPROC) glewGetProcAddress ("glGetNamedBufferParameteriv");
+    s_deviceConfig.m_glGetNamedBufferParameteri64v = (PFNGLGETNAMEDBUFFERPARAMETERI64VPROC) glewGetProcAddress ("glGetNamedBufferParameteri64v");
+    s_deviceConfig.m_glGetNamedBufferPointerv = (PFNGLGETNAMEDBUFFERPOINTERVPROC) glewGetProcAddress ("glGetNamedBufferPointerv");
+    s_deviceConfig.m_glGetNamedBufferSubData = (PFNGLGETNAMEDBUFFERSUBDATAPROC) glewGetProcAddress ("glGetNamedBufferSubData");
+  }
+
+  // GL_ARB_direct_state_access
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
+  {
+    #undef glCreateFramebuffers
+    #undef glNamedFramebufferRenderbuffer
+    #undef glNamedFramebufferParameteri
+    #undef glNamedFramebufferTexture
+    #undef glNamedFramebufferTextureLayer
+    #undef glNamedFramebufferDrawBuffer
+    #undef glNamedFramebufferDrawBuffers
+    #undef glNamedFramebufferReadBuffer
+    #undef glInvalidateNamedFramebufferData
+    #undef glInvalidateNamedFramebufferSubData
+    #undef glClearNamedFramebufferiv
+    #undef glClearNamedFramebufferuiv
+    #undef glClearNamedFramebufferfv
+    #undef glClearNamedFramebufferfi
+    #undef glBlitNamedFramebuffer
+    #undef glCheckNamedFramebufferStatus
+    #undef glGetNamedFramebufferParameteriv
+    #undef glGetNamedFramebufferAttachmentParameteriv
+    s_deviceConfig.m_glCreateFramebuffers = (PFNGLCREATEFRAMEBUFFERSPROC) glewGetProcAddress ("glCreateFramebuffers");
+    s_deviceConfig.m_glNamedFramebufferRenderbuffer = (PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC) glewGetProcAddress ("glNamedFramebufferRenderbuffer");
+    s_deviceConfig.m_glNamedFramebufferParameteri = (PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC) glewGetProcAddress ("glNamedFramebufferParameteri");
+    s_deviceConfig.m_glNamedFramebufferTexture = (PFNGLNAMEDFRAMEBUFFERTEXTUREPROC) glewGetProcAddress ("glNamedFramebufferTexture");
+    s_deviceConfig.m_glNamedFramebufferTextureLayer = (PFNGLNAMEDFRAMEBUFFERTEXTURELAYERPROC) glewGetProcAddress ("glNamedFramebufferTextureLayer");
+    s_deviceConfig.m_glNamedFramebufferDrawBuffer = (PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC) glewGetProcAddress ("glNamedFramebufferDrawBuffer");
+    s_deviceConfig.m_glNamedFramebufferDrawBuffers = (PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC) glewGetProcAddress ("glNamedFramebufferDrawBuffers");
+    s_deviceConfig.m_glNamedFramebufferReadBuffer = (PFNGLNAMEDFRAMEBUFFERREADBUFFERPROC) glewGetProcAddress ("glNamedFramebufferReadBuffer");
+    s_deviceConfig.m_glInvalidateNamedFramebufferData = (PFNGLINVALIDATENAMEDFRAMEBUFFERDATAPROC) glewGetProcAddress ("glInvalidateNamedFramebufferData");
+    s_deviceConfig.m_glInvalidateNamedFramebufferSubData = (PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC) glewGetProcAddress ("glInvalidateNamedFramebufferSubData");
+    s_deviceConfig.m_glClearNamedFramebufferiv = (PFNGLCLEARNAMEDFRAMEBUFFERIVPROC) glewGetProcAddress ("glClearNamedFramebufferiv");
+    s_deviceConfig.m_glClearNamedFramebufferuiv = (PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC) glewGetProcAddress ("glClearNamedFramebufferuiv");
+    s_deviceConfig.m_glClearNamedFramebufferfv = (PFNGLCLEARNAMEDFRAMEBUFFERFVPROC) glewGetProcAddress ("glClearNamedFramebufferfv");
+    s_deviceConfig.m_glClearNamedFramebufferfi = (PFNGLCLEARNAMEDFRAMEBUFFERFIPROC) glewGetProcAddress ("glClearNamedFramebufferfi");
+    s_deviceConfig.m_glBlitNamedFramebuffer = (PFNGLBLITNAMEDFRAMEBUFFERPROC) glewGetProcAddress ("glBlitNamedFramebuffer");
+    s_deviceConfig.m_glCheckNamedFramebufferStatus = (PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC) glewGetProcAddress ("glCheckNamedFramebufferStatus");
+    s_deviceConfig.m_glGetNamedFramebufferParameteriv = (PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC) glewGetProcAddress ("glGetNamedFramebufferParameteriv");
+    s_deviceConfig.m_glGetNamedFramebufferAttachmentParameteriv = (PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC) glewGetProcAddress ("glGetNamedFramebufferAttachmentParameteriv");
+  }
+
+  // GL_ARB_direct_state_access
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
+  {
+    #undef glCreateRenderbuffers
+    #undef glNamedRenderbufferStorage
+    #undef glNamedRenderbufferStorageMultisample
+    #undef glGetNamedRenderbufferParameteriv
+    s_deviceConfig.m_glCreateRenderbuffers = (PFNGLCREATERENDERBUFFERSPROC) glewGetProcAddress ("glCreateRenderbuffers");
+    s_deviceConfig.m_glNamedRenderbufferStorage = (PFNGLNAMEDRENDERBUFFERSTORAGEPROC) glewGetProcAddress ("glNamedRenderbufferStorage");
+    s_deviceConfig.m_glNamedRenderbufferStorageMultisample = (PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC) glewGetProcAddress ("glNamedRenderbufferStorageMultisample");
+    s_deviceConfig.m_glGetNamedRenderbufferParameteriv = (PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC) glewGetProcAddress ("glGetNamedRenderbufferParameteriv");
+  }
+
+  // GL_ARB_direct_state_access
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
+  {
+    #undef glCreateTextures
+    #undef glTextureBuffer
+    #undef glTextureBufferRange
+    #undef glTextureStorage1D
+    #undef glTextureStorage2D
+    #undef glTextureStorage3D
+    #undef glTextureStorage2DMultisample
+    #undef glTextureStorage3DMultisample
+    #undef glTextureSubImage1D
+    #undef glTextureSubImage2D
+    #undef glTextureSubImage3D
+    #undef glCompressedTextureSubImage1D
+    #undef glCompressedTextureSubImage2D
+    #undef glCompressedTextureSubImage3D
+    #undef glCopyTextureSubImage1D
+    #undef glCopyTextureSubImage2D
+    #undef glCopyTextureSubImage3D
+    #undef glTextureParameterf
+    #undef glTextureParameterfv
+    #undef glTextureParameteri
+    #undef glTextureParameterIiv
+    #undef glTextureParameterIuiv
+    #undef glTextureParameteriv
+    #undef glGenerateTextureMipmap
+    #undef glBindTextureUnit
+    #undef glGetTextureImage
+    #undef glGetCompressedTextureImage
+    #undef glGetTextureLevelParameterfv
+    #undef glGetTextureLevelParameteriv
+    #undef glGetTextureParameterfv
+    #undef glGetTextureParameterIiv
+    #undef glGetTextureParameterIuiv
+    #undef glGetTextureParameteriv
+    s_deviceConfig.m_glCreateTextures = (PFNGLCREATETEXTURESPROC) glewGetProcAddress ("glCreateTextures");
+    s_deviceConfig.m_glTextureBuffer = (PFNGLTEXTUREBUFFERPROC) glewGetProcAddress ("glTextureBuffer");
+    s_deviceConfig.m_glTextureBufferRange = (PFNGLTEXTUREBUFFERRANGEPROC) glewGetProcAddress ("glTextureBufferRange");
+    s_deviceConfig.m_glTextureStorage1D = (PFNGLTEXTURESTORAGE1DPROC) glewGetProcAddress ("glTextureStorage1D");
+    s_deviceConfig.m_glTextureStorage2D = (PFNGLTEXTURESTORAGE2DPROC) glewGetProcAddress ("glTextureStorage2D");
+    s_deviceConfig.m_glTextureStorage3D = (PFNGLTEXTURESTORAGE3DPROC) glewGetProcAddress ("glTextureStorage3D");
+    s_deviceConfig.m_glTextureStorage2DMultisample = (PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC) glewGetProcAddress ("glTextureStorage2DMultisample");
+    s_deviceConfig.m_glTextureStorage3DMultisample = (PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC) glewGetProcAddress ("glTextureStorage3DMultisample");
+    s_deviceConfig.m_glTextureSubImage1D = (PFNGLTEXTURESUBIMAGE1DPROC) glewGetProcAddress ("glTextureSubImage1D");
+    s_deviceConfig.m_glTextureSubImage2D = (PFNGLTEXTURESUBIMAGE2DPROC) glewGetProcAddress ("glTextureSubImage2D");
+    s_deviceConfig.m_glTextureSubImage3D = (PFNGLTEXTURESUBIMAGE3DPROC) glewGetProcAddress ("glTextureSubImage3D");
+    s_deviceConfig.m_glCompressedTextureSubImage1D = (PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC) glewGetProcAddress ("glCompressedTextureSubImage1D");
+    s_deviceConfig.m_glCompressedTextureSubImage2D = (PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC) glewGetProcAddress ("glCompressedTextureSubImage2D");
+    s_deviceConfig.m_glCompressedTextureSubImage3D = (PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC) glewGetProcAddress ("glCompressedTextureSubImage3D");
+    s_deviceConfig.m_glCopyTextureSubImage1D = (PFNGLCOPYTEXTURESUBIMAGE1DPROC) glewGetProcAddress ("glCopyTextureSubImage1D");
+    s_deviceConfig.m_glCopyTextureSubImage2D = (PFNGLCOPYTEXTURESUBIMAGE2DPROC) glewGetProcAddress ("glCopyTextureSubImage2D");
+    s_deviceConfig.m_glCopyTextureSubImage3D = (PFNGLCOPYTEXTURESUBIMAGE3DPROC) glewGetProcAddress ("glCopyTextureSubImage3D");
+    s_deviceConfig.m_glTextureParameterf = (PFNGLTEXTUREPARAMETERFPROC) glewGetProcAddress ("glTextureParameterf");
+    s_deviceConfig.m_glTextureParameterfv = (PFNGLTEXTUREPARAMETERFVPROC) glewGetProcAddress ("glTextureParameterfv");
+    s_deviceConfig.m_glTextureParameteri = (PFNGLTEXTUREPARAMETERIPROC) glewGetProcAddress ("glTextureParameteri");
+    s_deviceConfig.m_glTextureParameterIiv = (PFNGLTEXTUREPARAMETERIIVPROC) glewGetProcAddress ("glTextureParameterIiv");
+    s_deviceConfig.m_glTextureParameterIuiv = (PFNGLTEXTUREPARAMETERIUIVPROC) glewGetProcAddress ("glTextureParameterIuiv");
+    s_deviceConfig.m_glTextureParameteriv = (PFNGLTEXTUREPARAMETERIVPROC) glewGetProcAddress ("glTextureParameteriv");
+    s_deviceConfig.m_glGenerateTextureMipmap = (PFNGLGENERATETEXTUREMIPMAPPROC) glewGetProcAddress ("glGenerateTextureMipmap");
+    s_deviceConfig.m_glBindTextureUnit = (PFNGLBINDTEXTUREUNITPROC) glewGetProcAddress ("glBindTextureUnit");
+    s_deviceConfig.m_glGetTextureImage = (PFNGLGETTEXTUREIMAGEPROC) glewGetProcAddress ("glGetTextureImage");
+    s_deviceConfig.m_glGetCompressedTextureImage = (PFNGLGETCOMPRESSEDTEXTUREIMAGEPROC) glewGetProcAddress ("glGetCompressedTextureImage");
+    s_deviceConfig.m_glGetTextureLevelParameterfv = (PFNGLGETTEXTURELEVELPARAMETERFVPROC) glewGetProcAddress ("glGetTextureLevelParameterfv");
+    s_deviceConfig.m_glGetTextureLevelParameteriv = (PFNGLGETTEXTURELEVELPARAMETERIVPROC) glewGetProcAddress ("glGetTextureLevelParameteriv");
+    s_deviceConfig.m_glGetTextureParameterfv = (PFNGLGETTEXTUREPARAMETERFVPROC) glewGetProcAddress ("glGetTextureParameterfv");
+    s_deviceConfig.m_glGetTextureParameterIiv = (PFNGLGETTEXTUREPARAMETERIIVPROC) glewGetProcAddress ("glGetTextureParameterIiv");
+    s_deviceConfig.m_glGetTextureParameterIuiv = (PFNGLGETTEXTUREPARAMETERIUIVPROC) glewGetProcAddress ("glGetTextureParameterIuiv");
+    s_deviceConfig.m_glGetTextureParameteriv = (PFNGLGETTEXTUREPARAMETERIVPROC) glewGetProcAddress ("glGetTextureParameteriv");
+  }
+
+  // GL_ARB_direct_state_access
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
+  {
+    #undef glCreateVertexArrays
+    #undef glDisableVertexArrayAttrib
+    #undef glEnableVertexArrayAttrib
+    #undef glVertexArrayElementBuffer
+    #undef glVertexArrayVertexBuffer
+    #undef glVertexArrayVertexBuffers
+    #undef glVertexArrayAttribBinding
+    #undef glVertexArrayAttribFormat
+    #undef glVertexArrayAttribIFormat
+    #undef glVertexArrayAttribLFormat
+    #undef glVertexArrayBindingDivisor
+    #undef glGetVertexArrayiv
+    #undef glGetVertexArrayIndexediv
+    #undef glGetVertexArrayIndexed64iv
+    s_deviceConfig.m_glCreateVertexArrays = (PFNGLCREATEVERTEXARRAYSPROC) glewGetProcAddress ("glCreateVertexArrays");
+    s_deviceConfig.m_glDisableVertexArrayAttrib = (PFNGLDISABLEVERTEXARRAYATTRIBPROC) glewGetProcAddress ("glDisableVertexArrayAttrib");
+    s_deviceConfig.m_glEnableVertexArrayAttrib = (PFNGLENABLEVERTEXARRAYATTRIBPROC) glewGetProcAddress ("glEnableVertexArrayAttrib");
+    s_deviceConfig.m_glVertexArrayElementBuffer = (PFNGLVERTEXARRAYELEMENTBUFFERPROC) glewGetProcAddress ("glVertexArrayElementBuffer");
+    s_deviceConfig.m_glVertexArrayVertexBuffer = (PFNGLVERTEXARRAYVERTEXBUFFERPROC) glewGetProcAddress ("glVertexArrayVertexBuffer");
+    s_deviceConfig.m_glVertexArrayVertexBuffers = (PFNGLVERTEXARRAYVERTEXBUFFERSPROC) glewGetProcAddress ("glVertexArrayVertexBuffers");
+    s_deviceConfig.m_glVertexArrayAttribBinding = (PFNGLVERTEXARRAYATTRIBBINDINGPROC) glewGetProcAddress ("glVertexArrayAttribBinding");
+    s_deviceConfig.m_glVertexArrayAttribFormat = (PFNGLVERTEXARRAYATTRIBFORMATPROC) glewGetProcAddress ("glVertexArrayAttribFormat");
+    s_deviceConfig.m_glVertexArrayAttribIFormat = (PFNGLVERTEXARRAYATTRIBIFORMATPROC) glewGetProcAddress ("glVertexArrayAttribIFormat");
+    s_deviceConfig.m_glVertexArrayAttribLFormat = (PFNGLVERTEXARRAYATTRIBLFORMATPROC) glewGetProcAddress ("glVertexArrayAttribLFormat");
+    s_deviceConfig.m_glVertexArrayBindingDivisor = (PFNGLVERTEXARRAYBINDINGDIVISORPROC) glewGetProcAddress ("glVertexArrayBindingDivisor");
+    s_deviceConfig.m_glGetVertexArrayiv = (PFNGLGETVERTEXARRAYIVPROC) glewGetProcAddress ("glGetVertexArrayiv");
+    s_deviceConfig.m_glGetVertexArrayIndexediv = (PFNGLGETVERTEXARRAYINDEXEDIVPROC) glewGetProcAddress ("glGetVertexArrayIndexediv");
+    s_deviceConfig.m_glGetVertexArrayIndexed64iv = (PFNGLGETVERTEXARRAYINDEXED64IVPROC) glewGetProcAddress ("glGetVertexArrayIndexed64iv");
+  }
+
+  // GL_ARB_direct_state_access
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
+  {
+    #undef glCreateSamplers
+    s_deviceConfig.m_glCreateSamplers = (PFNGLCREATESAMPLERSPROC) glewGetProcAddress ("glCreateSamplers");
+  }
+
+  // GL_ARB_direct_state_access
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
+  {
+    #undef glCreateProgramPipelines
+    s_deviceConfig.m_glCreateProgramPipelines = (PFNGLCREATEPROGRAMPIPELINESPROC) glewGetProcAddress ("glCreateProgramPipelines");
+  }
+
+  // GL_ARB_direct_state_access
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
+  {
+    #undef glCreateQueries
+    #undef glGetQueryBufferObjecti64v
+    #undef glGetQueryBufferObjectiv
+    #undef glGetQueryBufferObjectui64v
+    #undef glGetQueryBufferObjectuiv
+    s_deviceConfig.m_glCreateQueries = (PFNGLCREATEQUERIESPROC) glewGetProcAddress ("glCreateQueries");
+    s_deviceConfig.m_glGetQueryBufferObjecti64v = (PFNGLGETQUERYBUFFEROBJECTI64VPROC) glewGetProcAddress ("glGetQueryBufferObjecti64v");
+    s_deviceConfig.m_glGetQueryBufferObjectiv = (PFNGLGETQUERYBUFFEROBJECTIVPROC) glewGetProcAddress ("glGetQueryBufferObjectiv");
+    s_deviceConfig.m_glGetQueryBufferObjectui64v = (PFNGLGETQUERYBUFFEROBJECTUI64VPROC) glewGetProcAddress ("glGetQueryBufferObjectui64v");
+    s_deviceConfig.m_glGetQueryBufferObjectuiv = (PFNGLGETQUERYBUFFEROBJECTUIVPROC) glewGetProcAddress ("glGetQueryBufferObjectuiv");
+  }
+
+  // GL_ARB_draw_buffers_blend
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_draw_buffers_blend])
+  {
+    #undef glBlendEquationiARB
+    #undef glBlendEquationSeparateiARB
+    #undef glBlendFunciARB
+    #undef glBlendFuncSeparateiARB
+    s_deviceConfig.m_glBlendEquationiARB = (PFNGLBLENDEQUATIONIARBPROC) glewGetProcAddress ("glBlendEquationiARB");
+    s_deviceConfig.m_glBlendEquationSeparateiARB = (PFNGLBLENDEQUATIONSEPARATEIARBPROC) glewGetProcAddress ("glBlendEquationSeparateiARB");
+    s_deviceConfig.m_glBlendFunciARB = (PFNGLBLENDFUNCIARBPROC) glewGetProcAddress ("glBlendFunciARB");
+    s_deviceConfig.m_glBlendFuncSeparateiARB = (PFNGLBLENDFUNCSEPARATEIARBPROC) glewGetProcAddress ("glBlendFuncSeparateiARB");
+  }
+
+  // GL_ARB_draw_elements_base_vertex
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_draw_elements_base_vertex])
+  {
+    #undef glDrawElementsBaseVertex
+    #undef glDrawRangeElementsBaseVertex
+    #undef glDrawElementsInstancedBaseVertex
+    #undef glMultiDrawElementsBaseVertex
+    s_deviceConfig.m_glDrawElementsBaseVertex = (PFNGLDRAWELEMENTSBASEVERTEXPROC) glewGetProcAddress ("glDrawElementsBaseVertex");
+    s_deviceConfig.m_glDrawRangeElementsBaseVertex = (PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC) glewGetProcAddress ("glDrawRangeElementsBaseVertex");
+    s_deviceConfig.m_glDrawElementsInstancedBaseVertex = (PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC) glewGetProcAddress ("glDrawElementsInstancedBaseVertex");
+    s_deviceConfig.m_glMultiDrawElementsBaseVertex = (PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC) glewGetProcAddress ("glMultiDrawElementsBaseVertex");
+  }
+
+  // GL_ARB_draw_indirect
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_draw_indirect])
+  {
+    #undef glDrawArraysIndirect
+    #undef glDrawElementsIndirect
+    s_deviceConfig.m_glDrawArraysIndirect = (PFNGLDRAWARRAYSINDIRECTPROC) glewGetProcAddress ("glDrawArraysIndirect");
+    s_deviceConfig.m_glDrawElementsIndirect = (PFNGLDRAWELEMENTSINDIRECTPROC) glewGetProcAddress ("glDrawElementsIndirect");
+  }
+
+  // GL_ARB_framebuffer_no_attachments
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_framebuffer_no_attachments])
+  {
+    #undef glFramebufferParameteri
+    #undef glGetFramebufferParameteriv
+    s_deviceConfig.m_glFramebufferParameteri = (PFNGLFRAMEBUFFERPARAMETERIPROC) glewGetProcAddress ("glFramebufferParameteri");
+    s_deviceConfig.m_glGetFramebufferParameteriv = (PFNGLGETFRAMEBUFFERPARAMETERIVPROC) glewGetProcAddress ("glGetFramebufferParameteriv");
+  }
+
+  // GL_ARB_framebuffer_object
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_framebuffer_object])
+  {
+    #undef glIsRenderbuffer
+    #undef glBindRenderbuffer
+    #undef glDeleteRenderbuffers
+    #undef glGenRenderbuffers
+    #undef glRenderbufferStorage
+    #undef glGetRenderbufferParameteriv
+    #undef glIsFramebuffer
+    #undef glBindFramebuffer
+    #undef glDeleteFramebuffers
+    #undef glGenFramebuffers
+    #undef glCheckFramebufferStatus
+    #undef glFramebufferTexture1D
+    #undef glFramebufferTexture2D
+    #undef glFramebufferTexture3D
+    #undef glFramebufferRenderbuffer
+    #undef glGetFramebufferAttachmentParameteriv
+    #undef glGenerateMipmap
+    #undef glBlitFramebuffer
+    #undef glRenderbufferStorageMultisample
+    #undef glFramebufferTextureLayer
+    s_deviceConfig.m_glIsRenderbuffer = (PFNGLISRENDERBUFFERPROC) glewGetProcAddress ("glIsRenderbuffer");
+    s_deviceConfig.m_glBindRenderbuffer = (PFNGLBINDRENDERBUFFERPROC) glewGetProcAddress ("glBindRenderbuffer");
+    s_deviceConfig.m_glDeleteRenderbuffers = (PFNGLDELETERENDERBUFFERSPROC) glewGetProcAddress ("glDeleteRenderbuffers");
+    s_deviceConfig.m_glGenRenderbuffers = (PFNGLGENRENDERBUFFERSPROC) glewGetProcAddress ("glGenRenderbuffers");
+    s_deviceConfig.m_glRenderbufferStorage = (PFNGLRENDERBUFFERSTORAGEPROC) glewGetProcAddress ("glRenderbufferStorage");
+    s_deviceConfig.m_glGetRenderbufferParameteriv = (PFNGLGETRENDERBUFFERPARAMETERIVPROC) glewGetProcAddress ("glGetRenderbufferParameteriv");
+    s_deviceConfig.m_glIsFramebuffer = (PFNGLISFRAMEBUFFERPROC) glewGetProcAddress ("glIsFramebuffer");
+    s_deviceConfig.m_glBindFramebuffer = (PFNGLBINDFRAMEBUFFERPROC) glewGetProcAddress ("glBindFramebuffer");
+    s_deviceConfig.m_glDeleteFramebuffers = (PFNGLDELETEFRAMEBUFFERSPROC) glewGetProcAddress ("glDeleteFramebuffers");
+    s_deviceConfig.m_glGenFramebuffers = (PFNGLGENFRAMEBUFFERSPROC) glewGetProcAddress ("glGenFramebuffers");
+    s_deviceConfig.m_glCheckFramebufferStatus = (PFNGLCHECKFRAMEBUFFERSTATUSPROC) glewGetProcAddress ("glCheckFramebufferStatus");
+    s_deviceConfig.m_glFramebufferTexture1D = (PFNGLFRAMEBUFFERTEXTURE1DPROC) glewGetProcAddress ("glFramebufferTexture1D");
+    s_deviceConfig.m_glFramebufferTexture2D = (PFNGLFRAMEBUFFERTEXTURE2DPROC) glewGetProcAddress ("glFramebufferTexture2D");
+    s_deviceConfig.m_glFramebufferTexture3D = (PFNGLFRAMEBUFFERTEXTURE3DPROC) glewGetProcAddress ("glFramebufferTexture3D");
+    s_deviceConfig.m_glFramebufferRenderbuffer = (PFNGLFRAMEBUFFERRENDERBUFFERPROC) glewGetProcAddress ("glFramebufferRenderbuffer");
+    s_deviceConfig.m_glGetFramebufferAttachmentParameteriv = (PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC) glewGetProcAddress ("glGetFramebufferAttachmentParameteriv");
+    s_deviceConfig.m_glGenerateMipmap = (PFNGLGENERATEMIPMAPPROC) glewGetProcAddress ("glGenerateMipmap");
+    s_deviceConfig.m_glBlitFramebuffer = (PFNGLBLITFRAMEBUFFERPROC) glewGetProcAddress ("glBlitFramebuffer");
+    s_deviceConfig.m_glRenderbufferStorageMultisample = (PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC) glewGetProcAddress ("glRenderbufferStorageMultisample");
+    s_deviceConfig.m_glFramebufferTextureLayer = (PFNGLFRAMEBUFFERTEXTURELAYERPROC) glewGetProcAddress ("glFramebufferTextureLayer");
+  }
+
+  // GL_ARB_get_program_binary
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_get_program_binary])
+  {
+    #undef glGetProgramBinary
+    #undef glProgramBinary
+    #undef glProgramParameteri
+    s_deviceConfig.m_glGetProgramBinary = (PFNGLGETPROGRAMBINARYPROC) glewGetProcAddress ("glGetProgramBinary");
+    s_deviceConfig.m_glProgramBinary = (PFNGLPROGRAMBINARYPROC) glewGetProcAddress ("glProgramBinary");
+    s_deviceConfig.m_glProgramParameteri = (PFNGLPROGRAMPARAMETERIPROC) glewGetProcAddress ("glProgramParameteri");
+  }
+
+  // GL_ARB_get_texture_sub_image
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_get_texture_sub_image])
+  {
+    #undef glGetTextureSubImage
+    #undef glGetCompressedTextureSubImage
+    s_deviceConfig.m_glGetTextureSubImage = (PFNGLGETTEXTURESUBIMAGEPROC) glewGetProcAddress ("glGetTextureSubImage");
+    s_deviceConfig.m_glGetCompressedTextureSubImage = (PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC) glewGetProcAddress ("glGetCompressedTextureSubImage");
+  }
+
+  // GL_ARB_gpu_shader_fp64
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_gpu_shader_fp64])
+  {
+    #undef glUniform1d
+    #undef glUniform2d
+    #undef glUniform3d
+    #undef glUniform4d
+    #undef glUniform1dv
+    #undef glUniform2dv
+    #undef glUniform3dv
+    #undef glUniform4dv
+    #undef glUniformMatrix2dv
+    #undef glUniformMatrix3dv
+    #undef glUniformMatrix4dv
+    #undef glUniformMatrix2x3dv
+    #undef glUniformMatrix2x4dv
+    #undef glUniformMatrix3x2dv
+    #undef glUniformMatrix3x4dv
+    #undef glUniformMatrix4x2dv
+    #undef glUniformMatrix4x3dv
+    #undef glGetUniformdv
+    s_deviceConfig.m_glUniform1d = (PFNGLUNIFORM1DPROC) glewGetProcAddress ("glUniform1d");
+    s_deviceConfig.m_glUniform2d = (PFNGLUNIFORM2DPROC) glewGetProcAddress ("glUniform2d");
+    s_deviceConfig.m_glUniform3d = (PFNGLUNIFORM3DPROC) glewGetProcAddress ("glUniform3d");
+    s_deviceConfig.m_glUniform4d = (PFNGLUNIFORM4DPROC) glewGetProcAddress ("glUniform4d");
+    s_deviceConfig.m_glUniform1dv = (PFNGLUNIFORM1DVPROC) glewGetProcAddress ("glUniform1dv");
+    s_deviceConfig.m_glUniform2dv = (PFNGLUNIFORM2DVPROC) glewGetProcAddress ("glUniform2dv");
+    s_deviceConfig.m_glUniform3dv = (PFNGLUNIFORM3DVPROC) glewGetProcAddress ("glUniform3dv");
+    s_deviceConfig.m_glUniform4dv = (PFNGLUNIFORM4DVPROC) glewGetProcAddress ("glUniform4dv");
+    s_deviceConfig.m_glUniformMatrix2dv = (PFNGLUNIFORMMATRIX2DVPROC) glewGetProcAddress ("glUniformMatrix2dv");
+    s_deviceConfig.m_glUniformMatrix3dv = (PFNGLUNIFORMMATRIX3DVPROC) glewGetProcAddress ("glUniformMatrix3dv");
+    s_deviceConfig.m_glUniformMatrix4dv = (PFNGLUNIFORMMATRIX4DVPROC) glewGetProcAddress ("glUniformMatrix4dv");
+    s_deviceConfig.m_glUniformMatrix2x3dv = (PFNGLUNIFORMMATRIX2X3DVPROC) glewGetProcAddress ("glUniformMatrix2x3dv");
+    s_deviceConfig.m_glUniformMatrix2x4dv = (PFNGLUNIFORMMATRIX2X4DVPROC) glewGetProcAddress ("glUniformMatrix2x4dv");
+    s_deviceConfig.m_glUniformMatrix3x2dv = (PFNGLUNIFORMMATRIX3X2DVPROC) glewGetProcAddress ("glUniformMatrix3x2dv");
+    s_deviceConfig.m_glUniformMatrix3x4dv = (PFNGLUNIFORMMATRIX3X4DVPROC) glewGetProcAddress ("glUniformMatrix3x4dv");
+    s_deviceConfig.m_glUniformMatrix4x2dv = (PFNGLUNIFORMMATRIX4X2DVPROC) glewGetProcAddress ("glUniformMatrix4x2dv");
+    s_deviceConfig.m_glUniformMatrix4x3dv = (PFNGLUNIFORMMATRIX4X3DVPROC) glewGetProcAddress ("glUniformMatrix4x3dv");
+    s_deviceConfig.m_glGetUniformdv = (PFNGLGETUNIFORMDVPROC) glewGetProcAddress ("glGetUniformdv");
+  }
+
+  // GL_ARB_imaging
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_imaging])
+  {
+    #undef glBlendColor
+    #undef glBlendEquation
+    s_deviceConfig.m_glBlendColor = (PFNGLBLENDCOLORPROC) glewGetProcAddress ("glBlendColor");
+    s_deviceConfig.m_glBlendEquation = (PFNGLBLENDEQUATIONPROC) glewGetProcAddress ("glBlendEquation");
+  }
+
+  // GL_ARB_indirect_parameters
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_indirect_parameters])
+  {
+    #undef glMultiDrawArraysIndirectCountARB
+    #undef glMultiDrawElementsIndirectCountARB
+    s_deviceConfig.m_glMultiDrawArraysIndirectCountARB = (PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC) glewGetProcAddress ("glMultiDrawArraysIndirectCountARB");
+    s_deviceConfig.m_glMultiDrawElementsIndirectCountARB = (PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC) glewGetProcAddress ("glMultiDrawElementsIndirectCountARB");
+  }
+
+  // GL_ARB_internalformat_query
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_internalformat_query])
+  {
+    #undef glGetInternalformativ
+    s_deviceConfig.m_glGetInternalformativ = (PFNGLGETINTERNALFORMATIVPROC) glewGetProcAddress ("glGetInternalformativ");
+  }
+
+  // GL_ARB_internalformat_query2
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_internalformat_query2])
+  {
+    #undef glGetInternalformati64v
+    s_deviceConfig.m_glGetInternalformati64v = (PFNGLGETINTERNALFORMATI64VPROC) glewGetProcAddress ("glGetInternalformati64v");
+  }
+
+  // GL_ARB_invalidate_subdata
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_invalidate_subdata])
+  {
+    #undef glInvalidateTexSubImage
+    #undef glInvalidateTexImage
+    #undef glInvalidateBufferSubData
+    #undef glInvalidateBufferData
+    #undef glInvalidateFramebuffer
+    #undef glInvalidateSubFramebuffer
+    s_deviceConfig.m_glInvalidateTexSubImage = (PFNGLINVALIDATETEXSUBIMAGEPROC) glewGetProcAddress ("glInvalidateTexSubImage");
+    s_deviceConfig.m_glInvalidateTexImage = (PFNGLINVALIDATETEXIMAGEPROC) glewGetProcAddress ("glInvalidateTexImage");
+    s_deviceConfig.m_glInvalidateBufferSubData = (PFNGLINVALIDATEBUFFERSUBDATAPROC) glewGetProcAddress ("glInvalidateBufferSubData");
+    s_deviceConfig.m_glInvalidateBufferData = (PFNGLINVALIDATEBUFFERDATAPROC) glewGetProcAddress ("glInvalidateBufferData");
+    s_deviceConfig.m_glInvalidateFramebuffer = (PFNGLINVALIDATEFRAMEBUFFERPROC) glewGetProcAddress ("glInvalidateFramebuffer");
+    s_deviceConfig.m_glInvalidateSubFramebuffer = (PFNGLINVALIDATESUBFRAMEBUFFERPROC) glewGetProcAddress ("glInvalidateSubFramebuffer");
+  }
+
+  // GL_ARB_map_buffer_range
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_map_buffer_range])
+  {
+    #undef glMapBufferRange
+    #undef glFlushMappedBufferRange
+    s_deviceConfig.m_glMapBufferRange = (PFNGLMAPBUFFERRANGEPROC) glewGetProcAddress ("glMapBufferRange");
+    s_deviceConfig.m_glFlushMappedBufferRange = (PFNGLFLUSHMAPPEDBUFFERRANGEPROC) glewGetProcAddress ("glFlushMappedBufferRange");
+  }
+
+  // GL_ARB_multi_bind
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_multi_bind])
+  {
+    #undef glBindBuffersBase
+    #undef glBindBuffersRange
+    #undef glBindTextures
+    #undef glBindSamplers
+    #undef glBindImageTextures
+    #undef glBindVertexBuffers
+    s_deviceConfig.m_glBindBuffersBase = (PFNGLBINDBUFFERSBASEPROC) glewGetProcAddress ("glBindBuffersBase");
+    s_deviceConfig.m_glBindBuffersRange = (PFNGLBINDBUFFERSRANGEPROC) glewGetProcAddress ("glBindBuffersRange");
+    s_deviceConfig.m_glBindTextures = (PFNGLBINDTEXTURESPROC) glewGetProcAddress ("glBindTextures");
+    s_deviceConfig.m_glBindSamplers = (PFNGLBINDSAMPLERSPROC) glewGetProcAddress ("glBindSamplers");
+    s_deviceConfig.m_glBindImageTextures = (PFNGLBINDIMAGETEXTURESPROC) glewGetProcAddress ("glBindImageTextures");
+    s_deviceConfig.m_glBindVertexBuffers = (PFNGLBINDVERTEXBUFFERSPROC) glewGetProcAddress ("glBindVertexBuffers");
+  }
+
+  // GL_ARB_multi_draw_indirect
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_multi_draw_indirect])
+  {
+    #undef glMultiDrawArraysIndirect
+    #undef glMultiDrawElementsIndirect
+    s_deviceConfig.m_glMultiDrawArraysIndirect = (PFNGLMULTIDRAWARRAYSINDIRECTPROC) glewGetProcAddress ("glMultiDrawArraysIndirect");
+    s_deviceConfig.m_glMultiDrawElementsIndirect = (PFNGLMULTIDRAWELEMENTSINDIRECTPROC) glewGetProcAddress ("glMultiDrawElementsIndirect");
+  }
+
+  // GL_ARB_program_interface_query
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_program_interface_query])
+  {
+    #undef glGetProgramInterfaceiv
+    #undef glGetProgramResourceIndex
+    #undef glGetProgramResourceName
+    #undef glGetProgramResourceiv
+    #undef glGetProgramResourceLocation
+    #undef glGetProgramResourceLocationIndex
+    s_deviceConfig.m_glGetProgramInterfaceiv = (PFNGLGETPROGRAMINTERFACEIVPROC) glewGetProcAddress ("glGetProgramInterfaceiv");
+    s_deviceConfig.m_glGetProgramResourceIndex = (PFNGLGETPROGRAMRESOURCEINDEXPROC) glewGetProcAddress ("glGetProgramResourceIndex");
+    s_deviceConfig.m_glGetProgramResourceName = (PFNGLGETPROGRAMRESOURCENAMEPROC) glewGetProcAddress ("glGetProgramResourceName");
+    s_deviceConfig.m_glGetProgramResourceiv = (PFNGLGETPROGRAMRESOURCEIVPROC) glewGetProcAddress ("glGetProgramResourceiv");
+    s_deviceConfig.m_glGetProgramResourceLocation = (PFNGLGETPROGRAMRESOURCELOCATIONPROC) glewGetProcAddress ("glGetProgramResourceLocation");
+    s_deviceConfig.m_glGetProgramResourceLocationIndex = (PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC) glewGetProcAddress ("glGetProgramResourceLocationIndex");
+  }
+
+  // GL_ARB_provoking_vertex
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_provoking_vertex])
+  {
+    #undef glProvokingVertex
+    s_deviceConfig.m_glProvokingVertex = (PFNGLPROVOKINGVERTEXPROC) glewGetProcAddress ("glProvokingVertex");
+  }
+
+  // GL_ARB_robustness
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_robustness])
+  {
+    #undef glGetGraphicsResetStatusARB
+    #undef glGetnTexImageARB
+    #undef glReadnPixelsARB
+    #undef glGetnCompressedTexImageARB
+    #undef glGetnUniformfvARB
+    #undef glGetnUniformivARB
+    #undef glGetnUniformuivARB
+    #undef glGetnUniformdvARB
+    s_deviceConfig.m_glGetGraphicsResetStatusARB = (PFNGLGETGRAPHICSRESETSTATUSARBPROC) glewGetProcAddress ("glGetGraphicsResetStatusARB");
+    s_deviceConfig.m_glGetnTexImageARB = (PFNGLGETNTEXIMAGEARBPROC) glewGetProcAddress ("glGetnTexImageARB");
+    s_deviceConfig.m_glReadnPixelsARB = (PFNGLREADNPIXELSARBPROC) glewGetProcAddress ("glReadnPixelsARB");
+    s_deviceConfig.m_glGetnCompressedTexImageARB = (PFNGLGETNCOMPRESSEDTEXIMAGEARBPROC) glewGetProcAddress ("glGetnCompressedTexImageARB");
+    s_deviceConfig.m_glGetnUniformfvARB = (PFNGLGETNUNIFORMFVARBPROC) glewGetProcAddress ("glGetnUniformfvARB");
+    s_deviceConfig.m_glGetnUniformivARB = (PFNGLGETNUNIFORMIVARBPROC) glewGetProcAddress ("glGetnUniformivARB");
+    s_deviceConfig.m_glGetnUniformuivARB = (PFNGLGETNUNIFORMUIVARBPROC) glewGetProcAddress ("glGetnUniformuivARB");
+    s_deviceConfig.m_glGetnUniformdvARB = (PFNGLGETNUNIFORMDVARBPROC) glewGetProcAddress ("glGetnUniformdvARB");
+  }
+
+  // GL_ARB_sample_shading
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sample_shading])
+  {
+    #undef glMinSampleShadingARB
+    s_deviceConfig.m_glMinSampleShadingARB = (PFNGLMINSAMPLESHADINGARBPROC) glewGetProcAddress ("glMinSampleShadingARB");
+  }
+
+  // GL_ARB_sampler_objects
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sampler_objects])
+  {
+    #undef glGenSamplers
+    #undef glDeleteSamplers
+    #undef glIsSampler
+    #undef glBindSampler
+    #undef glSamplerParameteri
+    #undef glSamplerParameteriv
+    #undef glSamplerParameterf
+    #undef glSamplerParameterfv
+    #undef glSamplerParameterIiv
+    #undef glSamplerParameterIuiv
+    #undef glGetSamplerParameteriv
+    #undef glGetSamplerParameterIiv
+    #undef glGetSamplerParameterfv
+    #undef glGetSamplerParameterIuiv
+    s_deviceConfig.m_glGenSamplers = (PFNGLGENSAMPLERSPROC) glewGetProcAddress ("glGenSamplers");
+    s_deviceConfig.m_glDeleteSamplers = (PFNGLDELETESAMPLERSPROC) glewGetProcAddress ("glDeleteSamplers");
+    s_deviceConfig.m_glIsSampler = (PFNGLISSAMPLERPROC) glewGetProcAddress ("glIsSampler");
+    s_deviceConfig.m_glBindSampler = (PFNGLBINDSAMPLERPROC) glewGetProcAddress ("glBindSampler");
+    s_deviceConfig.m_glSamplerParameteri = (PFNGLSAMPLERPARAMETERIPROC) glewGetProcAddress ("glSamplerParameteri");
+    s_deviceConfig.m_glSamplerParameteriv = (PFNGLSAMPLERPARAMETERIVPROC) glewGetProcAddress ("glSamplerParameteriv");
+    s_deviceConfig.m_glSamplerParameterf = (PFNGLSAMPLERPARAMETERFPROC) glewGetProcAddress ("glSamplerParameterf");
+    s_deviceConfig.m_glSamplerParameterfv = (PFNGLSAMPLERPARAMETERFVPROC) glewGetProcAddress ("glSamplerParameterfv");
+    s_deviceConfig.m_glSamplerParameterIiv = (PFNGLSAMPLERPARAMETERIIVPROC) glewGetProcAddress ("glSamplerParameterIiv");
+    s_deviceConfig.m_glSamplerParameterIuiv = (PFNGLSAMPLERPARAMETERIUIVPROC) glewGetProcAddress ("glSamplerParameterIuiv");
+    s_deviceConfig.m_glGetSamplerParameteriv = (PFNGLGETSAMPLERPARAMETERIVPROC) glewGetProcAddress ("glGetSamplerParameteriv");
+    s_deviceConfig.m_glGetSamplerParameterIiv = (PFNGLGETSAMPLERPARAMETERIIVPROC) glewGetProcAddress ("glGetSamplerParameterIiv");
+    s_deviceConfig.m_glGetSamplerParameterfv = (PFNGLGETSAMPLERPARAMETERFVPROC) glewGetProcAddress ("glGetSamplerParameterfv");
+    s_deviceConfig.m_glGetSamplerParameterIuiv = (PFNGLGETSAMPLERPARAMETERIUIVPROC) glewGetProcAddress ("glGetSamplerParameterIuiv");
+  }
+
+  // GL_ARB_separate_shader_objects
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_separate_shader_objects])
+  {
+    #undef glUseProgramStages
+    #undef glActiveShaderProgram
+    #undef glCreateShaderProgramv
+    #undef glBindProgramPipeline
+    #undef glDeleteProgramPipelines
+    #undef glGenProgramPipelines
+    #undef glIsProgramPipeline
+    #undef glGetProgramPipelineiv
+    #undef glProgramUniform1i
+    #undef glProgramUniform1iv
+    #undef glProgramUniform1f
+    #undef glProgramUniform1fv
+    #undef glProgramUniform1d
+    #undef glProgramUniform1dv
+    #undef glProgramUniform1ui
+    #undef glProgramUniform1uiv
+    #undef glProgramUniform2i
+    #undef glProgramUniform2iv
+    #undef glProgramUniform2f
+    #undef glProgramUniform2fv
+    #undef glProgramUniform2d
+    #undef glProgramUniform2dv
+    #undef glProgramUniform2ui
+    #undef glProgramUniform2uiv
+    #undef glProgramUniform3i
+    #undef glProgramUniform3iv
+    #undef glProgramUniform3f
+    #undef glProgramUniform3fv
+    #undef glProgramUniform3d
+    #undef glProgramUniform3dv
+    #undef glProgramUniform3ui
+    #undef glProgramUniform3uiv
+    #undef glProgramUniform4i
+    #undef glProgramUniform4iv
+    #undef glProgramUniform4f
+    #undef glProgramUniform4fv
+    #undef glProgramUniform4d
+    #undef glProgramUniform4dv
+    #undef glProgramUniform4ui
+    #undef glProgramUniform4uiv
+    #undef glProgramUniformMatrix2fv
+    #undef glProgramUniformMatrix3fv
+    #undef glProgramUniformMatrix4fv
+    #undef glProgramUniformMatrix2dv
+    #undef glProgramUniformMatrix3dv
+    #undef glProgramUniformMatrix4dv
+    #undef glProgramUniformMatrix2x3fv
+    #undef glProgramUniformMatrix3x2fv
+    #undef glProgramUniformMatrix2x4fv
+    #undef glProgramUniformMatrix4x2fv
+    #undef glProgramUniformMatrix3x4fv
+    #undef glProgramUniformMatrix4x3fv
+    #undef glProgramUniformMatrix2x3dv
+    #undef glProgramUniformMatrix3x2dv
+    #undef glProgramUniformMatrix2x4dv
+    #undef glProgramUniformMatrix4x2dv
+    #undef glProgramUniformMatrix3x4dv
+    #undef glProgramUniformMatrix4x3dv
+    #undef glValidateProgramPipeline
+    #undef glGetProgramPipelineInfoLog
+    s_deviceConfig.m_glUseProgramStages = (PFNGLUSEPROGRAMSTAGESPROC) glewGetProcAddress ("glUseProgramStages");
+    s_deviceConfig.m_glActiveShaderProgram = (PFNGLACTIVESHADERPROGRAMPROC) glewGetProcAddress ("glActiveShaderProgram");
+    s_deviceConfig.m_glCreateShaderProgramv = (PFNGLCREATESHADERPROGRAMVPROC) glewGetProcAddress ("glCreateShaderProgramv");
+    s_deviceConfig.m_glBindProgramPipeline = (PFNGLBINDPROGRAMPIPELINEPROC) glewGetProcAddress ("glBindProgramPipeline");
+    s_deviceConfig.m_glDeleteProgramPipelines = (PFNGLDELETEPROGRAMPIPELINESPROC) glewGetProcAddress ("glDeleteProgramPipelines");
+    s_deviceConfig.m_glGenProgramPipelines = (PFNGLGENPROGRAMPIPELINESPROC) glewGetProcAddress ("glGenProgramPipelines");
+    s_deviceConfig.m_glIsProgramPipeline = (PFNGLISPROGRAMPIPELINEPROC) glewGetProcAddress ("glIsProgramPipeline");
+    s_deviceConfig.m_glGetProgramPipelineiv = (PFNGLGETPROGRAMPIPELINEIVPROC) glewGetProcAddress ("glGetProgramPipelineiv");
+    s_deviceConfig.m_glProgramUniform1i = (PFNGLPROGRAMUNIFORM1IPROC) glewGetProcAddress ("glProgramUniform1i");
+    s_deviceConfig.m_glProgramUniform1iv = (PFNGLPROGRAMUNIFORM1IVPROC) glewGetProcAddress ("glProgramUniform1iv");
+    s_deviceConfig.m_glProgramUniform1f = (PFNGLPROGRAMUNIFORM1FPROC) glewGetProcAddress ("glProgramUniform1f");
+    s_deviceConfig.m_glProgramUniform1fv = (PFNGLPROGRAMUNIFORM1FVPROC) glewGetProcAddress ("glProgramUniform1fv");
+    s_deviceConfig.m_glProgramUniform1d = (PFNGLPROGRAMUNIFORM1DPROC) glewGetProcAddress ("glProgramUniform1d");
+    s_deviceConfig.m_glProgramUniform1dv = (PFNGLPROGRAMUNIFORM1DVPROC) glewGetProcAddress ("glProgramUniform1dv");
+    s_deviceConfig.m_glProgramUniform1ui = (PFNGLPROGRAMUNIFORM1UIPROC) glewGetProcAddress ("glProgramUniform1ui");
+    s_deviceConfig.m_glProgramUniform1uiv = (PFNGLPROGRAMUNIFORM1UIVPROC) glewGetProcAddress ("glProgramUniform1uiv");
+    s_deviceConfig.m_glProgramUniform2i = (PFNGLPROGRAMUNIFORM2IPROC) glewGetProcAddress ("glProgramUniform2i");
+    s_deviceConfig.m_glProgramUniform2iv = (PFNGLPROGRAMUNIFORM2IVPROC) glewGetProcAddress ("glProgramUniform2iv");
+    s_deviceConfig.m_glProgramUniform2f = (PFNGLPROGRAMUNIFORM2FPROC) glewGetProcAddress ("glProgramUniform2f");
+    s_deviceConfig.m_glProgramUniform2fv = (PFNGLPROGRAMUNIFORM2FVPROC) glewGetProcAddress ("glProgramUniform2fv");
+    s_deviceConfig.m_glProgramUniform2d = (PFNGLPROGRAMUNIFORM2DPROC) glewGetProcAddress ("glProgramUniform2d");
+    s_deviceConfig.m_glProgramUniform2dv = (PFNGLPROGRAMUNIFORM2DVPROC) glewGetProcAddress ("glProgramUniform2dv");
+    s_deviceConfig.m_glProgramUniform2ui = (PFNGLPROGRAMUNIFORM2UIPROC) glewGetProcAddress ("glProgramUniform2ui");
+    s_deviceConfig.m_glProgramUniform2uiv = (PFNGLPROGRAMUNIFORM2UIVPROC) glewGetProcAddress ("glProgramUniform2uiv");
+    s_deviceConfig.m_glProgramUniform3i = (PFNGLPROGRAMUNIFORM3IPROC) glewGetProcAddress ("glProgramUniform3i");
+    s_deviceConfig.m_glProgramUniform3iv = (PFNGLPROGRAMUNIFORM3IVPROC) glewGetProcAddress ("glProgramUniform3iv");
+    s_deviceConfig.m_glProgramUniform3f = (PFNGLPROGRAMUNIFORM3FPROC) glewGetProcAddress ("glProgramUniform3f");
+    s_deviceConfig.m_glProgramUniform3fv = (PFNGLPROGRAMUNIFORM3FVPROC) glewGetProcAddress ("glProgramUniform3fv");
+    s_deviceConfig.m_glProgramUniform3d = (PFNGLPROGRAMUNIFORM3DPROC) glewGetProcAddress ("glProgramUniform3d");
+    s_deviceConfig.m_glProgramUniform3dv = (PFNGLPROGRAMUNIFORM3DVPROC) glewGetProcAddress ("glProgramUniform3dv");
+    s_deviceConfig.m_glProgramUniform3ui = (PFNGLPROGRAMUNIFORM3UIPROC) glewGetProcAddress ("glProgramUniform3ui");
+    s_deviceConfig.m_glProgramUniform3uiv = (PFNGLPROGRAMUNIFORM3UIVPROC) glewGetProcAddress ("glProgramUniform3uiv");
+    s_deviceConfig.m_glProgramUniform4i = (PFNGLPROGRAMUNIFORM4IPROC) glewGetProcAddress ("glProgramUniform4i");
+    s_deviceConfig.m_glProgramUniform4iv = (PFNGLPROGRAMUNIFORM4IVPROC) glewGetProcAddress ("glProgramUniform4iv");
+    s_deviceConfig.m_glProgramUniform4f = (PFNGLPROGRAMUNIFORM4FPROC) glewGetProcAddress ("glProgramUniform4f");
+    s_deviceConfig.m_glProgramUniform4fv = (PFNGLPROGRAMUNIFORM4FVPROC) glewGetProcAddress ("glProgramUniform4fv");
+    s_deviceConfig.m_glProgramUniform4d = (PFNGLPROGRAMUNIFORM4DPROC) glewGetProcAddress ("glProgramUniform4d");
+    s_deviceConfig.m_glProgramUniform4dv = (PFNGLPROGRAMUNIFORM4DVPROC) glewGetProcAddress ("glProgramUniform4dv");
+    s_deviceConfig.m_glProgramUniform4ui = (PFNGLPROGRAMUNIFORM4UIPROC) glewGetProcAddress ("glProgramUniform4ui");
+    s_deviceConfig.m_glProgramUniform4uiv = (PFNGLPROGRAMUNIFORM4UIVPROC) glewGetProcAddress ("glProgramUniform4uiv");
+    s_deviceConfig.m_glProgramUniformMatrix2fv = (PFNGLPROGRAMUNIFORMMATRIX2FVPROC) glewGetProcAddress ("glProgramUniformMatrix2fv");
+    s_deviceConfig.m_glProgramUniformMatrix3fv = (PFNGLPROGRAMUNIFORMMATRIX3FVPROC) glewGetProcAddress ("glProgramUniformMatrix3fv");
+    s_deviceConfig.m_glProgramUniformMatrix4fv = (PFNGLPROGRAMUNIFORMMATRIX4FVPROC) glewGetProcAddress ("glProgramUniformMatrix4fv");
+    s_deviceConfig.m_glProgramUniformMatrix2dv = (PFNGLPROGRAMUNIFORMMATRIX2DVPROC) glewGetProcAddress ("glProgramUniformMatrix2dv");
+    s_deviceConfig.m_glProgramUniformMatrix3dv = (PFNGLPROGRAMUNIFORMMATRIX3DVPROC) glewGetProcAddress ("glProgramUniformMatrix3dv");
+    s_deviceConfig.m_glProgramUniformMatrix4dv = (PFNGLPROGRAMUNIFORMMATRIX4DVPROC) glewGetProcAddress ("glProgramUniformMatrix4dv");
+    s_deviceConfig.m_glProgramUniformMatrix2x3fv = (PFNGLPROGRAMUNIFORMMATRIX2X3FVPROC) glewGetProcAddress ("glProgramUniformMatrix2x3fv");
+    s_deviceConfig.m_glProgramUniformMatrix3x2fv = (PFNGLPROGRAMUNIFORMMATRIX3X2FVPROC) glewGetProcAddress ("glProgramUniformMatrix3x2fv");
+    s_deviceConfig.m_glProgramUniformMatrix2x4fv = (PFNGLPROGRAMUNIFORMMATRIX2X4FVPROC) glewGetProcAddress ("glProgramUniformMatrix2x4fv");
+    s_deviceConfig.m_glProgramUniformMatrix4x2fv = (PFNGLPROGRAMUNIFORMMATRIX4X2FVPROC) glewGetProcAddress ("glProgramUniformMatrix4x2fv");
+    s_deviceConfig.m_glProgramUniformMatrix3x4fv = (PFNGLPROGRAMUNIFORMMATRIX3X4FVPROC) glewGetProcAddress ("glProgramUniformMatrix3x4fv");
+    s_deviceConfig.m_glProgramUniformMatrix4x3fv = (PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC) glewGetProcAddress ("glProgramUniformMatrix4x3fv");
+    s_deviceConfig.m_glProgramUniformMatrix2x3dv = (PFNGLPROGRAMUNIFORMMATRIX2X3DVPROC) glewGetProcAddress ("glProgramUniformMatrix2x3dv");
+    s_deviceConfig.m_glProgramUniformMatrix3x2dv = (PFNGLPROGRAMUNIFORMMATRIX3X2DVPROC) glewGetProcAddress ("glProgramUniformMatrix3x2dv");
+    s_deviceConfig.m_glProgramUniformMatrix2x4dv = (PFNGLPROGRAMUNIFORMMATRIX2X4DVPROC) glewGetProcAddress ("glProgramUniformMatrix2x4dv");
+    s_deviceConfig.m_glProgramUniformMatrix4x2dv = (PFNGLPROGRAMUNIFORMMATRIX4X2DVPROC) glewGetProcAddress ("glProgramUniformMatrix4x2dv");
+    s_deviceConfig.m_glProgramUniformMatrix3x4dv = (PFNGLPROGRAMUNIFORMMATRIX3X4DVPROC) glewGetProcAddress ("glProgramUniformMatrix3x4dv");
+    s_deviceConfig.m_glProgramUniformMatrix4x3dv = (PFNGLPROGRAMUNIFORMMATRIX4X3DVPROC) glewGetProcAddress ("glProgramUniformMatrix4x3dv");
+    s_deviceConfig.m_glValidateProgramPipeline = (PFNGLVALIDATEPROGRAMPIPELINEPROC) glewGetProcAddress ("glValidateProgramPipeline");
+    s_deviceConfig.m_glGetProgramPipelineInfoLog = (PFNGLGETPROGRAMPIPELINEINFOLOGPROC) glewGetProcAddress ("glGetProgramPipelineInfoLog");
+  }
+
+  // GL_ARB_shader_atomic_counters
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_atomic_counters])
+  {
+    #undef glGetActiveAtomicCounterBufferiv
+    s_deviceConfig.m_glGetActiveAtomicCounterBufferiv = (PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC) glewGetProcAddress ("glGetActiveAtomicCounterBufferiv");
+  }
+
+  // GL_ARB_shader_image_load_store
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_image_load_store])
+  {
+    #undef glBindImageTexture
+    #undef glMemoryBarrier
+    s_deviceConfig.m_glBindImageTexture = (PFNGLBINDIMAGETEXTUREPROC) glewGetProcAddress ("glBindImageTexture");
+    s_deviceConfig.m_glMemoryBarrier = (PFNGLMEMORYBARRIERPROC) glewGetProcAddress ("glMemoryBarrier");
+  }
+
+  // GL_ARB_shader_storage_buffer_object
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_storage_buffer_object])
+  {
+    #undef glShaderStorageBlockBinding
+    s_deviceConfig.m_glShaderStorageBlockBinding = (PFNGLSHADERSTORAGEBLOCKBINDINGPROC) glewGetProcAddress ("glShaderStorageBlockBinding");
+  }
+
+  // GL_ARB_shader_subroutine
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_subroutine])
+  {
+    #undef glGetSubroutineUniformLocation
+    #undef glGetSubroutineIndex
+    #undef glGetActiveSubroutineUniformiv
+    #undef glGetActiveSubroutineUniformName
+    #undef glGetActiveSubroutineName
+    #undef glUniformSubroutinesuiv
+    #undef glGetUniformSubroutineuiv
+    #undef glGetProgramStageiv
+    s_deviceConfig.m_glGetSubroutineUniformLocation = (PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC) glewGetProcAddress ("glGetSubroutineUniformLocation");
+    s_deviceConfig.m_glGetSubroutineIndex = (PFNGLGETSUBROUTINEINDEXPROC) glewGetProcAddress ("glGetSubroutineIndex");
+    s_deviceConfig.m_glGetActiveSubroutineUniformiv = (PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC) glewGetProcAddress ("glGetActiveSubroutineUniformiv");
+    s_deviceConfig.m_glGetActiveSubroutineUniformName = (PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC) glewGetProcAddress ("glGetActiveSubroutineUniformName");
+    s_deviceConfig.m_glGetActiveSubroutineName = (PFNGLGETACTIVESUBROUTINENAMEPROC) glewGetProcAddress ("glGetActiveSubroutineName");
+    s_deviceConfig.m_glUniformSubroutinesuiv = (PFNGLUNIFORMSUBROUTINESUIVPROC) glewGetProcAddress ("glUniformSubroutinesuiv");
+    s_deviceConfig.m_glGetUniformSubroutineuiv = (PFNGLGETUNIFORMSUBROUTINEUIVPROC) glewGetProcAddress ("glGetUniformSubroutineuiv");
+    s_deviceConfig.m_glGetProgramStageiv = (PFNGLGETPROGRAMSTAGEIVPROC) glewGetProcAddress ("glGetProgramStageiv");
+  }
+
+  // GL_ARB_shading_language_include
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shading_language_include])
+  {
+    #undef glNamedStringARB
+    #undef glDeleteNamedStringARB
+    #undef glCompileShaderIncludeARB
+    #undef glIsNamedStringARB
+    #undef glGetNamedStringARB
+    #undef glGetNamedStringivARB
+    s_deviceConfig.m_glNamedStringARB = (PFNGLNAMEDSTRINGARBPROC) glewGetProcAddress ("glNamedStringARB");
+    s_deviceConfig.m_glDeleteNamedStringARB = (PFNGLDELETENAMEDSTRINGARBPROC) glewGetProcAddress ("glDeleteNamedStringARB");
+    s_deviceConfig.m_glCompileShaderIncludeARB = (PFNGLCOMPILESHADERINCLUDEARBPROC) glewGetProcAddress ("glCompileShaderIncludeARB");
+    s_deviceConfig.m_glIsNamedStringARB = (PFNGLISNAMEDSTRINGARBPROC) glewGetProcAddress ("glIsNamedStringARB");
+    s_deviceConfig.m_glGetNamedStringARB = (PFNGLGETNAMEDSTRINGARBPROC) glewGetProcAddress ("glGetNamedStringARB");
+    s_deviceConfig.m_glGetNamedStringivARB = (PFNGLGETNAMEDSTRINGIVARBPROC) glewGetProcAddress ("glGetNamedStringivARB");
+  }
+
+  // GL_ARB_sparse_buffer
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_buffer])
+  {
+    #undef glBufferPageCommitmentARB
+    s_deviceConfig.m_glBufferPageCommitmentARB = (PFNGLBUFFERPAGECOMMITMENTARBPROC) glewGetProcAddress ("glBufferPageCommitmentARB");
+  }
+
+  // GL_ARB_sparse_buffer
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_buffer])
+  {
+    #undef glNamedBufferPageCommitmentEXT
+    s_deviceConfig.m_glNamedBufferPageCommitmentEXT = (PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC) glewGetProcAddress ("glNamedBufferPageCommitmentEXT");
+  }
+
+  // GL_ARB_sparse_buffer
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_buffer])
+  {
+    #undef glNamedBufferPageCommitmentARB
+    s_deviceConfig.m_glNamedBufferPageCommitmentARB = (PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC) glewGetProcAddress ("glNamedBufferPageCommitmentARB");
+  }
+
+  // GL_ARB_sparse_texture
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_texture])
+  {
+    #undef glTexPageCommitmentARB
+    s_deviceConfig.m_glTexPageCommitmentARB = (PFNGLTEXPAGECOMMITMENTARBPROC) glewGetProcAddress ("glTexPageCommitmentARB");
+  }
+
+  // GL_ARB_sync
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sync])
+  {
+    #undef glFenceSync
+    #undef glIsSync
+    #undef glDeleteSync
+    #undef glClientWaitSync
+    #undef glWaitSync
+    #undef glGetInteger64v
+    #undef glGetSynciv
+    s_deviceConfig.m_glFenceSync = (PFNGLFENCESYNCPROC) glewGetProcAddress ("glFenceSync");
+    s_deviceConfig.m_glIsSync = (PFNGLISSYNCPROC) glewGetProcAddress ("glIsSync");
+    s_deviceConfig.m_glDeleteSync = (PFNGLDELETESYNCPROC) glewGetProcAddress ("glDeleteSync");
+    s_deviceConfig.m_glClientWaitSync = (PFNGLCLIENTWAITSYNCPROC) glewGetProcAddress ("glClientWaitSync");
+    s_deviceConfig.m_glWaitSync = (PFNGLWAITSYNCPROC) glewGetProcAddress ("glWaitSync");
+    s_deviceConfig.m_glGetInteger64v = (PFNGLGETINTEGER64VPROC) glewGetProcAddress ("glGetInteger64v");
+    s_deviceConfig.m_glGetSynciv = (PFNGLGETSYNCIVPROC) glewGetProcAddress ("glGetSynciv");
+  }
+
+  // GL_ARB_tessellation_shader
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_tessellation_shader])
+  {
+    #undef glPatchParameteri
+    #undef glPatchParameterfv
+    s_deviceConfig.m_glPatchParameteri = (PFNGLPATCHPARAMETERIPROC) glewGetProcAddress ("glPatchParameteri");
+    s_deviceConfig.m_glPatchParameterfv = (PFNGLPATCHPARAMETERFVPROC) glewGetProcAddress ("glPatchParameterfv");
+  }
+
+  // GL_ARB_texture_barrier
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_barrier])
+  {
+    #undef glTextureBarrier
+    s_deviceConfig.m_glTextureBarrier = (PFNGLTEXTUREBARRIERPROC) glewGetProcAddress ("glTextureBarrier");
+  }
+
+  // GL_ARB_texture_buffer_range
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_buffer_range])
+  {
+    #undef glTexBufferRange
+    s_deviceConfig.m_glTexBufferRange = (PFNGLTEXBUFFERRANGEPROC) glewGetProcAddress ("glTexBufferRange");
+  }
+
+  // GL_ARB_texture_multisample
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_multisample])
+  {
+    #undef glTexImage2DMultisample
+    #undef glTexImage3DMultisample
+    #undef glGetMultisamplefv
+    #undef glSampleMaski
+    s_deviceConfig.m_glTexImage2DMultisample = (PFNGLTEXIMAGE2DMULTISAMPLEPROC) glewGetProcAddress ("glTexImage2DMultisample");
+    s_deviceConfig.m_glTexImage3DMultisample = (PFNGLTEXIMAGE3DMULTISAMPLEPROC) glewGetProcAddress ("glTexImage3DMultisample");
+    s_deviceConfig.m_glGetMultisamplefv = (PFNGLGETMULTISAMPLEFVPROC) glewGetProcAddress ("glGetMultisamplefv");
+    s_deviceConfig.m_glSampleMaski = (PFNGLSAMPLEMASKIPROC) glewGetProcAddress ("glSampleMaski");
+  }
+
+  // GL_ARB_texture_storage
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_storage])
+  {
+    #undef glTexStorage1D
+    #undef glTexStorage2D
+    #undef glTexStorage3D
+    s_deviceConfig.m_glTexStorage1D = (PFNGLTEXSTORAGE1DPROC) glewGetProcAddress ("glTexStorage1D");
+    s_deviceConfig.m_glTexStorage2D = (PFNGLTEXSTORAGE2DPROC) glewGetProcAddress ("glTexStorage2D");
+    s_deviceConfig.m_glTexStorage3D = (PFNGLTEXSTORAGE3DPROC) glewGetProcAddress ("glTexStorage3D");
+  }
+
+  // GL_ARB_texture_storage_multisample
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_storage_multisample])
+  {
+    #undef glTexStorage2DMultisample
+    #undef glTexStorage3DMultisample
+    s_deviceConfig.m_glTexStorage2DMultisample = (PFNGLTEXSTORAGE2DMULTISAMPLEPROC) glewGetProcAddress ("glTexStorage2DMultisample");
+    s_deviceConfig.m_glTexStorage3DMultisample = (PFNGLTEXSTORAGE3DMULTISAMPLEPROC) glewGetProcAddress ("glTexStorage3DMultisample");
+  }
+
+  // GL_ARB_texture_view
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_view])
+  {
+    #undef glTextureView
+    s_deviceConfig.m_glTextureView = (PFNGLTEXTUREVIEWPROC) glewGetProcAddress ("glTextureView");
+  }
+
+  // GL_ARB_timer_query
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_timer_query])
+  {
+    #undef glQueryCounter
+    #undef glGetQueryObjecti64v
+    #undef glGetQueryObjectui64v
+    s_deviceConfig.m_glQueryCounter = (PFNGLQUERYCOUNTERPROC) glewGetProcAddress ("glQueryCounter");
+    s_deviceConfig.m_glGetQueryObjecti64v = (PFNGLGETQUERYOBJECTI64VPROC) glewGetProcAddress ("glGetQueryObjecti64v");
+    s_deviceConfig.m_glGetQueryObjectui64v = (PFNGLGETQUERYOBJECTUI64VPROC) glewGetProcAddress ("glGetQueryObjectui64v");
+  }
+
+  // GL_ARB_transform_feedback2
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback2])
+  {
+    #undef glBindTransformFeedback
+    #undef glDeleteTransformFeedbacks
+    #undef glGenTransformFeedbacks
+    #undef glIsTransformFeedback
+    #undef glPauseTransformFeedback
+    #undef glResumeTransformFeedback
+    #undef glDrawTransformFeedback
+    s_deviceConfig.m_glBindTransformFeedback = (PFNGLBINDTRANSFORMFEEDBACKPROC) glewGetProcAddress ("glBindTransformFeedback");
+    s_deviceConfig.m_glDeleteTransformFeedbacks = (PFNGLDELETETRANSFORMFEEDBACKSPROC) glewGetProcAddress ("glDeleteTransformFeedbacks");
+    s_deviceConfig.m_glGenTransformFeedbacks = (PFNGLGENTRANSFORMFEEDBACKSPROC) glewGetProcAddress ("glGenTransformFeedbacks");
+    s_deviceConfig.m_glIsTransformFeedback = (PFNGLISTRANSFORMFEEDBACKPROC) glewGetProcAddress ("glIsTransformFeedback");
+    s_deviceConfig.m_glPauseTransformFeedback = (PFNGLPAUSETRANSFORMFEEDBACKPROC) glewGetProcAddress ("glPauseTransformFeedback");
+    s_deviceConfig.m_glResumeTransformFeedback = (PFNGLRESUMETRANSFORMFEEDBACKPROC) glewGetProcAddress ("glResumeTransformFeedback");
+    s_deviceConfig.m_glDrawTransformFeedback = (PFNGLDRAWTRANSFORMFEEDBACKPROC) glewGetProcAddress ("glDrawTransformFeedback");
+  }
+
+  // GL_ARB_transform_feedback3
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback3])
+  {
+    #undef glDrawTransformFeedbackStream
+    #undef glBeginQueryIndexed
+    #undef glEndQueryIndexed
+    #undef glGetQueryIndexediv
+    s_deviceConfig.m_glDrawTransformFeedbackStream = (PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC) glewGetProcAddress ("glDrawTransformFeedbackStream");
+    s_deviceConfig.m_glBeginQueryIndexed = (PFNGLBEGINQUERYINDEXEDPROC) glewGetProcAddress ("glBeginQueryIndexed");
+    s_deviceConfig.m_glEndQueryIndexed = (PFNGLENDQUERYINDEXEDPROC) glewGetProcAddress ("glEndQueryIndexed");
+    s_deviceConfig.m_glGetQueryIndexediv = (PFNGLGETQUERYINDEXEDIVPROC) glewGetProcAddress ("glGetQueryIndexediv");
+  }
+
+  // GL_ARB_transform_feedback_instanced
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback_instanced])
+  {
+    #undef glDrawTransformFeedbackInstanced
+    #undef glDrawTransformFeedbackStreamInstanced
+    s_deviceConfig.m_glDrawTransformFeedbackInstanced = (PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC) glewGetProcAddress ("glDrawTransformFeedbackInstanced");
+    s_deviceConfig.m_glDrawTransformFeedbackStreamInstanced = (PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC) glewGetProcAddress ("glDrawTransformFeedbackStreamInstanced");
+  }
+
+  // GL_ARB_uniform_buffer_object
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_uniform_buffer_object])
+  {
+    #undef glGetUniformIndices
+    #undef glGetActiveUniformsiv
+    #undef glGetActiveUniformName
+    #undef glGetUniformBlockIndex
+    #undef glGetActiveUniformBlockiv
+    #undef glGetActiveUniformBlockName
+    #undef glUniformBlockBinding
+    #undef glBindBufferRange
+    #undef glBindBufferBase
+    #undef glGetIntegeri_v
+    s_deviceConfig.m_glGetUniformIndices = (PFNGLGETUNIFORMINDICESPROC) glewGetProcAddress ("glGetUniformIndices");
+    s_deviceConfig.m_glGetActiveUniformsiv = (PFNGLGETACTIVEUNIFORMSIVPROC) glewGetProcAddress ("glGetActiveUniformsiv");
+    s_deviceConfig.m_glGetActiveUniformName = (PFNGLGETACTIVEUNIFORMNAMEPROC) glewGetProcAddress ("glGetActiveUniformName");
+    s_deviceConfig.m_glGetUniformBlockIndex = (PFNGLGETUNIFORMBLOCKINDEXPROC) glewGetProcAddress ("glGetUniformBlockIndex");
+    s_deviceConfig.m_glGetActiveUniformBlockiv = (PFNGLGETACTIVEUNIFORMBLOCKIVPROC) glewGetProcAddress ("glGetActiveUniformBlockiv");
+    s_deviceConfig.m_glGetActiveUniformBlockName = (PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC) glewGetProcAddress ("glGetActiveUniformBlockName");
+    s_deviceConfig.m_glUniformBlockBinding = (PFNGLUNIFORMBLOCKBINDINGPROC) glewGetProcAddress ("glUniformBlockBinding");
+    s_deviceConfig.m_glBindBufferRange = (PFNGLBINDBUFFERRANGEPROC) glewGetProcAddress ("glBindBufferRange");
+    s_deviceConfig.m_glBindBufferBase = (PFNGLBINDBUFFERBASEPROC) glewGetProcAddress ("glBindBufferBase");
+    s_deviceConfig.m_glGetIntegeri_v = (PFNGLGETINTEGERI_VPROC) glewGetProcAddress ("glGetIntegeri_v");
+  }
+
+  // GL_ARB_vertex_array_object
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_array_object])
+  {
+    #undef glBindVertexArray
+    #undef glDeleteVertexArrays
+    #undef glGenVertexArrays
+    #undef glIsVertexArray
+    s_deviceConfig.m_glBindVertexArray = (PFNGLBINDVERTEXARRAYPROC) glewGetProcAddress ("glBindVertexArray");
+    s_deviceConfig.m_glDeleteVertexArrays = (PFNGLDELETEVERTEXARRAYSPROC) glewGetProcAddress ("glDeleteVertexArrays");
+    s_deviceConfig.m_glGenVertexArrays = (PFNGLGENVERTEXARRAYSPROC) glewGetProcAddress ("glGenVertexArrays");
+    s_deviceConfig.m_glIsVertexArray = (PFNGLISVERTEXARRAYPROC) glewGetProcAddress ("glIsVertexArray");
+  }
+
+  // GL_ARB_vertex_attrib_64bit
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_attrib_64bit])
+  {
+    #undef glVertexAttribL1d
+    #undef glVertexAttribL2d
+    #undef glVertexAttribL3d
+    #undef glVertexAttribL4d
+    #undef glVertexAttribL1dv
+    #undef glVertexAttribL2dv
+    #undef glVertexAttribL3dv
+    #undef glVertexAttribL4dv
+    #undef glVertexAttribLPointer
+    #undef glGetVertexAttribLdv
+    s_deviceConfig.m_glVertexAttribL1d = (PFNGLVERTEXATTRIBL1DPROC) glewGetProcAddress ("glVertexAttribL1d");
+    s_deviceConfig.m_glVertexAttribL2d = (PFNGLVERTEXATTRIBL2DPROC) glewGetProcAddress ("glVertexAttribL2d");
+    s_deviceConfig.m_glVertexAttribL3d = (PFNGLVERTEXATTRIBL3DPROC) glewGetProcAddress ("glVertexAttribL3d");
+    s_deviceConfig.m_glVertexAttribL4d = (PFNGLVERTEXATTRIBL4DPROC) glewGetProcAddress ("glVertexAttribL4d");
+    s_deviceConfig.m_glVertexAttribL1dv = (PFNGLVERTEXATTRIBL1DVPROC) glewGetProcAddress ("glVertexAttribL1dv");
+    s_deviceConfig.m_glVertexAttribL2dv = (PFNGLVERTEXATTRIBL2DVPROC) glewGetProcAddress ("glVertexAttribL2dv");
+    s_deviceConfig.m_glVertexAttribL3dv = (PFNGLVERTEXATTRIBL3DVPROC) glewGetProcAddress ("glVertexAttribL3dv");
+    s_deviceConfig.m_glVertexAttribL4dv = (PFNGLVERTEXATTRIBL4DVPROC) glewGetProcAddress ("glVertexAttribL4dv");
+    s_deviceConfig.m_glVertexAttribLPointer = (PFNGLVERTEXATTRIBLPOINTERPROC) glewGetProcAddress ("glVertexAttribLPointer");
+    s_deviceConfig.m_glGetVertexAttribLdv = (PFNGLGETVERTEXATTRIBLDVPROC) glewGetProcAddress ("glGetVertexAttribLdv");
+  }
+
+  // GL_ARB_vertex_attrib_binding
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_attrib_binding])
+  {
+    #undef glBindVertexBuffer
+    #undef glVertexAttribFormat
+    #undef glVertexAttribIFormat
+    #undef glVertexAttribLFormat
+    #undef glVertexAttribBinding
+    #undef glVertexBindingDivisor
+    s_deviceConfig.m_glBindVertexBuffer = (PFNGLBINDVERTEXBUFFERPROC) glewGetProcAddress ("glBindVertexBuffer");
+    s_deviceConfig.m_glVertexAttribFormat = (PFNGLVERTEXATTRIBFORMATPROC) glewGetProcAddress ("glVertexAttribFormat");
+    s_deviceConfig.m_glVertexAttribIFormat = (PFNGLVERTEXATTRIBIFORMATPROC) glewGetProcAddress ("glVertexAttribIFormat");
+    s_deviceConfig.m_glVertexAttribLFormat = (PFNGLVERTEXATTRIBLFORMATPROC) glewGetProcAddress ("glVertexAttribLFormat");
+    s_deviceConfig.m_glVertexAttribBinding = (PFNGLVERTEXATTRIBBINDINGPROC) glewGetProcAddress ("glVertexAttribBinding");
+    s_deviceConfig.m_glVertexBindingDivisor = (PFNGLVERTEXBINDINGDIVISORPROC) glewGetProcAddress ("glVertexBindingDivisor");
+  }
+
+  // GL_ARB_vertex_type_2_10_10_10_rev
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_type_2_10_10_10_rev])
+  {
+    #undef glVertexAttribP1ui
+    #undef glVertexAttribP1uiv
+    #undef glVertexAttribP2ui
+    #undef glVertexAttribP2uiv
+    #undef glVertexAttribP3ui
+    #undef glVertexAttribP3uiv
+    #undef glVertexAttribP4ui
+    #undef glVertexAttribP4uiv
+    s_deviceConfig.m_glVertexAttribP1ui = (PFNGLVERTEXATTRIBP1UIPROC) glewGetProcAddress ("glVertexAttribP1ui");
+    s_deviceConfig.m_glVertexAttribP1uiv = (PFNGLVERTEXATTRIBP1UIVPROC) glewGetProcAddress ("glVertexAttribP1uiv");
+    s_deviceConfig.m_glVertexAttribP2ui = (PFNGLVERTEXATTRIBP2UIPROC) glewGetProcAddress ("glVertexAttribP2ui");
+    s_deviceConfig.m_glVertexAttribP2uiv = (PFNGLVERTEXATTRIBP2UIVPROC) glewGetProcAddress ("glVertexAttribP2uiv");
+    s_deviceConfig.m_glVertexAttribP3ui = (PFNGLVERTEXATTRIBP3UIPROC) glewGetProcAddress ("glVertexAttribP3ui");
+    s_deviceConfig.m_glVertexAttribP3uiv = (PFNGLVERTEXATTRIBP3UIVPROC) glewGetProcAddress ("glVertexAttribP3uiv");
+    s_deviceConfig.m_glVertexAttribP4ui = (PFNGLVERTEXATTRIBP4UIPROC) glewGetProcAddress ("glVertexAttribP4ui");
+    s_deviceConfig.m_glVertexAttribP4uiv = (PFNGLVERTEXATTRIBP4UIVPROC) glewGetProcAddress ("glVertexAttribP4uiv");
+  }
+
+  // GL_ARB_viewport_array
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_viewport_array])
+  {
+    #undef glViewportArrayv
+    #undef glViewportIndexedf
+    #undef glViewportIndexedfv
+    #undef glScissorArrayv
+    #undef glScissorIndexed
+    #undef glScissorIndexedv
+    #undef glDepthRangeArrayv
+    #undef glDepthRangeIndexed
+    #undef glGetFloati_v
+    #undef glGetDoublei_v
+    s_deviceConfig.m_glViewportArrayv = (PFNGLVIEWPORTARRAYVPROC) glewGetProcAddress ("glViewportArrayv");
+    s_deviceConfig.m_glViewportIndexedf = (PFNGLVIEWPORTINDEXEDFPROC) glewGetProcAddress ("glViewportIndexedf");
+    s_deviceConfig.m_glViewportIndexedfv = (PFNGLVIEWPORTINDEXEDFVPROC) glewGetProcAddress ("glViewportIndexedfv");
+    s_deviceConfig.m_glScissorArrayv = (PFNGLSCISSORARRAYVPROC) glewGetProcAddress ("glScissorArrayv");
+    s_deviceConfig.m_glScissorIndexed = (PFNGLSCISSORINDEXEDPROC) glewGetProcAddress ("glScissorIndexed");
+    s_deviceConfig.m_glScissorIndexedv = (PFNGLSCISSORINDEXEDVPROC) glewGetProcAddress ("glScissorIndexedv");
+    s_deviceConfig.m_glDepthRangeArrayv = (PFNGLDEPTHRANGEARRAYVPROC) glewGetProcAddress ("glDepthRangeArrayv");
+    s_deviceConfig.m_glDepthRangeIndexed = (PFNGLDEPTHRANGEINDEXEDPROC) glewGetProcAddress ("glDepthRangeIndexed");
+    s_deviceConfig.m_glGetFloati_v = (PFNGLGETFLOATI_VPROC) glewGetProcAddress ("glGetFloati_v");
+    s_deviceConfig.m_glGetDoublei_v = (PFNGLGETDOUBLEI_VPROC) glewGetProcAddress ("glGetDoublei_v");
+  }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void glew::glcore::Deinitialise ()
+{
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

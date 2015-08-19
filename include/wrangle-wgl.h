@@ -17,6 +17,32 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+WINGDIAPI int WINAPI ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd);
+WINGDIAPI int WINAPI DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd);
+WINGDIAPI UINT WINAPI GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd);
+WINGDIAPI int WINAPI GetPixelFormat (HDC hdc);
+WINGDIAPI BOOL WINAPI SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd);
+WINGDIAPI BOOL WINAPI SwapBuffers (HDC hdc);
+WINGDIAPI BOOL WINAPI wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask);
+WINGDIAPI HGLRC WINAPI wglCreateContext (HDC hDc);
+WINGDIAPI HGLRC WINAPI wglCreateLayerContext (HDC hDc, int level);
+WINGDIAPI BOOL WINAPI wglDeleteContext (HGLRC oldContext);
+WINGDIAPI BOOL WINAPI wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, const LAYERPLANEDESCRIPTOR * plpd);
+WINGDIAPI HGLRC WINAPI wglGetCurrentContext ();
+WINGDIAPI HDC WINAPI wglGetCurrentDC ();
+WINGDIAPI int WINAPI wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
+WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
+WINGDIAPI BOOL WINAPI wglMakeCurrent (HDC hDc, HGLRC newContext);
+WINGDIAPI BOOL WINAPI wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize);
+WINGDIAPI int WINAPI wglSetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
+WINGDIAPI BOOL WINAPI wglShareLists (HGLRC hrcSrvShare, HGLRC hrcSrvSource);
+WINGDIAPI BOOL WINAPI wglSwapLayerBuffers (HDC hdc, UINT fuFlags);
+WINGDIAPI BOOL WINAPI wglUseFontBitmaps (HDC hDC, DWORD first, DWORD count, DWORD listBase);
+WINGDIAPI BOOL WINAPI wglUseFontBitmapsA (HDC hDC, DWORD first, DWORD count, DWORD listBase);
+WINGDIAPI BOOL WINAPI wglUseFontBitmapsW (HDC hDC, DWORD first, DWORD count, DWORD listBase);
+WINGDIAPI BOOL WINAPI wglUseFontOutlines (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
+WINGDIAPI BOOL WINAPI wglUseFontOutlinesA (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
+WINGDIAPI BOOL WINAPI wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
 typedef BOOL (WINAPI * PFNWGLSETSTEREOEMITTERSTATE3DLPROC) /* wglSetStereoEmitterState3DL */ (HDC hDC, UINT uState);
 typedef UINT (WINAPI * PFNWGLGETGPUIDSAMDPROC) /* wglGetGPUIDsAMD */ (UINT maxCount, UINT * ids);
 typedef INT (WINAPI * PFNWGLGETGPUINFOAMDPROC) /* wglGetGPUInfoAMD */ (UINT id, int property, GLenum dataType, UINT size, void * data);
@@ -490,61 +516,6 @@ namespace glew
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#define GLEW_WGL_VERSION_1_0 glew::wgl::GLEW_WGL_VERSION_1_0
-#define GLEW_WGL_3DFX_multisample glew::wgl::GLEW_WGL_3DFX_multisample
-#define GLEW_WGL_3DL_stereo_control glew::wgl::GLEW_WGL_3DL_stereo_control
-#define GLEW_WGL_AMD_gpu_association glew::wgl::GLEW_WGL_AMD_gpu_association
-#define GLEW_WGL_ARB_buffer_region glew::wgl::GLEW_WGL_ARB_buffer_region
-#define GLEW_WGL_ARB_context_flush_control glew::wgl::GLEW_WGL_ARB_context_flush_control
-#define GLEW_WGL_ARB_create_context glew::wgl::GLEW_WGL_ARB_create_context
-#define GLEW_WGL_ARB_create_context_profile glew::wgl::GLEW_WGL_ARB_create_context_profile
-#define GLEW_WGL_ARB_create_context_robustness glew::wgl::GLEW_WGL_ARB_create_context_robustness
-#define GLEW_WGL_ARB_extensions_string glew::wgl::GLEW_WGL_ARB_extensions_string
-#define GLEW_WGL_ARB_framebuffer_sRGB glew::wgl::GLEW_WGL_ARB_framebuffer_sRGB
-#define GLEW_WGL_ARB_make_current_read glew::wgl::GLEW_WGL_ARB_make_current_read
-#define GLEW_WGL_ARB_multisample glew::wgl::GLEW_WGL_ARB_multisample
-#define GLEW_WGL_ARB_pbuffer glew::wgl::GLEW_WGL_ARB_pbuffer
-#define GLEW_WGL_ARB_pixel_format glew::wgl::GLEW_WGL_ARB_pixel_format
-#define GLEW_WGL_ARB_pixel_format_float glew::wgl::GLEW_WGL_ARB_pixel_format_float
-#define GLEW_WGL_ARB_render_texture glew::wgl::GLEW_WGL_ARB_render_texture
-#define GLEW_WGL_ARB_robustness_application_isolation glew::wgl::GLEW_WGL_ARB_robustness_application_isolation
-#define GLEW_WGL_ARB_robustness_share_group_isolation glew::wgl::GLEW_WGL_ARB_robustness_share_group_isolation
-#define GLEW_WGL_ATI_pixel_format_float glew::wgl::GLEW_WGL_ATI_pixel_format_float
-#define GLEW_WGL_EXT_create_context_es_profile glew::wgl::GLEW_WGL_EXT_create_context_es_profile
-#define GLEW_WGL_EXT_create_context_es2_profile glew::wgl::GLEW_WGL_EXT_create_context_es2_profile
-#define GLEW_WGL_EXT_depth_float glew::wgl::GLEW_WGL_EXT_depth_float
-#define GLEW_WGL_EXT_display_color_table glew::wgl::GLEW_WGL_EXT_display_color_table
-#define GLEW_WGL_EXT_extensions_string glew::wgl::GLEW_WGL_EXT_extensions_string
-#define GLEW_WGL_EXT_framebuffer_sRGB glew::wgl::GLEW_WGL_EXT_framebuffer_sRGB
-#define GLEW_WGL_EXT_make_current_read glew::wgl::GLEW_WGL_EXT_make_current_read
-#define GLEW_WGL_EXT_multisample glew::wgl::GLEW_WGL_EXT_multisample
-#define GLEW_WGL_EXT_pbuffer glew::wgl::GLEW_WGL_EXT_pbuffer
-#define GLEW_WGL_EXT_pixel_format glew::wgl::GLEW_WGL_EXT_pixel_format
-#define GLEW_WGL_EXT_pixel_format_packed_float glew::wgl::GLEW_WGL_EXT_pixel_format_packed_float
-#define GLEW_WGL_EXT_swap_control glew::wgl::GLEW_WGL_EXT_swap_control
-#define GLEW_WGL_EXT_swap_control_tear glew::wgl::GLEW_WGL_EXT_swap_control_tear
-#define GLEW_WGL_I3D_digital_video_control glew::wgl::GLEW_WGL_I3D_digital_video_control
-#define GLEW_WGL_I3D_gamma glew::wgl::GLEW_WGL_I3D_gamma
-#define GLEW_WGL_I3D_genlock glew::wgl::GLEW_WGL_I3D_genlock
-#define GLEW_WGL_I3D_image_buffer glew::wgl::GLEW_WGL_I3D_image_buffer
-#define GLEW_WGL_I3D_swap_frame_lock glew::wgl::GLEW_WGL_I3D_swap_frame_lock
-#define GLEW_WGL_I3D_swap_frame_usage glew::wgl::GLEW_WGL_I3D_swap_frame_usage
-#define GLEW_WGL_NV_copy_image glew::wgl::GLEW_WGL_NV_copy_image
-#define GLEW_WGL_NV_delay_before_swap glew::wgl::GLEW_WGL_NV_delay_before_swap
-#define GLEW_WGL_NV_DX_interop glew::wgl::GLEW_WGL_NV_DX_interop
-#define GLEW_WGL_NV_DX_interop2 glew::wgl::GLEW_WGL_NV_DX_interop2
-#define GLEW_WGL_NV_float_buffer glew::wgl::GLEW_WGL_NV_float_buffer
-#define GLEW_WGL_NV_gpu_affinity glew::wgl::GLEW_WGL_NV_gpu_affinity
-#define GLEW_WGL_NV_multisample_coverage glew::wgl::GLEW_WGL_NV_multisample_coverage
-#define GLEW_WGL_NV_present_video glew::wgl::GLEW_WGL_NV_present_video
-#define GLEW_WGL_NV_render_depth_texture glew::wgl::GLEW_WGL_NV_render_depth_texture
-#define GLEW_WGL_NV_render_texture_rectangle glew::wgl::GLEW_WGL_NV_render_texture_rectangle
-#define GLEW_WGL_NV_swap_group glew::wgl::GLEW_WGL_NV_swap_group
-#define GLEW_WGL_NV_video_capture glew::wgl::GLEW_WGL_NV_video_capture
-#define GLEW_WGL_NV_video_output glew::wgl::GLEW_WGL_NV_video_output
-#define GLEW_WGL_NV_vertex_array_range glew::wgl::GLEW_WGL_NV_vertex_array_range
-#define GLEW_WGL_OML_sync_control glew::wgl::GLEW_WGL_OML_sync_control
 
 #define wglSetStereoEmitterState3DL glew::wgl::wglSetStereoEmitterState3DL
 #define wglGetGPUIDsAMD glew::wgl::wglGetGPUIDsAMD

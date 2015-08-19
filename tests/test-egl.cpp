@@ -4,6 +4,8 @@
 
 #define GLEW_USE_EGL 1
 
+#define GLEW_USE_OPENGL_ES 1
+
 #include <wrangle.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -14,9 +16,9 @@ int main ()
 {
   glew::egl::Initialise ();
 
-  //glew::gles::Initialise ();
+  glew::gles::Initialise ();
 
-  //glew::gles::Deinitialise ();
+  glew::gles::Deinitialise ();
 
   glew::egl::Deinitialise ();
 

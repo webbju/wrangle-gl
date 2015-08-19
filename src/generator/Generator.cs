@@ -49,6 +49,12 @@ namespace wrangle_gl_generator
 
     protected Dictionary<string, XmlNode> m_extensionNodesLookup = new Dictionary<string, XmlNode> ();
 
+    protected float m_baseSpecVersion = 1.0f;
+
+    protected string m_funcApiEntryPrefix = "";
+
+    protected string m_funcApiEntryPostfix = "";
+
     protected string m_funcPointerApiEntryPrefix = "";
 
     protected string m_funcPointerApiEntryPostfix = "";
@@ -216,11 +222,22 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          // 
+          // Evaluate whether this feature is part of the 'base spec'.
+          // 
+
+          bool baseSpecFeatureSet = false;
+
           XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
-          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          if (featureNumberNode != null)
           {
-            continue; // Skip any initial (base spec) versions.
+            float version = m_baseSpecVersion;
+
+            if (float.TryParse (featureNumberNode.Value, out version))
+            {
+              baseSpecFeatureSet = version <= m_baseSpecVersion;
+            }
           }
 
           // 
@@ -266,7 +283,14 @@ namespace wrangle_gl_generator
 
               GetFullCommandPrototype (command, out returnType, out parameters);
 
-              commandFuncPointerBuilder.AppendFormat ("typedef {0} {1} ({2} {3}) /* {4} */ (", m_funcPointerApiEntryPrefix, returnType, m_funcPointerApiEntryPostfix, mangedFunctionPointer, command);
+              if (baseSpecFeatureSet)
+              {
+                commandFuncPointerBuilder.AppendFormat ("{0} {1} {2} {3} (", m_funcApiEntryPrefix, returnType, m_funcApiEntryPostfix, command);
+              }
+              else
+              {
+                commandFuncPointerBuilder.AppendFormat ("typedef {0} {1} ({2} {3}) /* {4} */ (", m_funcPointerApiEntryPrefix, returnType, m_funcPointerApiEntryPostfix, mangedFunctionPointer, command);
+              }
 
               if (parameters.Count > 0)
               {
@@ -345,11 +369,27 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          // 
+          // Evaluate whether this feature is part of the 'base spec'.
+          // 
+
           XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
-          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          bool baseSpecFeatureSet = false;
+
+          if (featureNumberNode != null)
           {
-            continue; // Skip any initial (base spec) versions.
+            float version = m_baseSpecVersion;
+
+            if (float.TryParse (featureNumberNode.Value, out version))
+            {
+              baseSpecFeatureSet = version <= m_baseSpecVersion;
+            }
+          }
+
+          if (baseSpecFeatureSet)
+          {
+            continue; // Skip any base spec versions.
           }
 
           // 
@@ -434,11 +474,27 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          // 
+          // Evaluate whether this feature is part of the 'base spec'.
+          // 
+
           XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
-          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          bool baseSpecFeatureSet = false;
+
+          if (featureNumberNode != null)
           {
-            continue; // Skip any initial (base spec) versions.
+            float version = m_baseSpecVersion;
+
+            if (float.TryParse (featureNumberNode.Value, out version))
+            {
+              baseSpecFeatureSet = version <= m_baseSpecVersion;
+            }
+          }
+
+          if (baseSpecFeatureSet)
+          {
+            continue; // Skip any base spec versions.
           }
 
           // 
@@ -493,7 +549,7 @@ namespace wrangle_gl_generator
       // Pre-processor pass-through defines for redirecting functions to glew alternatives.
       // 
 
-      writer.Write ("\n");
+      /*writer.Write ("\n");
 
       if (featureAndExtensionNodes.Count > 0)
       {
@@ -501,7 +557,7 @@ namespace wrangle_gl_generator
         {
           writer.Write (string.Format ("#define {0}{1} glew::{2}::{0}{1}\n", "GLEW_", key, m_api [0]));
         }
-      }
+      }*/
 
       writer.Write ("\n");
 
@@ -513,11 +569,27 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          // 
+          // Evaluate whether this feature is part of the 'base spec'.
+          // 
+
           XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
-          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          bool baseSpecFeatureSet = false;
+
+          if (featureNumberNode != null)
           {
-            continue; // Skip any initial (base spec) versions.
+            float version = m_baseSpecVersion;
+
+            if (float.TryParse (featureNumberNode.Value, out version))
+            {
+              baseSpecFeatureSet = version <= m_baseSpecVersion;
+            }
+          }
+
+          if (baseSpecFeatureSet)
+          {
+            continue; // Skip any base spec versions.
           }
 
           // 
@@ -573,8 +645,6 @@ namespace wrangle_gl_generator
 
     public virtual void ExportCpp (ref StreamWriter writer)
     {
-      writer.Write (string.Format ("#include <wrangle.h>\n\n"));
-
       writer.Write (string.Format ("#include <wrangle-{0}.h>\n\n", m_api [0]));
 
       WriteCommentDivider (ref writer);
@@ -613,11 +683,27 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          // 
+          // Evaluate whether this feature is part of the 'base spec'.
+          // 
+
           XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
-          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          bool baseSpecFeatureSet = false;
+
+          if (featureNumberNode != null)
           {
-            continue; // Skip any initial (base spec) versions.
+            float version = m_baseSpecVersion;
+
+            if (float.TryParse (featureNumberNode.Value, out version))
+            {
+              baseSpecFeatureSet = version <= m_baseSpecVersion;
+            }
+          }
+
+          if (baseSpecFeatureSet)
+          {
+            continue; // Skip any base spec versions.
           }
 
           // 

@@ -30,6 +30,10 @@ namespace wrangle_gl_generator
     public GeneratorWGL (string filename)
       : base (filename, new string [] { "wgl" })
     {
+      m_funcApiEntryPrefix = "WINGDIAPI";
+
+      m_funcApiEntryPostfix = "WINAPI";
+
       m_funcPointerApiEntryPrefix = "";
 
       m_funcPointerApiEntryPostfix = "WINAPI *";
@@ -66,6 +70,8 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
+      writer.Write ("\n#define GLEW_USE_WGL 1\n");
+
       writer.Write ("\n#include <string>\n");
 
       writer.Write ("\n#include <unordered_set>\n");
@@ -98,11 +104,9 @@ namespace wrangle_gl_generator
   // Determine current driver's feature reporting.
   // 
 
-  PFNWGLGETEXTENSIONSSTRINGARBPROC _wglewGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) glew::GetProcAddress (""wglGetExtensionsStringARB"");
+  PFNWGLGETEXTENSIONSSTRINGARBPROC _wglewGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) wglGetProcAddress (""wglGetExtensionsStringARB"");
 
-  PFNWGLGETEXTENSIONSSTRINGEXTPROC _wglewGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) glew::GetProcAddress (""wglGetExtensionsStringEXT"");
-
-  PFNWGLGETCURRENTDCPROC _wglGetCurrentDC = (PFNWGLGETCURRENTDCPROC) glew::GetProcAddress (""wglGetCurrentDC"");
+  PFNWGLGETEXTENSIONSSTRINGEXTPROC _wglewGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) wglGetProcAddress (""wglGetExtensionsStringEXT"");
 
   s_deviceConfig.m_featureSupported [GLEW_WGL_VERSION_1_0] = true;
 
@@ -112,24 +116,24 @@ namespace wrangle_gl_generator
 
   std::unordered_set <std::string> supportedExtensions;
 
-  const GLubyte *wglExtensions = (const GLubyte*)"""";
+  const unsigned char *wglExtensions = (const unsigned char*) """";
 
   if (_wglewGetExtensionsStringEXT != NULL)
   {
-    wglExtensions = (const GLubyte*) _wglewGetExtensionsStringEXT ();
+    wglExtensions = (const unsigned char*) _wglewGetExtensionsStringEXT ();
   }
   else if (_wglewGetExtensionsStringARB != NULL)
   {
-    wglExtensions = (const GLubyte*) _wglewGetExtensionsStringARB (_wglGetCurrentDC());
+    wglExtensions = (const unsigned char*) _wglewGetExtensionsStringARB (wglGetCurrentDC());
   }
 
-  const size_t wglExtensionsLen = wglExtensions ? strlen ((const char *) wglExtensions) : 0;
+  const size_t wglExtensionsLen = strlen ((const char *) wglExtensions);
 
   if (wglExtensionsLen)
   {
-    GLubyte *thisExtStart = (GLubyte *) wglExtensions;
+    unsigned char *thisExtStart = (unsigned char *) wglExtensions;
 
-    GLubyte *thisExtEnd = NULL;
+    unsigned char *thisExtEnd = NULL;
 
     char thisExtBuffer [128];
 
@@ -141,13 +145,13 @@ namespace wrangle_gl_generator
 
       if (seperator)
       {
-        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (GLubyte));
+        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
 
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
 
         thisExtBuffer [min (len, 127)] = '\0';
 
-        thisExtEnd = (GLubyte *) seperator + 1; // skip tab character
+        thisExtEnd = (unsigned char *) seperator + 1; // skip tab character
       }
       else
       {
@@ -211,11 +215,27 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          // 
+          // Evaluate whether this feature is part of the 'base spec'.
+          // 
+
           XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
-          if ((featureNumberNode != null) && (featureNumberNode.Value.Equals ("1.0")))
+          bool baseSpecFeatureSet = false;
+
+          if (featureNumberNode != null)
           {
-            continue; // Skip any initial (base spec) versions.
+            float version = m_baseSpecVersion;
+
+            if (float.TryParse (featureNumberNode.Value, out version))
+            {
+              baseSpecFeatureSet = version <= m_baseSpecVersion;
+            }
+          }
+
+          if (baseSpecFeatureSet)
+          {
+            continue; // Skip any base spec versions.
           }
 
           // 
@@ -262,7 +282,7 @@ namespace wrangle_gl_generator
 
               string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
 
-              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glew::GetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) wglGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
             }
 
             writer.Write ("  }\n\n");

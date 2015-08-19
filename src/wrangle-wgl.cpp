@@ -2,6 +2,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#define GLEW_USE_WGL 1
+
 #include <string>
 
 #include <unordered_set>
@@ -13,8 +15,6 @@
 #undef wglUseFontBitmaps
 
 #undef wglUseFontOutlines
-
-#include <wrangle.h>
 
 #include <wrangle-wgl.h>
 
@@ -1701,11 +1701,9 @@ void glew::wgl::Initialise ()
   // Determine current driver's feature reporting.
   // 
 
-  PFNWGLGETEXTENSIONSSTRINGARBPROC _wglewGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) glew::GetProcAddress ("wglGetExtensionsStringARB");
+  PFNWGLGETEXTENSIONSSTRINGARBPROC _wglewGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) wglGetProcAddress ("wglGetExtensionsStringARB");
 
-  PFNWGLGETEXTENSIONSSTRINGEXTPROC _wglewGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) glew::GetProcAddress ("wglGetExtensionsStringEXT");
-
-  PFNWGLGETCURRENTDCPROC _wglGetCurrentDC = (PFNWGLGETCURRENTDCPROC) glew::GetProcAddress ("wglGetCurrentDC");
+  PFNWGLGETEXTENSIONSSTRINGEXTPROC _wglewGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) wglGetProcAddress ("wglGetExtensionsStringEXT");
 
   s_deviceConfig.m_featureSupported [GLEW_WGL_VERSION_1_0] = true;
 
@@ -1715,24 +1713,24 @@ void glew::wgl::Initialise ()
 
   std::unordered_set <std::string> supportedExtensions;
 
-  const GLubyte *wglExtensions = (const GLubyte*)"";
+  const unsigned char *wglExtensions = (const unsigned char*) "";
 
   if (_wglewGetExtensionsStringEXT != NULL)
   {
-    wglExtensions = (const GLubyte*) _wglewGetExtensionsStringEXT ();
+    wglExtensions = (const unsigned char*) _wglewGetExtensionsStringEXT ();
   }
   else if (_wglewGetExtensionsStringARB != NULL)
   {
-    wglExtensions = (const GLubyte*) _wglewGetExtensionsStringARB (_wglGetCurrentDC());
+    wglExtensions = (const unsigned char*) _wglewGetExtensionsStringARB (wglGetCurrentDC());
   }
 
-  const size_t wglExtensionsLen = wglExtensions ? strlen ((const char *) wglExtensions) : 0;
+  const size_t wglExtensionsLen = strlen ((const char *) wglExtensions);
 
   if (wglExtensionsLen)
   {
-    GLubyte *thisExtStart = (GLubyte *) wglExtensions;
+    unsigned char *thisExtStart = (unsigned char *) wglExtensions;
 
-    GLubyte *thisExtEnd = NULL;
+    unsigned char *thisExtEnd = NULL;
 
     char thisExtBuffer [128];
 
@@ -1744,13 +1742,13 @@ void glew::wgl::Initialise ()
 
       if (seperator)
       {
-        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (GLubyte));
+        const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
 
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
 
         thisExtBuffer [min (len, 127)] = '\0';
 
-        thisExtEnd = (GLubyte *) seperator + 1; // skip tab character
+        thisExtEnd = (unsigned char *) seperator + 1; // skip tab character
       }
       else
       {
@@ -1833,7 +1831,7 @@ void glew::wgl::Initialise ()
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_3DL_stereo_control])
   {
     #undef wglSetStereoEmitterState3DL
-    s_deviceConfig.m_wglSetStereoEmitterState3DL = (PFNWGLSETSTEREOEMITTERSTATE3DLPROC) glew::GetProcAddress ("wglSetStereoEmitterState3DL");
+    s_deviceConfig.m_wglSetStereoEmitterState3DL = (PFNWGLSETSTEREOEMITTERSTATE3DLPROC) wglGetProcAddress ("wglSetStereoEmitterState3DL");
   }
 
   // WGL_AMD_gpu_association
@@ -1848,15 +1846,15 @@ void glew::wgl::Initialise ()
     #undef wglMakeAssociatedContextCurrentAMD
     #undef wglGetCurrentAssociatedContextAMD
     #undef wglBlitContextFramebufferAMD
-    s_deviceConfig.m_wglGetGPUIDsAMD = (PFNWGLGETGPUIDSAMDPROC) glew::GetProcAddress ("wglGetGPUIDsAMD");
-    s_deviceConfig.m_wglGetGPUInfoAMD = (PFNWGLGETGPUINFOAMDPROC) glew::GetProcAddress ("wglGetGPUInfoAMD");
-    s_deviceConfig.m_wglGetContextGPUIDAMD = (PFNWGLGETCONTEXTGPUIDAMDPROC) glew::GetProcAddress ("wglGetContextGPUIDAMD");
-    s_deviceConfig.m_wglCreateAssociatedContextAMD = (PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC) glew::GetProcAddress ("wglCreateAssociatedContextAMD");
-    s_deviceConfig.m_wglCreateAssociatedContextAttribsAMD = (PFNWGLCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) glew::GetProcAddress ("wglCreateAssociatedContextAttribsAMD");
-    s_deviceConfig.m_wglDeleteAssociatedContextAMD = (PFNWGLDELETEASSOCIATEDCONTEXTAMDPROC) glew::GetProcAddress ("wglDeleteAssociatedContextAMD");
-    s_deviceConfig.m_wglMakeAssociatedContextCurrentAMD = (PFNWGLMAKEASSOCIATEDCONTEXTCURRENTAMDPROC) glew::GetProcAddress ("wglMakeAssociatedContextCurrentAMD");
-    s_deviceConfig.m_wglGetCurrentAssociatedContextAMD = (PFNWGLGETCURRENTASSOCIATEDCONTEXTAMDPROC) glew::GetProcAddress ("wglGetCurrentAssociatedContextAMD");
-    s_deviceConfig.m_wglBlitContextFramebufferAMD = (PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC) glew::GetProcAddress ("wglBlitContextFramebufferAMD");
+    s_deviceConfig.m_wglGetGPUIDsAMD = (PFNWGLGETGPUIDSAMDPROC) wglGetProcAddress ("wglGetGPUIDsAMD");
+    s_deviceConfig.m_wglGetGPUInfoAMD = (PFNWGLGETGPUINFOAMDPROC) wglGetProcAddress ("wglGetGPUInfoAMD");
+    s_deviceConfig.m_wglGetContextGPUIDAMD = (PFNWGLGETCONTEXTGPUIDAMDPROC) wglGetProcAddress ("wglGetContextGPUIDAMD");
+    s_deviceConfig.m_wglCreateAssociatedContextAMD = (PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC) wglGetProcAddress ("wglCreateAssociatedContextAMD");
+    s_deviceConfig.m_wglCreateAssociatedContextAttribsAMD = (PFNWGLCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) wglGetProcAddress ("wglCreateAssociatedContextAttribsAMD");
+    s_deviceConfig.m_wglDeleteAssociatedContextAMD = (PFNWGLDELETEASSOCIATEDCONTEXTAMDPROC) wglGetProcAddress ("wglDeleteAssociatedContextAMD");
+    s_deviceConfig.m_wglMakeAssociatedContextCurrentAMD = (PFNWGLMAKEASSOCIATEDCONTEXTCURRENTAMDPROC) wglGetProcAddress ("wglMakeAssociatedContextCurrentAMD");
+    s_deviceConfig.m_wglGetCurrentAssociatedContextAMD = (PFNWGLGETCURRENTASSOCIATEDCONTEXTAMDPROC) wglGetProcAddress ("wglGetCurrentAssociatedContextAMD");
+    s_deviceConfig.m_wglBlitContextFramebufferAMD = (PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC) wglGetProcAddress ("wglBlitContextFramebufferAMD");
   }
 
   // WGL_ARB_buffer_region
@@ -1866,24 +1864,24 @@ void glew::wgl::Initialise ()
     #undef wglDeleteBufferRegionARB
     #undef wglSaveBufferRegionARB
     #undef wglRestoreBufferRegionARB
-    s_deviceConfig.m_wglCreateBufferRegionARB = (PFNWGLCREATEBUFFERREGIONARBPROC) glew::GetProcAddress ("wglCreateBufferRegionARB");
-    s_deviceConfig.m_wglDeleteBufferRegionARB = (PFNWGLDELETEBUFFERREGIONARBPROC) glew::GetProcAddress ("wglDeleteBufferRegionARB");
-    s_deviceConfig.m_wglSaveBufferRegionARB = (PFNWGLSAVEBUFFERREGIONARBPROC) glew::GetProcAddress ("wglSaveBufferRegionARB");
-    s_deviceConfig.m_wglRestoreBufferRegionARB = (PFNWGLRESTOREBUFFERREGIONARBPROC) glew::GetProcAddress ("wglRestoreBufferRegionARB");
+    s_deviceConfig.m_wglCreateBufferRegionARB = (PFNWGLCREATEBUFFERREGIONARBPROC) wglGetProcAddress ("wglCreateBufferRegionARB");
+    s_deviceConfig.m_wglDeleteBufferRegionARB = (PFNWGLDELETEBUFFERREGIONARBPROC) wglGetProcAddress ("wglDeleteBufferRegionARB");
+    s_deviceConfig.m_wglSaveBufferRegionARB = (PFNWGLSAVEBUFFERREGIONARBPROC) wglGetProcAddress ("wglSaveBufferRegionARB");
+    s_deviceConfig.m_wglRestoreBufferRegionARB = (PFNWGLRESTOREBUFFERREGIONARBPROC) wglGetProcAddress ("wglRestoreBufferRegionARB");
   }
 
   // WGL_ARB_create_context
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context])
   {
     #undef wglCreateContextAttribsARB
-    s_deviceConfig.m_wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC) glew::GetProcAddress ("wglCreateContextAttribsARB");
+    s_deviceConfig.m_wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC) wglGetProcAddress ("wglCreateContextAttribsARB");
   }
 
   // WGL_ARB_extensions_string
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_extensions_string])
   {
     #undef wglGetExtensionsStringARB
-    s_deviceConfig.m_wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) glew::GetProcAddress ("wglGetExtensionsStringARB");
+    s_deviceConfig.m_wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) wglGetProcAddress ("wglGetExtensionsStringARB");
   }
 
   // WGL_ARB_make_current_read
@@ -1891,8 +1889,8 @@ void glew::wgl::Initialise ()
   {
     #undef wglMakeContextCurrentARB
     #undef wglGetCurrentReadDCARB
-    s_deviceConfig.m_wglMakeContextCurrentARB = (PFNWGLMAKECONTEXTCURRENTARBPROC) glew::GetProcAddress ("wglMakeContextCurrentARB");
-    s_deviceConfig.m_wglGetCurrentReadDCARB = (PFNWGLGETCURRENTREADDCARBPROC) glew::GetProcAddress ("wglGetCurrentReadDCARB");
+    s_deviceConfig.m_wglMakeContextCurrentARB = (PFNWGLMAKECONTEXTCURRENTARBPROC) wglGetProcAddress ("wglMakeContextCurrentARB");
+    s_deviceConfig.m_wglGetCurrentReadDCARB = (PFNWGLGETCURRENTREADDCARBPROC) wglGetProcAddress ("wglGetCurrentReadDCARB");
   }
 
   // WGL_ARB_pbuffer
@@ -1903,11 +1901,11 @@ void glew::wgl::Initialise ()
     #undef wglReleasePbufferDCARB
     #undef wglDestroyPbufferARB
     #undef wglQueryPbufferARB
-    s_deviceConfig.m_wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC) glew::GetProcAddress ("wglCreatePbufferARB");
-    s_deviceConfig.m_wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC) glew::GetProcAddress ("wglGetPbufferDCARB");
-    s_deviceConfig.m_wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC) glew::GetProcAddress ("wglReleasePbufferDCARB");
-    s_deviceConfig.m_wglDestroyPbufferARB = (PFNWGLDESTROYPBUFFERARBPROC) glew::GetProcAddress ("wglDestroyPbufferARB");
-    s_deviceConfig.m_wglQueryPbufferARB = (PFNWGLQUERYPBUFFERARBPROC) glew::GetProcAddress ("wglQueryPbufferARB");
+    s_deviceConfig.m_wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC) wglGetProcAddress ("wglCreatePbufferARB");
+    s_deviceConfig.m_wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC) wglGetProcAddress ("wglGetPbufferDCARB");
+    s_deviceConfig.m_wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC) wglGetProcAddress ("wglReleasePbufferDCARB");
+    s_deviceConfig.m_wglDestroyPbufferARB = (PFNWGLDESTROYPBUFFERARBPROC) wglGetProcAddress ("wglDestroyPbufferARB");
+    s_deviceConfig.m_wglQueryPbufferARB = (PFNWGLQUERYPBUFFERARBPROC) wglGetProcAddress ("wglQueryPbufferARB");
   }
 
   // WGL_ARB_pixel_format
@@ -1916,9 +1914,9 @@ void glew::wgl::Initialise ()
     #undef wglGetPixelFormatAttribivARB
     #undef wglGetPixelFormatAttribfvARB
     #undef wglChoosePixelFormatARB
-    s_deviceConfig.m_wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC) glew::GetProcAddress ("wglGetPixelFormatAttribivARB");
-    s_deviceConfig.m_wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC) glew::GetProcAddress ("wglGetPixelFormatAttribfvARB");
-    s_deviceConfig.m_wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC) glew::GetProcAddress ("wglChoosePixelFormatARB");
+    s_deviceConfig.m_wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC) wglGetProcAddress ("wglGetPixelFormatAttribivARB");
+    s_deviceConfig.m_wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC) wglGetProcAddress ("wglGetPixelFormatAttribfvARB");
+    s_deviceConfig.m_wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC) wglGetProcAddress ("wglChoosePixelFormatARB");
   }
 
   // WGL_ARB_render_texture
@@ -1927,9 +1925,9 @@ void glew::wgl::Initialise ()
     #undef wglBindTexImageARB
     #undef wglReleaseTexImageARB
     #undef wglSetPbufferAttribARB
-    s_deviceConfig.m_wglBindTexImageARB = (PFNWGLBINDTEXIMAGEARBPROC) glew::GetProcAddress ("wglBindTexImageARB");
-    s_deviceConfig.m_wglReleaseTexImageARB = (PFNWGLRELEASETEXIMAGEARBPROC) glew::GetProcAddress ("wglReleaseTexImageARB");
-    s_deviceConfig.m_wglSetPbufferAttribARB = (PFNWGLSETPBUFFERATTRIBARBPROC) glew::GetProcAddress ("wglSetPbufferAttribARB");
+    s_deviceConfig.m_wglBindTexImageARB = (PFNWGLBINDTEXIMAGEARBPROC) wglGetProcAddress ("wglBindTexImageARB");
+    s_deviceConfig.m_wglReleaseTexImageARB = (PFNWGLRELEASETEXIMAGEARBPROC) wglGetProcAddress ("wglReleaseTexImageARB");
+    s_deviceConfig.m_wglSetPbufferAttribARB = (PFNWGLSETPBUFFERATTRIBARBPROC) wglGetProcAddress ("wglSetPbufferAttribARB");
   }
 
   // WGL_EXT_display_color_table
@@ -1939,17 +1937,17 @@ void glew::wgl::Initialise ()
     #undef wglLoadDisplayColorTableEXT
     #undef wglBindDisplayColorTableEXT
     #undef wglDestroyDisplayColorTableEXT
-    s_deviceConfig.m_wglCreateDisplayColorTableEXT = (PFNWGLCREATEDISPLAYCOLORTABLEEXTPROC) glew::GetProcAddress ("wglCreateDisplayColorTableEXT");
-    s_deviceConfig.m_wglLoadDisplayColorTableEXT = (PFNWGLLOADDISPLAYCOLORTABLEEXTPROC) glew::GetProcAddress ("wglLoadDisplayColorTableEXT");
-    s_deviceConfig.m_wglBindDisplayColorTableEXT = (PFNWGLBINDDISPLAYCOLORTABLEEXTPROC) glew::GetProcAddress ("wglBindDisplayColorTableEXT");
-    s_deviceConfig.m_wglDestroyDisplayColorTableEXT = (PFNWGLDESTROYDISPLAYCOLORTABLEEXTPROC) glew::GetProcAddress ("wglDestroyDisplayColorTableEXT");
+    s_deviceConfig.m_wglCreateDisplayColorTableEXT = (PFNWGLCREATEDISPLAYCOLORTABLEEXTPROC) wglGetProcAddress ("wglCreateDisplayColorTableEXT");
+    s_deviceConfig.m_wglLoadDisplayColorTableEXT = (PFNWGLLOADDISPLAYCOLORTABLEEXTPROC) wglGetProcAddress ("wglLoadDisplayColorTableEXT");
+    s_deviceConfig.m_wglBindDisplayColorTableEXT = (PFNWGLBINDDISPLAYCOLORTABLEEXTPROC) wglGetProcAddress ("wglBindDisplayColorTableEXT");
+    s_deviceConfig.m_wglDestroyDisplayColorTableEXT = (PFNWGLDESTROYDISPLAYCOLORTABLEEXTPROC) wglGetProcAddress ("wglDestroyDisplayColorTableEXT");
   }
 
   // WGL_EXT_extensions_string
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_extensions_string])
   {
     #undef wglGetExtensionsStringEXT
-    s_deviceConfig.m_wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) glew::GetProcAddress ("wglGetExtensionsStringEXT");
+    s_deviceConfig.m_wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) wglGetProcAddress ("wglGetExtensionsStringEXT");
   }
 
   // WGL_EXT_make_current_read
@@ -1957,8 +1955,8 @@ void glew::wgl::Initialise ()
   {
     #undef wglMakeContextCurrentEXT
     #undef wglGetCurrentReadDCEXT
-    s_deviceConfig.m_wglMakeContextCurrentEXT = (PFNWGLMAKECONTEXTCURRENTEXTPROC) glew::GetProcAddress ("wglMakeContextCurrentEXT");
-    s_deviceConfig.m_wglGetCurrentReadDCEXT = (PFNWGLGETCURRENTREADDCEXTPROC) glew::GetProcAddress ("wglGetCurrentReadDCEXT");
+    s_deviceConfig.m_wglMakeContextCurrentEXT = (PFNWGLMAKECONTEXTCURRENTEXTPROC) wglGetProcAddress ("wglMakeContextCurrentEXT");
+    s_deviceConfig.m_wglGetCurrentReadDCEXT = (PFNWGLGETCURRENTREADDCEXTPROC) wglGetProcAddress ("wglGetCurrentReadDCEXT");
   }
 
   // WGL_EXT_pbuffer
@@ -1969,11 +1967,11 @@ void glew::wgl::Initialise ()
     #undef wglReleasePbufferDCEXT
     #undef wglDestroyPbufferEXT
     #undef wglQueryPbufferEXT
-    s_deviceConfig.m_wglCreatePbufferEXT = (PFNWGLCREATEPBUFFEREXTPROC) glew::GetProcAddress ("wglCreatePbufferEXT");
-    s_deviceConfig.m_wglGetPbufferDCEXT = (PFNWGLGETPBUFFERDCEXTPROC) glew::GetProcAddress ("wglGetPbufferDCEXT");
-    s_deviceConfig.m_wglReleasePbufferDCEXT = (PFNWGLRELEASEPBUFFERDCEXTPROC) glew::GetProcAddress ("wglReleasePbufferDCEXT");
-    s_deviceConfig.m_wglDestroyPbufferEXT = (PFNWGLDESTROYPBUFFEREXTPROC) glew::GetProcAddress ("wglDestroyPbufferEXT");
-    s_deviceConfig.m_wglQueryPbufferEXT = (PFNWGLQUERYPBUFFEREXTPROC) glew::GetProcAddress ("wglQueryPbufferEXT");
+    s_deviceConfig.m_wglCreatePbufferEXT = (PFNWGLCREATEPBUFFEREXTPROC) wglGetProcAddress ("wglCreatePbufferEXT");
+    s_deviceConfig.m_wglGetPbufferDCEXT = (PFNWGLGETPBUFFERDCEXTPROC) wglGetProcAddress ("wglGetPbufferDCEXT");
+    s_deviceConfig.m_wglReleasePbufferDCEXT = (PFNWGLRELEASEPBUFFERDCEXTPROC) wglGetProcAddress ("wglReleasePbufferDCEXT");
+    s_deviceConfig.m_wglDestroyPbufferEXT = (PFNWGLDESTROYPBUFFEREXTPROC) wglGetProcAddress ("wglDestroyPbufferEXT");
+    s_deviceConfig.m_wglQueryPbufferEXT = (PFNWGLQUERYPBUFFEREXTPROC) wglGetProcAddress ("wglQueryPbufferEXT");
   }
 
   // WGL_EXT_pixel_format
@@ -1982,9 +1980,9 @@ void glew::wgl::Initialise ()
     #undef wglGetPixelFormatAttribivEXT
     #undef wglGetPixelFormatAttribfvEXT
     #undef wglChoosePixelFormatEXT
-    s_deviceConfig.m_wglGetPixelFormatAttribivEXT = (PFNWGLGETPIXELFORMATATTRIBIVEXTPROC) glew::GetProcAddress ("wglGetPixelFormatAttribivEXT");
-    s_deviceConfig.m_wglGetPixelFormatAttribfvEXT = (PFNWGLGETPIXELFORMATATTRIBFVEXTPROC) glew::GetProcAddress ("wglGetPixelFormatAttribfvEXT");
-    s_deviceConfig.m_wglChoosePixelFormatEXT = (PFNWGLCHOOSEPIXELFORMATEXTPROC) glew::GetProcAddress ("wglChoosePixelFormatEXT");
+    s_deviceConfig.m_wglGetPixelFormatAttribivEXT = (PFNWGLGETPIXELFORMATATTRIBIVEXTPROC) wglGetProcAddress ("wglGetPixelFormatAttribivEXT");
+    s_deviceConfig.m_wglGetPixelFormatAttribfvEXT = (PFNWGLGETPIXELFORMATATTRIBFVEXTPROC) wglGetProcAddress ("wglGetPixelFormatAttribfvEXT");
+    s_deviceConfig.m_wglChoosePixelFormatEXT = (PFNWGLCHOOSEPIXELFORMATEXTPROC) wglGetProcAddress ("wglChoosePixelFormatEXT");
   }
 
   // WGL_EXT_swap_control
@@ -1992,8 +1990,8 @@ void glew::wgl::Initialise ()
   {
     #undef wglSwapIntervalEXT
     #undef wglGetSwapIntervalEXT
-    s_deviceConfig.m_wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC) glew::GetProcAddress ("wglSwapIntervalEXT");
-    s_deviceConfig.m_wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC) glew::GetProcAddress ("wglGetSwapIntervalEXT");
+    s_deviceConfig.m_wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC) wglGetProcAddress ("wglSwapIntervalEXT");
+    s_deviceConfig.m_wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC) wglGetProcAddress ("wglGetSwapIntervalEXT");
   }
 
   // WGL_I3D_digital_video_control
@@ -2001,8 +1999,8 @@ void glew::wgl::Initialise ()
   {
     #undef wglGetDigitalVideoParametersI3D
     #undef wglSetDigitalVideoParametersI3D
-    s_deviceConfig.m_wglGetDigitalVideoParametersI3D = (PFNWGLGETDIGITALVIDEOPARAMETERSI3DPROC) glew::GetProcAddress ("wglGetDigitalVideoParametersI3D");
-    s_deviceConfig.m_wglSetDigitalVideoParametersI3D = (PFNWGLSETDIGITALVIDEOPARAMETERSI3DPROC) glew::GetProcAddress ("wglSetDigitalVideoParametersI3D");
+    s_deviceConfig.m_wglGetDigitalVideoParametersI3D = (PFNWGLGETDIGITALVIDEOPARAMETERSI3DPROC) wglGetProcAddress ("wglGetDigitalVideoParametersI3D");
+    s_deviceConfig.m_wglSetDigitalVideoParametersI3D = (PFNWGLSETDIGITALVIDEOPARAMETERSI3DPROC) wglGetProcAddress ("wglSetDigitalVideoParametersI3D");
   }
 
   // WGL_I3D_gamma
@@ -2012,10 +2010,10 @@ void glew::wgl::Initialise ()
     #undef wglSetGammaTableParametersI3D
     #undef wglGetGammaTableI3D
     #undef wglSetGammaTableI3D
-    s_deviceConfig.m_wglGetGammaTableParametersI3D = (PFNWGLGETGAMMATABLEPARAMETERSI3DPROC) glew::GetProcAddress ("wglGetGammaTableParametersI3D");
-    s_deviceConfig.m_wglSetGammaTableParametersI3D = (PFNWGLSETGAMMATABLEPARAMETERSI3DPROC) glew::GetProcAddress ("wglSetGammaTableParametersI3D");
-    s_deviceConfig.m_wglGetGammaTableI3D = (PFNWGLGETGAMMATABLEI3DPROC) glew::GetProcAddress ("wglGetGammaTableI3D");
-    s_deviceConfig.m_wglSetGammaTableI3D = (PFNWGLSETGAMMATABLEI3DPROC) glew::GetProcAddress ("wglSetGammaTableI3D");
+    s_deviceConfig.m_wglGetGammaTableParametersI3D = (PFNWGLGETGAMMATABLEPARAMETERSI3DPROC) wglGetProcAddress ("wglGetGammaTableParametersI3D");
+    s_deviceConfig.m_wglSetGammaTableParametersI3D = (PFNWGLSETGAMMATABLEPARAMETERSI3DPROC) wglGetProcAddress ("wglSetGammaTableParametersI3D");
+    s_deviceConfig.m_wglGetGammaTableI3D = (PFNWGLGETGAMMATABLEI3DPROC) wglGetProcAddress ("wglGetGammaTableI3D");
+    s_deviceConfig.m_wglSetGammaTableI3D = (PFNWGLSETGAMMATABLEI3DPROC) wglGetProcAddress ("wglSetGammaTableI3D");
   }
 
   // WGL_I3D_genlock
@@ -2033,18 +2031,18 @@ void glew::wgl::Initialise ()
     #undef wglGenlockSourceDelayI3D
     #undef wglGetGenlockSourceDelayI3D
     #undef wglQueryGenlockMaxSourceDelayI3D
-    s_deviceConfig.m_wglEnableGenlockI3D = (PFNWGLENABLEGENLOCKI3DPROC) glew::GetProcAddress ("wglEnableGenlockI3D");
-    s_deviceConfig.m_wglDisableGenlockI3D = (PFNWGLDISABLEGENLOCKI3DPROC) glew::GetProcAddress ("wglDisableGenlockI3D");
-    s_deviceConfig.m_wglIsEnabledGenlockI3D = (PFNWGLISENABLEDGENLOCKI3DPROC) glew::GetProcAddress ("wglIsEnabledGenlockI3D");
-    s_deviceConfig.m_wglGenlockSourceI3D = (PFNWGLGENLOCKSOURCEI3DPROC) glew::GetProcAddress ("wglGenlockSourceI3D");
-    s_deviceConfig.m_wglGetGenlockSourceI3D = (PFNWGLGETGENLOCKSOURCEI3DPROC) glew::GetProcAddress ("wglGetGenlockSourceI3D");
-    s_deviceConfig.m_wglGenlockSourceEdgeI3D = (PFNWGLGENLOCKSOURCEEDGEI3DPROC) glew::GetProcAddress ("wglGenlockSourceEdgeI3D");
-    s_deviceConfig.m_wglGetGenlockSourceEdgeI3D = (PFNWGLGETGENLOCKSOURCEEDGEI3DPROC) glew::GetProcAddress ("wglGetGenlockSourceEdgeI3D");
-    s_deviceConfig.m_wglGenlockSampleRateI3D = (PFNWGLGENLOCKSAMPLERATEI3DPROC) glew::GetProcAddress ("wglGenlockSampleRateI3D");
-    s_deviceConfig.m_wglGetGenlockSampleRateI3D = (PFNWGLGETGENLOCKSAMPLERATEI3DPROC) glew::GetProcAddress ("wglGetGenlockSampleRateI3D");
-    s_deviceConfig.m_wglGenlockSourceDelayI3D = (PFNWGLGENLOCKSOURCEDELAYI3DPROC) glew::GetProcAddress ("wglGenlockSourceDelayI3D");
-    s_deviceConfig.m_wglGetGenlockSourceDelayI3D = (PFNWGLGETGENLOCKSOURCEDELAYI3DPROC) glew::GetProcAddress ("wglGetGenlockSourceDelayI3D");
-    s_deviceConfig.m_wglQueryGenlockMaxSourceDelayI3D = (PFNWGLQUERYGENLOCKMAXSOURCEDELAYI3DPROC) glew::GetProcAddress ("wglQueryGenlockMaxSourceDelayI3D");
+    s_deviceConfig.m_wglEnableGenlockI3D = (PFNWGLENABLEGENLOCKI3DPROC) wglGetProcAddress ("wglEnableGenlockI3D");
+    s_deviceConfig.m_wglDisableGenlockI3D = (PFNWGLDISABLEGENLOCKI3DPROC) wglGetProcAddress ("wglDisableGenlockI3D");
+    s_deviceConfig.m_wglIsEnabledGenlockI3D = (PFNWGLISENABLEDGENLOCKI3DPROC) wglGetProcAddress ("wglIsEnabledGenlockI3D");
+    s_deviceConfig.m_wglGenlockSourceI3D = (PFNWGLGENLOCKSOURCEI3DPROC) wglGetProcAddress ("wglGenlockSourceI3D");
+    s_deviceConfig.m_wglGetGenlockSourceI3D = (PFNWGLGETGENLOCKSOURCEI3DPROC) wglGetProcAddress ("wglGetGenlockSourceI3D");
+    s_deviceConfig.m_wglGenlockSourceEdgeI3D = (PFNWGLGENLOCKSOURCEEDGEI3DPROC) wglGetProcAddress ("wglGenlockSourceEdgeI3D");
+    s_deviceConfig.m_wglGetGenlockSourceEdgeI3D = (PFNWGLGETGENLOCKSOURCEEDGEI3DPROC) wglGetProcAddress ("wglGetGenlockSourceEdgeI3D");
+    s_deviceConfig.m_wglGenlockSampleRateI3D = (PFNWGLGENLOCKSAMPLERATEI3DPROC) wglGetProcAddress ("wglGenlockSampleRateI3D");
+    s_deviceConfig.m_wglGetGenlockSampleRateI3D = (PFNWGLGETGENLOCKSAMPLERATEI3DPROC) wglGetProcAddress ("wglGetGenlockSampleRateI3D");
+    s_deviceConfig.m_wglGenlockSourceDelayI3D = (PFNWGLGENLOCKSOURCEDELAYI3DPROC) wglGetProcAddress ("wglGenlockSourceDelayI3D");
+    s_deviceConfig.m_wglGetGenlockSourceDelayI3D = (PFNWGLGETGENLOCKSOURCEDELAYI3DPROC) wglGetProcAddress ("wglGetGenlockSourceDelayI3D");
+    s_deviceConfig.m_wglQueryGenlockMaxSourceDelayI3D = (PFNWGLQUERYGENLOCKMAXSOURCEDELAYI3DPROC) wglGetProcAddress ("wglQueryGenlockMaxSourceDelayI3D");
   }
 
   // WGL_I3D_image_buffer
@@ -2054,10 +2052,10 @@ void glew::wgl::Initialise ()
     #undef wglDestroyImageBufferI3D
     #undef wglAssociateImageBufferEventsI3D
     #undef wglReleaseImageBufferEventsI3D
-    s_deviceConfig.m_wglCreateImageBufferI3D = (PFNWGLCREATEIMAGEBUFFERI3DPROC) glew::GetProcAddress ("wglCreateImageBufferI3D");
-    s_deviceConfig.m_wglDestroyImageBufferI3D = (PFNWGLDESTROYIMAGEBUFFERI3DPROC) glew::GetProcAddress ("wglDestroyImageBufferI3D");
-    s_deviceConfig.m_wglAssociateImageBufferEventsI3D = (PFNWGLASSOCIATEIMAGEBUFFEREVENTSI3DPROC) glew::GetProcAddress ("wglAssociateImageBufferEventsI3D");
-    s_deviceConfig.m_wglReleaseImageBufferEventsI3D = (PFNWGLRELEASEIMAGEBUFFEREVENTSI3DPROC) glew::GetProcAddress ("wglReleaseImageBufferEventsI3D");
+    s_deviceConfig.m_wglCreateImageBufferI3D = (PFNWGLCREATEIMAGEBUFFERI3DPROC) wglGetProcAddress ("wglCreateImageBufferI3D");
+    s_deviceConfig.m_wglDestroyImageBufferI3D = (PFNWGLDESTROYIMAGEBUFFERI3DPROC) wglGetProcAddress ("wglDestroyImageBufferI3D");
+    s_deviceConfig.m_wglAssociateImageBufferEventsI3D = (PFNWGLASSOCIATEIMAGEBUFFEREVENTSI3DPROC) wglGetProcAddress ("wglAssociateImageBufferEventsI3D");
+    s_deviceConfig.m_wglReleaseImageBufferEventsI3D = (PFNWGLRELEASEIMAGEBUFFEREVENTSI3DPROC) wglGetProcAddress ("wglReleaseImageBufferEventsI3D");
   }
 
   // WGL_I3D_swap_frame_lock
@@ -2067,10 +2065,10 @@ void glew::wgl::Initialise ()
     #undef wglDisableFrameLockI3D
     #undef wglIsEnabledFrameLockI3D
     #undef wglQueryFrameLockMasterI3D
-    s_deviceConfig.m_wglEnableFrameLockI3D = (PFNWGLENABLEFRAMELOCKI3DPROC) glew::GetProcAddress ("wglEnableFrameLockI3D");
-    s_deviceConfig.m_wglDisableFrameLockI3D = (PFNWGLDISABLEFRAMELOCKI3DPROC) glew::GetProcAddress ("wglDisableFrameLockI3D");
-    s_deviceConfig.m_wglIsEnabledFrameLockI3D = (PFNWGLISENABLEDFRAMELOCKI3DPROC) glew::GetProcAddress ("wglIsEnabledFrameLockI3D");
-    s_deviceConfig.m_wglQueryFrameLockMasterI3D = (PFNWGLQUERYFRAMELOCKMASTERI3DPROC) glew::GetProcAddress ("wglQueryFrameLockMasterI3D");
+    s_deviceConfig.m_wglEnableFrameLockI3D = (PFNWGLENABLEFRAMELOCKI3DPROC) wglGetProcAddress ("wglEnableFrameLockI3D");
+    s_deviceConfig.m_wglDisableFrameLockI3D = (PFNWGLDISABLEFRAMELOCKI3DPROC) wglGetProcAddress ("wglDisableFrameLockI3D");
+    s_deviceConfig.m_wglIsEnabledFrameLockI3D = (PFNWGLISENABLEDFRAMELOCKI3DPROC) wglGetProcAddress ("wglIsEnabledFrameLockI3D");
+    s_deviceConfig.m_wglQueryFrameLockMasterI3D = (PFNWGLQUERYFRAMELOCKMASTERI3DPROC) wglGetProcAddress ("wglQueryFrameLockMasterI3D");
   }
 
   // WGL_I3D_swap_frame_usage
@@ -2080,24 +2078,24 @@ void glew::wgl::Initialise ()
     #undef wglBeginFrameTrackingI3D
     #undef wglEndFrameTrackingI3D
     #undef wglQueryFrameTrackingI3D
-    s_deviceConfig.m_wglGetFrameUsageI3D = (PFNWGLGETFRAMEUSAGEI3DPROC) glew::GetProcAddress ("wglGetFrameUsageI3D");
-    s_deviceConfig.m_wglBeginFrameTrackingI3D = (PFNWGLBEGINFRAMETRACKINGI3DPROC) glew::GetProcAddress ("wglBeginFrameTrackingI3D");
-    s_deviceConfig.m_wglEndFrameTrackingI3D = (PFNWGLENDFRAMETRACKINGI3DPROC) glew::GetProcAddress ("wglEndFrameTrackingI3D");
-    s_deviceConfig.m_wglQueryFrameTrackingI3D = (PFNWGLQUERYFRAMETRACKINGI3DPROC) glew::GetProcAddress ("wglQueryFrameTrackingI3D");
+    s_deviceConfig.m_wglGetFrameUsageI3D = (PFNWGLGETFRAMEUSAGEI3DPROC) wglGetProcAddress ("wglGetFrameUsageI3D");
+    s_deviceConfig.m_wglBeginFrameTrackingI3D = (PFNWGLBEGINFRAMETRACKINGI3DPROC) wglGetProcAddress ("wglBeginFrameTrackingI3D");
+    s_deviceConfig.m_wglEndFrameTrackingI3D = (PFNWGLENDFRAMETRACKINGI3DPROC) wglGetProcAddress ("wglEndFrameTrackingI3D");
+    s_deviceConfig.m_wglQueryFrameTrackingI3D = (PFNWGLQUERYFRAMETRACKINGI3DPROC) wglGetProcAddress ("wglQueryFrameTrackingI3D");
   }
 
   // WGL_NV_copy_image
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_copy_image])
   {
     #undef wglCopyImageSubDataNV
-    s_deviceConfig.m_wglCopyImageSubDataNV = (PFNWGLCOPYIMAGESUBDATANVPROC) glew::GetProcAddress ("wglCopyImageSubDataNV");
+    s_deviceConfig.m_wglCopyImageSubDataNV = (PFNWGLCOPYIMAGESUBDATANVPROC) wglGetProcAddress ("wglCopyImageSubDataNV");
   }
 
   // WGL_NV_delay_before_swap
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_delay_before_swap])
   {
     #undef wglDelayBeforeSwapNV
-    s_deviceConfig.m_wglDelayBeforeSwapNV = (PFNWGLDELAYBEFORESWAPNVPROC) glew::GetProcAddress ("wglDelayBeforeSwapNV");
+    s_deviceConfig.m_wglDelayBeforeSwapNV = (PFNWGLDELAYBEFORESWAPNVPROC) wglGetProcAddress ("wglDelayBeforeSwapNV");
   }
 
   // WGL_NV_DX_interop
@@ -2111,14 +2109,14 @@ void glew::wgl::Initialise ()
     #undef wglDXObjectAccessNV
     #undef wglDXLockObjectsNV
     #undef wglDXUnlockObjectsNV
-    s_deviceConfig.m_wglDXSetResourceShareHandleNV = (PFNWGLDXSETRESOURCESHAREHANDLENVPROC) glew::GetProcAddress ("wglDXSetResourceShareHandleNV");
-    s_deviceConfig.m_wglDXOpenDeviceNV = (PFNWGLDXOPENDEVICENVPROC) glew::GetProcAddress ("wglDXOpenDeviceNV");
-    s_deviceConfig.m_wglDXCloseDeviceNV = (PFNWGLDXCLOSEDEVICENVPROC) glew::GetProcAddress ("wglDXCloseDeviceNV");
-    s_deviceConfig.m_wglDXRegisterObjectNV = (PFNWGLDXREGISTEROBJECTNVPROC) glew::GetProcAddress ("wglDXRegisterObjectNV");
-    s_deviceConfig.m_wglDXUnregisterObjectNV = (PFNWGLDXUNREGISTEROBJECTNVPROC) glew::GetProcAddress ("wglDXUnregisterObjectNV");
-    s_deviceConfig.m_wglDXObjectAccessNV = (PFNWGLDXOBJECTACCESSNVPROC) glew::GetProcAddress ("wglDXObjectAccessNV");
-    s_deviceConfig.m_wglDXLockObjectsNV = (PFNWGLDXLOCKOBJECTSNVPROC) glew::GetProcAddress ("wglDXLockObjectsNV");
-    s_deviceConfig.m_wglDXUnlockObjectsNV = (PFNWGLDXUNLOCKOBJECTSNVPROC) glew::GetProcAddress ("wglDXUnlockObjectsNV");
+    s_deviceConfig.m_wglDXSetResourceShareHandleNV = (PFNWGLDXSETRESOURCESHAREHANDLENVPROC) wglGetProcAddress ("wglDXSetResourceShareHandleNV");
+    s_deviceConfig.m_wglDXOpenDeviceNV = (PFNWGLDXOPENDEVICENVPROC) wglGetProcAddress ("wglDXOpenDeviceNV");
+    s_deviceConfig.m_wglDXCloseDeviceNV = (PFNWGLDXCLOSEDEVICENVPROC) wglGetProcAddress ("wglDXCloseDeviceNV");
+    s_deviceConfig.m_wglDXRegisterObjectNV = (PFNWGLDXREGISTEROBJECTNVPROC) wglGetProcAddress ("wglDXRegisterObjectNV");
+    s_deviceConfig.m_wglDXUnregisterObjectNV = (PFNWGLDXUNREGISTEROBJECTNVPROC) wglGetProcAddress ("wglDXUnregisterObjectNV");
+    s_deviceConfig.m_wglDXObjectAccessNV = (PFNWGLDXOBJECTACCESSNVPROC) wglGetProcAddress ("wglDXObjectAccessNV");
+    s_deviceConfig.m_wglDXLockObjectsNV = (PFNWGLDXLOCKOBJECTSNVPROC) wglGetProcAddress ("wglDXLockObjectsNV");
+    s_deviceConfig.m_wglDXUnlockObjectsNV = (PFNWGLDXUNLOCKOBJECTSNVPROC) wglGetProcAddress ("wglDXUnlockObjectsNV");
   }
 
   // WGL_NV_gpu_affinity
@@ -2129,11 +2127,11 @@ void glew::wgl::Initialise ()
     #undef wglCreateAffinityDCNV
     #undef wglEnumGpusFromAffinityDCNV
     #undef wglDeleteDCNV
-    s_deviceConfig.m_wglEnumGpusNV = (PFNWGLENUMGPUSNVPROC) glew::GetProcAddress ("wglEnumGpusNV");
-    s_deviceConfig.m_wglEnumGpuDevicesNV = (PFNWGLENUMGPUDEVICESNVPROC) glew::GetProcAddress ("wglEnumGpuDevicesNV");
-    s_deviceConfig.m_wglCreateAffinityDCNV = (PFNWGLCREATEAFFINITYDCNVPROC) glew::GetProcAddress ("wglCreateAffinityDCNV");
-    s_deviceConfig.m_wglEnumGpusFromAffinityDCNV = (PFNWGLENUMGPUSFROMAFFINITYDCNVPROC) glew::GetProcAddress ("wglEnumGpusFromAffinityDCNV");
-    s_deviceConfig.m_wglDeleteDCNV = (PFNWGLDELETEDCNVPROC) glew::GetProcAddress ("wglDeleteDCNV");
+    s_deviceConfig.m_wglEnumGpusNV = (PFNWGLENUMGPUSNVPROC) wglGetProcAddress ("wglEnumGpusNV");
+    s_deviceConfig.m_wglEnumGpuDevicesNV = (PFNWGLENUMGPUDEVICESNVPROC) wglGetProcAddress ("wglEnumGpuDevicesNV");
+    s_deviceConfig.m_wglCreateAffinityDCNV = (PFNWGLCREATEAFFINITYDCNVPROC) wglGetProcAddress ("wglCreateAffinityDCNV");
+    s_deviceConfig.m_wglEnumGpusFromAffinityDCNV = (PFNWGLENUMGPUSFROMAFFINITYDCNVPROC) wglGetProcAddress ("wglEnumGpusFromAffinityDCNV");
+    s_deviceConfig.m_wglDeleteDCNV = (PFNWGLDELETEDCNVPROC) wglGetProcAddress ("wglDeleteDCNV");
   }
 
   // WGL_NV_present_video
@@ -2142,9 +2140,9 @@ void glew::wgl::Initialise ()
     #undef wglEnumerateVideoDevicesNV
     #undef wglBindVideoDeviceNV
     #undef wglQueryCurrentContextNV
-    s_deviceConfig.m_wglEnumerateVideoDevicesNV = (PFNWGLENUMERATEVIDEODEVICESNVPROC) glew::GetProcAddress ("wglEnumerateVideoDevicesNV");
-    s_deviceConfig.m_wglBindVideoDeviceNV = (PFNWGLBINDVIDEODEVICENVPROC) glew::GetProcAddress ("wglBindVideoDeviceNV");
-    s_deviceConfig.m_wglQueryCurrentContextNV = (PFNWGLQUERYCURRENTCONTEXTNVPROC) glew::GetProcAddress ("wglQueryCurrentContextNV");
+    s_deviceConfig.m_wglEnumerateVideoDevicesNV = (PFNWGLENUMERATEVIDEODEVICESNVPROC) wglGetProcAddress ("wglEnumerateVideoDevicesNV");
+    s_deviceConfig.m_wglBindVideoDeviceNV = (PFNWGLBINDVIDEODEVICENVPROC) wglGetProcAddress ("wglBindVideoDeviceNV");
+    s_deviceConfig.m_wglQueryCurrentContextNV = (PFNWGLQUERYCURRENTCONTEXTNVPROC) wglGetProcAddress ("wglQueryCurrentContextNV");
   }
 
   // WGL_NV_swap_group
@@ -2156,12 +2154,12 @@ void glew::wgl::Initialise ()
     #undef wglQueryMaxSwapGroupsNV
     #undef wglQueryFrameCountNV
     #undef wglResetFrameCountNV
-    s_deviceConfig.m_wglJoinSwapGroupNV = (PFNWGLJOINSWAPGROUPNVPROC) glew::GetProcAddress ("wglJoinSwapGroupNV");
-    s_deviceConfig.m_wglBindSwapBarrierNV = (PFNWGLBINDSWAPBARRIERNVPROC) glew::GetProcAddress ("wglBindSwapBarrierNV");
-    s_deviceConfig.m_wglQuerySwapGroupNV = (PFNWGLQUERYSWAPGROUPNVPROC) glew::GetProcAddress ("wglQuerySwapGroupNV");
-    s_deviceConfig.m_wglQueryMaxSwapGroupsNV = (PFNWGLQUERYMAXSWAPGROUPSNVPROC) glew::GetProcAddress ("wglQueryMaxSwapGroupsNV");
-    s_deviceConfig.m_wglQueryFrameCountNV = (PFNWGLQUERYFRAMECOUNTNVPROC) glew::GetProcAddress ("wglQueryFrameCountNV");
-    s_deviceConfig.m_wglResetFrameCountNV = (PFNWGLRESETFRAMECOUNTNVPROC) glew::GetProcAddress ("wglResetFrameCountNV");
+    s_deviceConfig.m_wglJoinSwapGroupNV = (PFNWGLJOINSWAPGROUPNVPROC) wglGetProcAddress ("wglJoinSwapGroupNV");
+    s_deviceConfig.m_wglBindSwapBarrierNV = (PFNWGLBINDSWAPBARRIERNVPROC) wglGetProcAddress ("wglBindSwapBarrierNV");
+    s_deviceConfig.m_wglQuerySwapGroupNV = (PFNWGLQUERYSWAPGROUPNVPROC) wglGetProcAddress ("wglQuerySwapGroupNV");
+    s_deviceConfig.m_wglQueryMaxSwapGroupsNV = (PFNWGLQUERYMAXSWAPGROUPSNVPROC) wglGetProcAddress ("wglQueryMaxSwapGroupsNV");
+    s_deviceConfig.m_wglQueryFrameCountNV = (PFNWGLQUERYFRAMECOUNTNVPROC) wglGetProcAddress ("wglQueryFrameCountNV");
+    s_deviceConfig.m_wglResetFrameCountNV = (PFNWGLRESETFRAMECOUNTNVPROC) wglGetProcAddress ("wglResetFrameCountNV");
   }
 
   // WGL_NV_video_capture
@@ -2172,11 +2170,11 @@ void glew::wgl::Initialise ()
     #undef wglLockVideoCaptureDeviceNV
     #undef wglQueryVideoCaptureDeviceNV
     #undef wglReleaseVideoCaptureDeviceNV
-    s_deviceConfig.m_wglBindVideoCaptureDeviceNV = (PFNWGLBINDVIDEOCAPTUREDEVICENVPROC) glew::GetProcAddress ("wglBindVideoCaptureDeviceNV");
-    s_deviceConfig.m_wglEnumerateVideoCaptureDevicesNV = (PFNWGLENUMERATEVIDEOCAPTUREDEVICESNVPROC) glew::GetProcAddress ("wglEnumerateVideoCaptureDevicesNV");
-    s_deviceConfig.m_wglLockVideoCaptureDeviceNV = (PFNWGLLOCKVIDEOCAPTUREDEVICENVPROC) glew::GetProcAddress ("wglLockVideoCaptureDeviceNV");
-    s_deviceConfig.m_wglQueryVideoCaptureDeviceNV = (PFNWGLQUERYVIDEOCAPTUREDEVICENVPROC) glew::GetProcAddress ("wglQueryVideoCaptureDeviceNV");
-    s_deviceConfig.m_wglReleaseVideoCaptureDeviceNV = (PFNWGLRELEASEVIDEOCAPTUREDEVICENVPROC) glew::GetProcAddress ("wglReleaseVideoCaptureDeviceNV");
+    s_deviceConfig.m_wglBindVideoCaptureDeviceNV = (PFNWGLBINDVIDEOCAPTUREDEVICENVPROC) wglGetProcAddress ("wglBindVideoCaptureDeviceNV");
+    s_deviceConfig.m_wglEnumerateVideoCaptureDevicesNV = (PFNWGLENUMERATEVIDEOCAPTUREDEVICESNVPROC) wglGetProcAddress ("wglEnumerateVideoCaptureDevicesNV");
+    s_deviceConfig.m_wglLockVideoCaptureDeviceNV = (PFNWGLLOCKVIDEOCAPTUREDEVICENVPROC) wglGetProcAddress ("wglLockVideoCaptureDeviceNV");
+    s_deviceConfig.m_wglQueryVideoCaptureDeviceNV = (PFNWGLQUERYVIDEOCAPTUREDEVICENVPROC) wglGetProcAddress ("wglQueryVideoCaptureDeviceNV");
+    s_deviceConfig.m_wglReleaseVideoCaptureDeviceNV = (PFNWGLRELEASEVIDEOCAPTUREDEVICENVPROC) wglGetProcAddress ("wglReleaseVideoCaptureDeviceNV");
   }
 
   // WGL_NV_video_output
@@ -2188,12 +2186,12 @@ void glew::wgl::Initialise ()
     #undef wglReleaseVideoImageNV
     #undef wglSendPbufferToVideoNV
     #undef wglGetVideoInfoNV
-    s_deviceConfig.m_wglGetVideoDeviceNV = (PFNWGLGETVIDEODEVICENVPROC) glew::GetProcAddress ("wglGetVideoDeviceNV");
-    s_deviceConfig.m_wglReleaseVideoDeviceNV = (PFNWGLRELEASEVIDEODEVICENVPROC) glew::GetProcAddress ("wglReleaseVideoDeviceNV");
-    s_deviceConfig.m_wglBindVideoImageNV = (PFNWGLBINDVIDEOIMAGENVPROC) glew::GetProcAddress ("wglBindVideoImageNV");
-    s_deviceConfig.m_wglReleaseVideoImageNV = (PFNWGLRELEASEVIDEOIMAGENVPROC) glew::GetProcAddress ("wglReleaseVideoImageNV");
-    s_deviceConfig.m_wglSendPbufferToVideoNV = (PFNWGLSENDPBUFFERTOVIDEONVPROC) glew::GetProcAddress ("wglSendPbufferToVideoNV");
-    s_deviceConfig.m_wglGetVideoInfoNV = (PFNWGLGETVIDEOINFONVPROC) glew::GetProcAddress ("wglGetVideoInfoNV");
+    s_deviceConfig.m_wglGetVideoDeviceNV = (PFNWGLGETVIDEODEVICENVPROC) wglGetProcAddress ("wglGetVideoDeviceNV");
+    s_deviceConfig.m_wglReleaseVideoDeviceNV = (PFNWGLRELEASEVIDEODEVICENVPROC) wglGetProcAddress ("wglReleaseVideoDeviceNV");
+    s_deviceConfig.m_wglBindVideoImageNV = (PFNWGLBINDVIDEOIMAGENVPROC) wglGetProcAddress ("wglBindVideoImageNV");
+    s_deviceConfig.m_wglReleaseVideoImageNV = (PFNWGLRELEASEVIDEOIMAGENVPROC) wglGetProcAddress ("wglReleaseVideoImageNV");
+    s_deviceConfig.m_wglSendPbufferToVideoNV = (PFNWGLSENDPBUFFERTOVIDEONVPROC) wglGetProcAddress ("wglSendPbufferToVideoNV");
+    s_deviceConfig.m_wglGetVideoInfoNV = (PFNWGLGETVIDEOINFONVPROC) wglGetProcAddress ("wglGetVideoInfoNV");
   }
 
   // WGL_NV_vertex_array_range
@@ -2201,8 +2199,8 @@ void glew::wgl::Initialise ()
   {
     #undef wglAllocateMemoryNV
     #undef wglFreeMemoryNV
-    s_deviceConfig.m_wglAllocateMemoryNV = (PFNWGLALLOCATEMEMORYNVPROC) glew::GetProcAddress ("wglAllocateMemoryNV");
-    s_deviceConfig.m_wglFreeMemoryNV = (PFNWGLFREEMEMORYNVPROC) glew::GetProcAddress ("wglFreeMemoryNV");
+    s_deviceConfig.m_wglAllocateMemoryNV = (PFNWGLALLOCATEMEMORYNVPROC) wglGetProcAddress ("wglAllocateMemoryNV");
+    s_deviceConfig.m_wglFreeMemoryNV = (PFNWGLFREEMEMORYNVPROC) wglGetProcAddress ("wglFreeMemoryNV");
   }
 
   // WGL_OML_sync_control
@@ -2214,12 +2212,12 @@ void glew::wgl::Initialise ()
     #undef wglSwapLayerBuffersMscOML
     #undef wglWaitForMscOML
     #undef wglWaitForSbcOML
-    s_deviceConfig.m_wglGetSyncValuesOML = (PFNWGLGETSYNCVALUESOMLPROC) glew::GetProcAddress ("wglGetSyncValuesOML");
-    s_deviceConfig.m_wglGetMscRateOML = (PFNWGLGETMSCRATEOMLPROC) glew::GetProcAddress ("wglGetMscRateOML");
-    s_deviceConfig.m_wglSwapBuffersMscOML = (PFNWGLSWAPBUFFERSMSCOMLPROC) glew::GetProcAddress ("wglSwapBuffersMscOML");
-    s_deviceConfig.m_wglSwapLayerBuffersMscOML = (PFNWGLSWAPLAYERBUFFERSMSCOMLPROC) glew::GetProcAddress ("wglSwapLayerBuffersMscOML");
-    s_deviceConfig.m_wglWaitForMscOML = (PFNWGLWAITFORMSCOMLPROC) glew::GetProcAddress ("wglWaitForMscOML");
-    s_deviceConfig.m_wglWaitForSbcOML = (PFNWGLWAITFORSBCOMLPROC) glew::GetProcAddress ("wglWaitForSbcOML");
+    s_deviceConfig.m_wglGetSyncValuesOML = (PFNWGLGETSYNCVALUESOMLPROC) wglGetProcAddress ("wglGetSyncValuesOML");
+    s_deviceConfig.m_wglGetMscRateOML = (PFNWGLGETMSCRATEOMLPROC) wglGetProcAddress ("wglGetMscRateOML");
+    s_deviceConfig.m_wglSwapBuffersMscOML = (PFNWGLSWAPBUFFERSMSCOMLPROC) wglGetProcAddress ("wglSwapBuffersMscOML");
+    s_deviceConfig.m_wglSwapLayerBuffersMscOML = (PFNWGLSWAPLAYERBUFFERSMSCOMLPROC) wglGetProcAddress ("wglSwapLayerBuffersMscOML");
+    s_deviceConfig.m_wglWaitForMscOML = (PFNWGLWAITFORMSCOMLPROC) wglGetProcAddress ("wglWaitForMscOML");
+    s_deviceConfig.m_wglWaitForSbcOML = (PFNWGLWAITFORSBCOMLPROC) wglGetProcAddress ("wglWaitForSbcOML");
   }
 
 }
