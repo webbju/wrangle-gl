@@ -285,7 +285,7 @@ namespace wrangle_gl_generator
 
               if (baseSpecFeatureSet)
               {
-                commandFuncPointerBuilder.AppendFormat ("{0} {1} {2} {3} (", m_funcApiEntryPrefix, returnType, m_funcApiEntryPostfix, command);
+                commandFuncPointerBuilder.AppendFormat ("extern \"C\" {0} {1} {2} {3} (", m_funcApiEntryPrefix, returnType, m_funcApiEntryPostfix, command);
               }
               else
               {
@@ -752,11 +752,36 @@ namespace wrangle_gl_generator
 
               bool voidFunction = (returnType.Contains ("void") && !returnType.Contains ("*"));
 
-              writer.Write (string.Format ("\n{0}\n{{\n", prototype));
+              StringBuilder paramBuilder = new StringBuilder ();
+
+              if (parameters.Count > 0)
+              {
+                foreach (KeyValuePair <string, string> param in parameters)
+                {
+                  string name = param.Key;
+
+                  string type = param.Value;
+
+                  paramBuilder.AppendFormat ("{0} {1}, ", type, name);
+                }
+
+                if (paramBuilder.Length >= 2)
+                {
+                  paramBuilder.Length -= 2; // strip trailing ", "
+                }
+              }
+
+              writer.Write (string.Format ("\n#undef {0}\n", command));
+
+              writer.Write (string.Format ("\n{0} glew::{1}::{2} ({3})\n{{\n", returnType, m_api [0], command, paramBuilder.ToString ()));
 
               writer.Write (string.Format ("  // {0} - {1}\n", keypair.Key, command));
 
-              StringBuilder paramBuilder = new StringBuilder ();
+              // 
+              // Clear and re-evaluate pass-through parameters.
+              // 
+
+              paramBuilder.Clear ();
 
               if (parameters.Count > 0)
               {

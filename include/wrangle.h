@@ -26,23 +26,25 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if defined (GLEW_USE_OPENGL)
-  #if (GLEW_USE_OPENGL_CORE || GLEW_USE_OPENGL_ES)
-    #error GLEW_USE_OPENGL_CORE or GLEW_USE_OPENGL_ES used in collaboration with GLEW_USE_OPENGL
-  #endif
-  #include <wrangle-gl.h>
-#elif defined (GLEW_USE_OPENGL_CORE)
-  #if (GLEW_USE_OPENGL || GLEW_USE_OPENGL_ES)
-    #error GLEW_USE_OPENGL or GLEW_USE_OPENGL_ES used in collaboration with GLEW_USE_OPENGL_CORE
-  #endif
-  #include <wrangle-glcore.h>
-#elif defined (GLEW_USE_OPENGL_ES)
-  #if (GLEW_USE_OPENGL || GLEW_USE_OPENGL_CORE)
-    #error GLEW_USE_OPENGL or GLEW_USE_OPENGL_CORE used in collaboration with GLEW_USE_OPENGL_ES
-  #endif
-  #include <wrangle-gles.h>
+#if 0
+#if GLEW_USE_OPENGL
+#if (GLEW_USE_OPENGL_CORE || GLEW_USE_OPENGL_ES)
+#error GLEW_USE_OPENGL_CORE or GLEW_USE_OPENGL_ES used in collaboration with GLEW_USE_OPENGL
+#endif
+#include <wrangle-gl.h>
+#elif GLEW_USE_OPENGL_CORE
+#if (GLEW_USE_OPENGL || GLEW_USE_OPENGL_ES)
+#error GLEW_USE_OPENGL or GLEW_USE_OPENGL_ES used in collaboration with GLEW_USE_OPENGL_CORE
+#endif
+#include <wrangle-glcore.h>
+#elif GLEW_USE_OPENGL_ES
+#if (GLEW_USE_OPENGL || GLEW_USE_OPENGL_CORE)
+#error GLEW_USE_OPENGL or GLEW_USE_OPENGL_CORE used in collaboration with GLEW_USE_OPENGL_ES
+#endif
+#include <wrangle-gles.h>
 #else
-  #error GLEW_USE_OPENGL, GLEW_USE_OPENGL_ES or GLEW_USE_OPENGL_CORE definition required.
+#error GLEW_USE_OPENGL, GLEW_USE_OPENGL_ES or GLEW_USE_OPENGL_CORE definition required.
+#endif
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

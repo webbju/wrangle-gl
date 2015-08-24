@@ -8,6 +8,21 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+typedef unsigned int GLenum;
+typedef unsigned char GLboolean;
+typedef unsigned int GLbitfield;
+typedef signed char GLbyte;
+typedef short GLshort;
+typedef int GLint;
+typedef int GLsizei;
+typedef unsigned char GLubyte;
+typedef unsigned short GLushort;
+typedef unsigned int GLuint;
+typedef float GLfloat;
+typedef float GLclampf;
+typedef double GLdouble;
+typedef double GLclampd;
+typedef void GLvoid;
 
 #include <GL/wgl.h>
 
@@ -17,32 +32,32 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-WINGDIAPI int WINAPI ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd);
+extern "C" WINGDIAPI int WINAPI ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd);
 WINGDIAPI int WINAPI DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd);
 WINGDIAPI UINT WINAPI GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd);
-WINGDIAPI int WINAPI GetPixelFormat (HDC hdc);
-WINGDIAPI BOOL WINAPI SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd);
-WINGDIAPI BOOL WINAPI SwapBuffers (HDC hdc);
-WINGDIAPI BOOL WINAPI wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask);
-WINGDIAPI HGLRC WINAPI wglCreateContext (HDC hDc);
-WINGDIAPI HGLRC WINAPI wglCreateLayerContext (HDC hDc, int level);
-WINGDIAPI BOOL WINAPI wglDeleteContext (HGLRC oldContext);
+extern "C" WINGDIAPI int WINAPI GetPixelFormat (HDC hdc);
+extern "C" WINGDIAPI BOOL WINAPI SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd);
+extern "C" WINGDIAPI BOOL WINAPI SwapBuffers (HDC hdc);
+extern "C" WINGDIAPI BOOL WINAPI wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask);
+extern "C" WINGDIAPI HGLRC WINAPI wglCreateContext (HDC hDc);
+extern "C" WINGDIAPI HGLRC WINAPI wglCreateLayerContext (HDC hDc, int level);
+extern "C" WINGDIAPI BOOL WINAPI wglDeleteContext (HGLRC oldContext);
 WINGDIAPI BOOL WINAPI wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, const LAYERPLANEDESCRIPTOR * plpd);
-WINGDIAPI HGLRC WINAPI wglGetCurrentContext ();
-WINGDIAPI HDC WINAPI wglGetCurrentDC ();
+extern "C" WINGDIAPI HGLRC WINAPI wglGetCurrentContext ();
+extern "C" WINGDIAPI HDC WINAPI wglGetCurrentDC ();
 WINGDIAPI int WINAPI wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
-WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
-WINGDIAPI BOOL WINAPI wglMakeCurrent (HDC hDc, HGLRC newContext);
-WINGDIAPI BOOL WINAPI wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize);
-WINGDIAPI int WINAPI wglSetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
-WINGDIAPI BOOL WINAPI wglShareLists (HGLRC hrcSrvShare, HGLRC hrcSrvSource);
-WINGDIAPI BOOL WINAPI wglSwapLayerBuffers (HDC hdc, UINT fuFlags);
-WINGDIAPI BOOL WINAPI wglUseFontBitmaps (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-WINGDIAPI BOOL WINAPI wglUseFontBitmapsA (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-WINGDIAPI BOOL WINAPI wglUseFontBitmapsW (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-WINGDIAPI BOOL WINAPI wglUseFontOutlines (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
-WINGDIAPI BOOL WINAPI wglUseFontOutlinesA (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
-WINGDIAPI BOOL WINAPI wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
+extern "C" WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
+extern "C" WINGDIAPI BOOL WINAPI wglMakeCurrent (HDC hDc, HGLRC newContext);
+extern "C" WINGDIAPI BOOL WINAPI wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize);
+extern "C" WINGDIAPI int WINAPI wglSetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
+extern "C" WINGDIAPI BOOL WINAPI wglShareLists (HGLRC hrcSrvShare, HGLRC hrcSrvSource);
+extern "C" WINGDIAPI BOOL WINAPI wglSwapLayerBuffers (HDC hdc, UINT fuFlags);
+extern "C" WINGDIAPI BOOL WINAPI wglUseFontBitmaps (HDC hDC, DWORD first, DWORD count, DWORD listBase);
+extern "C" WINGDIAPI BOOL WINAPI wglUseFontBitmapsA (HDC hDC, DWORD first, DWORD count, DWORD listBase);
+extern "C" WINGDIAPI BOOL WINAPI wglUseFontBitmapsW (HDC hDC, DWORD first, DWORD count, DWORD listBase);
+extern "C" WINGDIAPI BOOL WINAPI wglUseFontOutlines (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
+extern "C" WINGDIAPI BOOL WINAPI wglUseFontOutlinesA (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
+extern "C" WINGDIAPI BOOL WINAPI wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
 typedef BOOL (WINAPI * PFNWGLSETSTEREOEMITTERSTATE3DLPROC) /* wglSetStereoEmitterState3DL */ (HDC hDC, UINT uState);
 typedef UINT (WINAPI * PFNWGLGETGPUIDSAMDPROC) /* wglGetGPUIDsAMD */ (UINT maxCount, UINT * ids);
 typedef INT (WINAPI * PFNWGLGETGPUINFOAMDPROC) /* wglGetGPUInfoAMD */ (UINT id, int property, GLenum dataType, UINT size, void * data);

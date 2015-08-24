@@ -51,9 +51,27 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
-      writer.Write ("\n#include <GL/wgl.h>\n");
+      writer.Write (@"typedef unsigned int GLenum;
+typedef unsigned char GLboolean;
+typedef unsigned int GLbitfield;
+typedef signed char GLbyte;
+typedef short GLshort;
+typedef int GLint;
+typedef int GLsizei;
+typedef unsigned char GLubyte;
+typedef unsigned short GLushort;
+typedef unsigned int GLuint;
+typedef float GLfloat;
+typedef float GLclampf;
+typedef double GLdouble;
+typedef double GLclampd;
+typedef void GLvoid;
 
-      writer.Write ("\n#include <GL/wglext.h>\n\n");
+#include <GL/wgl.h>
+
+#include <GL/wglext.h>
+
+");
 
       base.ExportHpp (ref writer);
 
@@ -70,19 +88,9 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
-      writer.Write ("\n#define GLEW_USE_WGL 1\n");
-
       writer.Write ("\n#include <string>\n");
 
-      writer.Write ("\n#include <unordered_set>\n");
-
-      writer.Write ("\n#include <windows.h>\n");
-
-      writer.Write ("\n#include <GL/gl.h>\n");
-
-      writer.Write ("\n#undef wglUseFontBitmaps\n");
-
-      writer.Write ("\n#undef wglUseFontOutlines\n\n");
+      writer.Write ("\n#include <unordered_set>\n\n");
 
       base.ExportCpp (ref writer);
 
@@ -269,12 +277,12 @@ namespace wrangle_gl_generator
 
             writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
 
-            foreach (XmlNode commandNode in requireCommandNodes)
+            /*foreach (XmlNode commandNode in requireCommandNodes)
             {
               string command = commandNode.Attributes ["name"].Value;
 
               writer.Write (string.Format ("    #undef {0}\n", command));
-            }
+            }*/
 
             foreach (XmlNode commandNode in requireCommandNodes)
             {

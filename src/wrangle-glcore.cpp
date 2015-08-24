@@ -12,7 +12,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glReleaseShaderCompiler ()
+#undef glReleaseShaderCompiler
+
+void  glew::glcore::glReleaseShaderCompiler ()
 {
   // GL_ARB_ES2_compatibility - glReleaseShaderCompiler
   if (s_deviceConfig.m_glReleaseShaderCompiler)
@@ -25,7 +27,9 @@ void glReleaseShaderCompiler ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glShaderBinary (GLsizei count, const GLuint * shaders, GLenum binaryformat, const void * binary, GLsizei length)
+#undef glShaderBinary
+
+void  glew::glcore::glShaderBinary (GLsizei count, const GLuint * shaders, GLenum binaryformat, const void * binary, GLsizei length)
 {
   // GL_ARB_ES2_compatibility - glShaderBinary
   if (s_deviceConfig.m_glShaderBinary)
@@ -38,7 +42,9 @@ void glShaderBinary (GLsizei count, const GLuint * shaders, GLenum binaryformat,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetShaderPrecisionFormat (GLenum shadertype, GLenum precisiontype, GLint * range, GLint * precision)
+#undef glGetShaderPrecisionFormat
+
+void  glew::glcore::glGetShaderPrecisionFormat (GLenum shadertype, GLenum precisiontype, GLint * range, GLint * precision)
 {
   // GL_ARB_ES2_compatibility - glGetShaderPrecisionFormat
   if (s_deviceConfig.m_glGetShaderPrecisionFormat)
@@ -51,7 +57,9 @@ void glGetShaderPrecisionFormat (GLenum shadertype, GLenum precisiontype, GLint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDepthRangef (GLfloat n, GLfloat f)
+#undef glDepthRangef
+
+void  glew::glcore::glDepthRangef (GLfloat n, GLfloat f)
 {
   // GL_ARB_ES2_compatibility - glDepthRangef
   if (s_deviceConfig.m_glDepthRangef)
@@ -64,7 +72,9 @@ void glDepthRangef (GLfloat n, GLfloat f)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearDepthf (GLfloat d)
+#undef glClearDepthf
+
+void  glew::glcore::glClearDepthf (GLfloat d)
 {
   // GL_ARB_ES2_compatibility - glClearDepthf
   if (s_deviceConfig.m_glClearDepthf)
@@ -77,7 +87,9 @@ void glClearDepthf (GLfloat d)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMemoryBarrierByRegion (GLbitfield barriers)
+#undef glMemoryBarrierByRegion
+
+void  glew::glcore::glMemoryBarrierByRegion (GLbitfield barriers)
 {
   // GL_ARB_ES3_1_compatibility - glMemoryBarrierByRegion
   if (s_deviceConfig.m_glMemoryBarrierByRegion)
@@ -90,7 +102,9 @@ void glMemoryBarrierByRegion (GLbitfield barriers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawArraysInstancedBaseInstance (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance)
+#undef glDrawArraysInstancedBaseInstance
+
+void  glew::glcore::glDrawArraysInstancedBaseInstance (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance)
 {
   // GL_ARB_base_instance - glDrawArraysInstancedBaseInstance
   if (s_deviceConfig.m_glDrawArraysInstancedBaseInstance)
@@ -103,7 +117,9 @@ void glDrawArraysInstancedBaseInstance (GLenum mode, GLint first, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawElementsInstancedBaseInstance (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLuint baseinstance)
+#undef glDrawElementsInstancedBaseInstance
+
+void  glew::glcore::glDrawElementsInstancedBaseInstance (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLuint baseinstance)
 {
   // GL_ARB_base_instance - glDrawElementsInstancedBaseInstance
   if (s_deviceConfig.m_glDrawElementsInstancedBaseInstance)
@@ -116,7 +132,9 @@ void glDrawElementsInstancedBaseInstance (GLenum mode, GLsizei count, GLenum typ
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawElementsInstancedBaseVertexBaseInstance (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance)
+#undef glDrawElementsInstancedBaseVertexBaseInstance
+
+void  glew::glcore::glDrawElementsInstancedBaseVertexBaseInstance (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance)
 {
   // GL_ARB_base_instance - glDrawElementsInstancedBaseVertexBaseInstance
   if (s_deviceConfig.m_glDrawElementsInstancedBaseVertexBaseInstance)
@@ -129,7 +147,9 @@ void glDrawElementsInstancedBaseVertexBaseInstance (GLenum mode, GLsizei count, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLuint64 glGetTextureHandleARB (GLuint texture)
+#undef glGetTextureHandleARB
+
+GLuint64 glew::glcore::glGetTextureHandleARB (GLuint texture)
 {
   // GL_ARB_bindless_texture - glGetTextureHandleARB
   if (s_deviceConfig.m_glGetTextureHandleARB)
@@ -143,7 +163,9 @@ GLuint64 glGetTextureHandleARB (GLuint texture)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLuint64 glGetTextureSamplerHandleARB (GLuint texture, GLuint sampler)
+#undef glGetTextureSamplerHandleARB
+
+GLuint64 glew::glcore::glGetTextureSamplerHandleARB (GLuint texture, GLuint sampler)
 {
   // GL_ARB_bindless_texture - glGetTextureSamplerHandleARB
   if (s_deviceConfig.m_glGetTextureSamplerHandleARB)
@@ -157,7 +179,9 @@ GLuint64 glGetTextureSamplerHandleARB (GLuint texture, GLuint sampler)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMakeTextureHandleResidentARB (GLuint64 handle)
+#undef glMakeTextureHandleResidentARB
+
+void  glew::glcore::glMakeTextureHandleResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glMakeTextureHandleResidentARB
   if (s_deviceConfig.m_glMakeTextureHandleResidentARB)
@@ -170,7 +194,9 @@ void glMakeTextureHandleResidentARB (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMakeTextureHandleNonResidentARB (GLuint64 handle)
+#undef glMakeTextureHandleNonResidentARB
+
+void  glew::glcore::glMakeTextureHandleNonResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glMakeTextureHandleNonResidentARB
   if (s_deviceConfig.m_glMakeTextureHandleNonResidentARB)
@@ -183,7 +209,9 @@ void glMakeTextureHandleNonResidentARB (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLuint64 glGetImageHandleARB (GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum format)
+#undef glGetImageHandleARB
+
+GLuint64 glew::glcore::glGetImageHandleARB (GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum format)
 {
   // GL_ARB_bindless_texture - glGetImageHandleARB
   if (s_deviceConfig.m_glGetImageHandleARB)
@@ -197,7 +225,9 @@ GLuint64 glGetImageHandleARB (GLuint texture, GLint level, GLboolean layered, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMakeImageHandleResidentARB (GLuint64 handle, GLenum access)
+#undef glMakeImageHandleResidentARB
+
+void  glew::glcore::glMakeImageHandleResidentARB (GLuint64 handle, GLenum access)
 {
   // GL_ARB_bindless_texture - glMakeImageHandleResidentARB
   if (s_deviceConfig.m_glMakeImageHandleResidentARB)
@@ -210,7 +240,9 @@ void glMakeImageHandleResidentARB (GLuint64 handle, GLenum access)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMakeImageHandleNonResidentARB (GLuint64 handle)
+#undef glMakeImageHandleNonResidentARB
+
+void  glew::glcore::glMakeImageHandleNonResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glMakeImageHandleNonResidentARB
   if (s_deviceConfig.m_glMakeImageHandleNonResidentARB)
@@ -223,7 +255,9 @@ void glMakeImageHandleNonResidentARB (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformHandleui64ARB (GLint location, GLuint64 value)
+#undef glUniformHandleui64ARB
+
+void  glew::glcore::glUniformHandleui64ARB (GLint location, GLuint64 value)
 {
   // GL_ARB_bindless_texture - glUniformHandleui64ARB
   if (s_deviceConfig.m_glUniformHandleui64ARB)
@@ -236,7 +270,9 @@ void glUniformHandleui64ARB (GLint location, GLuint64 value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformHandleui64vARB (GLint location, GLsizei count, const GLuint64 * value)
+#undef glUniformHandleui64vARB
+
+void  glew::glcore::glUniformHandleui64vARB (GLint location, GLsizei count, const GLuint64 * value)
 {
   // GL_ARB_bindless_texture - glUniformHandleui64vARB
   if (s_deviceConfig.m_glUniformHandleui64vARB)
@@ -249,7 +285,9 @@ void glUniformHandleui64vARB (GLint location, GLsizei count, const GLuint64 * va
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformHandleui64ARB (GLuint program, GLint location, GLuint64 value)
+#undef glProgramUniformHandleui64ARB
+
+void  glew::glcore::glProgramUniformHandleui64ARB (GLuint program, GLint location, GLuint64 value)
 {
   // GL_ARB_bindless_texture - glProgramUniformHandleui64ARB
   if (s_deviceConfig.m_glProgramUniformHandleui64ARB)
@@ -262,7 +300,9 @@ void glProgramUniformHandleui64ARB (GLuint program, GLint location, GLuint64 val
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformHandleui64vARB (GLuint program, GLint location, GLsizei count, const GLuint64 * values)
+#undef glProgramUniformHandleui64vARB
+
+void  glew::glcore::glProgramUniformHandleui64vARB (GLuint program, GLint location, GLsizei count, const GLuint64 * values)
 {
   // GL_ARB_bindless_texture - glProgramUniformHandleui64vARB
   if (s_deviceConfig.m_glProgramUniformHandleui64vARB)
@@ -275,7 +315,9 @@ void glProgramUniformHandleui64vARB (GLuint program, GLint location, GLsizei cou
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsTextureHandleResidentARB (GLuint64 handle)
+#undef glIsTextureHandleResidentARB
+
+GLboolean glew::glcore::glIsTextureHandleResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glIsTextureHandleResidentARB
   if (s_deviceConfig.m_glIsTextureHandleResidentARB)
@@ -289,7 +331,9 @@ GLboolean glIsTextureHandleResidentARB (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsImageHandleResidentARB (GLuint64 handle)
+#undef glIsImageHandleResidentARB
+
+GLboolean glew::glcore::glIsImageHandleResidentARB (GLuint64 handle)
 {
   // GL_ARB_bindless_texture - glIsImageHandleResidentARB
   if (s_deviceConfig.m_glIsImageHandleResidentARB)
@@ -303,7 +347,9 @@ GLboolean glIsImageHandleResidentARB (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL1ui64ARB (GLuint index, GLuint64EXT x)
+#undef glVertexAttribL1ui64ARB
+
+void  glew::glcore::glVertexAttribL1ui64ARB (GLuint index, GLuint64EXT x)
 {
   // GL_ARB_bindless_texture - glVertexAttribL1ui64ARB
   if (s_deviceConfig.m_glVertexAttribL1ui64ARB)
@@ -316,7 +362,9 @@ void glVertexAttribL1ui64ARB (GLuint index, GLuint64EXT x)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL1ui64vARB (GLuint index, const GLuint64EXT * v)
+#undef glVertexAttribL1ui64vARB
+
+void  glew::glcore::glVertexAttribL1ui64vARB (GLuint index, const GLuint64EXT * v)
 {
   // GL_ARB_bindless_texture - glVertexAttribL1ui64vARB
   if (s_deviceConfig.m_glVertexAttribL1ui64vARB)
@@ -329,7 +377,9 @@ void glVertexAttribL1ui64vARB (GLuint index, const GLuint64EXT * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetVertexAttribLui64vARB (GLuint index, GLenum pname, GLuint64EXT * params)
+#undef glGetVertexAttribLui64vARB
+
+void  glew::glcore::glGetVertexAttribLui64vARB (GLuint index, GLenum pname, GLuint64EXT * params)
 {
   // GL_ARB_bindless_texture - glGetVertexAttribLui64vARB
   if (s_deviceConfig.m_glGetVertexAttribLui64vARB)
@@ -342,7 +392,9 @@ void glGetVertexAttribLui64vARB (GLuint index, GLenum pname, GLuint64EXT * param
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindFragDataLocationIndexed (GLuint program, GLuint colorNumber, GLuint index, const GLchar * name)
+#undef glBindFragDataLocationIndexed
+
+void  glew::glcore::glBindFragDataLocationIndexed (GLuint program, GLuint colorNumber, GLuint index, const GLchar * name)
 {
   // GL_ARB_blend_func_extended - glBindFragDataLocationIndexed
   if (s_deviceConfig.m_glBindFragDataLocationIndexed)
@@ -355,7 +407,9 @@ void glBindFragDataLocationIndexed (GLuint program, GLuint colorNumber, GLuint i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLint glGetFragDataIndex (GLuint program, const GLchar * name)
+#undef glGetFragDataIndex
+
+GLint glew::glcore::glGetFragDataIndex (GLuint program, const GLchar * name)
 {
   // GL_ARB_blend_func_extended - glGetFragDataIndex
   if (s_deviceConfig.m_glGetFragDataIndex)
@@ -369,7 +423,9 @@ GLint glGetFragDataIndex (GLuint program, const GLchar * name)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBufferStorage (GLenum target, GLsizeiptr size, const void * data, GLbitfield flags)
+#undef glBufferStorage
+
+void  glew::glcore::glBufferStorage (GLenum target, GLsizeiptr size, const void * data, GLbitfield flags)
 {
   // GL_ARB_buffer_storage - glBufferStorage
   if (s_deviceConfig.m_glBufferStorage)
@@ -382,7 +438,9 @@ void glBufferStorage (GLenum target, GLsizeiptr size, const void * data, GLbitfi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLsync glCreateSyncFromCLeventARB (struct _cl_context * context, struct _cl_event * event, GLbitfield flags)
+#undef glCreateSyncFromCLeventARB
+
+GLsync glew::glcore::glCreateSyncFromCLeventARB (struct _cl_context * context, struct _cl_event * event, GLbitfield flags)
 {
   // GL_ARB_cl_event - glCreateSyncFromCLeventARB
   if (s_deviceConfig.m_glCreateSyncFromCLeventARB)
@@ -396,7 +454,9 @@ GLsync glCreateSyncFromCLeventARB (struct _cl_context * context, struct _cl_even
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearBufferData (GLenum target, GLenum internalformat, GLenum format, GLenum type, const void * data)
+#undef glClearBufferData
+
+void  glew::glcore::glClearBufferData (GLenum target, GLenum internalformat, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_clear_buffer_object - glClearBufferData
   if (s_deviceConfig.m_glClearBufferData)
@@ -409,7 +469,9 @@ void glClearBufferData (GLenum target, GLenum internalformat, GLenum format, GLe
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearBufferSubData (GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data)
+#undef glClearBufferSubData
+
+void  glew::glcore::glClearBufferSubData (GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_clear_buffer_object - glClearBufferSubData
   if (s_deviceConfig.m_glClearBufferSubData)
@@ -422,7 +484,9 @@ void glClearBufferSubData (GLenum target, GLenum internalformat, GLintptr offset
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearTexImage (GLuint texture, GLint level, GLenum format, GLenum type, const void * data)
+#undef glClearTexImage
+
+void  glew::glcore::glClearTexImage (GLuint texture, GLint level, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_clear_texture - glClearTexImage
   if (s_deviceConfig.m_glClearTexImage)
@@ -435,7 +499,9 @@ void glClearTexImage (GLuint texture, GLint level, GLenum format, GLenum type, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * data)
+#undef glClearTexSubImage
+
+void  glew::glcore::glClearTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_clear_texture - glClearTexSubImage
   if (s_deviceConfig.m_glClearTexSubImage)
@@ -448,7 +514,9 @@ void glClearTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffs
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClipControl (GLenum origin, GLenum depth)
+#undef glClipControl
+
+void  glew::glcore::glClipControl (GLenum origin, GLenum depth)
 {
   // GL_ARB_clip_control - glClipControl
   if (s_deviceConfig.m_glClipControl)
@@ -461,7 +529,9 @@ void glClipControl (GLenum origin, GLenum depth)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z)
+#undef glDispatchCompute
+
+void  glew::glcore::glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z)
 {
   // GL_ARB_compute_shader - glDispatchCompute
   if (s_deviceConfig.m_glDispatchCompute)
@@ -474,7 +544,9 @@ void glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLuint num_gro
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDispatchComputeIndirect (GLintptr indirect)
+#undef glDispatchComputeIndirect
+
+void  glew::glcore::glDispatchComputeIndirect (GLintptr indirect)
 {
   // GL_ARB_compute_shader - glDispatchComputeIndirect
   if (s_deviceConfig.m_glDispatchComputeIndirect)
@@ -487,7 +559,9 @@ void glDispatchComputeIndirect (GLintptr indirect)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDispatchComputeGroupSizeARB (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z, GLuint group_size_x, GLuint group_size_y, GLuint group_size_z)
+#undef glDispatchComputeGroupSizeARB
+
+void  glew::glcore::glDispatchComputeGroupSizeARB (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z, GLuint group_size_x, GLuint group_size_y, GLuint group_size_z)
 {
   // GL_ARB_compute_variable_group_size - glDispatchComputeGroupSizeARB
   if (s_deviceConfig.m_glDispatchComputeGroupSizeARB)
@@ -500,7 +574,9 @@ void glDispatchComputeGroupSizeARB (GLuint num_groups_x, GLuint num_groups_y, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
+#undef glCopyBufferSubData
+
+void  glew::glcore::glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
   // GL_ARB_copy_buffer - glCopyBufferSubData
   if (s_deviceConfig.m_glCopyBufferSubData)
@@ -513,7 +589,9 @@ void glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GLintptr readOf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCopyImageSubData (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth)
+#undef glCopyImageSubData
+
+void  glew::glcore::glCopyImageSubData (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth)
 {
   // GL_ARB_copy_image - glCopyImageSubData
   if (s_deviceConfig.m_glCopyImageSubData)
@@ -526,7 +604,9 @@ void glCopyImageSubData (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDebugMessageControlARB (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint * ids, GLboolean enabled)
+#undef glDebugMessageControlARB
+
+void  glew::glcore::glDebugMessageControlARB (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint * ids, GLboolean enabled)
 {
   // GL_ARB_debug_output - glDebugMessageControlARB
   if (s_deviceConfig.m_glDebugMessageControlARB)
@@ -539,7 +619,9 @@ void glDebugMessageControlARB (GLenum source, GLenum type, GLenum severity, GLsi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDebugMessageInsertARB (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar * buf)
+#undef glDebugMessageInsertARB
+
+void  glew::glcore::glDebugMessageInsertARB (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar * buf)
 {
   // GL_ARB_debug_output - glDebugMessageInsertARB
   if (s_deviceConfig.m_glDebugMessageInsertARB)
@@ -552,7 +634,9 @@ void glDebugMessageInsertARB (GLenum source, GLenum type, GLuint id, GLenum seve
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDebugMessageCallbackARB (GLDEBUGPROCARB callback, const void * userParam)
+#undef glDebugMessageCallbackARB
+
+void  glew::glcore::glDebugMessageCallbackARB (GLDEBUGPROCARB callback, const void * userParam)
 {
   // GL_ARB_debug_output - glDebugMessageCallbackARB
   if (s_deviceConfig.m_glDebugMessageCallbackARB)
@@ -565,7 +649,9 @@ void glDebugMessageCallbackARB (GLDEBUGPROCARB callback, const void * userParam)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLuint glGetDebugMessageLogARB (GLuint count, GLsizei bufSize, GLenum * sources, GLenum * types, GLuint * ids, GLenum * severities, GLsizei * lengths, GLchar * messageLog)
+#undef glGetDebugMessageLogARB
+
+GLuint glew::glcore::glGetDebugMessageLogARB (GLuint count, GLsizei bufSize, GLenum * sources, GLenum * types, GLuint * ids, GLenum * severities, GLsizei * lengths, GLchar * messageLog)
 {
   // GL_ARB_debug_output - glGetDebugMessageLogARB
   if (s_deviceConfig.m_glGetDebugMessageLogARB)
@@ -579,7 +665,9 @@ GLuint glGetDebugMessageLogARB (GLuint count, GLsizei bufSize, GLenum * sources,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCreateTransformFeedbacks (GLsizei n, GLuint * ids)
+#undef glCreateTransformFeedbacks
+
+void  glew::glcore::glCreateTransformFeedbacks (GLsizei n, GLuint * ids)
 {
   // GL_ARB_direct_state_access - glCreateTransformFeedbacks
   if (s_deviceConfig.m_glCreateTransformFeedbacks)
@@ -592,7 +680,9 @@ void glCreateTransformFeedbacks (GLsizei n, GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTransformFeedbackBufferBase (GLuint xfb, GLuint index, GLuint buffer)
+#undef glTransformFeedbackBufferBase
+
+void  glew::glcore::glTransformFeedbackBufferBase (GLuint xfb, GLuint index, GLuint buffer)
 {
   // GL_ARB_direct_state_access - glTransformFeedbackBufferBase
   if (s_deviceConfig.m_glTransformFeedbackBufferBase)
@@ -605,7 +695,9 @@ void glTransformFeedbackBufferBase (GLuint xfb, GLuint index, GLuint buffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTransformFeedbackBufferRange (GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size)
+#undef glTransformFeedbackBufferRange
+
+void  glew::glcore::glTransformFeedbackBufferRange (GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
   // GL_ARB_direct_state_access - glTransformFeedbackBufferRange
   if (s_deviceConfig.m_glTransformFeedbackBufferRange)
@@ -618,7 +710,9 @@ void glTransformFeedbackBufferRange (GLuint xfb, GLuint index, GLuint buffer, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTransformFeedbackiv (GLuint xfb, GLenum pname, GLint * param)
+#undef glGetTransformFeedbackiv
+
+void  glew::glcore::glGetTransformFeedbackiv (GLuint xfb, GLenum pname, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetTransformFeedbackiv
   if (s_deviceConfig.m_glGetTransformFeedbackiv)
@@ -631,7 +725,9 @@ void glGetTransformFeedbackiv (GLuint xfb, GLenum pname, GLint * param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTransformFeedbacki_v (GLuint xfb, GLenum pname, GLuint index, GLint * param)
+#undef glGetTransformFeedbacki_v
+
+void  glew::glcore::glGetTransformFeedbacki_v (GLuint xfb, GLenum pname, GLuint index, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetTransformFeedbacki_v
   if (s_deviceConfig.m_glGetTransformFeedbacki_v)
@@ -644,7 +740,9 @@ void glGetTransformFeedbacki_v (GLuint xfb, GLenum pname, GLuint index, GLint * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTransformFeedbacki64_v (GLuint xfb, GLenum pname, GLuint index, GLint64 * param)
+#undef glGetTransformFeedbacki64_v
+
+void  glew::glcore::glGetTransformFeedbacki64_v (GLuint xfb, GLenum pname, GLuint index, GLint64 * param)
 {
   // GL_ARB_direct_state_access - glGetTransformFeedbacki64_v
   if (s_deviceConfig.m_glGetTransformFeedbacki64_v)
@@ -657,7 +755,9 @@ void glGetTransformFeedbacki64_v (GLuint xfb, GLenum pname, GLuint index, GLint6
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCreateBuffers (GLsizei n, GLuint * buffers)
+#undef glCreateBuffers
+
+void  glew::glcore::glCreateBuffers (GLsizei n, GLuint * buffers)
 {
   // GL_ARB_direct_state_access - glCreateBuffers
   if (s_deviceConfig.m_glCreateBuffers)
@@ -670,7 +770,9 @@ void glCreateBuffers (GLsizei n, GLuint * buffers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedBufferStorage (GLuint buffer, GLsizeiptr size, const void * data, GLbitfield flags)
+#undef glNamedBufferStorage
+
+void  glew::glcore::glNamedBufferStorage (GLuint buffer, GLsizeiptr size, const void * data, GLbitfield flags)
 {
   // GL_ARB_direct_state_access - glNamedBufferStorage
   if (s_deviceConfig.m_glNamedBufferStorage)
@@ -683,7 +785,9 @@ void glNamedBufferStorage (GLuint buffer, GLsizeiptr size, const void * data, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedBufferData (GLuint buffer, GLsizeiptr size, const void * data, GLenum usage)
+#undef glNamedBufferData
+
+void  glew::glcore::glNamedBufferData (GLuint buffer, GLsizeiptr size, const void * data, GLenum usage)
 {
   // GL_ARB_direct_state_access - glNamedBufferData
   if (s_deviceConfig.m_glNamedBufferData)
@@ -696,7 +800,9 @@ void glNamedBufferData (GLuint buffer, GLsizeiptr size, const void * data, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, const void * data)
+#undef glNamedBufferSubData
+
+void  glew::glcore::glNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, const void * data)
 {
   // GL_ARB_direct_state_access - glNamedBufferSubData
   if (s_deviceConfig.m_glNamedBufferSubData)
@@ -709,7 +815,9 @@ void glNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, cons
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCopyNamedBufferSubData (GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
+#undef glCopyNamedBufferSubData
+
+void  glew::glcore::glCopyNamedBufferSubData (GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
   // GL_ARB_direct_state_access - glCopyNamedBufferSubData
   if (s_deviceConfig.m_glCopyNamedBufferSubData)
@@ -722,7 +830,9 @@ void glCopyNamedBufferSubData (GLuint readBuffer, GLuint writeBuffer, GLintptr r
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearNamedBufferData (GLuint buffer, GLenum internalformat, GLenum format, GLenum type, const void * data)
+#undef glClearNamedBufferData
+
+void  glew::glcore::glClearNamedBufferData (GLuint buffer, GLenum internalformat, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_direct_state_access - glClearNamedBufferData
   if (s_deviceConfig.m_glClearNamedBufferData)
@@ -735,7 +845,9 @@ void glClearNamedBufferData (GLuint buffer, GLenum internalformat, GLenum format
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearNamedBufferSubData (GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data)
+#undef glClearNamedBufferSubData
+
+void  glew::glcore::glClearNamedBufferSubData (GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data)
 {
   // GL_ARB_direct_state_access - glClearNamedBufferSubData
   if (s_deviceConfig.m_glClearNamedBufferSubData)
@@ -748,7 +860,9 @@ void glClearNamedBufferSubData (GLuint buffer, GLenum internalformat, GLintptr o
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void * glMapNamedBuffer (GLuint buffer, GLenum access)
+#undef glMapNamedBuffer
+
+void * glew::glcore::glMapNamedBuffer (GLuint buffer, GLenum access)
 {
   // GL_ARB_direct_state_access - glMapNamedBuffer
   if (s_deviceConfig.m_glMapNamedBuffer)
@@ -762,7 +876,9 @@ void * glMapNamedBuffer (GLuint buffer, GLenum access)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void * glMapNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access)
+#undef glMapNamedBufferRange
+
+void * glew::glcore::glMapNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access)
 {
   // GL_ARB_direct_state_access - glMapNamedBufferRange
   if (s_deviceConfig.m_glMapNamedBufferRange)
@@ -776,7 +892,9 @@ void * glMapNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glUnmapNamedBuffer (GLuint buffer)
+#undef glUnmapNamedBuffer
+
+GLboolean glew::glcore::glUnmapNamedBuffer (GLuint buffer)
 {
   // GL_ARB_direct_state_access - glUnmapNamedBuffer
   if (s_deviceConfig.m_glUnmapNamedBuffer)
@@ -790,7 +908,9 @@ GLboolean glUnmapNamedBuffer (GLuint buffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glFlushMappedNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length)
+#undef glFlushMappedNamedBufferRange
+
+void  glew::glcore::glFlushMappedNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length)
 {
   // GL_ARB_direct_state_access - glFlushMappedNamedBufferRange
   if (s_deviceConfig.m_glFlushMappedNamedBufferRange)
@@ -803,7 +923,9 @@ void glFlushMappedNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr l
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetNamedBufferParameteriv (GLuint buffer, GLenum pname, GLint * params)
+#undef glGetNamedBufferParameteriv
+
+void  glew::glcore::glGetNamedBufferParameteriv (GLuint buffer, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetNamedBufferParameteriv
   if (s_deviceConfig.m_glGetNamedBufferParameteriv)
@@ -816,7 +938,9 @@ void glGetNamedBufferParameteriv (GLuint buffer, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetNamedBufferParameteri64v (GLuint buffer, GLenum pname, GLint64 * params)
+#undef glGetNamedBufferParameteri64v
+
+void  glew::glcore::glGetNamedBufferParameteri64v (GLuint buffer, GLenum pname, GLint64 * params)
 {
   // GL_ARB_direct_state_access - glGetNamedBufferParameteri64v
   if (s_deviceConfig.m_glGetNamedBufferParameteri64v)
@@ -829,7 +953,9 @@ void glGetNamedBufferParameteri64v (GLuint buffer, GLenum pname, GLint64 * param
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetNamedBufferPointerv (GLuint buffer, GLenum pname, void ** params)
+#undef glGetNamedBufferPointerv
+
+void  glew::glcore::glGetNamedBufferPointerv (GLuint buffer, GLenum pname, void ** params)
 {
   // GL_ARB_direct_state_access - glGetNamedBufferPointerv
   if (s_deviceConfig.m_glGetNamedBufferPointerv)
@@ -842,7 +968,9 @@ void glGetNamedBufferPointerv (GLuint buffer, GLenum pname, void ** params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, void * data)
+#undef glGetNamedBufferSubData
+
+void  glew::glcore::glGetNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, void * data)
 {
   // GL_ARB_direct_state_access - glGetNamedBufferSubData
   if (s_deviceConfig.m_glGetNamedBufferSubData)
@@ -855,7 +983,9 @@ void glGetNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCreateFramebuffers (GLsizei n, GLuint * framebuffers)
+#undef glCreateFramebuffers
+
+void  glew::glcore::glCreateFramebuffers (GLsizei n, GLuint * framebuffers)
 {
   // GL_ARB_direct_state_access - glCreateFramebuffers
   if (s_deviceConfig.m_glCreateFramebuffers)
@@ -868,7 +998,9 @@ void glCreateFramebuffers (GLsizei n, GLuint * framebuffers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedFramebufferRenderbuffer (GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)
+#undef glNamedFramebufferRenderbuffer
+
+void  glew::glcore::glNamedFramebufferRenderbuffer (GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferRenderbuffer
   if (s_deviceConfig.m_glNamedFramebufferRenderbuffer)
@@ -881,7 +1013,9 @@ void glNamedFramebufferRenderbuffer (GLuint framebuffer, GLenum attachment, GLen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedFramebufferParameteri (GLuint framebuffer, GLenum pname, GLint param)
+#undef glNamedFramebufferParameteri
+
+void  glew::glcore::glNamedFramebufferParameteri (GLuint framebuffer, GLenum pname, GLint param)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferParameteri
   if (s_deviceConfig.m_glNamedFramebufferParameteri)
@@ -894,7 +1028,9 @@ void glNamedFramebufferParameteri (GLuint framebuffer, GLenum pname, GLint param
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedFramebufferTexture (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level)
+#undef glNamedFramebufferTexture
+
+void  glew::glcore::glNamedFramebufferTexture (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferTexture
   if (s_deviceConfig.m_glNamedFramebufferTexture)
@@ -907,7 +1043,9 @@ void glNamedFramebufferTexture (GLuint framebuffer, GLenum attachment, GLuint te
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedFramebufferTextureLayer (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer)
+#undef glNamedFramebufferTextureLayer
+
+void  glew::glcore::glNamedFramebufferTextureLayer (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferTextureLayer
   if (s_deviceConfig.m_glNamedFramebufferTextureLayer)
@@ -920,7 +1058,9 @@ void glNamedFramebufferTextureLayer (GLuint framebuffer, GLenum attachment, GLui
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedFramebufferDrawBuffer (GLuint framebuffer, GLenum buf)
+#undef glNamedFramebufferDrawBuffer
+
+void  glew::glcore::glNamedFramebufferDrawBuffer (GLuint framebuffer, GLenum buf)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferDrawBuffer
   if (s_deviceConfig.m_glNamedFramebufferDrawBuffer)
@@ -933,7 +1073,9 @@ void glNamedFramebufferDrawBuffer (GLuint framebuffer, GLenum buf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedFramebufferDrawBuffers (GLuint framebuffer, GLsizei n, const GLenum * bufs)
+#undef glNamedFramebufferDrawBuffers
+
+void  glew::glcore::glNamedFramebufferDrawBuffers (GLuint framebuffer, GLsizei n, const GLenum * bufs)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferDrawBuffers
   if (s_deviceConfig.m_glNamedFramebufferDrawBuffers)
@@ -946,7 +1088,9 @@ void glNamedFramebufferDrawBuffers (GLuint framebuffer, GLsizei n, const GLenum 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedFramebufferReadBuffer (GLuint framebuffer, GLenum src)
+#undef glNamedFramebufferReadBuffer
+
+void  glew::glcore::glNamedFramebufferReadBuffer (GLuint framebuffer, GLenum src)
 {
   // GL_ARB_direct_state_access - glNamedFramebufferReadBuffer
   if (s_deviceConfig.m_glNamedFramebufferReadBuffer)
@@ -959,7 +1103,9 @@ void glNamedFramebufferReadBuffer (GLuint framebuffer, GLenum src)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glInvalidateNamedFramebufferData (GLuint framebuffer, GLsizei numAttachments, const GLenum * attachments)
+#undef glInvalidateNamedFramebufferData
+
+void  glew::glcore::glInvalidateNamedFramebufferData (GLuint framebuffer, GLsizei numAttachments, const GLenum * attachments)
 {
   // GL_ARB_direct_state_access - glInvalidateNamedFramebufferData
   if (s_deviceConfig.m_glInvalidateNamedFramebufferData)
@@ -972,7 +1118,9 @@ void glInvalidateNamedFramebufferData (GLuint framebuffer, GLsizei numAttachment
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glInvalidateNamedFramebufferSubData (GLuint framebuffer, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height)
+#undef glInvalidateNamedFramebufferSubData
+
+void  glew::glcore::glInvalidateNamedFramebufferSubData (GLuint framebuffer, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glInvalidateNamedFramebufferSubData
   if (s_deviceConfig.m_glInvalidateNamedFramebufferSubData)
@@ -985,7 +1133,9 @@ void glInvalidateNamedFramebufferSubData (GLuint framebuffer, GLsizei numAttachm
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearNamedFramebufferiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLint * value)
+#undef glClearNamedFramebufferiv
+
+void  glew::glcore::glClearNamedFramebufferiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLint * value)
 {
   // GL_ARB_direct_state_access - glClearNamedFramebufferiv
   if (s_deviceConfig.m_glClearNamedFramebufferiv)
@@ -998,7 +1148,9 @@ void glClearNamedFramebufferiv (GLuint framebuffer, GLenum buffer, GLint drawbuf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearNamedFramebufferuiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLuint * value)
+#undef glClearNamedFramebufferuiv
+
+void  glew::glcore::glClearNamedFramebufferuiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLuint * value)
 {
   // GL_ARB_direct_state_access - glClearNamedFramebufferuiv
   if (s_deviceConfig.m_glClearNamedFramebufferuiv)
@@ -1011,7 +1163,9 @@ void glClearNamedFramebufferuiv (GLuint framebuffer, GLenum buffer, GLint drawbu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearNamedFramebufferfv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLfloat * value)
+#undef glClearNamedFramebufferfv
+
+void  glew::glcore::glClearNamedFramebufferfv (GLuint framebuffer, GLenum buffer, GLint drawbuffer, const GLfloat * value)
 {
   // GL_ARB_direct_state_access - glClearNamedFramebufferfv
   if (s_deviceConfig.m_glClearNamedFramebufferfv)
@@ -1024,7 +1178,9 @@ void glClearNamedFramebufferfv (GLuint framebuffer, GLenum buffer, GLint drawbuf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glClearNamedFramebufferfi (GLuint framebuffer, GLenum buffer, const GLfloat depth, GLint stencil)
+#undef glClearNamedFramebufferfi
+
+void  glew::glcore::glClearNamedFramebufferfi (GLuint framebuffer, GLenum buffer, const GLfloat depth, GLint stencil)
 {
   // GL_ARB_direct_state_access - glClearNamedFramebufferfi
   if (s_deviceConfig.m_glClearNamedFramebufferfi)
@@ -1037,7 +1193,9 @@ void glClearNamedFramebufferfi (GLuint framebuffer, GLenum buffer, const GLfloat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBlitNamedFramebuffer (GLuint readFramebuffer, GLuint drawFramebuffer, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
+#undef glBlitNamedFramebuffer
+
+void  glew::glcore::glBlitNamedFramebuffer (GLuint readFramebuffer, GLuint drawFramebuffer, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
   // GL_ARB_direct_state_access - glBlitNamedFramebuffer
   if (s_deviceConfig.m_glBlitNamedFramebuffer)
@@ -1050,7 +1208,9 @@ void glBlitNamedFramebuffer (GLuint readFramebuffer, GLuint drawFramebuffer, GLi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLenum glCheckNamedFramebufferStatus (GLuint framebuffer, GLenum target)
+#undef glCheckNamedFramebufferStatus
+
+GLenum glew::glcore::glCheckNamedFramebufferStatus (GLuint framebuffer, GLenum target)
 {
   // GL_ARB_direct_state_access - glCheckNamedFramebufferStatus
   if (s_deviceConfig.m_glCheckNamedFramebufferStatus)
@@ -1064,7 +1224,9 @@ GLenum glCheckNamedFramebufferStatus (GLuint framebuffer, GLenum target)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetNamedFramebufferParameteriv (GLuint framebuffer, GLenum pname, GLint * param)
+#undef glGetNamedFramebufferParameteriv
+
+void  glew::glcore::glGetNamedFramebufferParameteriv (GLuint framebuffer, GLenum pname, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetNamedFramebufferParameteriv
   if (s_deviceConfig.m_glGetNamedFramebufferParameteriv)
@@ -1077,7 +1239,9 @@ void glGetNamedFramebufferParameteriv (GLuint framebuffer, GLenum pname, GLint *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetNamedFramebufferAttachmentParameteriv (GLuint framebuffer, GLenum attachment, GLenum pname, GLint * params)
+#undef glGetNamedFramebufferAttachmentParameteriv
+
+void  glew::glcore::glGetNamedFramebufferAttachmentParameteriv (GLuint framebuffer, GLenum attachment, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetNamedFramebufferAttachmentParameteriv
   if (s_deviceConfig.m_glGetNamedFramebufferAttachmentParameteriv)
@@ -1090,7 +1254,9 @@ void glGetNamedFramebufferAttachmentParameteriv (GLuint framebuffer, GLenum atta
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCreateRenderbuffers (GLsizei n, GLuint * renderbuffers)
+#undef glCreateRenderbuffers
+
+void  glew::glcore::glCreateRenderbuffers (GLsizei n, GLuint * renderbuffers)
 {
   // GL_ARB_direct_state_access - glCreateRenderbuffers
   if (s_deviceConfig.m_glCreateRenderbuffers)
@@ -1103,7 +1269,9 @@ void glCreateRenderbuffers (GLsizei n, GLuint * renderbuffers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedRenderbufferStorage (GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height)
+#undef glNamedRenderbufferStorage
+
+void  glew::glcore::glNamedRenderbufferStorage (GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glNamedRenderbufferStorage
   if (s_deviceConfig.m_glNamedRenderbufferStorage)
@@ -1116,7 +1284,9 @@ void glNamedRenderbufferStorage (GLuint renderbuffer, GLenum internalformat, GLs
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedRenderbufferStorageMultisample (GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+#undef glNamedRenderbufferStorageMultisample
+
+void  glew::glcore::glNamedRenderbufferStorageMultisample (GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glNamedRenderbufferStorageMultisample
   if (s_deviceConfig.m_glNamedRenderbufferStorageMultisample)
@@ -1129,7 +1299,9 @@ void glNamedRenderbufferStorageMultisample (GLuint renderbuffer, GLsizei samples
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetNamedRenderbufferParameteriv (GLuint renderbuffer, GLenum pname, GLint * params)
+#undef glGetNamedRenderbufferParameteriv
+
+void  glew::glcore::glGetNamedRenderbufferParameteriv (GLuint renderbuffer, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetNamedRenderbufferParameteriv
   if (s_deviceConfig.m_glGetNamedRenderbufferParameteriv)
@@ -1142,7 +1314,9 @@ void glGetNamedRenderbufferParameteriv (GLuint renderbuffer, GLenum pname, GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCreateTextures (GLenum target, GLsizei n, GLuint * textures)
+#undef glCreateTextures
+
+void  glew::glcore::glCreateTextures (GLenum target, GLsizei n, GLuint * textures)
 {
   // GL_ARB_direct_state_access - glCreateTextures
   if (s_deviceConfig.m_glCreateTextures)
@@ -1155,7 +1329,9 @@ void glCreateTextures (GLenum target, GLsizei n, GLuint * textures)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureBuffer (GLuint texture, GLenum internalformat, GLuint buffer)
+#undef glTextureBuffer
+
+void  glew::glcore::glTextureBuffer (GLuint texture, GLenum internalformat, GLuint buffer)
 {
   // GL_ARB_direct_state_access - glTextureBuffer
   if (s_deviceConfig.m_glTextureBuffer)
@@ -1168,7 +1344,9 @@ void glTextureBuffer (GLuint texture, GLenum internalformat, GLuint buffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureBufferRange (GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
+#undef glTextureBufferRange
+
+void  glew::glcore::glTextureBufferRange (GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
   // GL_ARB_direct_state_access - glTextureBufferRange
   if (s_deviceConfig.m_glTextureBufferRange)
@@ -1181,7 +1359,9 @@ void glTextureBufferRange (GLuint texture, GLenum internalformat, GLuint buffer,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureStorage1D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width)
+#undef glTextureStorage1D
+
+void  glew::glcore::glTextureStorage1D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width)
 {
   // GL_ARB_direct_state_access - glTextureStorage1D
   if (s_deviceConfig.m_glTextureStorage1D)
@@ -1194,7 +1374,9 @@ void glTextureStorage1D (GLuint texture, GLsizei levels, GLenum internalformat, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureStorage2D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
+#undef glTextureStorage2D
+
+void  glew::glcore::glTextureStorage2D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glTextureStorage2D
   if (s_deviceConfig.m_glTextureStorage2D)
@@ -1207,7 +1389,9 @@ void glTextureStorage2D (GLuint texture, GLsizei levels, GLenum internalformat, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureStorage3D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
+#undef glTextureStorage3D
+
+void  glew::glcore::glTextureStorage3D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
 {
   // GL_ARB_direct_state_access - glTextureStorage3D
   if (s_deviceConfig.m_glTextureStorage3D)
@@ -1220,7 +1404,9 @@ void glTextureStorage3D (GLuint texture, GLsizei levels, GLenum internalformat, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureStorage2DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
+#undef glTextureStorage2DMultisample
+
+void  glew::glcore::glTextureStorage2DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
 {
   // GL_ARB_direct_state_access - glTextureStorage2DMultisample
   if (s_deviceConfig.m_glTextureStorage2DMultisample)
@@ -1233,7 +1419,9 @@ void glTextureStorage2DMultisample (GLuint texture, GLsizei samples, GLenum inte
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureStorage3DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
+#undef glTextureStorage3DMultisample
+
+void  glew::glcore::glTextureStorage3DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
 {
   // GL_ARB_direct_state_access - glTextureStorage3DMultisample
   if (s_deviceConfig.m_glTextureStorage3DMultisample)
@@ -1246,7 +1434,9 @@ void glTextureStorage3DMultisample (GLuint texture, GLsizei samples, GLenum inte
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void * pixels)
+#undef glTextureSubImage1D
+
+void  glew::glcore::glTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void * pixels)
 {
   // GL_ARB_direct_state_access - glTextureSubImage1D
   if (s_deviceConfig.m_glTextureSubImage1D)
@@ -1259,7 +1449,9 @@ void glTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei wi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void * pixels)
+#undef glTextureSubImage2D
+
+void  glew::glcore::glTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void * pixels)
 {
   // GL_ARB_direct_state_access - glTextureSubImage2D
   if (s_deviceConfig.m_glTextureSubImage2D)
@@ -1272,7 +1464,9 @@ void glTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoff
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * pixels)
+#undef glTextureSubImage3D
+
+void  glew::glcore::glTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * pixels)
 {
   // GL_ARB_direct_state_access - glTextureSubImage3D
   if (s_deviceConfig.m_glTextureSubImage3D)
@@ -1285,7 +1479,9 @@ void glTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoff
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCompressedTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void * data)
+#undef glCompressedTextureSubImage1D
+
+void  glew::glcore::glCompressedTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void * data)
 {
   // GL_ARB_direct_state_access - glCompressedTextureSubImage1D
   if (s_deviceConfig.m_glCompressedTextureSubImage1D)
@@ -1298,7 +1494,9 @@ void glCompressedTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCompressedTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void * data)
+#undef glCompressedTextureSubImage2D
+
+void  glew::glcore::glCompressedTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void * data)
 {
   // GL_ARB_direct_state_access - glCompressedTextureSubImage2D
   if (s_deviceConfig.m_glCompressedTextureSubImage2D)
@@ -1311,7 +1509,9 @@ void glCompressedTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCompressedTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void * data)
+#undef glCompressedTextureSubImage3D
+
+void  glew::glcore::glCompressedTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void * data)
 {
   // GL_ARB_direct_state_access - glCompressedTextureSubImage3D
   if (s_deviceConfig.m_glCompressedTextureSubImage3D)
@@ -1324,7 +1524,9 @@ void glCompressedTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCopyTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)
+#undef glCopyTextureSubImage1D
+
+void  glew::glcore::glCopyTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)
 {
   // GL_ARB_direct_state_access - glCopyTextureSubImage1D
   if (s_deviceConfig.m_glCopyTextureSubImage1D)
@@ -1337,7 +1539,9 @@ void glCopyTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCopyTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height)
+#undef glCopyTextureSubImage2D
+
+void  glew::glcore::glCopyTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glCopyTextureSubImage2D
   if (s_deviceConfig.m_glCopyTextureSubImage2D)
@@ -1350,7 +1554,9 @@ void glCopyTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCopyTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
+#undef glCopyTextureSubImage3D
+
+void  glew::glcore::glCopyTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 {
   // GL_ARB_direct_state_access - glCopyTextureSubImage3D
   if (s_deviceConfig.m_glCopyTextureSubImage3D)
@@ -1363,7 +1569,9 @@ void glCopyTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureParameterf (GLuint texture, GLenum pname, GLfloat param)
+#undef glTextureParameterf
+
+void  glew::glcore::glTextureParameterf (GLuint texture, GLenum pname, GLfloat param)
 {
   // GL_ARB_direct_state_access - glTextureParameterf
   if (s_deviceConfig.m_glTextureParameterf)
@@ -1376,7 +1584,9 @@ void glTextureParameterf (GLuint texture, GLenum pname, GLfloat param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureParameterfv (GLuint texture, GLenum pname, const GLfloat * param)
+#undef glTextureParameterfv
+
+void  glew::glcore::glTextureParameterfv (GLuint texture, GLenum pname, const GLfloat * param)
 {
   // GL_ARB_direct_state_access - glTextureParameterfv
   if (s_deviceConfig.m_glTextureParameterfv)
@@ -1389,7 +1599,9 @@ void glTextureParameterfv (GLuint texture, GLenum pname, const GLfloat * param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureParameteri (GLuint texture, GLenum pname, GLint param)
+#undef glTextureParameteri
+
+void  glew::glcore::glTextureParameteri (GLuint texture, GLenum pname, GLint param)
 {
   // GL_ARB_direct_state_access - glTextureParameteri
   if (s_deviceConfig.m_glTextureParameteri)
@@ -1402,7 +1614,9 @@ void glTextureParameteri (GLuint texture, GLenum pname, GLint param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureParameterIiv (GLuint texture, GLenum pname, const GLint * params)
+#undef glTextureParameterIiv
+
+void  glew::glcore::glTextureParameterIiv (GLuint texture, GLenum pname, const GLint * params)
 {
   // GL_ARB_direct_state_access - glTextureParameterIiv
   if (s_deviceConfig.m_glTextureParameterIiv)
@@ -1415,7 +1629,9 @@ void glTextureParameterIiv (GLuint texture, GLenum pname, const GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureParameterIuiv (GLuint texture, GLenum pname, const GLuint * params)
+#undef glTextureParameterIuiv
+
+void  glew::glcore::glTextureParameterIuiv (GLuint texture, GLenum pname, const GLuint * params)
 {
   // GL_ARB_direct_state_access - glTextureParameterIuiv
   if (s_deviceConfig.m_glTextureParameterIuiv)
@@ -1428,7 +1644,9 @@ void glTextureParameterIuiv (GLuint texture, GLenum pname, const GLuint * params
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureParameteriv (GLuint texture, GLenum pname, const GLint * param)
+#undef glTextureParameteriv
+
+void  glew::glcore::glTextureParameteriv (GLuint texture, GLenum pname, const GLint * param)
 {
   // GL_ARB_direct_state_access - glTextureParameteriv
   if (s_deviceConfig.m_glTextureParameteriv)
@@ -1441,7 +1659,9 @@ void glTextureParameteriv (GLuint texture, GLenum pname, const GLint * param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGenerateTextureMipmap (GLuint texture)
+#undef glGenerateTextureMipmap
+
+void  glew::glcore::glGenerateTextureMipmap (GLuint texture)
 {
   // GL_ARB_direct_state_access - glGenerateTextureMipmap
   if (s_deviceConfig.m_glGenerateTextureMipmap)
@@ -1454,7 +1674,9 @@ void glGenerateTextureMipmap (GLuint texture)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindTextureUnit (GLuint unit, GLuint texture)
+#undef glBindTextureUnit
+
+void  glew::glcore::glBindTextureUnit (GLuint unit, GLuint texture)
 {
   // GL_ARB_direct_state_access - glBindTextureUnit
   if (s_deviceConfig.m_glBindTextureUnit)
@@ -1467,7 +1689,9 @@ void glBindTextureUnit (GLuint unit, GLuint texture)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTextureImage (GLuint texture, GLint level, GLenum format, GLenum type, GLsizei bufSize, void * pixels)
+#undef glGetTextureImage
+
+void  glew::glcore::glGetTextureImage (GLuint texture, GLint level, GLenum format, GLenum type, GLsizei bufSize, void * pixels)
 {
   // GL_ARB_direct_state_access - glGetTextureImage
   if (s_deviceConfig.m_glGetTextureImage)
@@ -1480,7 +1704,9 @@ void glGetTextureImage (GLuint texture, GLint level, GLenum format, GLenum type,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetCompressedTextureImage (GLuint texture, GLint level, GLsizei bufSize, void * pixels)
+#undef glGetCompressedTextureImage
+
+void  glew::glcore::glGetCompressedTextureImage (GLuint texture, GLint level, GLsizei bufSize, void * pixels)
 {
   // GL_ARB_direct_state_access - glGetCompressedTextureImage
   if (s_deviceConfig.m_glGetCompressedTextureImage)
@@ -1493,7 +1719,9 @@ void glGetCompressedTextureImage (GLuint texture, GLint level, GLsizei bufSize, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTextureLevelParameterfv (GLuint texture, GLint level, GLenum pname, GLfloat * params)
+#undef glGetTextureLevelParameterfv
+
+void  glew::glcore::glGetTextureLevelParameterfv (GLuint texture, GLint level, GLenum pname, GLfloat * params)
 {
   // GL_ARB_direct_state_access - glGetTextureLevelParameterfv
   if (s_deviceConfig.m_glGetTextureLevelParameterfv)
@@ -1506,7 +1734,9 @@ void glGetTextureLevelParameterfv (GLuint texture, GLint level, GLenum pname, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTextureLevelParameteriv (GLuint texture, GLint level, GLenum pname, GLint * params)
+#undef glGetTextureLevelParameteriv
+
+void  glew::glcore::glGetTextureLevelParameteriv (GLuint texture, GLint level, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetTextureLevelParameteriv
   if (s_deviceConfig.m_glGetTextureLevelParameteriv)
@@ -1519,7 +1749,9 @@ void glGetTextureLevelParameteriv (GLuint texture, GLint level, GLenum pname, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTextureParameterfv (GLuint texture, GLenum pname, GLfloat * params)
+#undef glGetTextureParameterfv
+
+void  glew::glcore::glGetTextureParameterfv (GLuint texture, GLenum pname, GLfloat * params)
 {
   // GL_ARB_direct_state_access - glGetTextureParameterfv
   if (s_deviceConfig.m_glGetTextureParameterfv)
@@ -1532,7 +1764,9 @@ void glGetTextureParameterfv (GLuint texture, GLenum pname, GLfloat * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTextureParameterIiv (GLuint texture, GLenum pname, GLint * params)
+#undef glGetTextureParameterIiv
+
+void  glew::glcore::glGetTextureParameterIiv (GLuint texture, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetTextureParameterIiv
   if (s_deviceConfig.m_glGetTextureParameterIiv)
@@ -1545,7 +1779,9 @@ void glGetTextureParameterIiv (GLuint texture, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTextureParameterIuiv (GLuint texture, GLenum pname, GLuint * params)
+#undef glGetTextureParameterIuiv
+
+void  glew::glcore::glGetTextureParameterIuiv (GLuint texture, GLenum pname, GLuint * params)
 {
   // GL_ARB_direct_state_access - glGetTextureParameterIuiv
   if (s_deviceConfig.m_glGetTextureParameterIuiv)
@@ -1558,7 +1794,9 @@ void glGetTextureParameterIuiv (GLuint texture, GLenum pname, GLuint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTextureParameteriv (GLuint texture, GLenum pname, GLint * params)
+#undef glGetTextureParameteriv
+
+void  glew::glcore::glGetTextureParameteriv (GLuint texture, GLenum pname, GLint * params)
 {
   // GL_ARB_direct_state_access - glGetTextureParameteriv
   if (s_deviceConfig.m_glGetTextureParameteriv)
@@ -1571,7 +1809,9 @@ void glGetTextureParameteriv (GLuint texture, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCreateVertexArrays (GLsizei n, GLuint * arrays)
+#undef glCreateVertexArrays
+
+void  glew::glcore::glCreateVertexArrays (GLsizei n, GLuint * arrays)
 {
   // GL_ARB_direct_state_access - glCreateVertexArrays
   if (s_deviceConfig.m_glCreateVertexArrays)
@@ -1584,7 +1824,9 @@ void glCreateVertexArrays (GLsizei n, GLuint * arrays)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDisableVertexArrayAttrib (GLuint vaobj, GLuint index)
+#undef glDisableVertexArrayAttrib
+
+void  glew::glcore::glDisableVertexArrayAttrib (GLuint vaobj, GLuint index)
 {
   // GL_ARB_direct_state_access - glDisableVertexArrayAttrib
   if (s_deviceConfig.m_glDisableVertexArrayAttrib)
@@ -1597,7 +1839,9 @@ void glDisableVertexArrayAttrib (GLuint vaobj, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glEnableVertexArrayAttrib (GLuint vaobj, GLuint index)
+#undef glEnableVertexArrayAttrib
+
+void  glew::glcore::glEnableVertexArrayAttrib (GLuint vaobj, GLuint index)
 {
   // GL_ARB_direct_state_access - glEnableVertexArrayAttrib
   if (s_deviceConfig.m_glEnableVertexArrayAttrib)
@@ -1610,7 +1854,9 @@ void glEnableVertexArrayAttrib (GLuint vaobj, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexArrayElementBuffer (GLuint vaobj, GLuint buffer)
+#undef glVertexArrayElementBuffer
+
+void  glew::glcore::glVertexArrayElementBuffer (GLuint vaobj, GLuint buffer)
 {
   // GL_ARB_direct_state_access - glVertexArrayElementBuffer
   if (s_deviceConfig.m_glVertexArrayElementBuffer)
@@ -1623,7 +1869,9 @@ void glVertexArrayElementBuffer (GLuint vaobj, GLuint buffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexArrayVertexBuffer (GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride)
+#undef glVertexArrayVertexBuffer
+
+void  glew::glcore::glVertexArrayVertexBuffer (GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride)
 {
   // GL_ARB_direct_state_access - glVertexArrayVertexBuffer
   if (s_deviceConfig.m_glVertexArrayVertexBuffer)
@@ -1636,7 +1884,9 @@ void glVertexArrayVertexBuffer (GLuint vaobj, GLuint bindingindex, GLuint buffer
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexArrayVertexBuffers (GLuint vaobj, GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizei * strides)
+#undef glVertexArrayVertexBuffers
+
+void  glew::glcore::glVertexArrayVertexBuffers (GLuint vaobj, GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizei * strides)
 {
   // GL_ARB_direct_state_access - glVertexArrayVertexBuffers
   if (s_deviceConfig.m_glVertexArrayVertexBuffers)
@@ -1649,7 +1899,9 @@ void glVertexArrayVertexBuffers (GLuint vaobj, GLuint first, GLsizei count, cons
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexArrayAttribBinding (GLuint vaobj, GLuint attribindex, GLuint bindingindex)
+#undef glVertexArrayAttribBinding
+
+void  glew::glcore::glVertexArrayAttribBinding (GLuint vaobj, GLuint attribindex, GLuint bindingindex)
 {
   // GL_ARB_direct_state_access - glVertexArrayAttribBinding
   if (s_deviceConfig.m_glVertexArrayAttribBinding)
@@ -1662,7 +1914,9 @@ void glVertexArrayAttribBinding (GLuint vaobj, GLuint attribindex, GLuint bindin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexArrayAttribFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
+#undef glVertexArrayAttribFormat
+
+void  glew::glcore::glVertexArrayAttribFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
 {
   // GL_ARB_direct_state_access - glVertexArrayAttribFormat
   if (s_deviceConfig.m_glVertexArrayAttribFormat)
@@ -1675,7 +1929,9 @@ void glVertexArrayAttribFormat (GLuint vaobj, GLuint attribindex, GLint size, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexArrayAttribIFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
+#undef glVertexArrayAttribIFormat
+
+void  glew::glcore::glVertexArrayAttribIFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
 {
   // GL_ARB_direct_state_access - glVertexArrayAttribIFormat
   if (s_deviceConfig.m_glVertexArrayAttribIFormat)
@@ -1688,7 +1944,9 @@ void glVertexArrayAttribIFormat (GLuint vaobj, GLuint attribindex, GLint size, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexArrayAttribLFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
+#undef glVertexArrayAttribLFormat
+
+void  glew::glcore::glVertexArrayAttribLFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
 {
   // GL_ARB_direct_state_access - glVertexArrayAttribLFormat
   if (s_deviceConfig.m_glVertexArrayAttribLFormat)
@@ -1701,7 +1959,9 @@ void glVertexArrayAttribLFormat (GLuint vaobj, GLuint attribindex, GLint size, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexArrayBindingDivisor (GLuint vaobj, GLuint bindingindex, GLuint divisor)
+#undef glVertexArrayBindingDivisor
+
+void  glew::glcore::glVertexArrayBindingDivisor (GLuint vaobj, GLuint bindingindex, GLuint divisor)
 {
   // GL_ARB_direct_state_access - glVertexArrayBindingDivisor
   if (s_deviceConfig.m_glVertexArrayBindingDivisor)
@@ -1714,7 +1974,9 @@ void glVertexArrayBindingDivisor (GLuint vaobj, GLuint bindingindex, GLuint divi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetVertexArrayiv (GLuint vaobj, GLenum pname, GLint * param)
+#undef glGetVertexArrayiv
+
+void  glew::glcore::glGetVertexArrayiv (GLuint vaobj, GLenum pname, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetVertexArrayiv
   if (s_deviceConfig.m_glGetVertexArrayiv)
@@ -1727,7 +1989,9 @@ void glGetVertexArrayiv (GLuint vaobj, GLenum pname, GLint * param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetVertexArrayIndexediv (GLuint vaobj, GLuint index, GLenum pname, GLint * param)
+#undef glGetVertexArrayIndexediv
+
+void  glew::glcore::glGetVertexArrayIndexediv (GLuint vaobj, GLuint index, GLenum pname, GLint * param)
 {
   // GL_ARB_direct_state_access - glGetVertexArrayIndexediv
   if (s_deviceConfig.m_glGetVertexArrayIndexediv)
@@ -1740,7 +2004,9 @@ void glGetVertexArrayIndexediv (GLuint vaobj, GLuint index, GLenum pname, GLint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetVertexArrayIndexed64iv (GLuint vaobj, GLuint index, GLenum pname, GLint64 * param)
+#undef glGetVertexArrayIndexed64iv
+
+void  glew::glcore::glGetVertexArrayIndexed64iv (GLuint vaobj, GLuint index, GLenum pname, GLint64 * param)
 {
   // GL_ARB_direct_state_access - glGetVertexArrayIndexed64iv
   if (s_deviceConfig.m_glGetVertexArrayIndexed64iv)
@@ -1753,7 +2019,9 @@ void glGetVertexArrayIndexed64iv (GLuint vaobj, GLuint index, GLenum pname, GLin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCreateSamplers (GLsizei n, GLuint * samplers)
+#undef glCreateSamplers
+
+void  glew::glcore::glCreateSamplers (GLsizei n, GLuint * samplers)
 {
   // GL_ARB_direct_state_access - glCreateSamplers
   if (s_deviceConfig.m_glCreateSamplers)
@@ -1766,7 +2034,9 @@ void glCreateSamplers (GLsizei n, GLuint * samplers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCreateProgramPipelines (GLsizei n, GLuint * pipelines)
+#undef glCreateProgramPipelines
+
+void  glew::glcore::glCreateProgramPipelines (GLsizei n, GLuint * pipelines)
 {
   // GL_ARB_direct_state_access - glCreateProgramPipelines
   if (s_deviceConfig.m_glCreateProgramPipelines)
@@ -1779,7 +2049,9 @@ void glCreateProgramPipelines (GLsizei n, GLuint * pipelines)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCreateQueries (GLenum target, GLsizei n, GLuint * ids)
+#undef glCreateQueries
+
+void  glew::glcore::glCreateQueries (GLenum target, GLsizei n, GLuint * ids)
 {
   // GL_ARB_direct_state_access - glCreateQueries
   if (s_deviceConfig.m_glCreateQueries)
@@ -1792,7 +2064,9 @@ void glCreateQueries (GLenum target, GLsizei n, GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetQueryBufferObjecti64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
+#undef glGetQueryBufferObjecti64v
+
+void  glew::glcore::glGetQueryBufferObjecti64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
 {
   // GL_ARB_direct_state_access - glGetQueryBufferObjecti64v
   if (s_deviceConfig.m_glGetQueryBufferObjecti64v)
@@ -1805,7 +2079,9 @@ void glGetQueryBufferObjecti64v (GLuint id, GLuint buffer, GLenum pname, GLintpt
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetQueryBufferObjectiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
+#undef glGetQueryBufferObjectiv
+
+void  glew::glcore::glGetQueryBufferObjectiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
 {
   // GL_ARB_direct_state_access - glGetQueryBufferObjectiv
   if (s_deviceConfig.m_glGetQueryBufferObjectiv)
@@ -1818,7 +2094,9 @@ void glGetQueryBufferObjectiv (GLuint id, GLuint buffer, GLenum pname, GLintptr 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetQueryBufferObjectui64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
+#undef glGetQueryBufferObjectui64v
+
+void  glew::glcore::glGetQueryBufferObjectui64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
 {
   // GL_ARB_direct_state_access - glGetQueryBufferObjectui64v
   if (s_deviceConfig.m_glGetQueryBufferObjectui64v)
@@ -1831,7 +2109,9 @@ void glGetQueryBufferObjectui64v (GLuint id, GLuint buffer, GLenum pname, GLintp
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetQueryBufferObjectuiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
+#undef glGetQueryBufferObjectuiv
+
+void  glew::glcore::glGetQueryBufferObjectuiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset)
 {
   // GL_ARB_direct_state_access - glGetQueryBufferObjectuiv
   if (s_deviceConfig.m_glGetQueryBufferObjectuiv)
@@ -1844,7 +2124,9 @@ void glGetQueryBufferObjectuiv (GLuint id, GLuint buffer, GLenum pname, GLintptr
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBlendEquationiARB (GLuint buf, GLenum mode)
+#undef glBlendEquationiARB
+
+void  glew::glcore::glBlendEquationiARB (GLuint buf, GLenum mode)
 {
   // GL_ARB_draw_buffers_blend - glBlendEquationiARB
   if (s_deviceConfig.m_glBlendEquationiARB)
@@ -1857,7 +2139,9 @@ void glBlendEquationiARB (GLuint buf, GLenum mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBlendEquationSeparateiARB (GLuint buf, GLenum modeRGB, GLenum modeAlpha)
+#undef glBlendEquationSeparateiARB
+
+void  glew::glcore::glBlendEquationSeparateiARB (GLuint buf, GLenum modeRGB, GLenum modeAlpha)
 {
   // GL_ARB_draw_buffers_blend - glBlendEquationSeparateiARB
   if (s_deviceConfig.m_glBlendEquationSeparateiARB)
@@ -1870,7 +2154,9 @@ void glBlendEquationSeparateiARB (GLuint buf, GLenum modeRGB, GLenum modeAlpha)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBlendFunciARB (GLuint buf, GLenum src, GLenum dst)
+#undef glBlendFunciARB
+
+void  glew::glcore::glBlendFunciARB (GLuint buf, GLenum src, GLenum dst)
 {
   // GL_ARB_draw_buffers_blend - glBlendFunciARB
   if (s_deviceConfig.m_glBlendFunciARB)
@@ -1883,7 +2169,9 @@ void glBlendFunciARB (GLuint buf, GLenum src, GLenum dst)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBlendFuncSeparateiARB (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
+#undef glBlendFuncSeparateiARB
+
+void  glew::glcore::glBlendFuncSeparateiARB (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
 {
   // GL_ARB_draw_buffers_blend - glBlendFuncSeparateiARB
   if (s_deviceConfig.m_glBlendFuncSeparateiARB)
@@ -1896,7 +2184,9 @@ void glBlendFuncSeparateiARB (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum s
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawElementsBaseVertex (GLenum mode, GLsizei count, GLenum type, const void * indices, GLint basevertex)
+#undef glDrawElementsBaseVertex
+
+void  glew::glcore::glDrawElementsBaseVertex (GLenum mode, GLsizei count, GLenum type, const void * indices, GLint basevertex)
 {
   // GL_ARB_draw_elements_base_vertex - glDrawElementsBaseVertex
   if (s_deviceConfig.m_glDrawElementsBaseVertex)
@@ -1909,7 +2199,9 @@ void glDrawElementsBaseVertex (GLenum mode, GLsizei count, GLenum type, const vo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawRangeElementsBaseVertex (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices, GLint basevertex)
+#undef glDrawRangeElementsBaseVertex
+
+void  glew::glcore::glDrawRangeElementsBaseVertex (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices, GLint basevertex)
 {
   // GL_ARB_draw_elements_base_vertex - glDrawRangeElementsBaseVertex
   if (s_deviceConfig.m_glDrawRangeElementsBaseVertex)
@@ -1922,7 +2214,9 @@ void glDrawRangeElementsBaseVertex (GLenum mode, GLuint start, GLuint end, GLsiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawElementsInstancedBaseVertex (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex)
+#undef glDrawElementsInstancedBaseVertex
+
+void  glew::glcore::glDrawElementsInstancedBaseVertex (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex)
 {
   // GL_ARB_draw_elements_base_vertex - glDrawElementsInstancedBaseVertex
   if (s_deviceConfig.m_glDrawElementsInstancedBaseVertex)
@@ -1935,7 +2229,9 @@ void glDrawElementsInstancedBaseVertex (GLenum mode, GLsizei count, GLenum type,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMultiDrawElementsBaseVertex (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei drawcount, const GLint * basevertex)
+#undef glMultiDrawElementsBaseVertex
+
+void  glew::glcore::glMultiDrawElementsBaseVertex (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei drawcount, const GLint * basevertex)
 {
   // GL_ARB_draw_elements_base_vertex - glMultiDrawElementsBaseVertex
   if (s_deviceConfig.m_glMultiDrawElementsBaseVertex)
@@ -1948,7 +2244,9 @@ void glMultiDrawElementsBaseVertex (GLenum mode, const GLsizei * count, GLenum t
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawArraysIndirect (GLenum mode, const void * indirect)
+#undef glDrawArraysIndirect
+
+void  glew::glcore::glDrawArraysIndirect (GLenum mode, const void * indirect)
 {
   // GL_ARB_draw_indirect - glDrawArraysIndirect
   if (s_deviceConfig.m_glDrawArraysIndirect)
@@ -1961,7 +2259,9 @@ void glDrawArraysIndirect (GLenum mode, const void * indirect)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect)
+#undef glDrawElementsIndirect
+
+void  glew::glcore::glDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect)
 {
   // GL_ARB_draw_indirect - glDrawElementsIndirect
   if (s_deviceConfig.m_glDrawElementsIndirect)
@@ -1974,7 +2274,9 @@ void glDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glFramebufferParameteri (GLenum target, GLenum pname, GLint param)
+#undef glFramebufferParameteri
+
+void  glew::glcore::glFramebufferParameteri (GLenum target, GLenum pname, GLint param)
 {
   // GL_ARB_framebuffer_no_attachments - glFramebufferParameteri
   if (s_deviceConfig.m_glFramebufferParameteri)
@@ -1987,7 +2289,9 @@ void glFramebufferParameteri (GLenum target, GLenum pname, GLint param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetFramebufferParameteriv (GLenum target, GLenum pname, GLint * params)
+#undef glGetFramebufferParameteriv
+
+void  glew::glcore::glGetFramebufferParameteriv (GLenum target, GLenum pname, GLint * params)
 {
   // GL_ARB_framebuffer_no_attachments - glGetFramebufferParameteriv
   if (s_deviceConfig.m_glGetFramebufferParameteriv)
@@ -2000,7 +2304,9 @@ void glGetFramebufferParameteriv (GLenum target, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsRenderbuffer (GLuint renderbuffer)
+#undef glIsRenderbuffer
+
+GLboolean glew::glcore::glIsRenderbuffer (GLuint renderbuffer)
 {
   // GL_ARB_framebuffer_object - glIsRenderbuffer
   if (s_deviceConfig.m_glIsRenderbuffer)
@@ -2014,7 +2320,9 @@ GLboolean glIsRenderbuffer (GLuint renderbuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindRenderbuffer (GLenum target, GLuint renderbuffer)
+#undef glBindRenderbuffer
+
+void  glew::glcore::glBindRenderbuffer (GLenum target, GLuint renderbuffer)
 {
   // GL_ARB_framebuffer_object - glBindRenderbuffer
   if (s_deviceConfig.m_glBindRenderbuffer)
@@ -2027,7 +2335,9 @@ void glBindRenderbuffer (GLenum target, GLuint renderbuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDeleteRenderbuffers (GLsizei n, const GLuint * renderbuffers)
+#undef glDeleteRenderbuffers
+
+void  glew::glcore::glDeleteRenderbuffers (GLsizei n, const GLuint * renderbuffers)
 {
   // GL_ARB_framebuffer_object - glDeleteRenderbuffers
   if (s_deviceConfig.m_glDeleteRenderbuffers)
@@ -2040,7 +2350,9 @@ void glDeleteRenderbuffers (GLsizei n, const GLuint * renderbuffers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGenRenderbuffers (GLsizei n, GLuint * renderbuffers)
+#undef glGenRenderbuffers
+
+void  glew::glcore::glGenRenderbuffers (GLsizei n, GLuint * renderbuffers)
 {
   // GL_ARB_framebuffer_object - glGenRenderbuffers
   if (s_deviceConfig.m_glGenRenderbuffers)
@@ -2053,7 +2365,9 @@ void glGenRenderbuffers (GLsizei n, GLuint * renderbuffers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glRenderbufferStorage (GLenum target, GLenum internalformat, GLsizei width, GLsizei height)
+#undef glRenderbufferStorage
+
+void  glew::glcore::glRenderbufferStorage (GLenum target, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_framebuffer_object - glRenderbufferStorage
   if (s_deviceConfig.m_glRenderbufferStorage)
@@ -2066,7 +2380,9 @@ void glRenderbufferStorage (GLenum target, GLenum internalformat, GLsizei width,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetRenderbufferParameteriv (GLenum target, GLenum pname, GLint * params)
+#undef glGetRenderbufferParameteriv
+
+void  glew::glcore::glGetRenderbufferParameteriv (GLenum target, GLenum pname, GLint * params)
 {
   // GL_ARB_framebuffer_object - glGetRenderbufferParameteriv
   if (s_deviceConfig.m_glGetRenderbufferParameteriv)
@@ -2079,7 +2395,9 @@ void glGetRenderbufferParameteriv (GLenum target, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsFramebuffer (GLuint framebuffer)
+#undef glIsFramebuffer
+
+GLboolean glew::glcore::glIsFramebuffer (GLuint framebuffer)
 {
   // GL_ARB_framebuffer_object - glIsFramebuffer
   if (s_deviceConfig.m_glIsFramebuffer)
@@ -2093,7 +2411,9 @@ GLboolean glIsFramebuffer (GLuint framebuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindFramebuffer (GLenum target, GLuint framebuffer)
+#undef glBindFramebuffer
+
+void  glew::glcore::glBindFramebuffer (GLenum target, GLuint framebuffer)
 {
   // GL_ARB_framebuffer_object - glBindFramebuffer
   if (s_deviceConfig.m_glBindFramebuffer)
@@ -2106,7 +2426,9 @@ void glBindFramebuffer (GLenum target, GLuint framebuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDeleteFramebuffers (GLsizei n, const GLuint * framebuffers)
+#undef glDeleteFramebuffers
+
+void  glew::glcore::glDeleteFramebuffers (GLsizei n, const GLuint * framebuffers)
 {
   // GL_ARB_framebuffer_object - glDeleteFramebuffers
   if (s_deviceConfig.m_glDeleteFramebuffers)
@@ -2119,7 +2441,9 @@ void glDeleteFramebuffers (GLsizei n, const GLuint * framebuffers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGenFramebuffers (GLsizei n, GLuint * framebuffers)
+#undef glGenFramebuffers
+
+void  glew::glcore::glGenFramebuffers (GLsizei n, GLuint * framebuffers)
 {
   // GL_ARB_framebuffer_object - glGenFramebuffers
   if (s_deviceConfig.m_glGenFramebuffers)
@@ -2132,7 +2456,9 @@ void glGenFramebuffers (GLsizei n, GLuint * framebuffers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLenum glCheckFramebufferStatus (GLenum target)
+#undef glCheckFramebufferStatus
+
+GLenum glew::glcore::glCheckFramebufferStatus (GLenum target)
 {
   // GL_ARB_framebuffer_object - glCheckFramebufferStatus
   if (s_deviceConfig.m_glCheckFramebufferStatus)
@@ -2146,7 +2472,9 @@ GLenum glCheckFramebufferStatus (GLenum target)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glFramebufferTexture1D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)
+#undef glFramebufferTexture1D
+
+void  glew::glcore::glFramebufferTexture1D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 {
   // GL_ARB_framebuffer_object - glFramebufferTexture1D
   if (s_deviceConfig.m_glFramebufferTexture1D)
@@ -2159,7 +2487,9 @@ void glFramebufferTexture1D (GLenum target, GLenum attachment, GLenum textarget,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glFramebufferTexture2D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)
+#undef glFramebufferTexture2D
+
+void  glew::glcore::glFramebufferTexture2D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 {
   // GL_ARB_framebuffer_object - glFramebufferTexture2D
   if (s_deviceConfig.m_glFramebufferTexture2D)
@@ -2172,7 +2502,9 @@ void glFramebufferTexture2D (GLenum target, GLenum attachment, GLenum textarget,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glFramebufferTexture3D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset)
+#undef glFramebufferTexture3D
+
+void  glew::glcore::glFramebufferTexture3D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset)
 {
   // GL_ARB_framebuffer_object - glFramebufferTexture3D
   if (s_deviceConfig.m_glFramebufferTexture3D)
@@ -2185,7 +2517,9 @@ void glFramebufferTexture3D (GLenum target, GLenum attachment, GLenum textarget,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glFramebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)
+#undef glFramebufferRenderbuffer
+
+void  glew::glcore::glFramebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)
 {
   // GL_ARB_framebuffer_object - glFramebufferRenderbuffer
   if (s_deviceConfig.m_glFramebufferRenderbuffer)
@@ -2198,7 +2532,9 @@ void glFramebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderb
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetFramebufferAttachmentParameteriv (GLenum target, GLenum attachment, GLenum pname, GLint * params)
+#undef glGetFramebufferAttachmentParameteriv
+
+void  glew::glcore::glGetFramebufferAttachmentParameteriv (GLenum target, GLenum attachment, GLenum pname, GLint * params)
 {
   // GL_ARB_framebuffer_object - glGetFramebufferAttachmentParameteriv
   if (s_deviceConfig.m_glGetFramebufferAttachmentParameteriv)
@@ -2211,7 +2547,9 @@ void glGetFramebufferAttachmentParameteriv (GLenum target, GLenum attachment, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGenerateMipmap (GLenum target)
+#undef glGenerateMipmap
+
+void  glew::glcore::glGenerateMipmap (GLenum target)
 {
   // GL_ARB_framebuffer_object - glGenerateMipmap
   if (s_deviceConfig.m_glGenerateMipmap)
@@ -2224,7 +2562,9 @@ void glGenerateMipmap (GLenum target)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
+#undef glBlitFramebuffer
+
+void  glew::glcore::glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
   // GL_ARB_framebuffer_object - glBlitFramebuffer
   if (s_deviceConfig.m_glBlitFramebuffer)
@@ -2237,7 +2577,9 @@ void glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glRenderbufferStorageMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+#undef glRenderbufferStorageMultisample
+
+void  glew::glcore::glRenderbufferStorageMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_framebuffer_object - glRenderbufferStorageMultisample
   if (s_deviceConfig.m_glRenderbufferStorageMultisample)
@@ -2250,7 +2592,9 @@ void glRenderbufferStorageMultisample (GLenum target, GLsizei samples, GLenum in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glFramebufferTextureLayer (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer)
+#undef glFramebufferTextureLayer
+
+void  glew::glcore::glFramebufferTextureLayer (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer)
 {
   // GL_ARB_framebuffer_object - glFramebufferTextureLayer
   if (s_deviceConfig.m_glFramebufferTextureLayer)
@@ -2263,7 +2607,9 @@ void glFramebufferTextureLayer (GLenum target, GLenum attachment, GLuint texture
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei * length, GLenum * binaryFormat, void * binary)
+#undef glGetProgramBinary
+
+void  glew::glcore::glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei * length, GLenum * binaryFormat, void * binary)
 {
   // GL_ARB_get_program_binary - glGetProgramBinary
   if (s_deviceConfig.m_glGetProgramBinary)
@@ -2276,7 +2622,9 @@ void glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei * length, GLen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramBinary (GLuint program, GLenum binaryFormat, const void * binary, GLsizei length)
+#undef glProgramBinary
+
+void  glew::glcore::glProgramBinary (GLuint program, GLenum binaryFormat, const void * binary, GLsizei length)
 {
   // GL_ARB_get_program_binary - glProgramBinary
   if (s_deviceConfig.m_glProgramBinary)
@@ -2289,7 +2637,9 @@ void glProgramBinary (GLuint program, GLenum binaryFormat, const void * binary, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramParameteri (GLuint program, GLenum pname, GLint value)
+#undef glProgramParameteri
+
+void  glew::glcore::glProgramParameteri (GLuint program, GLenum pname, GLint value)
 {
   // GL_ARB_get_program_binary - glProgramParameteri
   if (s_deviceConfig.m_glProgramParameteri)
@@ -2302,7 +2652,9 @@ void glProgramParameteri (GLuint program, GLenum pname, GLint value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, GLsizei bufSize, void * pixels)
+#undef glGetTextureSubImage
+
+void  glew::glcore::glGetTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, GLsizei bufSize, void * pixels)
 {
   // GL_ARB_get_texture_sub_image - glGetTextureSubImage
   if (s_deviceConfig.m_glGetTextureSubImage)
@@ -2315,7 +2667,9 @@ void glGetTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yof
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetCompressedTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei bufSize, void * pixels)
+#undef glGetCompressedTextureSubImage
+
+void  glew::glcore::glGetCompressedTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei bufSize, void * pixels)
 {
   // GL_ARB_get_texture_sub_image - glGetCompressedTextureSubImage
   if (s_deviceConfig.m_glGetCompressedTextureSubImage)
@@ -2328,7 +2682,9 @@ void glGetCompressedTextureSubImage (GLuint texture, GLint level, GLint xoffset,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniform1d (GLint location, GLdouble x)
+#undef glUniform1d
+
+void  glew::glcore::glUniform1d (GLint location, GLdouble x)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform1d
   if (s_deviceConfig.m_glUniform1d)
@@ -2341,7 +2697,9 @@ void glUniform1d (GLint location, GLdouble x)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniform2d (GLint location, GLdouble x, GLdouble y)
+#undef glUniform2d
+
+void  glew::glcore::glUniform2d (GLint location, GLdouble x, GLdouble y)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform2d
   if (s_deviceConfig.m_glUniform2d)
@@ -2354,7 +2712,9 @@ void glUniform2d (GLint location, GLdouble x, GLdouble y)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniform3d (GLint location, GLdouble x, GLdouble y, GLdouble z)
+#undef glUniform3d
+
+void  glew::glcore::glUniform3d (GLint location, GLdouble x, GLdouble y, GLdouble z)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform3d
   if (s_deviceConfig.m_glUniform3d)
@@ -2367,7 +2727,9 @@ void glUniform3d (GLint location, GLdouble x, GLdouble y, GLdouble z)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniform4d (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w)
+#undef glUniform4d
+
+void  glew::glcore::glUniform4d (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform4d
   if (s_deviceConfig.m_glUniform4d)
@@ -2380,7 +2742,9 @@ void glUniform4d (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniform1dv (GLint location, GLsizei count, const GLdouble * value)
+#undef glUniform1dv
+
+void  glew::glcore::glUniform1dv (GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform1dv
   if (s_deviceConfig.m_glUniform1dv)
@@ -2393,7 +2757,9 @@ void glUniform1dv (GLint location, GLsizei count, const GLdouble * value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniform2dv (GLint location, GLsizei count, const GLdouble * value)
+#undef glUniform2dv
+
+void  glew::glcore::glUniform2dv (GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform2dv
   if (s_deviceConfig.m_glUniform2dv)
@@ -2406,7 +2772,9 @@ void glUniform2dv (GLint location, GLsizei count, const GLdouble * value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniform3dv (GLint location, GLsizei count, const GLdouble * value)
+#undef glUniform3dv
+
+void  glew::glcore::glUniform3dv (GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform3dv
   if (s_deviceConfig.m_glUniform3dv)
@@ -2419,7 +2787,9 @@ void glUniform3dv (GLint location, GLsizei count, const GLdouble * value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniform4dv (GLint location, GLsizei count, const GLdouble * value)
+#undef glUniform4dv
+
+void  glew::glcore::glUniform4dv (GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniform4dv
   if (s_deviceConfig.m_glUniform4dv)
@@ -2432,7 +2802,9 @@ void glUniform4dv (GLint location, GLsizei count, const GLdouble * value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformMatrix2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glUniformMatrix2dv
+
+void  glew::glcore::glUniformMatrix2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix2dv
   if (s_deviceConfig.m_glUniformMatrix2dv)
@@ -2445,7 +2817,9 @@ void glUniformMatrix2dv (GLint location, GLsizei count, GLboolean transpose, con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformMatrix3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glUniformMatrix3dv
+
+void  glew::glcore::glUniformMatrix3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix3dv
   if (s_deviceConfig.m_glUniformMatrix3dv)
@@ -2458,7 +2832,9 @@ void glUniformMatrix3dv (GLint location, GLsizei count, GLboolean transpose, con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformMatrix4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glUniformMatrix4dv
+
+void  glew::glcore::glUniformMatrix4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix4dv
   if (s_deviceConfig.m_glUniformMatrix4dv)
@@ -2471,7 +2847,9 @@ void glUniformMatrix4dv (GLint location, GLsizei count, GLboolean transpose, con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformMatrix2x3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glUniformMatrix2x3dv
+
+void  glew::glcore::glUniformMatrix2x3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix2x3dv
   if (s_deviceConfig.m_glUniformMatrix2x3dv)
@@ -2484,7 +2862,9 @@ void glUniformMatrix2x3dv (GLint location, GLsizei count, GLboolean transpose, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformMatrix2x4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glUniformMatrix2x4dv
+
+void  glew::glcore::glUniformMatrix2x4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix2x4dv
   if (s_deviceConfig.m_glUniformMatrix2x4dv)
@@ -2497,7 +2877,9 @@ void glUniformMatrix2x4dv (GLint location, GLsizei count, GLboolean transpose, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformMatrix3x2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glUniformMatrix3x2dv
+
+void  glew::glcore::glUniformMatrix3x2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix3x2dv
   if (s_deviceConfig.m_glUniformMatrix3x2dv)
@@ -2510,7 +2892,9 @@ void glUniformMatrix3x2dv (GLint location, GLsizei count, GLboolean transpose, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformMatrix3x4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glUniformMatrix3x4dv
+
+void  glew::glcore::glUniformMatrix3x4dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix3x4dv
   if (s_deviceConfig.m_glUniformMatrix3x4dv)
@@ -2523,7 +2907,9 @@ void glUniformMatrix3x4dv (GLint location, GLsizei count, GLboolean transpose, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformMatrix4x2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glUniformMatrix4x2dv
+
+void  glew::glcore::glUniformMatrix4x2dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix4x2dv
   if (s_deviceConfig.m_glUniformMatrix4x2dv)
@@ -2536,7 +2922,9 @@ void glUniformMatrix4x2dv (GLint location, GLsizei count, GLboolean transpose, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformMatrix4x3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glUniformMatrix4x3dv
+
+void  glew::glcore::glUniformMatrix4x3dv (GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_gpu_shader_fp64 - glUniformMatrix4x3dv
   if (s_deviceConfig.m_glUniformMatrix4x3dv)
@@ -2549,7 +2937,9 @@ void glUniformMatrix4x3dv (GLint location, GLsizei count, GLboolean transpose, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetUniformdv (GLuint program, GLint location, GLdouble * params)
+#undef glGetUniformdv
+
+void  glew::glcore::glGetUniformdv (GLuint program, GLint location, GLdouble * params)
 {
   // GL_ARB_gpu_shader_fp64 - glGetUniformdv
   if (s_deviceConfig.m_glGetUniformdv)
@@ -2562,7 +2952,9 @@ void glGetUniformdv (GLuint program, GLint location, GLdouble * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBlendColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
+#undef glBlendColor
+
+void  glew::glcore::glBlendColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
 {
   // GL_ARB_imaging - glBlendColor
   if (s_deviceConfig.m_glBlendColor)
@@ -2575,7 +2967,9 @@ void glBlendColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBlendEquation (GLenum mode)
+#undef glBlendEquation
+
+void  glew::glcore::glBlendEquation (GLenum mode)
 {
   // GL_ARB_imaging - glBlendEquation
   if (s_deviceConfig.m_glBlendEquation)
@@ -2588,7 +2982,9 @@ void glBlendEquation (GLenum mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMultiDrawArraysIndirectCountARB (GLenum mode, GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride)
+#undef glMultiDrawArraysIndirectCountARB
+
+void  glew::glcore::glMultiDrawArraysIndirectCountARB (GLenum mode, GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride)
 {
   // GL_ARB_indirect_parameters - glMultiDrawArraysIndirectCountARB
   if (s_deviceConfig.m_glMultiDrawArraysIndirectCountARB)
@@ -2601,7 +2997,9 @@ void glMultiDrawArraysIndirectCountARB (GLenum mode, GLintptr indirect, GLintptr
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMultiDrawElementsIndirectCountARB (GLenum mode, GLenum type, GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride)
+#undef glMultiDrawElementsIndirectCountARB
+
+void  glew::glcore::glMultiDrawElementsIndirectCountARB (GLenum mode, GLenum type, GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride)
 {
   // GL_ARB_indirect_parameters - glMultiDrawElementsIndirectCountARB
   if (s_deviceConfig.m_glMultiDrawElementsIndirectCountARB)
@@ -2614,7 +3012,9 @@ void glMultiDrawElementsIndirectCountARB (GLenum mode, GLenum type, GLintptr ind
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint * params)
+#undef glGetInternalformativ
+
+void  glew::glcore::glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint * params)
 {
   // GL_ARB_internalformat_query - glGetInternalformativ
   if (s_deviceConfig.m_glGetInternalformativ)
@@ -2627,7 +3027,9 @@ void glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetInternalformati64v (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint64 * params)
+#undef glGetInternalformati64v
+
+void  glew::glcore::glGetInternalformati64v (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint64 * params)
 {
   // GL_ARB_internalformat_query2 - glGetInternalformati64v
   if (s_deviceConfig.m_glGetInternalformati64v)
@@ -2640,7 +3042,9 @@ void glGetInternalformati64v (GLenum target, GLenum internalformat, GLenum pname
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glInvalidateTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth)
+#undef glInvalidateTexSubImage
+
+void  glew::glcore::glInvalidateTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth)
 {
   // GL_ARB_invalidate_subdata - glInvalidateTexSubImage
   if (s_deviceConfig.m_glInvalidateTexSubImage)
@@ -2653,7 +3057,9 @@ void glInvalidateTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glInvalidateTexImage (GLuint texture, GLint level)
+#undef glInvalidateTexImage
+
+void  glew::glcore::glInvalidateTexImage (GLuint texture, GLint level)
 {
   // GL_ARB_invalidate_subdata - glInvalidateTexImage
   if (s_deviceConfig.m_glInvalidateTexImage)
@@ -2666,7 +3072,9 @@ void glInvalidateTexImage (GLuint texture, GLint level)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glInvalidateBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr length)
+#undef glInvalidateBufferSubData
+
+void  glew::glcore::glInvalidateBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr length)
 {
   // GL_ARB_invalidate_subdata - glInvalidateBufferSubData
   if (s_deviceConfig.m_glInvalidateBufferSubData)
@@ -2679,7 +3087,9 @@ void glInvalidateBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr lengt
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glInvalidateBufferData (GLuint buffer)
+#undef glInvalidateBufferData
+
+void  glew::glcore::glInvalidateBufferData (GLuint buffer)
 {
   // GL_ARB_invalidate_subdata - glInvalidateBufferData
   if (s_deviceConfig.m_glInvalidateBufferData)
@@ -2692,7 +3102,9 @@ void glInvalidateBufferData (GLuint buffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glInvalidateFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments)
+#undef glInvalidateFramebuffer
+
+void  glew::glcore::glInvalidateFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments)
 {
   // GL_ARB_invalidate_subdata - glInvalidateFramebuffer
   if (s_deviceConfig.m_glInvalidateFramebuffer)
@@ -2705,7 +3117,9 @@ void glInvalidateFramebuffer (GLenum target, GLsizei numAttachments, const GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height)
+#undef glInvalidateSubFramebuffer
+
+void  glew::glcore::glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height)
 {
   // GL_ARB_invalidate_subdata - glInvalidateSubFramebuffer
   if (s_deviceConfig.m_glInvalidateSubFramebuffer)
@@ -2718,7 +3132,9 @@ void glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachments, const GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void * glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)
+#undef glMapBufferRange
+
+void * glew::glcore::glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)
 {
   // GL_ARB_map_buffer_range - glMapBufferRange
   if (s_deviceConfig.m_glMapBufferRange)
@@ -2732,7 +3148,9 @@ void * glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr length, GLbi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsizeiptr length)
+#undef glFlushMappedBufferRange
+
+void  glew::glcore::glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsizeiptr length)
 {
   // GL_ARB_map_buffer_range - glFlushMappedBufferRange
   if (s_deviceConfig.m_glFlushMappedBufferRange)
@@ -2745,7 +3163,9 @@ void glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsizeiptr length
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindBuffersBase (GLenum target, GLuint first, GLsizei count, const GLuint * buffers)
+#undef glBindBuffersBase
+
+void  glew::glcore::glBindBuffersBase (GLenum target, GLuint first, GLsizei count, const GLuint * buffers)
 {
   // GL_ARB_multi_bind - glBindBuffersBase
   if (s_deviceConfig.m_glBindBuffersBase)
@@ -2758,7 +3178,9 @@ void glBindBuffersBase (GLenum target, GLuint first, GLsizei count, const GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindBuffersRange (GLenum target, GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizeiptr * sizes)
+#undef glBindBuffersRange
+
+void  glew::glcore::glBindBuffersRange (GLenum target, GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizeiptr * sizes)
 {
   // GL_ARB_multi_bind - glBindBuffersRange
   if (s_deviceConfig.m_glBindBuffersRange)
@@ -2771,7 +3193,9 @@ void glBindBuffersRange (GLenum target, GLuint first, GLsizei count, const GLuin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindTextures (GLuint first, GLsizei count, const GLuint * textures)
+#undef glBindTextures
+
+void  glew::glcore::glBindTextures (GLuint first, GLsizei count, const GLuint * textures)
 {
   // GL_ARB_multi_bind - glBindTextures
   if (s_deviceConfig.m_glBindTextures)
@@ -2784,7 +3208,9 @@ void glBindTextures (GLuint first, GLsizei count, const GLuint * textures)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindSamplers (GLuint first, GLsizei count, const GLuint * samplers)
+#undef glBindSamplers
+
+void  glew::glcore::glBindSamplers (GLuint first, GLsizei count, const GLuint * samplers)
 {
   // GL_ARB_multi_bind - glBindSamplers
   if (s_deviceConfig.m_glBindSamplers)
@@ -2797,7 +3223,9 @@ void glBindSamplers (GLuint first, GLsizei count, const GLuint * samplers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindImageTextures (GLuint first, GLsizei count, const GLuint * textures)
+#undef glBindImageTextures
+
+void  glew::glcore::glBindImageTextures (GLuint first, GLsizei count, const GLuint * textures)
 {
   // GL_ARB_multi_bind - glBindImageTextures
   if (s_deviceConfig.m_glBindImageTextures)
@@ -2810,7 +3238,9 @@ void glBindImageTextures (GLuint first, GLsizei count, const GLuint * textures)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindVertexBuffers (GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizei * strides)
+#undef glBindVertexBuffers
+
+void  glew::glcore::glBindVertexBuffers (GLuint first, GLsizei count, const GLuint * buffers, const GLintptr * offsets, const GLsizei * strides)
 {
   // GL_ARB_multi_bind - glBindVertexBuffers
   if (s_deviceConfig.m_glBindVertexBuffers)
@@ -2823,7 +3253,9 @@ void glBindVertexBuffers (GLuint first, GLsizei count, const GLuint * buffers, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMultiDrawArraysIndirect (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride)
+#undef glMultiDrawArraysIndirect
+
+void  glew::glcore::glMultiDrawArraysIndirect (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride)
 {
   // GL_ARB_multi_draw_indirect - glMultiDrawArraysIndirect
   if (s_deviceConfig.m_glMultiDrawArraysIndirect)
@@ -2836,7 +3268,9 @@ void glMultiDrawArraysIndirect (GLenum mode, const void * indirect, GLsizei draw
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMultiDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect, GLsizei drawcount, GLsizei stride)
+#undef glMultiDrawElementsIndirect
+
+void  glew::glcore::glMultiDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect, GLsizei drawcount, GLsizei stride)
 {
   // GL_ARB_multi_draw_indirect - glMultiDrawElementsIndirect
   if (s_deviceConfig.m_glMultiDrawElementsIndirect)
@@ -2849,7 +3283,9 @@ void glMultiDrawElementsIndirect (GLenum mode, GLenum type, const void * indirec
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetProgramInterfaceiv (GLuint program, GLenum programInterface, GLenum pname, GLint * params)
+#undef glGetProgramInterfaceiv
+
+void  glew::glcore::glGetProgramInterfaceiv (GLuint program, GLenum programInterface, GLenum pname, GLint * params)
 {
   // GL_ARB_program_interface_query - glGetProgramInterfaceiv
   if (s_deviceConfig.m_glGetProgramInterfaceiv)
@@ -2862,7 +3298,9 @@ void glGetProgramInterfaceiv (GLuint program, GLenum programInterface, GLenum pn
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLuint glGetProgramResourceIndex (GLuint program, GLenum programInterface, const GLchar * name)
+#undef glGetProgramResourceIndex
+
+GLuint glew::glcore::glGetProgramResourceIndex (GLuint program, GLenum programInterface, const GLchar * name)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceIndex
   if (s_deviceConfig.m_glGetProgramResourceIndex)
@@ -2876,7 +3314,9 @@ GLuint glGetProgramResourceIndex (GLuint program, GLenum programInterface, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetProgramResourceName (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei * length, GLchar * name)
+#undef glGetProgramResourceName
+
+void  glew::glcore::glGetProgramResourceName (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei * length, GLchar * name)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceName
   if (s_deviceConfig.m_glGetProgramResourceName)
@@ -2889,7 +3329,9 @@ void glGetProgramResourceName (GLuint program, GLenum programInterface, GLuint i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLint * params)
+#undef glGetProgramResourceiv
+
+void  glew::glcore::glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLint * params)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceiv
   if (s_deviceConfig.m_glGetProgramResourceiv)
@@ -2902,7 +3344,9 @@ void glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint ind
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLint glGetProgramResourceLocation (GLuint program, GLenum programInterface, const GLchar * name)
+#undef glGetProgramResourceLocation
+
+GLint glew::glcore::glGetProgramResourceLocation (GLuint program, GLenum programInterface, const GLchar * name)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceLocation
   if (s_deviceConfig.m_glGetProgramResourceLocation)
@@ -2916,7 +3360,9 @@ GLint glGetProgramResourceLocation (GLuint program, GLenum programInterface, con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLint glGetProgramResourceLocationIndex (GLuint program, GLenum programInterface, const GLchar * name)
+#undef glGetProgramResourceLocationIndex
+
+GLint glew::glcore::glGetProgramResourceLocationIndex (GLuint program, GLenum programInterface, const GLchar * name)
 {
   // GL_ARB_program_interface_query - glGetProgramResourceLocationIndex
   if (s_deviceConfig.m_glGetProgramResourceLocationIndex)
@@ -2930,7 +3376,9 @@ GLint glGetProgramResourceLocationIndex (GLuint program, GLenum programInterface
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProvokingVertex (GLenum mode)
+#undef glProvokingVertex
+
+void  glew::glcore::glProvokingVertex (GLenum mode)
 {
   // GL_ARB_provoking_vertex - glProvokingVertex
   if (s_deviceConfig.m_glProvokingVertex)
@@ -2943,7 +3391,9 @@ void glProvokingVertex (GLenum mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLenum glGetGraphicsResetStatusARB ()
+#undef glGetGraphicsResetStatusARB
+
+GLenum glew::glcore::glGetGraphicsResetStatusARB ()
 {
   // GL_ARB_robustness - glGetGraphicsResetStatusARB
   if (s_deviceConfig.m_glGetGraphicsResetStatusARB)
@@ -2957,7 +3407,9 @@ GLenum glGetGraphicsResetStatusARB ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetnTexImageARB (GLenum target, GLint level, GLenum format, GLenum type, GLsizei bufSize, void * img)
+#undef glGetnTexImageARB
+
+void  glew::glcore::glGetnTexImageARB (GLenum target, GLint level, GLenum format, GLenum type, GLsizei bufSize, void * img)
 {
   // GL_ARB_robustness - glGetnTexImageARB
   if (s_deviceConfig.m_glGetnTexImageARB)
@@ -2970,7 +3422,9 @@ void glGetnTexImageARB (GLenum target, GLint level, GLenum format, GLenum type, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glReadnPixelsARB (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data)
+#undef glReadnPixelsARB
+
+void  glew::glcore::glReadnPixelsARB (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data)
 {
   // GL_ARB_robustness - glReadnPixelsARB
   if (s_deviceConfig.m_glReadnPixelsARB)
@@ -2983,7 +3437,9 @@ void glReadnPixelsARB (GLint x, GLint y, GLsizei width, GLsizei height, GLenum f
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetnCompressedTexImageARB (GLenum target, GLint lod, GLsizei bufSize, void * img)
+#undef glGetnCompressedTexImageARB
+
+void  glew::glcore::glGetnCompressedTexImageARB (GLenum target, GLint lod, GLsizei bufSize, void * img)
 {
   // GL_ARB_robustness - glGetnCompressedTexImageARB
   if (s_deviceConfig.m_glGetnCompressedTexImageARB)
@@ -2996,7 +3452,9 @@ void glGetnCompressedTexImageARB (GLenum target, GLint lod, GLsizei bufSize, voi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetnUniformfvARB (GLuint program, GLint location, GLsizei bufSize, GLfloat * params)
+#undef glGetnUniformfvARB
+
+void  glew::glcore::glGetnUniformfvARB (GLuint program, GLint location, GLsizei bufSize, GLfloat * params)
 {
   // GL_ARB_robustness - glGetnUniformfvARB
   if (s_deviceConfig.m_glGetnUniformfvARB)
@@ -3009,7 +3467,9 @@ void glGetnUniformfvARB (GLuint program, GLint location, GLsizei bufSize, GLfloa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetnUniformivARB (GLuint program, GLint location, GLsizei bufSize, GLint * params)
+#undef glGetnUniformivARB
+
+void  glew::glcore::glGetnUniformivARB (GLuint program, GLint location, GLsizei bufSize, GLint * params)
 {
   // GL_ARB_robustness - glGetnUniformivARB
   if (s_deviceConfig.m_glGetnUniformivARB)
@@ -3022,7 +3482,9 @@ void glGetnUniformivARB (GLuint program, GLint location, GLsizei bufSize, GLint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetnUniformuivARB (GLuint program, GLint location, GLsizei bufSize, GLuint * params)
+#undef glGetnUniformuivARB
+
+void  glew::glcore::glGetnUniformuivARB (GLuint program, GLint location, GLsizei bufSize, GLuint * params)
 {
   // GL_ARB_robustness - glGetnUniformuivARB
   if (s_deviceConfig.m_glGetnUniformuivARB)
@@ -3035,7 +3497,9 @@ void glGetnUniformuivARB (GLuint program, GLint location, GLsizei bufSize, GLuin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetnUniformdvARB (GLuint program, GLint location, GLsizei bufSize, GLdouble * params)
+#undef glGetnUniformdvARB
+
+void  glew::glcore::glGetnUniformdvARB (GLuint program, GLint location, GLsizei bufSize, GLdouble * params)
 {
   // GL_ARB_robustness - glGetnUniformdvARB
   if (s_deviceConfig.m_glGetnUniformdvARB)
@@ -3048,7 +3512,9 @@ void glGetnUniformdvARB (GLuint program, GLint location, GLsizei bufSize, GLdoub
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMinSampleShadingARB (GLfloat value)
+#undef glMinSampleShadingARB
+
+void  glew::glcore::glMinSampleShadingARB (GLfloat value)
 {
   // GL_ARB_sample_shading - glMinSampleShadingARB
   if (s_deviceConfig.m_glMinSampleShadingARB)
@@ -3061,7 +3527,9 @@ void glMinSampleShadingARB (GLfloat value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGenSamplers (GLsizei count, GLuint * samplers)
+#undef glGenSamplers
+
+void  glew::glcore::glGenSamplers (GLsizei count, GLuint * samplers)
 {
   // GL_ARB_sampler_objects - glGenSamplers
   if (s_deviceConfig.m_glGenSamplers)
@@ -3074,7 +3542,9 @@ void glGenSamplers (GLsizei count, GLuint * samplers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDeleteSamplers (GLsizei count, const GLuint * samplers)
+#undef glDeleteSamplers
+
+void  glew::glcore::glDeleteSamplers (GLsizei count, const GLuint * samplers)
 {
   // GL_ARB_sampler_objects - glDeleteSamplers
   if (s_deviceConfig.m_glDeleteSamplers)
@@ -3087,7 +3557,9 @@ void glDeleteSamplers (GLsizei count, const GLuint * samplers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsSampler (GLuint sampler)
+#undef glIsSampler
+
+GLboolean glew::glcore::glIsSampler (GLuint sampler)
 {
   // GL_ARB_sampler_objects - glIsSampler
   if (s_deviceConfig.m_glIsSampler)
@@ -3101,7 +3573,9 @@ GLboolean glIsSampler (GLuint sampler)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindSampler (GLuint unit, GLuint sampler)
+#undef glBindSampler
+
+void  glew::glcore::glBindSampler (GLuint unit, GLuint sampler)
 {
   // GL_ARB_sampler_objects - glBindSampler
   if (s_deviceConfig.m_glBindSampler)
@@ -3114,7 +3588,9 @@ void glBindSampler (GLuint unit, GLuint sampler)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glSamplerParameteri (GLuint sampler, GLenum pname, GLint param)
+#undef glSamplerParameteri
+
+void  glew::glcore::glSamplerParameteri (GLuint sampler, GLenum pname, GLint param)
 {
   // GL_ARB_sampler_objects - glSamplerParameteri
   if (s_deviceConfig.m_glSamplerParameteri)
@@ -3127,7 +3603,9 @@ void glSamplerParameteri (GLuint sampler, GLenum pname, GLint param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glSamplerParameteriv (GLuint sampler, GLenum pname, const GLint * param)
+#undef glSamplerParameteriv
+
+void  glew::glcore::glSamplerParameteriv (GLuint sampler, GLenum pname, const GLint * param)
 {
   // GL_ARB_sampler_objects - glSamplerParameteriv
   if (s_deviceConfig.m_glSamplerParameteriv)
@@ -3140,7 +3618,9 @@ void glSamplerParameteriv (GLuint sampler, GLenum pname, const GLint * param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat param)
+#undef glSamplerParameterf
+
+void  glew::glcore::glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat param)
 {
   // GL_ARB_sampler_objects - glSamplerParameterf
   if (s_deviceConfig.m_glSamplerParameterf)
@@ -3153,7 +3633,9 @@ void glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfloat * param)
+#undef glSamplerParameterfv
+
+void  glew::glcore::glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfloat * param)
 {
   // GL_ARB_sampler_objects - glSamplerParameterfv
   if (s_deviceConfig.m_glSamplerParameterfv)
@@ -3166,7 +3648,9 @@ void glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfloat * param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glSamplerParameterIiv (GLuint sampler, GLenum pname, const GLint * param)
+#undef glSamplerParameterIiv
+
+void  glew::glcore::glSamplerParameterIiv (GLuint sampler, GLenum pname, const GLint * param)
 {
   // GL_ARB_sampler_objects - glSamplerParameterIiv
   if (s_deviceConfig.m_glSamplerParameterIiv)
@@ -3179,7 +3663,9 @@ void glSamplerParameterIiv (GLuint sampler, GLenum pname, const GLint * param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glSamplerParameterIuiv (GLuint sampler, GLenum pname, const GLuint * param)
+#undef glSamplerParameterIuiv
+
+void  glew::glcore::glSamplerParameterIuiv (GLuint sampler, GLenum pname, const GLuint * param)
 {
   // GL_ARB_sampler_objects - glSamplerParameterIuiv
   if (s_deviceConfig.m_glSamplerParameterIuiv)
@@ -3192,7 +3678,9 @@ void glSamplerParameterIuiv (GLuint sampler, GLenum pname, const GLuint * param)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint * params)
+#undef glGetSamplerParameteriv
+
+void  glew::glcore::glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint * params)
 {
   // GL_ARB_sampler_objects - glGetSamplerParameteriv
   if (s_deviceConfig.m_glGetSamplerParameteriv)
@@ -3205,7 +3693,9 @@ void glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetSamplerParameterIiv (GLuint sampler, GLenum pname, GLint * params)
+#undef glGetSamplerParameterIiv
+
+void  glew::glcore::glGetSamplerParameterIiv (GLuint sampler, GLenum pname, GLint * params)
 {
   // GL_ARB_sampler_objects - glGetSamplerParameterIiv
   if (s_deviceConfig.m_glGetSamplerParameterIiv)
@@ -3218,7 +3708,9 @@ void glGetSamplerParameterIiv (GLuint sampler, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat * params)
+#undef glGetSamplerParameterfv
+
+void  glew::glcore::glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat * params)
 {
   // GL_ARB_sampler_objects - glGetSamplerParameterfv
   if (s_deviceConfig.m_glGetSamplerParameterfv)
@@ -3231,7 +3723,9 @@ void glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetSamplerParameterIuiv (GLuint sampler, GLenum pname, GLuint * params)
+#undef glGetSamplerParameterIuiv
+
+void  glew::glcore::glGetSamplerParameterIuiv (GLuint sampler, GLenum pname, GLuint * params)
 {
   // GL_ARB_sampler_objects - glGetSamplerParameterIuiv
   if (s_deviceConfig.m_glGetSamplerParameterIuiv)
@@ -3244,7 +3738,9 @@ void glGetSamplerParameterIuiv (GLuint sampler, GLenum pname, GLuint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint program)
+#undef glUseProgramStages
+
+void  glew::glcore::glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint program)
 {
   // GL_ARB_separate_shader_objects - glUseProgramStages
   if (s_deviceConfig.m_glUseProgramStages)
@@ -3257,7 +3753,9 @@ void glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint program)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glActiveShaderProgram (GLuint pipeline, GLuint program)
+#undef glActiveShaderProgram
+
+void  glew::glcore::glActiveShaderProgram (GLuint pipeline, GLuint program)
 {
   // GL_ARB_separate_shader_objects - glActiveShaderProgram
   if (s_deviceConfig.m_glActiveShaderProgram)
@@ -3270,7 +3768,9 @@ void glActiveShaderProgram (GLuint pipeline, GLuint program)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLuint glCreateShaderProgramv (GLenum type, GLsizei count, const GLchar *const* strings)
+#undef glCreateShaderProgramv
+
+GLuint glew::glcore::glCreateShaderProgramv (GLenum type, GLsizei count, const GLchar *const* strings)
 {
   // GL_ARB_separate_shader_objects - glCreateShaderProgramv
   if (s_deviceConfig.m_glCreateShaderProgramv)
@@ -3284,7 +3784,9 @@ GLuint glCreateShaderProgramv (GLenum type, GLsizei count, const GLchar *const* 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindProgramPipeline (GLuint pipeline)
+#undef glBindProgramPipeline
+
+void  glew::glcore::glBindProgramPipeline (GLuint pipeline)
 {
   // GL_ARB_separate_shader_objects - glBindProgramPipeline
   if (s_deviceConfig.m_glBindProgramPipeline)
@@ -3297,7 +3799,9 @@ void glBindProgramPipeline (GLuint pipeline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines)
+#undef glDeleteProgramPipelines
+
+void  glew::glcore::glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines)
 {
   // GL_ARB_separate_shader_objects - glDeleteProgramPipelines
   if (s_deviceConfig.m_glDeleteProgramPipelines)
@@ -3310,7 +3814,9 @@ void glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGenProgramPipelines (GLsizei n, GLuint * pipelines)
+#undef glGenProgramPipelines
+
+void  glew::glcore::glGenProgramPipelines (GLsizei n, GLuint * pipelines)
 {
   // GL_ARB_separate_shader_objects - glGenProgramPipelines
   if (s_deviceConfig.m_glGenProgramPipelines)
@@ -3323,7 +3829,9 @@ void glGenProgramPipelines (GLsizei n, GLuint * pipelines)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsProgramPipeline (GLuint pipeline)
+#undef glIsProgramPipeline
+
+GLboolean glew::glcore::glIsProgramPipeline (GLuint pipeline)
 {
   // GL_ARB_separate_shader_objects - glIsProgramPipeline
   if (s_deviceConfig.m_glIsProgramPipeline)
@@ -3337,7 +3845,9 @@ GLboolean glIsProgramPipeline (GLuint pipeline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint * params)
+#undef glGetProgramPipelineiv
+
+void  glew::glcore::glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint * params)
 {
   // GL_ARB_separate_shader_objects - glGetProgramPipelineiv
   if (s_deviceConfig.m_glGetProgramPipelineiv)
@@ -3350,7 +3860,9 @@ void glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform1i (GLuint program, GLint location, GLint v0)
+#undef glProgramUniform1i
+
+void  glew::glcore::glProgramUniform1i (GLuint program, GLint location, GLint v0)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1i
   if (s_deviceConfig.m_glProgramUniform1i)
@@ -3363,7 +3875,9 @@ void glProgramUniform1i (GLuint program, GLint location, GLint v0)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform1iv (GLuint program, GLint location, GLsizei count, const GLint * value)
+#undef glProgramUniform1iv
+
+void  glew::glcore::glProgramUniform1iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1iv
   if (s_deviceConfig.m_glProgramUniform1iv)
@@ -3376,7 +3890,9 @@ void glProgramUniform1iv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform1f (GLuint program, GLint location, GLfloat v0)
+#undef glProgramUniform1f
+
+void  glew::glcore::glProgramUniform1f (GLuint program, GLint location, GLfloat v0)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1f
   if (s_deviceConfig.m_glProgramUniform1f)
@@ -3389,7 +3905,9 @@ void glProgramUniform1f (GLuint program, GLint location, GLfloat v0)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform1fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+#undef glProgramUniform1fv
+
+void  glew::glcore::glProgramUniform1fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1fv
   if (s_deviceConfig.m_glProgramUniform1fv)
@@ -3402,7 +3920,9 @@ void glProgramUniform1fv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform1d (GLuint program, GLint location, GLdouble v0)
+#undef glProgramUniform1d
+
+void  glew::glcore::glProgramUniform1d (GLuint program, GLint location, GLdouble v0)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1d
   if (s_deviceConfig.m_glProgramUniform1d)
@@ -3415,7 +3935,9 @@ void glProgramUniform1d (GLuint program, GLint location, GLdouble v0)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform1dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
+#undef glProgramUniform1dv
+
+void  glew::glcore::glProgramUniform1dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1dv
   if (s_deviceConfig.m_glProgramUniform1dv)
@@ -3428,7 +3950,9 @@ void glProgramUniform1dv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform1ui (GLuint program, GLint location, GLuint v0)
+#undef glProgramUniform1ui
+
+void  glew::glcore::glProgramUniform1ui (GLuint program, GLint location, GLuint v0)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1ui
   if (s_deviceConfig.m_glProgramUniform1ui)
@@ -3441,7 +3965,9 @@ void glProgramUniform1ui (GLuint program, GLint location, GLuint v0)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform1uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
+#undef glProgramUniform1uiv
+
+void  glew::glcore::glProgramUniform1uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform1uiv
   if (s_deviceConfig.m_glProgramUniform1uiv)
@@ -3454,7 +3980,9 @@ void glProgramUniform1uiv (GLuint program, GLint location, GLsizei count, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform2i (GLuint program, GLint location, GLint v0, GLint v1)
+#undef glProgramUniform2i
+
+void  glew::glcore::glProgramUniform2i (GLuint program, GLint location, GLint v0, GLint v1)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2i
   if (s_deviceConfig.m_glProgramUniform2i)
@@ -3467,7 +3995,9 @@ void glProgramUniform2i (GLuint program, GLint location, GLint v0, GLint v1)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform2iv (GLuint program, GLint location, GLsizei count, const GLint * value)
+#undef glProgramUniform2iv
+
+void  glew::glcore::glProgramUniform2iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2iv
   if (s_deviceConfig.m_glProgramUniform2iv)
@@ -3480,7 +4010,9 @@ void glProgramUniform2iv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform2f (GLuint program, GLint location, GLfloat v0, GLfloat v1)
+#undef glProgramUniform2f
+
+void  glew::glcore::glProgramUniform2f (GLuint program, GLint location, GLfloat v0, GLfloat v1)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2f
   if (s_deviceConfig.m_glProgramUniform2f)
@@ -3493,7 +4025,9 @@ void glProgramUniform2f (GLuint program, GLint location, GLfloat v0, GLfloat v1)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform2fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+#undef glProgramUniform2fv
+
+void  glew::glcore::glProgramUniform2fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2fv
   if (s_deviceConfig.m_glProgramUniform2fv)
@@ -3506,7 +4040,9 @@ void glProgramUniform2fv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform2d (GLuint program, GLint location, GLdouble v0, GLdouble v1)
+#undef glProgramUniform2d
+
+void  glew::glcore::glProgramUniform2d (GLuint program, GLint location, GLdouble v0, GLdouble v1)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2d
   if (s_deviceConfig.m_glProgramUniform2d)
@@ -3519,7 +4055,9 @@ void glProgramUniform2d (GLuint program, GLint location, GLdouble v0, GLdouble v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform2dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
+#undef glProgramUniform2dv
+
+void  glew::glcore::glProgramUniform2dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2dv
   if (s_deviceConfig.m_glProgramUniform2dv)
@@ -3532,7 +4070,9 @@ void glProgramUniform2dv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform2ui (GLuint program, GLint location, GLuint v0, GLuint v1)
+#undef glProgramUniform2ui
+
+void  glew::glcore::glProgramUniform2ui (GLuint program, GLint location, GLuint v0, GLuint v1)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2ui
   if (s_deviceConfig.m_glProgramUniform2ui)
@@ -3545,7 +4085,9 @@ void glProgramUniform2ui (GLuint program, GLint location, GLuint v0, GLuint v1)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform2uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
+#undef glProgramUniform2uiv
+
+void  glew::glcore::glProgramUniform2uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform2uiv
   if (s_deviceConfig.m_glProgramUniform2uiv)
@@ -3558,7 +4100,9 @@ void glProgramUniform2uiv (GLuint program, GLint location, GLsizei count, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform3i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2)
+#undef glProgramUniform3i
+
+void  glew::glcore::glProgramUniform3i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3i
   if (s_deviceConfig.m_glProgramUniform3i)
@@ -3571,7 +4115,9 @@ void glProgramUniform3i (GLuint program, GLint location, GLint v0, GLint v1, GLi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform3iv (GLuint program, GLint location, GLsizei count, const GLint * value)
+#undef glProgramUniform3iv
+
+void  glew::glcore::glProgramUniform3iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3iv
   if (s_deviceConfig.m_glProgramUniform3iv)
@@ -3584,7 +4130,9 @@ void glProgramUniform3iv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform3f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
+#undef glProgramUniform3f
+
+void  glew::glcore::glProgramUniform3f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3f
   if (s_deviceConfig.m_glProgramUniform3f)
@@ -3597,7 +4145,9 @@ void glProgramUniform3f (GLuint program, GLint location, GLfloat v0, GLfloat v1,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform3fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+#undef glProgramUniform3fv
+
+void  glew::glcore::glProgramUniform3fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3fv
   if (s_deviceConfig.m_glProgramUniform3fv)
@@ -3610,7 +4160,9 @@ void glProgramUniform3fv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform3d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2)
+#undef glProgramUniform3d
+
+void  glew::glcore::glProgramUniform3d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3d
   if (s_deviceConfig.m_glProgramUniform3d)
@@ -3623,7 +4175,9 @@ void glProgramUniform3d (GLuint program, GLint location, GLdouble v0, GLdouble v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform3dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
+#undef glProgramUniform3dv
+
+void  glew::glcore::glProgramUniform3dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3dv
   if (s_deviceConfig.m_glProgramUniform3dv)
@@ -3636,7 +4190,9 @@ void glProgramUniform3dv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform3ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2)
+#undef glProgramUniform3ui
+
+void  glew::glcore::glProgramUniform3ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3ui
   if (s_deviceConfig.m_glProgramUniform3ui)
@@ -3649,7 +4205,9 @@ void glProgramUniform3ui (GLuint program, GLint location, GLuint v0, GLuint v1, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform3uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
+#undef glProgramUniform3uiv
+
+void  glew::glcore::glProgramUniform3uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform3uiv
   if (s_deviceConfig.m_glProgramUniform3uiv)
@@ -3662,7 +4220,9 @@ void glProgramUniform3uiv (GLuint program, GLint location, GLsizei count, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform4i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
+#undef glProgramUniform4i
+
+void  glew::glcore::glProgramUniform4i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4i
   if (s_deviceConfig.m_glProgramUniform4i)
@@ -3675,7 +4235,9 @@ void glProgramUniform4i (GLuint program, GLint location, GLint v0, GLint v1, GLi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform4iv (GLuint program, GLint location, GLsizei count, const GLint * value)
+#undef glProgramUniform4iv
+
+void  glew::glcore::glProgramUniform4iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4iv
   if (s_deviceConfig.m_glProgramUniform4iv)
@@ -3688,7 +4250,9 @@ void glProgramUniform4iv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform4f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
+#undef glProgramUniform4f
+
+void  glew::glcore::glProgramUniform4f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4f
   if (s_deviceConfig.m_glProgramUniform4f)
@@ -3701,7 +4265,9 @@ void glProgramUniform4f (GLuint program, GLint location, GLfloat v0, GLfloat v1,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform4fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+#undef glProgramUniform4fv
+
+void  glew::glcore::glProgramUniform4fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4fv
   if (s_deviceConfig.m_glProgramUniform4fv)
@@ -3714,7 +4280,9 @@ void glProgramUniform4fv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform4d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3)
+#undef glProgramUniform4d
+
+void  glew::glcore::glProgramUniform4d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4d
   if (s_deviceConfig.m_glProgramUniform4d)
@@ -3727,7 +4295,9 @@ void glProgramUniform4d (GLuint program, GLint location, GLdouble v0, GLdouble v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform4dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
+#undef glProgramUniform4dv
+
+void  glew::glcore::glProgramUniform4dv (GLuint program, GLint location, GLsizei count, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4dv
   if (s_deviceConfig.m_glProgramUniform4dv)
@@ -3740,7 +4310,9 @@ void glProgramUniform4dv (GLuint program, GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform4ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3)
+#undef glProgramUniform4ui
+
+void  glew::glcore::glProgramUniform4ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4ui
   if (s_deviceConfig.m_glProgramUniform4ui)
@@ -3753,7 +4325,9 @@ void glProgramUniform4ui (GLuint program, GLint location, GLuint v0, GLuint v1, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniform4uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
+#undef glProgramUniform4uiv
+
+void  glew::glcore::glProgramUniform4uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniform4uiv
   if (s_deviceConfig.m_glProgramUniform4uiv)
@@ -3766,7 +4340,9 @@ void glProgramUniform4uiv (GLuint program, GLint location, GLsizei count, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+#undef glProgramUniformMatrix2fv
+
+void  glew::glcore::glProgramUniformMatrix2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2fv
   if (s_deviceConfig.m_glProgramUniformMatrix2fv)
@@ -3779,7 +4355,9 @@ void glProgramUniformMatrix2fv (GLuint program, GLint location, GLsizei count, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+#undef glProgramUniformMatrix3fv
+
+void  glew::glcore::glProgramUniformMatrix3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3fv
   if (s_deviceConfig.m_glProgramUniformMatrix3fv)
@@ -3792,7 +4370,9 @@ void glProgramUniformMatrix3fv (GLuint program, GLint location, GLsizei count, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+#undef glProgramUniformMatrix4fv
+
+void  glew::glcore::glProgramUniformMatrix4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4fv
   if (s_deviceConfig.m_glProgramUniformMatrix4fv)
@@ -3805,7 +4385,9 @@ void glProgramUniformMatrix4fv (GLuint program, GLint location, GLsizei count, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glProgramUniformMatrix2dv
+
+void  glew::glcore::glProgramUniformMatrix2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2dv
   if (s_deviceConfig.m_glProgramUniformMatrix2dv)
@@ -3818,7 +4400,9 @@ void glProgramUniformMatrix2dv (GLuint program, GLint location, GLsizei count, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glProgramUniformMatrix3dv
+
+void  glew::glcore::glProgramUniformMatrix3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3dv
   if (s_deviceConfig.m_glProgramUniformMatrix3dv)
@@ -3831,7 +4415,9 @@ void glProgramUniformMatrix3dv (GLuint program, GLint location, GLsizei count, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glProgramUniformMatrix4dv
+
+void  glew::glcore::glProgramUniformMatrix4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4dv
   if (s_deviceConfig.m_glProgramUniformMatrix4dv)
@@ -3844,7 +4430,9 @@ void glProgramUniformMatrix4dv (GLuint program, GLint location, GLsizei count, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix2x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+#undef glProgramUniformMatrix2x3fv
+
+void  glew::glcore::glProgramUniformMatrix2x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2x3fv
   if (s_deviceConfig.m_glProgramUniformMatrix2x3fv)
@@ -3857,7 +4445,9 @@ void glProgramUniformMatrix2x3fv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix3x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+#undef glProgramUniformMatrix3x2fv
+
+void  glew::glcore::glProgramUniformMatrix3x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3x2fv
   if (s_deviceConfig.m_glProgramUniformMatrix3x2fv)
@@ -3870,7 +4460,9 @@ void glProgramUniformMatrix3x2fv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix2x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+#undef glProgramUniformMatrix2x4fv
+
+void  glew::glcore::glProgramUniformMatrix2x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2x4fv
   if (s_deviceConfig.m_glProgramUniformMatrix2x4fv)
@@ -3883,7 +4475,9 @@ void glProgramUniformMatrix2x4fv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix4x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+#undef glProgramUniformMatrix4x2fv
+
+void  glew::glcore::glProgramUniformMatrix4x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4x2fv
   if (s_deviceConfig.m_glProgramUniformMatrix4x2fv)
@@ -3896,7 +4490,9 @@ void glProgramUniformMatrix4x2fv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix3x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+#undef glProgramUniformMatrix3x4fv
+
+void  glew::glcore::glProgramUniformMatrix3x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3x4fv
   if (s_deviceConfig.m_glProgramUniformMatrix3x4fv)
@@ -3909,7 +4505,9 @@ void glProgramUniformMatrix3x4fv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix4x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+#undef glProgramUniformMatrix4x3fv
+
+void  glew::glcore::glProgramUniformMatrix4x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4x3fv
   if (s_deviceConfig.m_glProgramUniformMatrix4x3fv)
@@ -3922,7 +4520,9 @@ void glProgramUniformMatrix4x3fv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix2x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glProgramUniformMatrix2x3dv
+
+void  glew::glcore::glProgramUniformMatrix2x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2x3dv
   if (s_deviceConfig.m_glProgramUniformMatrix2x3dv)
@@ -3935,7 +4535,9 @@ void glProgramUniformMatrix2x3dv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix3x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glProgramUniformMatrix3x2dv
+
+void  glew::glcore::glProgramUniformMatrix3x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3x2dv
   if (s_deviceConfig.m_glProgramUniformMatrix3x2dv)
@@ -3948,7 +4550,9 @@ void glProgramUniformMatrix3x2dv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix2x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glProgramUniformMatrix2x4dv
+
+void  glew::glcore::glProgramUniformMatrix2x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix2x4dv
   if (s_deviceConfig.m_glProgramUniformMatrix2x4dv)
@@ -3961,7 +4565,9 @@ void glProgramUniformMatrix2x4dv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix4x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glProgramUniformMatrix4x2dv
+
+void  glew::glcore::glProgramUniformMatrix4x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4x2dv
   if (s_deviceConfig.m_glProgramUniformMatrix4x2dv)
@@ -3974,7 +4580,9 @@ void glProgramUniformMatrix4x2dv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix3x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glProgramUniformMatrix3x4dv
+
+void  glew::glcore::glProgramUniformMatrix3x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix3x4dv
   if (s_deviceConfig.m_glProgramUniformMatrix3x4dv)
@@ -3987,7 +4595,9 @@ void glProgramUniformMatrix3x4dv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glProgramUniformMatrix4x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
+#undef glProgramUniformMatrix4x3dv
+
+void  glew::glcore::glProgramUniformMatrix4x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLdouble * value)
 {
   // GL_ARB_separate_shader_objects - glProgramUniformMatrix4x3dv
   if (s_deviceConfig.m_glProgramUniformMatrix4x3dv)
@@ -4000,7 +4610,9 @@ void glProgramUniformMatrix4x3dv (GLuint program, GLint location, GLsizei count,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glValidateProgramPipeline (GLuint pipeline)
+#undef glValidateProgramPipeline
+
+void  glew::glcore::glValidateProgramPipeline (GLuint pipeline)
 {
   // GL_ARB_separate_shader_objects - glValidateProgramPipeline
   if (s_deviceConfig.m_glValidateProgramPipeline)
@@ -4013,7 +4625,9 @@ void glValidateProgramPipeline (GLuint pipeline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, GLsizei * length, GLchar * infoLog)
+#undef glGetProgramPipelineInfoLog
+
+void  glew::glcore::glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, GLsizei * length, GLchar * infoLog)
 {
   // GL_ARB_separate_shader_objects - glGetProgramPipelineInfoLog
   if (s_deviceConfig.m_glGetProgramPipelineInfoLog)
@@ -4026,7 +4640,9 @@ void glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, GLsizei * le
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetActiveAtomicCounterBufferiv (GLuint program, GLuint bufferIndex, GLenum pname, GLint * params)
+#undef glGetActiveAtomicCounterBufferiv
+
+void  glew::glcore::glGetActiveAtomicCounterBufferiv (GLuint program, GLuint bufferIndex, GLenum pname, GLint * params)
 {
   // GL_ARB_shader_atomic_counters - glGetActiveAtomicCounterBufferiv
   if (s_deviceConfig.m_glGetActiveAtomicCounterBufferiv)
@@ -4039,7 +4655,9 @@ void glGetActiveAtomicCounterBufferiv (GLuint program, GLuint bufferIndex, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindImageTexture (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)
+#undef glBindImageTexture
+
+void  glew::glcore::glBindImageTexture (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)
 {
   // GL_ARB_shader_image_load_store - glBindImageTexture
   if (s_deviceConfig.m_glBindImageTexture)
@@ -4052,7 +4670,9 @@ void glBindImageTexture (GLuint unit, GLuint texture, GLint level, GLboolean lay
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glMemoryBarrier (GLbitfield barriers)
+#undef glMemoryBarrier
+
+void  glew::glcore::glMemoryBarrier (GLbitfield barriers)
 {
   // GL_ARB_shader_image_load_store - glMemoryBarrier
   if (s_deviceConfig.m_glMemoryBarrier)
@@ -4065,7 +4685,9 @@ void glMemoryBarrier (GLbitfield barriers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glShaderStorageBlockBinding (GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding)
+#undef glShaderStorageBlockBinding
+
+void  glew::glcore::glShaderStorageBlockBinding (GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding)
 {
   // GL_ARB_shader_storage_buffer_object - glShaderStorageBlockBinding
   if (s_deviceConfig.m_glShaderStorageBlockBinding)
@@ -4078,7 +4700,9 @@ void glShaderStorageBlockBinding (GLuint program, GLuint storageBlockIndex, GLui
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLint glGetSubroutineUniformLocation (GLuint program, GLenum shadertype, const GLchar * name)
+#undef glGetSubroutineUniformLocation
+
+GLint glew::glcore::glGetSubroutineUniformLocation (GLuint program, GLenum shadertype, const GLchar * name)
 {
   // GL_ARB_shader_subroutine - glGetSubroutineUniformLocation
   if (s_deviceConfig.m_glGetSubroutineUniformLocation)
@@ -4092,7 +4716,9 @@ GLint glGetSubroutineUniformLocation (GLuint program, GLenum shadertype, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLuint glGetSubroutineIndex (GLuint program, GLenum shadertype, const GLchar * name)
+#undef glGetSubroutineIndex
+
+GLuint glew::glcore::glGetSubroutineIndex (GLuint program, GLenum shadertype, const GLchar * name)
 {
   // GL_ARB_shader_subroutine - glGetSubroutineIndex
   if (s_deviceConfig.m_glGetSubroutineIndex)
@@ -4106,7 +4732,9 @@ GLuint glGetSubroutineIndex (GLuint program, GLenum shadertype, const GLchar * n
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetActiveSubroutineUniformiv (GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint * values)
+#undef glGetActiveSubroutineUniformiv
+
+void  glew::glcore::glGetActiveSubroutineUniformiv (GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint * values)
 {
   // GL_ARB_shader_subroutine - glGetActiveSubroutineUniformiv
   if (s_deviceConfig.m_glGetActiveSubroutineUniformiv)
@@ -4119,7 +4747,9 @@ void glGetActiveSubroutineUniformiv (GLuint program, GLenum shadertype, GLuint i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetActiveSubroutineUniformName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei * length, GLchar * name)
+#undef glGetActiveSubroutineUniformName
+
+void  glew::glcore::glGetActiveSubroutineUniformName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei * length, GLchar * name)
 {
   // GL_ARB_shader_subroutine - glGetActiveSubroutineUniformName
   if (s_deviceConfig.m_glGetActiveSubroutineUniformName)
@@ -4132,7 +4762,9 @@ void glGetActiveSubroutineUniformName (GLuint program, GLenum shadertype, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetActiveSubroutineName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei * length, GLchar * name)
+#undef glGetActiveSubroutineName
+
+void  glew::glcore::glGetActiveSubroutineName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei * length, GLchar * name)
 {
   // GL_ARB_shader_subroutine - glGetActiveSubroutineName
   if (s_deviceConfig.m_glGetActiveSubroutineName)
@@ -4145,7 +4777,9 @@ void glGetActiveSubroutineName (GLuint program, GLenum shadertype, GLuint index,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformSubroutinesuiv (GLenum shadertype, GLsizei count, const GLuint * indices)
+#undef glUniformSubroutinesuiv
+
+void  glew::glcore::glUniformSubroutinesuiv (GLenum shadertype, GLsizei count, const GLuint * indices)
 {
   // GL_ARB_shader_subroutine - glUniformSubroutinesuiv
   if (s_deviceConfig.m_glUniformSubroutinesuiv)
@@ -4158,7 +4792,9 @@ void glUniformSubroutinesuiv (GLenum shadertype, GLsizei count, const GLuint * i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetUniformSubroutineuiv (GLenum shadertype, GLint location, GLuint * params)
+#undef glGetUniformSubroutineuiv
+
+void  glew::glcore::glGetUniformSubroutineuiv (GLenum shadertype, GLint location, GLuint * params)
 {
   // GL_ARB_shader_subroutine - glGetUniformSubroutineuiv
   if (s_deviceConfig.m_glGetUniformSubroutineuiv)
@@ -4171,7 +4807,9 @@ void glGetUniformSubroutineuiv (GLenum shadertype, GLint location, GLuint * para
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetProgramStageiv (GLuint program, GLenum shadertype, GLenum pname, GLint * values)
+#undef glGetProgramStageiv
+
+void  glew::glcore::glGetProgramStageiv (GLuint program, GLenum shadertype, GLenum pname, GLint * values)
 {
   // GL_ARB_shader_subroutine - glGetProgramStageiv
   if (s_deviceConfig.m_glGetProgramStageiv)
@@ -4184,7 +4822,9 @@ void glGetProgramStageiv (GLuint program, GLenum shadertype, GLenum pname, GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedStringARB (GLenum type, GLint namelen, const GLchar * name, GLint stringlen, const GLchar * string)
+#undef glNamedStringARB
+
+void  glew::glcore::glNamedStringARB (GLenum type, GLint namelen, const GLchar * name, GLint stringlen, const GLchar * string)
 {
   // GL_ARB_shading_language_include - glNamedStringARB
   if (s_deviceConfig.m_glNamedStringARB)
@@ -4197,7 +4837,9 @@ void glNamedStringARB (GLenum type, GLint namelen, const GLchar * name, GLint st
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDeleteNamedStringARB (GLint namelen, const GLchar * name)
+#undef glDeleteNamedStringARB
+
+void  glew::glcore::glDeleteNamedStringARB (GLint namelen, const GLchar * name)
 {
   // GL_ARB_shading_language_include - glDeleteNamedStringARB
   if (s_deviceConfig.m_glDeleteNamedStringARB)
@@ -4210,7 +4852,9 @@ void glDeleteNamedStringARB (GLint namelen, const GLchar * name)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glCompileShaderIncludeARB (GLuint shader, GLsizei count, const GLchar *const* path, const GLint * length)
+#undef glCompileShaderIncludeARB
+
+void  glew::glcore::glCompileShaderIncludeARB (GLuint shader, GLsizei count, const GLchar *const* path, const GLint * length)
 {
   // GL_ARB_shading_language_include - glCompileShaderIncludeARB
   if (s_deviceConfig.m_glCompileShaderIncludeARB)
@@ -4223,7 +4867,9 @@ void glCompileShaderIncludeARB (GLuint shader, GLsizei count, const GLchar *cons
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsNamedStringARB (GLint namelen, const GLchar * name)
+#undef glIsNamedStringARB
+
+GLboolean glew::glcore::glIsNamedStringARB (GLint namelen, const GLchar * name)
 {
   // GL_ARB_shading_language_include - glIsNamedStringARB
   if (s_deviceConfig.m_glIsNamedStringARB)
@@ -4237,7 +4883,9 @@ GLboolean glIsNamedStringARB (GLint namelen, const GLchar * name)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetNamedStringARB (GLint namelen, const GLchar * name, GLsizei bufSize, GLint * stringlen, GLchar * string)
+#undef glGetNamedStringARB
+
+void  glew::glcore::glGetNamedStringARB (GLint namelen, const GLchar * name, GLsizei bufSize, GLint * stringlen, GLchar * string)
 {
   // GL_ARB_shading_language_include - glGetNamedStringARB
   if (s_deviceConfig.m_glGetNamedStringARB)
@@ -4250,7 +4898,9 @@ void glGetNamedStringARB (GLint namelen, const GLchar * name, GLsizei bufSize, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetNamedStringivARB (GLint namelen, const GLchar * name, GLenum pname, GLint * params)
+#undef glGetNamedStringivARB
+
+void  glew::glcore::glGetNamedStringivARB (GLint namelen, const GLchar * name, GLenum pname, GLint * params)
 {
   // GL_ARB_shading_language_include - glGetNamedStringivARB
   if (s_deviceConfig.m_glGetNamedStringivARB)
@@ -4263,7 +4913,9 @@ void glGetNamedStringivARB (GLint namelen, const GLchar * name, GLenum pname, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBufferPageCommitmentARB (GLenum target, GLintptr offset, GLsizeiptr size, GLboolean commit)
+#undef glBufferPageCommitmentARB
+
+void  glew::glcore::glBufferPageCommitmentARB (GLenum target, GLintptr offset, GLsizeiptr size, GLboolean commit)
 {
   // GL_ARB_sparse_buffer - glBufferPageCommitmentARB
   if (s_deviceConfig.m_glBufferPageCommitmentARB)
@@ -4276,7 +4928,9 @@ void glBufferPageCommitmentARB (GLenum target, GLintptr offset, GLsizeiptr size,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedBufferPageCommitmentEXT (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit)
+#undef glNamedBufferPageCommitmentEXT
+
+void  glew::glcore::glNamedBufferPageCommitmentEXT (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit)
 {
   // GL_ARB_sparse_buffer - glNamedBufferPageCommitmentEXT
   if (s_deviceConfig.m_glNamedBufferPageCommitmentEXT)
@@ -4289,7 +4943,9 @@ void glNamedBufferPageCommitmentEXT (GLuint buffer, GLintptr offset, GLsizeiptr 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glNamedBufferPageCommitmentARB (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit)
+#undef glNamedBufferPageCommitmentARB
+
+void  glew::glcore::glNamedBufferPageCommitmentARB (GLuint buffer, GLintptr offset, GLsizeiptr size, GLboolean commit)
 {
   // GL_ARB_sparse_buffer - glNamedBufferPageCommitmentARB
   if (s_deviceConfig.m_glNamedBufferPageCommitmentARB)
@@ -4302,7 +4958,9 @@ void glNamedBufferPageCommitmentARB (GLuint buffer, GLintptr offset, GLsizeiptr 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTexPageCommitmentARB (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit)
+#undef glTexPageCommitmentARB
+
+void  glew::glcore::glTexPageCommitmentARB (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit)
 {
   // GL_ARB_sparse_texture - glTexPageCommitmentARB
   if (s_deviceConfig.m_glTexPageCommitmentARB)
@@ -4315,7 +4973,9 @@ void glTexPageCommitmentARB (GLenum target, GLint level, GLint xoffset, GLint yo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLsync glFenceSync (GLenum condition, GLbitfield flags)
+#undef glFenceSync
+
+GLsync glew::glcore::glFenceSync (GLenum condition, GLbitfield flags)
 {
   // GL_ARB_sync - glFenceSync
   if (s_deviceConfig.m_glFenceSync)
@@ -4329,7 +4989,9 @@ GLsync glFenceSync (GLenum condition, GLbitfield flags)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsSync (GLsync sync)
+#undef glIsSync
+
+GLboolean glew::glcore::glIsSync (GLsync sync)
 {
   // GL_ARB_sync - glIsSync
   if (s_deviceConfig.m_glIsSync)
@@ -4343,7 +5005,9 @@ GLboolean glIsSync (GLsync sync)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDeleteSync (GLsync sync)
+#undef glDeleteSync
+
+void  glew::glcore::glDeleteSync (GLsync sync)
 {
   // GL_ARB_sync - glDeleteSync
   if (s_deviceConfig.m_glDeleteSync)
@@ -4356,7 +5020,9 @@ void glDeleteSync (GLsync sync)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLenum glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
+#undef glClientWaitSync
+
+GLenum glew::glcore::glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 {
   // GL_ARB_sync - glClientWaitSync
   if (s_deviceConfig.m_glClientWaitSync)
@@ -4370,7 +5036,9 @@ GLenum glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
+#undef glWaitSync
+
+void  glew::glcore::glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 {
   // GL_ARB_sync - glWaitSync
   if (s_deviceConfig.m_glWaitSync)
@@ -4383,7 +5051,9 @@ void glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetInteger64v (GLenum pname, GLint64 * data)
+#undef glGetInteger64v
+
+void  glew::glcore::glGetInteger64v (GLenum pname, GLint64 * data)
 {
   // GL_ARB_sync - glGetInteger64v
   if (s_deviceConfig.m_glGetInteger64v)
@@ -4396,7 +5066,9 @@ void glGetInteger64v (GLenum pname, GLint64 * data)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values)
+#undef glGetSynciv
+
+void  glew::glcore::glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values)
 {
   // GL_ARB_sync - glGetSynciv
   if (s_deviceConfig.m_glGetSynciv)
@@ -4409,7 +5081,9 @@ void glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glPatchParameteri (GLenum pname, GLint value)
+#undef glPatchParameteri
+
+void  glew::glcore::glPatchParameteri (GLenum pname, GLint value)
 {
   // GL_ARB_tessellation_shader - glPatchParameteri
   if (s_deviceConfig.m_glPatchParameteri)
@@ -4422,7 +5096,9 @@ void glPatchParameteri (GLenum pname, GLint value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glPatchParameterfv (GLenum pname, const GLfloat * values)
+#undef glPatchParameterfv
+
+void  glew::glcore::glPatchParameterfv (GLenum pname, const GLfloat * values)
 {
   // GL_ARB_tessellation_shader - glPatchParameterfv
   if (s_deviceConfig.m_glPatchParameterfv)
@@ -4435,7 +5111,9 @@ void glPatchParameterfv (GLenum pname, const GLfloat * values)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureBarrier ()
+#undef glTextureBarrier
+
+void  glew::glcore::glTextureBarrier ()
 {
   // GL_ARB_texture_barrier - glTextureBarrier
   if (s_deviceConfig.m_glTextureBarrier)
@@ -4448,7 +5126,9 @@ void glTextureBarrier ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTexBufferRange (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
+#undef glTexBufferRange
+
+void  glew::glcore::glTexBufferRange (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
   // GL_ARB_texture_buffer_range - glTexBufferRange
   if (s_deviceConfig.m_glTexBufferRange)
@@ -4461,7 +5141,9 @@ void glTexBufferRange (GLenum target, GLenum internalformat, GLuint buffer, GLin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTexImage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
+#undef glTexImage2DMultisample
+
+void  glew::glcore::glTexImage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
 {
   // GL_ARB_texture_multisample - glTexImage2DMultisample
   if (s_deviceConfig.m_glTexImage2DMultisample)
@@ -4474,7 +5156,9 @@ void glTexImage2DMultisample (GLenum target, GLsizei samples, GLenum internalfor
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTexImage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
+#undef glTexImage3DMultisample
+
+void  glew::glcore::glTexImage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
 {
   // GL_ARB_texture_multisample - glTexImage3DMultisample
   if (s_deviceConfig.m_glTexImage3DMultisample)
@@ -4487,7 +5171,9 @@ void glTexImage3DMultisample (GLenum target, GLsizei samples, GLenum internalfor
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val)
+#undef glGetMultisamplefv
+
+void  glew::glcore::glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val)
 {
   // GL_ARB_texture_multisample - glGetMultisamplefv
   if (s_deviceConfig.m_glGetMultisamplefv)
@@ -4500,7 +5186,9 @@ void glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glSampleMaski (GLuint maskNumber, GLbitfield mask)
+#undef glSampleMaski
+
+void  glew::glcore::glSampleMaski (GLuint maskNumber, GLbitfield mask)
 {
   // GL_ARB_texture_multisample - glSampleMaski
   if (s_deviceConfig.m_glSampleMaski)
@@ -4513,7 +5201,9 @@ void glSampleMaski (GLuint maskNumber, GLbitfield mask)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTexStorage1D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width)
+#undef glTexStorage1D
+
+void  glew::glcore::glTexStorage1D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width)
 {
   // GL_ARB_texture_storage - glTexStorage1D
   if (s_deviceConfig.m_glTexStorage1D)
@@ -4526,7 +5216,9 @@ void glTexStorage1D (GLenum target, GLsizei levels, GLenum internalformat, GLsiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTexStorage2D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
+#undef glTexStorage2D
+
+void  glew::glcore::glTexStorage2D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
 {
   // GL_ARB_texture_storage - glTexStorage2D
   if (s_deviceConfig.m_glTexStorage2D)
@@ -4539,7 +5231,9 @@ void glTexStorage2D (GLenum target, GLsizei levels, GLenum internalformat, GLsiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTexStorage3D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
+#undef glTexStorage3D
+
+void  glew::glcore::glTexStorage3D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
 {
   // GL_ARB_texture_storage - glTexStorage3D
   if (s_deviceConfig.m_glTexStorage3D)
@@ -4552,7 +5246,9 @@ void glTexStorage3D (GLenum target, GLsizei levels, GLenum internalformat, GLsiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTexStorage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
+#undef glTexStorage2DMultisample
+
+void  glew::glcore::glTexStorage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
 {
   // GL_ARB_texture_storage_multisample - glTexStorage2DMultisample
   if (s_deviceConfig.m_glTexStorage2DMultisample)
@@ -4565,7 +5261,9 @@ void glTexStorage2DMultisample (GLenum target, GLsizei samples, GLenum internalf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTexStorage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
+#undef glTexStorage3DMultisample
+
+void  glew::glcore::glTexStorage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
 {
   // GL_ARB_texture_storage_multisample - glTexStorage3DMultisample
   if (s_deviceConfig.m_glTexStorage3DMultisample)
@@ -4578,7 +5276,9 @@ void glTexStorage3DMultisample (GLenum target, GLsizei samples, GLenum internalf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glTextureView (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers)
+#undef glTextureView
+
+void  glew::glcore::glTextureView (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers)
 {
   // GL_ARB_texture_view - glTextureView
   if (s_deviceConfig.m_glTextureView)
@@ -4591,7 +5291,9 @@ void glTextureView (GLuint texture, GLenum target, GLuint origtexture, GLenum in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glQueryCounter (GLuint id, GLenum target)
+#undef glQueryCounter
+
+void  glew::glcore::glQueryCounter (GLuint id, GLenum target)
 {
   // GL_ARB_timer_query - glQueryCounter
   if (s_deviceConfig.m_glQueryCounter)
@@ -4604,7 +5306,9 @@ void glQueryCounter (GLuint id, GLenum target)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetQueryObjecti64v (GLuint id, GLenum pname, GLint64 * params)
+#undef glGetQueryObjecti64v
+
+void  glew::glcore::glGetQueryObjecti64v (GLuint id, GLenum pname, GLint64 * params)
 {
   // GL_ARB_timer_query - glGetQueryObjecti64v
   if (s_deviceConfig.m_glGetQueryObjecti64v)
@@ -4617,7 +5321,9 @@ void glGetQueryObjecti64v (GLuint id, GLenum pname, GLint64 * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetQueryObjectui64v (GLuint id, GLenum pname, GLuint64 * params)
+#undef glGetQueryObjectui64v
+
+void  glew::glcore::glGetQueryObjectui64v (GLuint id, GLenum pname, GLuint64 * params)
 {
   // GL_ARB_timer_query - glGetQueryObjectui64v
   if (s_deviceConfig.m_glGetQueryObjectui64v)
@@ -4630,7 +5336,9 @@ void glGetQueryObjectui64v (GLuint id, GLenum pname, GLuint64 * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindTransformFeedback (GLenum target, GLuint id)
+#undef glBindTransformFeedback
+
+void  glew::glcore::glBindTransformFeedback (GLenum target, GLuint id)
 {
   // GL_ARB_transform_feedback2 - glBindTransformFeedback
   if (s_deviceConfig.m_glBindTransformFeedback)
@@ -4643,7 +5351,9 @@ void glBindTransformFeedback (GLenum target, GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids)
+#undef glDeleteTransformFeedbacks
+
+void  glew::glcore::glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids)
 {
   // GL_ARB_transform_feedback2 - glDeleteTransformFeedbacks
   if (s_deviceConfig.m_glDeleteTransformFeedbacks)
@@ -4656,7 +5366,9 @@ void glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGenTransformFeedbacks (GLsizei n, GLuint * ids)
+#undef glGenTransformFeedbacks
+
+void  glew::glcore::glGenTransformFeedbacks (GLsizei n, GLuint * ids)
 {
   // GL_ARB_transform_feedback2 - glGenTransformFeedbacks
   if (s_deviceConfig.m_glGenTransformFeedbacks)
@@ -4669,7 +5381,9 @@ void glGenTransformFeedbacks (GLsizei n, GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsTransformFeedback (GLuint id)
+#undef glIsTransformFeedback
+
+GLboolean glew::glcore::glIsTransformFeedback (GLuint id)
 {
   // GL_ARB_transform_feedback2 - glIsTransformFeedback
   if (s_deviceConfig.m_glIsTransformFeedback)
@@ -4683,7 +5397,9 @@ GLboolean glIsTransformFeedback (GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glPauseTransformFeedback ()
+#undef glPauseTransformFeedback
+
+void  glew::glcore::glPauseTransformFeedback ()
 {
   // GL_ARB_transform_feedback2 - glPauseTransformFeedback
   if (s_deviceConfig.m_glPauseTransformFeedback)
@@ -4696,7 +5412,9 @@ void glPauseTransformFeedback ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glResumeTransformFeedback ()
+#undef glResumeTransformFeedback
+
+void  glew::glcore::glResumeTransformFeedback ()
 {
   // GL_ARB_transform_feedback2 - glResumeTransformFeedback
   if (s_deviceConfig.m_glResumeTransformFeedback)
@@ -4709,7 +5427,9 @@ void glResumeTransformFeedback ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawTransformFeedback (GLenum mode, GLuint id)
+#undef glDrawTransformFeedback
+
+void  glew::glcore::glDrawTransformFeedback (GLenum mode, GLuint id)
 {
   // GL_ARB_transform_feedback2 - glDrawTransformFeedback
   if (s_deviceConfig.m_glDrawTransformFeedback)
@@ -4722,7 +5442,9 @@ void glDrawTransformFeedback (GLenum mode, GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawTransformFeedbackStream (GLenum mode, GLuint id, GLuint stream)
+#undef glDrawTransformFeedbackStream
+
+void  glew::glcore::glDrawTransformFeedbackStream (GLenum mode, GLuint id, GLuint stream)
 {
   // GL_ARB_transform_feedback3 - glDrawTransformFeedbackStream
   if (s_deviceConfig.m_glDrawTransformFeedbackStream)
@@ -4735,7 +5457,9 @@ void glDrawTransformFeedbackStream (GLenum mode, GLuint id, GLuint stream)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBeginQueryIndexed (GLenum target, GLuint index, GLuint id)
+#undef glBeginQueryIndexed
+
+void  glew::glcore::glBeginQueryIndexed (GLenum target, GLuint index, GLuint id)
 {
   // GL_ARB_transform_feedback3 - glBeginQueryIndexed
   if (s_deviceConfig.m_glBeginQueryIndexed)
@@ -4748,7 +5472,9 @@ void glBeginQueryIndexed (GLenum target, GLuint index, GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glEndQueryIndexed (GLenum target, GLuint index)
+#undef glEndQueryIndexed
+
+void  glew::glcore::glEndQueryIndexed (GLenum target, GLuint index)
 {
   // GL_ARB_transform_feedback3 - glEndQueryIndexed
   if (s_deviceConfig.m_glEndQueryIndexed)
@@ -4761,7 +5487,9 @@ void glEndQueryIndexed (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetQueryIndexediv (GLenum target, GLuint index, GLenum pname, GLint * params)
+#undef glGetQueryIndexediv
+
+void  glew::glcore::glGetQueryIndexediv (GLenum target, GLuint index, GLenum pname, GLint * params)
 {
   // GL_ARB_transform_feedback3 - glGetQueryIndexediv
   if (s_deviceConfig.m_glGetQueryIndexediv)
@@ -4774,7 +5502,9 @@ void glGetQueryIndexediv (GLenum target, GLuint index, GLenum pname, GLint * par
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawTransformFeedbackInstanced (GLenum mode, GLuint id, GLsizei instancecount)
+#undef glDrawTransformFeedbackInstanced
+
+void  glew::glcore::glDrawTransformFeedbackInstanced (GLenum mode, GLuint id, GLsizei instancecount)
 {
   // GL_ARB_transform_feedback_instanced - glDrawTransformFeedbackInstanced
   if (s_deviceConfig.m_glDrawTransformFeedbackInstanced)
@@ -4787,7 +5517,9 @@ void glDrawTransformFeedbackInstanced (GLenum mode, GLuint id, GLsizei instancec
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDrawTransformFeedbackStreamInstanced (GLenum mode, GLuint id, GLuint stream, GLsizei instancecount)
+#undef glDrawTransformFeedbackStreamInstanced
+
+void  glew::glcore::glDrawTransformFeedbackStreamInstanced (GLenum mode, GLuint id, GLuint stream, GLsizei instancecount)
 {
   // GL_ARB_transform_feedback_instanced - glDrawTransformFeedbackStreamInstanced
   if (s_deviceConfig.m_glDrawTransformFeedbackStreamInstanced)
@@ -4800,7 +5532,9 @@ void glDrawTransformFeedbackStreamInstanced (GLenum mode, GLuint id, GLuint stre
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetUniformIndices (GLuint program, GLsizei uniformCount, const GLchar *const* uniformNames, GLuint * uniformIndices)
+#undef glGetUniformIndices
+
+void  glew::glcore::glGetUniformIndices (GLuint program, GLsizei uniformCount, const GLchar *const* uniformNames, GLuint * uniformIndices)
 {
   // GL_ARB_uniform_buffer_object - glGetUniformIndices
   if (s_deviceConfig.m_glGetUniformIndices)
@@ -4813,7 +5547,9 @@ void glGetUniformIndices (GLuint program, GLsizei uniformCount, const GLchar *co
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, const GLuint * uniformIndices, GLenum pname, GLint * params)
+#undef glGetActiveUniformsiv
+
+void  glew::glcore::glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, const GLuint * uniformIndices, GLenum pname, GLint * params)
 {
   // GL_ARB_uniform_buffer_object - glGetActiveUniformsiv
   if (s_deviceConfig.m_glGetActiveUniformsiv)
@@ -4826,7 +5562,9 @@ void glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, const GLuint *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetActiveUniformName (GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformName)
+#undef glGetActiveUniformName
+
+void  glew::glcore::glGetActiveUniformName (GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformName)
 {
   // GL_ARB_uniform_buffer_object - glGetActiveUniformName
   if (s_deviceConfig.m_glGetActiveUniformName)
@@ -4839,7 +5577,9 @@ void glGetActiveUniformName (GLuint program, GLuint uniformIndex, GLsizei bufSiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLuint glGetUniformBlockIndex (GLuint program, const GLchar * uniformBlockName)
+#undef glGetUniformBlockIndex
+
+GLuint glew::glcore::glGetUniformBlockIndex (GLuint program, const GLchar * uniformBlockName)
 {
   // GL_ARB_uniform_buffer_object - glGetUniformBlockIndex
   if (s_deviceConfig.m_glGetUniformBlockIndex)
@@ -4853,7 +5593,9 @@ GLuint glGetUniformBlockIndex (GLuint program, const GLchar * uniformBlockName)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint * params)
+#undef glGetActiveUniformBlockiv
+
+void  glew::glcore::glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint * params)
 {
   // GL_ARB_uniform_buffer_object - glGetActiveUniformBlockiv
   if (s_deviceConfig.m_glGetActiveUniformBlockiv)
@@ -4866,7 +5608,9 @@ void glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlockIndex, GLenum
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetActiveUniformBlockName (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformBlockName)
+#undef glGetActiveUniformBlockName
+
+void  glew::glcore::glGetActiveUniformBlockName (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformBlockName)
 {
   // GL_ARB_uniform_buffer_object - glGetActiveUniformBlockName
   if (s_deviceConfig.m_glGetActiveUniformBlockName)
@@ -4879,7 +5623,9 @@ void glGetActiveUniformBlockName (GLuint program, GLuint uniformBlockIndex, GLsi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glUniformBlockBinding (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding)
+#undef glUniformBlockBinding
+
+void  glew::glcore::glUniformBlockBinding (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding)
 {
   // GL_ARB_uniform_buffer_object - glUniformBlockBinding
   if (s_deviceConfig.m_glUniformBlockBinding)
@@ -4892,7 +5638,9 @@ void glUniformBlockBinding (GLuint program, GLuint uniformBlockIndex, GLuint uni
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size)
+#undef glBindBufferRange
+
+void  glew::glcore::glBindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
   // GL_ARB_uniform_buffer_object - glBindBufferRange
   if (s_deviceConfig.m_glBindBufferRange)
@@ -4905,7 +5653,9 @@ void glBindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr off
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindBufferBase (GLenum target, GLuint index, GLuint buffer)
+#undef glBindBufferBase
+
+void  glew::glcore::glBindBufferBase (GLenum target, GLuint index, GLuint buffer)
 {
   // GL_ARB_uniform_buffer_object - glBindBufferBase
   if (s_deviceConfig.m_glBindBufferBase)
@@ -4918,7 +5668,9 @@ void glBindBufferBase (GLenum target, GLuint index, GLuint buffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetIntegeri_v (GLenum target, GLuint index, GLint * data)
+#undef glGetIntegeri_v
+
+void  glew::glcore::glGetIntegeri_v (GLenum target, GLuint index, GLint * data)
 {
   // GL_ARB_uniform_buffer_object - glGetIntegeri_v
   if (s_deviceConfig.m_glGetIntegeri_v)
@@ -4931,7 +5683,9 @@ void glGetIntegeri_v (GLenum target, GLuint index, GLint * data)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindVertexArray (GLuint array)
+#undef glBindVertexArray
+
+void  glew::glcore::glBindVertexArray (GLuint array)
 {
   // GL_ARB_vertex_array_object - glBindVertexArray
   if (s_deviceConfig.m_glBindVertexArray)
@@ -4944,7 +5698,9 @@ void glBindVertexArray (GLuint array)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDeleteVertexArrays (GLsizei n, const GLuint * arrays)
+#undef glDeleteVertexArrays
+
+void  glew::glcore::glDeleteVertexArrays (GLsizei n, const GLuint * arrays)
 {
   // GL_ARB_vertex_array_object - glDeleteVertexArrays
   if (s_deviceConfig.m_glDeleteVertexArrays)
@@ -4957,7 +5713,9 @@ void glDeleteVertexArrays (GLsizei n, const GLuint * arrays)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGenVertexArrays (GLsizei n, GLuint * arrays)
+#undef glGenVertexArrays
+
+void  glew::glcore::glGenVertexArrays (GLsizei n, GLuint * arrays)
 {
   // GL_ARB_vertex_array_object - glGenVertexArrays
   if (s_deviceConfig.m_glGenVertexArrays)
@@ -4970,7 +5728,9 @@ void glGenVertexArrays (GLsizei n, GLuint * arrays)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean glIsVertexArray (GLuint array)
+#undef glIsVertexArray
+
+GLboolean glew::glcore::glIsVertexArray (GLuint array)
 {
   // GL_ARB_vertex_array_object - glIsVertexArray
   if (s_deviceConfig.m_glIsVertexArray)
@@ -4984,7 +5744,9 @@ GLboolean glIsVertexArray (GLuint array)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL1d (GLuint index, GLdouble x)
+#undef glVertexAttribL1d
+
+void  glew::glcore::glVertexAttribL1d (GLuint index, GLdouble x)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL1d
   if (s_deviceConfig.m_glVertexAttribL1d)
@@ -4997,7 +5759,9 @@ void glVertexAttribL1d (GLuint index, GLdouble x)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL2d (GLuint index, GLdouble x, GLdouble y)
+#undef glVertexAttribL2d
+
+void  glew::glcore::glVertexAttribL2d (GLuint index, GLdouble x, GLdouble y)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL2d
   if (s_deviceConfig.m_glVertexAttribL2d)
@@ -5010,7 +5774,9 @@ void glVertexAttribL2d (GLuint index, GLdouble x, GLdouble y)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL3d (GLuint index, GLdouble x, GLdouble y, GLdouble z)
+#undef glVertexAttribL3d
+
+void  glew::glcore::glVertexAttribL3d (GLuint index, GLdouble x, GLdouble y, GLdouble z)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL3d
   if (s_deviceConfig.m_glVertexAttribL3d)
@@ -5023,7 +5789,9 @@ void glVertexAttribL3d (GLuint index, GLdouble x, GLdouble y, GLdouble z)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL4d (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w)
+#undef glVertexAttribL4d
+
+void  glew::glcore::glVertexAttribL4d (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL4d
   if (s_deviceConfig.m_glVertexAttribL4d)
@@ -5036,7 +5804,9 @@ void glVertexAttribL4d (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdoub
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL1dv (GLuint index, const GLdouble * v)
+#undef glVertexAttribL1dv
+
+void  glew::glcore::glVertexAttribL1dv (GLuint index, const GLdouble * v)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL1dv
   if (s_deviceConfig.m_glVertexAttribL1dv)
@@ -5049,7 +5819,9 @@ void glVertexAttribL1dv (GLuint index, const GLdouble * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL2dv (GLuint index, const GLdouble * v)
+#undef glVertexAttribL2dv
+
+void  glew::glcore::glVertexAttribL2dv (GLuint index, const GLdouble * v)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL2dv
   if (s_deviceConfig.m_glVertexAttribL2dv)
@@ -5062,7 +5834,9 @@ void glVertexAttribL2dv (GLuint index, const GLdouble * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL3dv (GLuint index, const GLdouble * v)
+#undef glVertexAttribL3dv
+
+void  glew::glcore::glVertexAttribL3dv (GLuint index, const GLdouble * v)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL3dv
   if (s_deviceConfig.m_glVertexAttribL3dv)
@@ -5075,7 +5849,9 @@ void glVertexAttribL3dv (GLuint index, const GLdouble * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribL4dv (GLuint index, const GLdouble * v)
+#undef glVertexAttribL4dv
+
+void  glew::glcore::glVertexAttribL4dv (GLuint index, const GLdouble * v)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribL4dv
   if (s_deviceConfig.m_glVertexAttribL4dv)
@@ -5088,7 +5864,9 @@ void glVertexAttribL4dv (GLuint index, const GLdouble * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribLPointer (GLuint index, GLint size, GLenum type, GLsizei stride, const void * pointer)
+#undef glVertexAttribLPointer
+
+void  glew::glcore::glVertexAttribLPointer (GLuint index, GLint size, GLenum type, GLsizei stride, const void * pointer)
 {
   // GL_ARB_vertex_attrib_64bit - glVertexAttribLPointer
   if (s_deviceConfig.m_glVertexAttribLPointer)
@@ -5101,7 +5879,9 @@ void glVertexAttribLPointer (GLuint index, GLint size, GLenum type, GLsizei stri
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetVertexAttribLdv (GLuint index, GLenum pname, GLdouble * params)
+#undef glGetVertexAttribLdv
+
+void  glew::glcore::glGetVertexAttribLdv (GLuint index, GLenum pname, GLdouble * params)
 {
   // GL_ARB_vertex_attrib_64bit - glGetVertexAttribLdv
   if (s_deviceConfig.m_glGetVertexAttribLdv)
@@ -5114,7 +5894,9 @@ void glGetVertexAttribLdv (GLuint index, GLenum pname, GLdouble * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride)
+#undef glBindVertexBuffer
+
+void  glew::glcore::glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride)
 {
   // GL_ARB_vertex_attrib_binding - glBindVertexBuffer
   if (s_deviceConfig.m_glBindVertexBuffer)
@@ -5127,7 +5909,9 @@ void glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr offset, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribFormat (GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
+#undef glVertexAttribFormat
+
+void  glew::glcore::glVertexAttribFormat (GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
 {
   // GL_ARB_vertex_attrib_binding - glVertexAttribFormat
   if (s_deviceConfig.m_glVertexAttribFormat)
@@ -5140,7 +5924,9 @@ void glVertexAttribFormat (GLuint attribindex, GLint size, GLenum type, GLboolea
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
+#undef glVertexAttribIFormat
+
+void  glew::glcore::glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
 {
   // GL_ARB_vertex_attrib_binding - glVertexAttribIFormat
   if (s_deviceConfig.m_glVertexAttribIFormat)
@@ -5153,7 +5939,9 @@ void glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum type, GLuint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribLFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
+#undef glVertexAttribLFormat
+
+void  glew::glcore::glVertexAttribLFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
 {
   // GL_ARB_vertex_attrib_binding - glVertexAttribLFormat
   if (s_deviceConfig.m_glVertexAttribLFormat)
@@ -5166,7 +5954,9 @@ void glVertexAttribLFormat (GLuint attribindex, GLint size, GLenum type, GLuint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribBinding (GLuint attribindex, GLuint bindingindex)
+#undef glVertexAttribBinding
+
+void  glew::glcore::glVertexAttribBinding (GLuint attribindex, GLuint bindingindex)
 {
   // GL_ARB_vertex_attrib_binding - glVertexAttribBinding
   if (s_deviceConfig.m_glVertexAttribBinding)
@@ -5179,7 +5969,9 @@ void glVertexAttribBinding (GLuint attribindex, GLuint bindingindex)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexBindingDivisor (GLuint bindingindex, GLuint divisor)
+#undef glVertexBindingDivisor
+
+void  glew::glcore::glVertexBindingDivisor (GLuint bindingindex, GLuint divisor)
 {
   // GL_ARB_vertex_attrib_binding - glVertexBindingDivisor
   if (s_deviceConfig.m_glVertexBindingDivisor)
@@ -5192,7 +5984,9 @@ void glVertexBindingDivisor (GLuint bindingindex, GLuint divisor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribP1ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
+#undef glVertexAttribP1ui
+
+void  glew::glcore::glVertexAttribP1ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP1ui
   if (s_deviceConfig.m_glVertexAttribP1ui)
@@ -5205,7 +5999,9 @@ void glVertexAttribP1ui (GLuint index, GLenum type, GLboolean normalized, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribP1uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
+#undef glVertexAttribP1uiv
+
+void  glew::glcore::glVertexAttribP1uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP1uiv
   if (s_deviceConfig.m_glVertexAttribP1uiv)
@@ -5218,7 +6014,9 @@ void glVertexAttribP1uiv (GLuint index, GLenum type, GLboolean normalized, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribP2ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
+#undef glVertexAttribP2ui
+
+void  glew::glcore::glVertexAttribP2ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP2ui
   if (s_deviceConfig.m_glVertexAttribP2ui)
@@ -5231,7 +6029,9 @@ void glVertexAttribP2ui (GLuint index, GLenum type, GLboolean normalized, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribP2uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
+#undef glVertexAttribP2uiv
+
+void  glew::glcore::glVertexAttribP2uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP2uiv
   if (s_deviceConfig.m_glVertexAttribP2uiv)
@@ -5244,7 +6044,9 @@ void glVertexAttribP2uiv (GLuint index, GLenum type, GLboolean normalized, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribP3ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
+#undef glVertexAttribP3ui
+
+void  glew::glcore::glVertexAttribP3ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP3ui
   if (s_deviceConfig.m_glVertexAttribP3ui)
@@ -5257,7 +6059,9 @@ void glVertexAttribP3ui (GLuint index, GLenum type, GLboolean normalized, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribP3uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
+#undef glVertexAttribP3uiv
+
+void  glew::glcore::glVertexAttribP3uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP3uiv
   if (s_deviceConfig.m_glVertexAttribP3uiv)
@@ -5270,7 +6074,9 @@ void glVertexAttribP3uiv (GLuint index, GLenum type, GLboolean normalized, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribP4ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
+#undef glVertexAttribP4ui
+
+void  glew::glcore::glVertexAttribP4ui (GLuint index, GLenum type, GLboolean normalized, GLuint value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP4ui
   if (s_deviceConfig.m_glVertexAttribP4ui)
@@ -5283,7 +6089,9 @@ void glVertexAttribP4ui (GLuint index, GLenum type, GLboolean normalized, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glVertexAttribP4uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
+#undef glVertexAttribP4uiv
+
+void  glew::glcore::glVertexAttribP4uiv (GLuint index, GLenum type, GLboolean normalized, const GLuint * value)
 {
   // GL_ARB_vertex_type_2_10_10_10_rev - glVertexAttribP4uiv
   if (s_deviceConfig.m_glVertexAttribP4uiv)
@@ -5296,7 +6104,9 @@ void glVertexAttribP4uiv (GLuint index, GLenum type, GLboolean normalized, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glViewportArrayv (GLuint first, GLsizei count, const GLfloat * v)
+#undef glViewportArrayv
+
+void  glew::glcore::glViewportArrayv (GLuint first, GLsizei count, const GLfloat * v)
 {
   // GL_ARB_viewport_array - glViewportArrayv
   if (s_deviceConfig.m_glViewportArrayv)
@@ -5309,7 +6119,9 @@ void glViewportArrayv (GLuint first, GLsizei count, const GLfloat * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glViewportIndexedf (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)
+#undef glViewportIndexedf
+
+void  glew::glcore::glViewportIndexedf (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)
 {
   // GL_ARB_viewport_array - glViewportIndexedf
   if (s_deviceConfig.m_glViewportIndexedf)
@@ -5322,7 +6134,9 @@ void glViewportIndexedf (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glViewportIndexedfv (GLuint index, const GLfloat * v)
+#undef glViewportIndexedfv
+
+void  glew::glcore::glViewportIndexedfv (GLuint index, const GLfloat * v)
 {
   // GL_ARB_viewport_array - glViewportIndexedfv
   if (s_deviceConfig.m_glViewportIndexedfv)
@@ -5335,7 +6149,9 @@ void glViewportIndexedfv (GLuint index, const GLfloat * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glScissorArrayv (GLuint first, GLsizei count, const GLint * v)
+#undef glScissorArrayv
+
+void  glew::glcore::glScissorArrayv (GLuint first, GLsizei count, const GLint * v)
 {
   // GL_ARB_viewport_array - glScissorArrayv
   if (s_deviceConfig.m_glScissorArrayv)
@@ -5348,7 +6164,9 @@ void glScissorArrayv (GLuint first, GLsizei count, const GLint * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glScissorIndexed (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height)
+#undef glScissorIndexed
+
+void  glew::glcore::glScissorIndexed (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height)
 {
   // GL_ARB_viewport_array - glScissorIndexed
   if (s_deviceConfig.m_glScissorIndexed)
@@ -5361,7 +6179,9 @@ void glScissorIndexed (GLuint index, GLint left, GLint bottom, GLsizei width, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glScissorIndexedv (GLuint index, const GLint * v)
+#undef glScissorIndexedv
+
+void  glew::glcore::glScissorIndexedv (GLuint index, const GLint * v)
 {
   // GL_ARB_viewport_array - glScissorIndexedv
   if (s_deviceConfig.m_glScissorIndexedv)
@@ -5374,7 +6194,9 @@ void glScissorIndexedv (GLuint index, const GLint * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDepthRangeArrayv (GLuint first, GLsizei count, const GLdouble * v)
+#undef glDepthRangeArrayv
+
+void  glew::glcore::glDepthRangeArrayv (GLuint first, GLsizei count, const GLdouble * v)
 {
   // GL_ARB_viewport_array - glDepthRangeArrayv
   if (s_deviceConfig.m_glDepthRangeArrayv)
@@ -5387,7 +6209,9 @@ void glDepthRangeArrayv (GLuint first, GLsizei count, const GLdouble * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glDepthRangeIndexed (GLuint index, GLdouble n, GLdouble f)
+#undef glDepthRangeIndexed
+
+void  glew::glcore::glDepthRangeIndexed (GLuint index, GLdouble n, GLdouble f)
 {
   // GL_ARB_viewport_array - glDepthRangeIndexed
   if (s_deviceConfig.m_glDepthRangeIndexed)
@@ -5400,7 +6224,9 @@ void glDepthRangeIndexed (GLuint index, GLdouble n, GLdouble f)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetFloati_v (GLenum target, GLuint index, GLfloat * data)
+#undef glGetFloati_v
+
+void  glew::glcore::glGetFloati_v (GLenum target, GLuint index, GLfloat * data)
 {
   // GL_ARB_viewport_array - glGetFloati_v
   if (s_deviceConfig.m_glGetFloati_v)
@@ -5413,7 +6239,9 @@ void glGetFloati_v (GLenum target, GLuint index, GLfloat * data)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glGetDoublei_v (GLenum target, GLuint index, GLdouble * data)
+#undef glGetDoublei_v
+
+void  glew::glcore::glGetDoublei_v (GLenum target, GLuint index, GLdouble * data)
 {
   // GL_ARB_viewport_array - glGetDoublei_v
   if (s_deviceConfig.m_glGetDoublei_v)
@@ -5652,11 +6480,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_ES2_compatibility
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_ES2_compatibility])
   {
-    #undef glReleaseShaderCompiler
-    #undef glShaderBinary
-    #undef glGetShaderPrecisionFormat
-    #undef glDepthRangef
-    #undef glClearDepthf
     s_deviceConfig.m_glReleaseShaderCompiler = (PFNGLRELEASESHADERCOMPILERPROC) glewGetProcAddress ("glReleaseShaderCompiler");
     s_deviceConfig.m_glShaderBinary = (PFNGLSHADERBINARYPROC) glewGetProcAddress ("glShaderBinary");
     s_deviceConfig.m_glGetShaderPrecisionFormat = (PFNGLGETSHADERPRECISIONFORMATPROC) glewGetProcAddress ("glGetShaderPrecisionFormat");
@@ -5667,16 +6490,12 @@ void glew::glcore::Initialise ()
   // GL_ARB_ES3_1_compatibility
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_ES3_1_compatibility])
   {
-    #undef glMemoryBarrierByRegion
     s_deviceConfig.m_glMemoryBarrierByRegion = (PFNGLMEMORYBARRIERBYREGIONPROC) glewGetProcAddress ("glMemoryBarrierByRegion");
   }
 
   // GL_ARB_base_instance
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_base_instance])
   {
-    #undef glDrawArraysInstancedBaseInstance
-    #undef glDrawElementsInstancedBaseInstance
-    #undef glDrawElementsInstancedBaseVertexBaseInstance
     s_deviceConfig.m_glDrawArraysInstancedBaseInstance = (PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC) glewGetProcAddress ("glDrawArraysInstancedBaseInstance");
     s_deviceConfig.m_glDrawElementsInstancedBaseInstance = (PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC) glewGetProcAddress ("glDrawElementsInstancedBaseInstance");
     s_deviceConfig.m_glDrawElementsInstancedBaseVertexBaseInstance = (PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC) glewGetProcAddress ("glDrawElementsInstancedBaseVertexBaseInstance");
@@ -5685,22 +6504,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_bindless_texture
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_bindless_texture])
   {
-    #undef glGetTextureHandleARB
-    #undef glGetTextureSamplerHandleARB
-    #undef glMakeTextureHandleResidentARB
-    #undef glMakeTextureHandleNonResidentARB
-    #undef glGetImageHandleARB
-    #undef glMakeImageHandleResidentARB
-    #undef glMakeImageHandleNonResidentARB
-    #undef glUniformHandleui64ARB
-    #undef glUniformHandleui64vARB
-    #undef glProgramUniformHandleui64ARB
-    #undef glProgramUniformHandleui64vARB
-    #undef glIsTextureHandleResidentARB
-    #undef glIsImageHandleResidentARB
-    #undef glVertexAttribL1ui64ARB
-    #undef glVertexAttribL1ui64vARB
-    #undef glGetVertexAttribLui64vARB
     s_deviceConfig.m_glGetTextureHandleARB = (PFNGLGETTEXTUREHANDLEARBPROC) glewGetProcAddress ("glGetTextureHandleARB");
     s_deviceConfig.m_glGetTextureSamplerHandleARB = (PFNGLGETTEXTURESAMPLERHANDLEARBPROC) glewGetProcAddress ("glGetTextureSamplerHandleARB");
     s_deviceConfig.m_glMakeTextureHandleResidentARB = (PFNGLMAKETEXTUREHANDLERESIDENTARBPROC) glewGetProcAddress ("glMakeTextureHandleResidentARB");
@@ -5722,8 +6525,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_blend_func_extended
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_blend_func_extended])
   {
-    #undef glBindFragDataLocationIndexed
-    #undef glGetFragDataIndex
     s_deviceConfig.m_glBindFragDataLocationIndexed = (PFNGLBINDFRAGDATALOCATIONINDEXEDPROC) glewGetProcAddress ("glBindFragDataLocationIndexed");
     s_deviceConfig.m_glGetFragDataIndex = (PFNGLGETFRAGDATAINDEXPROC) glewGetProcAddress ("glGetFragDataIndex");
   }
@@ -5731,22 +6532,18 @@ void glew::glcore::Initialise ()
   // GL_ARB_buffer_storage
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_buffer_storage])
   {
-    #undef glBufferStorage
     s_deviceConfig.m_glBufferStorage = (PFNGLBUFFERSTORAGEPROC) glewGetProcAddress ("glBufferStorage");
   }
 
   // GL_ARB_cl_event
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_cl_event])
   {
-    #undef glCreateSyncFromCLeventARB
     s_deviceConfig.m_glCreateSyncFromCLeventARB = (PFNGLCREATESYNCFROMCLEVENTARBPROC) glewGetProcAddress ("glCreateSyncFromCLeventARB");
   }
 
   // GL_ARB_clear_buffer_object
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_clear_buffer_object])
   {
-    #undef glClearBufferData
-    #undef glClearBufferSubData
     s_deviceConfig.m_glClearBufferData = (PFNGLCLEARBUFFERDATAPROC) glewGetProcAddress ("glClearBufferData");
     s_deviceConfig.m_glClearBufferSubData = (PFNGLCLEARBUFFERSUBDATAPROC) glewGetProcAddress ("glClearBufferSubData");
   }
@@ -5754,8 +6551,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_clear_texture
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_clear_texture])
   {
-    #undef glClearTexImage
-    #undef glClearTexSubImage
     s_deviceConfig.m_glClearTexImage = (PFNGLCLEARTEXIMAGEPROC) glewGetProcAddress ("glClearTexImage");
     s_deviceConfig.m_glClearTexSubImage = (PFNGLCLEARTEXSUBIMAGEPROC) glewGetProcAddress ("glClearTexSubImage");
   }
@@ -5763,15 +6558,12 @@ void glew::glcore::Initialise ()
   // GL_ARB_clip_control
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_clip_control])
   {
-    #undef glClipControl
     s_deviceConfig.m_glClipControl = (PFNGLCLIPCONTROLPROC) glewGetProcAddress ("glClipControl");
   }
 
   // GL_ARB_compute_shader
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_compute_shader])
   {
-    #undef glDispatchCompute
-    #undef glDispatchComputeIndirect
     s_deviceConfig.m_glDispatchCompute = (PFNGLDISPATCHCOMPUTEPROC) glewGetProcAddress ("glDispatchCompute");
     s_deviceConfig.m_glDispatchComputeIndirect = (PFNGLDISPATCHCOMPUTEINDIRECTPROC) glewGetProcAddress ("glDispatchComputeIndirect");
   }
@@ -5779,31 +6571,24 @@ void glew::glcore::Initialise ()
   // GL_ARB_compute_variable_group_size
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_compute_variable_group_size])
   {
-    #undef glDispatchComputeGroupSizeARB
     s_deviceConfig.m_glDispatchComputeGroupSizeARB = (PFNGLDISPATCHCOMPUTEGROUPSIZEARBPROC) glewGetProcAddress ("glDispatchComputeGroupSizeARB");
   }
 
   // GL_ARB_copy_buffer
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_copy_buffer])
   {
-    #undef glCopyBufferSubData
     s_deviceConfig.m_glCopyBufferSubData = (PFNGLCOPYBUFFERSUBDATAPROC) glewGetProcAddress ("glCopyBufferSubData");
   }
 
   // GL_ARB_copy_image
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_copy_image])
   {
-    #undef glCopyImageSubData
     s_deviceConfig.m_glCopyImageSubData = (PFNGLCOPYIMAGESUBDATAPROC) glewGetProcAddress ("glCopyImageSubData");
   }
 
   // GL_ARB_debug_output
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_debug_output])
   {
-    #undef glDebugMessageControlARB
-    #undef glDebugMessageInsertARB
-    #undef glDebugMessageCallbackARB
-    #undef glGetDebugMessageLogARB
     s_deviceConfig.m_glDebugMessageControlARB = (PFNGLDEBUGMESSAGECONTROLARBPROC) glewGetProcAddress ("glDebugMessageControlARB");
     s_deviceConfig.m_glDebugMessageInsertARB = (PFNGLDEBUGMESSAGEINSERTARBPROC) glewGetProcAddress ("glDebugMessageInsertARB");
     s_deviceConfig.m_glDebugMessageCallbackARB = (PFNGLDEBUGMESSAGECALLBACKARBPROC) glewGetProcAddress ("glDebugMessageCallbackARB");
@@ -5813,12 +6598,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_direct_state_access
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
   {
-    #undef glCreateTransformFeedbacks
-    #undef glTransformFeedbackBufferBase
-    #undef glTransformFeedbackBufferRange
-    #undef glGetTransformFeedbackiv
-    #undef glGetTransformFeedbacki_v
-    #undef glGetTransformFeedbacki64_v
     s_deviceConfig.m_glCreateTransformFeedbacks = (PFNGLCREATETRANSFORMFEEDBACKSPROC) glewGetProcAddress ("glCreateTransformFeedbacks");
     s_deviceConfig.m_glTransformFeedbackBufferBase = (PFNGLTRANSFORMFEEDBACKBUFFERBASEPROC) glewGetProcAddress ("glTransformFeedbackBufferBase");
     s_deviceConfig.m_glTransformFeedbackBufferRange = (PFNGLTRANSFORMFEEDBACKBUFFERRANGEPROC) glewGetProcAddress ("glTransformFeedbackBufferRange");
@@ -5830,21 +6609,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_direct_state_access
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
   {
-    #undef glCreateBuffers
-    #undef glNamedBufferStorage
-    #undef glNamedBufferData
-    #undef glNamedBufferSubData
-    #undef glCopyNamedBufferSubData
-    #undef glClearNamedBufferData
-    #undef glClearNamedBufferSubData
-    #undef glMapNamedBuffer
-    #undef glMapNamedBufferRange
-    #undef glUnmapNamedBuffer
-    #undef glFlushMappedNamedBufferRange
-    #undef glGetNamedBufferParameteriv
-    #undef glGetNamedBufferParameteri64v
-    #undef glGetNamedBufferPointerv
-    #undef glGetNamedBufferSubData
     s_deviceConfig.m_glCreateBuffers = (PFNGLCREATEBUFFERSPROC) glewGetProcAddress ("glCreateBuffers");
     s_deviceConfig.m_glNamedBufferStorage = (PFNGLNAMEDBUFFERSTORAGEPROC) glewGetProcAddress ("glNamedBufferStorage");
     s_deviceConfig.m_glNamedBufferData = (PFNGLNAMEDBUFFERDATAPROC) glewGetProcAddress ("glNamedBufferData");
@@ -5865,24 +6629,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_direct_state_access
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
   {
-    #undef glCreateFramebuffers
-    #undef glNamedFramebufferRenderbuffer
-    #undef glNamedFramebufferParameteri
-    #undef glNamedFramebufferTexture
-    #undef glNamedFramebufferTextureLayer
-    #undef glNamedFramebufferDrawBuffer
-    #undef glNamedFramebufferDrawBuffers
-    #undef glNamedFramebufferReadBuffer
-    #undef glInvalidateNamedFramebufferData
-    #undef glInvalidateNamedFramebufferSubData
-    #undef glClearNamedFramebufferiv
-    #undef glClearNamedFramebufferuiv
-    #undef glClearNamedFramebufferfv
-    #undef glClearNamedFramebufferfi
-    #undef glBlitNamedFramebuffer
-    #undef glCheckNamedFramebufferStatus
-    #undef glGetNamedFramebufferParameteriv
-    #undef glGetNamedFramebufferAttachmentParameteriv
     s_deviceConfig.m_glCreateFramebuffers = (PFNGLCREATEFRAMEBUFFERSPROC) glewGetProcAddress ("glCreateFramebuffers");
     s_deviceConfig.m_glNamedFramebufferRenderbuffer = (PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC) glewGetProcAddress ("glNamedFramebufferRenderbuffer");
     s_deviceConfig.m_glNamedFramebufferParameteri = (PFNGLNAMEDFRAMEBUFFERPARAMETERIPROC) glewGetProcAddress ("glNamedFramebufferParameteri");
@@ -5906,10 +6652,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_direct_state_access
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
   {
-    #undef glCreateRenderbuffers
-    #undef glNamedRenderbufferStorage
-    #undef glNamedRenderbufferStorageMultisample
-    #undef glGetNamedRenderbufferParameteriv
     s_deviceConfig.m_glCreateRenderbuffers = (PFNGLCREATERENDERBUFFERSPROC) glewGetProcAddress ("glCreateRenderbuffers");
     s_deviceConfig.m_glNamedRenderbufferStorage = (PFNGLNAMEDRENDERBUFFERSTORAGEPROC) glewGetProcAddress ("glNamedRenderbufferStorage");
     s_deviceConfig.m_glNamedRenderbufferStorageMultisample = (PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC) glewGetProcAddress ("glNamedRenderbufferStorageMultisample");
@@ -5919,39 +6661,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_direct_state_access
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
   {
-    #undef glCreateTextures
-    #undef glTextureBuffer
-    #undef glTextureBufferRange
-    #undef glTextureStorage1D
-    #undef glTextureStorage2D
-    #undef glTextureStorage3D
-    #undef glTextureStorage2DMultisample
-    #undef glTextureStorage3DMultisample
-    #undef glTextureSubImage1D
-    #undef glTextureSubImage2D
-    #undef glTextureSubImage3D
-    #undef glCompressedTextureSubImage1D
-    #undef glCompressedTextureSubImage2D
-    #undef glCompressedTextureSubImage3D
-    #undef glCopyTextureSubImage1D
-    #undef glCopyTextureSubImage2D
-    #undef glCopyTextureSubImage3D
-    #undef glTextureParameterf
-    #undef glTextureParameterfv
-    #undef glTextureParameteri
-    #undef glTextureParameterIiv
-    #undef glTextureParameterIuiv
-    #undef glTextureParameteriv
-    #undef glGenerateTextureMipmap
-    #undef glBindTextureUnit
-    #undef glGetTextureImage
-    #undef glGetCompressedTextureImage
-    #undef glGetTextureLevelParameterfv
-    #undef glGetTextureLevelParameteriv
-    #undef glGetTextureParameterfv
-    #undef glGetTextureParameterIiv
-    #undef glGetTextureParameterIuiv
-    #undef glGetTextureParameteriv
     s_deviceConfig.m_glCreateTextures = (PFNGLCREATETEXTURESPROC) glewGetProcAddress ("glCreateTextures");
     s_deviceConfig.m_glTextureBuffer = (PFNGLTEXTUREBUFFERPROC) glewGetProcAddress ("glTextureBuffer");
     s_deviceConfig.m_glTextureBufferRange = (PFNGLTEXTUREBUFFERRANGEPROC) glewGetProcAddress ("glTextureBufferRange");
@@ -5990,20 +6699,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_direct_state_access
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
   {
-    #undef glCreateVertexArrays
-    #undef glDisableVertexArrayAttrib
-    #undef glEnableVertexArrayAttrib
-    #undef glVertexArrayElementBuffer
-    #undef glVertexArrayVertexBuffer
-    #undef glVertexArrayVertexBuffers
-    #undef glVertexArrayAttribBinding
-    #undef glVertexArrayAttribFormat
-    #undef glVertexArrayAttribIFormat
-    #undef glVertexArrayAttribLFormat
-    #undef glVertexArrayBindingDivisor
-    #undef glGetVertexArrayiv
-    #undef glGetVertexArrayIndexediv
-    #undef glGetVertexArrayIndexed64iv
     s_deviceConfig.m_glCreateVertexArrays = (PFNGLCREATEVERTEXARRAYSPROC) glewGetProcAddress ("glCreateVertexArrays");
     s_deviceConfig.m_glDisableVertexArrayAttrib = (PFNGLDISABLEVERTEXARRAYATTRIBPROC) glewGetProcAddress ("glDisableVertexArrayAttrib");
     s_deviceConfig.m_glEnableVertexArrayAttrib = (PFNGLENABLEVERTEXARRAYATTRIBPROC) glewGetProcAddress ("glEnableVertexArrayAttrib");
@@ -6023,25 +6718,18 @@ void glew::glcore::Initialise ()
   // GL_ARB_direct_state_access
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
   {
-    #undef glCreateSamplers
     s_deviceConfig.m_glCreateSamplers = (PFNGLCREATESAMPLERSPROC) glewGetProcAddress ("glCreateSamplers");
   }
 
   // GL_ARB_direct_state_access
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
   {
-    #undef glCreateProgramPipelines
     s_deviceConfig.m_glCreateProgramPipelines = (PFNGLCREATEPROGRAMPIPELINESPROC) glewGetProcAddress ("glCreateProgramPipelines");
   }
 
   // GL_ARB_direct_state_access
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_direct_state_access])
   {
-    #undef glCreateQueries
-    #undef glGetQueryBufferObjecti64v
-    #undef glGetQueryBufferObjectiv
-    #undef glGetQueryBufferObjectui64v
-    #undef glGetQueryBufferObjectuiv
     s_deviceConfig.m_glCreateQueries = (PFNGLCREATEQUERIESPROC) glewGetProcAddress ("glCreateQueries");
     s_deviceConfig.m_glGetQueryBufferObjecti64v = (PFNGLGETQUERYBUFFEROBJECTI64VPROC) glewGetProcAddress ("glGetQueryBufferObjecti64v");
     s_deviceConfig.m_glGetQueryBufferObjectiv = (PFNGLGETQUERYBUFFEROBJECTIVPROC) glewGetProcAddress ("glGetQueryBufferObjectiv");
@@ -6052,10 +6740,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_draw_buffers_blend
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_draw_buffers_blend])
   {
-    #undef glBlendEquationiARB
-    #undef glBlendEquationSeparateiARB
-    #undef glBlendFunciARB
-    #undef glBlendFuncSeparateiARB
     s_deviceConfig.m_glBlendEquationiARB = (PFNGLBLENDEQUATIONIARBPROC) glewGetProcAddress ("glBlendEquationiARB");
     s_deviceConfig.m_glBlendEquationSeparateiARB = (PFNGLBLENDEQUATIONSEPARATEIARBPROC) glewGetProcAddress ("glBlendEquationSeparateiARB");
     s_deviceConfig.m_glBlendFunciARB = (PFNGLBLENDFUNCIARBPROC) glewGetProcAddress ("glBlendFunciARB");
@@ -6065,10 +6749,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_draw_elements_base_vertex
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_draw_elements_base_vertex])
   {
-    #undef glDrawElementsBaseVertex
-    #undef glDrawRangeElementsBaseVertex
-    #undef glDrawElementsInstancedBaseVertex
-    #undef glMultiDrawElementsBaseVertex
     s_deviceConfig.m_glDrawElementsBaseVertex = (PFNGLDRAWELEMENTSBASEVERTEXPROC) glewGetProcAddress ("glDrawElementsBaseVertex");
     s_deviceConfig.m_glDrawRangeElementsBaseVertex = (PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC) glewGetProcAddress ("glDrawRangeElementsBaseVertex");
     s_deviceConfig.m_glDrawElementsInstancedBaseVertex = (PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC) glewGetProcAddress ("glDrawElementsInstancedBaseVertex");
@@ -6078,8 +6758,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_draw_indirect
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_draw_indirect])
   {
-    #undef glDrawArraysIndirect
-    #undef glDrawElementsIndirect
     s_deviceConfig.m_glDrawArraysIndirect = (PFNGLDRAWARRAYSINDIRECTPROC) glewGetProcAddress ("glDrawArraysIndirect");
     s_deviceConfig.m_glDrawElementsIndirect = (PFNGLDRAWELEMENTSINDIRECTPROC) glewGetProcAddress ("glDrawElementsIndirect");
   }
@@ -6087,8 +6765,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_framebuffer_no_attachments
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_framebuffer_no_attachments])
   {
-    #undef glFramebufferParameteri
-    #undef glGetFramebufferParameteriv
     s_deviceConfig.m_glFramebufferParameteri = (PFNGLFRAMEBUFFERPARAMETERIPROC) glewGetProcAddress ("glFramebufferParameteri");
     s_deviceConfig.m_glGetFramebufferParameteriv = (PFNGLGETFRAMEBUFFERPARAMETERIVPROC) glewGetProcAddress ("glGetFramebufferParameteriv");
   }
@@ -6096,26 +6772,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_framebuffer_object
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_framebuffer_object])
   {
-    #undef glIsRenderbuffer
-    #undef glBindRenderbuffer
-    #undef glDeleteRenderbuffers
-    #undef glGenRenderbuffers
-    #undef glRenderbufferStorage
-    #undef glGetRenderbufferParameteriv
-    #undef glIsFramebuffer
-    #undef glBindFramebuffer
-    #undef glDeleteFramebuffers
-    #undef glGenFramebuffers
-    #undef glCheckFramebufferStatus
-    #undef glFramebufferTexture1D
-    #undef glFramebufferTexture2D
-    #undef glFramebufferTexture3D
-    #undef glFramebufferRenderbuffer
-    #undef glGetFramebufferAttachmentParameteriv
-    #undef glGenerateMipmap
-    #undef glBlitFramebuffer
-    #undef glRenderbufferStorageMultisample
-    #undef glFramebufferTextureLayer
     s_deviceConfig.m_glIsRenderbuffer = (PFNGLISRENDERBUFFERPROC) glewGetProcAddress ("glIsRenderbuffer");
     s_deviceConfig.m_glBindRenderbuffer = (PFNGLBINDRENDERBUFFERPROC) glewGetProcAddress ("glBindRenderbuffer");
     s_deviceConfig.m_glDeleteRenderbuffers = (PFNGLDELETERENDERBUFFERSPROC) glewGetProcAddress ("glDeleteRenderbuffers");
@@ -6141,9 +6797,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_get_program_binary
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_get_program_binary])
   {
-    #undef glGetProgramBinary
-    #undef glProgramBinary
-    #undef glProgramParameteri
     s_deviceConfig.m_glGetProgramBinary = (PFNGLGETPROGRAMBINARYPROC) glewGetProcAddress ("glGetProgramBinary");
     s_deviceConfig.m_glProgramBinary = (PFNGLPROGRAMBINARYPROC) glewGetProcAddress ("glProgramBinary");
     s_deviceConfig.m_glProgramParameteri = (PFNGLPROGRAMPARAMETERIPROC) glewGetProcAddress ("glProgramParameteri");
@@ -6152,8 +6805,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_get_texture_sub_image
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_get_texture_sub_image])
   {
-    #undef glGetTextureSubImage
-    #undef glGetCompressedTextureSubImage
     s_deviceConfig.m_glGetTextureSubImage = (PFNGLGETTEXTURESUBIMAGEPROC) glewGetProcAddress ("glGetTextureSubImage");
     s_deviceConfig.m_glGetCompressedTextureSubImage = (PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC) glewGetProcAddress ("glGetCompressedTextureSubImage");
   }
@@ -6161,24 +6812,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_gpu_shader_fp64
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_gpu_shader_fp64])
   {
-    #undef glUniform1d
-    #undef glUniform2d
-    #undef glUniform3d
-    #undef glUniform4d
-    #undef glUniform1dv
-    #undef glUniform2dv
-    #undef glUniform3dv
-    #undef glUniform4dv
-    #undef glUniformMatrix2dv
-    #undef glUniformMatrix3dv
-    #undef glUniformMatrix4dv
-    #undef glUniformMatrix2x3dv
-    #undef glUniformMatrix2x4dv
-    #undef glUniformMatrix3x2dv
-    #undef glUniformMatrix3x4dv
-    #undef glUniformMatrix4x2dv
-    #undef glUniformMatrix4x3dv
-    #undef glGetUniformdv
     s_deviceConfig.m_glUniform1d = (PFNGLUNIFORM1DPROC) glewGetProcAddress ("glUniform1d");
     s_deviceConfig.m_glUniform2d = (PFNGLUNIFORM2DPROC) glewGetProcAddress ("glUniform2d");
     s_deviceConfig.m_glUniform3d = (PFNGLUNIFORM3DPROC) glewGetProcAddress ("glUniform3d");
@@ -6202,8 +6835,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_imaging
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_imaging])
   {
-    #undef glBlendColor
-    #undef glBlendEquation
     s_deviceConfig.m_glBlendColor = (PFNGLBLENDCOLORPROC) glewGetProcAddress ("glBlendColor");
     s_deviceConfig.m_glBlendEquation = (PFNGLBLENDEQUATIONPROC) glewGetProcAddress ("glBlendEquation");
   }
@@ -6211,8 +6842,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_indirect_parameters
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_indirect_parameters])
   {
-    #undef glMultiDrawArraysIndirectCountARB
-    #undef glMultiDrawElementsIndirectCountARB
     s_deviceConfig.m_glMultiDrawArraysIndirectCountARB = (PFNGLMULTIDRAWARRAYSINDIRECTCOUNTARBPROC) glewGetProcAddress ("glMultiDrawArraysIndirectCountARB");
     s_deviceConfig.m_glMultiDrawElementsIndirectCountARB = (PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTARBPROC) glewGetProcAddress ("glMultiDrawElementsIndirectCountARB");
   }
@@ -6220,26 +6849,18 @@ void glew::glcore::Initialise ()
   // GL_ARB_internalformat_query
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_internalformat_query])
   {
-    #undef glGetInternalformativ
     s_deviceConfig.m_glGetInternalformativ = (PFNGLGETINTERNALFORMATIVPROC) glewGetProcAddress ("glGetInternalformativ");
   }
 
   // GL_ARB_internalformat_query2
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_internalformat_query2])
   {
-    #undef glGetInternalformati64v
     s_deviceConfig.m_glGetInternalformati64v = (PFNGLGETINTERNALFORMATI64VPROC) glewGetProcAddress ("glGetInternalformati64v");
   }
 
   // GL_ARB_invalidate_subdata
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_invalidate_subdata])
   {
-    #undef glInvalidateTexSubImage
-    #undef glInvalidateTexImage
-    #undef glInvalidateBufferSubData
-    #undef glInvalidateBufferData
-    #undef glInvalidateFramebuffer
-    #undef glInvalidateSubFramebuffer
     s_deviceConfig.m_glInvalidateTexSubImage = (PFNGLINVALIDATETEXSUBIMAGEPROC) glewGetProcAddress ("glInvalidateTexSubImage");
     s_deviceConfig.m_glInvalidateTexImage = (PFNGLINVALIDATETEXIMAGEPROC) glewGetProcAddress ("glInvalidateTexImage");
     s_deviceConfig.m_glInvalidateBufferSubData = (PFNGLINVALIDATEBUFFERSUBDATAPROC) glewGetProcAddress ("glInvalidateBufferSubData");
@@ -6251,8 +6872,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_map_buffer_range
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_map_buffer_range])
   {
-    #undef glMapBufferRange
-    #undef glFlushMappedBufferRange
     s_deviceConfig.m_glMapBufferRange = (PFNGLMAPBUFFERRANGEPROC) glewGetProcAddress ("glMapBufferRange");
     s_deviceConfig.m_glFlushMappedBufferRange = (PFNGLFLUSHMAPPEDBUFFERRANGEPROC) glewGetProcAddress ("glFlushMappedBufferRange");
   }
@@ -6260,12 +6879,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_multi_bind
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_multi_bind])
   {
-    #undef glBindBuffersBase
-    #undef glBindBuffersRange
-    #undef glBindTextures
-    #undef glBindSamplers
-    #undef glBindImageTextures
-    #undef glBindVertexBuffers
     s_deviceConfig.m_glBindBuffersBase = (PFNGLBINDBUFFERSBASEPROC) glewGetProcAddress ("glBindBuffersBase");
     s_deviceConfig.m_glBindBuffersRange = (PFNGLBINDBUFFERSRANGEPROC) glewGetProcAddress ("glBindBuffersRange");
     s_deviceConfig.m_glBindTextures = (PFNGLBINDTEXTURESPROC) glewGetProcAddress ("glBindTextures");
@@ -6277,8 +6890,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_multi_draw_indirect
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_multi_draw_indirect])
   {
-    #undef glMultiDrawArraysIndirect
-    #undef glMultiDrawElementsIndirect
     s_deviceConfig.m_glMultiDrawArraysIndirect = (PFNGLMULTIDRAWARRAYSINDIRECTPROC) glewGetProcAddress ("glMultiDrawArraysIndirect");
     s_deviceConfig.m_glMultiDrawElementsIndirect = (PFNGLMULTIDRAWELEMENTSINDIRECTPROC) glewGetProcAddress ("glMultiDrawElementsIndirect");
   }
@@ -6286,12 +6897,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_program_interface_query
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_program_interface_query])
   {
-    #undef glGetProgramInterfaceiv
-    #undef glGetProgramResourceIndex
-    #undef glGetProgramResourceName
-    #undef glGetProgramResourceiv
-    #undef glGetProgramResourceLocation
-    #undef glGetProgramResourceLocationIndex
     s_deviceConfig.m_glGetProgramInterfaceiv = (PFNGLGETPROGRAMINTERFACEIVPROC) glewGetProcAddress ("glGetProgramInterfaceiv");
     s_deviceConfig.m_glGetProgramResourceIndex = (PFNGLGETPROGRAMRESOURCEINDEXPROC) glewGetProcAddress ("glGetProgramResourceIndex");
     s_deviceConfig.m_glGetProgramResourceName = (PFNGLGETPROGRAMRESOURCENAMEPROC) glewGetProcAddress ("glGetProgramResourceName");
@@ -6303,21 +6908,12 @@ void glew::glcore::Initialise ()
   // GL_ARB_provoking_vertex
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_provoking_vertex])
   {
-    #undef glProvokingVertex
     s_deviceConfig.m_glProvokingVertex = (PFNGLPROVOKINGVERTEXPROC) glewGetProcAddress ("glProvokingVertex");
   }
 
   // GL_ARB_robustness
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_robustness])
   {
-    #undef glGetGraphicsResetStatusARB
-    #undef glGetnTexImageARB
-    #undef glReadnPixelsARB
-    #undef glGetnCompressedTexImageARB
-    #undef glGetnUniformfvARB
-    #undef glGetnUniformivARB
-    #undef glGetnUniformuivARB
-    #undef glGetnUniformdvARB
     s_deviceConfig.m_glGetGraphicsResetStatusARB = (PFNGLGETGRAPHICSRESETSTATUSARBPROC) glewGetProcAddress ("glGetGraphicsResetStatusARB");
     s_deviceConfig.m_glGetnTexImageARB = (PFNGLGETNTEXIMAGEARBPROC) glewGetProcAddress ("glGetnTexImageARB");
     s_deviceConfig.m_glReadnPixelsARB = (PFNGLREADNPIXELSARBPROC) glewGetProcAddress ("glReadnPixelsARB");
@@ -6331,27 +6927,12 @@ void glew::glcore::Initialise ()
   // GL_ARB_sample_shading
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sample_shading])
   {
-    #undef glMinSampleShadingARB
     s_deviceConfig.m_glMinSampleShadingARB = (PFNGLMINSAMPLESHADINGARBPROC) glewGetProcAddress ("glMinSampleShadingARB");
   }
 
   // GL_ARB_sampler_objects
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sampler_objects])
   {
-    #undef glGenSamplers
-    #undef glDeleteSamplers
-    #undef glIsSampler
-    #undef glBindSampler
-    #undef glSamplerParameteri
-    #undef glSamplerParameteriv
-    #undef glSamplerParameterf
-    #undef glSamplerParameterfv
-    #undef glSamplerParameterIiv
-    #undef glSamplerParameterIuiv
-    #undef glGetSamplerParameteriv
-    #undef glGetSamplerParameterIiv
-    #undef glGetSamplerParameterfv
-    #undef glGetSamplerParameterIuiv
     s_deviceConfig.m_glGenSamplers = (PFNGLGENSAMPLERSPROC) glewGetProcAddress ("glGenSamplers");
     s_deviceConfig.m_glDeleteSamplers = (PFNGLDELETESAMPLERSPROC) glewGetProcAddress ("glDeleteSamplers");
     s_deviceConfig.m_glIsSampler = (PFNGLISSAMPLERPROC) glewGetProcAddress ("glIsSampler");
@@ -6371,66 +6952,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_separate_shader_objects
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_separate_shader_objects])
   {
-    #undef glUseProgramStages
-    #undef glActiveShaderProgram
-    #undef glCreateShaderProgramv
-    #undef glBindProgramPipeline
-    #undef glDeleteProgramPipelines
-    #undef glGenProgramPipelines
-    #undef glIsProgramPipeline
-    #undef glGetProgramPipelineiv
-    #undef glProgramUniform1i
-    #undef glProgramUniform1iv
-    #undef glProgramUniform1f
-    #undef glProgramUniform1fv
-    #undef glProgramUniform1d
-    #undef glProgramUniform1dv
-    #undef glProgramUniform1ui
-    #undef glProgramUniform1uiv
-    #undef glProgramUniform2i
-    #undef glProgramUniform2iv
-    #undef glProgramUniform2f
-    #undef glProgramUniform2fv
-    #undef glProgramUniform2d
-    #undef glProgramUniform2dv
-    #undef glProgramUniform2ui
-    #undef glProgramUniform2uiv
-    #undef glProgramUniform3i
-    #undef glProgramUniform3iv
-    #undef glProgramUniform3f
-    #undef glProgramUniform3fv
-    #undef glProgramUniform3d
-    #undef glProgramUniform3dv
-    #undef glProgramUniform3ui
-    #undef glProgramUniform3uiv
-    #undef glProgramUniform4i
-    #undef glProgramUniform4iv
-    #undef glProgramUniform4f
-    #undef glProgramUniform4fv
-    #undef glProgramUniform4d
-    #undef glProgramUniform4dv
-    #undef glProgramUniform4ui
-    #undef glProgramUniform4uiv
-    #undef glProgramUniformMatrix2fv
-    #undef glProgramUniformMatrix3fv
-    #undef glProgramUniformMatrix4fv
-    #undef glProgramUniformMatrix2dv
-    #undef glProgramUniformMatrix3dv
-    #undef glProgramUniformMatrix4dv
-    #undef glProgramUniformMatrix2x3fv
-    #undef glProgramUniformMatrix3x2fv
-    #undef glProgramUniformMatrix2x4fv
-    #undef glProgramUniformMatrix4x2fv
-    #undef glProgramUniformMatrix3x4fv
-    #undef glProgramUniformMatrix4x3fv
-    #undef glProgramUniformMatrix2x3dv
-    #undef glProgramUniformMatrix3x2dv
-    #undef glProgramUniformMatrix2x4dv
-    #undef glProgramUniformMatrix4x2dv
-    #undef glProgramUniformMatrix3x4dv
-    #undef glProgramUniformMatrix4x3dv
-    #undef glValidateProgramPipeline
-    #undef glGetProgramPipelineInfoLog
     s_deviceConfig.m_glUseProgramStages = (PFNGLUSEPROGRAMSTAGESPROC) glewGetProcAddress ("glUseProgramStages");
     s_deviceConfig.m_glActiveShaderProgram = (PFNGLACTIVESHADERPROGRAMPROC) glewGetProcAddress ("glActiveShaderProgram");
     s_deviceConfig.m_glCreateShaderProgramv = (PFNGLCREATESHADERPROGRAMVPROC) glewGetProcAddress ("glCreateShaderProgramv");
@@ -6496,15 +7017,12 @@ void glew::glcore::Initialise ()
   // GL_ARB_shader_atomic_counters
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_atomic_counters])
   {
-    #undef glGetActiveAtomicCounterBufferiv
     s_deviceConfig.m_glGetActiveAtomicCounterBufferiv = (PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC) glewGetProcAddress ("glGetActiveAtomicCounterBufferiv");
   }
 
   // GL_ARB_shader_image_load_store
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_image_load_store])
   {
-    #undef glBindImageTexture
-    #undef glMemoryBarrier
     s_deviceConfig.m_glBindImageTexture = (PFNGLBINDIMAGETEXTUREPROC) glewGetProcAddress ("glBindImageTexture");
     s_deviceConfig.m_glMemoryBarrier = (PFNGLMEMORYBARRIERPROC) glewGetProcAddress ("glMemoryBarrier");
   }
@@ -6512,21 +7030,12 @@ void glew::glcore::Initialise ()
   // GL_ARB_shader_storage_buffer_object
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_storage_buffer_object])
   {
-    #undef glShaderStorageBlockBinding
     s_deviceConfig.m_glShaderStorageBlockBinding = (PFNGLSHADERSTORAGEBLOCKBINDINGPROC) glewGetProcAddress ("glShaderStorageBlockBinding");
   }
 
   // GL_ARB_shader_subroutine
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shader_subroutine])
   {
-    #undef glGetSubroutineUniformLocation
-    #undef glGetSubroutineIndex
-    #undef glGetActiveSubroutineUniformiv
-    #undef glGetActiveSubroutineUniformName
-    #undef glGetActiveSubroutineName
-    #undef glUniformSubroutinesuiv
-    #undef glGetUniformSubroutineuiv
-    #undef glGetProgramStageiv
     s_deviceConfig.m_glGetSubroutineUniformLocation = (PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC) glewGetProcAddress ("glGetSubroutineUniformLocation");
     s_deviceConfig.m_glGetSubroutineIndex = (PFNGLGETSUBROUTINEINDEXPROC) glewGetProcAddress ("glGetSubroutineIndex");
     s_deviceConfig.m_glGetActiveSubroutineUniformiv = (PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC) glewGetProcAddress ("glGetActiveSubroutineUniformiv");
@@ -6540,12 +7049,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_shading_language_include
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_shading_language_include])
   {
-    #undef glNamedStringARB
-    #undef glDeleteNamedStringARB
-    #undef glCompileShaderIncludeARB
-    #undef glIsNamedStringARB
-    #undef glGetNamedStringARB
-    #undef glGetNamedStringivARB
     s_deviceConfig.m_glNamedStringARB = (PFNGLNAMEDSTRINGARBPROC) glewGetProcAddress ("glNamedStringARB");
     s_deviceConfig.m_glDeleteNamedStringARB = (PFNGLDELETENAMEDSTRINGARBPROC) glewGetProcAddress ("glDeleteNamedStringARB");
     s_deviceConfig.m_glCompileShaderIncludeARB = (PFNGLCOMPILESHADERINCLUDEARBPROC) glewGetProcAddress ("glCompileShaderIncludeARB");
@@ -6557,41 +7060,30 @@ void glew::glcore::Initialise ()
   // GL_ARB_sparse_buffer
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_buffer])
   {
-    #undef glBufferPageCommitmentARB
     s_deviceConfig.m_glBufferPageCommitmentARB = (PFNGLBUFFERPAGECOMMITMENTARBPROC) glewGetProcAddress ("glBufferPageCommitmentARB");
   }
 
   // GL_ARB_sparse_buffer
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_buffer])
   {
-    #undef glNamedBufferPageCommitmentEXT
     s_deviceConfig.m_glNamedBufferPageCommitmentEXT = (PFNGLNAMEDBUFFERPAGECOMMITMENTEXTPROC) glewGetProcAddress ("glNamedBufferPageCommitmentEXT");
   }
 
   // GL_ARB_sparse_buffer
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_buffer])
   {
-    #undef glNamedBufferPageCommitmentARB
     s_deviceConfig.m_glNamedBufferPageCommitmentARB = (PFNGLNAMEDBUFFERPAGECOMMITMENTARBPROC) glewGetProcAddress ("glNamedBufferPageCommitmentARB");
   }
 
   // GL_ARB_sparse_texture
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sparse_texture])
   {
-    #undef glTexPageCommitmentARB
     s_deviceConfig.m_glTexPageCommitmentARB = (PFNGLTEXPAGECOMMITMENTARBPROC) glewGetProcAddress ("glTexPageCommitmentARB");
   }
 
   // GL_ARB_sync
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_sync])
   {
-    #undef glFenceSync
-    #undef glIsSync
-    #undef glDeleteSync
-    #undef glClientWaitSync
-    #undef glWaitSync
-    #undef glGetInteger64v
-    #undef glGetSynciv
     s_deviceConfig.m_glFenceSync = (PFNGLFENCESYNCPROC) glewGetProcAddress ("glFenceSync");
     s_deviceConfig.m_glIsSync = (PFNGLISSYNCPROC) glewGetProcAddress ("glIsSync");
     s_deviceConfig.m_glDeleteSync = (PFNGLDELETESYNCPROC) glewGetProcAddress ("glDeleteSync");
@@ -6604,8 +7096,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_tessellation_shader
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_tessellation_shader])
   {
-    #undef glPatchParameteri
-    #undef glPatchParameterfv
     s_deviceConfig.m_glPatchParameteri = (PFNGLPATCHPARAMETERIPROC) glewGetProcAddress ("glPatchParameteri");
     s_deviceConfig.m_glPatchParameterfv = (PFNGLPATCHPARAMETERFVPROC) glewGetProcAddress ("glPatchParameterfv");
   }
@@ -6613,24 +7103,18 @@ void glew::glcore::Initialise ()
   // GL_ARB_texture_barrier
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_barrier])
   {
-    #undef glTextureBarrier
     s_deviceConfig.m_glTextureBarrier = (PFNGLTEXTUREBARRIERPROC) glewGetProcAddress ("glTextureBarrier");
   }
 
   // GL_ARB_texture_buffer_range
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_buffer_range])
   {
-    #undef glTexBufferRange
     s_deviceConfig.m_glTexBufferRange = (PFNGLTEXBUFFERRANGEPROC) glewGetProcAddress ("glTexBufferRange");
   }
 
   // GL_ARB_texture_multisample
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_multisample])
   {
-    #undef glTexImage2DMultisample
-    #undef glTexImage3DMultisample
-    #undef glGetMultisamplefv
-    #undef glSampleMaski
     s_deviceConfig.m_glTexImage2DMultisample = (PFNGLTEXIMAGE2DMULTISAMPLEPROC) glewGetProcAddress ("glTexImage2DMultisample");
     s_deviceConfig.m_glTexImage3DMultisample = (PFNGLTEXIMAGE3DMULTISAMPLEPROC) glewGetProcAddress ("glTexImage3DMultisample");
     s_deviceConfig.m_glGetMultisamplefv = (PFNGLGETMULTISAMPLEFVPROC) glewGetProcAddress ("glGetMultisamplefv");
@@ -6640,9 +7124,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_texture_storage
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_storage])
   {
-    #undef glTexStorage1D
-    #undef glTexStorage2D
-    #undef glTexStorage3D
     s_deviceConfig.m_glTexStorage1D = (PFNGLTEXSTORAGE1DPROC) glewGetProcAddress ("glTexStorage1D");
     s_deviceConfig.m_glTexStorage2D = (PFNGLTEXSTORAGE2DPROC) glewGetProcAddress ("glTexStorage2D");
     s_deviceConfig.m_glTexStorage3D = (PFNGLTEXSTORAGE3DPROC) glewGetProcAddress ("glTexStorage3D");
@@ -6651,8 +7132,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_texture_storage_multisample
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_storage_multisample])
   {
-    #undef glTexStorage2DMultisample
-    #undef glTexStorage3DMultisample
     s_deviceConfig.m_glTexStorage2DMultisample = (PFNGLTEXSTORAGE2DMULTISAMPLEPROC) glewGetProcAddress ("glTexStorage2DMultisample");
     s_deviceConfig.m_glTexStorage3DMultisample = (PFNGLTEXSTORAGE3DMULTISAMPLEPROC) glewGetProcAddress ("glTexStorage3DMultisample");
   }
@@ -6660,16 +7139,12 @@ void glew::glcore::Initialise ()
   // GL_ARB_texture_view
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_texture_view])
   {
-    #undef glTextureView
     s_deviceConfig.m_glTextureView = (PFNGLTEXTUREVIEWPROC) glewGetProcAddress ("glTextureView");
   }
 
   // GL_ARB_timer_query
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_timer_query])
   {
-    #undef glQueryCounter
-    #undef glGetQueryObjecti64v
-    #undef glGetQueryObjectui64v
     s_deviceConfig.m_glQueryCounter = (PFNGLQUERYCOUNTERPROC) glewGetProcAddress ("glQueryCounter");
     s_deviceConfig.m_glGetQueryObjecti64v = (PFNGLGETQUERYOBJECTI64VPROC) glewGetProcAddress ("glGetQueryObjecti64v");
     s_deviceConfig.m_glGetQueryObjectui64v = (PFNGLGETQUERYOBJECTUI64VPROC) glewGetProcAddress ("glGetQueryObjectui64v");
@@ -6678,13 +7153,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_transform_feedback2
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback2])
   {
-    #undef glBindTransformFeedback
-    #undef glDeleteTransformFeedbacks
-    #undef glGenTransformFeedbacks
-    #undef glIsTransformFeedback
-    #undef glPauseTransformFeedback
-    #undef glResumeTransformFeedback
-    #undef glDrawTransformFeedback
     s_deviceConfig.m_glBindTransformFeedback = (PFNGLBINDTRANSFORMFEEDBACKPROC) glewGetProcAddress ("glBindTransformFeedback");
     s_deviceConfig.m_glDeleteTransformFeedbacks = (PFNGLDELETETRANSFORMFEEDBACKSPROC) glewGetProcAddress ("glDeleteTransformFeedbacks");
     s_deviceConfig.m_glGenTransformFeedbacks = (PFNGLGENTRANSFORMFEEDBACKSPROC) glewGetProcAddress ("glGenTransformFeedbacks");
@@ -6697,10 +7165,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_transform_feedback3
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback3])
   {
-    #undef glDrawTransformFeedbackStream
-    #undef glBeginQueryIndexed
-    #undef glEndQueryIndexed
-    #undef glGetQueryIndexediv
     s_deviceConfig.m_glDrawTransformFeedbackStream = (PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC) glewGetProcAddress ("glDrawTransformFeedbackStream");
     s_deviceConfig.m_glBeginQueryIndexed = (PFNGLBEGINQUERYINDEXEDPROC) glewGetProcAddress ("glBeginQueryIndexed");
     s_deviceConfig.m_glEndQueryIndexed = (PFNGLENDQUERYINDEXEDPROC) glewGetProcAddress ("glEndQueryIndexed");
@@ -6710,8 +7174,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_transform_feedback_instanced
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_transform_feedback_instanced])
   {
-    #undef glDrawTransformFeedbackInstanced
-    #undef glDrawTransformFeedbackStreamInstanced
     s_deviceConfig.m_glDrawTransformFeedbackInstanced = (PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC) glewGetProcAddress ("glDrawTransformFeedbackInstanced");
     s_deviceConfig.m_glDrawTransformFeedbackStreamInstanced = (PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC) glewGetProcAddress ("glDrawTransformFeedbackStreamInstanced");
   }
@@ -6719,16 +7181,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_uniform_buffer_object
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_uniform_buffer_object])
   {
-    #undef glGetUniformIndices
-    #undef glGetActiveUniformsiv
-    #undef glGetActiveUniformName
-    #undef glGetUniformBlockIndex
-    #undef glGetActiveUniformBlockiv
-    #undef glGetActiveUniformBlockName
-    #undef glUniformBlockBinding
-    #undef glBindBufferRange
-    #undef glBindBufferBase
-    #undef glGetIntegeri_v
     s_deviceConfig.m_glGetUniformIndices = (PFNGLGETUNIFORMINDICESPROC) glewGetProcAddress ("glGetUniformIndices");
     s_deviceConfig.m_glGetActiveUniformsiv = (PFNGLGETACTIVEUNIFORMSIVPROC) glewGetProcAddress ("glGetActiveUniformsiv");
     s_deviceConfig.m_glGetActiveUniformName = (PFNGLGETACTIVEUNIFORMNAMEPROC) glewGetProcAddress ("glGetActiveUniformName");
@@ -6744,10 +7196,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_vertex_array_object
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_array_object])
   {
-    #undef glBindVertexArray
-    #undef glDeleteVertexArrays
-    #undef glGenVertexArrays
-    #undef glIsVertexArray
     s_deviceConfig.m_glBindVertexArray = (PFNGLBINDVERTEXARRAYPROC) glewGetProcAddress ("glBindVertexArray");
     s_deviceConfig.m_glDeleteVertexArrays = (PFNGLDELETEVERTEXARRAYSPROC) glewGetProcAddress ("glDeleteVertexArrays");
     s_deviceConfig.m_glGenVertexArrays = (PFNGLGENVERTEXARRAYSPROC) glewGetProcAddress ("glGenVertexArrays");
@@ -6757,16 +7205,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_vertex_attrib_64bit
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_attrib_64bit])
   {
-    #undef glVertexAttribL1d
-    #undef glVertexAttribL2d
-    #undef glVertexAttribL3d
-    #undef glVertexAttribL4d
-    #undef glVertexAttribL1dv
-    #undef glVertexAttribL2dv
-    #undef glVertexAttribL3dv
-    #undef glVertexAttribL4dv
-    #undef glVertexAttribLPointer
-    #undef glGetVertexAttribLdv
     s_deviceConfig.m_glVertexAttribL1d = (PFNGLVERTEXATTRIBL1DPROC) glewGetProcAddress ("glVertexAttribL1d");
     s_deviceConfig.m_glVertexAttribL2d = (PFNGLVERTEXATTRIBL2DPROC) glewGetProcAddress ("glVertexAttribL2d");
     s_deviceConfig.m_glVertexAttribL3d = (PFNGLVERTEXATTRIBL3DPROC) glewGetProcAddress ("glVertexAttribL3d");
@@ -6782,12 +7220,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_vertex_attrib_binding
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_attrib_binding])
   {
-    #undef glBindVertexBuffer
-    #undef glVertexAttribFormat
-    #undef glVertexAttribIFormat
-    #undef glVertexAttribLFormat
-    #undef glVertexAttribBinding
-    #undef glVertexBindingDivisor
     s_deviceConfig.m_glBindVertexBuffer = (PFNGLBINDVERTEXBUFFERPROC) glewGetProcAddress ("glBindVertexBuffer");
     s_deviceConfig.m_glVertexAttribFormat = (PFNGLVERTEXATTRIBFORMATPROC) glewGetProcAddress ("glVertexAttribFormat");
     s_deviceConfig.m_glVertexAttribIFormat = (PFNGLVERTEXATTRIBIFORMATPROC) glewGetProcAddress ("glVertexAttribIFormat");
@@ -6799,14 +7231,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_vertex_type_2_10_10_10_rev
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_vertex_type_2_10_10_10_rev])
   {
-    #undef glVertexAttribP1ui
-    #undef glVertexAttribP1uiv
-    #undef glVertexAttribP2ui
-    #undef glVertexAttribP2uiv
-    #undef glVertexAttribP3ui
-    #undef glVertexAttribP3uiv
-    #undef glVertexAttribP4ui
-    #undef glVertexAttribP4uiv
     s_deviceConfig.m_glVertexAttribP1ui = (PFNGLVERTEXATTRIBP1UIPROC) glewGetProcAddress ("glVertexAttribP1ui");
     s_deviceConfig.m_glVertexAttribP1uiv = (PFNGLVERTEXATTRIBP1UIVPROC) glewGetProcAddress ("glVertexAttribP1uiv");
     s_deviceConfig.m_glVertexAttribP2ui = (PFNGLVERTEXATTRIBP2UIPROC) glewGetProcAddress ("glVertexAttribP2ui");
@@ -6820,16 +7244,6 @@ void glew::glcore::Initialise ()
   // GL_ARB_viewport_array
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ARB_viewport_array])
   {
-    #undef glViewportArrayv
-    #undef glViewportIndexedf
-    #undef glViewportIndexedfv
-    #undef glScissorArrayv
-    #undef glScissorIndexed
-    #undef glScissorIndexedv
-    #undef glDepthRangeArrayv
-    #undef glDepthRangeIndexed
-    #undef glGetFloati_v
-    #undef glGetDoublei_v
     s_deviceConfig.m_glViewportArrayv = (PFNGLVIEWPORTARRAYVPROC) glewGetProcAddress ("glViewportArrayv");
     s_deviceConfig.m_glViewportIndexedf = (PFNGLVIEWPORTINDEXEDFPROC) glewGetProcAddress ("glViewportIndexedf");
     s_deviceConfig.m_glViewportIndexedfv = (PFNGLVIEWPORTINDEXEDFVPROC) glewGetProcAddress ("glViewportIndexedfv");

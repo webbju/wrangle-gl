@@ -8,7 +8,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * glXQueryExtensionsString (Display * dpy, int screen)
+#undef glXQueryExtensionsString
+
+const char * glew::glx::glXQueryExtensionsString (Display * dpy, int  screen)
 {
   // GLX_VERSION_1_1 - glXQueryExtensionsString
   if (s_deviceConfig.m_glXQueryExtensionsString)
@@ -22,7 +24,9 @@ const char * glXQueryExtensionsString (Display * dpy, int screen)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * glXQueryServerString (Display * dpy, int screen, int name)
+#undef glXQueryServerString
+
+const char * glew::glx::glXQueryServerString (Display * dpy, int  screen, int  name)
 {
   // GLX_VERSION_1_1 - glXQueryServerString
   if (s_deviceConfig.m_glXQueryServerString)
@@ -36,7 +40,9 @@ const char * glXQueryServerString (Display * dpy, int screen, int name)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * glXGetClientString (Display * dpy, int name)
+#undef glXGetClientString
+
+const char * glew::glx::glXGetClientString (Display * dpy, int  name)
 {
   // GLX_VERSION_1_1 - glXGetClientString
   if (s_deviceConfig.m_glXGetClientString)
@@ -50,7 +56,9 @@ const char * glXGetClientString (Display * dpy, int name)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Display * glXGetCurrentDisplay ()
+#undef glXGetCurrentDisplay
+
+Display * glew::glx::glXGetCurrentDisplay ()
 {
   // GLX_VERSION_1_2 - glXGetCurrentDisplay
   if (s_deviceConfig.m_glXGetCurrentDisplay)
@@ -64,7 +72,9 @@ Display * glXGetCurrentDisplay ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXFBConfig * glXGetFBConfigs (Display * dpy, int screen, int * nelements)
+#undef glXGetFBConfigs
+
+GLXFBConfig * glew::glx::glXGetFBConfigs (Display * dpy, int  screen, int * nelements)
 {
   // GLX_VERSION_1_3 - glXGetFBConfigs
   if (s_deviceConfig.m_glXGetFBConfigs)
@@ -78,7 +88,9 @@ GLXFBConfig * glXGetFBConfigs (Display * dpy, int screen, int * nelements)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXFBConfig * glXChooseFBConfig (Display * dpy, int screen, const int * attrib_list, int * nelements)
+#undef glXChooseFBConfig
+
+GLXFBConfig * glew::glx::glXChooseFBConfig (Display * dpy, int  screen, const int * attrib_list, int * nelements)
 {
   // GLX_VERSION_1_3 - glXChooseFBConfig
   if (s_deviceConfig.m_glXChooseFBConfig)
@@ -92,7 +104,9 @@ GLXFBConfig * glXChooseFBConfig (Display * dpy, int screen, const int * attrib_l
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int attribute, int * value)
+#undef glXGetFBConfigAttrib
+
+int  glew::glx::glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int  attribute, int * value)
 {
   // GLX_VERSION_1_3 - glXGetFBConfigAttrib
   if (s_deviceConfig.m_glXGetFBConfigAttrib)
@@ -106,7 +120,9 @@ int glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int attribute, int 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-XVisualInfo * glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config)
+#undef glXGetVisualFromFBConfig
+
+XVisualInfo * glew::glx::glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config)
 {
   // GLX_VERSION_1_3 - glXGetVisualFromFBConfig
   if (s_deviceConfig.m_glXGetVisualFromFBConfig)
@@ -120,7 +136,9 @@ XVisualInfo * glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXWindow glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const int * attrib_list)
+#undef glXCreateWindow
+
+GLXWindow glew::glx::glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const int * attrib_list)
 {
   // GLX_VERSION_1_3 - glXCreateWindow
   if (s_deviceConfig.m_glXCreateWindow)
@@ -134,7 +152,9 @@ GLXWindow glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXDestroyWindow (Display * dpy, GLXWindow win)
+#undef glXDestroyWindow
+
+void  glew::glx::glXDestroyWindow (Display * dpy, GLXWindow win)
 {
   // GLX_VERSION_1_3 - glXDestroyWindow
   if (s_deviceConfig.m_glXDestroyWindow)
@@ -147,7 +167,9 @@ void glXDestroyWindow (Display * dpy, GLXWindow win)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPixmap glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attrib_list)
+#undef glXCreatePixmap
+
+GLXPixmap glew::glx::glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attrib_list)
 {
   // GLX_VERSION_1_3 - glXCreatePixmap
   if (s_deviceConfig.m_glXCreatePixmap)
@@ -161,7 +183,9 @@ GLXPixmap glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
+#undef glXDestroyPixmap
+
+void  glew::glx::glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
 {
   // GLX_VERSION_1_3 - glXDestroyPixmap
   if (s_deviceConfig.m_glXDestroyPixmap)
@@ -174,7 +198,9 @@ void glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPbuffer glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attrib_list)
+#undef glXCreatePbuffer
+
+GLXPbuffer glew::glx::glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attrib_list)
 {
   // GLX_VERSION_1_3 - glXCreatePbuffer
   if (s_deviceConfig.m_glXCreatePbuffer)
@@ -188,7 +214,9 @@ GLXPbuffer glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attr
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
+#undef glXDestroyPbuffer
+
+void  glew::glx::glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
 {
   // GLX_VERSION_1_3 - glXDestroyPbuffer
   if (s_deviceConfig.m_glXDestroyPbuffer)
@@ -201,7 +229,9 @@ void glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXQueryDrawable (Display * dpy, GLXDrawable draw, int attribute, unsigned int * value)
+#undef glXQueryDrawable
+
+void  glew::glx::glXQueryDrawable (Display * dpy, GLXDrawable draw, int  attribute, unsigned int * value)
 {
   // GLX_VERSION_1_3 - glXQueryDrawable
   if (s_deviceConfig.m_glXQueryDrawable)
@@ -214,7 +244,9 @@ void glXQueryDrawable (Display * dpy, GLXDrawable draw, int attribute, unsigned 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext glXCreateNewContext (Display * dpy, GLXFBConfig config, int render_type, GLXContext share_list, Bool direct)
+#undef glXCreateNewContext
+
+GLXContext glew::glx::glXCreateNewContext (Display * dpy, GLXFBConfig config, int  render_type, GLXContext share_list, Bool direct)
 {
   // GLX_VERSION_1_3 - glXCreateNewContext
   if (s_deviceConfig.m_glXCreateNewContext)
@@ -228,7 +260,9 @@ GLXContext glXCreateNewContext (Display * dpy, GLXFBConfig config, int render_ty
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
+#undef glXMakeContextCurrent
+
+Bool glew::glx::glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
 {
   // GLX_VERSION_1_3 - glXMakeContextCurrent
   if (s_deviceConfig.m_glXMakeContextCurrent)
@@ -242,7 +276,9 @@ Bool glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXDrawable glXGetCurrentReadDrawable ()
+#undef glXGetCurrentReadDrawable
+
+GLXDrawable glew::glx::glXGetCurrentReadDrawable ()
 {
   // GLX_VERSION_1_3 - glXGetCurrentReadDrawable
   if (s_deviceConfig.m_glXGetCurrentReadDrawable)
@@ -256,7 +292,9 @@ GLXDrawable glXGetCurrentReadDrawable ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXQueryContext (Display * dpy, GLXContext ctx, int attribute, int * value)
+#undef glXQueryContext
+
+int  glew::glx::glXQueryContext (Display * dpy, GLXContext ctx, int  attribute, int * value)
 {
   // GLX_VERSION_1_3 - glXQueryContext
   if (s_deviceConfig.m_glXQueryContext)
@@ -270,7 +308,9 @@ int glXQueryContext (Display * dpy, GLXContext ctx, int attribute, int * value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long event_mask)
+#undef glXSelectEvent
+
+void  glew::glx::glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long  event_mask)
 {
   // GLX_VERSION_1_3 - glXSelectEvent
   if (s_deviceConfig.m_glXSelectEvent)
@@ -283,7 +323,9 @@ void glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long event_mask)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event_mask)
+#undef glXGetSelectedEvent
+
+void  glew::glx::glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event_mask)
 {
   // GLX_VERSION_1_3 - glXGetSelectedEvent
   if (s_deviceConfig.m_glXGetSelectedEvent)
@@ -296,7 +338,9 @@ void glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-__GLXextFuncPtr glXGetProcAddress (const GLubyte * procName)
+#undef glXGetProcAddress
+
+__GLXextFuncPtr glew::glx::glXGetProcAddress (const GLubyte * procName)
 {
   // GLX_VERSION_1_4 - glXGetProcAddress
   if (s_deviceConfig.m_glXGetProcAddress)
@@ -310,7 +354,9 @@ __GLXextFuncPtr glXGetProcAddress (const GLubyte * procName)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned int glXGetGPUIDsAMD (unsigned int maxCount, unsigned int * ids)
+#undef glXGetGPUIDsAMD
+
+unsigned int  glew::glx::glXGetGPUIDsAMD (unsigned int  maxCount, unsigned int * ids)
 {
   // GLX_AMD_gpu_association - glXGetGPUIDsAMD
   if (s_deviceConfig.m_glXGetGPUIDsAMD)
@@ -324,7 +370,9 @@ unsigned int glXGetGPUIDsAMD (unsigned int maxCount, unsigned int * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXGetGPUInfoAMD (unsigned int id, int property, GLenum dataType, unsigned int size, void * data)
+#undef glXGetGPUInfoAMD
+
+int  glew::glx::glXGetGPUInfoAMD (unsigned int  id, int  property, GLenum dataType, unsigned int  size, void * data)
 {
   // GLX_AMD_gpu_association - glXGetGPUInfoAMD
   if (s_deviceConfig.m_glXGetGPUInfoAMD)
@@ -338,7 +386,9 @@ int glXGetGPUInfoAMD (unsigned int id, int property, GLenum dataType, unsigned i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned int glXGetContextGPUIDAMD (GLXContext ctx)
+#undef glXGetContextGPUIDAMD
+
+unsigned int  glew::glx::glXGetContextGPUIDAMD (GLXContext ctx)
 {
   // GLX_AMD_gpu_association - glXGetContextGPUIDAMD
   if (s_deviceConfig.m_glXGetContextGPUIDAMD)
@@ -352,7 +402,9 @@ unsigned int glXGetContextGPUIDAMD (GLXContext ctx)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext glXCreateAssociatedContextAMD (unsigned int id, GLXContext share_list)
+#undef glXCreateAssociatedContextAMD
+
+GLXContext glew::glx::glXCreateAssociatedContextAMD (unsigned int  id, GLXContext share_list)
 {
   // GLX_AMD_gpu_association - glXCreateAssociatedContextAMD
   if (s_deviceConfig.m_glXCreateAssociatedContextAMD)
@@ -366,7 +418,9 @@ GLXContext glXCreateAssociatedContextAMD (unsigned int id, GLXContext share_list
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext glXCreateAssociatedContextAttribsAMD (unsigned int id, GLXContext share_context, const int * attribList)
+#undef glXCreateAssociatedContextAttribsAMD
+
+GLXContext glew::glx::glXCreateAssociatedContextAttribsAMD (unsigned int  id, GLXContext share_context, const int * attribList)
 {
   // GLX_AMD_gpu_association - glXCreateAssociatedContextAttribsAMD
   if (s_deviceConfig.m_glXCreateAssociatedContextAttribsAMD)
@@ -380,7 +434,9 @@ GLXContext glXCreateAssociatedContextAttribsAMD (unsigned int id, GLXContext sha
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXDeleteAssociatedContextAMD (GLXContext ctx)
+#undef glXDeleteAssociatedContextAMD
+
+Bool glew::glx::glXDeleteAssociatedContextAMD (GLXContext ctx)
 {
   // GLX_AMD_gpu_association - glXDeleteAssociatedContextAMD
   if (s_deviceConfig.m_glXDeleteAssociatedContextAMD)
@@ -394,7 +450,9 @@ Bool glXDeleteAssociatedContextAMD (GLXContext ctx)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
+#undef glXMakeAssociatedContextCurrentAMD
+
+Bool glew::glx::glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
 {
   // GLX_AMD_gpu_association - glXMakeAssociatedContextCurrentAMD
   if (s_deviceConfig.m_glXMakeAssociatedContextCurrentAMD)
@@ -408,7 +466,9 @@ Bool glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext glXGetCurrentAssociatedContextAMD ()
+#undef glXGetCurrentAssociatedContextAMD
+
+GLXContext glew::glx::glXGetCurrentAssociatedContextAMD ()
 {
   // GLX_AMD_gpu_association - glXGetCurrentAssociatedContextAMD
   if (s_deviceConfig.m_glXGetCurrentAssociatedContextAMD)
@@ -422,7 +482,9 @@ GLXContext glXGetCurrentAssociatedContextAMD ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
+#undef glXBlitContextFramebufferAMD
+
+void  glew::glx::glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
   // GLX_AMD_gpu_association - glXBlitContextFramebufferAMD
   if (s_deviceConfig.m_glXBlitContextFramebufferAMD)
@@ -435,7 +497,9 @@ void glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list)
+#undef glXCreateContextAttribsARB
+
+GLXContext glew::glx::glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list)
 {
   // GLX_ARB_create_context - glXCreateContextAttribsARB
   if (s_deviceConfig.m_glXCreateContextAttribsARB)
@@ -449,7 +513,9 @@ GLXContext glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXCon
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-__GLXextFuncPtr glXGetProcAddressARB (const GLubyte * procName)
+#undef glXGetProcAddressARB
+
+__GLXextFuncPtr glew::glx::glXGetProcAddressARB (const GLubyte * procName)
 {
   // GLX_ARB_get_proc_address - glXGetProcAddressARB
   if (s_deviceConfig.m_glXGetProcAddressARB)
@@ -463,7 +529,9 @@ __GLXextFuncPtr glXGetProcAddressARB (const GLubyte * procName)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Display * glXGetCurrentDisplayEXT ()
+#undef glXGetCurrentDisplayEXT
+
+Display * glew::glx::glXGetCurrentDisplayEXT ()
 {
   // GLX_EXT_import_context - glXGetCurrentDisplayEXT
   if (s_deviceConfig.m_glXGetCurrentDisplayEXT)
@@ -477,7 +545,9 @@ Display * glXGetCurrentDisplayEXT ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXQueryContextInfoEXT (Display * dpy, GLXContext context, int attribute, int * value)
+#undef glXQueryContextInfoEXT
+
+int  glew::glx::glXQueryContextInfoEXT (Display * dpy, GLXContext context, int  attribute, int * value)
 {
   // GLX_EXT_import_context - glXQueryContextInfoEXT
   if (s_deviceConfig.m_glXQueryContextInfoEXT)
@@ -491,7 +561,9 @@ int glXQueryContextInfoEXT (Display * dpy, GLXContext context, int attribute, in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContextID glXGetContextIDEXT (const GLXContext context)
+#undef glXGetContextIDEXT
+
+GLXContextID glew::glx::glXGetContextIDEXT (const GLXContext context)
 {
   // GLX_EXT_import_context - glXGetContextIDEXT
   if (s_deviceConfig.m_glXGetContextIDEXT)
@@ -505,7 +577,9 @@ GLXContextID glXGetContextIDEXT (const GLXContext context)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext glXImportContextEXT (Display * dpy, GLXContextID contextID)
+#undef glXImportContextEXT
+
+GLXContext glew::glx::glXImportContextEXT (Display * dpy, GLXContextID contextID)
 {
   // GLX_EXT_import_context - glXImportContextEXT
   if (s_deviceConfig.m_glXImportContextEXT)
@@ -519,7 +593,9 @@ GLXContext glXImportContextEXT (Display * dpy, GLXContextID contextID)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXFreeContextEXT (Display * dpy, GLXContext context)
+#undef glXFreeContextEXT
+
+void  glew::glx::glXFreeContextEXT (Display * dpy, GLXContext context)
 {
   // GLX_EXT_import_context - glXFreeContextEXT
   if (s_deviceConfig.m_glXFreeContextEXT)
@@ -532,7 +608,9 @@ void glXFreeContextEXT (Display * dpy, GLXContext context)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int interval)
+#undef glXSwapIntervalEXT
+
+void  glew::glx::glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int  interval)
 {
   // GLX_EXT_swap_control - glXSwapIntervalEXT
   if (s_deviceConfig.m_glXSwapIntervalEXT)
@@ -545,7 +623,9 @@ void glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int interval)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer, const int * attrib_list)
+#undef glXBindTexImageEXT
+
+void  glew::glx::glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int  buffer, const int * attrib_list)
 {
   // GLX_EXT_texture_from_pixmap - glXBindTexImageEXT
   if (s_deviceConfig.m_glXBindTexImageEXT)
@@ -558,7 +638,9 @@ void glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer)
+#undef glXReleaseTexImageEXT
+
+void  glew::glx::glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int  buffer)
 {
   // GLX_EXT_texture_from_pixmap - glXReleaseTexImageEXT
   if (s_deviceConfig.m_glXReleaseTexImageEXT)
@@ -571,7 +653,9 @@ void glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int buffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned int glXGetAGPOffsetMESA (const void * pointer)
+#undef glXGetAGPOffsetMESA
+
+unsigned int  glew::glx::glXGetAGPOffsetMESA (const void * pointer)
 {
   // GLX_MESA_agp_offset - glXGetAGPOffsetMESA
   if (s_deviceConfig.m_glXGetAGPOffsetMESA)
@@ -585,7 +669,9 @@ unsigned int glXGetAGPOffsetMESA (const void * pointer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int x, int y, int width, int height)
+#undef glXCopySubBufferMESA
+
+void  glew::glx::glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int  x, int  y, int  width, int  height)
 {
   // GLX_MESA_copy_sub_buffer - glXCopySubBufferMESA
   if (s_deviceConfig.m_glXCopySubBufferMESA)
@@ -598,7 +684,9 @@ void glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int x, int y, in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPixmap glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap)
+#undef glXCreateGLXPixmapMESA
+
+GLXPixmap glew::glx::glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap)
 {
   // GLX_MESA_pixmap_colormap - glXCreateGLXPixmapMESA
   if (s_deviceConfig.m_glXCreateGLXPixmapMESA)
@@ -612,7 +700,9 @@ GLXPixmap glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXQueryCurrentRendererIntegerMESA (int attribute, unsigned int * value)
+#undef glXQueryCurrentRendererIntegerMESA
+
+Bool glew::glx::glXQueryCurrentRendererIntegerMESA (int  attribute, unsigned int * value)
 {
   // GLX_MESA_query_renderer - glXQueryCurrentRendererIntegerMESA
   if (s_deviceConfig.m_glXQueryCurrentRendererIntegerMESA)
@@ -626,7 +716,9 @@ Bool glXQueryCurrentRendererIntegerMESA (int attribute, unsigned int * value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * glXQueryCurrentRendererStringMESA (int attribute)
+#undef glXQueryCurrentRendererStringMESA
+
+const char * glew::glx::glXQueryCurrentRendererStringMESA (int  attribute)
 {
   // GLX_MESA_query_renderer - glXQueryCurrentRendererStringMESA
   if (s_deviceConfig.m_glXQueryCurrentRendererStringMESA)
@@ -640,7 +732,9 @@ const char * glXQueryCurrentRendererStringMESA (int attribute)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXQueryRendererIntegerMESA (Display * dpy, int screen, int renderer, int attribute, unsigned int * value)
+#undef glXQueryRendererIntegerMESA
+
+Bool glew::glx::glXQueryRendererIntegerMESA (Display * dpy, int  screen, int  renderer, int  attribute, unsigned int * value)
 {
   // GLX_MESA_query_renderer - glXQueryRendererIntegerMESA
   if (s_deviceConfig.m_glXQueryRendererIntegerMESA)
@@ -654,7 +748,9 @@ Bool glXQueryRendererIntegerMESA (Display * dpy, int screen, int renderer, int a
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * glXQueryRendererStringMESA (Display * dpy, int screen, int renderer, int attribute)
+#undef glXQueryRendererStringMESA
+
+const char * glew::glx::glXQueryRendererStringMESA (Display * dpy, int  screen, int  renderer, int  attribute)
 {
   // GLX_MESA_query_renderer - glXQueryRendererStringMESA
   if (s_deviceConfig.m_glXQueryRendererStringMESA)
@@ -668,7 +764,9 @@ const char * glXQueryRendererStringMESA (Display * dpy, int screen, int renderer
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
+#undef glXReleaseBuffersMESA
+
+Bool glew::glx::glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
 {
   // GLX_MESA_release_buffers - glXReleaseBuffersMESA
   if (s_deviceConfig.m_glXReleaseBuffersMESA)
@@ -682,7 +780,9 @@ Bool glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXSet3DfxModeMESA (int mode)
+#undef glXSet3DfxModeMESA
+
+Bool glew::glx::glXSet3DfxModeMESA (int  mode)
 {
   // GLX_MESA_set_3dfx_mode - glXSet3DfxModeMESA
   if (s_deviceConfig.m_glXSet3DfxModeMESA)
@@ -696,7 +796,9 @@ Bool glXSet3DfxModeMESA (int mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
+#undef glXCopyBufferSubDataNV
+
+void  glew::glx::glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
   // GLX_NV_copy_buffer - glXCopyBufferSubDataNV
   if (s_deviceConfig.m_glXCopyBufferSubDataNV)
@@ -709,7 +811,9 @@ void glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext write
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
+#undef glXNamedCopyBufferSubDataNV
+
+void  glew::glx::glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
   // GLX_NV_copy_buffer - glXNamedCopyBufferSubDataNV
   if (s_deviceConfig.m_glXNamedCopyBufferSubDataNV)
@@ -722,7 +826,9 @@ void glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth)
+#undef glXCopyImageSubDataNV
+
+void  glew::glx::glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth)
 {
   // GLX_NV_copy_image - glXCopyImageSubDataNV
   if (s_deviceConfig.m_glXCopyImageSubDataNV)
@@ -735,7 +841,9 @@ void glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds)
+#undef glXDelayBeforeSwapNV
+
+Bool glew::glx::glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds)
 {
   // GLX_NV_delay_before_swap - glXDelayBeforeSwapNV
   if (s_deviceConfig.m_glXDelayBeforeSwapNV)
@@ -749,7 +857,9 @@ Bool glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned int * glXEnumerateVideoDevicesNV (Display * dpy, int screen, int * nelements)
+#undef glXEnumerateVideoDevicesNV
+
+unsigned int * glew::glx::glXEnumerateVideoDevicesNV (Display * dpy, int  screen, int * nelements)
 {
   // GLX_NV_present_video - glXEnumerateVideoDevicesNV
   if (s_deviceConfig.m_glXEnumerateVideoDevicesNV)
@@ -763,7 +873,9 @@ unsigned int * glXEnumerateVideoDevicesNV (Display * dpy, int screen, int * nele
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXBindVideoDeviceNV (Display * dpy, unsigned int video_slot, unsigned int video_device, const int * attrib_list)
+#undef glXBindVideoDeviceNV
+
+int  glew::glx::glXBindVideoDeviceNV (Display * dpy, unsigned int  video_slot, unsigned int  video_device, const int * attrib_list)
 {
   // GLX_NV_present_video - glXBindVideoDeviceNV
   if (s_deviceConfig.m_glXBindVideoDeviceNV)
@@ -777,7 +889,9 @@ int glXBindVideoDeviceNV (Display * dpy, unsigned int video_slot, unsigned int v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group)
+#undef glXJoinSwapGroupNV
+
+Bool glew::glx::glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group)
 {
   // GLX_NV_swap_group - glXJoinSwapGroupNV
   if (s_deviceConfig.m_glXJoinSwapGroupNV)
@@ -791,7 +905,9 @@ Bool glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier)
+#undef glXBindSwapBarrierNV
+
+Bool glew::glx::glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier)
 {
   // GLX_NV_swap_group - glXBindSwapBarrierNV
   if (s_deviceConfig.m_glXBindSwapBarrierNV)
@@ -805,7 +921,9 @@ Bool glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier)
+#undef glXQuerySwapGroupNV
+
+Bool glew::glx::glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier)
 {
   // GLX_NV_swap_group - glXQuerySwapGroupNV
   if (s_deviceConfig.m_glXQuerySwapGroupNV)
@@ -819,7 +937,9 @@ Bool glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXQueryMaxSwapGroupsNV (Display * dpy, int screen, GLuint * maxGroups, GLuint * maxBarriers)
+#undef glXQueryMaxSwapGroupsNV
+
+Bool glew::glx::glXQueryMaxSwapGroupsNV (Display * dpy, int  screen, GLuint * maxGroups, GLuint * maxBarriers)
 {
   // GLX_NV_swap_group - glXQueryMaxSwapGroupsNV
   if (s_deviceConfig.m_glXQueryMaxSwapGroupsNV)
@@ -833,7 +953,9 @@ Bool glXQueryMaxSwapGroupsNV (Display * dpy, int screen, GLuint * maxGroups, GLu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXQueryFrameCountNV (Display * dpy, int screen, GLuint * count)
+#undef glXQueryFrameCountNV
+
+Bool glew::glx::glXQueryFrameCountNV (Display * dpy, int  screen, GLuint * count)
 {
   // GLX_NV_swap_group - glXQueryFrameCountNV
   if (s_deviceConfig.m_glXQueryFrameCountNV)
@@ -847,7 +969,9 @@ Bool glXQueryFrameCountNV (Display * dpy, int screen, GLuint * count)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXResetFrameCountNV (Display * dpy, int screen)
+#undef glXResetFrameCountNV
+
+Bool glew::glx::glXResetFrameCountNV (Display * dpy, int  screen)
 {
   // GLX_NV_swap_group - glXResetFrameCountNV
   if (s_deviceConfig.m_glXResetFrameCountNV)
@@ -861,7 +985,9 @@ Bool glXResetFrameCountNV (Display * dpy, int screen)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int video_capture_slot, GLXVideoCaptureDeviceNV device)
+#undef glXBindVideoCaptureDeviceNV
+
+int  glew::glx::glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int  video_capture_slot, GLXVideoCaptureDeviceNV device)
 {
   // GLX_NV_video_capture - glXBindVideoCaptureDeviceNV
   if (s_deviceConfig.m_glXBindVideoCaptureDeviceNV)
@@ -875,7 +1001,9 @@ int glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int video_capture_slot,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXVideoCaptureDeviceNV * glXEnumerateVideoCaptureDevicesNV (Display * dpy, int screen, int * nelements)
+#undef glXEnumerateVideoCaptureDevicesNV
+
+GLXVideoCaptureDeviceNV * glew::glx::glXEnumerateVideoCaptureDevicesNV (Display * dpy, int  screen, int * nelements)
 {
   // GLX_NV_video_capture - glXEnumerateVideoCaptureDevicesNV
   if (s_deviceConfig.m_glXEnumerateVideoCaptureDevicesNV)
@@ -889,7 +1017,9 @@ GLXVideoCaptureDeviceNV * glXEnumerateVideoCaptureDevicesNV (Display * dpy, int 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
+#undef glXLockVideoCaptureDeviceNV
+
+void  glew::glx::glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
 {
   // GLX_NV_video_capture - glXLockVideoCaptureDeviceNV
   if (s_deviceConfig.m_glXLockVideoCaptureDeviceNV)
@@ -902,7 +1032,9 @@ void glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device, int attribute, int * value)
+#undef glXQueryVideoCaptureDeviceNV
+
+int  glew::glx::glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device, int  attribute, int * value)
 {
   // GLX_NV_video_capture - glXQueryVideoCaptureDeviceNV
   if (s_deviceConfig.m_glXQueryVideoCaptureDeviceNV)
@@ -916,7 +1048,9 @@ int glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
+#undef glXReleaseVideoCaptureDeviceNV
+
+void  glew::glx::glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
 {
   // GLX_NV_video_capture - glXReleaseVideoCaptureDeviceNV
   if (s_deviceConfig.m_glXReleaseVideoCaptureDeviceNV)
@@ -929,7 +1063,9 @@ void glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV devi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXGetVideoDeviceNV (Display * dpy, int screen, int numVideoDevices, GLXVideoDeviceNV * pVideoDevice)
+#undef glXGetVideoDeviceNV
+
+int  glew::glx::glXGetVideoDeviceNV (Display * dpy, int  screen, int  numVideoDevices, GLXVideoDeviceNV * pVideoDevice)
 {
   // GLX_NV_video_out - glXGetVideoDeviceNV
   if (s_deviceConfig.m_glXGetVideoDeviceNV)
@@ -943,7 +1079,9 @@ int glXGetVideoDeviceNV (Display * dpy, int screen, int numVideoDevices, GLXVide
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXReleaseVideoDeviceNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice)
+#undef glXReleaseVideoDeviceNV
+
+int  glew::glx::glXReleaseVideoDeviceNV (Display * dpy, int  screen, GLXVideoDeviceNV VideoDevice)
 {
   // GLX_NV_video_out - glXReleaseVideoDeviceNV
   if (s_deviceConfig.m_glXReleaseVideoDeviceNV)
@@ -957,7 +1095,9 @@ int glXReleaseVideoDeviceNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDe
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int iVideoBuffer)
+#undef glXBindVideoImageNV
+
+int  glew::glx::glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int  iVideoBuffer)
 {
   // GLX_NV_video_out - glXBindVideoImageNV
   if (s_deviceConfig.m_glXBindVideoImageNV)
@@ -971,7 +1111,9 @@ int glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
+#undef glXReleaseVideoImageNV
+
+int  glew::glx::glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
 {
   // GLX_NV_video_out - glXReleaseVideoImageNV
   if (s_deviceConfig.m_glXReleaseVideoImageNV)
@@ -985,7 +1127,9 @@ int glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int iBufferType, unsigned long * pulCounterPbuffer, GLboolean bBlock)
+#undef glXSendPbufferToVideoNV
+
+int  glew::glx::glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int  iBufferType, unsigned long * pulCounterPbuffer, GLboolean bBlock)
 {
   // GLX_NV_video_out - glXSendPbufferToVideoNV
   if (s_deviceConfig.m_glXSendPbufferToVideoNV)
@@ -999,7 +1143,9 @@ int glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int iBufferType, un
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXGetVideoInfoNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo)
+#undef glXGetVideoInfoNV
+
+int  glew::glx::glXGetVideoInfoNV (Display * dpy, int  screen, GLXVideoDeviceNV VideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo)
 {
   // GLX_NV_video_out - glXGetVideoInfoNV
   if (s_deviceConfig.m_glXGetVideoInfoNV)
@@ -1013,7 +1159,9 @@ int glXGetVideoInfoNV (Display * dpy, int screen, GLXVideoDeviceNV VideoDevice, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc)
+#undef glXGetSyncValuesOML
+
+Bool glew::glx::glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc)
 {
   // GLX_OML_sync_control - glXGetSyncValuesOML
   if (s_deviceConfig.m_glXGetSyncValuesOML)
@@ -1027,7 +1175,9 @@ Bool glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator)
+#undef glXGetMscRateOML
+
+Bool glew::glx::glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator)
 {
   // GLX_OML_sync_control - glXGetMscRateOML
   if (s_deviceConfig.m_glXGetMscRateOML)
@@ -1041,7 +1191,9 @@ Bool glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int64_t glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder)
+#undef glXSwapBuffersMscOML
+
+int64_t glew::glx::glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder)
 {
   // GLX_OML_sync_control - glXSwapBuffersMscOML
   if (s_deviceConfig.m_glXSwapBuffersMscOML)
@@ -1055,7 +1207,9 @@ int64_t glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t targe
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc)
+#undef glXWaitForMscOML
+
+Bool glew::glx::glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc)
 {
   // GLX_OML_sync_control - glXWaitForMscOML
   if (s_deviceConfig.m_glXWaitForMscOML)
@@ -1069,7 +1223,9 @@ Bool glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc)
+#undef glXWaitForSbcOML
+
+Bool glew::glx::glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc)
 {
   // GLX_OML_sync_control - glXWaitForSbcOML
   if (s_deviceConfig.m_glXWaitForSbcOML)
@@ -1083,7 +1239,9 @@ Bool glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXCushionSGI (Display * dpy, Window window, float cushion)
+#undef glXCushionSGI
+
+void  glew::glx::glXCushionSGI (Display * dpy, Window window, float  cushion)
 {
   // GLX_SGI_cushion - glXCushionSGI
   if (s_deviceConfig.m_glXCushionSGI)
@@ -1096,7 +1254,9 @@ void glXCushionSGI (Display * dpy, Window window, float cushion)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
+#undef glXMakeCurrentReadSGI
+
+Bool glew::glx::glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
 {
   // GLX_SGI_make_current_read - glXMakeCurrentReadSGI
   if (s_deviceConfig.m_glXMakeCurrentReadSGI)
@@ -1110,7 +1270,9 @@ Bool glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXDrawable glXGetCurrentReadDrawableSGI ()
+#undef glXGetCurrentReadDrawableSGI
+
+GLXDrawable glew::glx::glXGetCurrentReadDrawableSGI ()
 {
   // GLX_SGI_make_current_read - glXGetCurrentReadDrawableSGI
   if (s_deviceConfig.m_glXGetCurrentReadDrawableSGI)
@@ -1124,7 +1286,9 @@ GLXDrawable glXGetCurrentReadDrawableSGI ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXSwapIntervalSGI (int interval)
+#undef glXSwapIntervalSGI
+
+int  glew::glx::glXSwapIntervalSGI (int  interval)
 {
   // GLX_SGI_swap_control - glXSwapIntervalSGI
   if (s_deviceConfig.m_glXSwapIntervalSGI)
@@ -1138,7 +1302,9 @@ int glXSwapIntervalSGI (int interval)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXGetVideoSyncSGI (unsigned int * count)
+#undef glXGetVideoSyncSGI
+
+int  glew::glx::glXGetVideoSyncSGI (unsigned int * count)
 {
   // GLX_SGI_video_sync - glXGetVideoSyncSGI
   if (s_deviceConfig.m_glXGetVideoSyncSGI)
@@ -1152,7 +1318,9 @@ int glXGetVideoSyncSGI (unsigned int * count)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXWaitVideoSyncSGI (int divisor, int remainder, unsigned int * count)
+#undef glXWaitVideoSyncSGI
+
+int  glew::glx::glXWaitVideoSyncSGI (int  divisor, int  remainder, unsigned int * count)
 {
   // GLX_SGI_video_sync - glXWaitVideoSyncSGI
   if (s_deviceConfig.m_glXWaitVideoSyncSGI)
@@ -1166,7 +1334,9 @@ int glXWaitVideoSyncSGI (int divisor, int remainder, unsigned int * count)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams * params, DMbuffer dmbuffer)
+#undef glXAssociateDMPbufferSGIX
+
+Bool glew::glx::glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams * params, DMbuffer dmbuffer)
 {
   // GLX_SGIX_dmbuffer - glXAssociateDMPbufferSGIX
   if (s_deviceConfig.m_glXAssociateDMPbufferSGIX)
@@ -1180,7 +1350,9 @@ Bool glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int attribute, int * value)
+#undef glXGetFBConfigAttribSGIX
+
+int  glew::glx::glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int  attribute, int * value)
 {
   // GLX_SGIX_fbconfig - glXGetFBConfigAttribSGIX
   if (s_deviceConfig.m_glXGetFBConfigAttribSGIX)
@@ -1194,7 +1366,9 @@ int glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int attribu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXFBConfigSGIX * glXChooseFBConfigSGIX (Display * dpy, int screen, int * attrib_list, int * nelements)
+#undef glXChooseFBConfigSGIX
+
+GLXFBConfigSGIX * glew::glx::glXChooseFBConfigSGIX (Display * dpy, int  screen, int * attrib_list, int * nelements)
 {
   // GLX_SGIX_fbconfig - glXChooseFBConfigSGIX
   if (s_deviceConfig.m_glXChooseFBConfigSGIX)
@@ -1208,7 +1382,9 @@ GLXFBConfigSGIX * glXChooseFBConfigSGIX (Display * dpy, int screen, int * attrib
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPixmap glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap)
+#undef glXCreateGLXPixmapWithConfigSGIX
+
+GLXPixmap glew::glx::glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap)
 {
   // GLX_SGIX_fbconfig - glXCreateGLXPixmapWithConfigSGIX
   if (s_deviceConfig.m_glXCreateGLXPixmapWithConfigSGIX)
@@ -1222,7 +1398,9 @@ GLXPixmap glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX confi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, int render_type, GLXContext share_list, Bool direct)
+#undef glXCreateContextWithConfigSGIX
+
+GLXContext glew::glx::glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, int  render_type, GLXContext share_list, Bool direct)
 {
   // GLX_SGIX_fbconfig - glXCreateContextWithConfigSGIX
   if (s_deviceConfig.m_glXCreateContextWithConfigSGIX)
@@ -1236,7 +1414,9 @@ GLXContext glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-XVisualInfo * glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX config)
+#undef glXGetVisualFromFBConfigSGIX
+
+XVisualInfo * glew::glx::glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX config)
 {
   // GLX_SGIX_fbconfig - glXGetVisualFromFBConfigSGIX
   if (s_deviceConfig.m_glXGetVisualFromFBConfigSGIX)
@@ -1250,7 +1430,9 @@ XVisualInfo * glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX confi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXFBConfigSGIX glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis)
+#undef glXGetFBConfigFromVisualSGIX
+
+GLXFBConfigSGIX glew::glx::glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis)
 {
   // GLX_SGIX_fbconfig - glXGetFBConfigFromVisualSGIX
   if (s_deviceConfig.m_glXGetFBConfigFromVisualSGIX)
@@ -1264,7 +1446,9 @@ GLXFBConfigSGIX glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXHyperpipeNetworkSGIX * glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npipes)
+#undef glXQueryHyperpipeNetworkSGIX
+
+GLXHyperpipeNetworkSGIX * glew::glx::glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npipes)
 {
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeNetworkSGIX
   if (s_deviceConfig.m_glXQueryHyperpipeNetworkSGIX)
@@ -1278,7 +1462,9 @@ GLXHyperpipeNetworkSGIX * glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXHyperpipeConfigSGIX (Display * dpy, int networkId, int npipes, GLXHyperpipeConfigSGIX * cfg, int * hpId)
+#undef glXHyperpipeConfigSGIX
+
+int  glew::glx::glXHyperpipeConfigSGIX (Display * dpy, int  networkId, int  npipes, GLXHyperpipeConfigSGIX * cfg, int * hpId)
 {
   // GLX_SGIX_hyperpipe - glXHyperpipeConfigSGIX
   if (s_deviceConfig.m_glXHyperpipeConfigSGIX)
@@ -1292,7 +1478,9 @@ int glXHyperpipeConfigSGIX (Display * dpy, int networkId, int npipes, GLXHyperpi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXHyperpipeConfigSGIX * glXQueryHyperpipeConfigSGIX (Display * dpy, int hpId, int * npipes)
+#undef glXQueryHyperpipeConfigSGIX
+
+GLXHyperpipeConfigSGIX * glew::glx::glXQueryHyperpipeConfigSGIX (Display * dpy, int  hpId, int * npipes)
 {
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeConfigSGIX
   if (s_deviceConfig.m_glXQueryHyperpipeConfigSGIX)
@@ -1306,7 +1494,9 @@ GLXHyperpipeConfigSGIX * glXQueryHyperpipeConfigSGIX (Display * dpy, int hpId, i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXDestroyHyperpipeConfigSGIX (Display * dpy, int hpId)
+#undef glXDestroyHyperpipeConfigSGIX
+
+int  glew::glx::glXDestroyHyperpipeConfigSGIX (Display * dpy, int  hpId)
 {
   // GLX_SGIX_hyperpipe - glXDestroyHyperpipeConfigSGIX
   if (s_deviceConfig.m_glXDestroyHyperpipeConfigSGIX)
@@ -1320,7 +1510,9 @@ int glXDestroyHyperpipeConfigSGIX (Display * dpy, int hpId)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXBindHyperpipeSGIX (Display * dpy, int hpId)
+#undef glXBindHyperpipeSGIX
+
+int  glew::glx::glXBindHyperpipeSGIX (Display * dpy, int  hpId)
 {
   // GLX_SGIX_hyperpipe - glXBindHyperpipeSGIX
   if (s_deviceConfig.m_glXBindHyperpipeSGIX)
@@ -1334,7 +1526,9 @@ int glXBindHyperpipeSGIX (Display * dpy, int hpId)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXQueryHyperpipeBestAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * attribList, void * returnAttribList)
+#undef glXQueryHyperpipeBestAttribSGIX
+
+int  glew::glx::glXQueryHyperpipeBestAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * attribList, void * returnAttribList)
 {
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeBestAttribSGIX
   if (s_deviceConfig.m_glXQueryHyperpipeBestAttribSGIX)
@@ -1348,7 +1542,9 @@ int glXQueryHyperpipeBestAttribSGIX (Display * dpy, int timeSlice, int attrib, i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * attribList)
+#undef glXHyperpipeAttribSGIX
+
+int  glew::glx::glXHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * attribList)
 {
   // GLX_SGIX_hyperpipe - glXHyperpipeAttribSGIX
   if (s_deviceConfig.m_glXHyperpipeAttribSGIX)
@@ -1362,7 +1558,9 @@ int glXHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXQueryHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * returnAttribList)
+#undef glXQueryHyperpipeAttribSGIX
+
+int  glew::glx::glXQueryHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * returnAttribList)
 {
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeAttribSGIX
   if (s_deviceConfig.m_glXQueryHyperpipeAttribSGIX)
@@ -1376,7 +1574,9 @@ int glXQueryHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int s
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPbufferSGIX glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, unsigned int width, unsigned int height, int * attrib_list)
+#undef glXCreateGLXPbufferSGIX
+
+GLXPbufferSGIX glew::glx::glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, unsigned int  width, unsigned int  height, int * attrib_list)
 {
   // GLX_SGIX_pbuffer - glXCreateGLXPbufferSGIX
   if (s_deviceConfig.m_glXCreateGLXPbufferSGIX)
@@ -1390,7 +1590,9 @@ GLXPbufferSGIX glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, u
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
+#undef glXDestroyGLXPbufferSGIX
+
+void  glew::glx::glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
 {
   // GLX_SGIX_pbuffer - glXDestroyGLXPbufferSGIX
   if (s_deviceConfig.m_glXDestroyGLXPbufferSGIX)
@@ -1403,7 +1605,9 @@ void glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value)
+#undef glXQueryGLXPbufferSGIX
+
+int  glew::glx::glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int  attribute, unsigned int * value)
 {
   // GLX_SGIX_pbuffer - glXQueryGLXPbufferSGIX
   if (s_deviceConfig.m_glXQueryGLXPbufferSGIX)
@@ -1417,7 +1621,9 @@ int glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int attribute, u
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long mask)
+#undef glXSelectEventSGIX
+
+void  glew::glx::glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long  mask)
 {
   // GLX_SGIX_pbuffer - glXSelectEventSGIX
   if (s_deviceConfig.m_glXSelectEventSGIX)
@@ -1430,7 +1636,9 @@ void glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long mask
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long * mask)
+#undef glXGetSelectedEventSGIX
+
+void  glew::glx::glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long * mask)
 {
   // GLX_SGIX_pbuffer - glXGetSelectedEventSGIX
   if (s_deviceConfig.m_glXGetSelectedEventSGIX)
@@ -1443,7 +1651,9 @@ void glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int barrier)
+#undef glXBindSwapBarrierSGIX
+
+void  glew::glx::glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int  barrier)
 {
   // GLX_SGIX_swap_barrier - glXBindSwapBarrierSGIX
   if (s_deviceConfig.m_glXBindSwapBarrierSGIX)
@@ -1456,7 +1666,9 @@ void glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int barrier)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool glXQueryMaxSwapBarriersSGIX (Display * dpy, int screen, int * max)
+#undef glXQueryMaxSwapBarriersSGIX
+
+Bool glew::glx::glXQueryMaxSwapBarriersSGIX (Display * dpy, int  screen, int * max)
 {
   // GLX_SGIX_swap_barrier - glXQueryMaxSwapBarriersSGIX
   if (s_deviceConfig.m_glXQueryMaxSwapBarriersSGIX)
@@ -1470,7 +1682,9 @@ Bool glXQueryMaxSwapBarriersSGIX (Display * dpy, int screen, int * max)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable member)
+#undef glXJoinSwapGroupSGIX
+
+void  glew::glx::glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable member)
 {
   // GLX_SGIX_swap_group - glXJoinSwapGroupSGIX
   if (s_deviceConfig.m_glXJoinSwapGroupSGIX)
@@ -1483,7 +1697,9 @@ void glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable memb
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXBindChannelToWindowSGIX (Display * display, int screen, int channel, Window window)
+#undef glXBindChannelToWindowSGIX
+
+int  glew::glx::glXBindChannelToWindowSGIX (Display * display, int  screen, int  channel, Window window)
 {
   // GLX_SGIX_video_resize - glXBindChannelToWindowSGIX
   if (s_deviceConfig.m_glXBindChannelToWindowSGIX)
@@ -1497,7 +1713,9 @@ int glXBindChannelToWindowSGIX (Display * display, int screen, int channel, Wind
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXChannelRectSGIX (Display * display, int screen, int channel, int x, int y, int w, int h)
+#undef glXChannelRectSGIX
+
+int  glew::glx::glXChannelRectSGIX (Display * display, int  screen, int  channel, int  x, int  y, int  w, int  h)
 {
   // GLX_SGIX_video_resize - glXChannelRectSGIX
   if (s_deviceConfig.m_glXChannelRectSGIX)
@@ -1511,7 +1729,9 @@ int glXChannelRectSGIX (Display * display, int screen, int channel, int x, int y
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXQueryChannelRectSGIX (Display * display, int screen, int channel, int * dx, int * dy, int * dw, int * dh)
+#undef glXQueryChannelRectSGIX
+
+int  glew::glx::glXQueryChannelRectSGIX (Display * display, int  screen, int  channel, int * dx, int * dy, int * dw, int * dh)
 {
   // GLX_SGIX_video_resize - glXQueryChannelRectSGIX
   if (s_deviceConfig.m_glXQueryChannelRectSGIX)
@@ -1525,7 +1745,9 @@ int glXQueryChannelRectSGIX (Display * display, int screen, int channel, int * d
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXQueryChannelDeltasSGIX (Display * display, int screen, int channel, int * x, int * y, int * w, int * h)
+#undef glXQueryChannelDeltasSGIX
+
+int  glew::glx::glXQueryChannelDeltasSGIX (Display * display, int  screen, int  channel, int * x, int * y, int * w, int * h)
 {
   // GLX_SGIX_video_resize - glXQueryChannelDeltasSGIX
   if (s_deviceConfig.m_glXQueryChannelDeltasSGIX)
@@ -1539,7 +1761,9 @@ int glXQueryChannelDeltasSGIX (Display * display, int screen, int channel, int *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int glXChannelRectSyncSGIX (Display * display, int screen, int channel, GLenum synctype)
+#undef glXChannelRectSyncSGIX
+
+int  glew::glx::glXChannelRectSyncSGIX (Display * display, int  screen, int  channel, GLenum synctype)
 {
   // GLX_SGIX_video_resize - glXChannelRectSyncSGIX
   if (s_deviceConfig.m_glXChannelRectSyncSGIX)
@@ -1553,7 +1777,9 @@ int glXChannelRectSyncSGIX (Display * display, int screen, int channel, GLenum s
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXVideoSourceSGIX glXCreateGLXVideoSourceSGIX (Display * display, int screen, VLServer server, VLPath path, int nodeClass, VLNode drainNode)
+#undef glXCreateGLXVideoSourceSGIX
+
+GLXVideoSourceSGIX glew::glx::glXCreateGLXVideoSourceSGIX (Display * display, int  screen, VLServer server, VLPath path, int  nodeClass, VLNode drainNode)
 {
   // GLX_SGIX_video_source - glXCreateGLXVideoSourceSGIX
   if (s_deviceConfig.m_glXCreateGLXVideoSourceSGIX)
@@ -1567,7 +1793,9 @@ GLXVideoSourceSGIX glXCreateGLXVideoSourceSGIX (Display * display, int screen, V
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosource)
+#undef glXDestroyGLXVideoSourceSGIX
+
+void  glew::glx::glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosource)
 {
   // GLX_SGIX_video_source - glXDestroyGLXVideoSourceSGIX
   if (s_deviceConfig.m_glXDestroyGLXVideoSourceSGIX)
@@ -1580,7 +1808,9 @@ void glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosou
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Status glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex)
+#undef glXGetTransparentIndexSUN
+
+Status glew::glx::glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex)
 {
   // GLX_SUN_get_transparent_index - glXGetTransparentIndexSUN
   if (s_deviceConfig.m_glXGetTransparentIndexSUN)

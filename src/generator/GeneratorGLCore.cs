@@ -51,17 +51,19 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
+      writer.Write ("\n#include <wrangle.h>\n");
+
       writer.Write ("\n#if !defined (GL_GLEXT_PROTOTYPES)\n#define GL_GLEXT_PROTOTYPES 1\n#endif\n");
 
       writer.Write ("\n#include <GL/glcorearb.h>\n");
 
       base.ExportHpp (ref writer);
 
-      writer.Write ("\n#ifndef GLEW_USE_OPENGL_CORE\n#define GLEW_USE_OPENGL_CORE 1\n#endif\n");
+      //writer.Write ("\n#ifndef GLEW_USE_OPENGL_CORE\n#define GLEW_USE_OPENGL_CORE 1\n#endif\n");
 
-      writer.Write ("\n#include <wrangle.h>\n\n");
+      //writer.Write ("\n#include <wrangle.h>\n\n");
 
-      WriteCommentDivider (ref writer);
+      //WriteCommentDivider (ref writer);
 
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
@@ -279,12 +281,12 @@ namespace wrangle_gl_generator
 
             writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
 
-            foreach (XmlNode commandNode in requireCommandNodes)
+            /*foreach (XmlNode commandNode in requireCommandNodes)
             {
               string command = commandNode.Attributes ["name"].Value;
 
               writer.Write (string.Format ("    #undef {0}\n", command));
-            }
+            }*/
 
             foreach (XmlNode commandNode in requireCommandNodes)
             {

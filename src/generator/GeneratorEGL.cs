@@ -279,12 +279,12 @@ namespace wrangle_gl_generator
 
             writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
 
-            foreach (XmlNode commandNode in requireCommandNodes)
+            /*foreach (XmlNode commandNode in requireCommandNodes)
             {
               string command = commandNode.Attributes ["name"].Value;
 
               writer.Write (string.Format ("    #undef {0}\n", command));
-            }
+            }*/
 
             foreach (XmlNode commandNode in requireCommandNodes)
             {

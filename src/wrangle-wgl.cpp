@@ -2,19 +2,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define GLEW_USE_WGL 1
-
 #include <string>
 
 #include <unordered_set>
-
-#include <windows.h>
-
-#include <GL/gl.h>
-
-#undef wglUseFontBitmaps
-
-#undef wglUseFontOutlines
 
 #include <wrangle-wgl.h>
 
@@ -22,7 +12,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglSetStereoEmitterState3DL (HDC hDC, UINT uState)
+#undef wglSetStereoEmitterState3DL
+
+BOOL glew::wgl::wglSetStereoEmitterState3DL (HDC hDC, UINT uState)
 {
   // WGL_3DL_stereo_control - wglSetStereoEmitterState3DL
   if (s_deviceConfig.m_wglSetStereoEmitterState3DL)
@@ -36,7 +28,9 @@ BOOL wglSetStereoEmitterState3DL (HDC hDC, UINT uState)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-UINT wglGetGPUIDsAMD (UINT maxCount, UINT * ids)
+#undef wglGetGPUIDsAMD
+
+UINT glew::wgl::wglGetGPUIDsAMD (UINT maxCount, UINT * ids)
 {
   // WGL_AMD_gpu_association - wglGetGPUIDsAMD
   if (s_deviceConfig.m_wglGetGPUIDsAMD)
@@ -50,7 +44,9 @@ UINT wglGetGPUIDsAMD (UINT maxCount, UINT * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-INT wglGetGPUInfoAMD (UINT id, int property, GLenum dataType, UINT size, void * data)
+#undef wglGetGPUInfoAMD
+
+INT glew::wgl::wglGetGPUInfoAMD (UINT id, int  property, GLenum dataType, UINT size, void * data)
 {
   // WGL_AMD_gpu_association - wglGetGPUInfoAMD
   if (s_deviceConfig.m_wglGetGPUInfoAMD)
@@ -64,7 +60,9 @@ INT wglGetGPUInfoAMD (UINT id, int property, GLenum dataType, UINT size, void * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-UINT wglGetContextGPUIDAMD (HGLRC hglrc)
+#undef wglGetContextGPUIDAMD
+
+UINT glew::wgl::wglGetContextGPUIDAMD (HGLRC hglrc)
 {
   // WGL_AMD_gpu_association - wglGetContextGPUIDAMD
   if (s_deviceConfig.m_wglGetContextGPUIDAMD)
@@ -78,7 +76,9 @@ UINT wglGetContextGPUIDAMD (HGLRC hglrc)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HGLRC wglCreateAssociatedContextAMD (UINT id)
+#undef wglCreateAssociatedContextAMD
+
+HGLRC glew::wgl::wglCreateAssociatedContextAMD (UINT id)
 {
   // WGL_AMD_gpu_association - wglCreateAssociatedContextAMD
   if (s_deviceConfig.m_wglCreateAssociatedContextAMD)
@@ -92,7 +92,9 @@ HGLRC wglCreateAssociatedContextAMD (UINT id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HGLRC wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const int * attribList)
+#undef wglCreateAssociatedContextAttribsAMD
+
+HGLRC glew::wgl::wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const int * attribList)
 {
   // WGL_AMD_gpu_association - wglCreateAssociatedContextAttribsAMD
   if (s_deviceConfig.m_wglCreateAssociatedContextAttribsAMD)
@@ -106,7 +108,9 @@ HGLRC wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDeleteAssociatedContextAMD (HGLRC hglrc)
+#undef wglDeleteAssociatedContextAMD
+
+BOOL glew::wgl::wglDeleteAssociatedContextAMD (HGLRC hglrc)
 {
   // WGL_AMD_gpu_association - wglDeleteAssociatedContextAMD
   if (s_deviceConfig.m_wglDeleteAssociatedContextAMD)
@@ -120,7 +124,9 @@ BOOL wglDeleteAssociatedContextAMD (HGLRC hglrc)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglMakeAssociatedContextCurrentAMD (HGLRC hglrc)
+#undef wglMakeAssociatedContextCurrentAMD
+
+BOOL glew::wgl::wglMakeAssociatedContextCurrentAMD (HGLRC hglrc)
 {
   // WGL_AMD_gpu_association - wglMakeAssociatedContextCurrentAMD
   if (s_deviceConfig.m_wglMakeAssociatedContextCurrentAMD)
@@ -134,7 +140,9 @@ BOOL wglMakeAssociatedContextCurrentAMD (HGLRC hglrc)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HGLRC wglGetCurrentAssociatedContextAMD ()
+#undef wglGetCurrentAssociatedContextAMD
+
+HGLRC glew::wgl::wglGetCurrentAssociatedContextAMD ()
 {
   // WGL_AMD_gpu_association - wglGetCurrentAssociatedContextAMD
   if (s_deviceConfig.m_wglGetCurrentAssociatedContextAMD)
@@ -148,7 +156,9 @@ HGLRC wglGetCurrentAssociatedContextAMD ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-VOID wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
+#undef wglBlitContextFramebufferAMD
+
+VOID glew::wgl::wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
   // WGL_AMD_gpu_association - wglBlitContextFramebufferAMD
   if (s_deviceConfig.m_wglBlitContextFramebufferAMD)
@@ -162,7 +172,9 @@ VOID wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HANDLE wglCreateBufferRegionARB (HDC hDC, int iLayerPlane, UINT uType)
+#undef wglCreateBufferRegionARB
+
+HANDLE glew::wgl::wglCreateBufferRegionARB (HDC hDC, int  iLayerPlane, UINT uType)
 {
   // WGL_ARB_buffer_region - wglCreateBufferRegionARB
   if (s_deviceConfig.m_wglCreateBufferRegionARB)
@@ -176,7 +188,9 @@ HANDLE wglCreateBufferRegionARB (HDC hDC, int iLayerPlane, UINT uType)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-VOID wglDeleteBufferRegionARB (HANDLE hRegion)
+#undef wglDeleteBufferRegionARB
+
+VOID glew::wgl::wglDeleteBufferRegionARB (HANDLE hRegion)
 {
   // WGL_ARB_buffer_region - wglDeleteBufferRegionARB
   if (s_deviceConfig.m_wglDeleteBufferRegionARB)
@@ -190,7 +204,9 @@ VOID wglDeleteBufferRegionARB (HANDLE hRegion)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglSaveBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height)
+#undef wglSaveBufferRegionARB
+
+BOOL glew::wgl::wglSaveBufferRegionARB (HANDLE hRegion, int  x, int  y, int  width, int  height)
 {
   // WGL_ARB_buffer_region - wglSaveBufferRegionARB
   if (s_deviceConfig.m_wglSaveBufferRegionARB)
@@ -204,7 +220,9 @@ BOOL wglSaveBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglRestoreBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height, int xSrc, int ySrc)
+#undef wglRestoreBufferRegionARB
+
+BOOL glew::wgl::wglRestoreBufferRegionARB (HANDLE hRegion, int  x, int  y, int  width, int  height, int  xSrc, int  ySrc)
 {
   // WGL_ARB_buffer_region - wglRestoreBufferRegionARB
   if (s_deviceConfig.m_wglRestoreBufferRegionARB)
@@ -218,7 +236,9 @@ BOOL wglRestoreBufferRegionARB (HANDLE hRegion, int x, int y, int width, int hei
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HGLRC wglCreateContextAttribsARB (HDC hDC, HGLRC hShareContext, const int * attribList)
+#undef wglCreateContextAttribsARB
+
+HGLRC glew::wgl::wglCreateContextAttribsARB (HDC hDC, HGLRC hShareContext, const int * attribList)
 {
   // WGL_ARB_create_context - wglCreateContextAttribsARB
   if (s_deviceConfig.m_wglCreateContextAttribsARB)
@@ -232,7 +252,9 @@ HGLRC wglCreateContextAttribsARB (HDC hDC, HGLRC hShareContext, const int * attr
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * wglGetExtensionsStringARB (HDC hdc)
+#undef wglGetExtensionsStringARB
+
+const char * glew::wgl::wglGetExtensionsStringARB (HDC hdc)
 {
   // WGL_ARB_extensions_string - wglGetExtensionsStringARB
   if (s_deviceConfig.m_wglGetExtensionsStringARB)
@@ -246,7 +268,9 @@ const char * wglGetExtensionsStringARB (HDC hdc)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglMakeContextCurrentARB (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
+#undef wglMakeContextCurrentARB
+
+BOOL glew::wgl::wglMakeContextCurrentARB (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
 {
   // WGL_ARB_make_current_read - wglMakeContextCurrentARB
   if (s_deviceConfig.m_wglMakeContextCurrentARB)
@@ -260,7 +284,9 @@ BOOL wglMakeContextCurrentARB (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HDC wglGetCurrentReadDCARB ()
+#undef wglGetCurrentReadDCARB
+
+HDC glew::wgl::wglGetCurrentReadDCARB ()
 {
   // WGL_ARB_make_current_read - wglGetCurrentReadDCARB
   if (s_deviceConfig.m_wglGetCurrentReadDCARB)
@@ -274,7 +300,9 @@ HDC wglGetCurrentReadDCARB ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HPBUFFERARB wglCreatePbufferARB (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList)
+#undef wglCreatePbufferARB
+
+HPBUFFERARB glew::wgl::wglCreatePbufferARB (HDC hDC, int  iPixelFormat, int  iWidth, int  iHeight, const int * piAttribList)
 {
   // WGL_ARB_pbuffer - wglCreatePbufferARB
   if (s_deviceConfig.m_wglCreatePbufferARB)
@@ -288,7 +316,9 @@ HPBUFFERARB wglCreatePbufferARB (HDC hDC, int iPixelFormat, int iWidth, int iHei
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HDC wglGetPbufferDCARB (HPBUFFERARB hPbuffer)
+#undef wglGetPbufferDCARB
+
+HDC glew::wgl::wglGetPbufferDCARB (HPBUFFERARB hPbuffer)
 {
   // WGL_ARB_pbuffer - wglGetPbufferDCARB
   if (s_deviceConfig.m_wglGetPbufferDCARB)
@@ -302,7 +332,9 @@ HDC wglGetPbufferDCARB (HPBUFFERARB hPbuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int wglReleasePbufferDCARB (HPBUFFERARB hPbuffer, HDC hDC)
+#undef wglReleasePbufferDCARB
+
+int  glew::wgl::wglReleasePbufferDCARB (HPBUFFERARB hPbuffer, HDC hDC)
 {
   // WGL_ARB_pbuffer - wglReleasePbufferDCARB
   if (s_deviceConfig.m_wglReleasePbufferDCARB)
@@ -316,7 +348,9 @@ int wglReleasePbufferDCARB (HPBUFFERARB hPbuffer, HDC hDC)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDestroyPbufferARB (HPBUFFERARB hPbuffer)
+#undef wglDestroyPbufferARB
+
+BOOL glew::wgl::wglDestroyPbufferARB (HPBUFFERARB hPbuffer)
 {
   // WGL_ARB_pbuffer - wglDestroyPbufferARB
   if (s_deviceConfig.m_wglDestroyPbufferARB)
@@ -330,7 +364,9 @@ BOOL wglDestroyPbufferARB (HPBUFFERARB hPbuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQueryPbufferARB (HPBUFFERARB hPbuffer, int iAttribute, int * piValue)
+#undef wglQueryPbufferARB
+
+BOOL glew::wgl::wglQueryPbufferARB (HPBUFFERARB hPbuffer, int  iAttribute, int * piValue)
 {
   // WGL_ARB_pbuffer - wglQueryPbufferARB
   if (s_deviceConfig.m_wglQueryPbufferARB)
@@ -344,7 +380,9 @@ BOOL wglQueryPbufferARB (HPBUFFERARB hPbuffer, int iAttribute, int * piValue)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetPixelFormatAttribivARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, int * piValues)
+#undef wglGetPixelFormatAttribivARB
+
+BOOL glew::wgl::wglGetPixelFormatAttribivARB (HDC hdc, int  iPixelFormat, int  iLayerPlane, UINT nAttributes, const int * piAttributes, int * piValues)
 {
   // WGL_ARB_pixel_format - wglGetPixelFormatAttribivARB
   if (s_deviceConfig.m_wglGetPixelFormatAttribivARB)
@@ -358,7 +396,9 @@ BOOL wglGetPixelFormatAttribivARB (HDC hdc, int iPixelFormat, int iLayerPlane, U
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetPixelFormatAttribfvARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, FLOAT * pfValues)
+#undef wglGetPixelFormatAttribfvARB
+
+BOOL glew::wgl::wglGetPixelFormatAttribfvARB (HDC hdc, int  iPixelFormat, int  iLayerPlane, UINT nAttributes, const int * piAttributes, FLOAT * pfValues)
 {
   // WGL_ARB_pixel_format - wglGetPixelFormatAttribfvARB
   if (s_deviceConfig.m_wglGetPixelFormatAttribfvARB)
@@ -372,7 +412,9 @@ BOOL wglGetPixelFormatAttribfvARB (HDC hdc, int iPixelFormat, int iLayerPlane, U
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglChoosePixelFormatARB (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats)
+#undef wglChoosePixelFormatARB
+
+BOOL glew::wgl::wglChoosePixelFormatARB (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats)
 {
   // WGL_ARB_pixel_format - wglChoosePixelFormatARB
   if (s_deviceConfig.m_wglChoosePixelFormatARB)
@@ -386,7 +428,9 @@ BOOL wglChoosePixelFormatARB (HDC hdc, const int * piAttribIList, const FLOAT * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglBindTexImageARB (HPBUFFERARB hPbuffer, int iBuffer)
+#undef wglBindTexImageARB
+
+BOOL glew::wgl::wglBindTexImageARB (HPBUFFERARB hPbuffer, int  iBuffer)
 {
   // WGL_ARB_render_texture - wglBindTexImageARB
   if (s_deviceConfig.m_wglBindTexImageARB)
@@ -400,7 +444,9 @@ BOOL wglBindTexImageARB (HPBUFFERARB hPbuffer, int iBuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglReleaseTexImageARB (HPBUFFERARB hPbuffer, int iBuffer)
+#undef wglReleaseTexImageARB
+
+BOOL glew::wgl::wglReleaseTexImageARB (HPBUFFERARB hPbuffer, int  iBuffer)
 {
   // WGL_ARB_render_texture - wglReleaseTexImageARB
   if (s_deviceConfig.m_wglReleaseTexImageARB)
@@ -414,7 +460,9 @@ BOOL wglReleaseTexImageARB (HPBUFFERARB hPbuffer, int iBuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglSetPbufferAttribARB (HPBUFFERARB hPbuffer, const int * piAttribList)
+#undef wglSetPbufferAttribARB
+
+BOOL glew::wgl::wglSetPbufferAttribARB (HPBUFFERARB hPbuffer, const int * piAttribList)
 {
   // WGL_ARB_render_texture - wglSetPbufferAttribARB
   if (s_deviceConfig.m_wglSetPbufferAttribARB)
@@ -428,7 +476,9 @@ BOOL wglSetPbufferAttribARB (HPBUFFERARB hPbuffer, const int * piAttribList)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean wglCreateDisplayColorTableEXT (GLushort id)
+#undef wglCreateDisplayColorTableEXT
+
+GLboolean glew::wgl::wglCreateDisplayColorTableEXT (GLushort id)
 {
   // WGL_EXT_display_color_table - wglCreateDisplayColorTableEXT
   if (s_deviceConfig.m_wglCreateDisplayColorTableEXT)
@@ -442,7 +492,9 @@ GLboolean wglCreateDisplayColorTableEXT (GLushort id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean wglLoadDisplayColorTableEXT (const GLushort * table, GLuint length)
+#undef wglLoadDisplayColorTableEXT
+
+GLboolean glew::wgl::wglLoadDisplayColorTableEXT (const GLushort * table, GLuint length)
 {
   // WGL_EXT_display_color_table - wglLoadDisplayColorTableEXT
   if (s_deviceConfig.m_wglLoadDisplayColorTableEXT)
@@ -456,7 +508,9 @@ GLboolean wglLoadDisplayColorTableEXT (const GLushort * table, GLuint length)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean wglBindDisplayColorTableEXT (GLushort id)
+#undef wglBindDisplayColorTableEXT
+
+GLboolean glew::wgl::wglBindDisplayColorTableEXT (GLushort id)
 {
   // WGL_EXT_display_color_table - wglBindDisplayColorTableEXT
   if (s_deviceConfig.m_wglBindDisplayColorTableEXT)
@@ -470,7 +524,9 @@ GLboolean wglBindDisplayColorTableEXT (GLushort id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-VOID wglDestroyDisplayColorTableEXT (GLushort id)
+#undef wglDestroyDisplayColorTableEXT
+
+VOID glew::wgl::wglDestroyDisplayColorTableEXT (GLushort id)
 {
   // WGL_EXT_display_color_table - wglDestroyDisplayColorTableEXT
   if (s_deviceConfig.m_wglDestroyDisplayColorTableEXT)
@@ -484,7 +540,9 @@ VOID wglDestroyDisplayColorTableEXT (GLushort id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * wglGetExtensionsStringEXT ()
+#undef wglGetExtensionsStringEXT
+
+const char * glew::wgl::wglGetExtensionsStringEXT ()
 {
   // WGL_EXT_extensions_string - wglGetExtensionsStringEXT
   if (s_deviceConfig.m_wglGetExtensionsStringEXT)
@@ -498,7 +556,9 @@ const char * wglGetExtensionsStringEXT ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglMakeContextCurrentEXT (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
+#undef wglMakeContextCurrentEXT
+
+BOOL glew::wgl::wglMakeContextCurrentEXT (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
 {
   // WGL_EXT_make_current_read - wglMakeContextCurrentEXT
   if (s_deviceConfig.m_wglMakeContextCurrentEXT)
@@ -512,7 +572,9 @@ BOOL wglMakeContextCurrentEXT (HDC hDrawDC, HDC hReadDC, HGLRC hglrc)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HDC wglGetCurrentReadDCEXT ()
+#undef wglGetCurrentReadDCEXT
+
+HDC glew::wgl::wglGetCurrentReadDCEXT ()
 {
   // WGL_EXT_make_current_read - wglGetCurrentReadDCEXT
   if (s_deviceConfig.m_wglGetCurrentReadDCEXT)
@@ -526,7 +588,9 @@ HDC wglGetCurrentReadDCEXT ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HPBUFFEREXT wglCreatePbufferEXT (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList)
+#undef wglCreatePbufferEXT
+
+HPBUFFEREXT glew::wgl::wglCreatePbufferEXT (HDC hDC, int  iPixelFormat, int  iWidth, int  iHeight, const int * piAttribList)
 {
   // WGL_EXT_pbuffer - wglCreatePbufferEXT
   if (s_deviceConfig.m_wglCreatePbufferEXT)
@@ -540,7 +604,9 @@ HPBUFFEREXT wglCreatePbufferEXT (HDC hDC, int iPixelFormat, int iWidth, int iHei
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HDC wglGetPbufferDCEXT (HPBUFFEREXT hPbuffer)
+#undef wglGetPbufferDCEXT
+
+HDC glew::wgl::wglGetPbufferDCEXT (HPBUFFEREXT hPbuffer)
 {
   // WGL_EXT_pbuffer - wglGetPbufferDCEXT
   if (s_deviceConfig.m_wglGetPbufferDCEXT)
@@ -554,7 +620,9 @@ HDC wglGetPbufferDCEXT (HPBUFFEREXT hPbuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int wglReleasePbufferDCEXT (HPBUFFEREXT hPbuffer, HDC hDC)
+#undef wglReleasePbufferDCEXT
+
+int  glew::wgl::wglReleasePbufferDCEXT (HPBUFFEREXT hPbuffer, HDC hDC)
 {
   // WGL_EXT_pbuffer - wglReleasePbufferDCEXT
   if (s_deviceConfig.m_wglReleasePbufferDCEXT)
@@ -568,7 +636,9 @@ int wglReleasePbufferDCEXT (HPBUFFEREXT hPbuffer, HDC hDC)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDestroyPbufferEXT (HPBUFFEREXT hPbuffer)
+#undef wglDestroyPbufferEXT
+
+BOOL glew::wgl::wglDestroyPbufferEXT (HPBUFFEREXT hPbuffer)
 {
   // WGL_EXT_pbuffer - wglDestroyPbufferEXT
   if (s_deviceConfig.m_wglDestroyPbufferEXT)
@@ -582,7 +652,9 @@ BOOL wglDestroyPbufferEXT (HPBUFFEREXT hPbuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQueryPbufferEXT (HPBUFFEREXT hPbuffer, int iAttribute, int * piValue)
+#undef wglQueryPbufferEXT
+
+BOOL glew::wgl::wglQueryPbufferEXT (HPBUFFEREXT hPbuffer, int  iAttribute, int * piValue)
 {
   // WGL_EXT_pbuffer - wglQueryPbufferEXT
   if (s_deviceConfig.m_wglQueryPbufferEXT)
@@ -596,7 +668,9 @@ BOOL wglQueryPbufferEXT (HPBUFFEREXT hPbuffer, int iAttribute, int * piValue)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetPixelFormatAttribivEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, int * piValues)
+#undef wglGetPixelFormatAttribivEXT
+
+BOOL glew::wgl::wglGetPixelFormatAttribivEXT (HDC hdc, int  iPixelFormat, int  iLayerPlane, UINT nAttributes, int * piAttributes, int * piValues)
 {
   // WGL_EXT_pixel_format - wglGetPixelFormatAttribivEXT
   if (s_deviceConfig.m_wglGetPixelFormatAttribivEXT)
@@ -610,7 +684,9 @@ BOOL wglGetPixelFormatAttribivEXT (HDC hdc, int iPixelFormat, int iLayerPlane, U
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetPixelFormatAttribfvEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, FLOAT * pfValues)
+#undef wglGetPixelFormatAttribfvEXT
+
+BOOL glew::wgl::wglGetPixelFormatAttribfvEXT (HDC hdc, int  iPixelFormat, int  iLayerPlane, UINT nAttributes, int * piAttributes, FLOAT * pfValues)
 {
   // WGL_EXT_pixel_format - wglGetPixelFormatAttribfvEXT
   if (s_deviceConfig.m_wglGetPixelFormatAttribfvEXT)
@@ -624,7 +700,9 @@ BOOL wglGetPixelFormatAttribfvEXT (HDC hdc, int iPixelFormat, int iLayerPlane, U
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglChoosePixelFormatEXT (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats)
+#undef wglChoosePixelFormatEXT
+
+BOOL glew::wgl::wglChoosePixelFormatEXT (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats)
 {
   // WGL_EXT_pixel_format - wglChoosePixelFormatEXT
   if (s_deviceConfig.m_wglChoosePixelFormatEXT)
@@ -638,7 +716,9 @@ BOOL wglChoosePixelFormatEXT (HDC hdc, const int * piAttribIList, const FLOAT * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglSwapIntervalEXT (int interval)
+#undef wglSwapIntervalEXT
+
+BOOL glew::wgl::wglSwapIntervalEXT (int  interval)
 {
   // WGL_EXT_swap_control - wglSwapIntervalEXT
   if (s_deviceConfig.m_wglSwapIntervalEXT)
@@ -652,7 +732,9 @@ BOOL wglSwapIntervalEXT (int interval)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int wglGetSwapIntervalEXT ()
+#undef wglGetSwapIntervalEXT
+
+int  glew::wgl::wglGetSwapIntervalEXT ()
 {
   // WGL_EXT_swap_control - wglGetSwapIntervalEXT
   if (s_deviceConfig.m_wglGetSwapIntervalEXT)
@@ -666,7 +748,9 @@ int wglGetSwapIntervalEXT ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetDigitalVideoParametersI3D (HDC hDC, int iAttribute, int * piValue)
+#undef wglGetDigitalVideoParametersI3D
+
+BOOL glew::wgl::wglGetDigitalVideoParametersI3D (HDC hDC, int  iAttribute, int * piValue)
 {
   // WGL_I3D_digital_video_control - wglGetDigitalVideoParametersI3D
   if (s_deviceConfig.m_wglGetDigitalVideoParametersI3D)
@@ -680,7 +764,9 @@ BOOL wglGetDigitalVideoParametersI3D (HDC hDC, int iAttribute, int * piValue)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglSetDigitalVideoParametersI3D (HDC hDC, int iAttribute, const int * piValue)
+#undef wglSetDigitalVideoParametersI3D
+
+BOOL glew::wgl::wglSetDigitalVideoParametersI3D (HDC hDC, int  iAttribute, const int * piValue)
 {
   // WGL_I3D_digital_video_control - wglSetDigitalVideoParametersI3D
   if (s_deviceConfig.m_wglSetDigitalVideoParametersI3D)
@@ -694,7 +780,9 @@ BOOL wglSetDigitalVideoParametersI3D (HDC hDC, int iAttribute, const int * piVal
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetGammaTableParametersI3D (HDC hDC, int iAttribute, int * piValue)
+#undef wglGetGammaTableParametersI3D
+
+BOOL glew::wgl::wglGetGammaTableParametersI3D (HDC hDC, int  iAttribute, int * piValue)
 {
   // WGL_I3D_gamma - wglGetGammaTableParametersI3D
   if (s_deviceConfig.m_wglGetGammaTableParametersI3D)
@@ -708,7 +796,9 @@ BOOL wglGetGammaTableParametersI3D (HDC hDC, int iAttribute, int * piValue)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglSetGammaTableParametersI3D (HDC hDC, int iAttribute, const int * piValue)
+#undef wglSetGammaTableParametersI3D
+
+BOOL glew::wgl::wglSetGammaTableParametersI3D (HDC hDC, int  iAttribute, const int * piValue)
 {
   // WGL_I3D_gamma - wglSetGammaTableParametersI3D
   if (s_deviceConfig.m_wglSetGammaTableParametersI3D)
@@ -722,7 +812,9 @@ BOOL wglSetGammaTableParametersI3D (HDC hDC, int iAttribute, const int * piValue
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetGammaTableI3D (HDC hDC, int iEntries, USHORT * puRed, USHORT * puGreen, USHORT * puBlue)
+#undef wglGetGammaTableI3D
+
+BOOL glew::wgl::wglGetGammaTableI3D (HDC hDC, int  iEntries, USHORT * puRed, USHORT * puGreen, USHORT * puBlue)
 {
   // WGL_I3D_gamma - wglGetGammaTableI3D
   if (s_deviceConfig.m_wglGetGammaTableI3D)
@@ -736,7 +828,9 @@ BOOL wglGetGammaTableI3D (HDC hDC, int iEntries, USHORT * puRed, USHORT * puGree
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglSetGammaTableI3D (HDC hDC, int iEntries, const USHORT * puRed, const USHORT * puGreen, const USHORT * puBlue)
+#undef wglSetGammaTableI3D
+
+BOOL glew::wgl::wglSetGammaTableI3D (HDC hDC, int  iEntries, const USHORT * puRed, const USHORT * puGreen, const USHORT * puBlue)
 {
   // WGL_I3D_gamma - wglSetGammaTableI3D
   if (s_deviceConfig.m_wglSetGammaTableI3D)
@@ -750,7 +844,9 @@ BOOL wglSetGammaTableI3D (HDC hDC, int iEntries, const USHORT * puRed, const USH
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglEnableGenlockI3D (HDC hDC)
+#undef wglEnableGenlockI3D
+
+BOOL glew::wgl::wglEnableGenlockI3D (HDC hDC)
 {
   // WGL_I3D_genlock - wglEnableGenlockI3D
   if (s_deviceConfig.m_wglEnableGenlockI3D)
@@ -764,7 +860,9 @@ BOOL wglEnableGenlockI3D (HDC hDC)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDisableGenlockI3D (HDC hDC)
+#undef wglDisableGenlockI3D
+
+BOOL glew::wgl::wglDisableGenlockI3D (HDC hDC)
 {
   // WGL_I3D_genlock - wglDisableGenlockI3D
   if (s_deviceConfig.m_wglDisableGenlockI3D)
@@ -778,7 +876,9 @@ BOOL wglDisableGenlockI3D (HDC hDC)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglIsEnabledGenlockI3D (HDC hDC, BOOL * pFlag)
+#undef wglIsEnabledGenlockI3D
+
+BOOL glew::wgl::wglIsEnabledGenlockI3D (HDC hDC, BOOL * pFlag)
 {
   // WGL_I3D_genlock - wglIsEnabledGenlockI3D
   if (s_deviceConfig.m_wglIsEnabledGenlockI3D)
@@ -792,7 +892,9 @@ BOOL wglIsEnabledGenlockI3D (HDC hDC, BOOL * pFlag)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGenlockSourceI3D (HDC hDC, UINT uSource)
+#undef wglGenlockSourceI3D
+
+BOOL glew::wgl::wglGenlockSourceI3D (HDC hDC, UINT uSource)
 {
   // WGL_I3D_genlock - wglGenlockSourceI3D
   if (s_deviceConfig.m_wglGenlockSourceI3D)
@@ -806,7 +908,9 @@ BOOL wglGenlockSourceI3D (HDC hDC, UINT uSource)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetGenlockSourceI3D (HDC hDC, UINT * uSource)
+#undef wglGetGenlockSourceI3D
+
+BOOL glew::wgl::wglGetGenlockSourceI3D (HDC hDC, UINT * uSource)
 {
   // WGL_I3D_genlock - wglGetGenlockSourceI3D
   if (s_deviceConfig.m_wglGetGenlockSourceI3D)
@@ -820,7 +924,9 @@ BOOL wglGetGenlockSourceI3D (HDC hDC, UINT * uSource)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGenlockSourceEdgeI3D (HDC hDC, UINT uEdge)
+#undef wglGenlockSourceEdgeI3D
+
+BOOL glew::wgl::wglGenlockSourceEdgeI3D (HDC hDC, UINT uEdge)
 {
   // WGL_I3D_genlock - wglGenlockSourceEdgeI3D
   if (s_deviceConfig.m_wglGenlockSourceEdgeI3D)
@@ -834,7 +940,9 @@ BOOL wglGenlockSourceEdgeI3D (HDC hDC, UINT uEdge)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetGenlockSourceEdgeI3D (HDC hDC, UINT * uEdge)
+#undef wglGetGenlockSourceEdgeI3D
+
+BOOL glew::wgl::wglGetGenlockSourceEdgeI3D (HDC hDC, UINT * uEdge)
 {
   // WGL_I3D_genlock - wglGetGenlockSourceEdgeI3D
   if (s_deviceConfig.m_wglGetGenlockSourceEdgeI3D)
@@ -848,7 +956,9 @@ BOOL wglGetGenlockSourceEdgeI3D (HDC hDC, UINT * uEdge)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGenlockSampleRateI3D (HDC hDC, UINT uRate)
+#undef wglGenlockSampleRateI3D
+
+BOOL glew::wgl::wglGenlockSampleRateI3D (HDC hDC, UINT uRate)
 {
   // WGL_I3D_genlock - wglGenlockSampleRateI3D
   if (s_deviceConfig.m_wglGenlockSampleRateI3D)
@@ -862,7 +972,9 @@ BOOL wglGenlockSampleRateI3D (HDC hDC, UINT uRate)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetGenlockSampleRateI3D (HDC hDC, UINT * uRate)
+#undef wglGetGenlockSampleRateI3D
+
+BOOL glew::wgl::wglGetGenlockSampleRateI3D (HDC hDC, UINT * uRate)
 {
   // WGL_I3D_genlock - wglGetGenlockSampleRateI3D
   if (s_deviceConfig.m_wglGetGenlockSampleRateI3D)
@@ -876,7 +988,9 @@ BOOL wglGetGenlockSampleRateI3D (HDC hDC, UINT * uRate)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGenlockSourceDelayI3D (HDC hDC, UINT uDelay)
+#undef wglGenlockSourceDelayI3D
+
+BOOL glew::wgl::wglGenlockSourceDelayI3D (HDC hDC, UINT uDelay)
 {
   // WGL_I3D_genlock - wglGenlockSourceDelayI3D
   if (s_deviceConfig.m_wglGenlockSourceDelayI3D)
@@ -890,7 +1004,9 @@ BOOL wglGenlockSourceDelayI3D (HDC hDC, UINT uDelay)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetGenlockSourceDelayI3D (HDC hDC, UINT * uDelay)
+#undef wglGetGenlockSourceDelayI3D
+
+BOOL glew::wgl::wglGetGenlockSourceDelayI3D (HDC hDC, UINT * uDelay)
 {
   // WGL_I3D_genlock - wglGetGenlockSourceDelayI3D
   if (s_deviceConfig.m_wglGetGenlockSourceDelayI3D)
@@ -904,7 +1020,9 @@ BOOL wglGetGenlockSourceDelayI3D (HDC hDC, UINT * uDelay)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQueryGenlockMaxSourceDelayI3D (HDC hDC, UINT * uMaxLineDelay, UINT * uMaxPixelDelay)
+#undef wglQueryGenlockMaxSourceDelayI3D
+
+BOOL glew::wgl::wglQueryGenlockMaxSourceDelayI3D (HDC hDC, UINT * uMaxLineDelay, UINT * uMaxPixelDelay)
 {
   // WGL_I3D_genlock - wglQueryGenlockMaxSourceDelayI3D
   if (s_deviceConfig.m_wglQueryGenlockMaxSourceDelayI3D)
@@ -918,7 +1036,9 @@ BOOL wglQueryGenlockMaxSourceDelayI3D (HDC hDC, UINT * uMaxLineDelay, UINT * uMa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-LPVOID wglCreateImageBufferI3D (HDC hDC, DWORD dwSize, UINT uFlags)
+#undef wglCreateImageBufferI3D
+
+LPVOID glew::wgl::wglCreateImageBufferI3D (HDC hDC, DWORD dwSize, UINT uFlags)
 {
   // WGL_I3D_image_buffer - wglCreateImageBufferI3D
   if (s_deviceConfig.m_wglCreateImageBufferI3D)
@@ -932,7 +1052,9 @@ LPVOID wglCreateImageBufferI3D (HDC hDC, DWORD dwSize, UINT uFlags)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDestroyImageBufferI3D (HDC hDC, LPVOID pAddress)
+#undef wglDestroyImageBufferI3D
+
+BOOL glew::wgl::wglDestroyImageBufferI3D (HDC hDC, LPVOID pAddress)
 {
   // WGL_I3D_image_buffer - wglDestroyImageBufferI3D
   if (s_deviceConfig.m_wglDestroyImageBufferI3D)
@@ -946,7 +1068,9 @@ BOOL wglDestroyImageBufferI3D (HDC hDC, LPVOID pAddress)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglAssociateImageBufferEventsI3D (HDC hDC, const HANDLE * pEvent, const LPVOID * pAddress, const DWORD * pSize, UINT count)
+#undef wglAssociateImageBufferEventsI3D
+
+BOOL glew::wgl::wglAssociateImageBufferEventsI3D (HDC hDC, const HANDLE * pEvent, const LPVOID * pAddress, const DWORD * pSize, UINT count)
 {
   // WGL_I3D_image_buffer - wglAssociateImageBufferEventsI3D
   if (s_deviceConfig.m_wglAssociateImageBufferEventsI3D)
@@ -960,7 +1084,9 @@ BOOL wglAssociateImageBufferEventsI3D (HDC hDC, const HANDLE * pEvent, const LPV
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglReleaseImageBufferEventsI3D (HDC hDC, const LPVOID * pAddress, UINT count)
+#undef wglReleaseImageBufferEventsI3D
+
+BOOL glew::wgl::wglReleaseImageBufferEventsI3D (HDC hDC, const LPVOID * pAddress, UINT count)
 {
   // WGL_I3D_image_buffer - wglReleaseImageBufferEventsI3D
   if (s_deviceConfig.m_wglReleaseImageBufferEventsI3D)
@@ -974,7 +1100,9 @@ BOOL wglReleaseImageBufferEventsI3D (HDC hDC, const LPVOID * pAddress, UINT coun
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglEnableFrameLockI3D ()
+#undef wglEnableFrameLockI3D
+
+BOOL glew::wgl::wglEnableFrameLockI3D ()
 {
   // WGL_I3D_swap_frame_lock - wglEnableFrameLockI3D
   if (s_deviceConfig.m_wglEnableFrameLockI3D)
@@ -988,7 +1116,9 @@ BOOL wglEnableFrameLockI3D ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDisableFrameLockI3D ()
+#undef wglDisableFrameLockI3D
+
+BOOL glew::wgl::wglDisableFrameLockI3D ()
 {
   // WGL_I3D_swap_frame_lock - wglDisableFrameLockI3D
   if (s_deviceConfig.m_wglDisableFrameLockI3D)
@@ -1002,7 +1132,9 @@ BOOL wglDisableFrameLockI3D ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglIsEnabledFrameLockI3D (BOOL * pFlag)
+#undef wglIsEnabledFrameLockI3D
+
+BOOL glew::wgl::wglIsEnabledFrameLockI3D (BOOL * pFlag)
 {
   // WGL_I3D_swap_frame_lock - wglIsEnabledFrameLockI3D
   if (s_deviceConfig.m_wglIsEnabledFrameLockI3D)
@@ -1016,7 +1148,9 @@ BOOL wglIsEnabledFrameLockI3D (BOOL * pFlag)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQueryFrameLockMasterI3D (BOOL * pFlag)
+#undef wglQueryFrameLockMasterI3D
+
+BOOL glew::wgl::wglQueryFrameLockMasterI3D (BOOL * pFlag)
 {
   // WGL_I3D_swap_frame_lock - wglQueryFrameLockMasterI3D
   if (s_deviceConfig.m_wglQueryFrameLockMasterI3D)
@@ -1030,7 +1164,9 @@ BOOL wglQueryFrameLockMasterI3D (BOOL * pFlag)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetFrameUsageI3D (float * pUsage)
+#undef wglGetFrameUsageI3D
+
+BOOL glew::wgl::wglGetFrameUsageI3D (float * pUsage)
 {
   // WGL_I3D_swap_frame_usage - wglGetFrameUsageI3D
   if (s_deviceConfig.m_wglGetFrameUsageI3D)
@@ -1044,7 +1180,9 @@ BOOL wglGetFrameUsageI3D (float * pUsage)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglBeginFrameTrackingI3D ()
+#undef wglBeginFrameTrackingI3D
+
+BOOL glew::wgl::wglBeginFrameTrackingI3D ()
 {
   // WGL_I3D_swap_frame_usage - wglBeginFrameTrackingI3D
   if (s_deviceConfig.m_wglBeginFrameTrackingI3D)
@@ -1058,7 +1196,9 @@ BOOL wglBeginFrameTrackingI3D ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglEndFrameTrackingI3D ()
+#undef wglEndFrameTrackingI3D
+
+BOOL glew::wgl::wglEndFrameTrackingI3D ()
 {
   // WGL_I3D_swap_frame_usage - wglEndFrameTrackingI3D
   if (s_deviceConfig.m_wglEndFrameTrackingI3D)
@@ -1072,7 +1212,9 @@ BOOL wglEndFrameTrackingI3D ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQueryFrameTrackingI3D (DWORD * pFrameCount, DWORD * pMissedFrames, float * pLastMissedUsage)
+#undef wglQueryFrameTrackingI3D
+
+BOOL glew::wgl::wglQueryFrameTrackingI3D (DWORD * pFrameCount, DWORD * pMissedFrames, float * pLastMissedUsage)
 {
   // WGL_I3D_swap_frame_usage - wglQueryFrameTrackingI3D
   if (s_deviceConfig.m_wglQueryFrameTrackingI3D)
@@ -1086,7 +1228,9 @@ BOOL wglQueryFrameTrackingI3D (DWORD * pFrameCount, DWORD * pMissedFrames, float
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth)
+#undef wglCopyImageSubDataNV
+
+BOOL glew::wgl::wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth)
 {
   // WGL_NV_copy_image - wglCopyImageSubDataNV
   if (s_deviceConfig.m_wglCopyImageSubDataNV)
@@ -1100,7 +1244,9 @@ BOOL wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDelayBeforeSwapNV (HDC hDC, GLfloat seconds)
+#undef wglDelayBeforeSwapNV
+
+BOOL glew::wgl::wglDelayBeforeSwapNV (HDC hDC, GLfloat seconds)
 {
   // WGL_NV_delay_before_swap - wglDelayBeforeSwapNV
   if (s_deviceConfig.m_wglDelayBeforeSwapNV)
@@ -1114,7 +1260,9 @@ BOOL wglDelayBeforeSwapNV (HDC hDC, GLfloat seconds)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDXSetResourceShareHandleNV (void * dxObject, HANDLE shareHandle)
+#undef wglDXSetResourceShareHandleNV
+
+BOOL glew::wgl::wglDXSetResourceShareHandleNV (void * dxObject, HANDLE shareHandle)
 {
   // WGL_NV_DX_interop - wglDXSetResourceShareHandleNV
   if (s_deviceConfig.m_wglDXSetResourceShareHandleNV)
@@ -1128,7 +1276,9 @@ BOOL wglDXSetResourceShareHandleNV (void * dxObject, HANDLE shareHandle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HANDLE wglDXOpenDeviceNV (void * dxDevice)
+#undef wglDXOpenDeviceNV
+
+HANDLE glew::wgl::wglDXOpenDeviceNV (void * dxDevice)
 {
   // WGL_NV_DX_interop - wglDXOpenDeviceNV
   if (s_deviceConfig.m_wglDXOpenDeviceNV)
@@ -1142,7 +1292,9 @@ HANDLE wglDXOpenDeviceNV (void * dxDevice)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDXCloseDeviceNV (HANDLE hDevice)
+#undef wglDXCloseDeviceNV
+
+BOOL glew::wgl::wglDXCloseDeviceNV (HANDLE hDevice)
 {
   // WGL_NV_DX_interop - wglDXCloseDeviceNV
   if (s_deviceConfig.m_wglDXCloseDeviceNV)
@@ -1156,7 +1308,9 @@ BOOL wglDXCloseDeviceNV (HANDLE hDevice)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HANDLE wglDXRegisterObjectNV (HANDLE hDevice, void * dxObject, GLuint name, GLenum type, GLenum access)
+#undef wglDXRegisterObjectNV
+
+HANDLE glew::wgl::wglDXRegisterObjectNV (HANDLE hDevice, void * dxObject, GLuint name, GLenum type, GLenum access)
 {
   // WGL_NV_DX_interop - wglDXRegisterObjectNV
   if (s_deviceConfig.m_wglDXRegisterObjectNV)
@@ -1170,7 +1324,9 @@ HANDLE wglDXRegisterObjectNV (HANDLE hDevice, void * dxObject, GLuint name, GLen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject)
+#undef wglDXUnregisterObjectNV
+
+BOOL glew::wgl::wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject)
 {
   // WGL_NV_DX_interop - wglDXUnregisterObjectNV
   if (s_deviceConfig.m_wglDXUnregisterObjectNV)
@@ -1184,7 +1340,9 @@ BOOL wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDXObjectAccessNV (HANDLE hObject, GLenum access)
+#undef wglDXObjectAccessNV
+
+BOOL glew::wgl::wglDXObjectAccessNV (HANDLE hObject, GLenum access)
 {
   // WGL_NV_DX_interop - wglDXObjectAccessNV
   if (s_deviceConfig.m_wglDXObjectAccessNV)
@@ -1198,7 +1356,9 @@ BOOL wglDXObjectAccessNV (HANDLE hObject, GLenum access)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
+#undef wglDXLockObjectsNV
+
+BOOL glew::wgl::wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
 {
   // WGL_NV_DX_interop - wglDXLockObjectsNV
   if (s_deviceConfig.m_wglDXLockObjectsNV)
@@ -1212,7 +1372,9 @@ BOOL wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
+#undef wglDXUnlockObjectsNV
+
+BOOL glew::wgl::wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
 {
   // WGL_NV_DX_interop - wglDXUnlockObjectsNV
   if (s_deviceConfig.m_wglDXUnlockObjectsNV)
@@ -1226,7 +1388,9 @@ BOOL wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglEnumGpusNV (UINT iGpuIndex, HGPUNV * phGpu)
+#undef wglEnumGpusNV
+
+BOOL glew::wgl::wglEnumGpusNV (UINT iGpuIndex, HGPUNV * phGpu)
 {
   // WGL_NV_gpu_affinity - wglEnumGpusNV
   if (s_deviceConfig.m_wglEnumGpusNV)
@@ -1240,7 +1404,9 @@ BOOL wglEnumGpusNV (UINT iGpuIndex, HGPUNV * phGpu)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDeviceIndex, PGPU_DEVICE lpGpuDevice)
+#undef wglEnumGpuDevicesNV
+
+BOOL glew::wgl::wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDeviceIndex, PGPU_DEVICE lpGpuDevice)
 {
   // WGL_NV_gpu_affinity - wglEnumGpuDevicesNV
   if (s_deviceConfig.m_wglEnumGpuDevicesNV)
@@ -1254,7 +1420,9 @@ BOOL wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDeviceIndex, PGPU_DEVICE lpGpuDevic
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-HDC wglCreateAffinityDCNV (const HGPUNV * phGpuList)
+#undef wglCreateAffinityDCNV
+
+HDC glew::wgl::wglCreateAffinityDCNV (const HGPUNV * phGpuList)
 {
   // WGL_NV_gpu_affinity - wglCreateAffinityDCNV
   if (s_deviceConfig.m_wglCreateAffinityDCNV)
@@ -1268,7 +1436,9 @@ HDC wglCreateAffinityDCNV (const HGPUNV * phGpuList)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu)
+#undef wglEnumGpusFromAffinityDCNV
+
+BOOL glew::wgl::wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu)
 {
   // WGL_NV_gpu_affinity - wglEnumGpusFromAffinityDCNV
   if (s_deviceConfig.m_wglEnumGpusFromAffinityDCNV)
@@ -1282,7 +1452,9 @@ BOOL wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglDeleteDCNV (HDC hdc)
+#undef wglDeleteDCNV
+
+BOOL glew::wgl::wglDeleteDCNV (HDC hdc)
 {
   // WGL_NV_gpu_affinity - wglDeleteDCNV
   if (s_deviceConfig.m_wglDeleteDCNV)
@@ -1296,7 +1468,9 @@ BOOL wglDeleteDCNV (HDC hdc)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList)
+#undef wglEnumerateVideoDevicesNV
+
+int  glew::wgl::wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList)
 {
   // WGL_NV_present_video - wglEnumerateVideoDevicesNV
   if (s_deviceConfig.m_wglEnumerateVideoDevicesNV)
@@ -1310,7 +1484,9 @@ int wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglBindVideoDeviceNV (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList)
+#undef wglBindVideoDeviceNV
+
+BOOL glew::wgl::wglBindVideoDeviceNV (HDC hDC, unsigned int  uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList)
 {
   // WGL_NV_present_video - wglBindVideoDeviceNV
   if (s_deviceConfig.m_wglBindVideoDeviceNV)
@@ -1324,7 +1500,9 @@ BOOL wglBindVideoDeviceNV (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICEN
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQueryCurrentContextNV (int iAttribute, int * piValue)
+#undef wglQueryCurrentContextNV
+
+BOOL glew::wgl::wglQueryCurrentContextNV (int  iAttribute, int * piValue)
 {
   // WGL_NV_present_video - wglQueryCurrentContextNV
   if (s_deviceConfig.m_wglQueryCurrentContextNV)
@@ -1338,7 +1516,9 @@ BOOL wglQueryCurrentContextNV (int iAttribute, int * piValue)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglJoinSwapGroupNV (HDC hDC, GLuint group)
+#undef wglJoinSwapGroupNV
+
+BOOL glew::wgl::wglJoinSwapGroupNV (HDC hDC, GLuint group)
 {
   // WGL_NV_swap_group - wglJoinSwapGroupNV
   if (s_deviceConfig.m_wglJoinSwapGroupNV)
@@ -1352,7 +1532,9 @@ BOOL wglJoinSwapGroupNV (HDC hDC, GLuint group)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglBindSwapBarrierNV (GLuint group, GLuint barrier)
+#undef wglBindSwapBarrierNV
+
+BOOL glew::wgl::wglBindSwapBarrierNV (GLuint group, GLuint barrier)
 {
   // WGL_NV_swap_group - wglBindSwapBarrierNV
   if (s_deviceConfig.m_wglBindSwapBarrierNV)
@@ -1366,7 +1548,9 @@ BOOL wglBindSwapBarrierNV (GLuint group, GLuint barrier)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQuerySwapGroupNV (HDC hDC, GLuint * group, GLuint * barrier)
+#undef wglQuerySwapGroupNV
+
+BOOL glew::wgl::wglQuerySwapGroupNV (HDC hDC, GLuint * group, GLuint * barrier)
 {
   // WGL_NV_swap_group - wglQuerySwapGroupNV
   if (s_deviceConfig.m_wglQuerySwapGroupNV)
@@ -1380,7 +1564,9 @@ BOOL wglQuerySwapGroupNV (HDC hDC, GLuint * group, GLuint * barrier)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQueryMaxSwapGroupsNV (HDC hDC, GLuint * maxGroups, GLuint * maxBarriers)
+#undef wglQueryMaxSwapGroupsNV
+
+BOOL glew::wgl::wglQueryMaxSwapGroupsNV (HDC hDC, GLuint * maxGroups, GLuint * maxBarriers)
 {
   // WGL_NV_swap_group - wglQueryMaxSwapGroupsNV
   if (s_deviceConfig.m_wglQueryMaxSwapGroupsNV)
@@ -1394,7 +1580,9 @@ BOOL wglQueryMaxSwapGroupsNV (HDC hDC, GLuint * maxGroups, GLuint * maxBarriers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQueryFrameCountNV (HDC hDC, GLuint * count)
+#undef wglQueryFrameCountNV
+
+BOOL glew::wgl::wglQueryFrameCountNV (HDC hDC, GLuint * count)
 {
   // WGL_NV_swap_group - wglQueryFrameCountNV
   if (s_deviceConfig.m_wglQueryFrameCountNV)
@@ -1408,7 +1596,9 @@ BOOL wglQueryFrameCountNV (HDC hDC, GLuint * count)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglResetFrameCountNV (HDC hDC)
+#undef wglResetFrameCountNV
+
+BOOL glew::wgl::wglResetFrameCountNV (HDC hDC)
 {
   // WGL_NV_swap_group - wglResetFrameCountNV
   if (s_deviceConfig.m_wglResetFrameCountNV)
@@ -1422,7 +1612,9 @@ BOOL wglResetFrameCountNV (HDC hDC)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglBindVideoCaptureDeviceNV (UINT uVideoSlot, HVIDEOINPUTDEVICENV hDevice)
+#undef wglBindVideoCaptureDeviceNV
+
+BOOL glew::wgl::wglBindVideoCaptureDeviceNV (UINT uVideoSlot, HVIDEOINPUTDEVICENV hDevice)
 {
   // WGL_NV_video_capture - wglBindVideoCaptureDeviceNV
   if (s_deviceConfig.m_wglBindVideoCaptureDeviceNV)
@@ -1436,7 +1628,9 @@ BOOL wglBindVideoCaptureDeviceNV (UINT uVideoSlot, HVIDEOINPUTDEVICENV hDevice)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-UINT wglEnumerateVideoCaptureDevicesNV (HDC hDc, HVIDEOINPUTDEVICENV * phDeviceList)
+#undef wglEnumerateVideoCaptureDevicesNV
+
+UINT glew::wgl::wglEnumerateVideoCaptureDevicesNV (HDC hDc, HVIDEOINPUTDEVICENV * phDeviceList)
 {
   // WGL_NV_video_capture - wglEnumerateVideoCaptureDevicesNV
   if (s_deviceConfig.m_wglEnumerateVideoCaptureDevicesNV)
@@ -1450,7 +1644,9 @@ UINT wglEnumerateVideoCaptureDevicesNV (HDC hDc, HVIDEOINPUTDEVICENV * phDeviceL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglLockVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
+#undef wglLockVideoCaptureDeviceNV
+
+BOOL glew::wgl::wglLockVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
 {
   // WGL_NV_video_capture - wglLockVideoCaptureDeviceNV
   if (s_deviceConfig.m_wglLockVideoCaptureDeviceNV)
@@ -1464,7 +1660,9 @@ BOOL wglLockVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglQueryVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice, int iAttribute, int * piValue)
+#undef wglQueryVideoCaptureDeviceNV
+
+BOOL glew::wgl::wglQueryVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice, int  iAttribute, int * piValue)
 {
   // WGL_NV_video_capture - wglQueryVideoCaptureDeviceNV
   if (s_deviceConfig.m_wglQueryVideoCaptureDeviceNV)
@@ -1478,7 +1676,9 @@ BOOL wglQueryVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice, int iAt
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglReleaseVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
+#undef wglReleaseVideoCaptureDeviceNV
+
+BOOL glew::wgl::wglReleaseVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
 {
   // WGL_NV_video_capture - wglReleaseVideoCaptureDeviceNV
   if (s_deviceConfig.m_wglReleaseVideoCaptureDeviceNV)
@@ -1492,7 +1692,9 @@ BOOL wglReleaseVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetVideoDeviceNV (HDC hDC, int numDevices, HPVIDEODEV * hVideoDevice)
+#undef wglGetVideoDeviceNV
+
+BOOL glew::wgl::wglGetVideoDeviceNV (HDC hDC, int  numDevices, HPVIDEODEV * hVideoDevice)
 {
   // WGL_NV_video_output - wglGetVideoDeviceNV
   if (s_deviceConfig.m_wglGetVideoDeviceNV)
@@ -1506,7 +1708,9 @@ BOOL wglGetVideoDeviceNV (HDC hDC, int numDevices, HPVIDEODEV * hVideoDevice)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglReleaseVideoDeviceNV (HPVIDEODEV hVideoDevice)
+#undef wglReleaseVideoDeviceNV
+
+BOOL glew::wgl::wglReleaseVideoDeviceNV (HPVIDEODEV hVideoDevice)
 {
   // WGL_NV_video_output - wglReleaseVideoDeviceNV
   if (s_deviceConfig.m_wglReleaseVideoDeviceNV)
@@ -1520,7 +1724,9 @@ BOOL wglReleaseVideoDeviceNV (HPVIDEODEV hVideoDevice)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglBindVideoImageNV (HPVIDEODEV hVideoDevice, HPBUFFERARB hPbuffer, int iVideoBuffer)
+#undef wglBindVideoImageNV
+
+BOOL glew::wgl::wglBindVideoImageNV (HPVIDEODEV hVideoDevice, HPBUFFERARB hPbuffer, int  iVideoBuffer)
 {
   // WGL_NV_video_output - wglBindVideoImageNV
   if (s_deviceConfig.m_wglBindVideoImageNV)
@@ -1534,7 +1740,9 @@ BOOL wglBindVideoImageNV (HPVIDEODEV hVideoDevice, HPBUFFERARB hPbuffer, int iVi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglReleaseVideoImageNV (HPBUFFERARB hPbuffer, int iVideoBuffer)
+#undef wglReleaseVideoImageNV
+
+BOOL glew::wgl::wglReleaseVideoImageNV (HPBUFFERARB hPbuffer, int  iVideoBuffer)
 {
   // WGL_NV_video_output - wglReleaseVideoImageNV
   if (s_deviceConfig.m_wglReleaseVideoImageNV)
@@ -1548,7 +1756,9 @@ BOOL wglReleaseVideoImageNV (HPBUFFERARB hPbuffer, int iVideoBuffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglSendPbufferToVideoNV (HPBUFFERARB hPbuffer, int iBufferType, unsigned long * pulCounterPbuffer, BOOL bBlock)
+#undef wglSendPbufferToVideoNV
+
+BOOL glew::wgl::wglSendPbufferToVideoNV (HPBUFFERARB hPbuffer, int  iBufferType, unsigned long * pulCounterPbuffer, BOOL bBlock)
 {
   // WGL_NV_video_output - wglSendPbufferToVideoNV
   if (s_deviceConfig.m_wglSendPbufferToVideoNV)
@@ -1562,7 +1772,9 @@ BOOL wglSendPbufferToVideoNV (HPBUFFERARB hPbuffer, int iBufferType, unsigned lo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetVideoInfoNV (HPVIDEODEV hpVideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo)
+#undef wglGetVideoInfoNV
+
+BOOL glew::wgl::wglGetVideoInfoNV (HPVIDEODEV hpVideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo)
 {
   // WGL_NV_video_output - wglGetVideoInfoNV
   if (s_deviceConfig.m_wglGetVideoInfoNV)
@@ -1576,7 +1788,9 @@ BOOL wglGetVideoInfoNV (HPVIDEODEV hpVideoDevice, unsigned long * pulCounterOutp
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void * wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority)
+#undef wglAllocateMemoryNV
+
+void * glew::wgl::wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority)
 {
   // WGL_NV_vertex_array_range - wglAllocateMemoryNV
   if (s_deviceConfig.m_wglAllocateMemoryNV)
@@ -1590,7 +1804,9 @@ void * wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void wglFreeMemoryNV (void * pointer)
+#undef wglFreeMemoryNV
+
+void  glew::wgl::wglFreeMemoryNV (void * pointer)
 {
   // WGL_NV_vertex_array_range - wglFreeMemoryNV
   if (s_deviceConfig.m_wglFreeMemoryNV)
@@ -1603,7 +1819,9 @@ void wglFreeMemoryNV (void * pointer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc)
+#undef wglGetSyncValuesOML
+
+BOOL glew::wgl::wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc)
 {
   // WGL_OML_sync_control - wglGetSyncValuesOML
   if (s_deviceConfig.m_wglGetSyncValuesOML)
@@ -1617,7 +1835,9 @@ BOOL wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator)
+#undef wglGetMscRateOML
+
+BOOL glew::wgl::wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator)
 {
   // WGL_OML_sync_control - wglGetMscRateOML
   if (s_deviceConfig.m_wglGetMscRateOML)
@@ -1631,7 +1851,9 @@ BOOL wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-INT64 wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder)
+#undef wglSwapBuffersMscOML
+
+INT64 glew::wgl::wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder)
 {
   // WGL_OML_sync_control - wglSwapBuffersMscOML
   if (s_deviceConfig.m_wglSwapBuffersMscOML)
@@ -1645,7 +1867,9 @@ INT64 wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 rema
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-INT64 wglSwapLayerBuffersMscOML (HDC hdc, int fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder)
+#undef wglSwapLayerBuffersMscOML
+
+INT64 glew::wgl::wglSwapLayerBuffersMscOML (HDC hdc, int  fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder)
 {
   // WGL_OML_sync_control - wglSwapLayerBuffersMscOML
   if (s_deviceConfig.m_wglSwapLayerBuffersMscOML)
@@ -1659,7 +1883,9 @@ INT64 wglSwapLayerBuffersMscOML (HDC hdc, int fuPlanes, INT64 target_msc, INT64 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder, INT64 * ust, INT64 * msc, INT64 * sbc)
+#undef wglWaitForMscOML
+
+BOOL glew::wgl::wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder, INT64 * ust, INT64 * msc, INT64 * sbc)
 {
   // WGL_OML_sync_control - wglWaitForMscOML
   if (s_deviceConfig.m_wglWaitForMscOML)
@@ -1673,7 +1899,9 @@ BOOL wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL wglWaitForSbcOML (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT64 * sbc)
+#undef wglWaitForSbcOML
+
+BOOL glew::wgl::wglWaitForSbcOML (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT64 * sbc)
 {
   // WGL_OML_sync_control - wglWaitForSbcOML
   if (s_deviceConfig.m_wglWaitForSbcOML)
@@ -1830,22 +2058,12 @@ void glew::wgl::Initialise ()
   // WGL_3DL_stereo_control
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_3DL_stereo_control])
   {
-    #undef wglSetStereoEmitterState3DL
     s_deviceConfig.m_wglSetStereoEmitterState3DL = (PFNWGLSETSTEREOEMITTERSTATE3DLPROC) wglGetProcAddress ("wglSetStereoEmitterState3DL");
   }
 
   // WGL_AMD_gpu_association
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_AMD_gpu_association])
   {
-    #undef wglGetGPUIDsAMD
-    #undef wglGetGPUInfoAMD
-    #undef wglGetContextGPUIDAMD
-    #undef wglCreateAssociatedContextAMD
-    #undef wglCreateAssociatedContextAttribsAMD
-    #undef wglDeleteAssociatedContextAMD
-    #undef wglMakeAssociatedContextCurrentAMD
-    #undef wglGetCurrentAssociatedContextAMD
-    #undef wglBlitContextFramebufferAMD
     s_deviceConfig.m_wglGetGPUIDsAMD = (PFNWGLGETGPUIDSAMDPROC) wglGetProcAddress ("wglGetGPUIDsAMD");
     s_deviceConfig.m_wglGetGPUInfoAMD = (PFNWGLGETGPUINFOAMDPROC) wglGetProcAddress ("wglGetGPUInfoAMD");
     s_deviceConfig.m_wglGetContextGPUIDAMD = (PFNWGLGETCONTEXTGPUIDAMDPROC) wglGetProcAddress ("wglGetContextGPUIDAMD");
@@ -1860,10 +2078,6 @@ void glew::wgl::Initialise ()
   // WGL_ARB_buffer_region
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_buffer_region])
   {
-    #undef wglCreateBufferRegionARB
-    #undef wglDeleteBufferRegionARB
-    #undef wglSaveBufferRegionARB
-    #undef wglRestoreBufferRegionARB
     s_deviceConfig.m_wglCreateBufferRegionARB = (PFNWGLCREATEBUFFERREGIONARBPROC) wglGetProcAddress ("wglCreateBufferRegionARB");
     s_deviceConfig.m_wglDeleteBufferRegionARB = (PFNWGLDELETEBUFFERREGIONARBPROC) wglGetProcAddress ("wglDeleteBufferRegionARB");
     s_deviceConfig.m_wglSaveBufferRegionARB = (PFNWGLSAVEBUFFERREGIONARBPROC) wglGetProcAddress ("wglSaveBufferRegionARB");
@@ -1873,22 +2087,18 @@ void glew::wgl::Initialise ()
   // WGL_ARB_create_context
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context])
   {
-    #undef wglCreateContextAttribsARB
     s_deviceConfig.m_wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC) wglGetProcAddress ("wglCreateContextAttribsARB");
   }
 
   // WGL_ARB_extensions_string
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_extensions_string])
   {
-    #undef wglGetExtensionsStringARB
     s_deviceConfig.m_wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) wglGetProcAddress ("wglGetExtensionsStringARB");
   }
 
   // WGL_ARB_make_current_read
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_make_current_read])
   {
-    #undef wglMakeContextCurrentARB
-    #undef wglGetCurrentReadDCARB
     s_deviceConfig.m_wglMakeContextCurrentARB = (PFNWGLMAKECONTEXTCURRENTARBPROC) wglGetProcAddress ("wglMakeContextCurrentARB");
     s_deviceConfig.m_wglGetCurrentReadDCARB = (PFNWGLGETCURRENTREADDCARBPROC) wglGetProcAddress ("wglGetCurrentReadDCARB");
   }
@@ -1896,11 +2106,6 @@ void glew::wgl::Initialise ()
   // WGL_ARB_pbuffer
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pbuffer])
   {
-    #undef wglCreatePbufferARB
-    #undef wglGetPbufferDCARB
-    #undef wglReleasePbufferDCARB
-    #undef wglDestroyPbufferARB
-    #undef wglQueryPbufferARB
     s_deviceConfig.m_wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC) wglGetProcAddress ("wglCreatePbufferARB");
     s_deviceConfig.m_wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC) wglGetProcAddress ("wglGetPbufferDCARB");
     s_deviceConfig.m_wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC) wglGetProcAddress ("wglReleasePbufferDCARB");
@@ -1911,9 +2116,6 @@ void glew::wgl::Initialise ()
   // WGL_ARB_pixel_format
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pixel_format])
   {
-    #undef wglGetPixelFormatAttribivARB
-    #undef wglGetPixelFormatAttribfvARB
-    #undef wglChoosePixelFormatARB
     s_deviceConfig.m_wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC) wglGetProcAddress ("wglGetPixelFormatAttribivARB");
     s_deviceConfig.m_wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC) wglGetProcAddress ("wglGetPixelFormatAttribfvARB");
     s_deviceConfig.m_wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC) wglGetProcAddress ("wglChoosePixelFormatARB");
@@ -1922,9 +2124,6 @@ void glew::wgl::Initialise ()
   // WGL_ARB_render_texture
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_render_texture])
   {
-    #undef wglBindTexImageARB
-    #undef wglReleaseTexImageARB
-    #undef wglSetPbufferAttribARB
     s_deviceConfig.m_wglBindTexImageARB = (PFNWGLBINDTEXIMAGEARBPROC) wglGetProcAddress ("wglBindTexImageARB");
     s_deviceConfig.m_wglReleaseTexImageARB = (PFNWGLRELEASETEXIMAGEARBPROC) wglGetProcAddress ("wglReleaseTexImageARB");
     s_deviceConfig.m_wglSetPbufferAttribARB = (PFNWGLSETPBUFFERATTRIBARBPROC) wglGetProcAddress ("wglSetPbufferAttribARB");
@@ -1933,10 +2132,6 @@ void glew::wgl::Initialise ()
   // WGL_EXT_display_color_table
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_display_color_table])
   {
-    #undef wglCreateDisplayColorTableEXT
-    #undef wglLoadDisplayColorTableEXT
-    #undef wglBindDisplayColorTableEXT
-    #undef wglDestroyDisplayColorTableEXT
     s_deviceConfig.m_wglCreateDisplayColorTableEXT = (PFNWGLCREATEDISPLAYCOLORTABLEEXTPROC) wglGetProcAddress ("wglCreateDisplayColorTableEXT");
     s_deviceConfig.m_wglLoadDisplayColorTableEXT = (PFNWGLLOADDISPLAYCOLORTABLEEXTPROC) wglGetProcAddress ("wglLoadDisplayColorTableEXT");
     s_deviceConfig.m_wglBindDisplayColorTableEXT = (PFNWGLBINDDISPLAYCOLORTABLEEXTPROC) wglGetProcAddress ("wglBindDisplayColorTableEXT");
@@ -1946,15 +2141,12 @@ void glew::wgl::Initialise ()
   // WGL_EXT_extensions_string
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_extensions_string])
   {
-    #undef wglGetExtensionsStringEXT
     s_deviceConfig.m_wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) wglGetProcAddress ("wglGetExtensionsStringEXT");
   }
 
   // WGL_EXT_make_current_read
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_make_current_read])
   {
-    #undef wglMakeContextCurrentEXT
-    #undef wglGetCurrentReadDCEXT
     s_deviceConfig.m_wglMakeContextCurrentEXT = (PFNWGLMAKECONTEXTCURRENTEXTPROC) wglGetProcAddress ("wglMakeContextCurrentEXT");
     s_deviceConfig.m_wglGetCurrentReadDCEXT = (PFNWGLGETCURRENTREADDCEXTPROC) wglGetProcAddress ("wglGetCurrentReadDCEXT");
   }
@@ -1962,11 +2154,6 @@ void glew::wgl::Initialise ()
   // WGL_EXT_pbuffer
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pbuffer])
   {
-    #undef wglCreatePbufferEXT
-    #undef wglGetPbufferDCEXT
-    #undef wglReleasePbufferDCEXT
-    #undef wglDestroyPbufferEXT
-    #undef wglQueryPbufferEXT
     s_deviceConfig.m_wglCreatePbufferEXT = (PFNWGLCREATEPBUFFEREXTPROC) wglGetProcAddress ("wglCreatePbufferEXT");
     s_deviceConfig.m_wglGetPbufferDCEXT = (PFNWGLGETPBUFFERDCEXTPROC) wglGetProcAddress ("wglGetPbufferDCEXT");
     s_deviceConfig.m_wglReleasePbufferDCEXT = (PFNWGLRELEASEPBUFFERDCEXTPROC) wglGetProcAddress ("wglReleasePbufferDCEXT");
@@ -1977,9 +2164,6 @@ void glew::wgl::Initialise ()
   // WGL_EXT_pixel_format
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pixel_format])
   {
-    #undef wglGetPixelFormatAttribivEXT
-    #undef wglGetPixelFormatAttribfvEXT
-    #undef wglChoosePixelFormatEXT
     s_deviceConfig.m_wglGetPixelFormatAttribivEXT = (PFNWGLGETPIXELFORMATATTRIBIVEXTPROC) wglGetProcAddress ("wglGetPixelFormatAttribivEXT");
     s_deviceConfig.m_wglGetPixelFormatAttribfvEXT = (PFNWGLGETPIXELFORMATATTRIBFVEXTPROC) wglGetProcAddress ("wglGetPixelFormatAttribfvEXT");
     s_deviceConfig.m_wglChoosePixelFormatEXT = (PFNWGLCHOOSEPIXELFORMATEXTPROC) wglGetProcAddress ("wglChoosePixelFormatEXT");
@@ -1988,8 +2172,6 @@ void glew::wgl::Initialise ()
   // WGL_EXT_swap_control
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_swap_control])
   {
-    #undef wglSwapIntervalEXT
-    #undef wglGetSwapIntervalEXT
     s_deviceConfig.m_wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC) wglGetProcAddress ("wglSwapIntervalEXT");
     s_deviceConfig.m_wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC) wglGetProcAddress ("wglGetSwapIntervalEXT");
   }
@@ -1997,8 +2179,6 @@ void glew::wgl::Initialise ()
   // WGL_I3D_digital_video_control
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_digital_video_control])
   {
-    #undef wglGetDigitalVideoParametersI3D
-    #undef wglSetDigitalVideoParametersI3D
     s_deviceConfig.m_wglGetDigitalVideoParametersI3D = (PFNWGLGETDIGITALVIDEOPARAMETERSI3DPROC) wglGetProcAddress ("wglGetDigitalVideoParametersI3D");
     s_deviceConfig.m_wglSetDigitalVideoParametersI3D = (PFNWGLSETDIGITALVIDEOPARAMETERSI3DPROC) wglGetProcAddress ("wglSetDigitalVideoParametersI3D");
   }
@@ -2006,10 +2186,6 @@ void glew::wgl::Initialise ()
   // WGL_I3D_gamma
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_gamma])
   {
-    #undef wglGetGammaTableParametersI3D
-    #undef wglSetGammaTableParametersI3D
-    #undef wglGetGammaTableI3D
-    #undef wglSetGammaTableI3D
     s_deviceConfig.m_wglGetGammaTableParametersI3D = (PFNWGLGETGAMMATABLEPARAMETERSI3DPROC) wglGetProcAddress ("wglGetGammaTableParametersI3D");
     s_deviceConfig.m_wglSetGammaTableParametersI3D = (PFNWGLSETGAMMATABLEPARAMETERSI3DPROC) wglGetProcAddress ("wglSetGammaTableParametersI3D");
     s_deviceConfig.m_wglGetGammaTableI3D = (PFNWGLGETGAMMATABLEI3DPROC) wglGetProcAddress ("wglGetGammaTableI3D");
@@ -2019,18 +2195,6 @@ void glew::wgl::Initialise ()
   // WGL_I3D_genlock
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_genlock])
   {
-    #undef wglEnableGenlockI3D
-    #undef wglDisableGenlockI3D
-    #undef wglIsEnabledGenlockI3D
-    #undef wglGenlockSourceI3D
-    #undef wglGetGenlockSourceI3D
-    #undef wglGenlockSourceEdgeI3D
-    #undef wglGetGenlockSourceEdgeI3D
-    #undef wglGenlockSampleRateI3D
-    #undef wglGetGenlockSampleRateI3D
-    #undef wglGenlockSourceDelayI3D
-    #undef wglGetGenlockSourceDelayI3D
-    #undef wglQueryGenlockMaxSourceDelayI3D
     s_deviceConfig.m_wglEnableGenlockI3D = (PFNWGLENABLEGENLOCKI3DPROC) wglGetProcAddress ("wglEnableGenlockI3D");
     s_deviceConfig.m_wglDisableGenlockI3D = (PFNWGLDISABLEGENLOCKI3DPROC) wglGetProcAddress ("wglDisableGenlockI3D");
     s_deviceConfig.m_wglIsEnabledGenlockI3D = (PFNWGLISENABLEDGENLOCKI3DPROC) wglGetProcAddress ("wglIsEnabledGenlockI3D");
@@ -2048,10 +2212,6 @@ void glew::wgl::Initialise ()
   // WGL_I3D_image_buffer
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_image_buffer])
   {
-    #undef wglCreateImageBufferI3D
-    #undef wglDestroyImageBufferI3D
-    #undef wglAssociateImageBufferEventsI3D
-    #undef wglReleaseImageBufferEventsI3D
     s_deviceConfig.m_wglCreateImageBufferI3D = (PFNWGLCREATEIMAGEBUFFERI3DPROC) wglGetProcAddress ("wglCreateImageBufferI3D");
     s_deviceConfig.m_wglDestroyImageBufferI3D = (PFNWGLDESTROYIMAGEBUFFERI3DPROC) wglGetProcAddress ("wglDestroyImageBufferI3D");
     s_deviceConfig.m_wglAssociateImageBufferEventsI3D = (PFNWGLASSOCIATEIMAGEBUFFEREVENTSI3DPROC) wglGetProcAddress ("wglAssociateImageBufferEventsI3D");
@@ -2061,10 +2221,6 @@ void glew::wgl::Initialise ()
   // WGL_I3D_swap_frame_lock
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_lock])
   {
-    #undef wglEnableFrameLockI3D
-    #undef wglDisableFrameLockI3D
-    #undef wglIsEnabledFrameLockI3D
-    #undef wglQueryFrameLockMasterI3D
     s_deviceConfig.m_wglEnableFrameLockI3D = (PFNWGLENABLEFRAMELOCKI3DPROC) wglGetProcAddress ("wglEnableFrameLockI3D");
     s_deviceConfig.m_wglDisableFrameLockI3D = (PFNWGLDISABLEFRAMELOCKI3DPROC) wglGetProcAddress ("wglDisableFrameLockI3D");
     s_deviceConfig.m_wglIsEnabledFrameLockI3D = (PFNWGLISENABLEDFRAMELOCKI3DPROC) wglGetProcAddress ("wglIsEnabledFrameLockI3D");
@@ -2074,10 +2230,6 @@ void glew::wgl::Initialise ()
   // WGL_I3D_swap_frame_usage
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_usage])
   {
-    #undef wglGetFrameUsageI3D
-    #undef wglBeginFrameTrackingI3D
-    #undef wglEndFrameTrackingI3D
-    #undef wglQueryFrameTrackingI3D
     s_deviceConfig.m_wglGetFrameUsageI3D = (PFNWGLGETFRAMEUSAGEI3DPROC) wglGetProcAddress ("wglGetFrameUsageI3D");
     s_deviceConfig.m_wglBeginFrameTrackingI3D = (PFNWGLBEGINFRAMETRACKINGI3DPROC) wglGetProcAddress ("wglBeginFrameTrackingI3D");
     s_deviceConfig.m_wglEndFrameTrackingI3D = (PFNWGLENDFRAMETRACKINGI3DPROC) wglGetProcAddress ("wglEndFrameTrackingI3D");
@@ -2087,28 +2239,18 @@ void glew::wgl::Initialise ()
   // WGL_NV_copy_image
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_copy_image])
   {
-    #undef wglCopyImageSubDataNV
     s_deviceConfig.m_wglCopyImageSubDataNV = (PFNWGLCOPYIMAGESUBDATANVPROC) wglGetProcAddress ("wglCopyImageSubDataNV");
   }
 
   // WGL_NV_delay_before_swap
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_delay_before_swap])
   {
-    #undef wglDelayBeforeSwapNV
     s_deviceConfig.m_wglDelayBeforeSwapNV = (PFNWGLDELAYBEFORESWAPNVPROC) wglGetProcAddress ("wglDelayBeforeSwapNV");
   }
 
   // WGL_NV_DX_interop
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_DX_interop])
   {
-    #undef wglDXSetResourceShareHandleNV
-    #undef wglDXOpenDeviceNV
-    #undef wglDXCloseDeviceNV
-    #undef wglDXRegisterObjectNV
-    #undef wglDXUnregisterObjectNV
-    #undef wglDXObjectAccessNV
-    #undef wglDXLockObjectsNV
-    #undef wglDXUnlockObjectsNV
     s_deviceConfig.m_wglDXSetResourceShareHandleNV = (PFNWGLDXSETRESOURCESHAREHANDLENVPROC) wglGetProcAddress ("wglDXSetResourceShareHandleNV");
     s_deviceConfig.m_wglDXOpenDeviceNV = (PFNWGLDXOPENDEVICENVPROC) wglGetProcAddress ("wglDXOpenDeviceNV");
     s_deviceConfig.m_wglDXCloseDeviceNV = (PFNWGLDXCLOSEDEVICENVPROC) wglGetProcAddress ("wglDXCloseDeviceNV");
@@ -2122,11 +2264,6 @@ void glew::wgl::Initialise ()
   // WGL_NV_gpu_affinity
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_gpu_affinity])
   {
-    #undef wglEnumGpusNV
-    #undef wglEnumGpuDevicesNV
-    #undef wglCreateAffinityDCNV
-    #undef wglEnumGpusFromAffinityDCNV
-    #undef wglDeleteDCNV
     s_deviceConfig.m_wglEnumGpusNV = (PFNWGLENUMGPUSNVPROC) wglGetProcAddress ("wglEnumGpusNV");
     s_deviceConfig.m_wglEnumGpuDevicesNV = (PFNWGLENUMGPUDEVICESNVPROC) wglGetProcAddress ("wglEnumGpuDevicesNV");
     s_deviceConfig.m_wglCreateAffinityDCNV = (PFNWGLCREATEAFFINITYDCNVPROC) wglGetProcAddress ("wglCreateAffinityDCNV");
@@ -2137,9 +2274,6 @@ void glew::wgl::Initialise ()
   // WGL_NV_present_video
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_present_video])
   {
-    #undef wglEnumerateVideoDevicesNV
-    #undef wglBindVideoDeviceNV
-    #undef wglQueryCurrentContextNV
     s_deviceConfig.m_wglEnumerateVideoDevicesNV = (PFNWGLENUMERATEVIDEODEVICESNVPROC) wglGetProcAddress ("wglEnumerateVideoDevicesNV");
     s_deviceConfig.m_wglBindVideoDeviceNV = (PFNWGLBINDVIDEODEVICENVPROC) wglGetProcAddress ("wglBindVideoDeviceNV");
     s_deviceConfig.m_wglQueryCurrentContextNV = (PFNWGLQUERYCURRENTCONTEXTNVPROC) wglGetProcAddress ("wglQueryCurrentContextNV");
@@ -2148,12 +2282,6 @@ void glew::wgl::Initialise ()
   // WGL_NV_swap_group
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_swap_group])
   {
-    #undef wglJoinSwapGroupNV
-    #undef wglBindSwapBarrierNV
-    #undef wglQuerySwapGroupNV
-    #undef wglQueryMaxSwapGroupsNV
-    #undef wglQueryFrameCountNV
-    #undef wglResetFrameCountNV
     s_deviceConfig.m_wglJoinSwapGroupNV = (PFNWGLJOINSWAPGROUPNVPROC) wglGetProcAddress ("wglJoinSwapGroupNV");
     s_deviceConfig.m_wglBindSwapBarrierNV = (PFNWGLBINDSWAPBARRIERNVPROC) wglGetProcAddress ("wglBindSwapBarrierNV");
     s_deviceConfig.m_wglQuerySwapGroupNV = (PFNWGLQUERYSWAPGROUPNVPROC) wglGetProcAddress ("wglQuerySwapGroupNV");
@@ -2165,11 +2293,6 @@ void glew::wgl::Initialise ()
   // WGL_NV_video_capture
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_capture])
   {
-    #undef wglBindVideoCaptureDeviceNV
-    #undef wglEnumerateVideoCaptureDevicesNV
-    #undef wglLockVideoCaptureDeviceNV
-    #undef wglQueryVideoCaptureDeviceNV
-    #undef wglReleaseVideoCaptureDeviceNV
     s_deviceConfig.m_wglBindVideoCaptureDeviceNV = (PFNWGLBINDVIDEOCAPTUREDEVICENVPROC) wglGetProcAddress ("wglBindVideoCaptureDeviceNV");
     s_deviceConfig.m_wglEnumerateVideoCaptureDevicesNV = (PFNWGLENUMERATEVIDEOCAPTUREDEVICESNVPROC) wglGetProcAddress ("wglEnumerateVideoCaptureDevicesNV");
     s_deviceConfig.m_wglLockVideoCaptureDeviceNV = (PFNWGLLOCKVIDEOCAPTUREDEVICENVPROC) wglGetProcAddress ("wglLockVideoCaptureDeviceNV");
@@ -2180,12 +2303,6 @@ void glew::wgl::Initialise ()
   // WGL_NV_video_output
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_output])
   {
-    #undef wglGetVideoDeviceNV
-    #undef wglReleaseVideoDeviceNV
-    #undef wglBindVideoImageNV
-    #undef wglReleaseVideoImageNV
-    #undef wglSendPbufferToVideoNV
-    #undef wglGetVideoInfoNV
     s_deviceConfig.m_wglGetVideoDeviceNV = (PFNWGLGETVIDEODEVICENVPROC) wglGetProcAddress ("wglGetVideoDeviceNV");
     s_deviceConfig.m_wglReleaseVideoDeviceNV = (PFNWGLRELEASEVIDEODEVICENVPROC) wglGetProcAddress ("wglReleaseVideoDeviceNV");
     s_deviceConfig.m_wglBindVideoImageNV = (PFNWGLBINDVIDEOIMAGENVPROC) wglGetProcAddress ("wglBindVideoImageNV");
@@ -2197,8 +2314,6 @@ void glew::wgl::Initialise ()
   // WGL_NV_vertex_array_range
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_vertex_array_range])
   {
-    #undef wglAllocateMemoryNV
-    #undef wglFreeMemoryNV
     s_deviceConfig.m_wglAllocateMemoryNV = (PFNWGLALLOCATEMEMORYNVPROC) wglGetProcAddress ("wglAllocateMemoryNV");
     s_deviceConfig.m_wglFreeMemoryNV = (PFNWGLFREEMEMORYNVPROC) wglGetProcAddress ("wglFreeMemoryNV");
   }
@@ -2206,12 +2321,6 @@ void glew::wgl::Initialise ()
   // WGL_OML_sync_control
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_OML_sync_control])
   {
-    #undef wglGetSyncValuesOML
-    #undef wglGetMscRateOML
-    #undef wglSwapBuffersMscOML
-    #undef wglSwapLayerBuffersMscOML
-    #undef wglWaitForMscOML
-    #undef wglWaitForSbcOML
     s_deviceConfig.m_wglGetSyncValuesOML = (PFNWGLGETSYNCVALUESOMLPROC) wglGetProcAddress ("wglGetSyncValuesOML");
     s_deviceConfig.m_wglGetMscRateOML = (PFNWGLGETMSCRATEOMLPROC) wglGetProcAddress ("wglGetMscRateOML");
     s_deviceConfig.m_wglSwapBuffersMscOML = (PFNWGLSWAPBUFFERSMSCOMLPROC) wglGetProcAddress ("wglSwapBuffersMscOML");

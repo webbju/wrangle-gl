@@ -58,6 +58,9 @@ namespace wrangle_gl_generator
 #define _WIN32_LEAN_AND_MEAN 1
 #endif
 #include <windows.h>
+#define GLAPI WINGDIAPI
+#define APIENTRY WINAPI
+#define APIENTRYP WINAPI*
 #ifdef _WIN32_LEAN_AND_MEAN
 #undef WIN32_LEAN_AND_MEAN
 #undef _WIN32_LEAN_AND_MEAN
@@ -70,17 +73,19 @@ namespace wrangle_gl_generator
 
       //writer.Write ("\n#if !defined (GL_GLEXT_PROTOTYPES)\n#define GL_GLEXT_PROTOTYPES 1\n#endif\n");
 
+      writer.Write ("\n#include <wrangle.h>\n");
+
       writer.Write ("\n#include <GL/gl.h>\n");
 
       writer.Write ("\n#include <GL/glext.h>\n\n");
 
       base.ExportHpp (ref writer);
 
-      writer.Write ("\n#ifndef GLEW_USE_OPENGL\n#define GLEW_USE_OPENGL 1\n#endif\n");
+      //writer.Write ("\n#ifndef GLEW_USE_OPENGL\n#define GLEW_USE_OPENGL 1\n#endif\n");
 
-      writer.Write ("\n#include <wrangle.h>\n\n");
+      //writer.Write ("\n#include <wrangle.h>\n\n");
 
-      WriteCommentDivider (ref writer);
+      //WriteCommentDivider (ref writer);
 
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
@@ -295,12 +300,12 @@ namespace wrangle_gl_generator
 
             writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
 
-            foreach (XmlNode commandNode in requireCommandNodes)
+            /*foreach (XmlNode commandNode in requireCommandNodes)
             {
               string command = commandNode.Attributes ["name"].Value;
 
               writer.Write (string.Format ("    #undef {0}\n", command));
-            }
+            }*/
 
             foreach (XmlNode commandNode in requireCommandNodes)
             {

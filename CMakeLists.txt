@@ -6,6 +6,8 @@ project (wrangle-gl)
 include_directories ("include")
 
 # test-egl
+#add_definitions (-DGLEW_USE_EGL -DGLEW_USE_OPENGL_ES)
+
 add_executable ("test-egl" 
   "include/wrangle.h" 
   "include/wrangle-egl.h" 
@@ -19,6 +21,8 @@ add_executable ("test-egl"
   "tests/test-egl.cpp")
 
 # test-wgl
+add_definitions (-DGLEW_USE_WGL=1 -DGLEW_USE_OPENGL_ES=1)
+
 add_executable ("test-wgl" 
   "include/wrangle.h" 
   "include/wrangle-wgl.h" 

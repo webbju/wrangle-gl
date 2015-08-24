@@ -2,15 +2,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define GLEW_USE_WGL 1
+#include <wrangle-gles.h>
 
-#define GLEW_USE_OPENGL 1
-
-#define GLEW_USE_OPENGL_CORE 0
-
-#define GLEW_USE_OPENGL_ES 0
-
-#include <wrangle.h>
+#include <wrangle-wgl.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -127,11 +121,11 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
       }
   #endif
 
-#if GLEW_USE_OPENGL
+#if defined(GLEW_USE_OPENGL)
       glew::gl::Initialise ();
-#elif GLEW_USE_OPENGL_CORE
+#elif defined(GLEW_USE_OPENGL_CORE)
       glew::glcore::Initialise ();
-#elif GLEW_USE_OPENGL_ES
+#elif defined(GLEW_USE_OPENGL_ES)
       glew::gles::Initialise ();
 #endif
 
@@ -145,11 +139,11 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       (void) swapInterval;
 
-#if GLEW_USE_OPENGL
+#if defined(GLEW_USE_OPENGL)
       glew::gl::Deinitialise ();
-#elif GLEW_USE_OPENGL_CORE
+#elif defined(GLEW_USE_OPENGL_CORE)
       glew::glcore::Deinitialise ();
-#elif GLEW_USE_OPENGL_ES
+#elif defined(GLEW_USE_OPENGL_ES)
       glew::gles::Deinitialise ();
 #endif
 
