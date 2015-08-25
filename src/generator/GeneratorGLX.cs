@@ -44,6 +44,8 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
+      writer.Write ("\n#include <wrangle.h>\n");
+
       writer.Write ("\n#include <GL/glx.h>\n");
 
       writer.Write ("\n#include <GL/glxext.h>\n\n");

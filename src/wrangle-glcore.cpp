@@ -6277,9 +6277,9 @@ void glew::glcore::Initialise ()
     glVersion = (const unsigned char*) "";
   }
 
-  const size_t glVersionLen = strlen ((const char *) glVersion);
+  /*const size_t glVersionLen = strlen ((const char *) glVersion);
 
-  /*if (glVersionLen)
+  if (glVersionLen)
   {
 #if _WIN32
   #define strncasecmp _strnicmp
@@ -6304,7 +6304,7 @@ void glew::glcore::Initialise ()
 
   if (!glExtensions)
   {
-    glExtensions = (const unsigned char*) "";
+    glExtensions = (const unsigned char*) ""; // Protect against some drivers will happily passing back NULL.
   }
 
   const size_t glExtensionsLen = strlen ((const char *) glExtensions);
@@ -6327,9 +6327,13 @@ void glew::glcore::Initialise ()
       {
         const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
 
+      #if _WIN32
+        strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
+      #else 
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+      #endif
 
-        thisExtBuffer [min (len, 127)] = '\0';
+        thisExtBuffer [GLEW_MIN (len, 127)] = '\0';
 
         thisExtEnd = (unsigned char *) seperator + 1; // skip tab character
       }
@@ -6337,9 +6341,13 @@ void glew::glcore::Initialise ()
       {
         const size_t len = strlen ((const char *) thisExtStart);
 
-        strncpy (thisExtBuffer, (const char *) thisExtStart, len);
+      #if _WIN32
+        strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
+      #else 
+        strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+      #endif
 
-        thisExtBuffer [min (len + 1, 127)] = '\0';
+        thisExtBuffer [GLEW_MIN (len + 1, 127)] = '\0';
 
         thisExtEnd = NULL;
       }

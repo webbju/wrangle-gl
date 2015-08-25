@@ -127,6 +127,11 @@ void glew::egl::Initialise (EGLDisplay display)
 
   const unsigned char *eglVersion = (const unsigned char *) eglQueryString (s_display, EGL_VERSION);
 
+  if (!eglVersion)
+  {
+    eglVersion = (const unsigned char*) """"; // Protect against some drivers will happily passing back NULL.
+  }
+
   const size_t eglVersionLen = strlen ((const char *) eglVersion);
 
   if (eglVersionLen)
@@ -158,6 +163,11 @@ void glew::egl::Initialise (EGLDisplay display)
 
   const unsigned char *eglExtensions = (const unsigned char *) eglQueryString (s_display, EGL_EXTENSIONS);
 
+  if (!eglExtensions)
+  {
+    eglExtensions = (const unsigned char*) """"; // Protect against some drivers will happily passing back NULL.
+  }
+
   const size_t eglExtensionsLen = strlen ((const char *) eglExtensions);
 
   if (eglExtensionsLen)
@@ -178,9 +188,13 @@ void glew::egl::Initialise (EGLDisplay display)
       {
         const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
 
+      #if _WIN32
+        strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
+      #else 
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+      #endif
 
-        thisExtBuffer [min (len, 127)] = '\0';
+        thisExtBuffer [GLEW_MIN (len, 127)] = '\0';
 
         thisExtEnd = (unsigned char *) seperator + 1; // skip tab character
       }
@@ -188,9 +202,13 @@ void glew::egl::Initialise (EGLDisplay display)
       {
         const size_t len = strlen ((const char *) thisExtStart);
 
-        strncpy (thisExtBuffer, (const char *) thisExtStart, len);
+      #if _WIN32
+        strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
+      #else 
+        strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+      #endif
 
-        thisExtBuffer [min (len + 1, 127)] = '\0';
+        thisExtBuffer [GLEW_MIN (len + 1, 127)] = '\0';
 
         thisExtEnd = NULL;
       }

@@ -10,18 +10,24 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if defined (_WIN32)
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN 1
-#define _WIN32_LEAN_AND_MEAN 1
-#endif
-#include <windows.h>
-#define GLAPI WINGDIAPI
-#define APIENTRY WINAPI
-#define APIENTRYP WINAPI*
-#ifdef _WIN32_LEAN_AND_MEAN
-#undef WIN32_LEAN_AND_MEAN
-#undef _WIN32_LEAN_AND_MEAN
-#endif
+  #ifndef WIN32_LEAN_AND_MEAN
+    #define WIN32_LEAN_AND_MEAN 1
+    #define _WIN32_LEAN_AND_MEAN 1
+  #endif
+  #include <windows.h>
+  #ifndef GLAPI
+    #define GLAPI __declspec(dllimport)
+  #endif
+  #ifndef APIENTRY
+    #define APIENTRY WINAPI
+  #endif
+  #ifndef APIENTRYP
+    #define APIENTRYP WINAPI*
+  #endif
+  #ifdef _WIN32_LEAN_AND_MEAN
+    #undef WIN32_LEAN_AND_MEAN
+    #undef _WIN32_LEAN_AND_MEAN
+  #endif
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

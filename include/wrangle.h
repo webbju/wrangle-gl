@@ -38,36 +38,19 @@
 #endif
 #endif
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#ifndef GLEW_MIN
+#define GLEW_MIN(a,b) ((a < b) ? a : b)
+#endif
 
-#if 0
-#if GLEW_USE_OPENGL
-#if (GLEW_USE_OPENGL_CORE || GLEW_USE_OPENGL_ES)
-#error GLEW_USE_OPENGL_CORE or GLEW_USE_OPENGL_ES used in collaboration with GLEW_USE_OPENGL
-#endif
-#include <wrangle-gl.h>
-#elif GLEW_USE_OPENGL_CORE
-#if (GLEW_USE_OPENGL || GLEW_USE_OPENGL_ES)
-#error GLEW_USE_OPENGL or GLEW_USE_OPENGL_ES used in collaboration with GLEW_USE_OPENGL_CORE
-#endif
-#include <wrangle-glcore.h>
-#elif GLEW_USE_OPENGL_ES
-#if (GLEW_USE_OPENGL || GLEW_USE_OPENGL_CORE)
-#error GLEW_USE_OPENGL or GLEW_USE_OPENGL_CORE used in collaboration with GLEW_USE_OPENGL_ES
-#endif
-#include <wrangle-gles.h>
-#else
-#error GLEW_USE_OPENGL, GLEW_USE_OPENGL_ES or GLEW_USE_OPENGL_CORE definition required.
-#endif
+#ifndef GLEW_MAX
+#define GLEW_MAX(a,b) ((a > b) ? a : b)
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if (_WIN32 || GLEW_USE_WGL) && !defined (GLEW_USE_EGL)
+#if (_WIN32 || GLEW_USE_WGL)
   #if !defined (GLEW_USE_WGL)
     #define GLEW_USE_WGL 1
   #endif
@@ -77,7 +60,6 @@
   #if !defined (glewGetProcAddress)
     #define glewGetProcAddress(proc) wglGetProcAddress((LPCSTR)proc)
   #endif
-  #include <wrangle-wgl.h>
 #elif __ANDROID__ || GLEW_USE_EGL
   #if !defined (GLEW_USE_EGL)
     #define GLEW_USE_EGL 1
@@ -87,7 +69,6 @@
   #if !defined (glewGetProcAddress)
     #define glewGetProcAddress(proc) eglGetProcAddress((const char *)proc)
   #endif
-  #include <wrangle-egl.h>
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

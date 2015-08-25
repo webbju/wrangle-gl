@@ -1941,7 +1941,7 @@ void glew::wgl::Initialise ()
 
   std::unordered_set <std::string> supportedExtensions;
 
-  const unsigned char *wglExtensions = (const unsigned char*) "";
+  const unsigned char *wglExtensions = NULL;
 
   if (_wglewGetExtensionsStringEXT != NULL)
   {
@@ -1950,6 +1950,11 @@ void glew::wgl::Initialise ()
   else if (_wglewGetExtensionsStringARB != NULL)
   {
     wglExtensions = (const unsigned char*) _wglewGetExtensionsStringARB (wglGetCurrentDC());
+  }
+
+  if (!wglExtensions)
+  {
+    wglExtensions = (const unsigned char*) ""; // Protect against some drivers will happily passing back NULL.
   }
 
   const size_t wglExtensionsLen = strlen ((const char *) wglExtensions);
@@ -1972,9 +1977,13 @@ void glew::wgl::Initialise ()
       {
         const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
 
+      #if _WIN32
+        strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
+      #else 
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+      #endif
 
-        thisExtBuffer [min (len, 127)] = '\0';
+        thisExtBuffer [GLEW_MIN (len, 127)] = '\0';
 
         thisExtEnd = (unsigned char *) seperator + 1; // skip tab character
       }
@@ -1982,9 +1991,13 @@ void glew::wgl::Initialise ()
       {
         const size_t len = strlen ((const char *) thisExtStart);
 
-        strncpy (thisExtBuffer, (const char *) thisExtStart, len);
+      #if _WIN32
+        strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
+      #else 
+        strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+      #endif
 
-        thisExtBuffer [min (len + 1, 127)] = '\0';
+        thisExtBuffer [GLEW_MIN (len + 1, 127)] = '\0';
 
         thisExtEnd = NULL;
       }

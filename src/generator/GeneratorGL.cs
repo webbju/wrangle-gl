@@ -53,18 +53,24 @@ namespace wrangle_gl_generator
 
       writer.Write (@"
 #if defined (_WIN32)
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN 1
-#define _WIN32_LEAN_AND_MEAN 1
-#endif
-#include <windows.h>
-#define GLAPI WINGDIAPI
-#define APIENTRY WINAPI
-#define APIENTRYP WINAPI*
-#ifdef _WIN32_LEAN_AND_MEAN
-#undef WIN32_LEAN_AND_MEAN
-#undef _WIN32_LEAN_AND_MEAN
-#endif
+  #ifndef WIN32_LEAN_AND_MEAN
+    #define WIN32_LEAN_AND_MEAN 1
+    #define _WIN32_LEAN_AND_MEAN 1
+  #endif
+  #include <windows.h>
+  #ifndef GLAPI
+    #define GLAPI __declspec(dllimport)
+  #endif
+  #ifndef APIENTRY
+    #define APIENTRY WINAPI
+  #endif
+  #ifndef APIENTRYP
+    #define APIENTRYP WINAPI*
+  #endif
+  #ifdef _WIN32_LEAN_AND_MEAN
+    #undef WIN32_LEAN_AND_MEAN
+    #undef _WIN32_LEAN_AND_MEAN
+  #endif
 #endif
 
 ");
@@ -120,21 +126,42 @@ namespace wrangle_gl_generator
 
   if (!glVersion)
   {
-    glVersion = (const unsigned char*) """";
+    glVersion = (const unsigned char*) """"; // Protect against some drivers will happily passing back NULL.
   }
 
   const size_t glVersionLen = strlen ((const char *) glVersion);
 
   if (glVersionLen)
   {
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_0] = true;
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_0] = true;
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_0] = true;
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_0] = true;
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_0] = true;
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_2_0] = true;
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_0] = true;
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_1] = true;
+    unsigned int major = 0, minor = 0;
+
+    const char *divisor = strchr ((const char *) glVersion, '.');
+
+    if (divisor)
+    {
+      major = (*(char *) (divisor - 1)) - '0';
+
+      minor = (*(char *) (divisor + 1)) - '0';
+    }
+
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_0] = ((major >= 1));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_1] = ((major >= 1) && (minor >= 1));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_2] = ((major >= 1) && (minor >= 2));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_3] = ((major >= 1) && (minor >= 3));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_4] = ((major >= 1) && (minor >= 4));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_5] = ((major >= 1) && (minor >= 5));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_2_0] = ((major >= 2));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_2_1] = ((major >= 2) && (minor >= 1));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_0] = ((major >= 3));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_1] = ((major >= 3) && (minor >= 1));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_2] = ((major >= 3) && (minor >= 2));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_3] = ((major >= 3) && (minor >= 3));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_0] = ((major >= 4));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_1] = ((major >= 4) && (minor >= 1));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_2] = ((major >= 4) && (minor >= 2));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_3] = ((major >= 4) && (minor >= 3));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_4] = ((major >= 4) && (minor >= 4));
+    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_5] = ((major >= 4) && (minor >= 5));
   }
 
   // 
@@ -147,7 +174,7 @@ namespace wrangle_gl_generator
 
   if (!glExtensions)
   {
-    glExtensions = (const unsigned char*) """";
+    glExtensions = (const unsigned char*) """"; // Protect against some drivers will happily passing back NULL.
   }
 
   const size_t glExtensionsLen = strlen ((const char *) glExtensions);
@@ -170,9 +197,13 @@ namespace wrangle_gl_generator
       {
         const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
 
+      #if _WIN32
+        strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
+      #else 
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+      #endif
 
-        thisExtBuffer [min (len, 127)] = '\0';
+        thisExtBuffer [GLEW_MIN (len, 127)] = '\0';
 
         thisExtEnd = (unsigned char *) seperator + 1; // skip tab character
       }
@@ -180,9 +211,13 @@ namespace wrangle_gl_generator
       {
         const size_t len = strlen ((const char *) thisExtStart);
 
-        strncpy (thisExtBuffer, (const char *) thisExtStart, len);
+      #if _WIN32
+        strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
+      #else 
+        strncpy (thisExtBuffer, (const char *)thisExtStart, len);
+      #endif
 
-        thisExtBuffer [min (len + 1, 127)] = '\0';
+        thisExtBuffer [GLEW_MIN (len + 1, 127)] = '\0';
 
         thisExtEnd = NULL;
       }
