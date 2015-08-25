@@ -51,6 +51,8 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
+      writer.Write ("\n#include <wrangle.h>\n");
+
       writer.Write ("\n#include <EGL/egl.h>\n");
 
       writer.Write ("\n#include <EGL/eglext.h>\n\n");
@@ -60,6 +62,27 @@ namespace wrangle_gl_generator
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
       WriteCommentDivider (ref writer);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public override void ExportHppPublicGlewApi (ref StreamWriter writer)
+    {
+      writer.Write (string.Format ("\n  public:\n\n    static void Initialise (EGLDisplay display);\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static void Deinitialise ();\n\n"));
+
+      writer.Write (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig) {{ s_deviceConfig = deviceConfig; }}\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static glew::{0}::DeviceConfig &GetConfig () {{ return s_deviceConfig; }}\n", m_api [0]));
+
+      writer.Write (string.Format ("\n  protected:\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static EGLDisplay s_display;\n\n"));
+
+      writer.Write (string.Format ("    static glew::{0}::DeviceConfig s_deviceConfig;\n\n", m_api [0]));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,26 +103,29 @@ namespace wrangle_gl_generator
       // glew::egl::Initialise
       // 
 
+      writer.Write ("EGLDisplay glew::egl::s_display = EGL_NO_DISPLAY;\n\n");
+
       writer.Write ("glew::egl::DeviceConfig glew::egl::s_deviceConfig;\n\n");
 
       WriteCommentDivider (ref writer);
 
-      writer.Write ("\nvoid glew::egl::Initialise ()\n{\n");
+      writer.Write (@"
+void glew::egl::Initialise (EGLDisplay display)
+{
+  s_display = display;
 
-      writer.Write ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));\n\n");
+  if (s_display == EGL_NO_DISPLAY)
+  {
+    s_display = eglGetDisplay (EGL_DEFAULT_DISPLAY);
+  }
 
-      writer.Write (@"  // 
+  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));
+
+  // 
   // Determine current driver's feature reporting.
   // 
 
-  //PFNEGLQUERYSTRINGPROC _eglQueryString = &eglQueryString;
-
-  const unsigned char *eglVersion = (const unsigned char*) """";
-
-  //if (_eglQueryString != 0)
-  {
-    eglVersion = (const unsigned char *) eglQueryString (EGL_NO_DISPLAY, EGL_VERSION);
-  }
+  const unsigned char *eglVersion = (const unsigned char *) eglQueryString (s_display, EGL_VERSION);
 
   const size_t eglVersionLen = strlen ((const char *) eglVersion);
 
@@ -130,12 +156,7 @@ namespace wrangle_gl_generator
 
   std::unordered_set <std::string> supportedExtensions;
 
-  const unsigned char *eglExtensions = (const unsigned char*) """";
-
-  //if (_eglQueryString != 0)
-  {
-    eglExtensions = (const unsigned char *) eglQueryString (EGL_NO_DISPLAY, EGL_EXTENSIONS);
-  }
+  const unsigned char *eglExtensions = (const unsigned char *) eglQueryString (s_display, EGL_EXTENSIONS);
 
   const size_t eglExtensionsLen = strlen ((const char *) eglExtensions);
 

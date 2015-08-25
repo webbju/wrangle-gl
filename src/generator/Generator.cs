@@ -283,9 +283,15 @@ namespace wrangle_gl_generator
 
               GetFullCommandPrototype (command, out returnType, out parameters);
 
-              if (baseSpecFeatureSet)
+              bool shouldExternC = !m_api [0].Equals ("wgl");
+
+              if (baseSpecFeatureSet && shouldExternC)
               {
-                commandFuncPointerBuilder.AppendFormat ("extern \"C\" {0} {1} {2} {3} (", m_funcApiEntryPrefix, returnType, m_funcApiEntryPostfix, command);
+                commandFuncPointerBuilder.AppendFormat ("GLEW_EXTERN_C {0} {1} {2} {3} (", m_funcApiEntryPrefix, returnType, m_funcApiEntryPostfix, command);
+              }
+              else if (baseSpecFeatureSet)
+              {
+                commandFuncPointerBuilder.AppendFormat ("GLEW_EXTERN {0} {1} {2} {3} (", m_funcApiEntryPrefix, returnType, m_funcApiEntryPostfix, command);
               }
               else
               {
@@ -440,23 +446,13 @@ namespace wrangle_gl_generator
 
       writer.Write ("    };\n\n");
 
-      WriteCommentDivider (ref writer, 4);
-
       // 
       // Standard GLEW header API.
       // 
 
-      writer.Write (string.Format ("\n  public:\n\n    static void Initialise ();\n\n", m_api [0]));
+      WriteCommentDivider (ref writer, 4);
 
-      writer.Write (string.Format ("    static void Deinitialise ();\n\n"));
-
-      writer.Write (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig) {{ s_deviceConfig = deviceConfig; }}\n\n", m_api [0]));
-
-      writer.Write (string.Format ("    static glew::{0}::DeviceConfig &GetConfig () {{ return s_deviceConfig; }}\n", m_api [0]));
-
-      writer.Write (string.Format ("\n  protected:\n\n", m_api [0]));
-
-      writer.Write (string.Format ("    static glew::{0}::DeviceConfig s_deviceConfig;\n\n", m_api [0]));
+      ExportHppPublicGlewApi (ref writer);
 
       WriteCommentDivider (ref writer, 4);
 
@@ -637,6 +633,25 @@ namespace wrangle_gl_generator
       writer.Write ("\n");
 
       WriteCommentDivider (ref writer);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public virtual void ExportHppPublicGlewApi (ref StreamWriter writer)
+    {
+      writer.Write (string.Format ("\n  public:\n\n    static void Initialise ();\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static void Deinitialise ();\n\n"));
+
+      writer.Write (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig) {{ s_deviceConfig = deviceConfig; }}\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static glew::{0}::DeviceConfig &GetConfig () {{ return s_deviceConfig; }}\n", m_api [0]));
+
+      writer.Write (string.Format ("\n  protected:\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static glew::{0}::DeviceConfig s_deviceConfig;\n\n", m_api [0]));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

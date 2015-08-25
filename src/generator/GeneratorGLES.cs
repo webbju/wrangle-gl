@@ -83,12 +83,6 @@ namespace wrangle_gl_generator
 
       base.ExportHpp (ref writer);
 
-      //writer.Write ("\n#ifndef GLEW_USE_OPENGL_ES\n#define GLEW_USE_OPENGL_ES 1\n#endif\n");
-
-      //writer.Write ("\n#include <wrangle.h>\n\n");
-
-      //WriteCommentDivider (ref writer);
-
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
       WriteCommentDivider (ref writer);

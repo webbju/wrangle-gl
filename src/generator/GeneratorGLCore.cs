@@ -55,15 +55,9 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n#if !defined (GL_GLEXT_PROTOTYPES)\n#define GL_GLEXT_PROTOTYPES 1\n#endif\n");
 
-      writer.Write ("\n#include <GL/glcorearb.h>\n");
+      writer.Write ("\n#include <GL/glcorearb.h>\n\n");
 
       base.ExportHpp (ref writer);
-
-      //writer.Write ("\n#ifndef GLEW_USE_OPENGL_CORE\n#define GLEW_USE_OPENGL_CORE 1\n#endif\n");
-
-      //writer.Write ("\n#include <wrangle.h>\n\n");
-
-      //WriteCommentDivider (ref writer);
 
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 

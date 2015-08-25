@@ -26,6 +26,22 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#ifndef GLEW_EXTERN
+#define GLEW_EXTERN extern
+#endif
+
+#ifndef GLEW_EXTERN_C
+#ifdef __cplusplus
+#define GLEW_EXTERN_C extern "C"
+#else
+#define GLEW_EXTERN_C extern
+#endif
+#endif
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #if 0
 #if GLEW_USE_OPENGL
 #if (GLEW_USE_OPENGL_CORE || GLEW_USE_OPENGL_ES)
@@ -55,7 +71,7 @@
   #if !defined (GLEW_USE_WGL)
     #define GLEW_USE_WGL 1
   #endif
-  WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
+  GLEW_EXTERN WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
   #undef wglUseFontBitmaps
   #undef wglUseFontOutlines
   #if !defined (glewGetProcAddress)
@@ -67,7 +83,7 @@
     #define GLEW_USE_EGL 1
   #endif
   #include <EGL\egl.h>
-  EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
+  GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
   #if !defined (glewGetProcAddress)
     #define glewGetProcAddress(proc) eglGetProcAddress((const char *)proc)
   #endif

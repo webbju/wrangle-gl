@@ -17,23 +17,23 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-extern "C" XVisualInfo * glXChooseVisual (Display * dpy, int screen, int * attribList);
-extern "C" GLXContext glXCreateContext (Display * dpy, XVisualInfo * vis, GLXContext shareList, Bool direct);
-extern "C" void  glXDestroyContext (Display * dpy, GLXContext ctx);
-extern "C" Bool glXMakeCurrent (Display * dpy, GLXDrawable drawable, GLXContext ctx);
-extern "C" void  glXCopyContext (Display * dpy, GLXContext src, GLXContext dst, unsigned long mask);
-extern "C" void  glXSwapBuffers (Display * dpy, GLXDrawable drawable);
-extern "C" GLXPixmap glXCreateGLXPixmap (Display * dpy, XVisualInfo * visual, Pixmap pixmap);
-extern "C" void  glXDestroyGLXPixmap (Display * dpy, GLXPixmap pixmap);
-extern "C" Bool glXQueryExtension (Display * dpy, int * errorb, int * event);
-extern "C" Bool glXQueryVersion (Display * dpy, int * maj, int * min);
-extern "C" Bool glXIsDirect (Display * dpy, GLXContext ctx);
-extern "C" int  glXGetConfig (Display * dpy, XVisualInfo * visual, int attrib, int * value);
-extern "C" GLXContext glXGetCurrentContext ();
-extern "C" GLXDrawable glXGetCurrentDrawable ();
-extern "C" void  glXWaitGL ();
-extern "C" void  glXWaitX ();
-extern "C" void  glXUseXFont (Font font, int first, int count, int list);
+GLEW_EXTERN_C XVisualInfo * glXChooseVisual (Display * dpy, int screen, int * attribList);
+GLEW_EXTERN_C GLXContext glXCreateContext (Display * dpy, XVisualInfo * vis, GLXContext shareList, Bool direct);
+GLEW_EXTERN_C void  glXDestroyContext (Display * dpy, GLXContext ctx);
+GLEW_EXTERN_C Bool glXMakeCurrent (Display * dpy, GLXDrawable drawable, GLXContext ctx);
+GLEW_EXTERN_C void  glXCopyContext (Display * dpy, GLXContext src, GLXContext dst, unsigned long mask);
+GLEW_EXTERN_C void  glXSwapBuffers (Display * dpy, GLXDrawable drawable);
+GLEW_EXTERN_C GLXPixmap glXCreateGLXPixmap (Display * dpy, XVisualInfo * visual, Pixmap pixmap);
+GLEW_EXTERN_C void  glXDestroyGLXPixmap (Display * dpy, GLXPixmap pixmap);
+GLEW_EXTERN_C Bool glXQueryExtension (Display * dpy, int * errorb, int * event);
+GLEW_EXTERN_C Bool glXQueryVersion (Display * dpy, int * maj, int * min);
+GLEW_EXTERN_C Bool glXIsDirect (Display * dpy, GLXContext ctx);
+GLEW_EXTERN_C int  glXGetConfig (Display * dpy, XVisualInfo * visual, int attrib, int * value);
+GLEW_EXTERN_C GLXContext glXGetCurrentContext ();
+GLEW_EXTERN_C GLXDrawable glXGetCurrentDrawable ();
+GLEW_EXTERN_C void  glXWaitGL ();
+GLEW_EXTERN_C void  glXWaitX ();
+GLEW_EXTERN_C void  glXUseXFont (Font font, int first, int count, int list);
 typedef const char * ( PFNGLXQUERYEXTENSIONSSTRINGPROC) /* glXQueryExtensionsString */ (Display * dpy, int screen);
 typedef const char * ( PFNGLXQUERYSERVERSTRINGPROC) /* glXQueryServerString */ (Display * dpy, int screen, int name);
 typedef const char * ( PFNGLXGETCLIENTSTRINGPROC) /* glXGetClientString */ (Display * dpy, int name);

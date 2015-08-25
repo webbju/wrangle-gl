@@ -1387,28 +1387,30 @@ EGLuint64NV glew::egl::eglGetSystemTimeNV ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+EGLDisplay glew::egl::s_display = EGL_NO_DISPLAY;
+
 glew::egl::DeviceConfig glew::egl::s_deviceConfig;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void glew::egl::Initialise ()
+void glew::egl::Initialise (EGLDisplay display)
 {
+  s_display = display;
+
+  if (s_display == EGL_NO_DISPLAY)
+  {
+    s_display = eglGetDisplay (EGL_DEFAULT_DISPLAY);
+  }
+
   memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));
 
   // 
   // Determine current driver's feature reporting.
   // 
 
-  //PFNEGLQUERYSTRINGPROC _eglQueryString = &eglQueryString;
-
-  const unsigned char *eglVersion = (const unsigned char*) "";
-
-  //if (_eglQueryString != 0)
-  {
-    eglVersion = (const unsigned char *) eglQueryString (EGL_NO_DISPLAY, EGL_VERSION);
-  }
+  const unsigned char *eglVersion = (const unsigned char *) eglQueryString (s_display, EGL_VERSION);
 
   const size_t eglVersionLen = strlen ((const char *) eglVersion);
 
@@ -1439,12 +1441,7 @@ void glew::egl::Initialise ()
 
   std::unordered_set <std::string> supportedExtensions;
 
-  const unsigned char *eglExtensions = (const unsigned char*) "";
-
-  //if (_eglQueryString != 0)
-  {
-    eglExtensions = (const unsigned char *) eglQueryString (EGL_NO_DISPLAY, EGL_EXTENSIONS);
-  }
+  const unsigned char *eglExtensions = (const unsigned char *) eglQueryString (s_display, EGL_EXTENSIONS);
 
   const size_t eglExtensionsLen = strlen ((const char *) eglExtensions);
 

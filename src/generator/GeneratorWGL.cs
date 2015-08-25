@@ -51,6 +51,8 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
+      writer.Write ("\n#include <wrangle.h>\n\n");
+
       writer.Write (@"typedef unsigned int GLenum;
 typedef unsigned char GLboolean;
 typedef unsigned int GLbitfield;
@@ -66,12 +68,11 @@ typedef float GLclampf;
 typedef double GLdouble;
 typedef double GLclampd;
 typedef void GLvoid;
-
-#include <GL/wgl.h>
-
-#include <GL/wglext.h>
-
 ");
+
+      writer.Write ("\n#include <GL/wgl.h>\n");
+
+      writer.Write ("\n#include <GL/wglext.h>\n\n");
 
       base.ExportHpp (ref writer);
 

@@ -9,6 +9,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include <wrangle.h>
+
 #include <EGL/egl.h>
 
 #include <EGL/eglext.h>
@@ -17,30 +19,30 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglChooseConfig (EGLDisplay dpy, const EGLint * attrib_list, EGLConfig * configs, EGLint config_size, EGLint * num_config);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglCopyBuffers (EGLDisplay dpy, EGLSurface surface, EGLNativePixmapType target);
-extern "C" EGLAPI EGLContext EGLAPIENTRY eglCreateContext (EGLDisplay dpy, EGLConfig config, EGLContext share_context, const EGLint * attrib_list);
-extern "C" EGLAPI EGLSurface EGLAPIENTRY eglCreatePbufferSurface (EGLDisplay dpy, EGLConfig config, const EGLint * attrib_list);
-extern "C" EGLAPI EGLSurface EGLAPIENTRY eglCreatePixmapSurface (EGLDisplay dpy, EGLConfig config, EGLNativePixmapType pixmap, const EGLint * attrib_list);
-extern "C" EGLAPI EGLSurface EGLAPIENTRY eglCreateWindowSurface (EGLDisplay dpy, EGLConfig config, EGLNativeWindowType win, const EGLint * attrib_list);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglDestroyContext (EGLDisplay dpy, EGLContext ctx);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglDestroySurface (EGLDisplay dpy, EGLSurface surface);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglGetConfigAttrib (EGLDisplay dpy, EGLConfig config, EGLint attribute, EGLint * value);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglGetConfigs (EGLDisplay dpy, EGLConfig * configs, EGLint config_size, EGLint * num_config);
-extern "C" EGLAPI EGLDisplay EGLAPIENTRY eglGetCurrentDisplay ();
-extern "C" EGLAPI EGLSurface EGLAPIENTRY eglGetCurrentSurface (EGLint readdraw);
-extern "C" EGLAPI EGLDisplay EGLAPIENTRY eglGetDisplay (EGLNativeDisplayType display_id);
-extern "C" EGLAPI EGLint EGLAPIENTRY eglGetError ();
-extern "C" EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char * procname);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglInitialize (EGLDisplay dpy, EGLint * major, EGLint * minor);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglMakeCurrent (EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGLContext ctx);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglQueryContext (EGLDisplay dpy, EGLContext ctx, EGLint attribute, EGLint * value);
-extern "C" EGLAPI const char * EGLAPIENTRY eglQueryString (EGLDisplay dpy, EGLint name);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglQuerySurface (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint * value);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers (EGLDisplay dpy, EGLSurface surface);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglTerminate (EGLDisplay dpy);
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglWaitGL ();
-extern "C" EGLAPI EGLBoolean EGLAPIENTRY eglWaitNative (EGLint engine);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglChooseConfig (EGLDisplay dpy, const EGLint * attrib_list, EGLConfig * configs, EGLint config_size, EGLint * num_config);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglCopyBuffers (EGLDisplay dpy, EGLSurface surface, EGLNativePixmapType target);
+GLEW_EXTERN_C EGLAPI EGLContext EGLAPIENTRY eglCreateContext (EGLDisplay dpy, EGLConfig config, EGLContext share_context, const EGLint * attrib_list);
+GLEW_EXTERN_C EGLAPI EGLSurface EGLAPIENTRY eglCreatePbufferSurface (EGLDisplay dpy, EGLConfig config, const EGLint * attrib_list);
+GLEW_EXTERN_C EGLAPI EGLSurface EGLAPIENTRY eglCreatePixmapSurface (EGLDisplay dpy, EGLConfig config, EGLNativePixmapType pixmap, const EGLint * attrib_list);
+GLEW_EXTERN_C EGLAPI EGLSurface EGLAPIENTRY eglCreateWindowSurface (EGLDisplay dpy, EGLConfig config, EGLNativeWindowType win, const EGLint * attrib_list);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglDestroyContext (EGLDisplay dpy, EGLContext ctx);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglDestroySurface (EGLDisplay dpy, EGLSurface surface);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglGetConfigAttrib (EGLDisplay dpy, EGLConfig config, EGLint attribute, EGLint * value);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglGetConfigs (EGLDisplay dpy, EGLConfig * configs, EGLint config_size, EGLint * num_config);
+GLEW_EXTERN_C EGLAPI EGLDisplay EGLAPIENTRY eglGetCurrentDisplay ();
+GLEW_EXTERN_C EGLAPI EGLSurface EGLAPIENTRY eglGetCurrentSurface (EGLint readdraw);
+GLEW_EXTERN_C EGLAPI EGLDisplay EGLAPIENTRY eglGetDisplay (EGLNativeDisplayType display_id);
+GLEW_EXTERN_C EGLAPI EGLint EGLAPIENTRY eglGetError ();
+GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char * procname);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglInitialize (EGLDisplay dpy, EGLint * major, EGLint * minor);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglMakeCurrent (EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGLContext ctx);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglQueryContext (EGLDisplay dpy, EGLContext ctx, EGLint attribute, EGLint * value);
+GLEW_EXTERN_C EGLAPI const char * EGLAPIENTRY eglQueryString (EGLDisplay dpy, EGLint name);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglQuerySurface (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint * value);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglSwapBuffers (EGLDisplay dpy, EGLSurface surface);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglTerminate (EGLDisplay dpy);
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglWaitGL ();
+GLEW_EXTERN_C EGLAPI EGLBoolean EGLAPIENTRY eglWaitNative (EGLint engine);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLBINDTEXIMAGEPROC) /* eglBindTexImage */ (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLRELEASETEXIMAGEPROC) /* eglReleaseTexImage */ (EGLDisplay dpy, EGLSurface surface, EGLint buffer);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLSURFACEATTRIBPROC) /* eglSurfaceAttrib */ (EGLDisplay dpy, EGLSurface surface, EGLint attribute, EGLint value);
@@ -359,7 +361,7 @@ namespace glew
 
   public:
 
-    static void Initialise ();
+    static void Initialise (EGLDisplay display);
 
     static void Deinitialise ();
 
@@ -368,6 +370,8 @@ namespace glew
     static glew::egl::DeviceConfig &GetConfig () { return s_deviceConfig; }
 
   protected:
+
+    static EGLDisplay s_display;
 
     static glew::egl::DeviceConfig s_deviceConfig;
 
