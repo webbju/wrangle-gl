@@ -35,6 +35,80 @@ typedef void GLvoid;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#if defined(__GNUC__)
+#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600 
+#pragma GCC diagnostic push // push/pop not available before GCC 4.6
+#endif
+#pragma GCC diagnostic ignored "-Wunused-function"
+#endif
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+enum GLEW_WGL_FeatureSet
+{
+  GLEW_WGL_VERSION_1_0,
+  GLEW_WGL_3DFX_multisample,
+  GLEW_WGL_3DL_stereo_control,
+  GLEW_WGL_AMD_gpu_association,
+  GLEW_WGL_ARB_buffer_region,
+  GLEW_WGL_ARB_context_flush_control,
+  GLEW_WGL_ARB_create_context,
+  GLEW_WGL_ARB_create_context_profile,
+  GLEW_WGL_ARB_create_context_robustness,
+  GLEW_WGL_ARB_extensions_string,
+  GLEW_WGL_ARB_framebuffer_sRGB,
+  GLEW_WGL_ARB_make_current_read,
+  GLEW_WGL_ARB_multisample,
+  GLEW_WGL_ARB_pbuffer,
+  GLEW_WGL_ARB_pixel_format,
+  GLEW_WGL_ARB_pixel_format_float,
+  GLEW_WGL_ARB_render_texture,
+  GLEW_WGL_ARB_robustness_application_isolation,
+  GLEW_WGL_ARB_robustness_share_group_isolation,
+  GLEW_WGL_ATI_pixel_format_float,
+  GLEW_WGL_EXT_create_context_es_profile,
+  GLEW_WGL_EXT_create_context_es2_profile,
+  GLEW_WGL_EXT_depth_float,
+  GLEW_WGL_EXT_display_color_table,
+  GLEW_WGL_EXT_extensions_string,
+  GLEW_WGL_EXT_framebuffer_sRGB,
+  GLEW_WGL_EXT_make_current_read,
+  GLEW_WGL_EXT_multisample,
+  GLEW_WGL_EXT_pbuffer,
+  GLEW_WGL_EXT_pixel_format,
+  GLEW_WGL_EXT_pixel_format_packed_float,
+  GLEW_WGL_EXT_swap_control,
+  GLEW_WGL_EXT_swap_control_tear,
+  GLEW_WGL_I3D_digital_video_control,
+  GLEW_WGL_I3D_gamma,
+  GLEW_WGL_I3D_genlock,
+  GLEW_WGL_I3D_image_buffer,
+  GLEW_WGL_I3D_swap_frame_lock,
+  GLEW_WGL_I3D_swap_frame_usage,
+  GLEW_WGL_NV_copy_image,
+  GLEW_WGL_NV_delay_before_swap,
+  GLEW_WGL_NV_DX_interop,
+  GLEW_WGL_NV_DX_interop2,
+  GLEW_WGL_NV_float_buffer,
+  GLEW_WGL_NV_gpu_affinity,
+  GLEW_WGL_NV_multisample_coverage,
+  GLEW_WGL_NV_present_video,
+  GLEW_WGL_NV_render_depth_texture,
+  GLEW_WGL_NV_render_texture_rectangle,
+  GLEW_WGL_NV_swap_group,
+  GLEW_WGL_NV_video_capture,
+  GLEW_WGL_NV_video_output,
+  GLEW_WGL_NV_vertex_array_range,
+  GLEW_WGL_OML_sync_control,
+  GLEW_WGL_FeatureSetCount
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 GLEW_EXTERN WINGDIAPI int WINAPI ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd);
 GLEW_EXTERN WINGDIAPI int WINAPI DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd);
 GLEW_EXTERN WINGDIAPI UINT WINAPI GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd);
@@ -187,72 +261,14 @@ typedef BOOL (WINAPI * PFNWGLWAITFORSBCOMLPROC) /* wglWaitForSbcOML */ (HDC hdc,
 
 namespace glew
 {
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   class wgl
   {
   public:
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    enum FeatureSet
-    {
-      GLEW_WGL_VERSION_1_0,
-      GLEW_WGL_3DFX_multisample,
-      GLEW_WGL_3DL_stereo_control,
-      GLEW_WGL_AMD_gpu_association,
-      GLEW_WGL_ARB_buffer_region,
-      GLEW_WGL_ARB_context_flush_control,
-      GLEW_WGL_ARB_create_context,
-      GLEW_WGL_ARB_create_context_profile,
-      GLEW_WGL_ARB_create_context_robustness,
-      GLEW_WGL_ARB_extensions_string,
-      GLEW_WGL_ARB_framebuffer_sRGB,
-      GLEW_WGL_ARB_make_current_read,
-      GLEW_WGL_ARB_multisample,
-      GLEW_WGL_ARB_pbuffer,
-      GLEW_WGL_ARB_pixel_format,
-      GLEW_WGL_ARB_pixel_format_float,
-      GLEW_WGL_ARB_render_texture,
-      GLEW_WGL_ARB_robustness_application_isolation,
-      GLEW_WGL_ARB_robustness_share_group_isolation,
-      GLEW_WGL_ATI_pixel_format_float,
-      GLEW_WGL_EXT_create_context_es_profile,
-      GLEW_WGL_EXT_create_context_es2_profile,
-      GLEW_WGL_EXT_depth_float,
-      GLEW_WGL_EXT_display_color_table,
-      GLEW_WGL_EXT_extensions_string,
-      GLEW_WGL_EXT_framebuffer_sRGB,
-      GLEW_WGL_EXT_make_current_read,
-      GLEW_WGL_EXT_multisample,
-      GLEW_WGL_EXT_pbuffer,
-      GLEW_WGL_EXT_pixel_format,
-      GLEW_WGL_EXT_pixel_format_packed_float,
-      GLEW_WGL_EXT_swap_control,
-      GLEW_WGL_EXT_swap_control_tear,
-      GLEW_WGL_I3D_digital_video_control,
-      GLEW_WGL_I3D_gamma,
-      GLEW_WGL_I3D_genlock,
-      GLEW_WGL_I3D_image_buffer,
-      GLEW_WGL_I3D_swap_frame_lock,
-      GLEW_WGL_I3D_swap_frame_usage,
-      GLEW_WGL_NV_copy_image,
-      GLEW_WGL_NV_delay_before_swap,
-      GLEW_WGL_NV_DX_interop,
-      GLEW_WGL_NV_DX_interop2,
-      GLEW_WGL_NV_float_buffer,
-      GLEW_WGL_NV_gpu_affinity,
-      GLEW_WGL_NV_multisample_coverage,
-      GLEW_WGL_NV_present_video,
-      GLEW_WGL_NV_render_depth_texture,
-      GLEW_WGL_NV_render_texture_rectangle,
-      GLEW_WGL_NV_swap_group,
-      GLEW_WGL_NV_video_capture,
-      GLEW_WGL_NV_video_output,
-      GLEW_WGL_NV_vertex_array_range,
-      GLEW_WGL_OML_sync_control,
-      GLEW_WGL_FeatureSetCount
-    };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -262,7 +278,7 @@ namespace glew
     {
     public:
 
-      bool m_featureSupported [glew::wgl::FeatureSet::GLEW_WGL_FeatureSetCount];
+      bool m_featureSupported [GLEW_WGL_FeatureSetCount];
 
       PFNWGLSETSTEREOEMITTERSTATE3DLPROC m_wglSetStereoEmitterState3DL;
       PFNWGLGETGPUIDSAMDPROC m_wglGetGPUIDsAMD;
@@ -395,6 +411,8 @@ namespace glew
 
     static void Deinitialise ();
 
+    static bool IsSupported (GLEW_WGL_FeatureSet feature) { return s_deviceConfig.m_featureSupported [feature]; }
+
     static void SetConfig (glew::wgl::DeviceConfig &deviceConfig) { s_deviceConfig = deviceConfig; }
 
     static glew::wgl::DeviceConfig &GetConfig () { return s_deviceConfig; }
@@ -403,257 +421,277 @@ namespace glew
 
     static glew::wgl::DeviceConfig s_deviceConfig;
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  public:
-
-    static BOOL wglSetStereoEmitterState3DL (HDC hDC, UINT uState);
-    static UINT wglGetGPUIDsAMD (UINT maxCount, UINT * ids);
-    static INT wglGetGPUInfoAMD (UINT id, int property, GLenum dataType, UINT size, void * data);
-    static UINT wglGetContextGPUIDAMD (HGLRC hglrc);
-    static HGLRC wglCreateAssociatedContextAMD (UINT id);
-    static HGLRC wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const int * attribList);
-    static BOOL wglDeleteAssociatedContextAMD (HGLRC hglrc);
-    static BOOL wglMakeAssociatedContextCurrentAMD (HGLRC hglrc);
-    static HGLRC wglGetCurrentAssociatedContextAMD ();
-    static VOID wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
-    static HANDLE wglCreateBufferRegionARB (HDC hDC, int iLayerPlane, UINT uType);
-    static VOID wglDeleteBufferRegionARB (HANDLE hRegion);
-    static BOOL wglSaveBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height);
-    static BOOL wglRestoreBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height, int xSrc, int ySrc);
-    static HGLRC wglCreateContextAttribsARB (HDC hDC, HGLRC hShareContext, const int * attribList);
-    static const char * wglGetExtensionsStringARB (HDC hdc);
-    static BOOL wglMakeContextCurrentARB (HDC hDrawDC, HDC hReadDC, HGLRC hglrc);
-    static HDC wglGetCurrentReadDCARB ();
-    static HPBUFFERARB wglCreatePbufferARB (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList);
-    static HDC wglGetPbufferDCARB (HPBUFFERARB hPbuffer);
-    static int wglReleasePbufferDCARB (HPBUFFERARB hPbuffer, HDC hDC);
-    static BOOL wglDestroyPbufferARB (HPBUFFERARB hPbuffer);
-    static BOOL wglQueryPbufferARB (HPBUFFERARB hPbuffer, int iAttribute, int * piValue);
-    static BOOL wglGetPixelFormatAttribivARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, int * piValues);
-    static BOOL wglGetPixelFormatAttribfvARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, FLOAT * pfValues);
-    static BOOL wglChoosePixelFormatARB (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats);
-    static BOOL wglBindTexImageARB (HPBUFFERARB hPbuffer, int iBuffer);
-    static BOOL wglReleaseTexImageARB (HPBUFFERARB hPbuffer, int iBuffer);
-    static BOOL wglSetPbufferAttribARB (HPBUFFERARB hPbuffer, const int * piAttribList);
-    static GLboolean wglCreateDisplayColorTableEXT (GLushort id);
-    static GLboolean wglLoadDisplayColorTableEXT (const GLushort * table, GLuint length);
-    static GLboolean wglBindDisplayColorTableEXT (GLushort id);
-    static VOID wglDestroyDisplayColorTableEXT (GLushort id);
-    static const char * wglGetExtensionsStringEXT ();
-    static BOOL wglMakeContextCurrentEXT (HDC hDrawDC, HDC hReadDC, HGLRC hglrc);
-    static HDC wglGetCurrentReadDCEXT ();
-    static HPBUFFEREXT wglCreatePbufferEXT (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList);
-    static HDC wglGetPbufferDCEXT (HPBUFFEREXT hPbuffer);
-    static int wglReleasePbufferDCEXT (HPBUFFEREXT hPbuffer, HDC hDC);
-    static BOOL wglDestroyPbufferEXT (HPBUFFEREXT hPbuffer);
-    static BOOL wglQueryPbufferEXT (HPBUFFEREXT hPbuffer, int iAttribute, int * piValue);
-    static BOOL wglGetPixelFormatAttribivEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, int * piValues);
-    static BOOL wglGetPixelFormatAttribfvEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, FLOAT * pfValues);
-    static BOOL wglChoosePixelFormatEXT (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats);
-    static BOOL wglSwapIntervalEXT (int interval);
-    static int wglGetSwapIntervalEXT ();
-    static BOOL wglGetDigitalVideoParametersI3D (HDC hDC, int iAttribute, int * piValue);
-    static BOOL wglSetDigitalVideoParametersI3D (HDC hDC, int iAttribute, const int * piValue);
-    static BOOL wglGetGammaTableParametersI3D (HDC hDC, int iAttribute, int * piValue);
-    static BOOL wglSetGammaTableParametersI3D (HDC hDC, int iAttribute, const int * piValue);
-    static BOOL wglGetGammaTableI3D (HDC hDC, int iEntries, USHORT * puRed, USHORT * puGreen, USHORT * puBlue);
-    static BOOL wglSetGammaTableI3D (HDC hDC, int iEntries, const USHORT * puRed, const USHORT * puGreen, const USHORT * puBlue);
-    static BOOL wglEnableGenlockI3D (HDC hDC);
-    static BOOL wglDisableGenlockI3D (HDC hDC);
-    static BOOL wglIsEnabledGenlockI3D (HDC hDC, BOOL * pFlag);
-    static BOOL wglGenlockSourceI3D (HDC hDC, UINT uSource);
-    static BOOL wglGetGenlockSourceI3D (HDC hDC, UINT * uSource);
-    static BOOL wglGenlockSourceEdgeI3D (HDC hDC, UINT uEdge);
-    static BOOL wglGetGenlockSourceEdgeI3D (HDC hDC, UINT * uEdge);
-    static BOOL wglGenlockSampleRateI3D (HDC hDC, UINT uRate);
-    static BOOL wglGetGenlockSampleRateI3D (HDC hDC, UINT * uRate);
-    static BOOL wglGenlockSourceDelayI3D (HDC hDC, UINT uDelay);
-    static BOOL wglGetGenlockSourceDelayI3D (HDC hDC, UINT * uDelay);
-    static BOOL wglQueryGenlockMaxSourceDelayI3D (HDC hDC, UINT * uMaxLineDelay, UINT * uMaxPixelDelay);
-    static LPVOID wglCreateImageBufferI3D (HDC hDC, DWORD dwSize, UINT uFlags);
-    static BOOL wglDestroyImageBufferI3D (HDC hDC, LPVOID pAddress);
-    static BOOL wglAssociateImageBufferEventsI3D (HDC hDC, const HANDLE * pEvent, const LPVOID * pAddress, const DWORD * pSize, UINT count);
-    static BOOL wglReleaseImageBufferEventsI3D (HDC hDC, const LPVOID * pAddress, UINT count);
-    static BOOL wglEnableFrameLockI3D ();
-    static BOOL wglDisableFrameLockI3D ();
-    static BOOL wglIsEnabledFrameLockI3D (BOOL * pFlag);
-    static BOOL wglQueryFrameLockMasterI3D (BOOL * pFlag);
-    static BOOL wglGetFrameUsageI3D (float * pUsage);
-    static BOOL wglBeginFrameTrackingI3D ();
-    static BOOL wglEndFrameTrackingI3D ();
-    static BOOL wglQueryFrameTrackingI3D (DWORD * pFrameCount, DWORD * pMissedFrames, float * pLastMissedUsage);
-    static BOOL wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
-    static BOOL wglDelayBeforeSwapNV (HDC hDC, GLfloat seconds);
-    static BOOL wglDXSetResourceShareHandleNV (void * dxObject, HANDLE shareHandle);
-    static HANDLE wglDXOpenDeviceNV (void * dxDevice);
-    static BOOL wglDXCloseDeviceNV (HANDLE hDevice);
-    static HANDLE wglDXRegisterObjectNV (HANDLE hDevice, void * dxObject, GLuint name, GLenum type, GLenum access);
-    static BOOL wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject);
-    static BOOL wglDXObjectAccessNV (HANDLE hObject, GLenum access);
-    static BOOL wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects);
-    static BOOL wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects);
-    static BOOL wglEnumGpusNV (UINT iGpuIndex, HGPUNV * phGpu);
-    static BOOL wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDeviceIndex, PGPU_DEVICE lpGpuDevice);
-    static HDC wglCreateAffinityDCNV (const HGPUNV * phGpuList);
-    static BOOL wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu);
-    static BOOL wglDeleteDCNV (HDC hdc);
-    static int wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList);
-    static BOOL wglBindVideoDeviceNV (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList);
-    static BOOL wglQueryCurrentContextNV (int iAttribute, int * piValue);
-    static BOOL wglJoinSwapGroupNV (HDC hDC, GLuint group);
-    static BOOL wglBindSwapBarrierNV (GLuint group, GLuint barrier);
-    static BOOL wglQuerySwapGroupNV (HDC hDC, GLuint * group, GLuint * barrier);
-    static BOOL wglQueryMaxSwapGroupsNV (HDC hDC, GLuint * maxGroups, GLuint * maxBarriers);
-    static BOOL wglQueryFrameCountNV (HDC hDC, GLuint * count);
-    static BOOL wglResetFrameCountNV (HDC hDC);
-    static BOOL wglBindVideoCaptureDeviceNV (UINT uVideoSlot, HVIDEOINPUTDEVICENV hDevice);
-    static UINT wglEnumerateVideoCaptureDevicesNV (HDC hDc, HVIDEOINPUTDEVICENV * phDeviceList);
-    static BOOL wglLockVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice);
-    static BOOL wglQueryVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice, int iAttribute, int * piValue);
-    static BOOL wglReleaseVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice);
-    static BOOL wglGetVideoDeviceNV (HDC hDC, int numDevices, HPVIDEODEV * hVideoDevice);
-    static BOOL wglReleaseVideoDeviceNV (HPVIDEODEV hVideoDevice);
-    static BOOL wglBindVideoImageNV (HPVIDEODEV hVideoDevice, HPBUFFERARB hPbuffer, int iVideoBuffer);
-    static BOOL wglReleaseVideoImageNV (HPBUFFERARB hPbuffer, int iVideoBuffer);
-    static BOOL wglSendPbufferToVideoNV (HPBUFFERARB hPbuffer, int iBufferType, unsigned long * pulCounterPbuffer, BOOL bBlock);
-    static BOOL wglGetVideoInfoNV (HPVIDEODEV hpVideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo);
-    static void * wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority);
-    static void wglFreeMemoryNV (void * pointer);
-    static BOOL wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc);
-    static BOOL wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator);
-    static INT64 wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder);
-    static INT64 wglSwapLayerBuffersMscOML (HDC hdc, int fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder);
-    static BOOL wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder, INT64 * ust, INT64 * msc, INT64 * sbc);
-    static BOOL wglWaitForSbcOML (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT64 * sbc);
   };
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  bool IsSupported (GLEW_WGL_FeatureSet feature);
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define wglSetStereoEmitterState3DL glew::wgl::wglSetStereoEmitterState3DL
-#define wglGetGPUIDsAMD glew::wgl::wglGetGPUIDsAMD
-#define wglGetGPUInfoAMD glew::wgl::wglGetGPUInfoAMD
-#define wglGetContextGPUIDAMD glew::wgl::wglGetContextGPUIDAMD
-#define wglCreateAssociatedContextAMD glew::wgl::wglCreateAssociatedContextAMD
-#define wglCreateAssociatedContextAttribsAMD glew::wgl::wglCreateAssociatedContextAttribsAMD
-#define wglDeleteAssociatedContextAMD glew::wgl::wglDeleteAssociatedContextAMD
-#define wglMakeAssociatedContextCurrentAMD glew::wgl::wglMakeAssociatedContextCurrentAMD
-#define wglGetCurrentAssociatedContextAMD glew::wgl::wglGetCurrentAssociatedContextAMD
-#define wglBlitContextFramebufferAMD glew::wgl::wglBlitContextFramebufferAMD
-#define wglCreateBufferRegionARB glew::wgl::wglCreateBufferRegionARB
-#define wglDeleteBufferRegionARB glew::wgl::wglDeleteBufferRegionARB
-#define wglSaveBufferRegionARB glew::wgl::wglSaveBufferRegionARB
-#define wglRestoreBufferRegionARB glew::wgl::wglRestoreBufferRegionARB
-#define wglCreateContextAttribsARB glew::wgl::wglCreateContextAttribsARB
-#define wglGetExtensionsStringARB glew::wgl::wglGetExtensionsStringARB
-#define wglMakeContextCurrentARB glew::wgl::wglMakeContextCurrentARB
-#define wglGetCurrentReadDCARB glew::wgl::wglGetCurrentReadDCARB
-#define wglCreatePbufferARB glew::wgl::wglCreatePbufferARB
-#define wglGetPbufferDCARB glew::wgl::wglGetPbufferDCARB
-#define wglReleasePbufferDCARB glew::wgl::wglReleasePbufferDCARB
-#define wglDestroyPbufferARB glew::wgl::wglDestroyPbufferARB
-#define wglQueryPbufferARB glew::wgl::wglQueryPbufferARB
-#define wglGetPixelFormatAttribivARB glew::wgl::wglGetPixelFormatAttribivARB
-#define wglGetPixelFormatAttribfvARB glew::wgl::wglGetPixelFormatAttribfvARB
-#define wglChoosePixelFormatARB glew::wgl::wglChoosePixelFormatARB
-#define wglBindTexImageARB glew::wgl::wglBindTexImageARB
-#define wglReleaseTexImageARB glew::wgl::wglReleaseTexImageARB
-#define wglSetPbufferAttribARB glew::wgl::wglSetPbufferAttribARB
-#define wglCreateDisplayColorTableEXT glew::wgl::wglCreateDisplayColorTableEXT
-#define wglLoadDisplayColorTableEXT glew::wgl::wglLoadDisplayColorTableEXT
-#define wglBindDisplayColorTableEXT glew::wgl::wglBindDisplayColorTableEXT
-#define wglDestroyDisplayColorTableEXT glew::wgl::wglDestroyDisplayColorTableEXT
-#define wglGetExtensionsStringEXT glew::wgl::wglGetExtensionsStringEXT
-#define wglMakeContextCurrentEXT glew::wgl::wglMakeContextCurrentEXT
-#define wglGetCurrentReadDCEXT glew::wgl::wglGetCurrentReadDCEXT
-#define wglCreatePbufferEXT glew::wgl::wglCreatePbufferEXT
-#define wglGetPbufferDCEXT glew::wgl::wglGetPbufferDCEXT
-#define wglReleasePbufferDCEXT glew::wgl::wglReleasePbufferDCEXT
-#define wglDestroyPbufferEXT glew::wgl::wglDestroyPbufferEXT
-#define wglQueryPbufferEXT glew::wgl::wglQueryPbufferEXT
-#define wglGetPixelFormatAttribivEXT glew::wgl::wglGetPixelFormatAttribivEXT
-#define wglGetPixelFormatAttribfvEXT glew::wgl::wglGetPixelFormatAttribfvEXT
-#define wglChoosePixelFormatEXT glew::wgl::wglChoosePixelFormatEXT
-#define wglSwapIntervalEXT glew::wgl::wglSwapIntervalEXT
-#define wglGetSwapIntervalEXT glew::wgl::wglGetSwapIntervalEXT
-#define wglGetDigitalVideoParametersI3D glew::wgl::wglGetDigitalVideoParametersI3D
-#define wglSetDigitalVideoParametersI3D glew::wgl::wglSetDigitalVideoParametersI3D
-#define wglGetGammaTableParametersI3D glew::wgl::wglGetGammaTableParametersI3D
-#define wglSetGammaTableParametersI3D glew::wgl::wglSetGammaTableParametersI3D
-#define wglGetGammaTableI3D glew::wgl::wglGetGammaTableI3D
-#define wglSetGammaTableI3D glew::wgl::wglSetGammaTableI3D
-#define wglEnableGenlockI3D glew::wgl::wglEnableGenlockI3D
-#define wglDisableGenlockI3D glew::wgl::wglDisableGenlockI3D
-#define wglIsEnabledGenlockI3D glew::wgl::wglIsEnabledGenlockI3D
-#define wglGenlockSourceI3D glew::wgl::wglGenlockSourceI3D
-#define wglGetGenlockSourceI3D glew::wgl::wglGetGenlockSourceI3D
-#define wglGenlockSourceEdgeI3D glew::wgl::wglGenlockSourceEdgeI3D
-#define wglGetGenlockSourceEdgeI3D glew::wgl::wglGetGenlockSourceEdgeI3D
-#define wglGenlockSampleRateI3D glew::wgl::wglGenlockSampleRateI3D
-#define wglGetGenlockSampleRateI3D glew::wgl::wglGetGenlockSampleRateI3D
-#define wglGenlockSourceDelayI3D glew::wgl::wglGenlockSourceDelayI3D
-#define wglGetGenlockSourceDelayI3D glew::wgl::wglGetGenlockSourceDelayI3D
-#define wglQueryGenlockMaxSourceDelayI3D glew::wgl::wglQueryGenlockMaxSourceDelayI3D
-#define wglCreateImageBufferI3D glew::wgl::wglCreateImageBufferI3D
-#define wglDestroyImageBufferI3D glew::wgl::wglDestroyImageBufferI3D
-#define wglAssociateImageBufferEventsI3D glew::wgl::wglAssociateImageBufferEventsI3D
-#define wglReleaseImageBufferEventsI3D glew::wgl::wglReleaseImageBufferEventsI3D
-#define wglEnableFrameLockI3D glew::wgl::wglEnableFrameLockI3D
-#define wglDisableFrameLockI3D glew::wgl::wglDisableFrameLockI3D
-#define wglIsEnabledFrameLockI3D glew::wgl::wglIsEnabledFrameLockI3D
-#define wglQueryFrameLockMasterI3D glew::wgl::wglQueryFrameLockMasterI3D
-#define wglGetFrameUsageI3D glew::wgl::wglGetFrameUsageI3D
-#define wglBeginFrameTrackingI3D glew::wgl::wglBeginFrameTrackingI3D
-#define wglEndFrameTrackingI3D glew::wgl::wglEndFrameTrackingI3D
-#define wglQueryFrameTrackingI3D glew::wgl::wglQueryFrameTrackingI3D
-#define wglCopyImageSubDataNV glew::wgl::wglCopyImageSubDataNV
-#define wglDelayBeforeSwapNV glew::wgl::wglDelayBeforeSwapNV
-#define wglDXSetResourceShareHandleNV glew::wgl::wglDXSetResourceShareHandleNV
-#define wglDXOpenDeviceNV glew::wgl::wglDXOpenDeviceNV
-#define wglDXCloseDeviceNV glew::wgl::wglDXCloseDeviceNV
-#define wglDXRegisterObjectNV glew::wgl::wglDXRegisterObjectNV
-#define wglDXUnregisterObjectNV glew::wgl::wglDXUnregisterObjectNV
-#define wglDXObjectAccessNV glew::wgl::wglDXObjectAccessNV
-#define wglDXLockObjectsNV glew::wgl::wglDXLockObjectsNV
-#define wglDXUnlockObjectsNV glew::wgl::wglDXUnlockObjectsNV
-#define wglEnumGpusNV glew::wgl::wglEnumGpusNV
-#define wglEnumGpuDevicesNV glew::wgl::wglEnumGpuDevicesNV
-#define wglCreateAffinityDCNV glew::wgl::wglCreateAffinityDCNV
-#define wglEnumGpusFromAffinityDCNV glew::wgl::wglEnumGpusFromAffinityDCNV
-#define wglDeleteDCNV glew::wgl::wglDeleteDCNV
-#define wglEnumerateVideoDevicesNV glew::wgl::wglEnumerateVideoDevicesNV
-#define wglBindVideoDeviceNV glew::wgl::wglBindVideoDeviceNV
-#define wglQueryCurrentContextNV glew::wgl::wglQueryCurrentContextNV
-#define wglJoinSwapGroupNV glew::wgl::wglJoinSwapGroupNV
-#define wglBindSwapBarrierNV glew::wgl::wglBindSwapBarrierNV
-#define wglQuerySwapGroupNV glew::wgl::wglQuerySwapGroupNV
-#define wglQueryMaxSwapGroupsNV glew::wgl::wglQueryMaxSwapGroupsNV
-#define wglQueryFrameCountNV glew::wgl::wglQueryFrameCountNV
-#define wglResetFrameCountNV glew::wgl::wglResetFrameCountNV
-#define wglBindVideoCaptureDeviceNV glew::wgl::wglBindVideoCaptureDeviceNV
-#define wglEnumerateVideoCaptureDevicesNV glew::wgl::wglEnumerateVideoCaptureDevicesNV
-#define wglLockVideoCaptureDeviceNV glew::wgl::wglLockVideoCaptureDeviceNV
-#define wglQueryVideoCaptureDeviceNV glew::wgl::wglQueryVideoCaptureDeviceNV
-#define wglReleaseVideoCaptureDeviceNV glew::wgl::wglReleaseVideoCaptureDeviceNV
-#define wglGetVideoDeviceNV glew::wgl::wglGetVideoDeviceNV
-#define wglReleaseVideoDeviceNV glew::wgl::wglReleaseVideoDeviceNV
-#define wglBindVideoImageNV glew::wgl::wglBindVideoImageNV
-#define wglReleaseVideoImageNV glew::wgl::wglReleaseVideoImageNV
-#define wglSendPbufferToVideoNV glew::wgl::wglSendPbufferToVideoNV
-#define wglGetVideoInfoNV glew::wgl::wglGetVideoInfoNV
-#define wglAllocateMemoryNV glew::wgl::wglAllocateMemoryNV
-#define wglFreeMemoryNV glew::wgl::wglFreeMemoryNV
-#define wglGetSyncValuesOML glew::wgl::wglGetSyncValuesOML
-#define wglGetMscRateOML glew::wgl::wglGetMscRateOML
-#define wglSwapBuffersMscOML glew::wgl::wglSwapBuffersMscOML
-#define wglSwapLayerBuffersMscOML glew::wgl::wglSwapLayerBuffersMscOML
-#define wglWaitForMscOML glew::wgl::wglWaitForMscOML
-#define wglWaitForSbcOML glew::wgl::wglWaitForSbcOML
+GLEW_EXTERN_C BOOL _glew_wgl_wglSetStereoEmitterState3DL (HDC hDC, UINT uState);
+GLEW_EXTERN_C UINT _glew_wgl_wglGetGPUIDsAMD (UINT maxCount, UINT * ids);
+GLEW_EXTERN_C INT _glew_wgl_wglGetGPUInfoAMD (UINT id, int property, GLenum dataType, UINT size, void * data);
+GLEW_EXTERN_C UINT _glew_wgl_wglGetContextGPUIDAMD (HGLRC hglrc);
+GLEW_EXTERN_C HGLRC _glew_wgl_wglCreateAssociatedContextAMD (UINT id);
+GLEW_EXTERN_C HGLRC _glew_wgl_wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const int * attribList);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDeleteAssociatedContextAMD (HGLRC hglrc);
+GLEW_EXTERN_C BOOL _glew_wgl_wglMakeAssociatedContextCurrentAMD (HGLRC hglrc);
+GLEW_EXTERN_C HGLRC _glew_wgl_wglGetCurrentAssociatedContextAMD ();
+GLEW_EXTERN_C VOID _glew_wgl_wglBlitContextFramebufferAMD (HGLRC dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+GLEW_EXTERN_C HANDLE _glew_wgl_wglCreateBufferRegionARB (HDC hDC, int iLayerPlane, UINT uType);
+GLEW_EXTERN_C VOID _glew_wgl_wglDeleteBufferRegionARB (HANDLE hRegion);
+GLEW_EXTERN_C BOOL _glew_wgl_wglSaveBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height);
+GLEW_EXTERN_C BOOL _glew_wgl_wglRestoreBufferRegionARB (HANDLE hRegion, int x, int y, int width, int height, int xSrc, int ySrc);
+GLEW_EXTERN_C HGLRC _glew_wgl_wglCreateContextAttribsARB (HDC hDC, HGLRC hShareContext, const int * attribList);
+GLEW_EXTERN_C const char * _glew_wgl_wglGetExtensionsStringARB (HDC hdc);
+GLEW_EXTERN_C BOOL _glew_wgl_wglMakeContextCurrentARB (HDC hDrawDC, HDC hReadDC, HGLRC hglrc);
+GLEW_EXTERN_C HDC _glew_wgl_wglGetCurrentReadDCARB ();
+GLEW_EXTERN_C HPBUFFERARB _glew_wgl_wglCreatePbufferARB (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList);
+GLEW_EXTERN_C HDC _glew_wgl_wglGetPbufferDCARB (HPBUFFERARB hPbuffer);
+GLEW_EXTERN_C int _glew_wgl_wglReleasePbufferDCARB (HPBUFFERARB hPbuffer, HDC hDC);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDestroyPbufferARB (HPBUFFERARB hPbuffer);
+GLEW_EXTERN_C BOOL _glew_wgl_wglQueryPbufferARB (HPBUFFERARB hPbuffer, int iAttribute, int * piValue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetPixelFormatAttribivARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, int * piValues);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetPixelFormatAttribfvARB (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, const int * piAttributes, FLOAT * pfValues);
+GLEW_EXTERN_C BOOL _glew_wgl_wglChoosePixelFormatARB (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats);
+GLEW_EXTERN_C BOOL _glew_wgl_wglBindTexImageARB (HPBUFFERARB hPbuffer, int iBuffer);
+GLEW_EXTERN_C BOOL _glew_wgl_wglReleaseTexImageARB (HPBUFFERARB hPbuffer, int iBuffer);
+GLEW_EXTERN_C BOOL _glew_wgl_wglSetPbufferAttribARB (HPBUFFERARB hPbuffer, const int * piAttribList);
+GLEW_EXTERN_C GLboolean _glew_wgl_wglCreateDisplayColorTableEXT (GLushort id);
+GLEW_EXTERN_C GLboolean _glew_wgl_wglLoadDisplayColorTableEXT (const GLushort * table, GLuint length);
+GLEW_EXTERN_C GLboolean _glew_wgl_wglBindDisplayColorTableEXT (GLushort id);
+GLEW_EXTERN_C VOID _glew_wgl_wglDestroyDisplayColorTableEXT (GLushort id);
+GLEW_EXTERN_C const char * _glew_wgl_wglGetExtensionsStringEXT ();
+GLEW_EXTERN_C BOOL _glew_wgl_wglMakeContextCurrentEXT (HDC hDrawDC, HDC hReadDC, HGLRC hglrc);
+GLEW_EXTERN_C HDC _glew_wgl_wglGetCurrentReadDCEXT ();
+GLEW_EXTERN_C HPBUFFEREXT _glew_wgl_wglCreatePbufferEXT (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList);
+GLEW_EXTERN_C HDC _glew_wgl_wglGetPbufferDCEXT (HPBUFFEREXT hPbuffer);
+GLEW_EXTERN_C int _glew_wgl_wglReleasePbufferDCEXT (HPBUFFEREXT hPbuffer, HDC hDC);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDestroyPbufferEXT (HPBUFFEREXT hPbuffer);
+GLEW_EXTERN_C BOOL _glew_wgl_wglQueryPbufferEXT (HPBUFFEREXT hPbuffer, int iAttribute, int * piValue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetPixelFormatAttribivEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, int * piValues);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetPixelFormatAttribfvEXT (HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, FLOAT * pfValues);
+GLEW_EXTERN_C BOOL _glew_wgl_wglChoosePixelFormatEXT (HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats);
+GLEW_EXTERN_C BOOL _glew_wgl_wglSwapIntervalEXT (int interval);
+GLEW_EXTERN_C int _glew_wgl_wglGetSwapIntervalEXT ();
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetDigitalVideoParametersI3D (HDC hDC, int iAttribute, int * piValue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglSetDigitalVideoParametersI3D (HDC hDC, int iAttribute, const int * piValue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetGammaTableParametersI3D (HDC hDC, int iAttribute, int * piValue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglSetGammaTableParametersI3D (HDC hDC, int iAttribute, const int * piValue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetGammaTableI3D (HDC hDC, int iEntries, USHORT * puRed, USHORT * puGreen, USHORT * puBlue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglSetGammaTableI3D (HDC hDC, int iEntries, const USHORT * puRed, const USHORT * puGreen, const USHORT * puBlue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglEnableGenlockI3D (HDC hDC);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDisableGenlockI3D (HDC hDC);
+GLEW_EXTERN_C BOOL _glew_wgl_wglIsEnabledGenlockI3D (HDC hDC, BOOL * pFlag);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGenlockSourceI3D (HDC hDC, UINT uSource);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetGenlockSourceI3D (HDC hDC, UINT * uSource);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGenlockSourceEdgeI3D (HDC hDC, UINT uEdge);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetGenlockSourceEdgeI3D (HDC hDC, UINT * uEdge);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGenlockSampleRateI3D (HDC hDC, UINT uRate);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetGenlockSampleRateI3D (HDC hDC, UINT * uRate);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGenlockSourceDelayI3D (HDC hDC, UINT uDelay);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetGenlockSourceDelayI3D (HDC hDC, UINT * uDelay);
+GLEW_EXTERN_C BOOL _glew_wgl_wglQueryGenlockMaxSourceDelayI3D (HDC hDC, UINT * uMaxLineDelay, UINT * uMaxPixelDelay);
+GLEW_EXTERN_C LPVOID _glew_wgl_wglCreateImageBufferI3D (HDC hDC, DWORD dwSize, UINT uFlags);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDestroyImageBufferI3D (HDC hDC, LPVOID pAddress);
+GLEW_EXTERN_C BOOL _glew_wgl_wglAssociateImageBufferEventsI3D (HDC hDC, const HANDLE * pEvent, const LPVOID * pAddress, const DWORD * pSize, UINT count);
+GLEW_EXTERN_C BOOL _glew_wgl_wglReleaseImageBufferEventsI3D (HDC hDC, const LPVOID * pAddress, UINT count);
+GLEW_EXTERN_C BOOL _glew_wgl_wglEnableFrameLockI3D ();
+GLEW_EXTERN_C BOOL _glew_wgl_wglDisableFrameLockI3D ();
+GLEW_EXTERN_C BOOL _glew_wgl_wglIsEnabledFrameLockI3D (BOOL * pFlag);
+GLEW_EXTERN_C BOOL _glew_wgl_wglQueryFrameLockMasterI3D (BOOL * pFlag);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetFrameUsageI3D (float * pUsage);
+GLEW_EXTERN_C BOOL _glew_wgl_wglBeginFrameTrackingI3D ();
+GLEW_EXTERN_C BOOL _glew_wgl_wglEndFrameTrackingI3D ();
+GLEW_EXTERN_C BOOL _glew_wgl_wglQueryFrameTrackingI3D (DWORD * pFrameCount, DWORD * pMissedFrames, float * pLastMissedUsage);
+GLEW_EXTERN_C BOOL _glew_wgl_wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDelayBeforeSwapNV (HDC hDC, GLfloat seconds);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDXSetResourceShareHandleNV (void * dxObject, HANDLE shareHandle);
+GLEW_EXTERN_C HANDLE _glew_wgl_wglDXOpenDeviceNV (void * dxDevice);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDXCloseDeviceNV (HANDLE hDevice);
+GLEW_EXTERN_C HANDLE _glew_wgl_wglDXRegisterObjectNV (HANDLE hDevice, void * dxObject, GLuint name, GLenum type, GLenum access);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDXObjectAccessNV (HANDLE hObject, GLenum access);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE * hObjects);
+GLEW_EXTERN_C BOOL _glew_wgl_wglEnumGpusNV (UINT iGpuIndex, HGPUNV * phGpu);
+GLEW_EXTERN_C BOOL _glew_wgl_wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDeviceIndex, PGPU_DEVICE lpGpuDevice);
+GLEW_EXTERN_C HDC _glew_wgl_wglCreateAffinityDCNV (const HGPUNV * phGpuList);
+GLEW_EXTERN_C BOOL _glew_wgl_wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu);
+GLEW_EXTERN_C BOOL _glew_wgl_wglDeleteDCNV (HDC hdc);
+GLEW_EXTERN_C int _glew_wgl_wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList);
+GLEW_EXTERN_C BOOL _glew_wgl_wglBindVideoDeviceNV (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList);
+GLEW_EXTERN_C BOOL _glew_wgl_wglQueryCurrentContextNV (int iAttribute, int * piValue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglJoinSwapGroupNV (HDC hDC, GLuint group);
+GLEW_EXTERN_C BOOL _glew_wgl_wglBindSwapBarrierNV (GLuint group, GLuint barrier);
+GLEW_EXTERN_C BOOL _glew_wgl_wglQuerySwapGroupNV (HDC hDC, GLuint * group, GLuint * barrier);
+GLEW_EXTERN_C BOOL _glew_wgl_wglQueryMaxSwapGroupsNV (HDC hDC, GLuint * maxGroups, GLuint * maxBarriers);
+GLEW_EXTERN_C BOOL _glew_wgl_wglQueryFrameCountNV (HDC hDC, GLuint * count);
+GLEW_EXTERN_C BOOL _glew_wgl_wglResetFrameCountNV (HDC hDC);
+GLEW_EXTERN_C BOOL _glew_wgl_wglBindVideoCaptureDeviceNV (UINT uVideoSlot, HVIDEOINPUTDEVICENV hDevice);
+GLEW_EXTERN_C UINT _glew_wgl_wglEnumerateVideoCaptureDevicesNV (HDC hDc, HVIDEOINPUTDEVICENV * phDeviceList);
+GLEW_EXTERN_C BOOL _glew_wgl_wglLockVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice);
+GLEW_EXTERN_C BOOL _glew_wgl_wglQueryVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice, int iAttribute, int * piValue);
+GLEW_EXTERN_C BOOL _glew_wgl_wglReleaseVideoCaptureDeviceNV (HDC hDc, HVIDEOINPUTDEVICENV hDevice);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetVideoDeviceNV (HDC hDC, int numDevices, HPVIDEODEV * hVideoDevice);
+GLEW_EXTERN_C BOOL _glew_wgl_wglReleaseVideoDeviceNV (HPVIDEODEV hVideoDevice);
+GLEW_EXTERN_C BOOL _glew_wgl_wglBindVideoImageNV (HPVIDEODEV hVideoDevice, HPBUFFERARB hPbuffer, int iVideoBuffer);
+GLEW_EXTERN_C BOOL _glew_wgl_wglReleaseVideoImageNV (HPBUFFERARB hPbuffer, int iVideoBuffer);
+GLEW_EXTERN_C BOOL _glew_wgl_wglSendPbufferToVideoNV (HPBUFFERARB hPbuffer, int iBufferType, unsigned long * pulCounterPbuffer, BOOL bBlock);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetVideoInfoNV (HPVIDEODEV hpVideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo);
+GLEW_EXTERN_C void * _glew_wgl_wglAllocateMemoryNV (GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority);
+GLEW_EXTERN_C void _glew_wgl_wglFreeMemoryNV (void * pointer);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc);
+GLEW_EXTERN_C BOOL _glew_wgl_wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator);
+GLEW_EXTERN_C INT64 _glew_wgl_wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder);
+GLEW_EXTERN_C INT64 _glew_wgl_wglSwapLayerBuffersMscOML (HDC hdc, int fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder);
+GLEW_EXTERN_C BOOL _glew_wgl_wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder, INT64 * ust, INT64 * msc, INT64 * sbc);
+GLEW_EXTERN_C BOOL _glew_wgl_wglWaitForSbcOML (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT64 * sbc);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#define wglSetStereoEmitterState3DL _glew_wgl_wglSetStereoEmitterState3DL
+#define wglGetGPUIDsAMD _glew_wgl_wglGetGPUIDsAMD
+#define wglGetGPUInfoAMD _glew_wgl_wglGetGPUInfoAMD
+#define wglGetContextGPUIDAMD _glew_wgl_wglGetContextGPUIDAMD
+#define wglCreateAssociatedContextAMD _glew_wgl_wglCreateAssociatedContextAMD
+#define wglCreateAssociatedContextAttribsAMD _glew_wgl_wglCreateAssociatedContextAttribsAMD
+#define wglDeleteAssociatedContextAMD _glew_wgl_wglDeleteAssociatedContextAMD
+#define wglMakeAssociatedContextCurrentAMD _glew_wgl_wglMakeAssociatedContextCurrentAMD
+#define wglGetCurrentAssociatedContextAMD _glew_wgl_wglGetCurrentAssociatedContextAMD
+#define wglBlitContextFramebufferAMD _glew_wgl_wglBlitContextFramebufferAMD
+#define wglCreateBufferRegionARB _glew_wgl_wglCreateBufferRegionARB
+#define wglDeleteBufferRegionARB _glew_wgl_wglDeleteBufferRegionARB
+#define wglSaveBufferRegionARB _glew_wgl_wglSaveBufferRegionARB
+#define wglRestoreBufferRegionARB _glew_wgl_wglRestoreBufferRegionARB
+#define wglCreateContextAttribsARB _glew_wgl_wglCreateContextAttribsARB
+#define wglGetExtensionsStringARB _glew_wgl_wglGetExtensionsStringARB
+#define wglMakeContextCurrentARB _glew_wgl_wglMakeContextCurrentARB
+#define wglGetCurrentReadDCARB _glew_wgl_wglGetCurrentReadDCARB
+#define wglCreatePbufferARB _glew_wgl_wglCreatePbufferARB
+#define wglGetPbufferDCARB _glew_wgl_wglGetPbufferDCARB
+#define wglReleasePbufferDCARB _glew_wgl_wglReleasePbufferDCARB
+#define wglDestroyPbufferARB _glew_wgl_wglDestroyPbufferARB
+#define wglQueryPbufferARB _glew_wgl_wglQueryPbufferARB
+#define wglGetPixelFormatAttribivARB _glew_wgl_wglGetPixelFormatAttribivARB
+#define wglGetPixelFormatAttribfvARB _glew_wgl_wglGetPixelFormatAttribfvARB
+#define wglChoosePixelFormatARB _glew_wgl_wglChoosePixelFormatARB
+#define wglBindTexImageARB _glew_wgl_wglBindTexImageARB
+#define wglReleaseTexImageARB _glew_wgl_wglReleaseTexImageARB
+#define wglSetPbufferAttribARB _glew_wgl_wglSetPbufferAttribARB
+#define wglCreateDisplayColorTableEXT _glew_wgl_wglCreateDisplayColorTableEXT
+#define wglLoadDisplayColorTableEXT _glew_wgl_wglLoadDisplayColorTableEXT
+#define wglBindDisplayColorTableEXT _glew_wgl_wglBindDisplayColorTableEXT
+#define wglDestroyDisplayColorTableEXT _glew_wgl_wglDestroyDisplayColorTableEXT
+#define wglGetExtensionsStringEXT _glew_wgl_wglGetExtensionsStringEXT
+#define wglMakeContextCurrentEXT _glew_wgl_wglMakeContextCurrentEXT
+#define wglGetCurrentReadDCEXT _glew_wgl_wglGetCurrentReadDCEXT
+#define wglCreatePbufferEXT _glew_wgl_wglCreatePbufferEXT
+#define wglGetPbufferDCEXT _glew_wgl_wglGetPbufferDCEXT
+#define wglReleasePbufferDCEXT _glew_wgl_wglReleasePbufferDCEXT
+#define wglDestroyPbufferEXT _glew_wgl_wglDestroyPbufferEXT
+#define wglQueryPbufferEXT _glew_wgl_wglQueryPbufferEXT
+#define wglGetPixelFormatAttribivEXT _glew_wgl_wglGetPixelFormatAttribivEXT
+#define wglGetPixelFormatAttribfvEXT _glew_wgl_wglGetPixelFormatAttribfvEXT
+#define wglChoosePixelFormatEXT _glew_wgl_wglChoosePixelFormatEXT
+#define wglSwapIntervalEXT _glew_wgl_wglSwapIntervalEXT
+#define wglGetSwapIntervalEXT _glew_wgl_wglGetSwapIntervalEXT
+#define wglGetDigitalVideoParametersI3D _glew_wgl_wglGetDigitalVideoParametersI3D
+#define wglSetDigitalVideoParametersI3D _glew_wgl_wglSetDigitalVideoParametersI3D
+#define wglGetGammaTableParametersI3D _glew_wgl_wglGetGammaTableParametersI3D
+#define wglSetGammaTableParametersI3D _glew_wgl_wglSetGammaTableParametersI3D
+#define wglGetGammaTableI3D _glew_wgl_wglGetGammaTableI3D
+#define wglSetGammaTableI3D _glew_wgl_wglSetGammaTableI3D
+#define wglEnableGenlockI3D _glew_wgl_wglEnableGenlockI3D
+#define wglDisableGenlockI3D _glew_wgl_wglDisableGenlockI3D
+#define wglIsEnabledGenlockI3D _glew_wgl_wglIsEnabledGenlockI3D
+#define wglGenlockSourceI3D _glew_wgl_wglGenlockSourceI3D
+#define wglGetGenlockSourceI3D _glew_wgl_wglGetGenlockSourceI3D
+#define wglGenlockSourceEdgeI3D _glew_wgl_wglGenlockSourceEdgeI3D
+#define wglGetGenlockSourceEdgeI3D _glew_wgl_wglGetGenlockSourceEdgeI3D
+#define wglGenlockSampleRateI3D _glew_wgl_wglGenlockSampleRateI3D
+#define wglGetGenlockSampleRateI3D _glew_wgl_wglGetGenlockSampleRateI3D
+#define wglGenlockSourceDelayI3D _glew_wgl_wglGenlockSourceDelayI3D
+#define wglGetGenlockSourceDelayI3D _glew_wgl_wglGetGenlockSourceDelayI3D
+#define wglQueryGenlockMaxSourceDelayI3D _glew_wgl_wglQueryGenlockMaxSourceDelayI3D
+#define wglCreateImageBufferI3D _glew_wgl_wglCreateImageBufferI3D
+#define wglDestroyImageBufferI3D _glew_wgl_wglDestroyImageBufferI3D
+#define wglAssociateImageBufferEventsI3D _glew_wgl_wglAssociateImageBufferEventsI3D
+#define wglReleaseImageBufferEventsI3D _glew_wgl_wglReleaseImageBufferEventsI3D
+#define wglEnableFrameLockI3D _glew_wgl_wglEnableFrameLockI3D
+#define wglDisableFrameLockI3D _glew_wgl_wglDisableFrameLockI3D
+#define wglIsEnabledFrameLockI3D _glew_wgl_wglIsEnabledFrameLockI3D
+#define wglQueryFrameLockMasterI3D _glew_wgl_wglQueryFrameLockMasterI3D
+#define wglGetFrameUsageI3D _glew_wgl_wglGetFrameUsageI3D
+#define wglBeginFrameTrackingI3D _glew_wgl_wglBeginFrameTrackingI3D
+#define wglEndFrameTrackingI3D _glew_wgl_wglEndFrameTrackingI3D
+#define wglQueryFrameTrackingI3D _glew_wgl_wglQueryFrameTrackingI3D
+#define wglCopyImageSubDataNV _glew_wgl_wglCopyImageSubDataNV
+#define wglDelayBeforeSwapNV _glew_wgl_wglDelayBeforeSwapNV
+#define wglDXSetResourceShareHandleNV _glew_wgl_wglDXSetResourceShareHandleNV
+#define wglDXOpenDeviceNV _glew_wgl_wglDXOpenDeviceNV
+#define wglDXCloseDeviceNV _glew_wgl_wglDXCloseDeviceNV
+#define wglDXRegisterObjectNV _glew_wgl_wglDXRegisterObjectNV
+#define wglDXUnregisterObjectNV _glew_wgl_wglDXUnregisterObjectNV
+#define wglDXObjectAccessNV _glew_wgl_wglDXObjectAccessNV
+#define wglDXLockObjectsNV _glew_wgl_wglDXLockObjectsNV
+#define wglDXUnlockObjectsNV _glew_wgl_wglDXUnlockObjectsNV
+#define wglEnumGpusNV _glew_wgl_wglEnumGpusNV
+#define wglEnumGpuDevicesNV _glew_wgl_wglEnumGpuDevicesNV
+#define wglCreateAffinityDCNV _glew_wgl_wglCreateAffinityDCNV
+#define wglEnumGpusFromAffinityDCNV _glew_wgl_wglEnumGpusFromAffinityDCNV
+#define wglDeleteDCNV _glew_wgl_wglDeleteDCNV
+#define wglEnumerateVideoDevicesNV _glew_wgl_wglEnumerateVideoDevicesNV
+#define wglBindVideoDeviceNV _glew_wgl_wglBindVideoDeviceNV
+#define wglQueryCurrentContextNV _glew_wgl_wglQueryCurrentContextNV
+#define wglJoinSwapGroupNV _glew_wgl_wglJoinSwapGroupNV
+#define wglBindSwapBarrierNV _glew_wgl_wglBindSwapBarrierNV
+#define wglQuerySwapGroupNV _glew_wgl_wglQuerySwapGroupNV
+#define wglQueryMaxSwapGroupsNV _glew_wgl_wglQueryMaxSwapGroupsNV
+#define wglQueryFrameCountNV _glew_wgl_wglQueryFrameCountNV
+#define wglResetFrameCountNV _glew_wgl_wglResetFrameCountNV
+#define wglBindVideoCaptureDeviceNV _glew_wgl_wglBindVideoCaptureDeviceNV
+#define wglEnumerateVideoCaptureDevicesNV _glew_wgl_wglEnumerateVideoCaptureDevicesNV
+#define wglLockVideoCaptureDeviceNV _glew_wgl_wglLockVideoCaptureDeviceNV
+#define wglQueryVideoCaptureDeviceNV _glew_wgl_wglQueryVideoCaptureDeviceNV
+#define wglReleaseVideoCaptureDeviceNV _glew_wgl_wglReleaseVideoCaptureDeviceNV
+#define wglGetVideoDeviceNV _glew_wgl_wglGetVideoDeviceNV
+#define wglReleaseVideoDeviceNV _glew_wgl_wglReleaseVideoDeviceNV
+#define wglBindVideoImageNV _glew_wgl_wglBindVideoImageNV
+#define wglReleaseVideoImageNV _glew_wgl_wglReleaseVideoImageNV
+#define wglSendPbufferToVideoNV _glew_wgl_wglSendPbufferToVideoNV
+#define wglGetVideoInfoNV _glew_wgl_wglGetVideoInfoNV
+#define wglAllocateMemoryNV _glew_wgl_wglAllocateMemoryNV
+#define wglFreeMemoryNV _glew_wgl_wglFreeMemoryNV
+#define wglGetSyncValuesOML _glew_wgl_wglGetSyncValuesOML
+#define wglGetMscRateOML _glew_wgl_wglGetMscRateOML
+#define wglSwapBuffersMscOML _glew_wgl_wglSwapBuffersMscOML
+#define wglSwapLayerBuffersMscOML _glew_wgl_wglSwapLayerBuffersMscOML
+#define wglWaitForMscOML _glew_wgl_wglWaitForMscOML
+#define wglWaitForSbcOML _glew_wgl_wglWaitForSbcOML
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#ifdef __GNUC__
+#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600 
+#pragma GCC diagnostic pop // push/pop not available before GCC 4.6
+#endif
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

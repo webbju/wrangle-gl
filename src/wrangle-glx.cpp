@@ -8,14 +8,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryExtensionsString
-
-const char * glew::glx::glXQueryExtensionsString (Display * dpy, int  screen)
+const char * _glew_glx_glXQueryExtensionsString (Display * dpy, int  screen)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_1 - glXQueryExtensionsString
-  if (s_deviceConfig.m_glXQueryExtensionsString)
+  if (!prototypeCalled && glxConfig.m_glXQueryExtensionsString)
   {
-    return s_deviceConfig.m_glXQueryExtensionsString (dpy, screen);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryExtensionsString (dpy, screen);
   }
   return ((const char *)0);
 }
@@ -24,14 +25,15 @@ const char * glew::glx::glXQueryExtensionsString (Display * dpy, int  screen)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryServerString
-
-const char * glew::glx::glXQueryServerString (Display * dpy, int  screen, int  name)
+const char * _glew_glx_glXQueryServerString (Display * dpy, int  screen, int  name)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_1 - glXQueryServerString
-  if (s_deviceConfig.m_glXQueryServerString)
+  if (!prototypeCalled && glxConfig.m_glXQueryServerString)
   {
-    return s_deviceConfig.m_glXQueryServerString (dpy, screen, name);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryServerString (dpy, screen, name);
   }
   return ((const char *)0);
 }
@@ -40,14 +42,15 @@ const char * glew::glx::glXQueryServerString (Display * dpy, int  screen, int  n
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetClientString
-
-const char * glew::glx::glXGetClientString (Display * dpy, int  name)
+const char * _glew_glx_glXGetClientString (Display * dpy, int  name)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_1 - glXGetClientString
-  if (s_deviceConfig.m_glXGetClientString)
+  if (!prototypeCalled && glxConfig.m_glXGetClientString)
   {
-    return s_deviceConfig.m_glXGetClientString (dpy, name);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetClientString (dpy, name);
   }
   return ((const char *)0);
 }
@@ -56,14 +59,15 @@ const char * glew::glx::glXGetClientString (Display * dpy, int  name)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetCurrentDisplay
-
-Display * glew::glx::glXGetCurrentDisplay ()
+Display * _glew_glx_glXGetCurrentDisplay ()
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_2 - glXGetCurrentDisplay
-  if (s_deviceConfig.m_glXGetCurrentDisplay)
+  if (!prototypeCalled && glxConfig.m_glXGetCurrentDisplay)
   {
-    return s_deviceConfig.m_glXGetCurrentDisplay ();
+    prototypeCalled = true;
+    return glxConfig.m_glXGetCurrentDisplay ();
   }
   return ((Display *)0);
 }
@@ -72,14 +76,15 @@ Display * glew::glx::glXGetCurrentDisplay ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetFBConfigs
-
-GLXFBConfig * glew::glx::glXGetFBConfigs (Display * dpy, int  screen, int * nelements)
+GLXFBConfig * _glew_glx_glXGetFBConfigs (Display * dpy, int  screen, int * nelements)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXGetFBConfigs
-  if (s_deviceConfig.m_glXGetFBConfigs)
+  if (!prototypeCalled && glxConfig.m_glXGetFBConfigs)
   {
-    return s_deviceConfig.m_glXGetFBConfigs (dpy, screen, nelements);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetFBConfigs (dpy, screen, nelements);
   }
   return ((GLXFBConfig *)0);
 }
@@ -88,14 +93,15 @@ GLXFBConfig * glew::glx::glXGetFBConfigs (Display * dpy, int  screen, int * nele
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXChooseFBConfig
-
-GLXFBConfig * glew::glx::glXChooseFBConfig (Display * dpy, int  screen, const int * attrib_list, int * nelements)
+GLXFBConfig * _glew_glx_glXChooseFBConfig (Display * dpy, int  screen, const int * attrib_list, int * nelements)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXChooseFBConfig
-  if (s_deviceConfig.m_glXChooseFBConfig)
+  if (!prototypeCalled && glxConfig.m_glXChooseFBConfig)
   {
-    return s_deviceConfig.m_glXChooseFBConfig (dpy, screen, attrib_list, nelements);
+    prototypeCalled = true;
+    return glxConfig.m_glXChooseFBConfig (dpy, screen, attrib_list, nelements);
   }
   return ((GLXFBConfig *)0);
 }
@@ -104,14 +110,15 @@ GLXFBConfig * glew::glx::glXChooseFBConfig (Display * dpy, int  screen, const in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetFBConfigAttrib
-
-int  glew::glx::glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int  attribute, int * value)
+int  _glew_glx_glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int  attribute, int * value)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXGetFBConfigAttrib
-  if (s_deviceConfig.m_glXGetFBConfigAttrib)
+  if (!prototypeCalled && glxConfig.m_glXGetFBConfigAttrib)
   {
-    return s_deviceConfig.m_glXGetFBConfigAttrib (dpy, config, attribute, value);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetFBConfigAttrib (dpy, config, attribute, value);
   }
   return ((int )0);
 }
@@ -120,14 +127,15 @@ int  glew::glx::glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int  at
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetVisualFromFBConfig
-
-XVisualInfo * glew::glx::glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config)
+XVisualInfo * _glew_glx_glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXGetVisualFromFBConfig
-  if (s_deviceConfig.m_glXGetVisualFromFBConfig)
+  if (!prototypeCalled && glxConfig.m_glXGetVisualFromFBConfig)
   {
-    return s_deviceConfig.m_glXGetVisualFromFBConfig (dpy, config);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetVisualFromFBConfig (dpy, config);
   }
   return ((XVisualInfo *)0);
 }
@@ -136,14 +144,15 @@ XVisualInfo * glew::glx::glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig co
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateWindow
-
-GLXWindow glew::glx::glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const int * attrib_list)
+GLXWindow _glew_glx_glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const int * attrib_list)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXCreateWindow
-  if (s_deviceConfig.m_glXCreateWindow)
+  if (!prototypeCalled && glxConfig.m_glXCreateWindow)
   {
-    return s_deviceConfig.m_glXCreateWindow (dpy, config, win, attrib_list);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateWindow (dpy, config, win, attrib_list);
   }
   return ((GLXWindow)0);
 }
@@ -152,14 +161,15 @@ GLXWindow glew::glx::glXCreateWindow (Display * dpy, GLXFBConfig config, Window 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXDestroyWindow
-
-void  glew::glx::glXDestroyWindow (Display * dpy, GLXWindow win)
+void  _glew_glx_glXDestroyWindow (Display * dpy, GLXWindow win)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXDestroyWindow
-  if (s_deviceConfig.m_glXDestroyWindow)
+  if (!prototypeCalled && glxConfig.m_glXDestroyWindow)
   {
-    s_deviceConfig.m_glXDestroyWindow (dpy, win);
+    prototypeCalled = true;
+    glxConfig.m_glXDestroyWindow (dpy, win);
   }
 }
 
@@ -167,14 +177,15 @@ void  glew::glx::glXDestroyWindow (Display * dpy, GLXWindow win)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreatePixmap
-
-GLXPixmap glew::glx::glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attrib_list)
+GLXPixmap _glew_glx_glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attrib_list)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXCreatePixmap
-  if (s_deviceConfig.m_glXCreatePixmap)
+  if (!prototypeCalled && glxConfig.m_glXCreatePixmap)
   {
-    return s_deviceConfig.m_glXCreatePixmap (dpy, config, pixmap, attrib_list);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreatePixmap (dpy, config, pixmap, attrib_list);
   }
   return ((GLXPixmap)0);
 }
@@ -183,14 +194,15 @@ GLXPixmap glew::glx::glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXDestroyPixmap
-
-void  glew::glx::glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
+void  _glew_glx_glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXDestroyPixmap
-  if (s_deviceConfig.m_glXDestroyPixmap)
+  if (!prototypeCalled && glxConfig.m_glXDestroyPixmap)
   {
-    s_deviceConfig.m_glXDestroyPixmap (dpy, pixmap);
+    prototypeCalled = true;
+    glxConfig.m_glXDestroyPixmap (dpy, pixmap);
   }
 }
 
@@ -198,14 +210,15 @@ void  glew::glx::glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreatePbuffer
-
-GLXPbuffer glew::glx::glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attrib_list)
+GLXPbuffer _glew_glx_glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attrib_list)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXCreatePbuffer
-  if (s_deviceConfig.m_glXCreatePbuffer)
+  if (!prototypeCalled && glxConfig.m_glXCreatePbuffer)
   {
-    return s_deviceConfig.m_glXCreatePbuffer (dpy, config, attrib_list);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreatePbuffer (dpy, config, attrib_list);
   }
   return ((GLXPbuffer)0);
 }
@@ -214,14 +227,15 @@ GLXPbuffer glew::glx::glXCreatePbuffer (Display * dpy, GLXFBConfig config, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXDestroyPbuffer
-
-void  glew::glx::glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
+void  _glew_glx_glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXDestroyPbuffer
-  if (s_deviceConfig.m_glXDestroyPbuffer)
+  if (!prototypeCalled && glxConfig.m_glXDestroyPbuffer)
   {
-    s_deviceConfig.m_glXDestroyPbuffer (dpy, pbuf);
+    prototypeCalled = true;
+    glxConfig.m_glXDestroyPbuffer (dpy, pbuf);
   }
 }
 
@@ -229,14 +243,15 @@ void  glew::glx::glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryDrawable
-
-void  glew::glx::glXQueryDrawable (Display * dpy, GLXDrawable draw, int  attribute, unsigned int * value)
+void  _glew_glx_glXQueryDrawable (Display * dpy, GLXDrawable draw, int  attribute, unsigned int * value)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXQueryDrawable
-  if (s_deviceConfig.m_glXQueryDrawable)
+  if (!prototypeCalled && glxConfig.m_glXQueryDrawable)
   {
-    s_deviceConfig.m_glXQueryDrawable (dpy, draw, attribute, value);
+    prototypeCalled = true;
+    glxConfig.m_glXQueryDrawable (dpy, draw, attribute, value);
   }
 }
 
@@ -244,14 +259,15 @@ void  glew::glx::glXQueryDrawable (Display * dpy, GLXDrawable draw, int  attribu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateNewContext
-
-GLXContext glew::glx::glXCreateNewContext (Display * dpy, GLXFBConfig config, int  render_type, GLXContext share_list, Bool direct)
+GLXContext _glew_glx_glXCreateNewContext (Display * dpy, GLXFBConfig config, int  render_type, GLXContext share_list, Bool direct)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXCreateNewContext
-  if (s_deviceConfig.m_glXCreateNewContext)
+  if (!prototypeCalled && glxConfig.m_glXCreateNewContext)
   {
-    return s_deviceConfig.m_glXCreateNewContext (dpy, config, render_type, share_list, direct);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateNewContext (dpy, config, render_type, share_list, direct);
   }
   return ((GLXContext)0);
 }
@@ -260,14 +276,15 @@ GLXContext glew::glx::glXCreateNewContext (Display * dpy, GLXFBConfig config, in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXMakeContextCurrent
-
-Bool glew::glx::glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
+Bool _glew_glx_glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXMakeContextCurrent
-  if (s_deviceConfig.m_glXMakeContextCurrent)
+  if (!prototypeCalled && glxConfig.m_glXMakeContextCurrent)
   {
-    return s_deviceConfig.m_glXMakeContextCurrent (dpy, draw, read, ctx);
+    prototypeCalled = true;
+    return glxConfig.m_glXMakeContextCurrent (dpy, draw, read, ctx);
   }
   return ((Bool)0);
 }
@@ -276,14 +293,15 @@ Bool glew::glx::glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetCurrentReadDrawable
-
-GLXDrawable glew::glx::glXGetCurrentReadDrawable ()
+GLXDrawable _glew_glx_glXGetCurrentReadDrawable ()
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXGetCurrentReadDrawable
-  if (s_deviceConfig.m_glXGetCurrentReadDrawable)
+  if (!prototypeCalled && glxConfig.m_glXGetCurrentReadDrawable)
   {
-    return s_deviceConfig.m_glXGetCurrentReadDrawable ();
+    prototypeCalled = true;
+    return glxConfig.m_glXGetCurrentReadDrawable ();
   }
   return ((GLXDrawable)0);
 }
@@ -292,14 +310,15 @@ GLXDrawable glew::glx::glXGetCurrentReadDrawable ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryContext
-
-int  glew::glx::glXQueryContext (Display * dpy, GLXContext ctx, int  attribute, int * value)
+int  _glew_glx_glXQueryContext (Display * dpy, GLXContext ctx, int  attribute, int * value)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXQueryContext
-  if (s_deviceConfig.m_glXQueryContext)
+  if (!prototypeCalled && glxConfig.m_glXQueryContext)
   {
-    return s_deviceConfig.m_glXQueryContext (dpy, ctx, attribute, value);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryContext (dpy, ctx, attribute, value);
   }
   return ((int )0);
 }
@@ -308,14 +327,15 @@ int  glew::glx::glXQueryContext (Display * dpy, GLXContext ctx, int  attribute, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXSelectEvent
-
-void  glew::glx::glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long  event_mask)
+void  _glew_glx_glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long  event_mask)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXSelectEvent
-  if (s_deviceConfig.m_glXSelectEvent)
+  if (!prototypeCalled && glxConfig.m_glXSelectEvent)
   {
-    s_deviceConfig.m_glXSelectEvent (dpy, draw, event_mask);
+    prototypeCalled = true;
+    glxConfig.m_glXSelectEvent (dpy, draw, event_mask);
   }
 }
 
@@ -323,14 +343,15 @@ void  glew::glx::glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetSelectedEvent
-
-void  glew::glx::glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event_mask)
+void  _glew_glx_glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event_mask)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_3 - glXGetSelectedEvent
-  if (s_deviceConfig.m_glXGetSelectedEvent)
+  if (!prototypeCalled && glxConfig.m_glXGetSelectedEvent)
   {
-    s_deviceConfig.m_glXGetSelectedEvent (dpy, draw, event_mask);
+    prototypeCalled = true;
+    glxConfig.m_glXGetSelectedEvent (dpy, draw, event_mask);
   }
 }
 
@@ -338,14 +359,15 @@ void  glew::glx::glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetProcAddress
-
-__GLXextFuncPtr glew::glx::glXGetProcAddress (const GLubyte * procName)
+__GLXextFuncPtr _glew_glx_glXGetProcAddress (const GLubyte * procName)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_VERSION_1_4 - glXGetProcAddress
-  if (s_deviceConfig.m_glXGetProcAddress)
+  if (!prototypeCalled && glxConfig.m_glXGetProcAddress)
   {
-    return s_deviceConfig.m_glXGetProcAddress (procName);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetProcAddress (procName);
   }
   return ((__GLXextFuncPtr)0);
 }
@@ -354,14 +376,15 @@ __GLXextFuncPtr glew::glx::glXGetProcAddress (const GLubyte * procName)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetGPUIDsAMD
-
-unsigned int  glew::glx::glXGetGPUIDsAMD (unsigned int  maxCount, unsigned int * ids)
+unsigned int  _glew_glx_glXGetGPUIDsAMD (unsigned int  maxCount, unsigned int * ids)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_AMD_gpu_association - glXGetGPUIDsAMD
-  if (s_deviceConfig.m_glXGetGPUIDsAMD)
+  if (!prototypeCalled && glxConfig.m_glXGetGPUIDsAMD)
   {
-    return s_deviceConfig.m_glXGetGPUIDsAMD (maxCount, ids);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetGPUIDsAMD (maxCount, ids);
   }
   return ((unsigned int )0);
 }
@@ -370,14 +393,15 @@ unsigned int  glew::glx::glXGetGPUIDsAMD (unsigned int  maxCount, unsigned int *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetGPUInfoAMD
-
-int  glew::glx::glXGetGPUInfoAMD (unsigned int  id, int  property, GLenum dataType, unsigned int  size, void * data)
+int  _glew_glx_glXGetGPUInfoAMD (unsigned int  id, int  property, GLenum dataType, unsigned int  size, void * data)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_AMD_gpu_association - glXGetGPUInfoAMD
-  if (s_deviceConfig.m_glXGetGPUInfoAMD)
+  if (!prototypeCalled && glxConfig.m_glXGetGPUInfoAMD)
   {
-    return s_deviceConfig.m_glXGetGPUInfoAMD (id, property, dataType, size, data);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetGPUInfoAMD (id, property, dataType, size, data);
   }
   return ((int )0);
 }
@@ -386,14 +410,15 @@ int  glew::glx::glXGetGPUInfoAMD (unsigned int  id, int  property, GLenum dataTy
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetContextGPUIDAMD
-
-unsigned int  glew::glx::glXGetContextGPUIDAMD (GLXContext ctx)
+unsigned int  _glew_glx_glXGetContextGPUIDAMD (GLXContext ctx)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_AMD_gpu_association - glXGetContextGPUIDAMD
-  if (s_deviceConfig.m_glXGetContextGPUIDAMD)
+  if (!prototypeCalled && glxConfig.m_glXGetContextGPUIDAMD)
   {
-    return s_deviceConfig.m_glXGetContextGPUIDAMD (ctx);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetContextGPUIDAMD (ctx);
   }
   return ((unsigned int )0);
 }
@@ -402,14 +427,15 @@ unsigned int  glew::glx::glXGetContextGPUIDAMD (GLXContext ctx)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateAssociatedContextAMD
-
-GLXContext glew::glx::glXCreateAssociatedContextAMD (unsigned int  id, GLXContext share_list)
+GLXContext _glew_glx_glXCreateAssociatedContextAMD (unsigned int  id, GLXContext share_list)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_AMD_gpu_association - glXCreateAssociatedContextAMD
-  if (s_deviceConfig.m_glXCreateAssociatedContextAMD)
+  if (!prototypeCalled && glxConfig.m_glXCreateAssociatedContextAMD)
   {
-    return s_deviceConfig.m_glXCreateAssociatedContextAMD (id, share_list);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateAssociatedContextAMD (id, share_list);
   }
   return ((GLXContext)0);
 }
@@ -418,14 +444,15 @@ GLXContext glew::glx::glXCreateAssociatedContextAMD (unsigned int  id, GLXContex
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateAssociatedContextAttribsAMD
-
-GLXContext glew::glx::glXCreateAssociatedContextAttribsAMD (unsigned int  id, GLXContext share_context, const int * attribList)
+GLXContext _glew_glx_glXCreateAssociatedContextAttribsAMD (unsigned int  id, GLXContext share_context, const int * attribList)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_AMD_gpu_association - glXCreateAssociatedContextAttribsAMD
-  if (s_deviceConfig.m_glXCreateAssociatedContextAttribsAMD)
+  if (!prototypeCalled && glxConfig.m_glXCreateAssociatedContextAttribsAMD)
   {
-    return s_deviceConfig.m_glXCreateAssociatedContextAttribsAMD (id, share_context, attribList);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateAssociatedContextAttribsAMD (id, share_context, attribList);
   }
   return ((GLXContext)0);
 }
@@ -434,14 +461,15 @@ GLXContext glew::glx::glXCreateAssociatedContextAttribsAMD (unsigned int  id, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXDeleteAssociatedContextAMD
-
-Bool glew::glx::glXDeleteAssociatedContextAMD (GLXContext ctx)
+Bool _glew_glx_glXDeleteAssociatedContextAMD (GLXContext ctx)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_AMD_gpu_association - glXDeleteAssociatedContextAMD
-  if (s_deviceConfig.m_glXDeleteAssociatedContextAMD)
+  if (!prototypeCalled && glxConfig.m_glXDeleteAssociatedContextAMD)
   {
-    return s_deviceConfig.m_glXDeleteAssociatedContextAMD (ctx);
+    prototypeCalled = true;
+    return glxConfig.m_glXDeleteAssociatedContextAMD (ctx);
   }
   return ((Bool)0);
 }
@@ -450,14 +478,15 @@ Bool glew::glx::glXDeleteAssociatedContextAMD (GLXContext ctx)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXMakeAssociatedContextCurrentAMD
-
-Bool glew::glx::glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
+Bool _glew_glx_glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_AMD_gpu_association - glXMakeAssociatedContextCurrentAMD
-  if (s_deviceConfig.m_glXMakeAssociatedContextCurrentAMD)
+  if (!prototypeCalled && glxConfig.m_glXMakeAssociatedContextCurrentAMD)
   {
-    return s_deviceConfig.m_glXMakeAssociatedContextCurrentAMD (ctx);
+    prototypeCalled = true;
+    return glxConfig.m_glXMakeAssociatedContextCurrentAMD (ctx);
   }
   return ((Bool)0);
 }
@@ -466,14 +495,15 @@ Bool glew::glx::glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetCurrentAssociatedContextAMD
-
-GLXContext glew::glx::glXGetCurrentAssociatedContextAMD ()
+GLXContext _glew_glx_glXGetCurrentAssociatedContextAMD ()
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_AMD_gpu_association - glXGetCurrentAssociatedContextAMD
-  if (s_deviceConfig.m_glXGetCurrentAssociatedContextAMD)
+  if (!prototypeCalled && glxConfig.m_glXGetCurrentAssociatedContextAMD)
   {
-    return s_deviceConfig.m_glXGetCurrentAssociatedContextAMD ();
+    prototypeCalled = true;
+    return glxConfig.m_glXGetCurrentAssociatedContextAMD ();
   }
   return ((GLXContext)0);
 }
@@ -482,14 +512,15 @@ GLXContext glew::glx::glXGetCurrentAssociatedContextAMD ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXBlitContextFramebufferAMD
-
-void  glew::glx::glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
+void  _glew_glx_glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_AMD_gpu_association - glXBlitContextFramebufferAMD
-  if (s_deviceConfig.m_glXBlitContextFramebufferAMD)
+  if (!prototypeCalled && glxConfig.m_glXBlitContextFramebufferAMD)
   {
-    s_deviceConfig.m_glXBlitContextFramebufferAMD (dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+    prototypeCalled = true;
+    glxConfig.m_glXBlitContextFramebufferAMD (dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
 }
 
@@ -497,14 +528,15 @@ void  glew::glx::glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateContextAttribsARB
-
-GLXContext glew::glx::glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list)
+GLXContext _glew_glx_glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_ARB_create_context - glXCreateContextAttribsARB
-  if (s_deviceConfig.m_glXCreateContextAttribsARB)
+  if (!prototypeCalled && glxConfig.m_glXCreateContextAttribsARB)
   {
-    return s_deviceConfig.m_glXCreateContextAttribsARB (dpy, config, share_context, direct, attrib_list);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateContextAttribsARB (dpy, config, share_context, direct, attrib_list);
   }
   return ((GLXContext)0);
 }
@@ -513,14 +545,15 @@ GLXContext glew::glx::glXCreateContextAttribsARB (Display * dpy, GLXFBConfig con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetProcAddressARB
-
-__GLXextFuncPtr glew::glx::glXGetProcAddressARB (const GLubyte * procName)
+__GLXextFuncPtr _glew_glx_glXGetProcAddressARB (const GLubyte * procName)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_ARB_get_proc_address - glXGetProcAddressARB
-  if (s_deviceConfig.m_glXGetProcAddressARB)
+  if (!prototypeCalled && glxConfig.m_glXGetProcAddressARB)
   {
-    return s_deviceConfig.m_glXGetProcAddressARB (procName);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetProcAddressARB (procName);
   }
   return ((__GLXextFuncPtr)0);
 }
@@ -529,14 +562,15 @@ __GLXextFuncPtr glew::glx::glXGetProcAddressARB (const GLubyte * procName)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetCurrentDisplayEXT
-
-Display * glew::glx::glXGetCurrentDisplayEXT ()
+Display * _glew_glx_glXGetCurrentDisplayEXT ()
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_EXT_import_context - glXGetCurrentDisplayEXT
-  if (s_deviceConfig.m_glXGetCurrentDisplayEXT)
+  if (!prototypeCalled && glxConfig.m_glXGetCurrentDisplayEXT)
   {
-    return s_deviceConfig.m_glXGetCurrentDisplayEXT ();
+    prototypeCalled = true;
+    return glxConfig.m_glXGetCurrentDisplayEXT ();
   }
   return ((Display *)0);
 }
@@ -545,14 +579,15 @@ Display * glew::glx::glXGetCurrentDisplayEXT ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryContextInfoEXT
-
-int  glew::glx::glXQueryContextInfoEXT (Display * dpy, GLXContext context, int  attribute, int * value)
+int  _glew_glx_glXQueryContextInfoEXT (Display * dpy, GLXContext context, int  attribute, int * value)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_EXT_import_context - glXQueryContextInfoEXT
-  if (s_deviceConfig.m_glXQueryContextInfoEXT)
+  if (!prototypeCalled && glxConfig.m_glXQueryContextInfoEXT)
   {
-    return s_deviceConfig.m_glXQueryContextInfoEXT (dpy, context, attribute, value);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryContextInfoEXT (dpy, context, attribute, value);
   }
   return ((int )0);
 }
@@ -561,14 +596,15 @@ int  glew::glx::glXQueryContextInfoEXT (Display * dpy, GLXContext context, int  
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetContextIDEXT
-
-GLXContextID glew::glx::glXGetContextIDEXT (const GLXContext context)
+GLXContextID _glew_glx_glXGetContextIDEXT (const GLXContext context)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_EXT_import_context - glXGetContextIDEXT
-  if (s_deviceConfig.m_glXGetContextIDEXT)
+  if (!prototypeCalled && glxConfig.m_glXGetContextIDEXT)
   {
-    return s_deviceConfig.m_glXGetContextIDEXT (context);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetContextIDEXT (context);
   }
   return ((GLXContextID)0);
 }
@@ -577,14 +613,15 @@ GLXContextID glew::glx::glXGetContextIDEXT (const GLXContext context)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXImportContextEXT
-
-GLXContext glew::glx::glXImportContextEXT (Display * dpy, GLXContextID contextID)
+GLXContext _glew_glx_glXImportContextEXT (Display * dpy, GLXContextID contextID)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_EXT_import_context - glXImportContextEXT
-  if (s_deviceConfig.m_glXImportContextEXT)
+  if (!prototypeCalled && glxConfig.m_glXImportContextEXT)
   {
-    return s_deviceConfig.m_glXImportContextEXT (dpy, contextID);
+    prototypeCalled = true;
+    return glxConfig.m_glXImportContextEXT (dpy, contextID);
   }
   return ((GLXContext)0);
 }
@@ -593,14 +630,15 @@ GLXContext glew::glx::glXImportContextEXT (Display * dpy, GLXContextID contextID
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXFreeContextEXT
-
-void  glew::glx::glXFreeContextEXT (Display * dpy, GLXContext context)
+void  _glew_glx_glXFreeContextEXT (Display * dpy, GLXContext context)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_EXT_import_context - glXFreeContextEXT
-  if (s_deviceConfig.m_glXFreeContextEXT)
+  if (!prototypeCalled && glxConfig.m_glXFreeContextEXT)
   {
-    s_deviceConfig.m_glXFreeContextEXT (dpy, context);
+    prototypeCalled = true;
+    glxConfig.m_glXFreeContextEXT (dpy, context);
   }
 }
 
@@ -608,14 +646,15 @@ void  glew::glx::glXFreeContextEXT (Display * dpy, GLXContext context)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXSwapIntervalEXT
-
-void  glew::glx::glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int  interval)
+void  _glew_glx_glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int  interval)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_EXT_swap_control - glXSwapIntervalEXT
-  if (s_deviceConfig.m_glXSwapIntervalEXT)
+  if (!prototypeCalled && glxConfig.m_glXSwapIntervalEXT)
   {
-    s_deviceConfig.m_glXSwapIntervalEXT (dpy, drawable, interval);
+    prototypeCalled = true;
+    glxConfig.m_glXSwapIntervalEXT (dpy, drawable, interval);
   }
 }
 
@@ -623,14 +662,15 @@ void  glew::glx::glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int  i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXBindTexImageEXT
-
-void  glew::glx::glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int  buffer, const int * attrib_list)
+void  _glew_glx_glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int  buffer, const int * attrib_list)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_EXT_texture_from_pixmap - glXBindTexImageEXT
-  if (s_deviceConfig.m_glXBindTexImageEXT)
+  if (!prototypeCalled && glxConfig.m_glXBindTexImageEXT)
   {
-    s_deviceConfig.m_glXBindTexImageEXT (dpy, drawable, buffer, attrib_list);
+    prototypeCalled = true;
+    glxConfig.m_glXBindTexImageEXT (dpy, drawable, buffer, attrib_list);
   }
 }
 
@@ -638,14 +678,15 @@ void  glew::glx::glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int  b
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXReleaseTexImageEXT
-
-void  glew::glx::glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int  buffer)
+void  _glew_glx_glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int  buffer)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_EXT_texture_from_pixmap - glXReleaseTexImageEXT
-  if (s_deviceConfig.m_glXReleaseTexImageEXT)
+  if (!prototypeCalled && glxConfig.m_glXReleaseTexImageEXT)
   {
-    s_deviceConfig.m_glXReleaseTexImageEXT (dpy, drawable, buffer);
+    prototypeCalled = true;
+    glxConfig.m_glXReleaseTexImageEXT (dpy, drawable, buffer);
   }
 }
 
@@ -653,14 +694,15 @@ void  glew::glx::glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetAGPOffsetMESA
-
-unsigned int  glew::glx::glXGetAGPOffsetMESA (const void * pointer)
+unsigned int  _glew_glx_glXGetAGPOffsetMESA (const void * pointer)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_MESA_agp_offset - glXGetAGPOffsetMESA
-  if (s_deviceConfig.m_glXGetAGPOffsetMESA)
+  if (!prototypeCalled && glxConfig.m_glXGetAGPOffsetMESA)
   {
-    return s_deviceConfig.m_glXGetAGPOffsetMESA (pointer);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetAGPOffsetMESA (pointer);
   }
   return ((unsigned int )0);
 }
@@ -669,14 +711,15 @@ unsigned int  glew::glx::glXGetAGPOffsetMESA (const void * pointer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCopySubBufferMESA
-
-void  glew::glx::glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int  x, int  y, int  width, int  height)
+void  _glew_glx_glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int  x, int  y, int  width, int  height)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_MESA_copy_sub_buffer - glXCopySubBufferMESA
-  if (s_deviceConfig.m_glXCopySubBufferMESA)
+  if (!prototypeCalled && glxConfig.m_glXCopySubBufferMESA)
   {
-    s_deviceConfig.m_glXCopySubBufferMESA (dpy, drawable, x, y, width, height);
+    prototypeCalled = true;
+    glxConfig.m_glXCopySubBufferMESA (dpy, drawable, x, y, width, height);
   }
 }
 
@@ -684,14 +727,15 @@ void  glew::glx::glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateGLXPixmapMESA
-
-GLXPixmap glew::glx::glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap)
+GLXPixmap _glew_glx_glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_MESA_pixmap_colormap - glXCreateGLXPixmapMESA
-  if (s_deviceConfig.m_glXCreateGLXPixmapMESA)
+  if (!prototypeCalled && glxConfig.m_glXCreateGLXPixmapMESA)
   {
-    return s_deviceConfig.m_glXCreateGLXPixmapMESA (dpy, visual, pixmap, cmap);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateGLXPixmapMESA (dpy, visual, pixmap, cmap);
   }
   return ((GLXPixmap)0);
 }
@@ -700,14 +744,15 @@ GLXPixmap glew::glx::glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryCurrentRendererIntegerMESA
-
-Bool glew::glx::glXQueryCurrentRendererIntegerMESA (int  attribute, unsigned int * value)
+Bool _glew_glx_glXQueryCurrentRendererIntegerMESA (int  attribute, unsigned int * value)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_MESA_query_renderer - glXQueryCurrentRendererIntegerMESA
-  if (s_deviceConfig.m_glXQueryCurrentRendererIntegerMESA)
+  if (!prototypeCalled && glxConfig.m_glXQueryCurrentRendererIntegerMESA)
   {
-    return s_deviceConfig.m_glXQueryCurrentRendererIntegerMESA (attribute, value);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryCurrentRendererIntegerMESA (attribute, value);
   }
   return ((Bool)0);
 }
@@ -716,14 +761,15 @@ Bool glew::glx::glXQueryCurrentRendererIntegerMESA (int  attribute, unsigned int
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryCurrentRendererStringMESA
-
-const char * glew::glx::glXQueryCurrentRendererStringMESA (int  attribute)
+const char * _glew_glx_glXQueryCurrentRendererStringMESA (int  attribute)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_MESA_query_renderer - glXQueryCurrentRendererStringMESA
-  if (s_deviceConfig.m_glXQueryCurrentRendererStringMESA)
+  if (!prototypeCalled && glxConfig.m_glXQueryCurrentRendererStringMESA)
   {
-    return s_deviceConfig.m_glXQueryCurrentRendererStringMESA (attribute);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryCurrentRendererStringMESA (attribute);
   }
   return ((const char *)0);
 }
@@ -732,14 +778,15 @@ const char * glew::glx::glXQueryCurrentRendererStringMESA (int  attribute)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryRendererIntegerMESA
-
-Bool glew::glx::glXQueryRendererIntegerMESA (Display * dpy, int  screen, int  renderer, int  attribute, unsigned int * value)
+Bool _glew_glx_glXQueryRendererIntegerMESA (Display * dpy, int  screen, int  renderer, int  attribute, unsigned int * value)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_MESA_query_renderer - glXQueryRendererIntegerMESA
-  if (s_deviceConfig.m_glXQueryRendererIntegerMESA)
+  if (!prototypeCalled && glxConfig.m_glXQueryRendererIntegerMESA)
   {
-    return s_deviceConfig.m_glXQueryRendererIntegerMESA (dpy, screen, renderer, attribute, value);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryRendererIntegerMESA (dpy, screen, renderer, attribute, value);
   }
   return ((Bool)0);
 }
@@ -748,14 +795,15 @@ Bool glew::glx::glXQueryRendererIntegerMESA (Display * dpy, int  screen, int  re
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryRendererStringMESA
-
-const char * glew::glx::glXQueryRendererStringMESA (Display * dpy, int  screen, int  renderer, int  attribute)
+const char * _glew_glx_glXQueryRendererStringMESA (Display * dpy, int  screen, int  renderer, int  attribute)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_MESA_query_renderer - glXQueryRendererStringMESA
-  if (s_deviceConfig.m_glXQueryRendererStringMESA)
+  if (!prototypeCalled && glxConfig.m_glXQueryRendererStringMESA)
   {
-    return s_deviceConfig.m_glXQueryRendererStringMESA (dpy, screen, renderer, attribute);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryRendererStringMESA (dpy, screen, renderer, attribute);
   }
   return ((const char *)0);
 }
@@ -764,14 +812,15 @@ const char * glew::glx::glXQueryRendererStringMESA (Display * dpy, int  screen, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXReleaseBuffersMESA
-
-Bool glew::glx::glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
+Bool _glew_glx_glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_MESA_release_buffers - glXReleaseBuffersMESA
-  if (s_deviceConfig.m_glXReleaseBuffersMESA)
+  if (!prototypeCalled && glxConfig.m_glXReleaseBuffersMESA)
   {
-    return s_deviceConfig.m_glXReleaseBuffersMESA (dpy, drawable);
+    prototypeCalled = true;
+    return glxConfig.m_glXReleaseBuffersMESA (dpy, drawable);
   }
   return ((Bool)0);
 }
@@ -780,14 +829,15 @@ Bool glew::glx::glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXSet3DfxModeMESA
-
-Bool glew::glx::glXSet3DfxModeMESA (int  mode)
+Bool _glew_glx_glXSet3DfxModeMESA (int  mode)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_MESA_set_3dfx_mode - glXSet3DfxModeMESA
-  if (s_deviceConfig.m_glXSet3DfxModeMESA)
+  if (!prototypeCalled && glxConfig.m_glXSet3DfxModeMESA)
   {
-    return s_deviceConfig.m_glXSet3DfxModeMESA (mode);
+    prototypeCalled = true;
+    return glxConfig.m_glXSet3DfxModeMESA (mode);
   }
   return ((Bool)0);
 }
@@ -796,14 +846,15 @@ Bool glew::glx::glXSet3DfxModeMESA (int  mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCopyBufferSubDataNV
-
-void  glew::glx::glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
+void  _glew_glx_glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_copy_buffer - glXCopyBufferSubDataNV
-  if (s_deviceConfig.m_glXCopyBufferSubDataNV)
+  if (!prototypeCalled && glxConfig.m_glXCopyBufferSubDataNV)
   {
-    s_deviceConfig.m_glXCopyBufferSubDataNV (dpy, readCtx, writeCtx, readTarget, writeTarget, readOffset, writeOffset, size);
+    prototypeCalled = true;
+    glxConfig.m_glXCopyBufferSubDataNV (dpy, readCtx, writeCtx, readTarget, writeTarget, readOffset, writeOffset, size);
   }
 }
 
@@ -811,14 +862,15 @@ void  glew::glx::glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXC
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXNamedCopyBufferSubDataNV
-
-void  glew::glx::glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
+void  _glew_glx_glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_copy_buffer - glXNamedCopyBufferSubDataNV
-  if (s_deviceConfig.m_glXNamedCopyBufferSubDataNV)
+  if (!prototypeCalled && glxConfig.m_glXNamedCopyBufferSubDataNV)
   {
-    s_deviceConfig.m_glXNamedCopyBufferSubDataNV (dpy, readCtx, writeCtx, readBuffer, writeBuffer, readOffset, writeOffset, size);
+    prototypeCalled = true;
+    glxConfig.m_glXNamedCopyBufferSubDataNV (dpy, readCtx, writeCtx, readBuffer, writeBuffer, readOffset, writeOffset, size);
   }
 }
 
@@ -826,14 +878,15 @@ void  glew::glx::glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCopyImageSubDataNV
-
-void  glew::glx::glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth)
+void  _glew_glx_glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_copy_image - glXCopyImageSubDataNV
-  if (s_deviceConfig.m_glXCopyImageSubDataNV)
+  if (!prototypeCalled && glxConfig.m_glXCopyImageSubDataNV)
   {
-    s_deviceConfig.m_glXCopyImageSubDataNV (dpy, srcCtx, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstCtx, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
+    prototypeCalled = true;
+    glxConfig.m_glXCopyImageSubDataNV (dpy, srcCtx, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstCtx, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
   }
 }
 
@@ -841,14 +894,15 @@ void  glew::glx::glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXDelayBeforeSwapNV
-
-Bool glew::glx::glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds)
+Bool _glew_glx_glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_delay_before_swap - glXDelayBeforeSwapNV
-  if (s_deviceConfig.m_glXDelayBeforeSwapNV)
+  if (!prototypeCalled && glxConfig.m_glXDelayBeforeSwapNV)
   {
-    return s_deviceConfig.m_glXDelayBeforeSwapNV (dpy, drawable, seconds);
+    prototypeCalled = true;
+    return glxConfig.m_glXDelayBeforeSwapNV (dpy, drawable, seconds);
   }
   return ((Bool)0);
 }
@@ -857,14 +911,15 @@ Bool glew::glx::glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLflo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXEnumerateVideoDevicesNV
-
-unsigned int * glew::glx::glXEnumerateVideoDevicesNV (Display * dpy, int  screen, int * nelements)
+unsigned int * _glew_glx_glXEnumerateVideoDevicesNV (Display * dpy, int  screen, int * nelements)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_present_video - glXEnumerateVideoDevicesNV
-  if (s_deviceConfig.m_glXEnumerateVideoDevicesNV)
+  if (!prototypeCalled && glxConfig.m_glXEnumerateVideoDevicesNV)
   {
-    return s_deviceConfig.m_glXEnumerateVideoDevicesNV (dpy, screen, nelements);
+    prototypeCalled = true;
+    return glxConfig.m_glXEnumerateVideoDevicesNV (dpy, screen, nelements);
   }
   return ((unsigned int *)0);
 }
@@ -873,14 +928,15 @@ unsigned int * glew::glx::glXEnumerateVideoDevicesNV (Display * dpy, int  screen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXBindVideoDeviceNV
-
-int  glew::glx::glXBindVideoDeviceNV (Display * dpy, unsigned int  video_slot, unsigned int  video_device, const int * attrib_list)
+int  _glew_glx_glXBindVideoDeviceNV (Display * dpy, unsigned int  video_slot, unsigned int  video_device, const int * attrib_list)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_present_video - glXBindVideoDeviceNV
-  if (s_deviceConfig.m_glXBindVideoDeviceNV)
+  if (!prototypeCalled && glxConfig.m_glXBindVideoDeviceNV)
   {
-    return s_deviceConfig.m_glXBindVideoDeviceNV (dpy, video_slot, video_device, attrib_list);
+    prototypeCalled = true;
+    return glxConfig.m_glXBindVideoDeviceNV (dpy, video_slot, video_device, attrib_list);
   }
   return ((int )0);
 }
@@ -889,14 +945,15 @@ int  glew::glx::glXBindVideoDeviceNV (Display * dpy, unsigned int  video_slot, u
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXJoinSwapGroupNV
-
-Bool glew::glx::glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group)
+Bool _glew_glx_glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_swap_group - glXJoinSwapGroupNV
-  if (s_deviceConfig.m_glXJoinSwapGroupNV)
+  if (!prototypeCalled && glxConfig.m_glXJoinSwapGroupNV)
   {
-    return s_deviceConfig.m_glXJoinSwapGroupNV (dpy, drawable, group);
+    prototypeCalled = true;
+    return glxConfig.m_glXJoinSwapGroupNV (dpy, drawable, group);
   }
   return ((Bool)0);
 }
@@ -905,14 +962,15 @@ Bool glew::glx::glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXBindSwapBarrierNV
-
-Bool glew::glx::glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier)
+Bool _glew_glx_glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_swap_group - glXBindSwapBarrierNV
-  if (s_deviceConfig.m_glXBindSwapBarrierNV)
+  if (!prototypeCalled && glxConfig.m_glXBindSwapBarrierNV)
   {
-    return s_deviceConfig.m_glXBindSwapBarrierNV (dpy, group, barrier);
+    prototypeCalled = true;
+    return glxConfig.m_glXBindSwapBarrierNV (dpy, group, barrier);
   }
   return ((Bool)0);
 }
@@ -921,14 +979,15 @@ Bool glew::glx::glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrie
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQuerySwapGroupNV
-
-Bool glew::glx::glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier)
+Bool _glew_glx_glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_swap_group - glXQuerySwapGroupNV
-  if (s_deviceConfig.m_glXQuerySwapGroupNV)
+  if (!prototypeCalled && glxConfig.m_glXQuerySwapGroupNV)
   {
-    return s_deviceConfig.m_glXQuerySwapGroupNV (dpy, drawable, group, barrier);
+    prototypeCalled = true;
+    return glxConfig.m_glXQuerySwapGroupNV (dpy, drawable, group, barrier);
   }
   return ((Bool)0);
 }
@@ -937,14 +996,15 @@ Bool glew::glx::glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryMaxSwapGroupsNV
-
-Bool glew::glx::glXQueryMaxSwapGroupsNV (Display * dpy, int  screen, GLuint * maxGroups, GLuint * maxBarriers)
+Bool _glew_glx_glXQueryMaxSwapGroupsNV (Display * dpy, int  screen, GLuint * maxGroups, GLuint * maxBarriers)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_swap_group - glXQueryMaxSwapGroupsNV
-  if (s_deviceConfig.m_glXQueryMaxSwapGroupsNV)
+  if (!prototypeCalled && glxConfig.m_glXQueryMaxSwapGroupsNV)
   {
-    return s_deviceConfig.m_glXQueryMaxSwapGroupsNV (dpy, screen, maxGroups, maxBarriers);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryMaxSwapGroupsNV (dpy, screen, maxGroups, maxBarriers);
   }
   return ((Bool)0);
 }
@@ -953,14 +1013,15 @@ Bool glew::glx::glXQueryMaxSwapGroupsNV (Display * dpy, int  screen, GLuint * ma
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryFrameCountNV
-
-Bool glew::glx::glXQueryFrameCountNV (Display * dpy, int  screen, GLuint * count)
+Bool _glew_glx_glXQueryFrameCountNV (Display * dpy, int  screen, GLuint * count)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_swap_group - glXQueryFrameCountNV
-  if (s_deviceConfig.m_glXQueryFrameCountNV)
+  if (!prototypeCalled && glxConfig.m_glXQueryFrameCountNV)
   {
-    return s_deviceConfig.m_glXQueryFrameCountNV (dpy, screen, count);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryFrameCountNV (dpy, screen, count);
   }
   return ((Bool)0);
 }
@@ -969,14 +1030,15 @@ Bool glew::glx::glXQueryFrameCountNV (Display * dpy, int  screen, GLuint * count
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXResetFrameCountNV
-
-Bool glew::glx::glXResetFrameCountNV (Display * dpy, int  screen)
+Bool _glew_glx_glXResetFrameCountNV (Display * dpy, int  screen)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_swap_group - glXResetFrameCountNV
-  if (s_deviceConfig.m_glXResetFrameCountNV)
+  if (!prototypeCalled && glxConfig.m_glXResetFrameCountNV)
   {
-    return s_deviceConfig.m_glXResetFrameCountNV (dpy, screen);
+    prototypeCalled = true;
+    return glxConfig.m_glXResetFrameCountNV (dpy, screen);
   }
   return ((Bool)0);
 }
@@ -985,14 +1047,15 @@ Bool glew::glx::glXResetFrameCountNV (Display * dpy, int  screen)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXBindVideoCaptureDeviceNV
-
-int  glew::glx::glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int  video_capture_slot, GLXVideoCaptureDeviceNV device)
+int  _glew_glx_glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int  video_capture_slot, GLXVideoCaptureDeviceNV device)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_capture - glXBindVideoCaptureDeviceNV
-  if (s_deviceConfig.m_glXBindVideoCaptureDeviceNV)
+  if (!prototypeCalled && glxConfig.m_glXBindVideoCaptureDeviceNV)
   {
-    return s_deviceConfig.m_glXBindVideoCaptureDeviceNV (dpy, video_capture_slot, device);
+    prototypeCalled = true;
+    return glxConfig.m_glXBindVideoCaptureDeviceNV (dpy, video_capture_slot, device);
   }
   return ((int )0);
 }
@@ -1001,14 +1064,15 @@ int  glew::glx::glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int  video_
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXEnumerateVideoCaptureDevicesNV
-
-GLXVideoCaptureDeviceNV * glew::glx::glXEnumerateVideoCaptureDevicesNV (Display * dpy, int  screen, int * nelements)
+GLXVideoCaptureDeviceNV * _glew_glx_glXEnumerateVideoCaptureDevicesNV (Display * dpy, int  screen, int * nelements)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_capture - glXEnumerateVideoCaptureDevicesNV
-  if (s_deviceConfig.m_glXEnumerateVideoCaptureDevicesNV)
+  if (!prototypeCalled && glxConfig.m_glXEnumerateVideoCaptureDevicesNV)
   {
-    return s_deviceConfig.m_glXEnumerateVideoCaptureDevicesNV (dpy, screen, nelements);
+    prototypeCalled = true;
+    return glxConfig.m_glXEnumerateVideoCaptureDevicesNV (dpy, screen, nelements);
   }
   return ((GLXVideoCaptureDeviceNV *)0);
 }
@@ -1017,14 +1081,15 @@ GLXVideoCaptureDeviceNV * glew::glx::glXEnumerateVideoCaptureDevicesNV (Display 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXLockVideoCaptureDeviceNV
-
-void  glew::glx::glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
+void  _glew_glx_glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_capture - glXLockVideoCaptureDeviceNV
-  if (s_deviceConfig.m_glXLockVideoCaptureDeviceNV)
+  if (!prototypeCalled && glxConfig.m_glXLockVideoCaptureDeviceNV)
   {
-    s_deviceConfig.m_glXLockVideoCaptureDeviceNV (dpy, device);
+    prototypeCalled = true;
+    glxConfig.m_glXLockVideoCaptureDeviceNV (dpy, device);
   }
 }
 
@@ -1032,14 +1097,15 @@ void  glew::glx::glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDevi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryVideoCaptureDeviceNV
-
-int  glew::glx::glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device, int  attribute, int * value)
+int  _glew_glx_glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device, int  attribute, int * value)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_capture - glXQueryVideoCaptureDeviceNV
-  if (s_deviceConfig.m_glXQueryVideoCaptureDeviceNV)
+  if (!prototypeCalled && glxConfig.m_glXQueryVideoCaptureDeviceNV)
   {
-    return s_deviceConfig.m_glXQueryVideoCaptureDeviceNV (dpy, device, attribute, value);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryVideoCaptureDeviceNV (dpy, device, attribute, value);
   }
   return ((int )0);
 }
@@ -1048,14 +1114,15 @@ int  glew::glx::glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDevi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXReleaseVideoCaptureDeviceNV
-
-void  glew::glx::glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
+void  _glew_glx_glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_capture - glXReleaseVideoCaptureDeviceNV
-  if (s_deviceConfig.m_glXReleaseVideoCaptureDeviceNV)
+  if (!prototypeCalled && glxConfig.m_glXReleaseVideoCaptureDeviceNV)
   {
-    s_deviceConfig.m_glXReleaseVideoCaptureDeviceNV (dpy, device);
+    prototypeCalled = true;
+    glxConfig.m_glXReleaseVideoCaptureDeviceNV (dpy, device);
   }
 }
 
@@ -1063,14 +1130,15 @@ void  glew::glx::glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureD
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetVideoDeviceNV
-
-int  glew::glx::glXGetVideoDeviceNV (Display * dpy, int  screen, int  numVideoDevices, GLXVideoDeviceNV * pVideoDevice)
+int  _glew_glx_glXGetVideoDeviceNV (Display * dpy, int  screen, int  numVideoDevices, GLXVideoDeviceNV * pVideoDevice)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_out - glXGetVideoDeviceNV
-  if (s_deviceConfig.m_glXGetVideoDeviceNV)
+  if (!prototypeCalled && glxConfig.m_glXGetVideoDeviceNV)
   {
-    return s_deviceConfig.m_glXGetVideoDeviceNV (dpy, screen, numVideoDevices, pVideoDevice);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetVideoDeviceNV (dpy, screen, numVideoDevices, pVideoDevice);
   }
   return ((int )0);
 }
@@ -1079,14 +1147,15 @@ int  glew::glx::glXGetVideoDeviceNV (Display * dpy, int  screen, int  numVideoDe
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXReleaseVideoDeviceNV
-
-int  glew::glx::glXReleaseVideoDeviceNV (Display * dpy, int  screen, GLXVideoDeviceNV VideoDevice)
+int  _glew_glx_glXReleaseVideoDeviceNV (Display * dpy, int  screen, GLXVideoDeviceNV VideoDevice)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_out - glXReleaseVideoDeviceNV
-  if (s_deviceConfig.m_glXReleaseVideoDeviceNV)
+  if (!prototypeCalled && glxConfig.m_glXReleaseVideoDeviceNV)
   {
-    return s_deviceConfig.m_glXReleaseVideoDeviceNV (dpy, screen, VideoDevice);
+    prototypeCalled = true;
+    return glxConfig.m_glXReleaseVideoDeviceNV (dpy, screen, VideoDevice);
   }
   return ((int )0);
 }
@@ -1095,14 +1164,15 @@ int  glew::glx::glXReleaseVideoDeviceNV (Display * dpy, int  screen, GLXVideoDev
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXBindVideoImageNV
-
-int  glew::glx::glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int  iVideoBuffer)
+int  _glew_glx_glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int  iVideoBuffer)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_out - glXBindVideoImageNV
-  if (s_deviceConfig.m_glXBindVideoImageNV)
+  if (!prototypeCalled && glxConfig.m_glXBindVideoImageNV)
   {
-    return s_deviceConfig.m_glXBindVideoImageNV (dpy, VideoDevice, pbuf, iVideoBuffer);
+    prototypeCalled = true;
+    return glxConfig.m_glXBindVideoImageNV (dpy, VideoDevice, pbuf, iVideoBuffer);
   }
   return ((int )0);
 }
@@ -1111,14 +1181,15 @@ int  glew::glx::glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXReleaseVideoImageNV
-
-int  glew::glx::glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
+int  _glew_glx_glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_out - glXReleaseVideoImageNV
-  if (s_deviceConfig.m_glXReleaseVideoImageNV)
+  if (!prototypeCalled && glxConfig.m_glXReleaseVideoImageNV)
   {
-    return s_deviceConfig.m_glXReleaseVideoImageNV (dpy, pbuf);
+    prototypeCalled = true;
+    return glxConfig.m_glXReleaseVideoImageNV (dpy, pbuf);
   }
   return ((int )0);
 }
@@ -1127,14 +1198,15 @@ int  glew::glx::glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXSendPbufferToVideoNV
-
-int  glew::glx::glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int  iBufferType, unsigned long * pulCounterPbuffer, GLboolean bBlock)
+int  _glew_glx_glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int  iBufferType, unsigned long * pulCounterPbuffer, GLboolean bBlock)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_out - glXSendPbufferToVideoNV
-  if (s_deviceConfig.m_glXSendPbufferToVideoNV)
+  if (!prototypeCalled && glxConfig.m_glXSendPbufferToVideoNV)
   {
-    return s_deviceConfig.m_glXSendPbufferToVideoNV (dpy, pbuf, iBufferType, pulCounterPbuffer, bBlock);
+    prototypeCalled = true;
+    return glxConfig.m_glXSendPbufferToVideoNV (dpy, pbuf, iBufferType, pulCounterPbuffer, bBlock);
   }
   return ((int )0);
 }
@@ -1143,14 +1215,15 @@ int  glew::glx::glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int  iB
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetVideoInfoNV
-
-int  glew::glx::glXGetVideoInfoNV (Display * dpy, int  screen, GLXVideoDeviceNV VideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo)
+int  _glew_glx_glXGetVideoInfoNV (Display * dpy, int  screen, GLXVideoDeviceNV VideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_NV_video_out - glXGetVideoInfoNV
-  if (s_deviceConfig.m_glXGetVideoInfoNV)
+  if (!prototypeCalled && glxConfig.m_glXGetVideoInfoNV)
   {
-    return s_deviceConfig.m_glXGetVideoInfoNV (dpy, screen, VideoDevice, pulCounterOutputPbuffer, pulCounterOutputVideo);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetVideoInfoNV (dpy, screen, VideoDevice, pulCounterOutputPbuffer, pulCounterOutputVideo);
   }
   return ((int )0);
 }
@@ -1159,14 +1232,15 @@ int  glew::glx::glXGetVideoInfoNV (Display * dpy, int  screen, GLXVideoDeviceNV 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetSyncValuesOML
-
-Bool glew::glx::glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc)
+Bool _glew_glx_glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_OML_sync_control - glXGetSyncValuesOML
-  if (s_deviceConfig.m_glXGetSyncValuesOML)
+  if (!prototypeCalled && glxConfig.m_glXGetSyncValuesOML)
   {
-    return s_deviceConfig.m_glXGetSyncValuesOML (dpy, drawable, ust, msc, sbc);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetSyncValuesOML (dpy, drawable, ust, msc, sbc);
   }
   return ((Bool)0);
 }
@@ -1175,14 +1249,15 @@ Bool glew::glx::glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetMscRateOML
-
-Bool glew::glx::glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator)
+Bool _glew_glx_glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_OML_sync_control - glXGetMscRateOML
-  if (s_deviceConfig.m_glXGetMscRateOML)
+  if (!prototypeCalled && glxConfig.m_glXGetMscRateOML)
   {
-    return s_deviceConfig.m_glXGetMscRateOML (dpy, drawable, numerator, denominator);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetMscRateOML (dpy, drawable, numerator, denominator);
   }
   return ((Bool)0);
 }
@@ -1191,14 +1266,15 @@ Bool glew::glx::glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXSwapBuffersMscOML
-
-int64_t glew::glx::glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder)
+int64_t _glew_glx_glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_OML_sync_control - glXSwapBuffersMscOML
-  if (s_deviceConfig.m_glXSwapBuffersMscOML)
+  if (!prototypeCalled && glxConfig.m_glXSwapBuffersMscOML)
   {
-    return s_deviceConfig.m_glXSwapBuffersMscOML (dpy, drawable, target_msc, divisor, remainder);
+    prototypeCalled = true;
+    return glxConfig.m_glXSwapBuffersMscOML (dpy, drawable, target_msc, divisor, remainder);
   }
   return ((int64_t)0);
 }
@@ -1207,14 +1283,15 @@ int64_t glew::glx::glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXWaitForMscOML
-
-Bool glew::glx::glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc)
+Bool _glew_glx_glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_OML_sync_control - glXWaitForMscOML
-  if (s_deviceConfig.m_glXWaitForMscOML)
+  if (!prototypeCalled && glxConfig.m_glXWaitForMscOML)
   {
-    return s_deviceConfig.m_glXWaitForMscOML (dpy, drawable, target_msc, divisor, remainder, ust, msc, sbc);
+    prototypeCalled = true;
+    return glxConfig.m_glXWaitForMscOML (dpy, drawable, target_msc, divisor, remainder, ust, msc, sbc);
   }
   return ((Bool)0);
 }
@@ -1223,14 +1300,15 @@ Bool glew::glx::glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t t
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXWaitForSbcOML
-
-Bool glew::glx::glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc)
+Bool _glew_glx_glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_OML_sync_control - glXWaitForSbcOML
-  if (s_deviceConfig.m_glXWaitForSbcOML)
+  if (!prototypeCalled && glxConfig.m_glXWaitForSbcOML)
   {
-    return s_deviceConfig.m_glXWaitForSbcOML (dpy, drawable, target_sbc, ust, msc, sbc);
+    prototypeCalled = true;
+    return glxConfig.m_glXWaitForSbcOML (dpy, drawable, target_sbc, ust, msc, sbc);
   }
   return ((Bool)0);
 }
@@ -1239,14 +1317,15 @@ Bool glew::glx::glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t t
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCushionSGI
-
-void  glew::glx::glXCushionSGI (Display * dpy, Window window, float  cushion)
+void  _glew_glx_glXCushionSGI (Display * dpy, Window window, float  cushion)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGI_cushion - glXCushionSGI
-  if (s_deviceConfig.m_glXCushionSGI)
+  if (!prototypeCalled && glxConfig.m_glXCushionSGI)
   {
-    s_deviceConfig.m_glXCushionSGI (dpy, window, cushion);
+    prototypeCalled = true;
+    glxConfig.m_glXCushionSGI (dpy, window, cushion);
   }
 }
 
@@ -1254,14 +1333,15 @@ void  glew::glx::glXCushionSGI (Display * dpy, Window window, float  cushion)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXMakeCurrentReadSGI
-
-Bool glew::glx::glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
+Bool _glew_glx_glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGI_make_current_read - glXMakeCurrentReadSGI
-  if (s_deviceConfig.m_glXMakeCurrentReadSGI)
+  if (!prototypeCalled && glxConfig.m_glXMakeCurrentReadSGI)
   {
-    return s_deviceConfig.m_glXMakeCurrentReadSGI (dpy, draw, read, ctx);
+    prototypeCalled = true;
+    return glxConfig.m_glXMakeCurrentReadSGI (dpy, draw, read, ctx);
   }
   return ((Bool)0);
 }
@@ -1270,14 +1350,15 @@ Bool glew::glx::glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetCurrentReadDrawableSGI
-
-GLXDrawable glew::glx::glXGetCurrentReadDrawableSGI ()
+GLXDrawable _glew_glx_glXGetCurrentReadDrawableSGI ()
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGI_make_current_read - glXGetCurrentReadDrawableSGI
-  if (s_deviceConfig.m_glXGetCurrentReadDrawableSGI)
+  if (!prototypeCalled && glxConfig.m_glXGetCurrentReadDrawableSGI)
   {
-    return s_deviceConfig.m_glXGetCurrentReadDrawableSGI ();
+    prototypeCalled = true;
+    return glxConfig.m_glXGetCurrentReadDrawableSGI ();
   }
   return ((GLXDrawable)0);
 }
@@ -1286,14 +1367,15 @@ GLXDrawable glew::glx::glXGetCurrentReadDrawableSGI ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXSwapIntervalSGI
-
-int  glew::glx::glXSwapIntervalSGI (int  interval)
+int  _glew_glx_glXSwapIntervalSGI (int  interval)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGI_swap_control - glXSwapIntervalSGI
-  if (s_deviceConfig.m_glXSwapIntervalSGI)
+  if (!prototypeCalled && glxConfig.m_glXSwapIntervalSGI)
   {
-    return s_deviceConfig.m_glXSwapIntervalSGI (interval);
+    prototypeCalled = true;
+    return glxConfig.m_glXSwapIntervalSGI (interval);
   }
   return ((int )0);
 }
@@ -1302,14 +1384,15 @@ int  glew::glx::glXSwapIntervalSGI (int  interval)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetVideoSyncSGI
-
-int  glew::glx::glXGetVideoSyncSGI (unsigned int * count)
+int  _glew_glx_glXGetVideoSyncSGI (unsigned int * count)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGI_video_sync - glXGetVideoSyncSGI
-  if (s_deviceConfig.m_glXGetVideoSyncSGI)
+  if (!prototypeCalled && glxConfig.m_glXGetVideoSyncSGI)
   {
-    return s_deviceConfig.m_glXGetVideoSyncSGI (count);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetVideoSyncSGI (count);
   }
   return ((int )0);
 }
@@ -1318,14 +1401,15 @@ int  glew::glx::glXGetVideoSyncSGI (unsigned int * count)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXWaitVideoSyncSGI
-
-int  glew::glx::glXWaitVideoSyncSGI (int  divisor, int  remainder, unsigned int * count)
+int  _glew_glx_glXWaitVideoSyncSGI (int  divisor, int  remainder, unsigned int * count)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGI_video_sync - glXWaitVideoSyncSGI
-  if (s_deviceConfig.m_glXWaitVideoSyncSGI)
+  if (!prototypeCalled && glxConfig.m_glXWaitVideoSyncSGI)
   {
-    return s_deviceConfig.m_glXWaitVideoSyncSGI (divisor, remainder, count);
+    prototypeCalled = true;
+    return glxConfig.m_glXWaitVideoSyncSGI (divisor, remainder, count);
   }
   return ((int )0);
 }
@@ -1334,14 +1418,15 @@ int  glew::glx::glXWaitVideoSyncSGI (int  divisor, int  remainder, unsigned int 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXAssociateDMPbufferSGIX
-
-Bool glew::glx::glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams * params, DMbuffer dmbuffer)
+Bool _glew_glx_glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams * params, DMbuffer dmbuffer)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_dmbuffer - glXAssociateDMPbufferSGIX
-  if (s_deviceConfig.m_glXAssociateDMPbufferSGIX)
+  if (!prototypeCalled && glxConfig.m_glXAssociateDMPbufferSGIX)
   {
-    return s_deviceConfig.m_glXAssociateDMPbufferSGIX (dpy, pbuffer, params, dmbuffer);
+    prototypeCalled = true;
+    return glxConfig.m_glXAssociateDMPbufferSGIX (dpy, pbuffer, params, dmbuffer);
   }
   return ((Bool)0);
 }
@@ -1350,14 +1435,15 @@ Bool glew::glx::glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetFBConfigAttribSGIX
-
-int  glew::glx::glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int  attribute, int * value)
+int  _glew_glx_glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int  attribute, int * value)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_fbconfig - glXGetFBConfigAttribSGIX
-  if (s_deviceConfig.m_glXGetFBConfigAttribSGIX)
+  if (!prototypeCalled && glxConfig.m_glXGetFBConfigAttribSGIX)
   {
-    return s_deviceConfig.m_glXGetFBConfigAttribSGIX (dpy, config, attribute, value);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetFBConfigAttribSGIX (dpy, config, attribute, value);
   }
   return ((int )0);
 }
@@ -1366,14 +1452,15 @@ int  glew::glx::glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXChooseFBConfigSGIX
-
-GLXFBConfigSGIX * glew::glx::glXChooseFBConfigSGIX (Display * dpy, int  screen, int * attrib_list, int * nelements)
+GLXFBConfigSGIX * _glew_glx_glXChooseFBConfigSGIX (Display * dpy, int  screen, int * attrib_list, int * nelements)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_fbconfig - glXChooseFBConfigSGIX
-  if (s_deviceConfig.m_glXChooseFBConfigSGIX)
+  if (!prototypeCalled && glxConfig.m_glXChooseFBConfigSGIX)
   {
-    return s_deviceConfig.m_glXChooseFBConfigSGIX (dpy, screen, attrib_list, nelements);
+    prototypeCalled = true;
+    return glxConfig.m_glXChooseFBConfigSGIX (dpy, screen, attrib_list, nelements);
   }
   return ((GLXFBConfigSGIX *)0);
 }
@@ -1382,14 +1469,15 @@ GLXFBConfigSGIX * glew::glx::glXChooseFBConfigSGIX (Display * dpy, int  screen, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateGLXPixmapWithConfigSGIX
-
-GLXPixmap glew::glx::glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap)
+GLXPixmap _glew_glx_glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_fbconfig - glXCreateGLXPixmapWithConfigSGIX
-  if (s_deviceConfig.m_glXCreateGLXPixmapWithConfigSGIX)
+  if (!prototypeCalled && glxConfig.m_glXCreateGLXPixmapWithConfigSGIX)
   {
-    return s_deviceConfig.m_glXCreateGLXPixmapWithConfigSGIX (dpy, config, pixmap);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateGLXPixmapWithConfigSGIX (dpy, config, pixmap);
   }
   return ((GLXPixmap)0);
 }
@@ -1398,14 +1486,15 @@ GLXPixmap glew::glx::glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateContextWithConfigSGIX
-
-GLXContext glew::glx::glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, int  render_type, GLXContext share_list, Bool direct)
+GLXContext _glew_glx_glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, int  render_type, GLXContext share_list, Bool direct)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_fbconfig - glXCreateContextWithConfigSGIX
-  if (s_deviceConfig.m_glXCreateContextWithConfigSGIX)
+  if (!prototypeCalled && glxConfig.m_glXCreateContextWithConfigSGIX)
   {
-    return s_deviceConfig.m_glXCreateContextWithConfigSGIX (dpy, config, render_type, share_list, direct);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateContextWithConfigSGIX (dpy, config, render_type, share_list, direct);
   }
   return ((GLXContext)0);
 }
@@ -1414,14 +1503,15 @@ GLXContext glew::glx::glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfig
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetVisualFromFBConfigSGIX
-
-XVisualInfo * glew::glx::glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX config)
+XVisualInfo * _glew_glx_glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX config)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_fbconfig - glXGetVisualFromFBConfigSGIX
-  if (s_deviceConfig.m_glXGetVisualFromFBConfigSGIX)
+  if (!prototypeCalled && glxConfig.m_glXGetVisualFromFBConfigSGIX)
   {
-    return s_deviceConfig.m_glXGetVisualFromFBConfigSGIX (dpy, config);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetVisualFromFBConfigSGIX (dpy, config);
   }
   return ((XVisualInfo *)0);
 }
@@ -1430,14 +1520,15 @@ XVisualInfo * glew::glx::glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetFBConfigFromVisualSGIX
-
-GLXFBConfigSGIX glew::glx::glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis)
+GLXFBConfigSGIX _glew_glx_glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_fbconfig - glXGetFBConfigFromVisualSGIX
-  if (s_deviceConfig.m_glXGetFBConfigFromVisualSGIX)
+  if (!prototypeCalled && glxConfig.m_glXGetFBConfigFromVisualSGIX)
   {
-    return s_deviceConfig.m_glXGetFBConfigFromVisualSGIX (dpy, vis);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetFBConfigFromVisualSGIX (dpy, vis);
   }
   return ((GLXFBConfigSGIX)0);
 }
@@ -1446,14 +1537,15 @@ GLXFBConfigSGIX glew::glx::glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualI
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryHyperpipeNetworkSGIX
-
-GLXHyperpipeNetworkSGIX * glew::glx::glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npipes)
+GLXHyperpipeNetworkSGIX * _glew_glx_glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npipes)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeNetworkSGIX
-  if (s_deviceConfig.m_glXQueryHyperpipeNetworkSGIX)
+  if (!prototypeCalled && glxConfig.m_glXQueryHyperpipeNetworkSGIX)
   {
-    return s_deviceConfig.m_glXQueryHyperpipeNetworkSGIX (dpy, npipes);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryHyperpipeNetworkSGIX (dpy, npipes);
   }
   return ((GLXHyperpipeNetworkSGIX *)0);
 }
@@ -1462,14 +1554,15 @@ GLXHyperpipeNetworkSGIX * glew::glx::glXQueryHyperpipeNetworkSGIX (Display * dpy
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXHyperpipeConfigSGIX
-
-int  glew::glx::glXHyperpipeConfigSGIX (Display * dpy, int  networkId, int  npipes, GLXHyperpipeConfigSGIX * cfg, int * hpId)
+int  _glew_glx_glXHyperpipeConfigSGIX (Display * dpy, int  networkId, int  npipes, GLXHyperpipeConfigSGIX * cfg, int * hpId)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_hyperpipe - glXHyperpipeConfigSGIX
-  if (s_deviceConfig.m_glXHyperpipeConfigSGIX)
+  if (!prototypeCalled && glxConfig.m_glXHyperpipeConfigSGIX)
   {
-    return s_deviceConfig.m_glXHyperpipeConfigSGIX (dpy, networkId, npipes, cfg, hpId);
+    prototypeCalled = true;
+    return glxConfig.m_glXHyperpipeConfigSGIX (dpy, networkId, npipes, cfg, hpId);
   }
   return ((int )0);
 }
@@ -1478,14 +1571,15 @@ int  glew::glx::glXHyperpipeConfigSGIX (Display * dpy, int  networkId, int  npip
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryHyperpipeConfigSGIX
-
-GLXHyperpipeConfigSGIX * glew::glx::glXQueryHyperpipeConfigSGIX (Display * dpy, int  hpId, int * npipes)
+GLXHyperpipeConfigSGIX * _glew_glx_glXQueryHyperpipeConfigSGIX (Display * dpy, int  hpId, int * npipes)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeConfigSGIX
-  if (s_deviceConfig.m_glXQueryHyperpipeConfigSGIX)
+  if (!prototypeCalled && glxConfig.m_glXQueryHyperpipeConfigSGIX)
   {
-    return s_deviceConfig.m_glXQueryHyperpipeConfigSGIX (dpy, hpId, npipes);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryHyperpipeConfigSGIX (dpy, hpId, npipes);
   }
   return ((GLXHyperpipeConfigSGIX *)0);
 }
@@ -1494,14 +1588,15 @@ GLXHyperpipeConfigSGIX * glew::glx::glXQueryHyperpipeConfigSGIX (Display * dpy, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXDestroyHyperpipeConfigSGIX
-
-int  glew::glx::glXDestroyHyperpipeConfigSGIX (Display * dpy, int  hpId)
+int  _glew_glx_glXDestroyHyperpipeConfigSGIX (Display * dpy, int  hpId)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_hyperpipe - glXDestroyHyperpipeConfigSGIX
-  if (s_deviceConfig.m_glXDestroyHyperpipeConfigSGIX)
+  if (!prototypeCalled && glxConfig.m_glXDestroyHyperpipeConfigSGIX)
   {
-    return s_deviceConfig.m_glXDestroyHyperpipeConfigSGIX (dpy, hpId);
+    prototypeCalled = true;
+    return glxConfig.m_glXDestroyHyperpipeConfigSGIX (dpy, hpId);
   }
   return ((int )0);
 }
@@ -1510,14 +1605,15 @@ int  glew::glx::glXDestroyHyperpipeConfigSGIX (Display * dpy, int  hpId)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXBindHyperpipeSGIX
-
-int  glew::glx::glXBindHyperpipeSGIX (Display * dpy, int  hpId)
+int  _glew_glx_glXBindHyperpipeSGIX (Display * dpy, int  hpId)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_hyperpipe - glXBindHyperpipeSGIX
-  if (s_deviceConfig.m_glXBindHyperpipeSGIX)
+  if (!prototypeCalled && glxConfig.m_glXBindHyperpipeSGIX)
   {
-    return s_deviceConfig.m_glXBindHyperpipeSGIX (dpy, hpId);
+    prototypeCalled = true;
+    return glxConfig.m_glXBindHyperpipeSGIX (dpy, hpId);
   }
   return ((int )0);
 }
@@ -1526,14 +1622,15 @@ int  glew::glx::glXBindHyperpipeSGIX (Display * dpy, int  hpId)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryHyperpipeBestAttribSGIX
-
-int  glew::glx::glXQueryHyperpipeBestAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * attribList, void * returnAttribList)
+int  _glew_glx_glXQueryHyperpipeBestAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * attribList, void * returnAttribList)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeBestAttribSGIX
-  if (s_deviceConfig.m_glXQueryHyperpipeBestAttribSGIX)
+  if (!prototypeCalled && glxConfig.m_glXQueryHyperpipeBestAttribSGIX)
   {
-    return s_deviceConfig.m_glXQueryHyperpipeBestAttribSGIX (dpy, timeSlice, attrib, size, attribList, returnAttribList);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryHyperpipeBestAttribSGIX (dpy, timeSlice, attrib, size, attribList, returnAttribList);
   }
   return ((int )0);
 }
@@ -1542,14 +1639,15 @@ int  glew::glx::glXQueryHyperpipeBestAttribSGIX (Display * dpy, int  timeSlice, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXHyperpipeAttribSGIX
-
-int  glew::glx::glXHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * attribList)
+int  _glew_glx_glXHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * attribList)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_hyperpipe - glXHyperpipeAttribSGIX
-  if (s_deviceConfig.m_glXHyperpipeAttribSGIX)
+  if (!prototypeCalled && glxConfig.m_glXHyperpipeAttribSGIX)
   {
-    return s_deviceConfig.m_glXHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, attribList);
+    prototypeCalled = true;
+    return glxConfig.m_glXHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, attribList);
   }
   return ((int )0);
 }
@@ -1558,14 +1656,15 @@ int  glew::glx::glXHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attr
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryHyperpipeAttribSGIX
-
-int  glew::glx::glXQueryHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * returnAttribList)
+int  _glew_glx_glXQueryHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * returnAttribList)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeAttribSGIX
-  if (s_deviceConfig.m_glXQueryHyperpipeAttribSGIX)
+  if (!prototypeCalled && glxConfig.m_glXQueryHyperpipeAttribSGIX)
   {
-    return s_deviceConfig.m_glXQueryHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, returnAttribList);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, returnAttribList);
   }
   return ((int )0);
 }
@@ -1574,14 +1673,15 @@ int  glew::glx::glXQueryHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateGLXPbufferSGIX
-
-GLXPbufferSGIX glew::glx::glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, unsigned int  width, unsigned int  height, int * attrib_list)
+GLXPbufferSGIX _glew_glx_glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, unsigned int  width, unsigned int  height, int * attrib_list)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_pbuffer - glXCreateGLXPbufferSGIX
-  if (s_deviceConfig.m_glXCreateGLXPbufferSGIX)
+  if (!prototypeCalled && glxConfig.m_glXCreateGLXPbufferSGIX)
   {
-    return s_deviceConfig.m_glXCreateGLXPbufferSGIX (dpy, config, width, height, attrib_list);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateGLXPbufferSGIX (dpy, config, width, height, attrib_list);
   }
   return ((GLXPbufferSGIX)0);
 }
@@ -1590,14 +1690,15 @@ GLXPbufferSGIX glew::glx::glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGI
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXDestroyGLXPbufferSGIX
-
-void  glew::glx::glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
+void  _glew_glx_glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_pbuffer - glXDestroyGLXPbufferSGIX
-  if (s_deviceConfig.m_glXDestroyGLXPbufferSGIX)
+  if (!prototypeCalled && glxConfig.m_glXDestroyGLXPbufferSGIX)
   {
-    s_deviceConfig.m_glXDestroyGLXPbufferSGIX (dpy, pbuf);
+    prototypeCalled = true;
+    glxConfig.m_glXDestroyGLXPbufferSGIX (dpy, pbuf);
   }
 }
 
@@ -1605,14 +1706,15 @@ void  glew::glx::glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryGLXPbufferSGIX
-
-int  glew::glx::glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int  attribute, unsigned int * value)
+int  _glew_glx_glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int  attribute, unsigned int * value)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_pbuffer - glXQueryGLXPbufferSGIX
-  if (s_deviceConfig.m_glXQueryGLXPbufferSGIX)
+  if (!prototypeCalled && glxConfig.m_glXQueryGLXPbufferSGIX)
   {
-    return s_deviceConfig.m_glXQueryGLXPbufferSGIX (dpy, pbuf, attribute, value);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryGLXPbufferSGIX (dpy, pbuf, attribute, value);
   }
   return ((int )0);
 }
@@ -1621,14 +1723,15 @@ int  glew::glx::glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXSelectEventSGIX
-
-void  glew::glx::glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long  mask)
+void  _glew_glx_glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long  mask)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_pbuffer - glXSelectEventSGIX
-  if (s_deviceConfig.m_glXSelectEventSGIX)
+  if (!prototypeCalled && glxConfig.m_glXSelectEventSGIX)
   {
-    s_deviceConfig.m_glXSelectEventSGIX (dpy, drawable, mask);
+    prototypeCalled = true;
+    glxConfig.m_glXSelectEventSGIX (dpy, drawable, mask);
   }
 }
 
@@ -1636,14 +1739,15 @@ void  glew::glx::glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsign
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetSelectedEventSGIX
-
-void  glew::glx::glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long * mask)
+void  _glew_glx_glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long * mask)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_pbuffer - glXGetSelectedEventSGIX
-  if (s_deviceConfig.m_glXGetSelectedEventSGIX)
+  if (!prototypeCalled && glxConfig.m_glXGetSelectedEventSGIX)
   {
-    s_deviceConfig.m_glXGetSelectedEventSGIX (dpy, drawable, mask);
+    prototypeCalled = true;
+    glxConfig.m_glXGetSelectedEventSGIX (dpy, drawable, mask);
   }
 }
 
@@ -1651,14 +1755,15 @@ void  glew::glx::glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, u
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXBindSwapBarrierSGIX
-
-void  glew::glx::glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int  barrier)
+void  _glew_glx_glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int  barrier)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_swap_barrier - glXBindSwapBarrierSGIX
-  if (s_deviceConfig.m_glXBindSwapBarrierSGIX)
+  if (!prototypeCalled && glxConfig.m_glXBindSwapBarrierSGIX)
   {
-    s_deviceConfig.m_glXBindSwapBarrierSGIX (dpy, drawable, barrier);
+    prototypeCalled = true;
+    glxConfig.m_glXBindSwapBarrierSGIX (dpy, drawable, barrier);
   }
 }
 
@@ -1666,14 +1771,15 @@ void  glew::glx::glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryMaxSwapBarriersSGIX
-
-Bool glew::glx::glXQueryMaxSwapBarriersSGIX (Display * dpy, int  screen, int * max)
+Bool _glew_glx_glXQueryMaxSwapBarriersSGIX (Display * dpy, int  screen, int * max)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_swap_barrier - glXQueryMaxSwapBarriersSGIX
-  if (s_deviceConfig.m_glXQueryMaxSwapBarriersSGIX)
+  if (!prototypeCalled && glxConfig.m_glXQueryMaxSwapBarriersSGIX)
   {
-    return s_deviceConfig.m_glXQueryMaxSwapBarriersSGIX (dpy, screen, max);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryMaxSwapBarriersSGIX (dpy, screen, max);
   }
   return ((Bool)0);
 }
@@ -1682,14 +1788,15 @@ Bool glew::glx::glXQueryMaxSwapBarriersSGIX (Display * dpy, int  screen, int * m
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXJoinSwapGroupSGIX
-
-void  glew::glx::glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable member)
+void  _glew_glx_glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable member)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_swap_group - glXJoinSwapGroupSGIX
-  if (s_deviceConfig.m_glXJoinSwapGroupSGIX)
+  if (!prototypeCalled && glxConfig.m_glXJoinSwapGroupSGIX)
   {
-    s_deviceConfig.m_glXJoinSwapGroupSGIX (dpy, drawable, member);
+    prototypeCalled = true;
+    glxConfig.m_glXJoinSwapGroupSGIX (dpy, drawable, member);
   }
 }
 
@@ -1697,14 +1804,15 @@ void  glew::glx::glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXD
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXBindChannelToWindowSGIX
-
-int  glew::glx::glXBindChannelToWindowSGIX (Display * display, int  screen, int  channel, Window window)
+int  _glew_glx_glXBindChannelToWindowSGIX (Display * display, int  screen, int  channel, Window window)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_video_resize - glXBindChannelToWindowSGIX
-  if (s_deviceConfig.m_glXBindChannelToWindowSGIX)
+  if (!prototypeCalled && glxConfig.m_glXBindChannelToWindowSGIX)
   {
-    return s_deviceConfig.m_glXBindChannelToWindowSGIX (display, screen, channel, window);
+    prototypeCalled = true;
+    return glxConfig.m_glXBindChannelToWindowSGIX (display, screen, channel, window);
   }
   return ((int )0);
 }
@@ -1713,14 +1821,15 @@ int  glew::glx::glXBindChannelToWindowSGIX (Display * display, int  screen, int 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXChannelRectSGIX
-
-int  glew::glx::glXChannelRectSGIX (Display * display, int  screen, int  channel, int  x, int  y, int  w, int  h)
+int  _glew_glx_glXChannelRectSGIX (Display * display, int  screen, int  channel, int  x, int  y, int  w, int  h)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_video_resize - glXChannelRectSGIX
-  if (s_deviceConfig.m_glXChannelRectSGIX)
+  if (!prototypeCalled && glxConfig.m_glXChannelRectSGIX)
   {
-    return s_deviceConfig.m_glXChannelRectSGIX (display, screen, channel, x, y, w, h);
+    prototypeCalled = true;
+    return glxConfig.m_glXChannelRectSGIX (display, screen, channel, x, y, w, h);
   }
   return ((int )0);
 }
@@ -1729,14 +1838,15 @@ int  glew::glx::glXChannelRectSGIX (Display * display, int  screen, int  channel
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryChannelRectSGIX
-
-int  glew::glx::glXQueryChannelRectSGIX (Display * display, int  screen, int  channel, int * dx, int * dy, int * dw, int * dh)
+int  _glew_glx_glXQueryChannelRectSGIX (Display * display, int  screen, int  channel, int * dx, int * dy, int * dw, int * dh)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_video_resize - glXQueryChannelRectSGIX
-  if (s_deviceConfig.m_glXQueryChannelRectSGIX)
+  if (!prototypeCalled && glxConfig.m_glXQueryChannelRectSGIX)
   {
-    return s_deviceConfig.m_glXQueryChannelRectSGIX (display, screen, channel, dx, dy, dw, dh);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryChannelRectSGIX (display, screen, channel, dx, dy, dw, dh);
   }
   return ((int )0);
 }
@@ -1745,14 +1855,15 @@ int  glew::glx::glXQueryChannelRectSGIX (Display * display, int  screen, int  ch
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXQueryChannelDeltasSGIX
-
-int  glew::glx::glXQueryChannelDeltasSGIX (Display * display, int  screen, int  channel, int * x, int * y, int * w, int * h)
+int  _glew_glx_glXQueryChannelDeltasSGIX (Display * display, int  screen, int  channel, int * x, int * y, int * w, int * h)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_video_resize - glXQueryChannelDeltasSGIX
-  if (s_deviceConfig.m_glXQueryChannelDeltasSGIX)
+  if (!prototypeCalled && glxConfig.m_glXQueryChannelDeltasSGIX)
   {
-    return s_deviceConfig.m_glXQueryChannelDeltasSGIX (display, screen, channel, x, y, w, h);
+    prototypeCalled = true;
+    return glxConfig.m_glXQueryChannelDeltasSGIX (display, screen, channel, x, y, w, h);
   }
   return ((int )0);
 }
@@ -1761,14 +1872,15 @@ int  glew::glx::glXQueryChannelDeltasSGIX (Display * display, int  screen, int  
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXChannelRectSyncSGIX
-
-int  glew::glx::glXChannelRectSyncSGIX (Display * display, int  screen, int  channel, GLenum synctype)
+int  _glew_glx_glXChannelRectSyncSGIX (Display * display, int  screen, int  channel, GLenum synctype)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_video_resize - glXChannelRectSyncSGIX
-  if (s_deviceConfig.m_glXChannelRectSyncSGIX)
+  if (!prototypeCalled && glxConfig.m_glXChannelRectSyncSGIX)
   {
-    return s_deviceConfig.m_glXChannelRectSyncSGIX (display, screen, channel, synctype);
+    prototypeCalled = true;
+    return glxConfig.m_glXChannelRectSyncSGIX (display, screen, channel, synctype);
   }
   return ((int )0);
 }
@@ -1777,14 +1889,15 @@ int  glew::glx::glXChannelRectSyncSGIX (Display * display, int  screen, int  cha
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXCreateGLXVideoSourceSGIX
-
-GLXVideoSourceSGIX glew::glx::glXCreateGLXVideoSourceSGIX (Display * display, int  screen, VLServer server, VLPath path, int  nodeClass, VLNode drainNode)
+GLXVideoSourceSGIX _glew_glx_glXCreateGLXVideoSourceSGIX (Display * display, int  screen, VLServer server, VLPath path, int  nodeClass, VLNode drainNode)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_video_source - glXCreateGLXVideoSourceSGIX
-  if (s_deviceConfig.m_glXCreateGLXVideoSourceSGIX)
+  if (!prototypeCalled && glxConfig.m_glXCreateGLXVideoSourceSGIX)
   {
-    return s_deviceConfig.m_glXCreateGLXVideoSourceSGIX (display, screen, server, path, nodeClass, drainNode);
+    prototypeCalled = true;
+    return glxConfig.m_glXCreateGLXVideoSourceSGIX (display, screen, server, path, nodeClass, drainNode);
   }
   return ((GLXVideoSourceSGIX)0);
 }
@@ -1793,14 +1906,15 @@ GLXVideoSourceSGIX glew::glx::glXCreateGLXVideoSourceSGIX (Display * display, in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXDestroyGLXVideoSourceSGIX
-
-void  glew::glx::glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosource)
+void  _glew_glx_glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosource)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SGIX_video_source - glXDestroyGLXVideoSourceSGIX
-  if (s_deviceConfig.m_glXDestroyGLXVideoSourceSGIX)
+  if (!prototypeCalled && glxConfig.m_glXDestroyGLXVideoSourceSGIX)
   {
-    s_deviceConfig.m_glXDestroyGLXVideoSourceSGIX (dpy, glxvideosource);
+    prototypeCalled = true;
+    glxConfig.m_glXDestroyGLXVideoSourceSGIX (dpy, glxvideosource);
   }
 }
 
@@ -1808,16 +1922,26 @@ void  glew::glx::glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glXGetTransparentIndexSUN
-
-Status glew::glx::glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex)
+Status _glew_glx_glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex)
 {
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   // GLX_SUN_get_transparent_index - glXGetTransparentIndexSUN
-  if (s_deviceConfig.m_glXGetTransparentIndexSUN)
+  if (!prototypeCalled && glxConfig.m_glXGetTransparentIndexSUN)
   {
-    return s_deviceConfig.m_glXGetTransparentIndexSUN (dpy, overlay, underlay, pTransparentIndex);
+    prototypeCalled = true;
+    return glxConfig.m_glXGetTransparentIndexSUN (dpy, overlay, underlay, pTransparentIndex);
   }
   return ((Status)0);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+bool glew::IsSupported (GLEW_GLX_FeatureSet feature)
+{
+  return glew::glx::IsSupported (feature);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

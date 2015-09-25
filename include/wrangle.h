@@ -50,6 +50,31 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// /System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL
+// /System/Library/Frameworks/OpenGLES.framework/OpenGLES
+
+#if defined(__APPLE__)
+#include <dlfcn.h>
+static inline void *dlGetProcAddress (const char *library, const char *symbol)
+{
+  static void *image = NULL;
+  void *addr = NULL;
+  if (image == NULL)
+  {
+    image = dlopen (library, RTLD_LAZY);
+  }
+  if (image != NULL)
+  {
+    addr = dlsym (image, symbol);
+  }
+  return addr;
+}
+#endif
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #if (_WIN32 || GLEW_USE_WGL)
   #if !defined (GLEW_USE_WGL)
     #define GLEW_USE_WGL 1
@@ -68,6 +93,17 @@
   GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
   #if !defined (glewGetProcAddress)
     #define glewGetProcAddress(proc) eglGetProcAddress((const char *)proc)
+  #endif
+#elif defined(__APPLE__)
+  #include "TargetConditionals.h"
+  #define OPENGL_FRAMEWORK "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
+  #define OPENGL_ES_FRAMEWORK "/System/Library/Frameworks/OpenGLES.framework/OpenGLES"
+  #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+    #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_ES_FRAMEWORK,(const char *)proc)
+  #elif TARGET_OS_MAC
+    #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
+  #else
+    #error Unrecognised Apple platform.
   #endif
 #endif
 

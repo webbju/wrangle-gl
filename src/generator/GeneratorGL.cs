@@ -28,7 +28,11 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public GeneratorGL (string filename)
-      : base (filename, new string [] { "gl" })
+      : base (filename, new string [] []
+      { 
+        new string [] { "gl", "1.0" }, 
+        new string [] { "gles2", "2.0"},
+      })
     {
       m_funcApiEntryPrefix = "GLAPI";
 
@@ -73,15 +77,33 @@ namespace wrangle_gl_generator
   #endif
 #endif
 
+// GLAPI is defined to 'extern' in <GL/glcorearb.h>
+// Prevents duplicate 'extern' on GLEW_EXTERN_C GLAPI definitions.
+#ifndef GLAPI
+#define GLAPI 
+#endif
+
 ");
 
       WriteCommentDivider (ref writer);
 
       writer.Write ("\n#include <wrangle.h>\n");
 
-      writer.Write ("\n#include <GL/gl.h>\n");
+      writer.Write ("\n#include <GL/glcorearb.h>\n");
 
       writer.Write ("\n#include <GL/glext.h>\n\n");
+
+      WriteCommentDivider (ref writer);
+
+      writer.Write (@"
+// glext.h defines GL_KHR_debug, but not the function pointer.
+typedef void (APIENTRY  *GLDEBUGPROCKHR)(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *userParam);
+
+#ifndef GL_OES_EGL_image
+typedef void* GLeglImageOES;
+#endif
+
+");
 
       base.ExportHpp (ref writer);
 
@@ -114,13 +136,12 @@ namespace wrangle_gl_generator
 
       writer.Write ("\nvoid glew::gl::Initialise ()\n{\n");
 
-      writer.Write ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));\n\n");
+      writer.Write ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));\n");
 
-      writer.Write (@"  // 
+      writer.Write (@"
+  // 
   // Determine current driver's feature reporting.
   // 
-
-  #undef glGetString
 
   const unsigned char *glVersion = glGetString (GL_VERSION);
 
@@ -135,33 +156,47 @@ namespace wrangle_gl_generator
   {
     unsigned int major = 0, minor = 0;
 
+#if _WIN32
+  #define strncasecmp _strnicmp
+#endif
+
+    const bool openGlEsSupported = (strncasecmp ((const char *) glVersion, ""OpenGL ES"", 9) == 0);
+
     const char *divisor = strchr ((const char *) glVersion, '.');
 
     if (divisor)
     {
       major = (*(char *) (divisor - 1)) - '0';
-
       minor = (*(char *) (divisor + 1)) - '0';
     }
 
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_0] = ((major >= 1));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_1] = ((major >= 1) && (minor >= 1));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_2] = ((major >= 1) && (minor >= 2));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_3] = ((major >= 1) && (minor >= 3));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_4] = ((major >= 1) && (minor >= 4));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_5] = ((major >= 1) && (minor >= 5));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_2_0] = ((major >= 2));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_2_1] = ((major >= 2) && (minor >= 1));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_0] = ((major >= 3));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_1] = ((major >= 3) && (minor >= 1));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_2] = ((major >= 3) && (minor >= 2));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_3] = ((major >= 3) && (minor >= 3));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_0] = ((major >= 4));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_1] = ((major >= 4) && (minor >= 1));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_2] = ((major >= 4) && (minor >= 2));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_3] = ((major >= 4) && (minor >= 3));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_4] = ((major >= 4) && (minor >= 4));
-    s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_5] = ((major >= 4) && (minor >= 5));
+    if (openGlEsSupported)
+    {
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = ((major >= 2));
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = ((major >= 3));
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = ((major >= 3) && (minor >= 1));
+    }
+    else
+    {
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_0] = ((major >= 1));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_1] = ((major >= 1) && (minor >= 1));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_2] = ((major >= 1) && (minor >= 2));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_3] = ((major >= 1) && (minor >= 3));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_4] = ((major >= 1) && (minor >= 4));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_1_5] = ((major >= 1) && (minor >= 5));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_2_0] = ((major >= 2));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_2_1] = ((major >= 2) && (minor >= 1));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_0] = ((major >= 3));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_1] = ((major >= 3) && (minor >= 1));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_2] = ((major >= 3) && (minor >= 2));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_3_3] = ((major >= 3) && (minor >= 3));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_0] = ((major >= 4));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_1] = ((major >= 4) && (minor >= 1));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_2] = ((major >= 4) && (minor >= 2));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_3] = ((major >= 4) && (minor >= 3));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_4] = ((major >= 4) && (minor >= 4));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_5] = ((major >= 4) && (minor >= 5));
+    }
   }
 
   // 
@@ -274,29 +309,6 @@ namespace wrangle_gl_generator
           XmlNode featureNode = keypair.Value;
 
           // 
-          // Evaluate whether this feature is part of the 'base spec'.
-          // 
-
-          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
-
-          bool baseSpecFeatureSet = false;
-
-          if (featureNumberNode != null)
-          {
-            float version = m_baseSpecVersion;
-
-            if (float.TryParse (featureNumberNode.Value, out version))
-            {
-              baseSpecFeatureSet = version <= m_baseSpecVersion;
-            }
-          }
-
-          if (baseSpecFeatureSet)
-          {
-            continue; // Skip any base spec versions.
-          }
-
-          // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
 
@@ -309,12 +321,41 @@ namespace wrangle_gl_generator
 
           foreach (XmlNode requireNode in requireNodes)
           {
+            string api = m_api [0];
+
             XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
-            if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
+            if (requireApiNode != null)
             {
-              continue;
+              api = requireApiNode.Value;
+
+              if (!IsApiSupported (requireApiNode.Value))
+              {
+                continue; // Skip non-supported APIs.
+              }
             }
+
+            // 
+            // Evaluate whether this feature is part of the 'base spec'.
+            // 
+
+            XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+            bool baseSpecFeatureSet = false;
+
+            if (featureNumberNode != null)
+            {
+              float version = m_apiBaseSpecVersion [api];
+
+              if (float.TryParse (featureNumberNode.Value, out version))
+              {
+                baseSpecFeatureSet = version <= m_apiBaseSpecVersion [api];
+              }
+            }
+
+            // 
+            // Export code for seeding available function/command addresses.
+            // 
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -323,27 +364,42 @@ namespace wrangle_gl_generator
               continue;
             }
 
-            writer.Write (string.Format ("  // {0}\n", keypair.Key));
-
-            writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
-
-            /*foreach (XmlNode commandNode in requireCommandNodes)
-            {
-              string command = commandNode.Attributes ["name"].Value;
-
-              writer.Write (string.Format ("    #undef {0}\n", command));
-            }*/
+            HashSet<string> requiredCommands = new HashSet<string> ();
 
             foreach (XmlNode commandNode in requireCommandNodes)
             {
               string command = commandNode.Attributes ["name"].Value;
 
-              string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+              if (definedPrototypes.Contains (command))
+              {
+                continue;
+              }
 
-              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+              definedPrototypes.Add (command);
+
+              if (baseSpecFeatureSet)
+              {
+                continue; // Skip any base spec versions.
+              }
+
+              requiredCommands.Add (command);
             }
 
-            writer.Write ("  }\n\n");
+            if (requiredCommands.Count > 0)
+            {
+              writer.Write (string.Format ("  // {0}\n", keypair.Key));
+
+              writer.Write (string.Format ("  //if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
+
+              foreach (string command in requiredCommands)
+              {
+                string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+                writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+              }
+
+              writer.Write ("  }\n\n");
+            }
           }
         }
       }

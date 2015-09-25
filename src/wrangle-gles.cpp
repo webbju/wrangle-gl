@@ -12,14 +12,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glReadBuffer
-
-void  glew::gles::glReadBuffer (GLenum src)
+void  _glew_gles_glReadBuffer (GLenum src)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glReadBuffer
-  if (s_deviceConfig.m_glReadBuffer)
+  if (!prototypeCalled && glesConfig.m_glReadBuffer)
   {
-    s_deviceConfig.m_glReadBuffer (src);
+    prototypeCalled = true;
+    glesConfig.m_glReadBuffer (src);
   }
 }
 
@@ -27,14 +28,15 @@ void  glew::gles::glReadBuffer (GLenum src)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawRangeElements
-
-void  glew::gles::glDrawRangeElements (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices)
+void  _glew_gles_glDrawRangeElements (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glDrawRangeElements
-  if (s_deviceConfig.m_glDrawRangeElements)
+  if (!prototypeCalled && glesConfig.m_glDrawRangeElements)
   {
-    s_deviceConfig.m_glDrawRangeElements (mode, start, end, count, type, indices);
+    prototypeCalled = true;
+    glesConfig.m_glDrawRangeElements (mode, start, end, count, type, indices);
   }
 }
 
@@ -42,14 +44,21 @@ void  glew::gles::glDrawRangeElements (GLenum mode, GLuint start, GLuint end, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexImage3D
-
-void  glew::gles::glTexImage3D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void * pixels)
+void  _glew_gles_glTexImage3D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void * pixels)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glTexImage3D
-  if (s_deviceConfig.m_glTexImage3D)
+  if (!prototypeCalled && glesConfig.m_glTexImage3D)
   {
-    s_deviceConfig.m_glTexImage3D (target, level, internalformat, width, height, depth, border, format, type, pixels);
+    prototypeCalled = true;
+    glesConfig.m_glTexImage3D (target, level, internalformat, width, height, depth, border, format, type, pixels);
+  }
+  // GL_OES_texture_3D - glTexImage3D
+  if (!prototypeCalled && glesConfig.m_glTexImage3DOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexImage3DOES (target, level, (GLenum) internalformat, width, height, depth, border, format, type, pixels);
   }
 }
 
@@ -57,14 +66,21 @@ void  glew::gles::glTexImage3D (GLenum target, GLint level, GLint internalformat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexSubImage3D
-
-void  glew::gles::glTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * pixels)
+void  _glew_gles_glTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * pixels)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glTexSubImage3D
-  if (s_deviceConfig.m_glTexSubImage3D)
+  if (!prototypeCalled && glesConfig.m_glTexSubImage3D)
   {
-    s_deviceConfig.m_glTexSubImage3D (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+    prototypeCalled = true;
+    glesConfig.m_glTexSubImage3D (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+  }
+  // GL_OES_texture_3D - glTexSubImage3D
+  if (!prototypeCalled && glesConfig.m_glTexSubImage3DOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
   }
 }
 
@@ -72,14 +88,21 @@ void  glew::gles::glTexSubImage3D (GLenum target, GLint level, GLint xoffset, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCopyTexSubImage3D
-
-void  glew::gles::glCopyTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
+void  _glew_gles_glCopyTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glCopyTexSubImage3D
-  if (s_deviceConfig.m_glCopyTexSubImage3D)
+  if (!prototypeCalled && glesConfig.m_glCopyTexSubImage3D)
   {
-    s_deviceConfig.m_glCopyTexSubImage3D (target, level, xoffset, yoffset, zoffset, x, y, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glCopyTexSubImage3D (target, level, xoffset, yoffset, zoffset, x, y, width, height);
+  }
+  // GL_OES_texture_3D - glCopyTexSubImage3D
+  if (!prototypeCalled && glesConfig.m_glCopyTexSubImage3DOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glCopyTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, x, y, width, height);
   }
 }
 
@@ -87,14 +110,21 @@ void  glew::gles::glCopyTexSubImage3D (GLenum target, GLint level, GLint xoffset
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCompressedTexImage3D
-
-void  glew::gles::glCompressedTexImage3D (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const void * data)
+void  _glew_gles_glCompressedTexImage3D (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const void * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glCompressedTexImage3D
-  if (s_deviceConfig.m_glCompressedTexImage3D)
+  if (!prototypeCalled && glesConfig.m_glCompressedTexImage3D)
   {
-    s_deviceConfig.m_glCompressedTexImage3D (target, level, internalformat, width, height, depth, border, imageSize, data);
+    prototypeCalled = true;
+    glesConfig.m_glCompressedTexImage3D (target, level, internalformat, width, height, depth, border, imageSize, data);
+  }
+  // GL_OES_texture_3D - glCompressedTexImage3D
+  if (!prototypeCalled && glesConfig.m_glCompressedTexImage3DOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glCompressedTexImage3DOES (target, level, internalformat, width, height, depth, border, imageSize, data);
   }
 }
 
@@ -102,14 +132,21 @@ void  glew::gles::glCompressedTexImage3D (GLenum target, GLint level, GLenum int
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCompressedTexSubImage3D
-
-void  glew::gles::glCompressedTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void * data)
+void  _glew_gles_glCompressedTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glCompressedTexSubImage3D
-  if (s_deviceConfig.m_glCompressedTexSubImage3D)
+  if (!prototypeCalled && glesConfig.m_glCompressedTexSubImage3D)
   {
-    s_deviceConfig.m_glCompressedTexSubImage3D (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
+    prototypeCalled = true;
+    glesConfig.m_glCompressedTexSubImage3D (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
+  }
+  // GL_OES_texture_3D - glCompressedTexSubImage3D
+  if (!prototypeCalled && glesConfig.m_glCompressedTexSubImage3DOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glCompressedTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
   }
 }
 
@@ -117,14 +154,15 @@ void  glew::gles::glCompressedTexSubImage3D (GLenum target, GLint level, GLint x
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenQueries
-
-void  glew::gles::glGenQueries (GLsizei n, GLuint * ids)
+void  _glew_gles_glGenQueries (GLsizei n, GLuint * ids)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGenQueries
-  if (s_deviceConfig.m_glGenQueries)
+  if (!prototypeCalled && glesConfig.m_glGenQueries)
   {
-    s_deviceConfig.m_glGenQueries (n, ids);
+    prototypeCalled = true;
+    glesConfig.m_glGenQueries (n, ids);
   }
 }
 
@@ -132,14 +170,15 @@ void  glew::gles::glGenQueries (GLsizei n, GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteQueries
-
-void  glew::gles::glDeleteQueries (GLsizei n, const GLuint * ids)
+void  _glew_gles_glDeleteQueries (GLsizei n, const GLuint * ids)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glDeleteQueries
-  if (s_deviceConfig.m_glDeleteQueries)
+  if (!prototypeCalled && glesConfig.m_glDeleteQueries)
   {
-    s_deviceConfig.m_glDeleteQueries (n, ids);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteQueries (n, ids);
   }
 }
 
@@ -147,14 +186,15 @@ void  glew::gles::glDeleteQueries (GLsizei n, const GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsQuery
-
-GLboolean glew::gles::glIsQuery (GLuint id)
+GLboolean _glew_gles_glIsQuery (GLuint id)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glIsQuery
-  if (s_deviceConfig.m_glIsQuery)
+  if (!prototypeCalled && glesConfig.m_glIsQuery)
   {
-    return s_deviceConfig.m_glIsQuery (id);
+    prototypeCalled = true;
+    return glesConfig.m_glIsQuery (id);
   }
   return ((GLboolean)0);
 }
@@ -163,14 +203,15 @@ GLboolean glew::gles::glIsQuery (GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBeginQuery
-
-void  glew::gles::glBeginQuery (GLenum target, GLuint id)
+void  _glew_gles_glBeginQuery (GLenum target, GLuint id)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glBeginQuery
-  if (s_deviceConfig.m_glBeginQuery)
+  if (!prototypeCalled && glesConfig.m_glBeginQuery)
   {
-    s_deviceConfig.m_glBeginQuery (target, id);
+    prototypeCalled = true;
+    glesConfig.m_glBeginQuery (target, id);
   }
 }
 
@@ -178,14 +219,15 @@ void  glew::gles::glBeginQuery (GLenum target, GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEndQuery
-
-void  glew::gles::glEndQuery (GLenum target)
+void  _glew_gles_glEndQuery (GLenum target)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glEndQuery
-  if (s_deviceConfig.m_glEndQuery)
+  if (!prototypeCalled && glesConfig.m_glEndQuery)
   {
-    s_deviceConfig.m_glEndQuery (target);
+    prototypeCalled = true;
+    glesConfig.m_glEndQuery (target);
   }
 }
 
@@ -193,14 +235,15 @@ void  glew::gles::glEndQuery (GLenum target)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetQueryiv
-
-void  glew::gles::glGetQueryiv (GLenum target, GLenum pname, GLint * params)
+void  _glew_gles_glGetQueryiv (GLenum target, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetQueryiv
-  if (s_deviceConfig.m_glGetQueryiv)
+  if (!prototypeCalled && glesConfig.m_glGetQueryiv)
   {
-    s_deviceConfig.m_glGetQueryiv (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetQueryiv (target, pname, params);
   }
 }
 
@@ -208,14 +251,15 @@ void  glew::gles::glGetQueryiv (GLenum target, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetQueryObjectuiv
-
-void  glew::gles::glGetQueryObjectuiv (GLuint id, GLenum pname, GLuint * params)
+void  _glew_gles_glGetQueryObjectuiv (GLuint id, GLenum pname, GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetQueryObjectuiv
-  if (s_deviceConfig.m_glGetQueryObjectuiv)
+  if (!prototypeCalled && glesConfig.m_glGetQueryObjectuiv)
   {
-    s_deviceConfig.m_glGetQueryObjectuiv (id, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetQueryObjectuiv (id, pname, params);
   }
 }
 
@@ -223,14 +267,21 @@ void  glew::gles::glGetQueryObjectuiv (GLuint id, GLenum pname, GLuint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUnmapBuffer
-
-GLboolean glew::gles::glUnmapBuffer (GLenum target)
+GLboolean _glew_gles_glUnmapBuffer (GLenum target)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUnmapBuffer
-  if (s_deviceConfig.m_glUnmapBuffer)
+  if (!prototypeCalled && glesConfig.m_glUnmapBuffer)
   {
-    return s_deviceConfig.m_glUnmapBuffer (target);
+    prototypeCalled = true;
+    return glesConfig.m_glUnmapBuffer (target);
+  }
+  // GL_OES_mapbuffer - glUnmapBuffer
+  if (!prototypeCalled && glesConfig.m_glUnmapBufferOES)
+  {
+    prototypeCalled = true;
+    return glesConfig.m_glUnmapBufferOES (target);
   }
   return ((GLboolean)0);
 }
@@ -239,14 +290,21 @@ GLboolean glew::gles::glUnmapBuffer (GLenum target)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetBufferPointerv
-
-void  glew::gles::glGetBufferPointerv (GLenum target, GLenum pname, void ** params)
+void  _glew_gles_glGetBufferPointerv (GLenum target, GLenum pname, void ** params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetBufferPointerv
-  if (s_deviceConfig.m_glGetBufferPointerv)
+  if (!prototypeCalled && glesConfig.m_glGetBufferPointerv)
   {
-    s_deviceConfig.m_glGetBufferPointerv (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetBufferPointerv (target, pname, params);
+  }
+  // GL_OES_mapbuffer - glGetBufferPointerv
+  if (!prototypeCalled && glesConfig.m_glGetBufferPointervOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetBufferPointervOES (target, pname, params);
   }
 }
 
@@ -254,14 +312,21 @@ void  glew::gles::glGetBufferPointerv (GLenum target, GLenum pname, void ** para
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawBuffers
-
-void  glew::gles::glDrawBuffers (GLsizei n, const GLenum * bufs)
+void  _glew_gles_glDrawBuffers (GLsizei n, const GLenum * bufs)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glDrawBuffers
-  if (s_deviceConfig.m_glDrawBuffers)
+  if (!prototypeCalled && glesConfig.m_glDrawBuffers)
   {
-    s_deviceConfig.m_glDrawBuffers (n, bufs);
+    prototypeCalled = true;
+    glesConfig.m_glDrawBuffers (n, bufs);
+  }
+  // GL_EXT_draw_buffers - glDrawBuffers
+  if (!prototypeCalled && glesConfig.m_glDrawBuffersEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawBuffersEXT (n, bufs);
   }
 }
 
@@ -269,14 +334,21 @@ void  glew::gles::glDrawBuffers (GLsizei n, const GLenum * bufs)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix2x3fv
-
-void  glew::gles::glUniformMatrix2x3fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix2x3fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniformMatrix2x3fv
-  if (s_deviceConfig.m_glUniformMatrix2x3fv)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x3fv)
   {
-    s_deviceConfig.m_glUniformMatrix2x3fv (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix2x3fv (location, count, transpose, value);
+  }
+  // GL_NV_non_square_matrices - glUniformMatrix2x3fv
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x3fvNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix2x3fvNV (location, count, transpose, value);
   }
 }
 
@@ -284,14 +356,21 @@ void  glew::gles::glUniformMatrix2x3fv (GLint location, GLsizei count, GLboolean
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix3x2fv
-
-void  glew::gles::glUniformMatrix3x2fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix3x2fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniformMatrix3x2fv
-  if (s_deviceConfig.m_glUniformMatrix3x2fv)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x2fv)
   {
-    s_deviceConfig.m_glUniformMatrix3x2fv (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix3x2fv (location, count, transpose, value);
+  }
+  // GL_NV_non_square_matrices - glUniformMatrix3x2fv
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x2fvNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix3x2fvNV (location, count, transpose, value);
   }
 }
 
@@ -299,14 +378,21 @@ void  glew::gles::glUniformMatrix3x2fv (GLint location, GLsizei count, GLboolean
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix2x4fv
-
-void  glew::gles::glUniformMatrix2x4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix2x4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniformMatrix2x4fv
-  if (s_deviceConfig.m_glUniformMatrix2x4fv)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x4fv)
   {
-    s_deviceConfig.m_glUniformMatrix2x4fv (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix2x4fv (location, count, transpose, value);
+  }
+  // GL_NV_non_square_matrices - glUniformMatrix2x4fv
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x4fvNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix2x4fvNV (location, count, transpose, value);
   }
 }
 
@@ -314,14 +400,21 @@ void  glew::gles::glUniformMatrix2x4fv (GLint location, GLsizei count, GLboolean
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix4x2fv
-
-void  glew::gles::glUniformMatrix4x2fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix4x2fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniformMatrix4x2fv
-  if (s_deviceConfig.m_glUniformMatrix4x2fv)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x2fv)
   {
-    s_deviceConfig.m_glUniformMatrix4x2fv (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix4x2fv (location, count, transpose, value);
+  }
+  // GL_NV_non_square_matrices - glUniformMatrix4x2fv
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x2fvNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix4x2fvNV (location, count, transpose, value);
   }
 }
 
@@ -329,14 +422,21 @@ void  glew::gles::glUniformMatrix4x2fv (GLint location, GLsizei count, GLboolean
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix3x4fv
-
-void  glew::gles::glUniformMatrix3x4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix3x4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniformMatrix3x4fv
-  if (s_deviceConfig.m_glUniformMatrix3x4fv)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x4fv)
   {
-    s_deviceConfig.m_glUniformMatrix3x4fv (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix3x4fv (location, count, transpose, value);
+  }
+  // GL_NV_non_square_matrices - glUniformMatrix3x4fv
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x4fvNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix3x4fvNV (location, count, transpose, value);
   }
 }
 
@@ -344,14 +444,21 @@ void  glew::gles::glUniformMatrix3x4fv (GLint location, GLsizei count, GLboolean
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix4x3fv
-
-void  glew::gles::glUniformMatrix4x3fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix4x3fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniformMatrix4x3fv
-  if (s_deviceConfig.m_glUniformMatrix4x3fv)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x3fv)
   {
-    s_deviceConfig.m_glUniformMatrix4x3fv (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix4x3fv (location, count, transpose, value);
+  }
+  // GL_NV_non_square_matrices - glUniformMatrix4x3fv
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x3fvNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix4x3fvNV (location, count, transpose, value);
   }
 }
 
@@ -359,14 +466,21 @@ void  glew::gles::glUniformMatrix4x3fv (GLint location, GLsizei count, GLboolean
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlitFramebuffer
-
-void  glew::gles::glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
+void  _glew_gles_glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glBlitFramebuffer
-  if (s_deviceConfig.m_glBlitFramebuffer)
+  if (!prototypeCalled && glesConfig.m_glBlitFramebuffer)
   {
-    s_deviceConfig.m_glBlitFramebuffer (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+    prototypeCalled = true;
+    glesConfig.m_glBlitFramebuffer (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+  }
+  // GL_NV_framebuffer_blit - glBlitFramebuffer
+  if (!prototypeCalled && glesConfig.m_glBlitFramebufferNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glBlitFramebufferNV (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
 }
 
@@ -374,14 +488,27 @@ void  glew::gles::glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glRenderbufferStorageMultisample
-
-void  glew::gles::glRenderbufferStorageMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+void  _glew_gles_glRenderbufferStorageMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glRenderbufferStorageMultisample
-  if (s_deviceConfig.m_glRenderbufferStorageMultisample)
+  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisample)
   {
-    s_deviceConfig.m_glRenderbufferStorageMultisample (target, samples, internalformat, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glRenderbufferStorageMultisample (target, samples, internalformat, width, height);
+  }
+  // GL_EXT_multisampled_render_to_texture - glRenderbufferStorageMultisample
+  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glRenderbufferStorageMultisampleEXT (target, samples, internalformat, width, height);
+  }
+  // GL_NV_framebuffer_multisample - glRenderbufferStorageMultisample
+  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glRenderbufferStorageMultisampleNV (target, samples, internalformat, width, height);
   }
 }
 
@@ -389,14 +516,15 @@ void  glew::gles::glRenderbufferStorageMultisample (GLenum target, GLsizei sampl
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFramebufferTextureLayer
-
-void  glew::gles::glFramebufferTextureLayer (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer)
+void  _glew_gles_glFramebufferTextureLayer (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glFramebufferTextureLayer
-  if (s_deviceConfig.m_glFramebufferTextureLayer)
+  if (!prototypeCalled && glesConfig.m_glFramebufferTextureLayer)
   {
-    s_deviceConfig.m_glFramebufferTextureLayer (target, attachment, texture, level, layer);
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferTextureLayer (target, attachment, texture, level, layer);
   }
 }
 
@@ -404,14 +532,21 @@ void  glew::gles::glFramebufferTextureLayer (GLenum target, GLenum attachment, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMapBufferRange
-
-void * glew::gles::glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)
+void * _glew_gles_glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glMapBufferRange
-  if (s_deviceConfig.m_glMapBufferRange)
+  if (!prototypeCalled && glesConfig.m_glMapBufferRange)
   {
-    return s_deviceConfig.m_glMapBufferRange (target, offset, length, access);
+    prototypeCalled = true;
+    return glesConfig.m_glMapBufferRange (target, offset, length, access);
+  }
+  // GL_EXT_map_buffer_range - glMapBufferRange
+  if (!prototypeCalled && glesConfig.m_glMapBufferRangeEXT)
+  {
+    prototypeCalled = true;
+    return glesConfig.m_glMapBufferRangeEXT (target, offset, length, access);
   }
   return ((void *)0);
 }
@@ -420,14 +555,21 @@ void * glew::gles::glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFlushMappedBufferRange
-
-void  glew::gles::glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsizeiptr length)
+void  _glew_gles_glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsizeiptr length)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glFlushMappedBufferRange
-  if (s_deviceConfig.m_glFlushMappedBufferRange)
+  if (!prototypeCalled && glesConfig.m_glFlushMappedBufferRange)
   {
-    s_deviceConfig.m_glFlushMappedBufferRange (target, offset, length);
+    prototypeCalled = true;
+    glesConfig.m_glFlushMappedBufferRange (target, offset, length);
+  }
+  // GL_EXT_map_buffer_range - glFlushMappedBufferRange
+  if (!prototypeCalled && glesConfig.m_glFlushMappedBufferRangeEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glFlushMappedBufferRangeEXT (target, offset, length);
   }
 }
 
@@ -435,14 +577,21 @@ void  glew::gles::glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindVertexArray
-
-void  glew::gles::glBindVertexArray (GLuint array)
+void  _glew_gles_glBindVertexArray (GLuint array)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glBindVertexArray
-  if (s_deviceConfig.m_glBindVertexArray)
+  if (!prototypeCalled && glesConfig.m_glBindVertexArray)
   {
-    s_deviceConfig.m_glBindVertexArray (array);
+    prototypeCalled = true;
+    glesConfig.m_glBindVertexArray (array);
+  }
+  // GL_OES_vertex_array_object - glBindVertexArray
+  if (!prototypeCalled && glesConfig.m_glBindVertexArrayOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glBindVertexArrayOES (array);
   }
 }
 
@@ -450,14 +599,21 @@ void  glew::gles::glBindVertexArray (GLuint array)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteVertexArrays
-
-void  glew::gles::glDeleteVertexArrays (GLsizei n, const GLuint * arrays)
+void  _glew_gles_glDeleteVertexArrays (GLsizei n, const GLuint * arrays)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glDeleteVertexArrays
-  if (s_deviceConfig.m_glDeleteVertexArrays)
+  if (!prototypeCalled && glesConfig.m_glDeleteVertexArrays)
   {
-    s_deviceConfig.m_glDeleteVertexArrays (n, arrays);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteVertexArrays (n, arrays);
+  }
+  // GL_OES_vertex_array_object - glDeleteVertexArrays
+  if (!prototypeCalled && glesConfig.m_glDeleteVertexArraysOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDeleteVertexArraysOES (n, arrays);
   }
 }
 
@@ -465,14 +621,21 @@ void  glew::gles::glDeleteVertexArrays (GLsizei n, const GLuint * arrays)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenVertexArrays
-
-void  glew::gles::glGenVertexArrays (GLsizei n, GLuint * arrays)
+void  _glew_gles_glGenVertexArrays (GLsizei n, GLuint * arrays)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGenVertexArrays
-  if (s_deviceConfig.m_glGenVertexArrays)
+  if (!prototypeCalled && glesConfig.m_glGenVertexArrays)
   {
-    s_deviceConfig.m_glGenVertexArrays (n, arrays);
+    prototypeCalled = true;
+    glesConfig.m_glGenVertexArrays (n, arrays);
+  }
+  // GL_OES_vertex_array_object - glGenVertexArrays
+  if (!prototypeCalled && glesConfig.m_glGenVertexArraysOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGenVertexArraysOES (n, arrays);
   }
 }
 
@@ -480,14 +643,21 @@ void  glew::gles::glGenVertexArrays (GLsizei n, GLuint * arrays)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsVertexArray
-
-GLboolean glew::gles::glIsVertexArray (GLuint array)
+GLboolean _glew_gles_glIsVertexArray (GLuint array)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glIsVertexArray
-  if (s_deviceConfig.m_glIsVertexArray)
+  if (!prototypeCalled && glesConfig.m_glIsVertexArray)
   {
-    return s_deviceConfig.m_glIsVertexArray (array);
+    prototypeCalled = true;
+    return glesConfig.m_glIsVertexArray (array);
+  }
+  // GL_OES_vertex_array_object - glIsVertexArray
+  if (!prototypeCalled && glesConfig.m_glIsVertexArrayOES)
+  {
+    prototypeCalled = true;
+    return glesConfig.m_glIsVertexArrayOES (array);
   }
   return ((GLboolean)0);
 }
@@ -496,14 +666,15 @@ GLboolean glew::gles::glIsVertexArray (GLuint array)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetIntegeri_v
-
-void  glew::gles::glGetIntegeri_v (GLenum target, GLuint index, GLint * data)
+void  _glew_gles_glGetIntegeri_v (GLenum target, GLuint index, GLint * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetIntegeri_v
-  if (s_deviceConfig.m_glGetIntegeri_v)
+  if (!prototypeCalled && glesConfig.m_glGetIntegeri_v)
   {
-    s_deviceConfig.m_glGetIntegeri_v (target, index, data);
+    prototypeCalled = true;
+    glesConfig.m_glGetIntegeri_v (target, index, data);
   }
 }
 
@@ -511,14 +682,15 @@ void  glew::gles::glGetIntegeri_v (GLenum target, GLuint index, GLint * data)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBeginTransformFeedback
-
-void  glew::gles::glBeginTransformFeedback (GLenum primitiveMode)
+void  _glew_gles_glBeginTransformFeedback (GLenum primitiveMode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glBeginTransformFeedback
-  if (s_deviceConfig.m_glBeginTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_glBeginTransformFeedback)
   {
-    s_deviceConfig.m_glBeginTransformFeedback (primitiveMode);
+    prototypeCalled = true;
+    glesConfig.m_glBeginTransformFeedback (primitiveMode);
   }
 }
 
@@ -526,14 +698,15 @@ void  glew::gles::glBeginTransformFeedback (GLenum primitiveMode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEndTransformFeedback
-
-void  glew::gles::glEndTransformFeedback ()
+void  _glew_gles_glEndTransformFeedback ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glEndTransformFeedback
-  if (s_deviceConfig.m_glEndTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_glEndTransformFeedback)
   {
-    s_deviceConfig.m_glEndTransformFeedback ();
+    prototypeCalled = true;
+    glesConfig.m_glEndTransformFeedback ();
   }
 }
 
@@ -541,14 +714,15 @@ void  glew::gles::glEndTransformFeedback ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindBufferRange
-
-void  glew::gles::glBindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size)
+void  _glew_gles_glBindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glBindBufferRange
-  if (s_deviceConfig.m_glBindBufferRange)
+  if (!prototypeCalled && glesConfig.m_glBindBufferRange)
   {
-    s_deviceConfig.m_glBindBufferRange (target, index, buffer, offset, size);
+    prototypeCalled = true;
+    glesConfig.m_glBindBufferRange (target, index, buffer, offset, size);
   }
 }
 
@@ -556,14 +730,15 @@ void  glew::gles::glBindBufferRange (GLenum target, GLuint index, GLuint buffer,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindBufferBase
-
-void  glew::gles::glBindBufferBase (GLenum target, GLuint index, GLuint buffer)
+void  _glew_gles_glBindBufferBase (GLenum target, GLuint index, GLuint buffer)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glBindBufferBase
-  if (s_deviceConfig.m_glBindBufferBase)
+  if (!prototypeCalled && glesConfig.m_glBindBufferBase)
   {
-    s_deviceConfig.m_glBindBufferBase (target, index, buffer);
+    prototypeCalled = true;
+    glesConfig.m_glBindBufferBase (target, index, buffer);
   }
 }
 
@@ -571,14 +746,15 @@ void  glew::gles::glBindBufferBase (GLenum target, GLuint index, GLuint buffer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTransformFeedbackVaryings
-
-void  glew::gles::glTransformFeedbackVaryings (GLuint program, GLsizei count, const GLchar *const* varyings, GLenum bufferMode)
+void  _glew_gles_glTransformFeedbackVaryings (GLuint program, GLsizei count, const GLchar *const* varyings, GLenum bufferMode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glTransformFeedbackVaryings
-  if (s_deviceConfig.m_glTransformFeedbackVaryings)
+  if (!prototypeCalled && glesConfig.m_glTransformFeedbackVaryings)
   {
-    s_deviceConfig.m_glTransformFeedbackVaryings (program, count, varyings, bufferMode);
+    prototypeCalled = true;
+    glesConfig.m_glTransformFeedbackVaryings (program, count, varyings, bufferMode);
   }
 }
 
@@ -586,14 +762,15 @@ void  glew::gles::glTransformFeedbackVaryings (GLuint program, GLsizei count, co
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTransformFeedbackVarying
-
-void  glew::gles::glGetTransformFeedbackVarying (GLuint program, GLuint index, GLsizei bufSize, GLsizei * length, GLsizei * size, GLenum * type, GLchar * name)
+void  _glew_gles_glGetTransformFeedbackVarying (GLuint program, GLuint index, GLsizei bufSize, GLsizei * length, GLsizei * size, GLenum * type, GLchar * name)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetTransformFeedbackVarying
-  if (s_deviceConfig.m_glGetTransformFeedbackVarying)
+  if (!prototypeCalled && glesConfig.m_glGetTransformFeedbackVarying)
   {
-    s_deviceConfig.m_glGetTransformFeedbackVarying (program, index, bufSize, length, size, type, name);
+    prototypeCalled = true;
+    glesConfig.m_glGetTransformFeedbackVarying (program, index, bufSize, length, size, type, name);
   }
 }
 
@@ -601,14 +778,15 @@ void  glew::gles::glGetTransformFeedbackVarying (GLuint program, GLuint index, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribIPointer
-
-void  glew::gles::glVertexAttribIPointer (GLuint index, GLint size, GLenum type, GLsizei stride, const void * pointer)
+void  _glew_gles_glVertexAttribIPointer (GLuint index, GLint size, GLenum type, GLsizei stride, const void * pointer)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glVertexAttribIPointer
-  if (s_deviceConfig.m_glVertexAttribIPointer)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribIPointer)
   {
-    s_deviceConfig.m_glVertexAttribIPointer (index, size, type, stride, pointer);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribIPointer (index, size, type, stride, pointer);
   }
 }
 
@@ -616,14 +794,15 @@ void  glew::gles::glVertexAttribIPointer (GLuint index, GLint size, GLenum type,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetVertexAttribIiv
-
-void  glew::gles::glGetVertexAttribIiv (GLuint index, GLenum pname, GLint * params)
+void  _glew_gles_glGetVertexAttribIiv (GLuint index, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetVertexAttribIiv
-  if (s_deviceConfig.m_glGetVertexAttribIiv)
+  if (!prototypeCalled && glesConfig.m_glGetVertexAttribIiv)
   {
-    s_deviceConfig.m_glGetVertexAttribIiv (index, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetVertexAttribIiv (index, pname, params);
   }
 }
 
@@ -631,14 +810,15 @@ void  glew::gles::glGetVertexAttribIiv (GLuint index, GLenum pname, GLint * para
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetVertexAttribIuiv
-
-void  glew::gles::glGetVertexAttribIuiv (GLuint index, GLenum pname, GLuint * params)
+void  _glew_gles_glGetVertexAttribIuiv (GLuint index, GLenum pname, GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetVertexAttribIuiv
-  if (s_deviceConfig.m_glGetVertexAttribIuiv)
+  if (!prototypeCalled && glesConfig.m_glGetVertexAttribIuiv)
   {
-    s_deviceConfig.m_glGetVertexAttribIuiv (index, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetVertexAttribIuiv (index, pname, params);
   }
 }
 
@@ -646,14 +826,15 @@ void  glew::gles::glGetVertexAttribIuiv (GLuint index, GLenum pname, GLuint * pa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribI4i
-
-void  glew::gles::glVertexAttribI4i (GLuint index, GLint x, GLint y, GLint z, GLint w)
+void  _glew_gles_glVertexAttribI4i (GLuint index, GLint x, GLint y, GLint z, GLint w)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glVertexAttribI4i
-  if (s_deviceConfig.m_glVertexAttribI4i)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribI4i)
   {
-    s_deviceConfig.m_glVertexAttribI4i (index, x, y, z, w);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribI4i (index, x, y, z, w);
   }
 }
 
@@ -661,14 +842,15 @@ void  glew::gles::glVertexAttribI4i (GLuint index, GLint x, GLint y, GLint z, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribI4ui
-
-void  glew::gles::glVertexAttribI4ui (GLuint index, GLuint x, GLuint y, GLuint z, GLuint w)
+void  _glew_gles_glVertexAttribI4ui (GLuint index, GLuint x, GLuint y, GLuint z, GLuint w)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glVertexAttribI4ui
-  if (s_deviceConfig.m_glVertexAttribI4ui)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribI4ui)
   {
-    s_deviceConfig.m_glVertexAttribI4ui (index, x, y, z, w);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribI4ui (index, x, y, z, w);
   }
 }
 
@@ -676,14 +858,15 @@ void  glew::gles::glVertexAttribI4ui (GLuint index, GLuint x, GLuint y, GLuint z
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribI4iv
-
-void  glew::gles::glVertexAttribI4iv (GLuint index, const GLint * v)
+void  _glew_gles_glVertexAttribI4iv (GLuint index, const GLint * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glVertexAttribI4iv
-  if (s_deviceConfig.m_glVertexAttribI4iv)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribI4iv)
   {
-    s_deviceConfig.m_glVertexAttribI4iv (index, v);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribI4iv (index, v);
   }
 }
 
@@ -691,14 +874,15 @@ void  glew::gles::glVertexAttribI4iv (GLuint index, const GLint * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribI4uiv
-
-void  glew::gles::glVertexAttribI4uiv (GLuint index, const GLuint * v)
+void  _glew_gles_glVertexAttribI4uiv (GLuint index, const GLuint * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glVertexAttribI4uiv
-  if (s_deviceConfig.m_glVertexAttribI4uiv)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribI4uiv)
   {
-    s_deviceConfig.m_glVertexAttribI4uiv (index, v);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribI4uiv (index, v);
   }
 }
 
@@ -706,14 +890,15 @@ void  glew::gles::glVertexAttribI4uiv (GLuint index, const GLuint * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetUniformuiv
-
-void  glew::gles::glGetUniformuiv (GLuint program, GLint location, GLuint * params)
+void  _glew_gles_glGetUniformuiv (GLuint program, GLint location, GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetUniformuiv
-  if (s_deviceConfig.m_glGetUniformuiv)
+  if (!prototypeCalled && glesConfig.m_glGetUniformuiv)
   {
-    s_deviceConfig.m_glGetUniformuiv (program, location, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetUniformuiv (program, location, params);
   }
 }
 
@@ -721,14 +906,15 @@ void  glew::gles::glGetUniformuiv (GLuint program, GLint location, GLuint * para
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetFragDataLocation
-
-GLint glew::gles::glGetFragDataLocation (GLuint program, const GLchar * name)
+GLint _glew_gles_glGetFragDataLocation (GLuint program, const GLchar * name)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetFragDataLocation
-  if (s_deviceConfig.m_glGetFragDataLocation)
+  if (!prototypeCalled && glesConfig.m_glGetFragDataLocation)
   {
-    return s_deviceConfig.m_glGetFragDataLocation (program, name);
+    prototypeCalled = true;
+    return glesConfig.m_glGetFragDataLocation (program, name);
   }
   return ((GLint)0);
 }
@@ -737,14 +923,15 @@ GLint glew::gles::glGetFragDataLocation (GLuint program, const GLchar * name)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniform1ui
-
-void  glew::gles::glUniform1ui (GLint location, GLuint v0)
+void  _glew_gles_glUniform1ui (GLint location, GLuint v0)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniform1ui
-  if (s_deviceConfig.m_glUniform1ui)
+  if (!prototypeCalled && glesConfig.m_glUniform1ui)
   {
-    s_deviceConfig.m_glUniform1ui (location, v0);
+    prototypeCalled = true;
+    glesConfig.m_glUniform1ui (location, v0);
   }
 }
 
@@ -752,14 +939,15 @@ void  glew::gles::glUniform1ui (GLint location, GLuint v0)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniform2ui
-
-void  glew::gles::glUniform2ui (GLint location, GLuint v0, GLuint v1)
+void  _glew_gles_glUniform2ui (GLint location, GLuint v0, GLuint v1)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniform2ui
-  if (s_deviceConfig.m_glUniform2ui)
+  if (!prototypeCalled && glesConfig.m_glUniform2ui)
   {
-    s_deviceConfig.m_glUniform2ui (location, v0, v1);
+    prototypeCalled = true;
+    glesConfig.m_glUniform2ui (location, v0, v1);
   }
 }
 
@@ -767,14 +955,15 @@ void  glew::gles::glUniform2ui (GLint location, GLuint v0, GLuint v1)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniform3ui
-
-void  glew::gles::glUniform3ui (GLint location, GLuint v0, GLuint v1, GLuint v2)
+void  _glew_gles_glUniform3ui (GLint location, GLuint v0, GLuint v1, GLuint v2)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniform3ui
-  if (s_deviceConfig.m_glUniform3ui)
+  if (!prototypeCalled && glesConfig.m_glUniform3ui)
   {
-    s_deviceConfig.m_glUniform3ui (location, v0, v1, v2);
+    prototypeCalled = true;
+    glesConfig.m_glUniform3ui (location, v0, v1, v2);
   }
 }
 
@@ -782,14 +971,15 @@ void  glew::gles::glUniform3ui (GLint location, GLuint v0, GLuint v1, GLuint v2)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniform4ui
-
-void  glew::gles::glUniform4ui (GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3)
+void  _glew_gles_glUniform4ui (GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniform4ui
-  if (s_deviceConfig.m_glUniform4ui)
+  if (!prototypeCalled && glesConfig.m_glUniform4ui)
   {
-    s_deviceConfig.m_glUniform4ui (location, v0, v1, v2, v3);
+    prototypeCalled = true;
+    glesConfig.m_glUniform4ui (location, v0, v1, v2, v3);
   }
 }
 
@@ -797,14 +987,15 @@ void  glew::gles::glUniform4ui (GLint location, GLuint v0, GLuint v1, GLuint v2,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniform1uiv
-
-void  glew::gles::glUniform1uiv (GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glUniform1uiv (GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniform1uiv
-  if (s_deviceConfig.m_glUniform1uiv)
+  if (!prototypeCalled && glesConfig.m_glUniform1uiv)
   {
-    s_deviceConfig.m_glUniform1uiv (location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniform1uiv (location, count, value);
   }
 }
 
@@ -812,14 +1003,15 @@ void  glew::gles::glUniform1uiv (GLint location, GLsizei count, const GLuint * v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniform2uiv
-
-void  glew::gles::glUniform2uiv (GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glUniform2uiv (GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniform2uiv
-  if (s_deviceConfig.m_glUniform2uiv)
+  if (!prototypeCalled && glesConfig.m_glUniform2uiv)
   {
-    s_deviceConfig.m_glUniform2uiv (location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniform2uiv (location, count, value);
   }
 }
 
@@ -827,14 +1019,15 @@ void  glew::gles::glUniform2uiv (GLint location, GLsizei count, const GLuint * v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniform3uiv
-
-void  glew::gles::glUniform3uiv (GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glUniform3uiv (GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniform3uiv
-  if (s_deviceConfig.m_glUniform3uiv)
+  if (!prototypeCalled && glesConfig.m_glUniform3uiv)
   {
-    s_deviceConfig.m_glUniform3uiv (location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniform3uiv (location, count, value);
   }
 }
 
@@ -842,14 +1035,15 @@ void  glew::gles::glUniform3uiv (GLint location, GLsizei count, const GLuint * v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniform4uiv
-
-void  glew::gles::glUniform4uiv (GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glUniform4uiv (GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniform4uiv
-  if (s_deviceConfig.m_glUniform4uiv)
+  if (!prototypeCalled && glesConfig.m_glUniform4uiv)
   {
-    s_deviceConfig.m_glUniform4uiv (location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniform4uiv (location, count, value);
   }
 }
 
@@ -857,14 +1051,15 @@ void  glew::gles::glUniform4uiv (GLint location, GLsizei count, const GLuint * v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glClearBufferiv
-
-void  glew::gles::glClearBufferiv (GLenum buffer, GLint drawbuffer, const GLint * value)
+void  _glew_gles_glClearBufferiv (GLenum buffer, GLint drawbuffer, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glClearBufferiv
-  if (s_deviceConfig.m_glClearBufferiv)
+  if (!prototypeCalled && glesConfig.m_glClearBufferiv)
   {
-    s_deviceConfig.m_glClearBufferiv (buffer, drawbuffer, value);
+    prototypeCalled = true;
+    glesConfig.m_glClearBufferiv (buffer, drawbuffer, value);
   }
 }
 
@@ -872,14 +1067,15 @@ void  glew::gles::glClearBufferiv (GLenum buffer, GLint drawbuffer, const GLint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glClearBufferuiv
-
-void  glew::gles::glClearBufferuiv (GLenum buffer, GLint drawbuffer, const GLuint * value)
+void  _glew_gles_glClearBufferuiv (GLenum buffer, GLint drawbuffer, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glClearBufferuiv
-  if (s_deviceConfig.m_glClearBufferuiv)
+  if (!prototypeCalled && glesConfig.m_glClearBufferuiv)
   {
-    s_deviceConfig.m_glClearBufferuiv (buffer, drawbuffer, value);
+    prototypeCalled = true;
+    glesConfig.m_glClearBufferuiv (buffer, drawbuffer, value);
   }
 }
 
@@ -887,14 +1083,15 @@ void  glew::gles::glClearBufferuiv (GLenum buffer, GLint drawbuffer, const GLuin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glClearBufferfv
-
-void  glew::gles::glClearBufferfv (GLenum buffer, GLint drawbuffer, const GLfloat * value)
+void  _glew_gles_glClearBufferfv (GLenum buffer, GLint drawbuffer, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glClearBufferfv
-  if (s_deviceConfig.m_glClearBufferfv)
+  if (!prototypeCalled && glesConfig.m_glClearBufferfv)
   {
-    s_deviceConfig.m_glClearBufferfv (buffer, drawbuffer, value);
+    prototypeCalled = true;
+    glesConfig.m_glClearBufferfv (buffer, drawbuffer, value);
   }
 }
 
@@ -902,14 +1099,15 @@ void  glew::gles::glClearBufferfv (GLenum buffer, GLint drawbuffer, const GLfloa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glClearBufferfi
-
-void  glew::gles::glClearBufferfi (GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil)
+void  _glew_gles_glClearBufferfi (GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glClearBufferfi
-  if (s_deviceConfig.m_glClearBufferfi)
+  if (!prototypeCalled && glesConfig.m_glClearBufferfi)
   {
-    s_deviceConfig.m_glClearBufferfi (buffer, drawbuffer, depth, stencil);
+    prototypeCalled = true;
+    glesConfig.m_glClearBufferfi (buffer, drawbuffer, depth, stencil);
   }
 }
 
@@ -917,14 +1115,15 @@ void  glew::gles::glClearBufferfi (GLenum buffer, GLint drawbuffer, GLfloat dept
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetStringi
-
-const GLubyte * glew::gles::glGetStringi (GLenum name, GLuint index)
+const GLubyte * _glew_gles_glGetStringi (GLenum name, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetStringi
-  if (s_deviceConfig.m_glGetStringi)
+  if (!prototypeCalled && glesConfig.m_glGetStringi)
   {
-    return s_deviceConfig.m_glGetStringi (name, index);
+    prototypeCalled = true;
+    return glesConfig.m_glGetStringi (name, index);
   }
   return ((const GLubyte *)0);
 }
@@ -933,14 +1132,21 @@ const GLubyte * glew::gles::glGetStringi (GLenum name, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCopyBufferSubData
-
-void  glew::gles::glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
+void  _glew_gles_glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glCopyBufferSubData
-  if (s_deviceConfig.m_glCopyBufferSubData)
+  if (!prototypeCalled && glesConfig.m_glCopyBufferSubData)
   {
-    s_deviceConfig.m_glCopyBufferSubData (readTarget, writeTarget, readOffset, writeOffset, size);
+    prototypeCalled = true;
+    glesConfig.m_glCopyBufferSubData (readTarget, writeTarget, readOffset, writeOffset, size);
+  }
+  // GL_NV_copy_buffer - glCopyBufferSubData
+  if (!prototypeCalled && glesConfig.m_glCopyBufferSubDataNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glCopyBufferSubDataNV (readTarget, writeTarget, readOffset, writeOffset, size);
   }
 }
 
@@ -948,14 +1154,15 @@ void  glew::gles::glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetUniformIndices
-
-void  glew::gles::glGetUniformIndices (GLuint program, GLsizei uniformCount, const GLchar *const* uniformNames, GLuint * uniformIndices)
+void  _glew_gles_glGetUniformIndices (GLuint program, GLsizei uniformCount, const GLchar *const* uniformNames, GLuint * uniformIndices)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetUniformIndices
-  if (s_deviceConfig.m_glGetUniformIndices)
+  if (!prototypeCalled && glesConfig.m_glGetUniformIndices)
   {
-    s_deviceConfig.m_glGetUniformIndices (program, uniformCount, uniformNames, uniformIndices);
+    prototypeCalled = true;
+    glesConfig.m_glGetUniformIndices (program, uniformCount, uniformNames, uniformIndices);
   }
 }
 
@@ -963,14 +1170,15 @@ void  glew::gles::glGetUniformIndices (GLuint program, GLsizei uniformCount, con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetActiveUniformsiv
-
-void  glew::gles::glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, const GLuint * uniformIndices, GLenum pname, GLint * params)
+void  _glew_gles_glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, const GLuint * uniformIndices, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetActiveUniformsiv
-  if (s_deviceConfig.m_glGetActiveUniformsiv)
+  if (!prototypeCalled && glesConfig.m_glGetActiveUniformsiv)
   {
-    s_deviceConfig.m_glGetActiveUniformsiv (program, uniformCount, uniformIndices, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetActiveUniformsiv (program, uniformCount, uniformIndices, pname, params);
   }
 }
 
@@ -978,14 +1186,15 @@ void  glew::gles::glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetUniformBlockIndex
-
-GLuint glew::gles::glGetUniformBlockIndex (GLuint program, const GLchar * uniformBlockName)
+GLuint _glew_gles_glGetUniformBlockIndex (GLuint program, const GLchar * uniformBlockName)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetUniformBlockIndex
-  if (s_deviceConfig.m_glGetUniformBlockIndex)
+  if (!prototypeCalled && glesConfig.m_glGetUniformBlockIndex)
   {
-    return s_deviceConfig.m_glGetUniformBlockIndex (program, uniformBlockName);
+    prototypeCalled = true;
+    return glesConfig.m_glGetUniformBlockIndex (program, uniformBlockName);
   }
   return ((GLuint)0);
 }
@@ -994,14 +1203,15 @@ GLuint glew::gles::glGetUniformBlockIndex (GLuint program, const GLchar * unifor
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetActiveUniformBlockiv
-
-void  glew::gles::glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint * params)
+void  _glew_gles_glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetActiveUniformBlockiv
-  if (s_deviceConfig.m_glGetActiveUniformBlockiv)
+  if (!prototypeCalled && glesConfig.m_glGetActiveUniformBlockiv)
   {
-    s_deviceConfig.m_glGetActiveUniformBlockiv (program, uniformBlockIndex, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetActiveUniformBlockiv (program, uniformBlockIndex, pname, params);
   }
 }
 
@@ -1009,14 +1219,15 @@ void  glew::gles::glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlock
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetActiveUniformBlockName
-
-void  glew::gles::glGetActiveUniformBlockName (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformBlockName)
+void  _glew_gles_glGetActiveUniformBlockName (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformBlockName)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetActiveUniformBlockName
-  if (s_deviceConfig.m_glGetActiveUniformBlockName)
+  if (!prototypeCalled && glesConfig.m_glGetActiveUniformBlockName)
   {
-    s_deviceConfig.m_glGetActiveUniformBlockName (program, uniformBlockIndex, bufSize, length, uniformBlockName);
+    prototypeCalled = true;
+    glesConfig.m_glGetActiveUniformBlockName (program, uniformBlockIndex, bufSize, length, uniformBlockName);
   }
 }
 
@@ -1024,14 +1235,15 @@ void  glew::gles::glGetActiveUniformBlockName (GLuint program, GLuint uniformBlo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformBlockBinding
-
-void  glew::gles::glUniformBlockBinding (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding)
+void  _glew_gles_glUniformBlockBinding (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glUniformBlockBinding
-  if (s_deviceConfig.m_glUniformBlockBinding)
+  if (!prototypeCalled && glesConfig.m_glUniformBlockBinding)
   {
-    s_deviceConfig.m_glUniformBlockBinding (program, uniformBlockIndex, uniformBlockBinding);
+    prototypeCalled = true;
+    glesConfig.m_glUniformBlockBinding (program, uniformBlockIndex, uniformBlockBinding);
   }
 }
 
@@ -1039,14 +1251,27 @@ void  glew::gles::glUniformBlockBinding (GLuint program, GLuint uniformBlockInde
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawArraysInstanced
-
-void  glew::gles::glDrawArraysInstanced (GLenum mode, GLint first, GLsizei count, GLsizei instancecount)
+void  _glew_gles_glDrawArraysInstanced (GLenum mode, GLint first, GLsizei count, GLsizei instancecount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glDrawArraysInstanced
-  if (s_deviceConfig.m_glDrawArraysInstanced)
+  if (!prototypeCalled && glesConfig.m_glDrawArraysInstanced)
   {
-    s_deviceConfig.m_glDrawArraysInstanced (mode, first, count, instancecount);
+    prototypeCalled = true;
+    glesConfig.m_glDrawArraysInstanced (mode, first, count, instancecount);
+  }
+  // GL_ANGLE_instanced_arrays - glDrawArraysInstanced
+  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedANGLE)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawArraysInstancedANGLE (mode, first, count, instancecount);
+  }
+  // GL_EXT_instanced_arrays - glDrawArraysInstanced
+  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawArraysInstancedEXT (mode, first, count, instancecount);
   }
 }
 
@@ -1054,14 +1279,27 @@ void  glew::gles::glDrawArraysInstanced (GLenum mode, GLint first, GLsizei count
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsInstanced
-
-void  glew::gles::glDrawElementsInstanced (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount)
+void  _glew_gles_glDrawElementsInstanced (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glDrawElementsInstanced
-  if (s_deviceConfig.m_glDrawElementsInstanced)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstanced)
   {
-    s_deviceConfig.m_glDrawElementsInstanced (mode, count, type, indices, instancecount);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstanced (mode, count, type, indices, instancecount);
+  }
+  // GL_ANGLE_instanced_arrays - glDrawElementsInstanced
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedANGLE)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedANGLE (mode, count, type, indices, instancecount);
+  }
+  // GL_EXT_instanced_arrays - glDrawElementsInstanced
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedEXT (mode, count, type, indices, instancecount);
   }
 }
 
@@ -1069,14 +1307,21 @@ void  glew::gles::glDrawElementsInstanced (GLenum mode, GLsizei count, GLenum ty
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFenceSync
-
-GLsync glew::gles::glFenceSync (GLenum condition, GLbitfield flags)
+GLsync _glew_gles_glFenceSync (GLenum condition, GLbitfield flags)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glFenceSync
-  if (s_deviceConfig.m_glFenceSync)
+  if (!prototypeCalled && glesConfig.m_glFenceSync)
   {
-    return s_deviceConfig.m_glFenceSync (condition, flags);
+    prototypeCalled = true;
+    return glesConfig.m_glFenceSync (condition, flags);
+  }
+  // GL_APPLE_sync - glFenceSync
+  if (!prototypeCalled && glesConfig.m_glFenceSyncAPPLE)
+  {
+    prototypeCalled = true;
+    return glesConfig.m_glFenceSyncAPPLE (condition, flags);
   }
   return ((GLsync)0);
 }
@@ -1085,14 +1330,21 @@ GLsync glew::gles::glFenceSync (GLenum condition, GLbitfield flags)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsSync
-
-GLboolean glew::gles::glIsSync (GLsync sync)
+GLboolean _glew_gles_glIsSync (GLsync sync)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glIsSync
-  if (s_deviceConfig.m_glIsSync)
+  if (!prototypeCalled && glesConfig.m_glIsSync)
   {
-    return s_deviceConfig.m_glIsSync (sync);
+    prototypeCalled = true;
+    return glesConfig.m_glIsSync (sync);
+  }
+  // GL_APPLE_sync - glIsSync
+  if (!prototypeCalled && glesConfig.m_glIsSyncAPPLE)
+  {
+    prototypeCalled = true;
+    return glesConfig.m_glIsSyncAPPLE (sync);
   }
   return ((GLboolean)0);
 }
@@ -1101,14 +1353,21 @@ GLboolean glew::gles::glIsSync (GLsync sync)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteSync
-
-void  glew::gles::glDeleteSync (GLsync sync)
+void  _glew_gles_glDeleteSync (GLsync sync)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glDeleteSync
-  if (s_deviceConfig.m_glDeleteSync)
+  if (!prototypeCalled && glesConfig.m_glDeleteSync)
   {
-    s_deviceConfig.m_glDeleteSync (sync);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteSync (sync);
+  }
+  // GL_APPLE_sync - glDeleteSync
+  if (!prototypeCalled && glesConfig.m_glDeleteSyncAPPLE)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDeleteSyncAPPLE (sync);
   }
 }
 
@@ -1116,14 +1375,21 @@ void  glew::gles::glDeleteSync (GLsync sync)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glClientWaitSync
-
-GLenum glew::gles::glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
+GLenum _glew_gles_glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glClientWaitSync
-  if (s_deviceConfig.m_glClientWaitSync)
+  if (!prototypeCalled && glesConfig.m_glClientWaitSync)
   {
-    return s_deviceConfig.m_glClientWaitSync (sync, flags, timeout);
+    prototypeCalled = true;
+    return glesConfig.m_glClientWaitSync (sync, flags, timeout);
+  }
+  // GL_APPLE_sync - glClientWaitSync
+  if (!prototypeCalled && glesConfig.m_glClientWaitSyncAPPLE)
+  {
+    prototypeCalled = true;
+    return glesConfig.m_glClientWaitSyncAPPLE (sync, flags, timeout);
   }
   return ((GLenum)0);
 }
@@ -1132,14 +1398,21 @@ GLenum glew::gles::glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 tim
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glWaitSync
-
-void  glew::gles::glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
+void  _glew_gles_glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glWaitSync
-  if (s_deviceConfig.m_glWaitSync)
+  if (!prototypeCalled && glesConfig.m_glWaitSync)
   {
-    s_deviceConfig.m_glWaitSync (sync, flags, timeout);
+    prototypeCalled = true;
+    glesConfig.m_glWaitSync (sync, flags, timeout);
+  }
+  // GL_APPLE_sync - glWaitSync
+  if (!prototypeCalled && glesConfig.m_glWaitSyncAPPLE)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glWaitSyncAPPLE (sync, flags, timeout);
   }
 }
 
@@ -1147,14 +1420,21 @@ void  glew::gles::glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetInteger64v
-
-void  glew::gles::glGetInteger64v (GLenum pname, GLint64 * data)
+void  _glew_gles_glGetInteger64v (GLenum pname, GLint64 * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetInteger64v
-  if (s_deviceConfig.m_glGetInteger64v)
+  if (!prototypeCalled && glesConfig.m_glGetInteger64v)
   {
-    s_deviceConfig.m_glGetInteger64v (pname, data);
+    prototypeCalled = true;
+    glesConfig.m_glGetInteger64v (pname, data);
+  }
+  // GL_APPLE_sync - glGetInteger64v
+  if (!prototypeCalled && glesConfig.m_glGetInteger64vAPPLE)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetInteger64vAPPLE (pname, data);
   }
 }
 
@@ -1162,14 +1442,21 @@ void  glew::gles::glGetInteger64v (GLenum pname, GLint64 * data)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetSynciv
-
-void  glew::gles::glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values)
+void  _glew_gles_glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetSynciv
-  if (s_deviceConfig.m_glGetSynciv)
+  if (!prototypeCalled && glesConfig.m_glGetSynciv)
   {
-    s_deviceConfig.m_glGetSynciv (sync, pname, bufSize, length, values);
+    prototypeCalled = true;
+    glesConfig.m_glGetSynciv (sync, pname, bufSize, length, values);
+  }
+  // GL_APPLE_sync - glGetSynciv
+  if (!prototypeCalled && glesConfig.m_glGetSyncivAPPLE)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetSyncivAPPLE (sync, pname, bufSize, length, values);
   }
 }
 
@@ -1177,14 +1464,15 @@ void  glew::gles::glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetInteger64i_v
-
-void  glew::gles::glGetInteger64i_v (GLenum target, GLuint index, GLint64 * data)
+void  _glew_gles_glGetInteger64i_v (GLenum target, GLuint index, GLint64 * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetInteger64i_v
-  if (s_deviceConfig.m_glGetInteger64i_v)
+  if (!prototypeCalled && glesConfig.m_glGetInteger64i_v)
   {
-    s_deviceConfig.m_glGetInteger64i_v (target, index, data);
+    prototypeCalled = true;
+    glesConfig.m_glGetInteger64i_v (target, index, data);
   }
 }
 
@@ -1192,14 +1480,15 @@ void  glew::gles::glGetInteger64i_v (GLenum target, GLuint index, GLint64 * data
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetBufferParameteri64v
-
-void  glew::gles::glGetBufferParameteri64v (GLenum target, GLenum pname, GLint64 * params)
+void  _glew_gles_glGetBufferParameteri64v (GLenum target, GLenum pname, GLint64 * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetBufferParameteri64v
-  if (s_deviceConfig.m_glGetBufferParameteri64v)
+  if (!prototypeCalled && glesConfig.m_glGetBufferParameteri64v)
   {
-    s_deviceConfig.m_glGetBufferParameteri64v (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetBufferParameteri64v (target, pname, params);
   }
 }
 
@@ -1207,14 +1496,15 @@ void  glew::gles::glGetBufferParameteri64v (GLenum target, GLenum pname, GLint64
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenSamplers
-
-void  glew::gles::glGenSamplers (GLsizei count, GLuint * samplers)
+void  _glew_gles_glGenSamplers (GLsizei count, GLuint * samplers)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGenSamplers
-  if (s_deviceConfig.m_glGenSamplers)
+  if (!prototypeCalled && glesConfig.m_glGenSamplers)
   {
-    s_deviceConfig.m_glGenSamplers (count, samplers);
+    prototypeCalled = true;
+    glesConfig.m_glGenSamplers (count, samplers);
   }
 }
 
@@ -1222,14 +1512,15 @@ void  glew::gles::glGenSamplers (GLsizei count, GLuint * samplers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteSamplers
-
-void  glew::gles::glDeleteSamplers (GLsizei count, const GLuint * samplers)
+void  _glew_gles_glDeleteSamplers (GLsizei count, const GLuint * samplers)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glDeleteSamplers
-  if (s_deviceConfig.m_glDeleteSamplers)
+  if (!prototypeCalled && glesConfig.m_glDeleteSamplers)
   {
-    s_deviceConfig.m_glDeleteSamplers (count, samplers);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteSamplers (count, samplers);
   }
 }
 
@@ -1237,14 +1528,15 @@ void  glew::gles::glDeleteSamplers (GLsizei count, const GLuint * samplers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsSampler
-
-GLboolean glew::gles::glIsSampler (GLuint sampler)
+GLboolean _glew_gles_glIsSampler (GLuint sampler)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glIsSampler
-  if (s_deviceConfig.m_glIsSampler)
+  if (!prototypeCalled && glesConfig.m_glIsSampler)
   {
-    return s_deviceConfig.m_glIsSampler (sampler);
+    prototypeCalled = true;
+    return glesConfig.m_glIsSampler (sampler);
   }
   return ((GLboolean)0);
 }
@@ -1253,14 +1545,15 @@ GLboolean glew::gles::glIsSampler (GLuint sampler)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindSampler
-
-void  glew::gles::glBindSampler (GLuint unit, GLuint sampler)
+void  _glew_gles_glBindSampler (GLuint unit, GLuint sampler)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glBindSampler
-  if (s_deviceConfig.m_glBindSampler)
+  if (!prototypeCalled && glesConfig.m_glBindSampler)
   {
-    s_deviceConfig.m_glBindSampler (unit, sampler);
+    prototypeCalled = true;
+    glesConfig.m_glBindSampler (unit, sampler);
   }
 }
 
@@ -1268,14 +1561,15 @@ void  glew::gles::glBindSampler (GLuint unit, GLuint sampler)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSamplerParameteri
-
-void  glew::gles::glSamplerParameteri (GLuint sampler, GLenum pname, GLint param)
+void  _glew_gles_glSamplerParameteri (GLuint sampler, GLenum pname, GLint param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glSamplerParameteri
-  if (s_deviceConfig.m_glSamplerParameteri)
+  if (!prototypeCalled && glesConfig.m_glSamplerParameteri)
   {
-    s_deviceConfig.m_glSamplerParameteri (sampler, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glSamplerParameteri (sampler, pname, param);
   }
 }
 
@@ -1283,14 +1577,15 @@ void  glew::gles::glSamplerParameteri (GLuint sampler, GLenum pname, GLint param
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSamplerParameteriv
-
-void  glew::gles::glSamplerParameteriv (GLuint sampler, GLenum pname, const GLint * param)
+void  _glew_gles_glSamplerParameteriv (GLuint sampler, GLenum pname, const GLint * param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glSamplerParameteriv
-  if (s_deviceConfig.m_glSamplerParameteriv)
+  if (!prototypeCalled && glesConfig.m_glSamplerParameteriv)
   {
-    s_deviceConfig.m_glSamplerParameteriv (sampler, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glSamplerParameteriv (sampler, pname, param);
   }
 }
 
@@ -1298,14 +1593,15 @@ void  glew::gles::glSamplerParameteriv (GLuint sampler, GLenum pname, const GLin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSamplerParameterf
-
-void  glew::gles::glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat param)
+void  _glew_gles_glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glSamplerParameterf
-  if (s_deviceConfig.m_glSamplerParameterf)
+  if (!prototypeCalled && glesConfig.m_glSamplerParameterf)
   {
-    s_deviceConfig.m_glSamplerParameterf (sampler, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glSamplerParameterf (sampler, pname, param);
   }
 }
 
@@ -1313,14 +1609,15 @@ void  glew::gles::glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat par
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSamplerParameterfv
-
-void  glew::gles::glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfloat * param)
+void  _glew_gles_glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfloat * param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glSamplerParameterfv
-  if (s_deviceConfig.m_glSamplerParameterfv)
+  if (!prototypeCalled && glesConfig.m_glSamplerParameterfv)
   {
-    s_deviceConfig.m_glSamplerParameterfv (sampler, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glSamplerParameterfv (sampler, pname, param);
   }
 }
 
@@ -1328,14 +1625,15 @@ void  glew::gles::glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfl
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetSamplerParameteriv
-
-void  glew::gles::glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint * params)
+void  _glew_gles_glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetSamplerParameteriv
-  if (s_deviceConfig.m_glGetSamplerParameteriv)
+  if (!prototypeCalled && glesConfig.m_glGetSamplerParameteriv)
   {
-    s_deviceConfig.m_glGetSamplerParameteriv (sampler, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetSamplerParameteriv (sampler, pname, params);
   }
 }
 
@@ -1343,14 +1641,15 @@ void  glew::gles::glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetSamplerParameterfv
-
-void  glew::gles::glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat * params)
+void  _glew_gles_glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetSamplerParameterfv
-  if (s_deviceConfig.m_glGetSamplerParameterfv)
+  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterfv)
   {
-    s_deviceConfig.m_glGetSamplerParameterfv (sampler, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetSamplerParameterfv (sampler, pname, params);
   }
 }
 
@@ -1358,14 +1657,33 @@ void  glew::gles::glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribDivisor
-
-void  glew::gles::glVertexAttribDivisor (GLuint index, GLuint divisor)
+void  _glew_gles_glVertexAttribDivisor (GLuint index, GLuint divisor)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glVertexAttribDivisor
-  if (s_deviceConfig.m_glVertexAttribDivisor)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisor)
   {
-    s_deviceConfig.m_glVertexAttribDivisor (index, divisor);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribDivisor (index, divisor);
+  }
+  // GL_ANGLE_instanced_arrays - glVertexAttribDivisor
+  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorANGLE)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribDivisorANGLE (index, divisor);
+  }
+  // GL_EXT_instanced_arrays - glVertexAttribDivisor
+  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribDivisorEXT (index, divisor);
+  }
+  // GL_NV_instanced_arrays - glVertexAttribDivisor
+  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribDivisorNV (index, divisor);
   }
 }
 
@@ -1373,14 +1691,15 @@ void  glew::gles::glVertexAttribDivisor (GLuint index, GLuint divisor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindTransformFeedback
-
-void  glew::gles::glBindTransformFeedback (GLenum target, GLuint id)
+void  _glew_gles_glBindTransformFeedback (GLenum target, GLuint id)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glBindTransformFeedback
-  if (s_deviceConfig.m_glBindTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_glBindTransformFeedback)
   {
-    s_deviceConfig.m_glBindTransformFeedback (target, id);
+    prototypeCalled = true;
+    glesConfig.m_glBindTransformFeedback (target, id);
   }
 }
 
@@ -1388,14 +1707,15 @@ void  glew::gles::glBindTransformFeedback (GLenum target, GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteTransformFeedbacks
-
-void  glew::gles::glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids)
+void  _glew_gles_glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glDeleteTransformFeedbacks
-  if (s_deviceConfig.m_glDeleteTransformFeedbacks)
+  if (!prototypeCalled && glesConfig.m_glDeleteTransformFeedbacks)
   {
-    s_deviceConfig.m_glDeleteTransformFeedbacks (n, ids);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteTransformFeedbacks (n, ids);
   }
 }
 
@@ -1403,14 +1723,15 @@ void  glew::gles::glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenTransformFeedbacks
-
-void  glew::gles::glGenTransformFeedbacks (GLsizei n, GLuint * ids)
+void  _glew_gles_glGenTransformFeedbacks (GLsizei n, GLuint * ids)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGenTransformFeedbacks
-  if (s_deviceConfig.m_glGenTransformFeedbacks)
+  if (!prototypeCalled && glesConfig.m_glGenTransformFeedbacks)
   {
-    s_deviceConfig.m_glGenTransformFeedbacks (n, ids);
+    prototypeCalled = true;
+    glesConfig.m_glGenTransformFeedbacks (n, ids);
   }
 }
 
@@ -1418,14 +1739,15 @@ void  glew::gles::glGenTransformFeedbacks (GLsizei n, GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsTransformFeedback
-
-GLboolean glew::gles::glIsTransformFeedback (GLuint id)
+GLboolean _glew_gles_glIsTransformFeedback (GLuint id)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glIsTransformFeedback
-  if (s_deviceConfig.m_glIsTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_glIsTransformFeedback)
   {
-    return s_deviceConfig.m_glIsTransformFeedback (id);
+    prototypeCalled = true;
+    return glesConfig.m_glIsTransformFeedback (id);
   }
   return ((GLboolean)0);
 }
@@ -1434,14 +1756,15 @@ GLboolean glew::gles::glIsTransformFeedback (GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPauseTransformFeedback
-
-void  glew::gles::glPauseTransformFeedback ()
+void  _glew_gles_glPauseTransformFeedback ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glPauseTransformFeedback
-  if (s_deviceConfig.m_glPauseTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_glPauseTransformFeedback)
   {
-    s_deviceConfig.m_glPauseTransformFeedback ();
+    prototypeCalled = true;
+    glesConfig.m_glPauseTransformFeedback ();
   }
 }
 
@@ -1449,14 +1772,15 @@ void  glew::gles::glPauseTransformFeedback ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glResumeTransformFeedback
-
-void  glew::gles::glResumeTransformFeedback ()
+void  _glew_gles_glResumeTransformFeedback ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glResumeTransformFeedback
-  if (s_deviceConfig.m_glResumeTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_glResumeTransformFeedback)
   {
-    s_deviceConfig.m_glResumeTransformFeedback ();
+    prototypeCalled = true;
+    glesConfig.m_glResumeTransformFeedback ();
   }
 }
 
@@ -1464,14 +1788,21 @@ void  glew::gles::glResumeTransformFeedback ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramBinary
-
-void  glew::gles::glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei * length, GLenum * binaryFormat, void * binary)
+void  _glew_gles_glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei * length, GLenum * binaryFormat, void * binary)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetProgramBinary
-  if (s_deviceConfig.m_glGetProgramBinary)
+  if (!prototypeCalled && glesConfig.m_glGetProgramBinary)
   {
-    s_deviceConfig.m_glGetProgramBinary (program, bufSize, length, binaryFormat, binary);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramBinary (program, bufSize, length, binaryFormat, binary);
+  }
+  // GL_OES_get_program_binary - glGetProgramBinary
+  if (!prototypeCalled && glesConfig.m_glGetProgramBinaryOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramBinaryOES (program, bufSize, length, binaryFormat, binary);
   }
 }
 
@@ -1479,14 +1810,21 @@ void  glew::gles::glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramBinary
-
-void  glew::gles::glProgramBinary (GLuint program, GLenum binaryFormat, const void * binary, GLsizei length)
+void  _glew_gles_glProgramBinary (GLuint program, GLenum binaryFormat, const void * binary, GLsizei length)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glProgramBinary
-  if (s_deviceConfig.m_glProgramBinary)
+  if (!prototypeCalled && glesConfig.m_glProgramBinary)
   {
-    s_deviceConfig.m_glProgramBinary (program, binaryFormat, binary, length);
+    prototypeCalled = true;
+    glesConfig.m_glProgramBinary (program, binaryFormat, binary, length);
+  }
+  // GL_OES_get_program_binary - glProgramBinary
+  if (!prototypeCalled && glesConfig.m_glProgramBinaryOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramBinaryOES (program, binaryFormat, binary, (GLint) length);
   }
 }
 
@@ -1494,14 +1832,21 @@ void  glew::gles::glProgramBinary (GLuint program, GLenum binaryFormat, const vo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramParameteri
-
-void  glew::gles::glProgramParameteri (GLuint program, GLenum pname, GLint value)
+void  _glew_gles_glProgramParameteri (GLuint program, GLenum pname, GLint value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glProgramParameteri
-  if (s_deviceConfig.m_glProgramParameteri)
+  if (!prototypeCalled && glesConfig.m_glProgramParameteri)
   {
-    s_deviceConfig.m_glProgramParameteri (program, pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramParameteri (program, pname, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramParameteri
+  if (!prototypeCalled && glesConfig.m_glProgramParameteriEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramParameteriEXT (program, pname, value);
   }
 }
 
@@ -1509,14 +1854,15 @@ void  glew::gles::glProgramParameteri (GLuint program, GLenum pname, GLint value
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glInvalidateFramebuffer
-
-void  glew::gles::glInvalidateFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments)
+void  _glew_gles_glInvalidateFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glInvalidateFramebuffer
-  if (s_deviceConfig.m_glInvalidateFramebuffer)
+  if (!prototypeCalled && glesConfig.m_glInvalidateFramebuffer)
   {
-    s_deviceConfig.m_glInvalidateFramebuffer (target, numAttachments, attachments);
+    prototypeCalled = true;
+    glesConfig.m_glInvalidateFramebuffer (target, numAttachments, attachments);
   }
 }
 
@@ -1524,14 +1870,15 @@ void  glew::gles::glInvalidateFramebuffer (GLenum target, GLsizei numAttachments
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glInvalidateSubFramebuffer
-
-void  glew::gles::glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height)
+void  _glew_gles_glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glInvalidateSubFramebuffer
-  if (s_deviceConfig.m_glInvalidateSubFramebuffer)
+  if (!prototypeCalled && glesConfig.m_glInvalidateSubFramebuffer)
   {
-    s_deviceConfig.m_glInvalidateSubFramebuffer (target, numAttachments, attachments, x, y, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glInvalidateSubFramebuffer (target, numAttachments, attachments, x, y, width, height);
   }
 }
 
@@ -1539,14 +1886,21 @@ void  glew::gles::glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachme
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexStorage2D
-
-void  glew::gles::glTexStorage2D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
+void  _glew_gles_glTexStorage2D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glTexStorage2D
-  if (s_deviceConfig.m_glTexStorage2D)
+  if (!prototypeCalled && glesConfig.m_glTexStorage2D)
   {
-    s_deviceConfig.m_glTexStorage2D (target, levels, internalformat, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glTexStorage2D (target, levels, internalformat, width, height);
+  }
+  // GL_EXT_texture_storage - glTexStorage2D
+  if (!prototypeCalled && glesConfig.m_glTexStorage2DEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexStorage2DEXT (target, levels, internalformat, width, height);
   }
 }
 
@@ -1554,14 +1908,21 @@ void  glew::gles::glTexStorage2D (GLenum target, GLsizei levels, GLenum internal
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexStorage3D
-
-void  glew::gles::glTexStorage3D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
+void  _glew_gles_glTexStorage3D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glTexStorage3D
-  if (s_deviceConfig.m_glTexStorage3D)
+  if (!prototypeCalled && glesConfig.m_glTexStorage3D)
   {
-    s_deviceConfig.m_glTexStorage3D (target, levels, internalformat, width, height, depth);
+    prototypeCalled = true;
+    glesConfig.m_glTexStorage3D (target, levels, internalformat, width, height, depth);
+  }
+  // GL_EXT_texture_storage - glTexStorage3D
+  if (!prototypeCalled && glesConfig.m_glTexStorage3DEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexStorage3DEXT (target, levels, internalformat, width, height, depth);
   }
 }
 
@@ -1569,14 +1930,15 @@ void  glew::gles::glTexStorage3D (GLenum target, GLsizei levels, GLenum internal
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetInternalformativ
-
-void  glew::gles::glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint * params)
+void  _glew_gles_glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_0 - glGetInternalformativ
-  if (s_deviceConfig.m_glGetInternalformativ)
+  if (!prototypeCalled && glesConfig.m_glGetInternalformativ)
   {
-    s_deviceConfig.m_glGetInternalformativ (target, internalformat, pname, bufSize, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetInternalformativ (target, internalformat, pname, bufSize, params);
   }
 }
 
@@ -1584,14 +1946,15 @@ void  glew::gles::glGetInternalformativ (GLenum target, GLenum internalformat, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDispatchCompute
-
-void  glew::gles::glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z)
+void  _glew_gles_glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glDispatchCompute
-  if (s_deviceConfig.m_glDispatchCompute)
+  if (!prototypeCalled && glesConfig.m_glDispatchCompute)
   {
-    s_deviceConfig.m_glDispatchCompute (num_groups_x, num_groups_y, num_groups_z);
+    prototypeCalled = true;
+    glesConfig.m_glDispatchCompute (num_groups_x, num_groups_y, num_groups_z);
   }
 }
 
@@ -1599,14 +1962,15 @@ void  glew::gles::glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDispatchComputeIndirect
-
-void  glew::gles::glDispatchComputeIndirect (GLintptr indirect)
+void  _glew_gles_glDispatchComputeIndirect (GLintptr indirect)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glDispatchComputeIndirect
-  if (s_deviceConfig.m_glDispatchComputeIndirect)
+  if (!prototypeCalled && glesConfig.m_glDispatchComputeIndirect)
   {
-    s_deviceConfig.m_glDispatchComputeIndirect (indirect);
+    prototypeCalled = true;
+    glesConfig.m_glDispatchComputeIndirect (indirect);
   }
 }
 
@@ -1614,14 +1978,15 @@ void  glew::gles::glDispatchComputeIndirect (GLintptr indirect)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawArraysIndirect
-
-void  glew::gles::glDrawArraysIndirect (GLenum mode, const void * indirect)
+void  _glew_gles_glDrawArraysIndirect (GLenum mode, const void * indirect)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glDrawArraysIndirect
-  if (s_deviceConfig.m_glDrawArraysIndirect)
+  if (!prototypeCalled && glesConfig.m_glDrawArraysIndirect)
   {
-    s_deviceConfig.m_glDrawArraysIndirect (mode, indirect);
+    prototypeCalled = true;
+    glesConfig.m_glDrawArraysIndirect (mode, indirect);
   }
 }
 
@@ -1629,14 +1994,15 @@ void  glew::gles::glDrawArraysIndirect (GLenum mode, const void * indirect)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsIndirect
-
-void  glew::gles::glDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect)
+void  _glew_gles_glDrawElementsIndirect (GLenum mode, GLenum type, const void * indirect)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glDrawElementsIndirect
-  if (s_deviceConfig.m_glDrawElementsIndirect)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsIndirect)
   {
-    s_deviceConfig.m_glDrawElementsIndirect (mode, type, indirect);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsIndirect (mode, type, indirect);
   }
 }
 
@@ -1644,14 +2010,15 @@ void  glew::gles::glDrawElementsIndirect (GLenum mode, GLenum type, const void *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFramebufferParameteri
-
-void  glew::gles::glFramebufferParameteri (GLenum target, GLenum pname, GLint param)
+void  _glew_gles_glFramebufferParameteri (GLenum target, GLenum pname, GLint param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glFramebufferParameteri
-  if (s_deviceConfig.m_glFramebufferParameteri)
+  if (!prototypeCalled && glesConfig.m_glFramebufferParameteri)
   {
-    s_deviceConfig.m_glFramebufferParameteri (target, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferParameteri (target, pname, param);
   }
 }
 
@@ -1659,14 +2026,15 @@ void  glew::gles::glFramebufferParameteri (GLenum target, GLenum pname, GLint pa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetFramebufferParameteriv
-
-void  glew::gles::glGetFramebufferParameteriv (GLenum target, GLenum pname, GLint * params)
+void  _glew_gles_glGetFramebufferParameteriv (GLenum target, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetFramebufferParameteriv
-  if (s_deviceConfig.m_glGetFramebufferParameteriv)
+  if (!prototypeCalled && glesConfig.m_glGetFramebufferParameteriv)
   {
-    s_deviceConfig.m_glGetFramebufferParameteriv (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetFramebufferParameteriv (target, pname, params);
   }
 }
 
@@ -1674,14 +2042,15 @@ void  glew::gles::glGetFramebufferParameteriv (GLenum target, GLenum pname, GLin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramInterfaceiv
-
-void  glew::gles::glGetProgramInterfaceiv (GLuint program, GLenum programInterface, GLenum pname, GLint * params)
+void  _glew_gles_glGetProgramInterfaceiv (GLuint program, GLenum programInterface, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetProgramInterfaceiv
-  if (s_deviceConfig.m_glGetProgramInterfaceiv)
+  if (!prototypeCalled && glesConfig.m_glGetProgramInterfaceiv)
   {
-    s_deviceConfig.m_glGetProgramInterfaceiv (program, programInterface, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramInterfaceiv (program, programInterface, pname, params);
   }
 }
 
@@ -1689,14 +2058,15 @@ void  glew::gles::glGetProgramInterfaceiv (GLuint program, GLenum programInterfa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramResourceIndex
-
-GLuint glew::gles::glGetProgramResourceIndex (GLuint program, GLenum programInterface, const GLchar * name)
+GLuint _glew_gles_glGetProgramResourceIndex (GLuint program, GLenum programInterface, const GLchar * name)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetProgramResourceIndex
-  if (s_deviceConfig.m_glGetProgramResourceIndex)
+  if (!prototypeCalled && glesConfig.m_glGetProgramResourceIndex)
   {
-    return s_deviceConfig.m_glGetProgramResourceIndex (program, programInterface, name);
+    prototypeCalled = true;
+    return glesConfig.m_glGetProgramResourceIndex (program, programInterface, name);
   }
   return ((GLuint)0);
 }
@@ -1705,14 +2075,15 @@ GLuint glew::gles::glGetProgramResourceIndex (GLuint program, GLenum programInte
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramResourceName
-
-void  glew::gles::glGetProgramResourceName (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei * length, GLchar * name)
+void  _glew_gles_glGetProgramResourceName (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei * length, GLchar * name)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetProgramResourceName
-  if (s_deviceConfig.m_glGetProgramResourceName)
+  if (!prototypeCalled && glesConfig.m_glGetProgramResourceName)
   {
-    s_deviceConfig.m_glGetProgramResourceName (program, programInterface, index, bufSize, length, name);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramResourceName (program, programInterface, index, bufSize, length, name);
   }
 }
 
@@ -1720,14 +2091,15 @@ void  glew::gles::glGetProgramResourceName (GLuint program, GLenum programInterf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramResourceiv
-
-void  glew::gles::glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLint * params)
+void  _glew_gles_glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetProgramResourceiv
-  if (s_deviceConfig.m_glGetProgramResourceiv)
+  if (!prototypeCalled && glesConfig.m_glGetProgramResourceiv)
   {
-    s_deviceConfig.m_glGetProgramResourceiv (program, programInterface, index, propCount, props, bufSize, length, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramResourceiv (program, programInterface, index, propCount, props, bufSize, length, params);
   }
 }
 
@@ -1735,14 +2107,15 @@ void  glew::gles::glGetProgramResourceiv (GLuint program, GLenum programInterfac
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramResourceLocation
-
-GLint glew::gles::glGetProgramResourceLocation (GLuint program, GLenum programInterface, const GLchar * name)
+GLint _glew_gles_glGetProgramResourceLocation (GLuint program, GLenum programInterface, const GLchar * name)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetProgramResourceLocation
-  if (s_deviceConfig.m_glGetProgramResourceLocation)
+  if (!prototypeCalled && glesConfig.m_glGetProgramResourceLocation)
   {
-    return s_deviceConfig.m_glGetProgramResourceLocation (program, programInterface, name);
+    prototypeCalled = true;
+    return glesConfig.m_glGetProgramResourceLocation (program, programInterface, name);
   }
   return ((GLint)0);
 }
@@ -1751,14 +2124,15 @@ GLint glew::gles::glGetProgramResourceLocation (GLuint program, GLenum programIn
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUseProgramStages
-
-void  glew::gles::glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint program)
+void  _glew_gles_glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint program)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glUseProgramStages
-  if (s_deviceConfig.m_glUseProgramStages)
+  if (!prototypeCalled && glesConfig.m_glUseProgramStages)
   {
-    s_deviceConfig.m_glUseProgramStages (pipeline, stages, program);
+    prototypeCalled = true;
+    glesConfig.m_glUseProgramStages (pipeline, stages, program);
   }
 }
 
@@ -1766,14 +2140,15 @@ void  glew::gles::glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glActiveShaderProgram
-
-void  glew::gles::glActiveShaderProgram (GLuint pipeline, GLuint program)
+void  _glew_gles_glActiveShaderProgram (GLuint pipeline, GLuint program)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glActiveShaderProgram
-  if (s_deviceConfig.m_glActiveShaderProgram)
+  if (!prototypeCalled && glesConfig.m_glActiveShaderProgram)
   {
-    s_deviceConfig.m_glActiveShaderProgram (pipeline, program);
+    prototypeCalled = true;
+    glesConfig.m_glActiveShaderProgram (pipeline, program);
   }
 }
 
@@ -1781,14 +2156,15 @@ void  glew::gles::glActiveShaderProgram (GLuint pipeline, GLuint program)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCreateShaderProgramv
-
-GLuint glew::gles::glCreateShaderProgramv (GLenum type, GLsizei count, const GLchar *const* strings)
+GLuint _glew_gles_glCreateShaderProgramv (GLenum type, GLsizei count, const GLchar *const* strings)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glCreateShaderProgramv
-  if (s_deviceConfig.m_glCreateShaderProgramv)
+  if (!prototypeCalled && glesConfig.m_glCreateShaderProgramv)
   {
-    return s_deviceConfig.m_glCreateShaderProgramv (type, count, strings);
+    prototypeCalled = true;
+    return glesConfig.m_glCreateShaderProgramv (type, count, strings);
   }
   return ((GLuint)0);
 }
@@ -1797,14 +2173,15 @@ GLuint glew::gles::glCreateShaderProgramv (GLenum type, GLsizei count, const GLc
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindProgramPipeline
-
-void  glew::gles::glBindProgramPipeline (GLuint pipeline)
+void  _glew_gles_glBindProgramPipeline (GLuint pipeline)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glBindProgramPipeline
-  if (s_deviceConfig.m_glBindProgramPipeline)
+  if (!prototypeCalled && glesConfig.m_glBindProgramPipeline)
   {
-    s_deviceConfig.m_glBindProgramPipeline (pipeline);
+    prototypeCalled = true;
+    glesConfig.m_glBindProgramPipeline (pipeline);
   }
 }
 
@@ -1812,14 +2189,15 @@ void  glew::gles::glBindProgramPipeline (GLuint pipeline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteProgramPipelines
-
-void  glew::gles::glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines)
+void  _glew_gles_glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glDeleteProgramPipelines
-  if (s_deviceConfig.m_glDeleteProgramPipelines)
+  if (!prototypeCalled && glesConfig.m_glDeleteProgramPipelines)
   {
-    s_deviceConfig.m_glDeleteProgramPipelines (n, pipelines);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteProgramPipelines (n, pipelines);
   }
 }
 
@@ -1827,14 +2205,15 @@ void  glew::gles::glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenProgramPipelines
-
-void  glew::gles::glGenProgramPipelines (GLsizei n, GLuint * pipelines)
+void  _glew_gles_glGenProgramPipelines (GLsizei n, GLuint * pipelines)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGenProgramPipelines
-  if (s_deviceConfig.m_glGenProgramPipelines)
+  if (!prototypeCalled && glesConfig.m_glGenProgramPipelines)
   {
-    s_deviceConfig.m_glGenProgramPipelines (n, pipelines);
+    prototypeCalled = true;
+    glesConfig.m_glGenProgramPipelines (n, pipelines);
   }
 }
 
@@ -1842,14 +2221,15 @@ void  glew::gles::glGenProgramPipelines (GLsizei n, GLuint * pipelines)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsProgramPipeline
-
-GLboolean glew::gles::glIsProgramPipeline (GLuint pipeline)
+GLboolean _glew_gles_glIsProgramPipeline (GLuint pipeline)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glIsProgramPipeline
-  if (s_deviceConfig.m_glIsProgramPipeline)
+  if (!prototypeCalled && glesConfig.m_glIsProgramPipeline)
   {
-    return s_deviceConfig.m_glIsProgramPipeline (pipeline);
+    prototypeCalled = true;
+    return glesConfig.m_glIsProgramPipeline (pipeline);
   }
   return ((GLboolean)0);
 }
@@ -1858,14 +2238,15 @@ GLboolean glew::gles::glIsProgramPipeline (GLuint pipeline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramPipelineiv
-
-void  glew::gles::glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint * params)
+void  _glew_gles_glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetProgramPipelineiv
-  if (s_deviceConfig.m_glGetProgramPipelineiv)
+  if (!prototypeCalled && glesConfig.m_glGetProgramPipelineiv)
   {
-    s_deviceConfig.m_glGetProgramPipelineiv (pipeline, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramPipelineiv (pipeline, pname, params);
   }
 }
 
@@ -1873,14 +2254,21 @@ void  glew::gles::glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1i
-
-void  glew::gles::glProgramUniform1i (GLuint program, GLint location, GLint v0)
+void  _glew_gles_glProgramUniform1i (GLuint program, GLint location, GLint v0)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform1i
-  if (s_deviceConfig.m_glProgramUniform1i)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1i)
   {
-    s_deviceConfig.m_glProgramUniform1i (program, location, v0);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1i (program, location, v0);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform1i
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1iEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1iEXT (program, location, v0);
   }
 }
 
@@ -1888,14 +2276,21 @@ void  glew::gles::glProgramUniform1i (GLuint program, GLint location, GLint v0)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2i
-
-void  glew::gles::glProgramUniform2i (GLuint program, GLint location, GLint v0, GLint v1)
+void  _glew_gles_glProgramUniform2i (GLuint program, GLint location, GLint v0, GLint v1)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform2i
-  if (s_deviceConfig.m_glProgramUniform2i)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2i)
   {
-    s_deviceConfig.m_glProgramUniform2i (program, location, v0, v1);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2i (program, location, v0, v1);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform2i
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2iEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2iEXT (program, location, v0, v1);
   }
 }
 
@@ -1903,14 +2298,21 @@ void  glew::gles::glProgramUniform2i (GLuint program, GLint location, GLint v0, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3i
-
-void  glew::gles::glProgramUniform3i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2)
+void  _glew_gles_glProgramUniform3i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform3i
-  if (s_deviceConfig.m_glProgramUniform3i)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3i)
   {
-    s_deviceConfig.m_glProgramUniform3i (program, location, v0, v1, v2);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3i (program, location, v0, v1, v2);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform3i
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3iEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3iEXT (program, location, v0, v1, v2);
   }
 }
 
@@ -1918,14 +2320,21 @@ void  glew::gles::glProgramUniform3i (GLuint program, GLint location, GLint v0, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4i
-
-void  glew::gles::glProgramUniform4i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
+void  _glew_gles_glProgramUniform4i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform4i
-  if (s_deviceConfig.m_glProgramUniform4i)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4i)
   {
-    s_deviceConfig.m_glProgramUniform4i (program, location, v0, v1, v2, v3);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4i (program, location, v0, v1, v2, v3);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform4i
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4iEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4iEXT (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -1933,14 +2342,15 @@ void  glew::gles::glProgramUniform4i (GLuint program, GLint location, GLint v0, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1ui
-
-void  glew::gles::glProgramUniform1ui (GLuint program, GLint location, GLuint v0)
+void  _glew_gles_glProgramUniform1ui (GLuint program, GLint location, GLuint v0)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform1ui
-  if (s_deviceConfig.m_glProgramUniform1ui)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1ui)
   {
-    s_deviceConfig.m_glProgramUniform1ui (program, location, v0);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1ui (program, location, v0);
   }
 }
 
@@ -1948,14 +2358,15 @@ void  glew::gles::glProgramUniform1ui (GLuint program, GLint location, GLuint v0
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2ui
-
-void  glew::gles::glProgramUniform2ui (GLuint program, GLint location, GLuint v0, GLuint v1)
+void  _glew_gles_glProgramUniform2ui (GLuint program, GLint location, GLuint v0, GLuint v1)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform2ui
-  if (s_deviceConfig.m_glProgramUniform2ui)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2ui)
   {
-    s_deviceConfig.m_glProgramUniform2ui (program, location, v0, v1);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2ui (program, location, v0, v1);
   }
 }
 
@@ -1963,14 +2374,15 @@ void  glew::gles::glProgramUniform2ui (GLuint program, GLint location, GLuint v0
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3ui
-
-void  glew::gles::glProgramUniform3ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2)
+void  _glew_gles_glProgramUniform3ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform3ui
-  if (s_deviceConfig.m_glProgramUniform3ui)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3ui)
   {
-    s_deviceConfig.m_glProgramUniform3ui (program, location, v0, v1, v2);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3ui (program, location, v0, v1, v2);
   }
 }
 
@@ -1978,14 +2390,15 @@ void  glew::gles::glProgramUniform3ui (GLuint program, GLint location, GLuint v0
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4ui
-
-void  glew::gles::glProgramUniform4ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3)
+void  _glew_gles_glProgramUniform4ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform4ui
-  if (s_deviceConfig.m_glProgramUniform4ui)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4ui)
   {
-    s_deviceConfig.m_glProgramUniform4ui (program, location, v0, v1, v2, v3);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4ui (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -1993,14 +2406,21 @@ void  glew::gles::glProgramUniform4ui (GLuint program, GLint location, GLuint v0
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1f
-
-void  glew::gles::glProgramUniform1f (GLuint program, GLint location, GLfloat v0)
+void  _glew_gles_glProgramUniform1f (GLuint program, GLint location, GLfloat v0)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform1f
-  if (s_deviceConfig.m_glProgramUniform1f)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1f)
   {
-    s_deviceConfig.m_glProgramUniform1f (program, location, v0);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1f (program, location, v0);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform1f
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1fEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1fEXT (program, location, v0);
   }
 }
 
@@ -2008,14 +2428,21 @@ void  glew::gles::glProgramUniform1f (GLuint program, GLint location, GLfloat v0
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2f
-
-void  glew::gles::glProgramUniform2f (GLuint program, GLint location, GLfloat v0, GLfloat v1)
+void  _glew_gles_glProgramUniform2f (GLuint program, GLint location, GLfloat v0, GLfloat v1)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform2f
-  if (s_deviceConfig.m_glProgramUniform2f)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2f)
   {
-    s_deviceConfig.m_glProgramUniform2f (program, location, v0, v1);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2f (program, location, v0, v1);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform2f
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2fEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2fEXT (program, location, v0, v1);
   }
 }
 
@@ -2023,14 +2450,21 @@ void  glew::gles::glProgramUniform2f (GLuint program, GLint location, GLfloat v0
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3f
-
-void  glew::gles::glProgramUniform3f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
+void  _glew_gles_glProgramUniform3f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform3f
-  if (s_deviceConfig.m_glProgramUniform3f)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3f)
   {
-    s_deviceConfig.m_glProgramUniform3f (program, location, v0, v1, v2);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3f (program, location, v0, v1, v2);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform3f
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3fEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3fEXT (program, location, v0, v1, v2);
   }
 }
 
@@ -2038,14 +2472,21 @@ void  glew::gles::glProgramUniform3f (GLuint program, GLint location, GLfloat v0
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4f
-
-void  glew::gles::glProgramUniform4f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
+void  _glew_gles_glProgramUniform4f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform4f
-  if (s_deviceConfig.m_glProgramUniform4f)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4f)
   {
-    s_deviceConfig.m_glProgramUniform4f (program, location, v0, v1, v2, v3);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4f (program, location, v0, v1, v2, v3);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform4f
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4fEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4fEXT (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -2053,14 +2494,21 @@ void  glew::gles::glProgramUniform4f (GLuint program, GLint location, GLfloat v0
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1iv
-
-void  glew::gles::glProgramUniform1iv (GLuint program, GLint location, GLsizei count, const GLint * value)
+void  _glew_gles_glProgramUniform1iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform1iv
-  if (s_deviceConfig.m_glProgramUniform1iv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1iv)
   {
-    s_deviceConfig.m_glProgramUniform1iv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1iv (program, location, count, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform1iv
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1ivEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1ivEXT (program, location, count, value);
   }
 }
 
@@ -2068,14 +2516,21 @@ void  glew::gles::glProgramUniform1iv (GLuint program, GLint location, GLsizei c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2iv
-
-void  glew::gles::glProgramUniform2iv (GLuint program, GLint location, GLsizei count, const GLint * value)
+void  _glew_gles_glProgramUniform2iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform2iv
-  if (s_deviceConfig.m_glProgramUniform2iv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2iv)
   {
-    s_deviceConfig.m_glProgramUniform2iv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2iv (program, location, count, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform2iv
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2ivEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2ivEXT (program, location, count, value);
   }
 }
 
@@ -2083,14 +2538,21 @@ void  glew::gles::glProgramUniform2iv (GLuint program, GLint location, GLsizei c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3iv
-
-void  glew::gles::glProgramUniform3iv (GLuint program, GLint location, GLsizei count, const GLint * value)
+void  _glew_gles_glProgramUniform3iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform3iv
-  if (s_deviceConfig.m_glProgramUniform3iv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3iv)
   {
-    s_deviceConfig.m_glProgramUniform3iv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3iv (program, location, count, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform3iv
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3ivEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3ivEXT (program, location, count, value);
   }
 }
 
@@ -2098,14 +2560,21 @@ void  glew::gles::glProgramUniform3iv (GLuint program, GLint location, GLsizei c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4iv
-
-void  glew::gles::glProgramUniform4iv (GLuint program, GLint location, GLsizei count, const GLint * value)
+void  _glew_gles_glProgramUniform4iv (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform4iv
-  if (s_deviceConfig.m_glProgramUniform4iv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4iv)
   {
-    s_deviceConfig.m_glProgramUniform4iv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4iv (program, location, count, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform4iv
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4ivEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4ivEXT (program, location, count, value);
   }
 }
 
@@ -2113,14 +2582,15 @@ void  glew::gles::glProgramUniform4iv (GLuint program, GLint location, GLsizei c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1uiv
-
-void  glew::gles::glProgramUniform1uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glProgramUniform1uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform1uiv
-  if (s_deviceConfig.m_glProgramUniform1uiv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1uiv)
   {
-    s_deviceConfig.m_glProgramUniform1uiv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1uiv (program, location, count, value);
   }
 }
 
@@ -2128,14 +2598,15 @@ void  glew::gles::glProgramUniform1uiv (GLuint program, GLint location, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2uiv
-
-void  glew::gles::glProgramUniform2uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glProgramUniform2uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform2uiv
-  if (s_deviceConfig.m_glProgramUniform2uiv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2uiv)
   {
-    s_deviceConfig.m_glProgramUniform2uiv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2uiv (program, location, count, value);
   }
 }
 
@@ -2143,14 +2614,15 @@ void  glew::gles::glProgramUniform2uiv (GLuint program, GLint location, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3uiv
-
-void  glew::gles::glProgramUniform3uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glProgramUniform3uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform3uiv
-  if (s_deviceConfig.m_glProgramUniform3uiv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3uiv)
   {
-    s_deviceConfig.m_glProgramUniform3uiv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3uiv (program, location, count, value);
   }
 }
 
@@ -2158,14 +2630,15 @@ void  glew::gles::glProgramUniform3uiv (GLuint program, GLint location, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4uiv
-
-void  glew::gles::glProgramUniform4uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glProgramUniform4uiv (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform4uiv
-  if (s_deviceConfig.m_glProgramUniform4uiv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4uiv)
   {
-    s_deviceConfig.m_glProgramUniform4uiv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4uiv (program, location, count, value);
   }
 }
 
@@ -2173,14 +2646,21 @@ void  glew::gles::glProgramUniform4uiv (GLuint program, GLint location, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1fv
-
-void  glew::gles::glProgramUniform1fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+void  _glew_gles_glProgramUniform1fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform1fv
-  if (s_deviceConfig.m_glProgramUniform1fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1fv)
   {
-    s_deviceConfig.m_glProgramUniform1fv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1fv (program, location, count, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform1fv
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1fvEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1fvEXT (program, location, count, value);
   }
 }
 
@@ -2188,14 +2668,21 @@ void  glew::gles::glProgramUniform1fv (GLuint program, GLint location, GLsizei c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2fv
-
-void  glew::gles::glProgramUniform2fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+void  _glew_gles_glProgramUniform2fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform2fv
-  if (s_deviceConfig.m_glProgramUniform2fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2fv)
   {
-    s_deviceConfig.m_glProgramUniform2fv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2fv (program, location, count, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform2fv
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2fvEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2fvEXT (program, location, count, value);
   }
 }
 
@@ -2203,14 +2690,21 @@ void  glew::gles::glProgramUniform2fv (GLuint program, GLint location, GLsizei c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3fv
-
-void  glew::gles::glProgramUniform3fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+void  _glew_gles_glProgramUniform3fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform3fv
-  if (s_deviceConfig.m_glProgramUniform3fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3fv)
   {
-    s_deviceConfig.m_glProgramUniform3fv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3fv (program, location, count, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform3fv
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3fvEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3fvEXT (program, location, count, value);
   }
 }
 
@@ -2218,14 +2712,21 @@ void  glew::gles::glProgramUniform3fv (GLuint program, GLint location, GLsizei c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4fv
-
-void  glew::gles::glProgramUniform4fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+void  _glew_gles_glProgramUniform4fv (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniform4fv
-  if (s_deviceConfig.m_glProgramUniform4fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4fv)
   {
-    s_deviceConfig.m_glProgramUniform4fv (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4fv (program, location, count, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniform4fv
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4fvEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4fvEXT (program, location, count, value);
   }
 }
 
@@ -2233,14 +2734,21 @@ void  glew::gles::glProgramUniform4fv (GLuint program, GLint location, GLsizei c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix2fv
-
-void  glew::gles::glProgramUniformMatrix2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix2fv
-  if (s_deviceConfig.m_glProgramUniformMatrix2fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2fv)
   {
-    s_deviceConfig.m_glProgramUniformMatrix2fv (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix2fv (program, location, count, transpose, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniformMatrix2fv
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2fvEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix2fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -2248,14 +2756,21 @@ void  glew::gles::glProgramUniformMatrix2fv (GLuint program, GLint location, GLs
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix3fv
-
-void  glew::gles::glProgramUniformMatrix3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix3fv
-  if (s_deviceConfig.m_glProgramUniformMatrix3fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3fv)
   {
-    s_deviceConfig.m_glProgramUniformMatrix3fv (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix3fv (program, location, count, transpose, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniformMatrix3fv
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3fvEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix3fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -2263,14 +2778,21 @@ void  glew::gles::glProgramUniformMatrix3fv (GLuint program, GLint location, GLs
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix4fv
-
-void  glew::gles::glProgramUniformMatrix4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix4fv
-  if (s_deviceConfig.m_glProgramUniformMatrix4fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4fv)
   {
-    s_deviceConfig.m_glProgramUniformMatrix4fv (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix4fv (program, location, count, transpose, value);
+  }
+  // GL_EXT_separate_shader_objects - glProgramUniformMatrix4fv
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4fvEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix4fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -2278,14 +2800,15 @@ void  glew::gles::glProgramUniformMatrix4fv (GLuint program, GLint location, GLs
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix2x3fv
-
-void  glew::gles::glProgramUniformMatrix2x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix2x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix2x3fv
-  if (s_deviceConfig.m_glProgramUniformMatrix2x3fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2x3fv)
   {
-    s_deviceConfig.m_glProgramUniformMatrix2x3fv (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix2x3fv (program, location, count, transpose, value);
   }
 }
 
@@ -2293,14 +2816,15 @@ void  glew::gles::glProgramUniformMatrix2x3fv (GLuint program, GLint location, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix3x2fv
-
-void  glew::gles::glProgramUniformMatrix3x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix3x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix3x2fv
-  if (s_deviceConfig.m_glProgramUniformMatrix3x2fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3x2fv)
   {
-    s_deviceConfig.m_glProgramUniformMatrix3x2fv (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix3x2fv (program, location, count, transpose, value);
   }
 }
 
@@ -2308,14 +2832,15 @@ void  glew::gles::glProgramUniformMatrix3x2fv (GLuint program, GLint location, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix2x4fv
-
-void  glew::gles::glProgramUniformMatrix2x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix2x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix2x4fv
-  if (s_deviceConfig.m_glProgramUniformMatrix2x4fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2x4fv)
   {
-    s_deviceConfig.m_glProgramUniformMatrix2x4fv (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix2x4fv (program, location, count, transpose, value);
   }
 }
 
@@ -2323,14 +2848,15 @@ void  glew::gles::glProgramUniformMatrix2x4fv (GLuint program, GLint location, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix4x2fv
-
-void  glew::gles::glProgramUniformMatrix4x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix4x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix4x2fv
-  if (s_deviceConfig.m_glProgramUniformMatrix4x2fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4x2fv)
   {
-    s_deviceConfig.m_glProgramUniformMatrix4x2fv (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix4x2fv (program, location, count, transpose, value);
   }
 }
 
@@ -2338,14 +2864,15 @@ void  glew::gles::glProgramUniformMatrix4x2fv (GLuint program, GLint location, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix3x4fv
-
-void  glew::gles::glProgramUniformMatrix3x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix3x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix3x4fv
-  if (s_deviceConfig.m_glProgramUniformMatrix3x4fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3x4fv)
   {
-    s_deviceConfig.m_glProgramUniformMatrix3x4fv (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix3x4fv (program, location, count, transpose, value);
   }
 }
 
@@ -2353,14 +2880,15 @@ void  glew::gles::glProgramUniformMatrix3x4fv (GLuint program, GLint location, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix4x3fv
-
-void  glew::gles::glProgramUniformMatrix4x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix4x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix4x3fv
-  if (s_deviceConfig.m_glProgramUniformMatrix4x3fv)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4x3fv)
   {
-    s_deviceConfig.m_glProgramUniformMatrix4x3fv (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix4x3fv (program, location, count, transpose, value);
   }
 }
 
@@ -2368,14 +2896,15 @@ void  glew::gles::glProgramUniformMatrix4x3fv (GLuint program, GLint location, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glValidateProgramPipeline
-
-void  glew::gles::glValidateProgramPipeline (GLuint pipeline)
+void  _glew_gles_glValidateProgramPipeline (GLuint pipeline)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glValidateProgramPipeline
-  if (s_deviceConfig.m_glValidateProgramPipeline)
+  if (!prototypeCalled && glesConfig.m_glValidateProgramPipeline)
   {
-    s_deviceConfig.m_glValidateProgramPipeline (pipeline);
+    prototypeCalled = true;
+    glesConfig.m_glValidateProgramPipeline (pipeline);
   }
 }
 
@@ -2383,14 +2912,15 @@ void  glew::gles::glValidateProgramPipeline (GLuint pipeline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramPipelineInfoLog
-
-void  glew::gles::glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, GLsizei * length, GLchar * infoLog)
+void  _glew_gles_glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, GLsizei * length, GLchar * infoLog)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetProgramPipelineInfoLog
-  if (s_deviceConfig.m_glGetProgramPipelineInfoLog)
+  if (!prototypeCalled && glesConfig.m_glGetProgramPipelineInfoLog)
   {
-    s_deviceConfig.m_glGetProgramPipelineInfoLog (pipeline, bufSize, length, infoLog);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramPipelineInfoLog (pipeline, bufSize, length, infoLog);
   }
 }
 
@@ -2398,14 +2928,15 @@ void  glew::gles::glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindImageTexture
-
-void  glew::gles::glBindImageTexture (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)
+void  _glew_gles_glBindImageTexture (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glBindImageTexture
-  if (s_deviceConfig.m_glBindImageTexture)
+  if (!prototypeCalled && glesConfig.m_glBindImageTexture)
   {
-    s_deviceConfig.m_glBindImageTexture (unit, texture, level, layered, layer, access, format);
+    prototypeCalled = true;
+    glesConfig.m_glBindImageTexture (unit, texture, level, layered, layer, access, format);
   }
 }
 
@@ -2413,14 +2944,15 @@ void  glew::gles::glBindImageTexture (GLuint unit, GLuint texture, GLint level, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetBooleani_v
-
-void  glew::gles::glGetBooleani_v (GLenum target, GLuint index, GLboolean * data)
+void  _glew_gles_glGetBooleani_v (GLenum target, GLuint index, GLboolean * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetBooleani_v
-  if (s_deviceConfig.m_glGetBooleani_v)
+  if (!prototypeCalled && glesConfig.m_glGetBooleani_v)
   {
-    s_deviceConfig.m_glGetBooleani_v (target, index, data);
+    prototypeCalled = true;
+    glesConfig.m_glGetBooleani_v (target, index, data);
   }
 }
 
@@ -2428,14 +2960,15 @@ void  glew::gles::glGetBooleani_v (GLenum target, GLuint index, GLboolean * data
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMemoryBarrier
-
-void  glew::gles::glMemoryBarrier (GLbitfield barriers)
+void  _glew_gles_glMemoryBarrier (GLbitfield barriers)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glMemoryBarrier
-  if (s_deviceConfig.m_glMemoryBarrier)
+  if (!prototypeCalled && glesConfig.m_glMemoryBarrier)
   {
-    s_deviceConfig.m_glMemoryBarrier (barriers);
+    prototypeCalled = true;
+    glesConfig.m_glMemoryBarrier (barriers);
   }
 }
 
@@ -2443,14 +2976,15 @@ void  glew::gles::glMemoryBarrier (GLbitfield barriers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMemoryBarrierByRegion
-
-void  glew::gles::glMemoryBarrierByRegion (GLbitfield barriers)
+void  _glew_gles_glMemoryBarrierByRegion (GLbitfield barriers)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glMemoryBarrierByRegion
-  if (s_deviceConfig.m_glMemoryBarrierByRegion)
+  if (!prototypeCalled && glesConfig.m_glMemoryBarrierByRegion)
   {
-    s_deviceConfig.m_glMemoryBarrierByRegion (barriers);
+    prototypeCalled = true;
+    glesConfig.m_glMemoryBarrierByRegion (barriers);
   }
 }
 
@@ -2458,14 +2992,15 @@ void  glew::gles::glMemoryBarrierByRegion (GLbitfield barriers)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexStorage2DMultisample
-
-void  glew::gles::glTexStorage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
+void  _glew_gles_glTexStorage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glTexStorage2DMultisample
-  if (s_deviceConfig.m_glTexStorage2DMultisample)
+  if (!prototypeCalled && glesConfig.m_glTexStorage2DMultisample)
   {
-    s_deviceConfig.m_glTexStorage2DMultisample (target, samples, internalformat, width, height, fixedsamplelocations);
+    prototypeCalled = true;
+    glesConfig.m_glTexStorage2DMultisample (target, samples, internalformat, width, height, fixedsamplelocations);
   }
 }
 
@@ -2473,14 +3008,15 @@ void  glew::gles::glTexStorage2DMultisample (GLenum target, GLsizei samples, GLe
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetMultisamplefv
-
-void  glew::gles::glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val)
+void  _glew_gles_glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetMultisamplefv
-  if (s_deviceConfig.m_glGetMultisamplefv)
+  if (!prototypeCalled && glesConfig.m_glGetMultisamplefv)
   {
-    s_deviceConfig.m_glGetMultisamplefv (pname, index, val);
+    prototypeCalled = true;
+    glesConfig.m_glGetMultisamplefv (pname, index, val);
   }
 }
 
@@ -2488,14 +3024,15 @@ void  glew::gles::glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSampleMaski
-
-void  glew::gles::glSampleMaski (GLuint maskNumber, GLbitfield mask)
+void  _glew_gles_glSampleMaski (GLuint maskNumber, GLbitfield mask)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glSampleMaski
-  if (s_deviceConfig.m_glSampleMaski)
+  if (!prototypeCalled && glesConfig.m_glSampleMaski)
   {
-    s_deviceConfig.m_glSampleMaski (maskNumber, mask);
+    prototypeCalled = true;
+    glesConfig.m_glSampleMaski (maskNumber, mask);
   }
 }
 
@@ -2503,14 +3040,15 @@ void  glew::gles::glSampleMaski (GLuint maskNumber, GLbitfield mask)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTexLevelParameteriv
-
-void  glew::gles::glGetTexLevelParameteriv (GLenum target, GLint level, GLenum pname, GLint * params)
+void  _glew_gles_glGetTexLevelParameteriv (GLenum target, GLint level, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetTexLevelParameteriv
-  if (s_deviceConfig.m_glGetTexLevelParameteriv)
+  if (!prototypeCalled && glesConfig.m_glGetTexLevelParameteriv)
   {
-    s_deviceConfig.m_glGetTexLevelParameteriv (target, level, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetTexLevelParameteriv (target, level, pname, params);
   }
 }
 
@@ -2518,14 +3056,15 @@ void  glew::gles::glGetTexLevelParameteriv (GLenum target, GLint level, GLenum p
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTexLevelParameterfv
-
-void  glew::gles::glGetTexLevelParameterfv (GLenum target, GLint level, GLenum pname, GLfloat * params)
+void  _glew_gles_glGetTexLevelParameterfv (GLenum target, GLint level, GLenum pname, GLfloat * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glGetTexLevelParameterfv
-  if (s_deviceConfig.m_glGetTexLevelParameterfv)
+  if (!prototypeCalled && glesConfig.m_glGetTexLevelParameterfv)
   {
-    s_deviceConfig.m_glGetTexLevelParameterfv (target, level, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetTexLevelParameterfv (target, level, pname, params);
   }
 }
 
@@ -2533,14 +3072,15 @@ void  glew::gles::glGetTexLevelParameterfv (GLenum target, GLint level, GLenum p
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindVertexBuffer
-
-void  glew::gles::glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride)
+void  _glew_gles_glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glBindVertexBuffer
-  if (s_deviceConfig.m_glBindVertexBuffer)
+  if (!prototypeCalled && glesConfig.m_glBindVertexBuffer)
   {
-    s_deviceConfig.m_glBindVertexBuffer (bindingindex, buffer, offset, stride);
+    prototypeCalled = true;
+    glesConfig.m_glBindVertexBuffer (bindingindex, buffer, offset, stride);
   }
 }
 
@@ -2548,14 +3088,15 @@ void  glew::gles::glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintp
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribFormat
-
-void  glew::gles::glVertexAttribFormat (GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
+void  _glew_gles_glVertexAttribFormat (GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glVertexAttribFormat
-  if (s_deviceConfig.m_glVertexAttribFormat)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribFormat)
   {
-    s_deviceConfig.m_glVertexAttribFormat (attribindex, size, type, normalized, relativeoffset);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribFormat (attribindex, size, type, normalized, relativeoffset);
   }
 }
 
@@ -2563,14 +3104,15 @@ void  glew::gles::glVertexAttribFormat (GLuint attribindex, GLint size, GLenum t
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribIFormat
-
-void  glew::gles::glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
+void  _glew_gles_glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glVertexAttribIFormat
-  if (s_deviceConfig.m_glVertexAttribIFormat)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribIFormat)
   {
-    s_deviceConfig.m_glVertexAttribIFormat (attribindex, size, type, relativeoffset);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribIFormat (attribindex, size, type, relativeoffset);
   }
 }
 
@@ -2578,14 +3120,15 @@ void  glew::gles::glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribBinding
-
-void  glew::gles::glVertexAttribBinding (GLuint attribindex, GLuint bindingindex)
+void  _glew_gles_glVertexAttribBinding (GLuint attribindex, GLuint bindingindex)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glVertexAttribBinding
-  if (s_deviceConfig.m_glVertexAttribBinding)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribBinding)
   {
-    s_deviceConfig.m_glVertexAttribBinding (attribindex, bindingindex);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribBinding (attribindex, bindingindex);
   }
 }
 
@@ -2593,14 +3136,15 @@ void  glew::gles::glVertexAttribBinding (GLuint attribindex, GLuint bindingindex
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexBindingDivisor
-
-void  glew::gles::glVertexBindingDivisor (GLuint bindingindex, GLuint divisor)
+void  _glew_gles_glVertexBindingDivisor (GLuint bindingindex, GLuint divisor)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ES_VERSION_3_1 - glVertexBindingDivisor
-  if (s_deviceConfig.m_glVertexBindingDivisor)
+  if (!prototypeCalled && glesConfig.m_glVertexBindingDivisor)
   {
-    s_deviceConfig.m_glVertexBindingDivisor (bindingindex, divisor);
+    prototypeCalled = true;
+    glesConfig.m_glVertexBindingDivisor (bindingindex, divisor);
   }
 }
 
@@ -2608,14 +3152,15 @@ void  glew::gles::glVertexBindingDivisor (GLuint bindingindex, GLuint divisor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfMonitorGroupsAMD
-
-void  glew::gles::glGetPerfMonitorGroupsAMD (GLint * numGroups, GLsizei groupsSize, GLuint * groups)
+void  _glew_gles_glGetPerfMonitorGroupsAMD (GLint * numGroups, GLsizei groupsSize, GLuint * groups)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glGetPerfMonitorGroupsAMD
-  if (s_deviceConfig.m_glGetPerfMonitorGroupsAMD)
+  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorGroupsAMD)
   {
-    s_deviceConfig.m_glGetPerfMonitorGroupsAMD (numGroups, groupsSize, groups);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfMonitorGroupsAMD (numGroups, groupsSize, groups);
   }
 }
 
@@ -2623,14 +3168,15 @@ void  glew::gles::glGetPerfMonitorGroupsAMD (GLint * numGroups, GLsizei groupsSi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfMonitorCountersAMD
-
-void  glew::gles::glGetPerfMonitorCountersAMD (GLuint group, GLint * numCounters, GLint * maxActiveCounters, GLsizei counterSize, GLuint * counters)
+void  _glew_gles_glGetPerfMonitorCountersAMD (GLuint group, GLint * numCounters, GLint * maxActiveCounters, GLsizei counterSize, GLuint * counters)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glGetPerfMonitorCountersAMD
-  if (s_deviceConfig.m_glGetPerfMonitorCountersAMD)
+  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorCountersAMD)
   {
-    s_deviceConfig.m_glGetPerfMonitorCountersAMD (group, numCounters, maxActiveCounters, counterSize, counters);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfMonitorCountersAMD (group, numCounters, maxActiveCounters, counterSize, counters);
   }
 }
 
@@ -2638,14 +3184,15 @@ void  glew::gles::glGetPerfMonitorCountersAMD (GLuint group, GLint * numCounters
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfMonitorGroupStringAMD
-
-void  glew::gles::glGetPerfMonitorGroupStringAMD (GLuint group, GLsizei bufSize, GLsizei * length, GLchar * groupString)
+void  _glew_gles_glGetPerfMonitorGroupStringAMD (GLuint group, GLsizei bufSize, GLsizei * length, GLchar * groupString)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glGetPerfMonitorGroupStringAMD
-  if (s_deviceConfig.m_glGetPerfMonitorGroupStringAMD)
+  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorGroupStringAMD)
   {
-    s_deviceConfig.m_glGetPerfMonitorGroupStringAMD (group, bufSize, length, groupString);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfMonitorGroupStringAMD (group, bufSize, length, groupString);
   }
 }
 
@@ -2653,14 +3200,15 @@ void  glew::gles::glGetPerfMonitorGroupStringAMD (GLuint group, GLsizei bufSize,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfMonitorCounterStringAMD
-
-void  glew::gles::glGetPerfMonitorCounterStringAMD (GLuint group, GLuint counter, GLsizei bufSize, GLsizei * length, GLchar * counterString)
+void  _glew_gles_glGetPerfMonitorCounterStringAMD (GLuint group, GLuint counter, GLsizei bufSize, GLsizei * length, GLchar * counterString)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glGetPerfMonitorCounterStringAMD
-  if (s_deviceConfig.m_glGetPerfMonitorCounterStringAMD)
+  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorCounterStringAMD)
   {
-    s_deviceConfig.m_glGetPerfMonitorCounterStringAMD (group, counter, bufSize, length, counterString);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfMonitorCounterStringAMD (group, counter, bufSize, length, counterString);
   }
 }
 
@@ -2668,14 +3216,15 @@ void  glew::gles::glGetPerfMonitorCounterStringAMD (GLuint group, GLuint counter
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfMonitorCounterInfoAMD
-
-void  glew::gles::glGetPerfMonitorCounterInfoAMD (GLuint group, GLuint counter, GLenum pname, void * data)
+void  _glew_gles_glGetPerfMonitorCounterInfoAMD (GLuint group, GLuint counter, GLenum pname, void * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glGetPerfMonitorCounterInfoAMD
-  if (s_deviceConfig.m_glGetPerfMonitorCounterInfoAMD)
+  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorCounterInfoAMD)
   {
-    s_deviceConfig.m_glGetPerfMonitorCounterInfoAMD (group, counter, pname, data);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfMonitorCounterInfoAMD (group, counter, pname, data);
   }
 }
 
@@ -2683,14 +3232,15 @@ void  glew::gles::glGetPerfMonitorCounterInfoAMD (GLuint group, GLuint counter, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenPerfMonitorsAMD
-
-void  glew::gles::glGenPerfMonitorsAMD (GLsizei n, GLuint * monitors)
+void  _glew_gles_glGenPerfMonitorsAMD (GLsizei n, GLuint * monitors)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glGenPerfMonitorsAMD
-  if (s_deviceConfig.m_glGenPerfMonitorsAMD)
+  if (!prototypeCalled && glesConfig.m_glGenPerfMonitorsAMD)
   {
-    s_deviceConfig.m_glGenPerfMonitorsAMD (n, monitors);
+    prototypeCalled = true;
+    glesConfig.m_glGenPerfMonitorsAMD (n, monitors);
   }
 }
 
@@ -2698,14 +3248,15 @@ void  glew::gles::glGenPerfMonitorsAMD (GLsizei n, GLuint * monitors)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeletePerfMonitorsAMD
-
-void  glew::gles::glDeletePerfMonitorsAMD (GLsizei n, GLuint * monitors)
+void  _glew_gles_glDeletePerfMonitorsAMD (GLsizei n, GLuint * monitors)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glDeletePerfMonitorsAMD
-  if (s_deviceConfig.m_glDeletePerfMonitorsAMD)
+  if (!prototypeCalled && glesConfig.m_glDeletePerfMonitorsAMD)
   {
-    s_deviceConfig.m_glDeletePerfMonitorsAMD (n, monitors);
+    prototypeCalled = true;
+    glesConfig.m_glDeletePerfMonitorsAMD (n, monitors);
   }
 }
 
@@ -2713,14 +3264,15 @@ void  glew::gles::glDeletePerfMonitorsAMD (GLsizei n, GLuint * monitors)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSelectPerfMonitorCountersAMD
-
-void  glew::gles::glSelectPerfMonitorCountersAMD (GLuint monitor, GLboolean enable, GLuint group, GLint numCounters, GLuint * counterList)
+void  _glew_gles_glSelectPerfMonitorCountersAMD (GLuint monitor, GLboolean enable, GLuint group, GLint numCounters, GLuint * counterList)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glSelectPerfMonitorCountersAMD
-  if (s_deviceConfig.m_glSelectPerfMonitorCountersAMD)
+  if (!prototypeCalled && glesConfig.m_glSelectPerfMonitorCountersAMD)
   {
-    s_deviceConfig.m_glSelectPerfMonitorCountersAMD (monitor, enable, group, numCounters, counterList);
+    prototypeCalled = true;
+    glesConfig.m_glSelectPerfMonitorCountersAMD (monitor, enable, group, numCounters, counterList);
   }
 }
 
@@ -2728,14 +3280,15 @@ void  glew::gles::glSelectPerfMonitorCountersAMD (GLuint monitor, GLboolean enab
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBeginPerfMonitorAMD
-
-void  glew::gles::glBeginPerfMonitorAMD (GLuint monitor)
+void  _glew_gles_glBeginPerfMonitorAMD (GLuint monitor)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glBeginPerfMonitorAMD
-  if (s_deviceConfig.m_glBeginPerfMonitorAMD)
+  if (!prototypeCalled && glesConfig.m_glBeginPerfMonitorAMD)
   {
-    s_deviceConfig.m_glBeginPerfMonitorAMD (monitor);
+    prototypeCalled = true;
+    glesConfig.m_glBeginPerfMonitorAMD (monitor);
   }
 }
 
@@ -2743,14 +3296,15 @@ void  glew::gles::glBeginPerfMonitorAMD (GLuint monitor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEndPerfMonitorAMD
-
-void  glew::gles::glEndPerfMonitorAMD (GLuint monitor)
+void  _glew_gles_glEndPerfMonitorAMD (GLuint monitor)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glEndPerfMonitorAMD
-  if (s_deviceConfig.m_glEndPerfMonitorAMD)
+  if (!prototypeCalled && glesConfig.m_glEndPerfMonitorAMD)
   {
-    s_deviceConfig.m_glEndPerfMonitorAMD (monitor);
+    prototypeCalled = true;
+    glesConfig.m_glEndPerfMonitorAMD (monitor);
   }
 }
 
@@ -2758,14 +3312,15 @@ void  glew::gles::glEndPerfMonitorAMD (GLuint monitor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfMonitorCounterDataAMD
-
-void  glew::gles::glGetPerfMonitorCounterDataAMD (GLuint monitor, GLenum pname, GLsizei dataSize, GLuint * data, GLint * bytesWritten)
+void  _glew_gles_glGetPerfMonitorCounterDataAMD (GLuint monitor, GLenum pname, GLsizei dataSize, GLuint * data, GLint * bytesWritten)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_AMD_performance_monitor - glGetPerfMonitorCounterDataAMD
-  if (s_deviceConfig.m_glGetPerfMonitorCounterDataAMD)
+  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorCounterDataAMD)
   {
-    s_deviceConfig.m_glGetPerfMonitorCounterDataAMD (monitor, pname, dataSize, data, bytesWritten);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfMonitorCounterDataAMD (monitor, pname, dataSize, data, bytesWritten);
   }
 }
 
@@ -2773,14 +3328,15 @@ void  glew::gles::glGetPerfMonitorCounterDataAMD (GLuint monitor, GLenum pname, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlitFramebufferANGLE
-
-void  glew::gles::glBlitFramebufferANGLE (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
+void  _glew_gles_glBlitFramebufferANGLE (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ANGLE_framebuffer_blit - glBlitFramebufferANGLE
-  if (s_deviceConfig.m_glBlitFramebufferANGLE)
+  if (!prototypeCalled && glesConfig.m_glBlitFramebufferANGLE)
   {
-    s_deviceConfig.m_glBlitFramebufferANGLE (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+    prototypeCalled = true;
+    glesConfig.m_glBlitFramebufferANGLE (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
 }
 
@@ -2788,14 +3344,15 @@ void  glew::gles::glBlitFramebufferANGLE (GLint srcX0, GLint srcY0, GLint srcX1,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glRenderbufferStorageMultisampleANGLE
-
-void  glew::gles::glRenderbufferStorageMultisampleANGLE (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+void  _glew_gles_glRenderbufferStorageMultisampleANGLE (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ANGLE_framebuffer_multisample - glRenderbufferStorageMultisampleANGLE
-  if (s_deviceConfig.m_glRenderbufferStorageMultisampleANGLE)
+  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleANGLE)
   {
-    s_deviceConfig.m_glRenderbufferStorageMultisampleANGLE (target, samples, internalformat, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glRenderbufferStorageMultisampleANGLE (target, samples, internalformat, width, height);
   }
 }
 
@@ -2803,14 +3360,15 @@ void  glew::gles::glRenderbufferStorageMultisampleANGLE (GLenum target, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawArraysInstancedANGLE
-
-void  glew::gles::glDrawArraysInstancedANGLE (GLenum mode, GLint first, GLsizei count, GLsizei primcount)
+void  _glew_gles_glDrawArraysInstancedANGLE (GLenum mode, GLint first, GLsizei count, GLsizei primcount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ANGLE_instanced_arrays - glDrawArraysInstancedANGLE
-  if (s_deviceConfig.m_glDrawArraysInstancedANGLE)
+  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedANGLE)
   {
-    s_deviceConfig.m_glDrawArraysInstancedANGLE (mode, first, count, primcount);
+    prototypeCalled = true;
+    glesConfig.m_glDrawArraysInstancedANGLE (mode, first, count, primcount);
   }
 }
 
@@ -2818,14 +3376,15 @@ void  glew::gles::glDrawArraysInstancedANGLE (GLenum mode, GLint first, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsInstancedANGLE
-
-void  glew::gles::glDrawElementsInstancedANGLE (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei primcount)
+void  _glew_gles_glDrawElementsInstancedANGLE (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei primcount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ANGLE_instanced_arrays - glDrawElementsInstancedANGLE
-  if (s_deviceConfig.m_glDrawElementsInstancedANGLE)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedANGLE)
   {
-    s_deviceConfig.m_glDrawElementsInstancedANGLE (mode, count, type, indices, primcount);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedANGLE (mode, count, type, indices, primcount);
   }
 }
 
@@ -2833,14 +3392,15 @@ void  glew::gles::glDrawElementsInstancedANGLE (GLenum mode, GLsizei count, GLen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribDivisorANGLE
-
-void  glew::gles::glVertexAttribDivisorANGLE (GLuint index, GLuint divisor)
+void  _glew_gles_glVertexAttribDivisorANGLE (GLuint index, GLuint divisor)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ANGLE_instanced_arrays - glVertexAttribDivisorANGLE
-  if (s_deviceConfig.m_glVertexAttribDivisorANGLE)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorANGLE)
   {
-    s_deviceConfig.m_glVertexAttribDivisorANGLE (index, divisor);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribDivisorANGLE (index, divisor);
   }
 }
 
@@ -2848,14 +3408,15 @@ void  glew::gles::glVertexAttribDivisorANGLE (GLuint index, GLuint divisor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTranslatedShaderSourceANGLE
-
-void  glew::gles::glGetTranslatedShaderSourceANGLE (GLuint shader, GLsizei bufsize, GLsizei * length, GLchar * source)
+void  _glew_gles_glGetTranslatedShaderSourceANGLE (GLuint shader, GLsizei bufsize, GLsizei * length, GLchar * source)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_ANGLE_translated_shader_source - glGetTranslatedShaderSourceANGLE
-  if (s_deviceConfig.m_glGetTranslatedShaderSourceANGLE)
+  if (!prototypeCalled && glesConfig.m_glGetTranslatedShaderSourceANGLE)
   {
-    s_deviceConfig.m_glGetTranslatedShaderSourceANGLE (shader, bufsize, length, source);
+    prototypeCalled = true;
+    glesConfig.m_glGetTranslatedShaderSourceANGLE (shader, bufsize, length, source);
   }
 }
 
@@ -2863,14 +3424,15 @@ void  glew::gles::glGetTranslatedShaderSourceANGLE (GLuint shader, GLsizei bufsi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCopyTextureLevelsAPPLE
-
-void  glew::gles::glCopyTextureLevelsAPPLE (GLuint destinationTexture, GLuint sourceTexture, GLint sourceBaseLevel, GLsizei sourceLevelCount)
+void  _glew_gles_glCopyTextureLevelsAPPLE (GLuint destinationTexture, GLuint sourceTexture, GLint sourceBaseLevel, GLsizei sourceLevelCount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_copy_texture_levels - glCopyTextureLevelsAPPLE
-  if (s_deviceConfig.m_glCopyTextureLevelsAPPLE)
+  if (!prototypeCalled && glesConfig.m_glCopyTextureLevelsAPPLE)
   {
-    s_deviceConfig.m_glCopyTextureLevelsAPPLE (destinationTexture, sourceTexture, sourceBaseLevel, sourceLevelCount);
+    prototypeCalled = true;
+    glesConfig.m_glCopyTextureLevelsAPPLE (destinationTexture, sourceTexture, sourceBaseLevel, sourceLevelCount);
   }
 }
 
@@ -2878,14 +3440,15 @@ void  glew::gles::glCopyTextureLevelsAPPLE (GLuint destinationTexture, GLuint so
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glRenderbufferStorageMultisampleAPPLE
-
-void  glew::gles::glRenderbufferStorageMultisampleAPPLE (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+void  _glew_gles_glRenderbufferStorageMultisampleAPPLE (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_framebuffer_multisample - glRenderbufferStorageMultisampleAPPLE
-  if (s_deviceConfig.m_glRenderbufferStorageMultisampleAPPLE)
+  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleAPPLE)
   {
-    s_deviceConfig.m_glRenderbufferStorageMultisampleAPPLE (target, samples, internalformat, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glRenderbufferStorageMultisampleAPPLE (target, samples, internalformat, width, height);
   }
 }
 
@@ -2893,14 +3456,15 @@ void  glew::gles::glRenderbufferStorageMultisampleAPPLE (GLenum target, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glResolveMultisampleFramebufferAPPLE
-
-void  glew::gles::glResolveMultisampleFramebufferAPPLE ()
+void  _glew_gles_glResolveMultisampleFramebufferAPPLE ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_framebuffer_multisample - glResolveMultisampleFramebufferAPPLE
-  if (s_deviceConfig.m_glResolveMultisampleFramebufferAPPLE)
+  if (!prototypeCalled && glesConfig.m_glResolveMultisampleFramebufferAPPLE)
   {
-    s_deviceConfig.m_glResolveMultisampleFramebufferAPPLE ();
+    prototypeCalled = true;
+    glesConfig.m_glResolveMultisampleFramebufferAPPLE ();
   }
 }
 
@@ -2908,14 +3472,15 @@ void  glew::gles::glResolveMultisampleFramebufferAPPLE ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFenceSyncAPPLE
-
-GLsync glew::gles::glFenceSyncAPPLE (GLenum condition, GLbitfield flags)
+GLsync _glew_gles_glFenceSyncAPPLE (GLenum condition, GLbitfield flags)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_sync - glFenceSyncAPPLE
-  if (s_deviceConfig.m_glFenceSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_glFenceSyncAPPLE)
   {
-    return s_deviceConfig.m_glFenceSyncAPPLE (condition, flags);
+    prototypeCalled = true;
+    return glesConfig.m_glFenceSyncAPPLE (condition, flags);
   }
   return ((GLsync)0);
 }
@@ -2924,14 +3489,15 @@ GLsync glew::gles::glFenceSyncAPPLE (GLenum condition, GLbitfield flags)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsSyncAPPLE
-
-GLboolean glew::gles::glIsSyncAPPLE (GLsync sync)
+GLboolean _glew_gles_glIsSyncAPPLE (GLsync sync)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_sync - glIsSyncAPPLE
-  if (s_deviceConfig.m_glIsSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_glIsSyncAPPLE)
   {
-    return s_deviceConfig.m_glIsSyncAPPLE (sync);
+    prototypeCalled = true;
+    return glesConfig.m_glIsSyncAPPLE (sync);
   }
   return ((GLboolean)0);
 }
@@ -2940,14 +3506,15 @@ GLboolean glew::gles::glIsSyncAPPLE (GLsync sync)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteSyncAPPLE
-
-void  glew::gles::glDeleteSyncAPPLE (GLsync sync)
+void  _glew_gles_glDeleteSyncAPPLE (GLsync sync)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_sync - glDeleteSyncAPPLE
-  if (s_deviceConfig.m_glDeleteSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_glDeleteSyncAPPLE)
   {
-    s_deviceConfig.m_glDeleteSyncAPPLE (sync);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteSyncAPPLE (sync);
   }
 }
 
@@ -2955,14 +3522,15 @@ void  glew::gles::glDeleteSyncAPPLE (GLsync sync)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glClientWaitSyncAPPLE
-
-GLenum glew::gles::glClientWaitSyncAPPLE (GLsync sync, GLbitfield flags, GLuint64 timeout)
+GLenum _glew_gles_glClientWaitSyncAPPLE (GLsync sync, GLbitfield flags, GLuint64 timeout)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_sync - glClientWaitSyncAPPLE
-  if (s_deviceConfig.m_glClientWaitSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_glClientWaitSyncAPPLE)
   {
-    return s_deviceConfig.m_glClientWaitSyncAPPLE (sync, flags, timeout);
+    prototypeCalled = true;
+    return glesConfig.m_glClientWaitSyncAPPLE (sync, flags, timeout);
   }
   return ((GLenum)0);
 }
@@ -2971,14 +3539,15 @@ GLenum glew::gles::glClientWaitSyncAPPLE (GLsync sync, GLbitfield flags, GLuint6
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glWaitSyncAPPLE
-
-void  glew::gles::glWaitSyncAPPLE (GLsync sync, GLbitfield flags, GLuint64 timeout)
+void  _glew_gles_glWaitSyncAPPLE (GLsync sync, GLbitfield flags, GLuint64 timeout)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_sync - glWaitSyncAPPLE
-  if (s_deviceConfig.m_glWaitSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_glWaitSyncAPPLE)
   {
-    s_deviceConfig.m_glWaitSyncAPPLE (sync, flags, timeout);
+    prototypeCalled = true;
+    glesConfig.m_glWaitSyncAPPLE (sync, flags, timeout);
   }
 }
 
@@ -2986,14 +3555,15 @@ void  glew::gles::glWaitSyncAPPLE (GLsync sync, GLbitfield flags, GLuint64 timeo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetInteger64vAPPLE
-
-void  glew::gles::glGetInteger64vAPPLE (GLenum pname, GLint64 * params)
+void  _glew_gles_glGetInteger64vAPPLE (GLenum pname, GLint64 * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_sync - glGetInteger64vAPPLE
-  if (s_deviceConfig.m_glGetInteger64vAPPLE)
+  if (!prototypeCalled && glesConfig.m_glGetInteger64vAPPLE)
   {
-    s_deviceConfig.m_glGetInteger64vAPPLE (pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetInteger64vAPPLE (pname, params);
   }
 }
 
@@ -3001,14 +3571,15 @@ void  glew::gles::glGetInteger64vAPPLE (GLenum pname, GLint64 * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetSyncivAPPLE
-
-void  glew::gles::glGetSyncivAPPLE (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values)
+void  _glew_gles_glGetSyncivAPPLE (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_APPLE_sync - glGetSyncivAPPLE
-  if (s_deviceConfig.m_glGetSyncivAPPLE)
+  if (!prototypeCalled && glesConfig.m_glGetSyncivAPPLE)
   {
-    s_deviceConfig.m_glGetSyncivAPPLE (sync, pname, bufSize, length, values);
+    prototypeCalled = true;
+    glesConfig.m_glGetSyncivAPPLE (sync, pname, bufSize, length, values);
   }
 }
 
@@ -3016,14 +3587,15 @@ void  glew::gles::glGetSyncivAPPLE (GLsync sync, GLenum pname, GLsizei bufSize, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawArraysInstancedBaseInstanceEXT
-
-void  glew::gles::glDrawArraysInstancedBaseInstanceEXT (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance)
+void  _glew_gles_glDrawArraysInstancedBaseInstanceEXT (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_base_instance - glDrawArraysInstancedBaseInstanceEXT
-  if (s_deviceConfig.m_glDrawArraysInstancedBaseInstanceEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedBaseInstanceEXT)
   {
-    s_deviceConfig.m_glDrawArraysInstancedBaseInstanceEXT (mode, first, count, instancecount, baseinstance);
+    prototypeCalled = true;
+    glesConfig.m_glDrawArraysInstancedBaseInstanceEXT (mode, first, count, instancecount, baseinstance);
   }
 }
 
@@ -3031,14 +3603,15 @@ void  glew::gles::glDrawArraysInstancedBaseInstanceEXT (GLenum mode, GLint first
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsInstancedBaseInstanceEXT
-
-void  glew::gles::glDrawElementsInstancedBaseInstanceEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLuint baseinstance)
+void  _glew_gles_glDrawElementsInstancedBaseInstanceEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLuint baseinstance)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_base_instance - glDrawElementsInstancedBaseInstanceEXT
-  if (s_deviceConfig.m_glDrawElementsInstancedBaseInstanceEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedBaseInstanceEXT)
   {
-    s_deviceConfig.m_glDrawElementsInstancedBaseInstanceEXT (mode, count, type, indices, instancecount, baseinstance);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedBaseInstanceEXT (mode, count, type, indices, instancecount, baseinstance);
   }
 }
 
@@ -3046,14 +3619,15 @@ void  glew::gles::glDrawElementsInstancedBaseInstanceEXT (GLenum mode, GLsizei c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsInstancedBaseVertexBaseInstanceEXT
-
-void  glew::gles::glDrawElementsInstancedBaseVertexBaseInstanceEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance)
+void  _glew_gles_glDrawElementsInstancedBaseVertexBaseInstanceEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_base_instance - glDrawElementsInstancedBaseVertexBaseInstanceEXT
-  if (s_deviceConfig.m_glDrawElementsInstancedBaseVertexBaseInstanceEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedBaseVertexBaseInstanceEXT)
   {
-    s_deviceConfig.m_glDrawElementsInstancedBaseVertexBaseInstanceEXT (mode, count, type, indices, instancecount, basevertex, baseinstance);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedBaseVertexBaseInstanceEXT (mode, count, type, indices, instancecount, basevertex, baseinstance);
   }
 }
 
@@ -3061,14 +3635,15 @@ void  glew::gles::glDrawElementsInstancedBaseVertexBaseInstanceEXT (GLenum mode,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBufferStorageEXT
-
-void  glew::gles::glBufferStorageEXT (GLenum target, GLsizeiptr size, const void * data, GLbitfield flags)
+void  _glew_gles_glBufferStorageEXT (GLenum target, GLsizeiptr size, const void * data, GLbitfield flags)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_buffer_storage - glBufferStorageEXT
-  if (s_deviceConfig.m_glBufferStorageEXT)
+  if (!prototypeCalled && glesConfig.m_glBufferStorageEXT)
   {
-    s_deviceConfig.m_glBufferStorageEXT (target, size, data, flags);
+    prototypeCalled = true;
+    glesConfig.m_glBufferStorageEXT (target, size, data, flags);
   }
 }
 
@@ -3076,14 +3651,15 @@ void  glew::gles::glBufferStorageEXT (GLenum target, GLsizeiptr size, const void
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCopyImageSubDataEXT
-
-void  glew::gles::glCopyImageSubDataEXT (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth)
+void  _glew_gles_glCopyImageSubDataEXT (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_copy_image - glCopyImageSubDataEXT
-  if (s_deviceConfig.m_glCopyImageSubDataEXT)
+  if (!prototypeCalled && glesConfig.m_glCopyImageSubDataEXT)
   {
-    s_deviceConfig.m_glCopyImageSubDataEXT (srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth);
+    prototypeCalled = true;
+    glesConfig.m_glCopyImageSubDataEXT (srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth);
   }
 }
 
@@ -3091,14 +3667,15 @@ void  glew::gles::glCopyImageSubDataEXT (GLuint srcName, GLenum srcTarget, GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glLabelObjectEXT
-
-void  glew::gles::glLabelObjectEXT (GLenum type, GLuint object, GLsizei length, const GLchar * label)
+void  _glew_gles_glLabelObjectEXT (GLenum type, GLuint object, GLsizei length, const GLchar * label)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_debug_label - glLabelObjectEXT
-  if (s_deviceConfig.m_glLabelObjectEXT)
+  if (!prototypeCalled && glesConfig.m_glLabelObjectEXT)
   {
-    s_deviceConfig.m_glLabelObjectEXT (type, object, length, label);
+    prototypeCalled = true;
+    glesConfig.m_glLabelObjectEXT (type, object, length, label);
   }
 }
 
@@ -3106,14 +3683,15 @@ void  glew::gles::glLabelObjectEXT (GLenum type, GLuint object, GLsizei length, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetObjectLabelEXT
-
-void  glew::gles::glGetObjectLabelEXT (GLenum type, GLuint object, GLsizei bufSize, GLsizei * length, GLchar * label)
+void  _glew_gles_glGetObjectLabelEXT (GLenum type, GLuint object, GLsizei bufSize, GLsizei * length, GLchar * label)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_debug_label - glGetObjectLabelEXT
-  if (s_deviceConfig.m_glGetObjectLabelEXT)
+  if (!prototypeCalled && glesConfig.m_glGetObjectLabelEXT)
   {
-    s_deviceConfig.m_glGetObjectLabelEXT (type, object, bufSize, length, label);
+    prototypeCalled = true;
+    glesConfig.m_glGetObjectLabelEXT (type, object, bufSize, length, label);
   }
 }
 
@@ -3121,14 +3699,15 @@ void  glew::gles::glGetObjectLabelEXT (GLenum type, GLuint object, GLsizei bufSi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glInsertEventMarkerEXT
-
-void  glew::gles::glInsertEventMarkerEXT (GLsizei length, const GLchar * marker)
+void  _glew_gles_glInsertEventMarkerEXT (GLsizei length, const GLchar * marker)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_debug_marker - glInsertEventMarkerEXT
-  if (s_deviceConfig.m_glInsertEventMarkerEXT)
+  if (!prototypeCalled && glesConfig.m_glInsertEventMarkerEXT)
   {
-    s_deviceConfig.m_glInsertEventMarkerEXT (length, marker);
+    prototypeCalled = true;
+    glesConfig.m_glInsertEventMarkerEXT (length, marker);
   }
 }
 
@@ -3136,14 +3715,15 @@ void  glew::gles::glInsertEventMarkerEXT (GLsizei length, const GLchar * marker)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPushGroupMarkerEXT
-
-void  glew::gles::glPushGroupMarkerEXT (GLsizei length, const GLchar * marker)
+void  _glew_gles_glPushGroupMarkerEXT (GLsizei length, const GLchar * marker)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_debug_marker - glPushGroupMarkerEXT
-  if (s_deviceConfig.m_glPushGroupMarkerEXT)
+  if (!prototypeCalled && glesConfig.m_glPushGroupMarkerEXT)
   {
-    s_deviceConfig.m_glPushGroupMarkerEXT (length, marker);
+    prototypeCalled = true;
+    glesConfig.m_glPushGroupMarkerEXT (length, marker);
   }
 }
 
@@ -3151,14 +3731,15 @@ void  glew::gles::glPushGroupMarkerEXT (GLsizei length, const GLchar * marker)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPopGroupMarkerEXT
-
-void  glew::gles::glPopGroupMarkerEXT ()
+void  _glew_gles_glPopGroupMarkerEXT ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_debug_marker - glPopGroupMarkerEXT
-  if (s_deviceConfig.m_glPopGroupMarkerEXT)
+  if (!prototypeCalled && glesConfig.m_glPopGroupMarkerEXT)
   {
-    s_deviceConfig.m_glPopGroupMarkerEXT ();
+    prototypeCalled = true;
+    glesConfig.m_glPopGroupMarkerEXT ();
   }
 }
 
@@ -3166,14 +3747,15 @@ void  glew::gles::glPopGroupMarkerEXT ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDiscardFramebufferEXT
-
-void  glew::gles::glDiscardFramebufferEXT (GLenum target, GLsizei numAttachments, const GLenum * attachments)
+void  _glew_gles_glDiscardFramebufferEXT (GLenum target, GLsizei numAttachments, const GLenum * attachments)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_discard_framebuffer - glDiscardFramebufferEXT
-  if (s_deviceConfig.m_glDiscardFramebufferEXT)
+  if (!prototypeCalled && glesConfig.m_glDiscardFramebufferEXT)
   {
-    s_deviceConfig.m_glDiscardFramebufferEXT (target, numAttachments, attachments);
+    prototypeCalled = true;
+    glesConfig.m_glDiscardFramebufferEXT (target, numAttachments, attachments);
   }
 }
 
@@ -3181,14 +3763,15 @@ void  glew::gles::glDiscardFramebufferEXT (GLenum target, GLsizei numAttachments
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenQueriesEXT
-
-void  glew::gles::glGenQueriesEXT (GLsizei n, GLuint * ids)
+void  _glew_gles_glGenQueriesEXT (GLsizei n, GLuint * ids)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glGenQueriesEXT
-  if (s_deviceConfig.m_glGenQueriesEXT)
+  if (!prototypeCalled && glesConfig.m_glGenQueriesEXT)
   {
-    s_deviceConfig.m_glGenQueriesEXT (n, ids);
+    prototypeCalled = true;
+    glesConfig.m_glGenQueriesEXT (n, ids);
   }
 }
 
@@ -3196,14 +3779,15 @@ void  glew::gles::glGenQueriesEXT (GLsizei n, GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteQueriesEXT
-
-void  glew::gles::glDeleteQueriesEXT (GLsizei n, const GLuint * ids)
+void  _glew_gles_glDeleteQueriesEXT (GLsizei n, const GLuint * ids)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glDeleteQueriesEXT
-  if (s_deviceConfig.m_glDeleteQueriesEXT)
+  if (!prototypeCalled && glesConfig.m_glDeleteQueriesEXT)
   {
-    s_deviceConfig.m_glDeleteQueriesEXT (n, ids);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteQueriesEXT (n, ids);
   }
 }
 
@@ -3211,14 +3795,15 @@ void  glew::gles::glDeleteQueriesEXT (GLsizei n, const GLuint * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsQueryEXT
-
-GLboolean glew::gles::glIsQueryEXT (GLuint id)
+GLboolean _glew_gles_glIsQueryEXT (GLuint id)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glIsQueryEXT
-  if (s_deviceConfig.m_glIsQueryEXT)
+  if (!prototypeCalled && glesConfig.m_glIsQueryEXT)
   {
-    return s_deviceConfig.m_glIsQueryEXT (id);
+    prototypeCalled = true;
+    return glesConfig.m_glIsQueryEXT (id);
   }
   return ((GLboolean)0);
 }
@@ -3227,14 +3812,15 @@ GLboolean glew::gles::glIsQueryEXT (GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBeginQueryEXT
-
-void  glew::gles::glBeginQueryEXT (GLenum target, GLuint id)
+void  _glew_gles_glBeginQueryEXT (GLenum target, GLuint id)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glBeginQueryEXT
-  if (s_deviceConfig.m_glBeginQueryEXT)
+  if (!prototypeCalled && glesConfig.m_glBeginQueryEXT)
   {
-    s_deviceConfig.m_glBeginQueryEXT (target, id);
+    prototypeCalled = true;
+    glesConfig.m_glBeginQueryEXT (target, id);
   }
 }
 
@@ -3242,14 +3828,15 @@ void  glew::gles::glBeginQueryEXT (GLenum target, GLuint id)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEndQueryEXT
-
-void  glew::gles::glEndQueryEXT (GLenum target)
+void  _glew_gles_glEndQueryEXT (GLenum target)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glEndQueryEXT
-  if (s_deviceConfig.m_glEndQueryEXT)
+  if (!prototypeCalled && glesConfig.m_glEndQueryEXT)
   {
-    s_deviceConfig.m_glEndQueryEXT (target);
+    prototypeCalled = true;
+    glesConfig.m_glEndQueryEXT (target);
   }
 }
 
@@ -3257,14 +3844,15 @@ void  glew::gles::glEndQueryEXT (GLenum target)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glQueryCounterEXT
-
-void  glew::gles::glQueryCounterEXT (GLuint id, GLenum target)
+void  _glew_gles_glQueryCounterEXT (GLuint id, GLenum target)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glQueryCounterEXT
-  if (s_deviceConfig.m_glQueryCounterEXT)
+  if (!prototypeCalled && glesConfig.m_glQueryCounterEXT)
   {
-    s_deviceConfig.m_glQueryCounterEXT (id, target);
+    prototypeCalled = true;
+    glesConfig.m_glQueryCounterEXT (id, target);
   }
 }
 
@@ -3272,14 +3860,15 @@ void  glew::gles::glQueryCounterEXT (GLuint id, GLenum target)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetQueryivEXT
-
-void  glew::gles::glGetQueryivEXT (GLenum target, GLenum pname, GLint * params)
+void  _glew_gles_glGetQueryivEXT (GLenum target, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glGetQueryivEXT
-  if (s_deviceConfig.m_glGetQueryivEXT)
+  if (!prototypeCalled && glesConfig.m_glGetQueryivEXT)
   {
-    s_deviceConfig.m_glGetQueryivEXT (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetQueryivEXT (target, pname, params);
   }
 }
 
@@ -3287,14 +3876,15 @@ void  glew::gles::glGetQueryivEXT (GLenum target, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetQueryObjectivEXT
-
-void  glew::gles::glGetQueryObjectivEXT (GLuint id, GLenum pname, GLint * params)
+void  _glew_gles_glGetQueryObjectivEXT (GLuint id, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glGetQueryObjectivEXT
-  if (s_deviceConfig.m_glGetQueryObjectivEXT)
+  if (!prototypeCalled && glesConfig.m_glGetQueryObjectivEXT)
   {
-    s_deviceConfig.m_glGetQueryObjectivEXT (id, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetQueryObjectivEXT (id, pname, params);
   }
 }
 
@@ -3302,14 +3892,15 @@ void  glew::gles::glGetQueryObjectivEXT (GLuint id, GLenum pname, GLint * params
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetQueryObjectuivEXT
-
-void  glew::gles::glGetQueryObjectuivEXT (GLuint id, GLenum pname, GLuint * params)
+void  _glew_gles_glGetQueryObjectuivEXT (GLuint id, GLenum pname, GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glGetQueryObjectuivEXT
-  if (s_deviceConfig.m_glGetQueryObjectuivEXT)
+  if (!prototypeCalled && glesConfig.m_glGetQueryObjectuivEXT)
   {
-    s_deviceConfig.m_glGetQueryObjectuivEXT (id, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetQueryObjectuivEXT (id, pname, params);
   }
 }
 
@@ -3317,14 +3908,15 @@ void  glew::gles::glGetQueryObjectuivEXT (GLuint id, GLenum pname, GLuint * para
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetQueryObjecti64vEXT
-
-void  glew::gles::glGetQueryObjecti64vEXT (GLuint id, GLenum pname, GLint64 * params)
+void  _glew_gles_glGetQueryObjecti64vEXT (GLuint id, GLenum pname, GLint64 * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glGetQueryObjecti64vEXT
-  if (s_deviceConfig.m_glGetQueryObjecti64vEXT)
+  if (!prototypeCalled && glesConfig.m_glGetQueryObjecti64vEXT)
   {
-    s_deviceConfig.m_glGetQueryObjecti64vEXT (id, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetQueryObjecti64vEXT (id, pname, params);
   }
 }
 
@@ -3332,14 +3924,15 @@ void  glew::gles::glGetQueryObjecti64vEXT (GLuint id, GLenum pname, GLint64 * pa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetQueryObjectui64vEXT
-
-void  glew::gles::glGetQueryObjectui64vEXT (GLuint id, GLenum pname, GLuint64 * params)
+void  _glew_gles_glGetQueryObjectui64vEXT (GLuint id, GLenum pname, GLuint64 * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_disjoint_timer_query - glGetQueryObjectui64vEXT
-  if (s_deviceConfig.m_glGetQueryObjectui64vEXT)
+  if (!prototypeCalled && glesConfig.m_glGetQueryObjectui64vEXT)
   {
-    s_deviceConfig.m_glGetQueryObjectui64vEXT (id, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetQueryObjectui64vEXT (id, pname, params);
   }
 }
 
@@ -3347,14 +3940,15 @@ void  glew::gles::glGetQueryObjectui64vEXT (GLuint id, GLenum pname, GLuint64 * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawBuffersEXT
-
-void  glew::gles::glDrawBuffersEXT (GLsizei n, const GLenum * bufs)
+void  _glew_gles_glDrawBuffersEXT (GLsizei n, const GLenum * bufs)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_buffers - glDrawBuffersEXT
-  if (s_deviceConfig.m_glDrawBuffersEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawBuffersEXT)
   {
-    s_deviceConfig.m_glDrawBuffersEXT (n, bufs);
+    prototypeCalled = true;
+    glesConfig.m_glDrawBuffersEXT (n, bufs);
   }
 }
 
@@ -3362,14 +3956,15 @@ void  glew::gles::glDrawBuffersEXT (GLsizei n, const GLenum * bufs)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEnableiEXT
-
-void  glew::gles::glEnableiEXT (GLenum target, GLuint index)
+void  _glew_gles_glEnableiEXT (GLenum target, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_buffers_indexed - glEnableiEXT
-  if (s_deviceConfig.m_glEnableiEXT)
+  if (!prototypeCalled && glesConfig.m_glEnableiEXT)
   {
-    s_deviceConfig.m_glEnableiEXT (target, index);
+    prototypeCalled = true;
+    glesConfig.m_glEnableiEXT (target, index);
   }
 }
 
@@ -3377,14 +3972,15 @@ void  glew::gles::glEnableiEXT (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDisableiEXT
-
-void  glew::gles::glDisableiEXT (GLenum target, GLuint index)
+void  _glew_gles_glDisableiEXT (GLenum target, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_buffers_indexed - glDisableiEXT
-  if (s_deviceConfig.m_glDisableiEXT)
+  if (!prototypeCalled && glesConfig.m_glDisableiEXT)
   {
-    s_deviceConfig.m_glDisableiEXT (target, index);
+    prototypeCalled = true;
+    glesConfig.m_glDisableiEXT (target, index);
   }
 }
 
@@ -3392,14 +3988,15 @@ void  glew::gles::glDisableiEXT (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendEquationiEXT
-
-void  glew::gles::glBlendEquationiEXT (GLuint buf, GLenum mode)
+void  _glew_gles_glBlendEquationiEXT (GLuint buf, GLenum mode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_buffers_indexed - glBlendEquationiEXT
-  if (s_deviceConfig.m_glBlendEquationiEXT)
+  if (!prototypeCalled && glesConfig.m_glBlendEquationiEXT)
   {
-    s_deviceConfig.m_glBlendEquationiEXT (buf, mode);
+    prototypeCalled = true;
+    glesConfig.m_glBlendEquationiEXT (buf, mode);
   }
 }
 
@@ -3407,14 +4004,15 @@ void  glew::gles::glBlendEquationiEXT (GLuint buf, GLenum mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendEquationSeparateiEXT
-
-void  glew::gles::glBlendEquationSeparateiEXT (GLuint buf, GLenum modeRGB, GLenum modeAlpha)
+void  _glew_gles_glBlendEquationSeparateiEXT (GLuint buf, GLenum modeRGB, GLenum modeAlpha)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_buffers_indexed - glBlendEquationSeparateiEXT
-  if (s_deviceConfig.m_glBlendEquationSeparateiEXT)
+  if (!prototypeCalled && glesConfig.m_glBlendEquationSeparateiEXT)
   {
-    s_deviceConfig.m_glBlendEquationSeparateiEXT (buf, modeRGB, modeAlpha);
+    prototypeCalled = true;
+    glesConfig.m_glBlendEquationSeparateiEXT (buf, modeRGB, modeAlpha);
   }
 }
 
@@ -3422,14 +4020,15 @@ void  glew::gles::glBlendEquationSeparateiEXT (GLuint buf, GLenum modeRGB, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendFunciEXT
-
-void  glew::gles::glBlendFunciEXT (GLuint buf, GLenum src, GLenum dst)
+void  _glew_gles_glBlendFunciEXT (GLuint buf, GLenum src, GLenum dst)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_buffers_indexed - glBlendFunciEXT
-  if (s_deviceConfig.m_glBlendFunciEXT)
+  if (!prototypeCalled && glesConfig.m_glBlendFunciEXT)
   {
-    s_deviceConfig.m_glBlendFunciEXT (buf, src, dst);
+    prototypeCalled = true;
+    glesConfig.m_glBlendFunciEXT (buf, src, dst);
   }
 }
 
@@ -3437,14 +4036,15 @@ void  glew::gles::glBlendFunciEXT (GLuint buf, GLenum src, GLenum dst)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendFuncSeparateiEXT
-
-void  glew::gles::glBlendFuncSeparateiEXT (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
+void  _glew_gles_glBlendFuncSeparateiEXT (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_buffers_indexed - glBlendFuncSeparateiEXT
-  if (s_deviceConfig.m_glBlendFuncSeparateiEXT)
+  if (!prototypeCalled && glesConfig.m_glBlendFuncSeparateiEXT)
   {
-    s_deviceConfig.m_glBlendFuncSeparateiEXT (buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
+    prototypeCalled = true;
+    glesConfig.m_glBlendFuncSeparateiEXT (buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
   }
 }
 
@@ -3452,14 +4052,15 @@ void  glew::gles::glBlendFuncSeparateiEXT (GLuint buf, GLenum srcRGB, GLenum dst
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glColorMaskiEXT
-
-void  glew::gles::glColorMaskiEXT (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a)
+void  _glew_gles_glColorMaskiEXT (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_buffers_indexed - glColorMaskiEXT
-  if (s_deviceConfig.m_glColorMaskiEXT)
+  if (!prototypeCalled && glesConfig.m_glColorMaskiEXT)
   {
-    s_deviceConfig.m_glColorMaskiEXT (index, r, g, b, a);
+    prototypeCalled = true;
+    glesConfig.m_glColorMaskiEXT (index, r, g, b, a);
   }
 }
 
@@ -3467,14 +4068,15 @@ void  glew::gles::glColorMaskiEXT (GLuint index, GLboolean r, GLboolean g, GLboo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsEnablediEXT
-
-GLboolean glew::gles::glIsEnablediEXT (GLenum target, GLuint index)
+GLboolean _glew_gles_glIsEnablediEXT (GLenum target, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_buffers_indexed - glIsEnablediEXT
-  if (s_deviceConfig.m_glIsEnablediEXT)
+  if (!prototypeCalled && glesConfig.m_glIsEnablediEXT)
   {
-    return s_deviceConfig.m_glIsEnablediEXT (target, index);
+    prototypeCalled = true;
+    return glesConfig.m_glIsEnablediEXT (target, index);
   }
   return ((GLboolean)0);
 }
@@ -3483,14 +4085,15 @@ GLboolean glew::gles::glIsEnablediEXT (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsBaseVertexEXT
-
-void  glew::gles::glDrawElementsBaseVertexEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLint basevertex)
+void  _glew_gles_glDrawElementsBaseVertexEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLint basevertex)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_elements_base_vertex - glDrawElementsBaseVertexEXT
-  if (s_deviceConfig.m_glDrawElementsBaseVertexEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsBaseVertexEXT)
   {
-    s_deviceConfig.m_glDrawElementsBaseVertexEXT (mode, count, type, indices, basevertex);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsBaseVertexEXT (mode, count, type, indices, basevertex);
   }
 }
 
@@ -3498,14 +4101,15 @@ void  glew::gles::glDrawElementsBaseVertexEXT (GLenum mode, GLsizei count, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawRangeElementsBaseVertexEXT
-
-void  glew::gles::glDrawRangeElementsBaseVertexEXT (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices, GLint basevertex)
+void  _glew_gles_glDrawRangeElementsBaseVertexEXT (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices, GLint basevertex)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_elements_base_vertex - glDrawRangeElementsBaseVertexEXT
-  if (s_deviceConfig.m_glDrawRangeElementsBaseVertexEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawRangeElementsBaseVertexEXT)
   {
-    s_deviceConfig.m_glDrawRangeElementsBaseVertexEXT (mode, start, end, count, type, indices, basevertex);
+    prototypeCalled = true;
+    glesConfig.m_glDrawRangeElementsBaseVertexEXT (mode, start, end, count, type, indices, basevertex);
   }
 }
 
@@ -3513,14 +4117,15 @@ void  glew::gles::glDrawRangeElementsBaseVertexEXT (GLenum mode, GLuint start, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsInstancedBaseVertexEXT
-
-void  glew::gles::glDrawElementsInstancedBaseVertexEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex)
+void  _glew_gles_glDrawElementsInstancedBaseVertexEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_elements_base_vertex - glDrawElementsInstancedBaseVertexEXT
-  if (s_deviceConfig.m_glDrawElementsInstancedBaseVertexEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedBaseVertexEXT)
   {
-    s_deviceConfig.m_glDrawElementsInstancedBaseVertexEXT (mode, count, type, indices, instancecount, basevertex);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedBaseVertexEXT (mode, count, type, indices, instancecount, basevertex);
   }
 }
 
@@ -3528,14 +4133,15 @@ void  glew::gles::glDrawElementsInstancedBaseVertexEXT (GLenum mode, GLsizei cou
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMultiDrawElementsBaseVertexEXT
-
-void  glew::gles::glMultiDrawElementsBaseVertexEXT (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount, const GLint * basevertex)
+void  _glew_gles_glMultiDrawElementsBaseVertexEXT (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount, const GLint * basevertex)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_elements_base_vertex - glMultiDrawElementsBaseVertexEXT
-  if (s_deviceConfig.m_glMultiDrawElementsBaseVertexEXT)
+  if (!prototypeCalled && glesConfig.m_glMultiDrawElementsBaseVertexEXT)
   {
-    s_deviceConfig.m_glMultiDrawElementsBaseVertexEXT (mode, count, type, indices, primcount, basevertex);
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawElementsBaseVertexEXT (mode, count, type, indices, primcount, basevertex);
   }
 }
 
@@ -3543,14 +4149,15 @@ void  glew::gles::glMultiDrawElementsBaseVertexEXT (GLenum mode, const GLsizei *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawArraysInstancedEXT
-
-void  glew::gles::glDrawArraysInstancedEXT (GLenum mode, GLint start, GLsizei count, GLsizei primcount)
+void  _glew_gles_glDrawArraysInstancedEXT (GLenum mode, GLint start, GLsizei count, GLsizei primcount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_instanced - glDrawArraysInstancedEXT
-  if (s_deviceConfig.m_glDrawArraysInstancedEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedEXT)
   {
-    s_deviceConfig.m_glDrawArraysInstancedEXT (mode, start, count, primcount);
+    prototypeCalled = true;
+    glesConfig.m_glDrawArraysInstancedEXT (mode, start, count, primcount);
   }
 }
 
@@ -3558,14 +4165,15 @@ void  glew::gles::glDrawArraysInstancedEXT (GLenum mode, GLint start, GLsizei co
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsInstancedEXT
-
-void  glew::gles::glDrawElementsInstancedEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei primcount)
+void  _glew_gles_glDrawElementsInstancedEXT (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei primcount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_draw_instanced - glDrawElementsInstancedEXT
-  if (s_deviceConfig.m_glDrawElementsInstancedEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedEXT)
   {
-    s_deviceConfig.m_glDrawElementsInstancedEXT (mode, count, type, indices, primcount);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedEXT (mode, count, type, indices, primcount);
   }
 }
 
@@ -3573,14 +4181,15 @@ void  glew::gles::glDrawElementsInstancedEXT (GLenum mode, GLsizei count, GLenum
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFramebufferTextureEXT
-
-void  glew::gles::glFramebufferTextureEXT (GLenum target, GLenum attachment, GLuint texture, GLint level)
+void  _glew_gles_glFramebufferTextureEXT (GLenum target, GLenum attachment, GLuint texture, GLint level)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_geometry_shader - glFramebufferTextureEXT
-  if (s_deviceConfig.m_glFramebufferTextureEXT)
+  if (!prototypeCalled && glesConfig.m_glFramebufferTextureEXT)
   {
-    s_deviceConfig.m_glFramebufferTextureEXT (target, attachment, texture, level);
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferTextureEXT (target, attachment, texture, level);
   }
 }
 
@@ -3588,14 +4197,15 @@ void  glew::gles::glFramebufferTextureEXT (GLenum target, GLenum attachment, GLu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribDivisorEXT
-
-void  glew::gles::glVertexAttribDivisorEXT (GLuint index, GLuint divisor)
+void  _glew_gles_glVertexAttribDivisorEXT (GLuint index, GLuint divisor)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_instanced_arrays - glVertexAttribDivisorEXT
-  if (s_deviceConfig.m_glVertexAttribDivisorEXT)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorEXT)
   {
-    s_deviceConfig.m_glVertexAttribDivisorEXT (index, divisor);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribDivisorEXT (index, divisor);
   }
 }
 
@@ -3603,14 +4213,15 @@ void  glew::gles::glVertexAttribDivisorEXT (GLuint index, GLuint divisor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMapBufferRangeEXT
-
-void * glew::gles::glMapBufferRangeEXT (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)
+void * _glew_gles_glMapBufferRangeEXT (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_map_buffer_range - glMapBufferRangeEXT
-  if (s_deviceConfig.m_glMapBufferRangeEXT)
+  if (!prototypeCalled && glesConfig.m_glMapBufferRangeEXT)
   {
-    return s_deviceConfig.m_glMapBufferRangeEXT (target, offset, length, access);
+    prototypeCalled = true;
+    return glesConfig.m_glMapBufferRangeEXT (target, offset, length, access);
   }
   return ((void *)0);
 }
@@ -3619,14 +4230,15 @@ void * glew::gles::glMapBufferRangeEXT (GLenum target, GLintptr offset, GLsizeip
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFlushMappedBufferRangeEXT
-
-void  glew::gles::glFlushMappedBufferRangeEXT (GLenum target, GLintptr offset, GLsizeiptr length)
+void  _glew_gles_glFlushMappedBufferRangeEXT (GLenum target, GLintptr offset, GLsizeiptr length)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_map_buffer_range - glFlushMappedBufferRangeEXT
-  if (s_deviceConfig.m_glFlushMappedBufferRangeEXT)
+  if (!prototypeCalled && glesConfig.m_glFlushMappedBufferRangeEXT)
   {
-    s_deviceConfig.m_glFlushMappedBufferRangeEXT (target, offset, length);
+    prototypeCalled = true;
+    glesConfig.m_glFlushMappedBufferRangeEXT (target, offset, length);
   }
 }
 
@@ -3634,14 +4246,15 @@ void  glew::gles::glFlushMappedBufferRangeEXT (GLenum target, GLintptr offset, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMultiDrawArraysEXT
-
-void  glew::gles::glMultiDrawArraysEXT (GLenum mode, const GLint * first, const GLsizei * count, GLsizei primcount)
+void  _glew_gles_glMultiDrawArraysEXT (GLenum mode, const GLint * first, const GLsizei * count, GLsizei primcount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_multi_draw_arrays - glMultiDrawArraysEXT
-  if (s_deviceConfig.m_glMultiDrawArraysEXT)
+  if (!prototypeCalled && glesConfig.m_glMultiDrawArraysEXT)
   {
-    s_deviceConfig.m_glMultiDrawArraysEXT (mode, first, count, primcount);
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawArraysEXT (mode, first, count, primcount);
   }
 }
 
@@ -3649,14 +4262,15 @@ void  glew::gles::glMultiDrawArraysEXT (GLenum mode, const GLint * first, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMultiDrawElementsEXT
-
-void  glew::gles::glMultiDrawElementsEXT (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount)
+void  _glew_gles_glMultiDrawElementsEXT (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_multi_draw_arrays - glMultiDrawElementsEXT
-  if (s_deviceConfig.m_glMultiDrawElementsEXT)
+  if (!prototypeCalled && glesConfig.m_glMultiDrawElementsEXT)
   {
-    s_deviceConfig.m_glMultiDrawElementsEXT (mode, count, type, indices, primcount);
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawElementsEXT (mode, count, type, indices, primcount);
   }
 }
 
@@ -3664,14 +4278,15 @@ void  glew::gles::glMultiDrawElementsEXT (GLenum mode, const GLsizei * count, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMultiDrawArraysIndirectEXT
-
-void  glew::gles::glMultiDrawArraysIndirectEXT (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride)
+void  _glew_gles_glMultiDrawArraysIndirectEXT (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_multi_draw_indirect - glMultiDrawArraysIndirectEXT
-  if (s_deviceConfig.m_glMultiDrawArraysIndirectEXT)
+  if (!prototypeCalled && glesConfig.m_glMultiDrawArraysIndirectEXT)
   {
-    s_deviceConfig.m_glMultiDrawArraysIndirectEXT (mode, indirect, drawcount, stride);
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawArraysIndirectEXT (mode, indirect, drawcount, stride);
   }
 }
 
@@ -3679,14 +4294,15 @@ void  glew::gles::glMultiDrawArraysIndirectEXT (GLenum mode, const void * indire
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMultiDrawElementsIndirectEXT
-
-void  glew::gles::glMultiDrawElementsIndirectEXT (GLenum mode, GLenum type, const void * indirect, GLsizei drawcount, GLsizei stride)
+void  _glew_gles_glMultiDrawElementsIndirectEXT (GLenum mode, GLenum type, const void * indirect, GLsizei drawcount, GLsizei stride)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_multi_draw_indirect - glMultiDrawElementsIndirectEXT
-  if (s_deviceConfig.m_glMultiDrawElementsIndirectEXT)
+  if (!prototypeCalled && glesConfig.m_glMultiDrawElementsIndirectEXT)
   {
-    s_deviceConfig.m_glMultiDrawElementsIndirectEXT (mode, type, indirect, drawcount, stride);
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawElementsIndirectEXT (mode, type, indirect, drawcount, stride);
   }
 }
 
@@ -3694,14 +4310,15 @@ void  glew::gles::glMultiDrawElementsIndirectEXT (GLenum mode, GLenum type, cons
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glRenderbufferStorageMultisampleEXT
-
-void  glew::gles::glRenderbufferStorageMultisampleEXT (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+void  _glew_gles_glRenderbufferStorageMultisampleEXT (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_multisampled_render_to_texture - glRenderbufferStorageMultisampleEXT
-  if (s_deviceConfig.m_glRenderbufferStorageMultisampleEXT)
+  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleEXT)
   {
-    s_deviceConfig.m_glRenderbufferStorageMultisampleEXT (target, samples, internalformat, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glRenderbufferStorageMultisampleEXT (target, samples, internalformat, width, height);
   }
 }
 
@@ -3709,14 +4326,15 @@ void  glew::gles::glRenderbufferStorageMultisampleEXT (GLenum target, GLsizei sa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFramebufferTexture2DMultisampleEXT
-
-void  glew::gles::glFramebufferTexture2DMultisampleEXT (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLsizei samples)
+void  _glew_gles_glFramebufferTexture2DMultisampleEXT (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLsizei samples)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_multisampled_render_to_texture - glFramebufferTexture2DMultisampleEXT
-  if (s_deviceConfig.m_glFramebufferTexture2DMultisampleEXT)
+  if (!prototypeCalled && glesConfig.m_glFramebufferTexture2DMultisampleEXT)
   {
-    s_deviceConfig.m_glFramebufferTexture2DMultisampleEXT (target, attachment, textarget, texture, level, samples);
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferTexture2DMultisampleEXT (target, attachment, textarget, texture, level, samples);
   }
 }
 
@@ -3724,14 +4342,15 @@ void  glew::gles::glFramebufferTexture2DMultisampleEXT (GLenum target, GLenum at
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glReadBufferIndexedEXT
-
-void  glew::gles::glReadBufferIndexedEXT (GLenum src, GLint index)
+void  _glew_gles_glReadBufferIndexedEXT (GLenum src, GLint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_multiview_draw_buffers - glReadBufferIndexedEXT
-  if (s_deviceConfig.m_glReadBufferIndexedEXT)
+  if (!prototypeCalled && glesConfig.m_glReadBufferIndexedEXT)
   {
-    s_deviceConfig.m_glReadBufferIndexedEXT (src, index);
+    prototypeCalled = true;
+    glesConfig.m_glReadBufferIndexedEXT (src, index);
   }
 }
 
@@ -3739,14 +4358,15 @@ void  glew::gles::glReadBufferIndexedEXT (GLenum src, GLint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawBuffersIndexedEXT
-
-void  glew::gles::glDrawBuffersIndexedEXT (GLint n, const GLenum * location, const GLint * indices)
+void  _glew_gles_glDrawBuffersIndexedEXT (GLint n, const GLenum * location, const GLint * indices)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_multiview_draw_buffers - glDrawBuffersIndexedEXT
-  if (s_deviceConfig.m_glDrawBuffersIndexedEXT)
+  if (!prototypeCalled && glesConfig.m_glDrawBuffersIndexedEXT)
   {
-    s_deviceConfig.m_glDrawBuffersIndexedEXT (n, location, indices);
+    prototypeCalled = true;
+    glesConfig.m_glDrawBuffersIndexedEXT (n, location, indices);
   }
 }
 
@@ -3754,14 +4374,15 @@ void  glew::gles::glDrawBuffersIndexedEXT (GLint n, const GLenum * location, con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetIntegeri_vEXT
-
-void  glew::gles::glGetIntegeri_vEXT (GLenum target, GLuint index, GLint * data)
+void  _glew_gles_glGetIntegeri_vEXT (GLenum target, GLuint index, GLint * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_multiview_draw_buffers - glGetIntegeri_vEXT
-  if (s_deviceConfig.m_glGetIntegeri_vEXT)
+  if (!prototypeCalled && glesConfig.m_glGetIntegeri_vEXT)
   {
-    s_deviceConfig.m_glGetIntegeri_vEXT (target, index, data);
+    prototypeCalled = true;
+    glesConfig.m_glGetIntegeri_vEXT (target, index, data);
   }
 }
 
@@ -3769,14 +4390,15 @@ void  glew::gles::glGetIntegeri_vEXT (GLenum target, GLuint index, GLint * data)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPrimitiveBoundingBoxEXT
-
-void  glew::gles::glPrimitiveBoundingBoxEXT (GLfloat minX, GLfloat minY, GLfloat minZ, GLfloat minW, GLfloat maxX, GLfloat maxY, GLfloat maxZ, GLfloat maxW)
+void  _glew_gles_glPrimitiveBoundingBoxEXT (GLfloat minX, GLfloat minY, GLfloat minZ, GLfloat minW, GLfloat maxX, GLfloat maxY, GLfloat maxZ, GLfloat maxW)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_primitive_bounding_box - glPrimitiveBoundingBoxEXT
-  if (s_deviceConfig.m_glPrimitiveBoundingBoxEXT)
+  if (!prototypeCalled && glesConfig.m_glPrimitiveBoundingBoxEXT)
   {
-    s_deviceConfig.m_glPrimitiveBoundingBoxEXT (minX, minY, minZ, minW, maxX, maxY, maxZ, maxW);
+    prototypeCalled = true;
+    glesConfig.m_glPrimitiveBoundingBoxEXT (minX, minY, minZ, minW, maxX, maxY, maxZ, maxW);
   }
 }
 
@@ -3784,14 +4406,15 @@ void  glew::gles::glPrimitiveBoundingBoxEXT (GLfloat minX, GLfloat minY, GLfloat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glRasterSamplesEXT
-
-void  glew::gles::glRasterSamplesEXT (GLuint samples, GLboolean fixedsamplelocations)
+void  _glew_gles_glRasterSamplesEXT (GLuint samples, GLboolean fixedsamplelocations)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_raster_multisample - glRasterSamplesEXT
-  if (s_deviceConfig.m_glRasterSamplesEXT)
+  if (!prototypeCalled && glesConfig.m_glRasterSamplesEXT)
   {
-    s_deviceConfig.m_glRasterSamplesEXT (samples, fixedsamplelocations);
+    prototypeCalled = true;
+    glesConfig.m_glRasterSamplesEXT (samples, fixedsamplelocations);
   }
 }
 
@@ -3799,14 +4422,15 @@ void  glew::gles::glRasterSamplesEXT (GLuint samples, GLboolean fixedsamplelocat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetGraphicsResetStatusEXT
-
-GLenum glew::gles::glGetGraphicsResetStatusEXT ()
+GLenum _glew_gles_glGetGraphicsResetStatusEXT ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_robustness - glGetGraphicsResetStatusEXT
-  if (s_deviceConfig.m_glGetGraphicsResetStatusEXT)
+  if (!prototypeCalled && glesConfig.m_glGetGraphicsResetStatusEXT)
   {
-    return s_deviceConfig.m_glGetGraphicsResetStatusEXT ();
+    prototypeCalled = true;
+    return glesConfig.m_glGetGraphicsResetStatusEXT ();
   }
   return ((GLenum)0);
 }
@@ -3815,14 +4439,15 @@ GLenum glew::gles::glGetGraphicsResetStatusEXT ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glReadnPixelsEXT
-
-void  glew::gles::glReadnPixelsEXT (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data)
+void  _glew_gles_glReadnPixelsEXT (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_robustness - glReadnPixelsEXT
-  if (s_deviceConfig.m_glReadnPixelsEXT)
+  if (!prototypeCalled && glesConfig.m_glReadnPixelsEXT)
   {
-    s_deviceConfig.m_glReadnPixelsEXT (x, y, width, height, format, type, bufSize, data);
+    prototypeCalled = true;
+    glesConfig.m_glReadnPixelsEXT (x, y, width, height, format, type, bufSize, data);
   }
 }
 
@@ -3830,14 +4455,15 @@ void  glew::gles::glReadnPixelsEXT (GLint x, GLint y, GLsizei width, GLsizei hei
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetnUniformfvEXT
-
-void  glew::gles::glGetnUniformfvEXT (GLuint program, GLint location, GLsizei bufSize, GLfloat * params)
+void  _glew_gles_glGetnUniformfvEXT (GLuint program, GLint location, GLsizei bufSize, GLfloat * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_robustness - glGetnUniformfvEXT
-  if (s_deviceConfig.m_glGetnUniformfvEXT)
+  if (!prototypeCalled && glesConfig.m_glGetnUniformfvEXT)
   {
-    s_deviceConfig.m_glGetnUniformfvEXT (program, location, bufSize, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetnUniformfvEXT (program, location, bufSize, params);
   }
 }
 
@@ -3845,14 +4471,15 @@ void  glew::gles::glGetnUniformfvEXT (GLuint program, GLint location, GLsizei bu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetnUniformivEXT
-
-void  glew::gles::glGetnUniformivEXT (GLuint program, GLint location, GLsizei bufSize, GLint * params)
+void  _glew_gles_glGetnUniformivEXT (GLuint program, GLint location, GLsizei bufSize, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_robustness - glGetnUniformivEXT
-  if (s_deviceConfig.m_glGetnUniformivEXT)
+  if (!prototypeCalled && glesConfig.m_glGetnUniformivEXT)
   {
-    s_deviceConfig.m_glGetnUniformivEXT (program, location, bufSize, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetnUniformivEXT (program, location, bufSize, params);
   }
 }
 
@@ -3860,14 +4487,15 @@ void  glew::gles::glGetnUniformivEXT (GLuint program, GLint location, GLsizei bu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glActiveShaderProgramEXT
-
-void  glew::gles::glActiveShaderProgramEXT (GLuint pipeline, GLuint program)
+void  _glew_gles_glActiveShaderProgramEXT (GLuint pipeline, GLuint program)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glActiveShaderProgramEXT
-  if (s_deviceConfig.m_glActiveShaderProgramEXT)
+  if (!prototypeCalled && glesConfig.m_glActiveShaderProgramEXT)
   {
-    s_deviceConfig.m_glActiveShaderProgramEXT (pipeline, program);
+    prototypeCalled = true;
+    glesConfig.m_glActiveShaderProgramEXT (pipeline, program);
   }
 }
 
@@ -3875,14 +4503,15 @@ void  glew::gles::glActiveShaderProgramEXT (GLuint pipeline, GLuint program)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindProgramPipelineEXT
-
-void  glew::gles::glBindProgramPipelineEXT (GLuint pipeline)
+void  _glew_gles_glBindProgramPipelineEXT (GLuint pipeline)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glBindProgramPipelineEXT
-  if (s_deviceConfig.m_glBindProgramPipelineEXT)
+  if (!prototypeCalled && glesConfig.m_glBindProgramPipelineEXT)
   {
-    s_deviceConfig.m_glBindProgramPipelineEXT (pipeline);
+    prototypeCalled = true;
+    glesConfig.m_glBindProgramPipelineEXT (pipeline);
   }
 }
 
@@ -3890,14 +4519,15 @@ void  glew::gles::glBindProgramPipelineEXT (GLuint pipeline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCreateShaderProgramvEXT
-
-GLuint glew::gles::glCreateShaderProgramvEXT (GLenum type, GLsizei count, const GLchar ** strings)
+GLuint _glew_gles_glCreateShaderProgramvEXT (GLenum type, GLsizei count, const GLchar ** strings)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glCreateShaderProgramvEXT
-  if (s_deviceConfig.m_glCreateShaderProgramvEXT)
+  if (!prototypeCalled && glesConfig.m_glCreateShaderProgramvEXT)
   {
-    return s_deviceConfig.m_glCreateShaderProgramvEXT (type, count, strings);
+    prototypeCalled = true;
+    return glesConfig.m_glCreateShaderProgramvEXT (type, count, strings);
   }
   return ((GLuint)0);
 }
@@ -3906,14 +4536,15 @@ GLuint glew::gles::glCreateShaderProgramvEXT (GLenum type, GLsizei count, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteProgramPipelinesEXT
-
-void  glew::gles::glDeleteProgramPipelinesEXT (GLsizei n, const GLuint * pipelines)
+void  _glew_gles_glDeleteProgramPipelinesEXT (GLsizei n, const GLuint * pipelines)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glDeleteProgramPipelinesEXT
-  if (s_deviceConfig.m_glDeleteProgramPipelinesEXT)
+  if (!prototypeCalled && glesConfig.m_glDeleteProgramPipelinesEXT)
   {
-    s_deviceConfig.m_glDeleteProgramPipelinesEXT (n, pipelines);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteProgramPipelinesEXT (n, pipelines);
   }
 }
 
@@ -3921,14 +4552,15 @@ void  glew::gles::glDeleteProgramPipelinesEXT (GLsizei n, const GLuint * pipelin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenProgramPipelinesEXT
-
-void  glew::gles::glGenProgramPipelinesEXT (GLsizei n, GLuint * pipelines)
+void  _glew_gles_glGenProgramPipelinesEXT (GLsizei n, GLuint * pipelines)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glGenProgramPipelinesEXT
-  if (s_deviceConfig.m_glGenProgramPipelinesEXT)
+  if (!prototypeCalled && glesConfig.m_glGenProgramPipelinesEXT)
   {
-    s_deviceConfig.m_glGenProgramPipelinesEXT (n, pipelines);
+    prototypeCalled = true;
+    glesConfig.m_glGenProgramPipelinesEXT (n, pipelines);
   }
 }
 
@@ -3936,14 +4568,15 @@ void  glew::gles::glGenProgramPipelinesEXT (GLsizei n, GLuint * pipelines)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramPipelineInfoLogEXT
-
-void  glew::gles::glGetProgramPipelineInfoLogEXT (GLuint pipeline, GLsizei bufSize, GLsizei * length, GLchar * infoLog)
+void  _glew_gles_glGetProgramPipelineInfoLogEXT (GLuint pipeline, GLsizei bufSize, GLsizei * length, GLchar * infoLog)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glGetProgramPipelineInfoLogEXT
-  if (s_deviceConfig.m_glGetProgramPipelineInfoLogEXT)
+  if (!prototypeCalled && glesConfig.m_glGetProgramPipelineInfoLogEXT)
   {
-    s_deviceConfig.m_glGetProgramPipelineInfoLogEXT (pipeline, bufSize, length, infoLog);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramPipelineInfoLogEXT (pipeline, bufSize, length, infoLog);
   }
 }
 
@@ -3951,14 +4584,15 @@ void  glew::gles::glGetProgramPipelineInfoLogEXT (GLuint pipeline, GLsizei bufSi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramPipelineivEXT
-
-void  glew::gles::glGetProgramPipelineivEXT (GLuint pipeline, GLenum pname, GLint * params)
+void  _glew_gles_glGetProgramPipelineivEXT (GLuint pipeline, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glGetProgramPipelineivEXT
-  if (s_deviceConfig.m_glGetProgramPipelineivEXT)
+  if (!prototypeCalled && glesConfig.m_glGetProgramPipelineivEXT)
   {
-    s_deviceConfig.m_glGetProgramPipelineivEXT (pipeline, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramPipelineivEXT (pipeline, pname, params);
   }
 }
 
@@ -3966,14 +4600,15 @@ void  glew::gles::glGetProgramPipelineivEXT (GLuint pipeline, GLenum pname, GLin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsProgramPipelineEXT
-
-GLboolean glew::gles::glIsProgramPipelineEXT (GLuint pipeline)
+GLboolean _glew_gles_glIsProgramPipelineEXT (GLuint pipeline)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glIsProgramPipelineEXT
-  if (s_deviceConfig.m_glIsProgramPipelineEXT)
+  if (!prototypeCalled && glesConfig.m_glIsProgramPipelineEXT)
   {
-    return s_deviceConfig.m_glIsProgramPipelineEXT (pipeline);
+    prototypeCalled = true;
+    return glesConfig.m_glIsProgramPipelineEXT (pipeline);
   }
   return ((GLboolean)0);
 }
@@ -3982,14 +4617,15 @@ GLboolean glew::gles::glIsProgramPipelineEXT (GLuint pipeline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramParameteriEXT
-
-void  glew::gles::glProgramParameteriEXT (GLuint program, GLenum pname, GLint value)
+void  _glew_gles_glProgramParameteriEXT (GLuint program, GLenum pname, GLint value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramParameteriEXT
-  if (s_deviceConfig.m_glProgramParameteriEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramParameteriEXT)
   {
-    s_deviceConfig.m_glProgramParameteriEXT (program, pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramParameteriEXT (program, pname, value);
   }
 }
 
@@ -3997,14 +4633,15 @@ void  glew::gles::glProgramParameteriEXT (GLuint program, GLenum pname, GLint va
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1fEXT
-
-void  glew::gles::glProgramUniform1fEXT (GLuint program, GLint location, GLfloat v0)
+void  _glew_gles_glProgramUniform1fEXT (GLuint program, GLint location, GLfloat v0)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform1fEXT
-  if (s_deviceConfig.m_glProgramUniform1fEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1fEXT)
   {
-    s_deviceConfig.m_glProgramUniform1fEXT (program, location, v0);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1fEXT (program, location, v0);
   }
 }
 
@@ -4012,14 +4649,15 @@ void  glew::gles::glProgramUniform1fEXT (GLuint program, GLint location, GLfloat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1fvEXT
-
-void  glew::gles::glProgramUniform1fvEXT (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+void  _glew_gles_glProgramUniform1fvEXT (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform1fvEXT
-  if (s_deviceConfig.m_glProgramUniform1fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1fvEXT)
   {
-    s_deviceConfig.m_glProgramUniform1fvEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1fvEXT (program, location, count, value);
   }
 }
 
@@ -4027,14 +4665,15 @@ void  glew::gles::glProgramUniform1fvEXT (GLuint program, GLint location, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1iEXT
-
-void  glew::gles::glProgramUniform1iEXT (GLuint program, GLint location, GLint v0)
+void  _glew_gles_glProgramUniform1iEXT (GLuint program, GLint location, GLint v0)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform1iEXT
-  if (s_deviceConfig.m_glProgramUniform1iEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1iEXT)
   {
-    s_deviceConfig.m_glProgramUniform1iEXT (program, location, v0);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1iEXT (program, location, v0);
   }
 }
 
@@ -4042,14 +4681,15 @@ void  glew::gles::glProgramUniform1iEXT (GLuint program, GLint location, GLint v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1ivEXT
-
-void  glew::gles::glProgramUniform1ivEXT (GLuint program, GLint location, GLsizei count, const GLint * value)
+void  _glew_gles_glProgramUniform1ivEXT (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform1ivEXT
-  if (s_deviceConfig.m_glProgramUniform1ivEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1ivEXT)
   {
-    s_deviceConfig.m_glProgramUniform1ivEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1ivEXT (program, location, count, value);
   }
 }
 
@@ -4057,14 +4697,15 @@ void  glew::gles::glProgramUniform1ivEXT (GLuint program, GLint location, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2fEXT
-
-void  glew::gles::glProgramUniform2fEXT (GLuint program, GLint location, GLfloat v0, GLfloat v1)
+void  _glew_gles_glProgramUniform2fEXT (GLuint program, GLint location, GLfloat v0, GLfloat v1)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform2fEXT
-  if (s_deviceConfig.m_glProgramUniform2fEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2fEXT)
   {
-    s_deviceConfig.m_glProgramUniform2fEXT (program, location, v0, v1);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2fEXT (program, location, v0, v1);
   }
 }
 
@@ -4072,14 +4713,15 @@ void  glew::gles::glProgramUniform2fEXT (GLuint program, GLint location, GLfloat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2fvEXT
-
-void  glew::gles::glProgramUniform2fvEXT (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+void  _glew_gles_glProgramUniform2fvEXT (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform2fvEXT
-  if (s_deviceConfig.m_glProgramUniform2fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2fvEXT)
   {
-    s_deviceConfig.m_glProgramUniform2fvEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2fvEXT (program, location, count, value);
   }
 }
 
@@ -4087,14 +4729,15 @@ void  glew::gles::glProgramUniform2fvEXT (GLuint program, GLint location, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2iEXT
-
-void  glew::gles::glProgramUniform2iEXT (GLuint program, GLint location, GLint v0, GLint v1)
+void  _glew_gles_glProgramUniform2iEXT (GLuint program, GLint location, GLint v0, GLint v1)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform2iEXT
-  if (s_deviceConfig.m_glProgramUniform2iEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2iEXT)
   {
-    s_deviceConfig.m_glProgramUniform2iEXT (program, location, v0, v1);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2iEXT (program, location, v0, v1);
   }
 }
 
@@ -4102,14 +4745,15 @@ void  glew::gles::glProgramUniform2iEXT (GLuint program, GLint location, GLint v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2ivEXT
-
-void  glew::gles::glProgramUniform2ivEXT (GLuint program, GLint location, GLsizei count, const GLint * value)
+void  _glew_gles_glProgramUniform2ivEXT (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform2ivEXT
-  if (s_deviceConfig.m_glProgramUniform2ivEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2ivEXT)
   {
-    s_deviceConfig.m_glProgramUniform2ivEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2ivEXT (program, location, count, value);
   }
 }
 
@@ -4117,14 +4761,15 @@ void  glew::gles::glProgramUniform2ivEXT (GLuint program, GLint location, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3fEXT
-
-void  glew::gles::glProgramUniform3fEXT (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
+void  _glew_gles_glProgramUniform3fEXT (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform3fEXT
-  if (s_deviceConfig.m_glProgramUniform3fEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3fEXT)
   {
-    s_deviceConfig.m_glProgramUniform3fEXT (program, location, v0, v1, v2);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3fEXT (program, location, v0, v1, v2);
   }
 }
 
@@ -4132,14 +4777,15 @@ void  glew::gles::glProgramUniform3fEXT (GLuint program, GLint location, GLfloat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3fvEXT
-
-void  glew::gles::glProgramUniform3fvEXT (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+void  _glew_gles_glProgramUniform3fvEXT (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform3fvEXT
-  if (s_deviceConfig.m_glProgramUniform3fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3fvEXT)
   {
-    s_deviceConfig.m_glProgramUniform3fvEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3fvEXT (program, location, count, value);
   }
 }
 
@@ -4147,14 +4793,15 @@ void  glew::gles::glProgramUniform3fvEXT (GLuint program, GLint location, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3iEXT
-
-void  glew::gles::glProgramUniform3iEXT (GLuint program, GLint location, GLint v0, GLint v1, GLint v2)
+void  _glew_gles_glProgramUniform3iEXT (GLuint program, GLint location, GLint v0, GLint v1, GLint v2)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform3iEXT
-  if (s_deviceConfig.m_glProgramUniform3iEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3iEXT)
   {
-    s_deviceConfig.m_glProgramUniform3iEXT (program, location, v0, v1, v2);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3iEXT (program, location, v0, v1, v2);
   }
 }
 
@@ -4162,14 +4809,15 @@ void  glew::gles::glProgramUniform3iEXT (GLuint program, GLint location, GLint v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3ivEXT
-
-void  glew::gles::glProgramUniform3ivEXT (GLuint program, GLint location, GLsizei count, const GLint * value)
+void  _glew_gles_glProgramUniform3ivEXT (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform3ivEXT
-  if (s_deviceConfig.m_glProgramUniform3ivEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3ivEXT)
   {
-    s_deviceConfig.m_glProgramUniform3ivEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3ivEXT (program, location, count, value);
   }
 }
 
@@ -4177,14 +4825,15 @@ void  glew::gles::glProgramUniform3ivEXT (GLuint program, GLint location, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4fEXT
-
-void  glew::gles::glProgramUniform4fEXT (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
+void  _glew_gles_glProgramUniform4fEXT (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform4fEXT
-  if (s_deviceConfig.m_glProgramUniform4fEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4fEXT)
   {
-    s_deviceConfig.m_glProgramUniform4fEXT (program, location, v0, v1, v2, v3);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4fEXT (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -4192,14 +4841,15 @@ void  glew::gles::glProgramUniform4fEXT (GLuint program, GLint location, GLfloat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4fvEXT
-
-void  glew::gles::glProgramUniform4fvEXT (GLuint program, GLint location, GLsizei count, const GLfloat * value)
+void  _glew_gles_glProgramUniform4fvEXT (GLuint program, GLint location, GLsizei count, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform4fvEXT
-  if (s_deviceConfig.m_glProgramUniform4fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4fvEXT)
   {
-    s_deviceConfig.m_glProgramUniform4fvEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4fvEXT (program, location, count, value);
   }
 }
 
@@ -4207,14 +4857,15 @@ void  glew::gles::glProgramUniform4fvEXT (GLuint program, GLint location, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4iEXT
-
-void  glew::gles::glProgramUniform4iEXT (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
+void  _glew_gles_glProgramUniform4iEXT (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform4iEXT
-  if (s_deviceConfig.m_glProgramUniform4iEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4iEXT)
   {
-    s_deviceConfig.m_glProgramUniform4iEXT (program, location, v0, v1, v2, v3);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4iEXT (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -4222,14 +4873,15 @@ void  glew::gles::glProgramUniform4iEXT (GLuint program, GLint location, GLint v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4ivEXT
-
-void  glew::gles::glProgramUniform4ivEXT (GLuint program, GLint location, GLsizei count, const GLint * value)
+void  _glew_gles_glProgramUniform4ivEXT (GLuint program, GLint location, GLsizei count, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform4ivEXT
-  if (s_deviceConfig.m_glProgramUniform4ivEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4ivEXT)
   {
-    s_deviceConfig.m_glProgramUniform4ivEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4ivEXT (program, location, count, value);
   }
 }
 
@@ -4237,14 +4889,15 @@ void  glew::gles::glProgramUniform4ivEXT (GLuint program, GLint location, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix2fvEXT
-
-void  glew::gles::glProgramUniformMatrix2fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix2fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix2fvEXT
-  if (s_deviceConfig.m_glProgramUniformMatrix2fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2fvEXT)
   {
-    s_deviceConfig.m_glProgramUniformMatrix2fvEXT (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix2fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -4252,14 +4905,15 @@ void  glew::gles::glProgramUniformMatrix2fvEXT (GLuint program, GLint location, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix3fvEXT
-
-void  glew::gles::glProgramUniformMatrix3fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix3fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix3fvEXT
-  if (s_deviceConfig.m_glProgramUniformMatrix3fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3fvEXT)
   {
-    s_deviceConfig.m_glProgramUniformMatrix3fvEXT (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix3fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -4267,14 +4921,15 @@ void  glew::gles::glProgramUniformMatrix3fvEXT (GLuint program, GLint location, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix4fvEXT
-
-void  glew::gles::glProgramUniformMatrix4fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix4fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix4fvEXT
-  if (s_deviceConfig.m_glProgramUniformMatrix4fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4fvEXT)
   {
-    s_deviceConfig.m_glProgramUniformMatrix4fvEXT (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix4fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -4282,14 +4937,15 @@ void  glew::gles::glProgramUniformMatrix4fvEXT (GLuint program, GLint location, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUseProgramStagesEXT
-
-void  glew::gles::glUseProgramStagesEXT (GLuint pipeline, GLbitfield stages, GLuint program)
+void  _glew_gles_glUseProgramStagesEXT (GLuint pipeline, GLbitfield stages, GLuint program)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glUseProgramStagesEXT
-  if (s_deviceConfig.m_glUseProgramStagesEXT)
+  if (!prototypeCalled && glesConfig.m_glUseProgramStagesEXT)
   {
-    s_deviceConfig.m_glUseProgramStagesEXT (pipeline, stages, program);
+    prototypeCalled = true;
+    glesConfig.m_glUseProgramStagesEXT (pipeline, stages, program);
   }
 }
 
@@ -4297,14 +4953,15 @@ void  glew::gles::glUseProgramStagesEXT (GLuint pipeline, GLbitfield stages, GLu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glValidateProgramPipelineEXT
-
-void  glew::gles::glValidateProgramPipelineEXT (GLuint pipeline)
+void  _glew_gles_glValidateProgramPipelineEXT (GLuint pipeline)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glValidateProgramPipelineEXT
-  if (s_deviceConfig.m_glValidateProgramPipelineEXT)
+  if (!prototypeCalled && glesConfig.m_glValidateProgramPipelineEXT)
   {
-    s_deviceConfig.m_glValidateProgramPipelineEXT (pipeline);
+    prototypeCalled = true;
+    glesConfig.m_glValidateProgramPipelineEXT (pipeline);
   }
 }
 
@@ -4312,14 +4969,15 @@ void  glew::gles::glValidateProgramPipelineEXT (GLuint pipeline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1uiEXT
-
-void  glew::gles::glProgramUniform1uiEXT (GLuint program, GLint location, GLuint v0)
+void  _glew_gles_glProgramUniform1uiEXT (GLuint program, GLint location, GLuint v0)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform1uiEXT
-  if (s_deviceConfig.m_glProgramUniform1uiEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1uiEXT)
   {
-    s_deviceConfig.m_glProgramUniform1uiEXT (program, location, v0);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1uiEXT (program, location, v0);
   }
 }
 
@@ -4327,14 +4985,15 @@ void  glew::gles::glProgramUniform1uiEXT (GLuint program, GLint location, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2uiEXT
-
-void  glew::gles::glProgramUniform2uiEXT (GLuint program, GLint location, GLuint v0, GLuint v1)
+void  _glew_gles_glProgramUniform2uiEXT (GLuint program, GLint location, GLuint v0, GLuint v1)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform2uiEXT
-  if (s_deviceConfig.m_glProgramUniform2uiEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2uiEXT)
   {
-    s_deviceConfig.m_glProgramUniform2uiEXT (program, location, v0, v1);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2uiEXT (program, location, v0, v1);
   }
 }
 
@@ -4342,14 +5001,15 @@ void  glew::gles::glProgramUniform2uiEXT (GLuint program, GLint location, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3uiEXT
-
-void  glew::gles::glProgramUniform3uiEXT (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2)
+void  _glew_gles_glProgramUniform3uiEXT (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform3uiEXT
-  if (s_deviceConfig.m_glProgramUniform3uiEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3uiEXT)
   {
-    s_deviceConfig.m_glProgramUniform3uiEXT (program, location, v0, v1, v2);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3uiEXT (program, location, v0, v1, v2);
   }
 }
 
@@ -4357,14 +5017,15 @@ void  glew::gles::glProgramUniform3uiEXT (GLuint program, GLint location, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4uiEXT
-
-void  glew::gles::glProgramUniform4uiEXT (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3)
+void  _glew_gles_glProgramUniform4uiEXT (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform4uiEXT
-  if (s_deviceConfig.m_glProgramUniform4uiEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4uiEXT)
   {
-    s_deviceConfig.m_glProgramUniform4uiEXT (program, location, v0, v1, v2, v3);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4uiEXT (program, location, v0, v1, v2, v3);
   }
 }
 
@@ -4372,14 +5033,15 @@ void  glew::gles::glProgramUniform4uiEXT (GLuint program, GLint location, GLuint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform1uivEXT
-
-void  glew::gles::glProgramUniform1uivEXT (GLuint program, GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glProgramUniform1uivEXT (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform1uivEXT
-  if (s_deviceConfig.m_glProgramUniform1uivEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform1uivEXT)
   {
-    s_deviceConfig.m_glProgramUniform1uivEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1uivEXT (program, location, count, value);
   }
 }
 
@@ -4387,14 +5049,15 @@ void  glew::gles::glProgramUniform1uivEXT (GLuint program, GLint location, GLsiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform2uivEXT
-
-void  glew::gles::glProgramUniform2uivEXT (GLuint program, GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glProgramUniform2uivEXT (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform2uivEXT
-  if (s_deviceConfig.m_glProgramUniform2uivEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform2uivEXT)
   {
-    s_deviceConfig.m_glProgramUniform2uivEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2uivEXT (program, location, count, value);
   }
 }
 
@@ -4402,14 +5065,15 @@ void  glew::gles::glProgramUniform2uivEXT (GLuint program, GLint location, GLsiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform3uivEXT
-
-void  glew::gles::glProgramUniform3uivEXT (GLuint program, GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glProgramUniform3uivEXT (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform3uivEXT
-  if (s_deviceConfig.m_glProgramUniform3uivEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform3uivEXT)
   {
-    s_deviceConfig.m_glProgramUniform3uivEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3uivEXT (program, location, count, value);
   }
 }
 
@@ -4417,14 +5081,15 @@ void  glew::gles::glProgramUniform3uivEXT (GLuint program, GLint location, GLsiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniform4uivEXT
-
-void  glew::gles::glProgramUniform4uivEXT (GLuint program, GLint location, GLsizei count, const GLuint * value)
+void  _glew_gles_glProgramUniform4uivEXT (GLuint program, GLint location, GLsizei count, const GLuint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniform4uivEXT
-  if (s_deviceConfig.m_glProgramUniform4uivEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniform4uivEXT)
   {
-    s_deviceConfig.m_glProgramUniform4uivEXT (program, location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4uivEXT (program, location, count, value);
   }
 }
 
@@ -4432,14 +5097,15 @@ void  glew::gles::glProgramUniform4uivEXT (GLuint program, GLint location, GLsiz
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix2x3fvEXT
-
-void  glew::gles::glProgramUniformMatrix2x3fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix2x3fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix2x3fvEXT
-  if (s_deviceConfig.m_glProgramUniformMatrix2x3fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2x3fvEXT)
   {
-    s_deviceConfig.m_glProgramUniformMatrix2x3fvEXT (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix2x3fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -4447,14 +5113,15 @@ void  glew::gles::glProgramUniformMatrix2x3fvEXT (GLuint program, GLint location
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix3x2fvEXT
-
-void  glew::gles::glProgramUniformMatrix3x2fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix3x2fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix3x2fvEXT
-  if (s_deviceConfig.m_glProgramUniformMatrix3x2fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3x2fvEXT)
   {
-    s_deviceConfig.m_glProgramUniformMatrix3x2fvEXT (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix3x2fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -4462,14 +5129,15 @@ void  glew::gles::glProgramUniformMatrix3x2fvEXT (GLuint program, GLint location
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix2x4fvEXT
-
-void  glew::gles::glProgramUniformMatrix2x4fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix2x4fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix2x4fvEXT
-  if (s_deviceConfig.m_glProgramUniformMatrix2x4fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2x4fvEXT)
   {
-    s_deviceConfig.m_glProgramUniformMatrix2x4fvEXT (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix2x4fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -4477,14 +5145,15 @@ void  glew::gles::glProgramUniformMatrix2x4fvEXT (GLuint program, GLint location
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix4x2fvEXT
-
-void  glew::gles::glProgramUniformMatrix4x2fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix4x2fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix4x2fvEXT
-  if (s_deviceConfig.m_glProgramUniformMatrix4x2fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4x2fvEXT)
   {
-    s_deviceConfig.m_glProgramUniformMatrix4x2fvEXT (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix4x2fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -4492,14 +5161,15 @@ void  glew::gles::glProgramUniformMatrix4x2fvEXT (GLuint program, GLint location
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix3x4fvEXT
-
-void  glew::gles::glProgramUniformMatrix3x4fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix3x4fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix3x4fvEXT
-  if (s_deviceConfig.m_glProgramUniformMatrix3x4fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3x4fvEXT)
   {
-    s_deviceConfig.m_glProgramUniformMatrix3x4fvEXT (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix3x4fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -4507,14 +5177,15 @@ void  glew::gles::glProgramUniformMatrix3x4fvEXT (GLuint program, GLint location
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformMatrix4x3fvEXT
-
-void  glew::gles::glProgramUniformMatrix4x3fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glProgramUniformMatrix4x3fvEXT (GLuint program, GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix4x3fvEXT
-  if (s_deviceConfig.m_glProgramUniformMatrix4x3fvEXT)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4x3fvEXT)
   {
-    s_deviceConfig.m_glProgramUniformMatrix4x3fvEXT (program, location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix4x3fvEXT (program, location, count, transpose, value);
   }
 }
 
@@ -4522,14 +5193,15 @@ void  glew::gles::glProgramUniformMatrix4x3fvEXT (GLuint program, GLint location
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexPageCommitmentARB
-
-void  glew::gles::glTexPageCommitmentARB (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit)
+void  _glew_gles_glTexPageCommitmentARB (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_sparse_texture - glTexPageCommitmentARB
-  if (s_deviceConfig.m_glTexPageCommitmentARB)
+  if (!prototypeCalled && glesConfig.m_glTexPageCommitmentARB)
   {
-    s_deviceConfig.m_glTexPageCommitmentARB (target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
+    prototypeCalled = true;
+    glesConfig.m_glTexPageCommitmentARB (target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
   }
 }
 
@@ -4537,14 +5209,15 @@ void  glew::gles::glTexPageCommitmentARB (GLenum target, GLint level, GLint xoff
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPatchParameteriEXT
-
-void  glew::gles::glPatchParameteriEXT (GLenum pname, GLint value)
+void  _glew_gles_glPatchParameteriEXT (GLenum pname, GLint value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_tessellation_shader - glPatchParameteriEXT
-  if (s_deviceConfig.m_glPatchParameteriEXT)
+  if (!prototypeCalled && glesConfig.m_glPatchParameteriEXT)
   {
-    s_deviceConfig.m_glPatchParameteriEXT (pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glPatchParameteriEXT (pname, value);
   }
 }
 
@@ -4552,14 +5225,15 @@ void  glew::gles::glPatchParameteriEXT (GLenum pname, GLint value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexParameterIivEXT
-
-void  glew::gles::glTexParameterIivEXT (GLenum target, GLenum pname, const GLint * params)
+void  _glew_gles_glTexParameterIivEXT (GLenum target, GLenum pname, const GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_border_clamp - glTexParameterIivEXT
-  if (s_deviceConfig.m_glTexParameterIivEXT)
+  if (!prototypeCalled && glesConfig.m_glTexParameterIivEXT)
   {
-    s_deviceConfig.m_glTexParameterIivEXT (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glTexParameterIivEXT (target, pname, params);
   }
 }
 
@@ -4567,14 +5241,15 @@ void  glew::gles::glTexParameterIivEXT (GLenum target, GLenum pname, const GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexParameterIuivEXT
-
-void  glew::gles::glTexParameterIuivEXT (GLenum target, GLenum pname, const GLuint * params)
+void  _glew_gles_glTexParameterIuivEXT (GLenum target, GLenum pname, const GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_border_clamp - glTexParameterIuivEXT
-  if (s_deviceConfig.m_glTexParameterIuivEXT)
+  if (!prototypeCalled && glesConfig.m_glTexParameterIuivEXT)
   {
-    s_deviceConfig.m_glTexParameterIuivEXT (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glTexParameterIuivEXT (target, pname, params);
   }
 }
 
@@ -4582,14 +5257,15 @@ void  glew::gles::glTexParameterIuivEXT (GLenum target, GLenum pname, const GLui
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTexParameterIivEXT
-
-void  glew::gles::glGetTexParameterIivEXT (GLenum target, GLenum pname, GLint * params)
+void  _glew_gles_glGetTexParameterIivEXT (GLenum target, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_border_clamp - glGetTexParameterIivEXT
-  if (s_deviceConfig.m_glGetTexParameterIivEXT)
+  if (!prototypeCalled && glesConfig.m_glGetTexParameterIivEXT)
   {
-    s_deviceConfig.m_glGetTexParameterIivEXT (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetTexParameterIivEXT (target, pname, params);
   }
 }
 
@@ -4597,14 +5273,15 @@ void  glew::gles::glGetTexParameterIivEXT (GLenum target, GLenum pname, GLint * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTexParameterIuivEXT
-
-void  glew::gles::glGetTexParameterIuivEXT (GLenum target, GLenum pname, GLuint * params)
+void  _glew_gles_glGetTexParameterIuivEXT (GLenum target, GLenum pname, GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_border_clamp - glGetTexParameterIuivEXT
-  if (s_deviceConfig.m_glGetTexParameterIuivEXT)
+  if (!prototypeCalled && glesConfig.m_glGetTexParameterIuivEXT)
   {
-    s_deviceConfig.m_glGetTexParameterIuivEXT (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetTexParameterIuivEXT (target, pname, params);
   }
 }
 
@@ -4612,14 +5289,15 @@ void  glew::gles::glGetTexParameterIuivEXT (GLenum target, GLenum pname, GLuint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSamplerParameterIivEXT
-
-void  glew::gles::glSamplerParameterIivEXT (GLuint sampler, GLenum pname, const GLint * param)
+void  _glew_gles_glSamplerParameterIivEXT (GLuint sampler, GLenum pname, const GLint * param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_border_clamp - glSamplerParameterIivEXT
-  if (s_deviceConfig.m_glSamplerParameterIivEXT)
+  if (!prototypeCalled && glesConfig.m_glSamplerParameterIivEXT)
   {
-    s_deviceConfig.m_glSamplerParameterIivEXT (sampler, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glSamplerParameterIivEXT (sampler, pname, param);
   }
 }
 
@@ -4627,14 +5305,15 @@ void  glew::gles::glSamplerParameterIivEXT (GLuint sampler, GLenum pname, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSamplerParameterIuivEXT
-
-void  glew::gles::glSamplerParameterIuivEXT (GLuint sampler, GLenum pname, const GLuint * param)
+void  _glew_gles_glSamplerParameterIuivEXT (GLuint sampler, GLenum pname, const GLuint * param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_border_clamp - glSamplerParameterIuivEXT
-  if (s_deviceConfig.m_glSamplerParameterIuivEXT)
+  if (!prototypeCalled && glesConfig.m_glSamplerParameterIuivEXT)
   {
-    s_deviceConfig.m_glSamplerParameterIuivEXT (sampler, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glSamplerParameterIuivEXT (sampler, pname, param);
   }
 }
 
@@ -4642,14 +5321,15 @@ void  glew::gles::glSamplerParameterIuivEXT (GLuint sampler, GLenum pname, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetSamplerParameterIivEXT
-
-void  glew::gles::glGetSamplerParameterIivEXT (GLuint sampler, GLenum pname, GLint * params)
+void  _glew_gles_glGetSamplerParameterIivEXT (GLuint sampler, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_border_clamp - glGetSamplerParameterIivEXT
-  if (s_deviceConfig.m_glGetSamplerParameterIivEXT)
+  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterIivEXT)
   {
-    s_deviceConfig.m_glGetSamplerParameterIivEXT (sampler, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetSamplerParameterIivEXT (sampler, pname, params);
   }
 }
 
@@ -4657,14 +5337,15 @@ void  glew::gles::glGetSamplerParameterIivEXT (GLuint sampler, GLenum pname, GLi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetSamplerParameterIuivEXT
-
-void  glew::gles::glGetSamplerParameterIuivEXT (GLuint sampler, GLenum pname, GLuint * params)
+void  _glew_gles_glGetSamplerParameterIuivEXT (GLuint sampler, GLenum pname, GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_border_clamp - glGetSamplerParameterIuivEXT
-  if (s_deviceConfig.m_glGetSamplerParameterIuivEXT)
+  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterIuivEXT)
   {
-    s_deviceConfig.m_glGetSamplerParameterIuivEXT (sampler, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetSamplerParameterIuivEXT (sampler, pname, params);
   }
 }
 
@@ -4672,14 +5353,15 @@ void  glew::gles::glGetSamplerParameterIuivEXT (GLuint sampler, GLenum pname, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexBufferEXT
-
-void  glew::gles::glTexBufferEXT (GLenum target, GLenum internalformat, GLuint buffer)
+void  _glew_gles_glTexBufferEXT (GLenum target, GLenum internalformat, GLuint buffer)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_buffer - glTexBufferEXT
-  if (s_deviceConfig.m_glTexBufferEXT)
+  if (!prototypeCalled && glesConfig.m_glTexBufferEXT)
   {
-    s_deviceConfig.m_glTexBufferEXT (target, internalformat, buffer);
+    prototypeCalled = true;
+    glesConfig.m_glTexBufferEXT (target, internalformat, buffer);
   }
 }
 
@@ -4687,14 +5369,15 @@ void  glew::gles::glTexBufferEXT (GLenum target, GLenum internalformat, GLuint b
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexBufferRangeEXT
-
-void  glew::gles::glTexBufferRangeEXT (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
+void  _glew_gles_glTexBufferRangeEXT (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_buffer - glTexBufferRangeEXT
-  if (s_deviceConfig.m_glTexBufferRangeEXT)
+  if (!prototypeCalled && glesConfig.m_glTexBufferRangeEXT)
   {
-    s_deviceConfig.m_glTexBufferRangeEXT (target, internalformat, buffer, offset, size);
+    prototypeCalled = true;
+    glesConfig.m_glTexBufferRangeEXT (target, internalformat, buffer, offset, size);
   }
 }
 
@@ -4702,14 +5385,15 @@ void  glew::gles::glTexBufferRangeEXT (GLenum target, GLenum internalformat, GLu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexStorage1DEXT
-
-void  glew::gles::glTexStorage1DEXT (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width)
+void  _glew_gles_glTexStorage1DEXT (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_storage - glTexStorage1DEXT
-  if (s_deviceConfig.m_glTexStorage1DEXT)
+  if (!prototypeCalled && glesConfig.m_glTexStorage1DEXT)
   {
-    s_deviceConfig.m_glTexStorage1DEXT (target, levels, internalformat, width);
+    prototypeCalled = true;
+    glesConfig.m_glTexStorage1DEXT (target, levels, internalformat, width);
   }
 }
 
@@ -4717,14 +5401,15 @@ void  glew::gles::glTexStorage1DEXT (GLenum target, GLsizei levels, GLenum inter
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexStorage2DEXT
-
-void  glew::gles::glTexStorage2DEXT (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
+void  _glew_gles_glTexStorage2DEXT (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_storage - glTexStorage2DEXT
-  if (s_deviceConfig.m_glTexStorage2DEXT)
+  if (!prototypeCalled && glesConfig.m_glTexStorage2DEXT)
   {
-    s_deviceConfig.m_glTexStorage2DEXT (target, levels, internalformat, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glTexStorage2DEXT (target, levels, internalformat, width, height);
   }
 }
 
@@ -4732,14 +5417,15 @@ void  glew::gles::glTexStorage2DEXT (GLenum target, GLsizei levels, GLenum inter
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexStorage3DEXT
-
-void  glew::gles::glTexStorage3DEXT (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
+void  _glew_gles_glTexStorage3DEXT (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_storage - glTexStorage3DEXT
-  if (s_deviceConfig.m_glTexStorage3DEXT)
+  if (!prototypeCalled && glesConfig.m_glTexStorage3DEXT)
   {
-    s_deviceConfig.m_glTexStorage3DEXT (target, levels, internalformat, width, height, depth);
+    prototypeCalled = true;
+    glesConfig.m_glTexStorage3DEXT (target, levels, internalformat, width, height, depth);
   }
 }
 
@@ -4747,14 +5433,15 @@ void  glew::gles::glTexStorage3DEXT (GLenum target, GLsizei levels, GLenum inter
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTextureStorage1DEXT
-
-void  glew::gles::glTextureStorage1DEXT (GLuint texture, GLenum target, GLsizei levels, GLenum internalformat, GLsizei width)
+void  _glew_gles_glTextureStorage1DEXT (GLuint texture, GLenum target, GLsizei levels, GLenum internalformat, GLsizei width)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_storage - glTextureStorage1DEXT
-  if (s_deviceConfig.m_glTextureStorage1DEXT)
+  if (!prototypeCalled && glesConfig.m_glTextureStorage1DEXT)
   {
-    s_deviceConfig.m_glTextureStorage1DEXT (texture, target, levels, internalformat, width);
+    prototypeCalled = true;
+    glesConfig.m_glTextureStorage1DEXT (texture, target, levels, internalformat, width);
   }
 }
 
@@ -4762,14 +5449,15 @@ void  glew::gles::glTextureStorage1DEXT (GLuint texture, GLenum target, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTextureStorage2DEXT
-
-void  glew::gles::glTextureStorage2DEXT (GLuint texture, GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
+void  _glew_gles_glTextureStorage2DEXT (GLuint texture, GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_storage - glTextureStorage2DEXT
-  if (s_deviceConfig.m_glTextureStorage2DEXT)
+  if (!prototypeCalled && glesConfig.m_glTextureStorage2DEXT)
   {
-    s_deviceConfig.m_glTextureStorage2DEXT (texture, target, levels, internalformat, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glTextureStorage2DEXT (texture, target, levels, internalformat, width, height);
   }
 }
 
@@ -4777,14 +5465,15 @@ void  glew::gles::glTextureStorage2DEXT (GLuint texture, GLenum target, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTextureStorage3DEXT
-
-void  glew::gles::glTextureStorage3DEXT (GLuint texture, GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
+void  _glew_gles_glTextureStorage3DEXT (GLuint texture, GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_storage - glTextureStorage3DEXT
-  if (s_deviceConfig.m_glTextureStorage3DEXT)
+  if (!prototypeCalled && glesConfig.m_glTextureStorage3DEXT)
   {
-    s_deviceConfig.m_glTextureStorage3DEXT (texture, target, levels, internalformat, width, height, depth);
+    prototypeCalled = true;
+    glesConfig.m_glTextureStorage3DEXT (texture, target, levels, internalformat, width, height, depth);
   }
 }
 
@@ -4792,14 +5481,15 @@ void  glew::gles::glTextureStorage3DEXT (GLuint texture, GLenum target, GLsizei 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTextureViewEXT
-
-void  glew::gles::glTextureViewEXT (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers)
+void  _glew_gles_glTextureViewEXT (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_EXT_texture_view - glTextureViewEXT
-  if (s_deviceConfig.m_glTextureViewEXT)
+  if (!prototypeCalled && glesConfig.m_glTextureViewEXT)
   {
-    s_deviceConfig.m_glTextureViewEXT (texture, target, origtexture, internalformat, minlevel, numlevels, minlayer, numlayers);
+    prototypeCalled = true;
+    glesConfig.m_glTextureViewEXT (texture, target, origtexture, internalformat, minlevel, numlevels, minlayer, numlayers);
   }
 }
 
@@ -4807,14 +5497,15 @@ void  glew::gles::glTextureViewEXT (GLuint texture, GLenum target, GLuint origte
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glRenderbufferStorageMultisampleIMG
-
-void  glew::gles::glRenderbufferStorageMultisampleIMG (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+void  _glew_gles_glRenderbufferStorageMultisampleIMG (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_IMG_multisampled_render_to_texture - glRenderbufferStorageMultisampleIMG
-  if (s_deviceConfig.m_glRenderbufferStorageMultisampleIMG)
+  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleIMG)
   {
-    s_deviceConfig.m_glRenderbufferStorageMultisampleIMG (target, samples, internalformat, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glRenderbufferStorageMultisampleIMG (target, samples, internalformat, width, height);
   }
 }
 
@@ -4822,14 +5513,15 @@ void  glew::gles::glRenderbufferStorageMultisampleIMG (GLenum target, GLsizei sa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFramebufferTexture2DMultisampleIMG
-
-void  glew::gles::glFramebufferTexture2DMultisampleIMG (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLsizei samples)
+void  _glew_gles_glFramebufferTexture2DMultisampleIMG (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLsizei samples)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_IMG_multisampled_render_to_texture - glFramebufferTexture2DMultisampleIMG
-  if (s_deviceConfig.m_glFramebufferTexture2DMultisampleIMG)
+  if (!prototypeCalled && glesConfig.m_glFramebufferTexture2DMultisampleIMG)
   {
-    s_deviceConfig.m_glFramebufferTexture2DMultisampleIMG (target, attachment, textarget, texture, level, samples);
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferTexture2DMultisampleIMG (target, attachment, textarget, texture, level, samples);
   }
 }
 
@@ -4837,14 +5529,15 @@ void  glew::gles::glFramebufferTexture2DMultisampleIMG (GLenum target, GLenum at
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBeginPerfQueryINTEL
-
-void  glew::gles::glBeginPerfQueryINTEL (GLuint queryHandle)
+void  _glew_gles_glBeginPerfQueryINTEL (GLuint queryHandle)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glBeginPerfQueryINTEL
-  if (s_deviceConfig.m_glBeginPerfQueryINTEL)
+  if (!prototypeCalled && glesConfig.m_glBeginPerfQueryINTEL)
   {
-    s_deviceConfig.m_glBeginPerfQueryINTEL (queryHandle);
+    prototypeCalled = true;
+    glesConfig.m_glBeginPerfQueryINTEL (queryHandle);
   }
 }
 
@@ -4852,14 +5545,15 @@ void  glew::gles::glBeginPerfQueryINTEL (GLuint queryHandle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCreatePerfQueryINTEL
-
-void  glew::gles::glCreatePerfQueryINTEL (GLuint queryId, GLuint * queryHandle)
+void  _glew_gles_glCreatePerfQueryINTEL (GLuint queryId, GLuint * queryHandle)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glCreatePerfQueryINTEL
-  if (s_deviceConfig.m_glCreatePerfQueryINTEL)
+  if (!prototypeCalled && glesConfig.m_glCreatePerfQueryINTEL)
   {
-    s_deviceConfig.m_glCreatePerfQueryINTEL (queryId, queryHandle);
+    prototypeCalled = true;
+    glesConfig.m_glCreatePerfQueryINTEL (queryId, queryHandle);
   }
 }
 
@@ -4867,14 +5561,15 @@ void  glew::gles::glCreatePerfQueryINTEL (GLuint queryId, GLuint * queryHandle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeletePerfQueryINTEL
-
-void  glew::gles::glDeletePerfQueryINTEL (GLuint queryHandle)
+void  _glew_gles_glDeletePerfQueryINTEL (GLuint queryHandle)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glDeletePerfQueryINTEL
-  if (s_deviceConfig.m_glDeletePerfQueryINTEL)
+  if (!prototypeCalled && glesConfig.m_glDeletePerfQueryINTEL)
   {
-    s_deviceConfig.m_glDeletePerfQueryINTEL (queryHandle);
+    prototypeCalled = true;
+    glesConfig.m_glDeletePerfQueryINTEL (queryHandle);
   }
 }
 
@@ -4882,14 +5577,15 @@ void  glew::gles::glDeletePerfQueryINTEL (GLuint queryHandle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEndPerfQueryINTEL
-
-void  glew::gles::glEndPerfQueryINTEL (GLuint queryHandle)
+void  _glew_gles_glEndPerfQueryINTEL (GLuint queryHandle)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glEndPerfQueryINTEL
-  if (s_deviceConfig.m_glEndPerfQueryINTEL)
+  if (!prototypeCalled && glesConfig.m_glEndPerfQueryINTEL)
   {
-    s_deviceConfig.m_glEndPerfQueryINTEL (queryHandle);
+    prototypeCalled = true;
+    glesConfig.m_glEndPerfQueryINTEL (queryHandle);
   }
 }
 
@@ -4897,14 +5593,15 @@ void  glew::gles::glEndPerfQueryINTEL (GLuint queryHandle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetFirstPerfQueryIdINTEL
-
-void  glew::gles::glGetFirstPerfQueryIdINTEL (GLuint * queryId)
+void  _glew_gles_glGetFirstPerfQueryIdINTEL (GLuint * queryId)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glGetFirstPerfQueryIdINTEL
-  if (s_deviceConfig.m_glGetFirstPerfQueryIdINTEL)
+  if (!prototypeCalled && glesConfig.m_glGetFirstPerfQueryIdINTEL)
   {
-    s_deviceConfig.m_glGetFirstPerfQueryIdINTEL (queryId);
+    prototypeCalled = true;
+    glesConfig.m_glGetFirstPerfQueryIdINTEL (queryId);
   }
 }
 
@@ -4912,14 +5609,15 @@ void  glew::gles::glGetFirstPerfQueryIdINTEL (GLuint * queryId)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetNextPerfQueryIdINTEL
-
-void  glew::gles::glGetNextPerfQueryIdINTEL (GLuint queryId, GLuint * nextQueryId)
+void  _glew_gles_glGetNextPerfQueryIdINTEL (GLuint queryId, GLuint * nextQueryId)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glGetNextPerfQueryIdINTEL
-  if (s_deviceConfig.m_glGetNextPerfQueryIdINTEL)
+  if (!prototypeCalled && glesConfig.m_glGetNextPerfQueryIdINTEL)
   {
-    s_deviceConfig.m_glGetNextPerfQueryIdINTEL (queryId, nextQueryId);
+    prototypeCalled = true;
+    glesConfig.m_glGetNextPerfQueryIdINTEL (queryId, nextQueryId);
   }
 }
 
@@ -4927,14 +5625,15 @@ void  glew::gles::glGetNextPerfQueryIdINTEL (GLuint queryId, GLuint * nextQueryI
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfCounterInfoINTEL
-
-void  glew::gles::glGetPerfCounterInfoINTEL (GLuint queryId, GLuint counterId, GLuint counterNameLength, GLchar * counterName, GLuint counterDescLength, GLchar * counterDesc, GLuint * counterOffset, GLuint * counterDataSize, GLuint * counterTypeEnum, GLuint * counterDataTypeEnum, GLuint64 * rawCounterMaxValue)
+void  _glew_gles_glGetPerfCounterInfoINTEL (GLuint queryId, GLuint counterId, GLuint counterNameLength, GLchar * counterName, GLuint counterDescLength, GLchar * counterDesc, GLuint * counterOffset, GLuint * counterDataSize, GLuint * counterTypeEnum, GLuint * counterDataTypeEnum, GLuint64 * rawCounterMaxValue)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glGetPerfCounterInfoINTEL
-  if (s_deviceConfig.m_glGetPerfCounterInfoINTEL)
+  if (!prototypeCalled && glesConfig.m_glGetPerfCounterInfoINTEL)
   {
-    s_deviceConfig.m_glGetPerfCounterInfoINTEL (queryId, counterId, counterNameLength, counterName, counterDescLength, counterDesc, counterOffset, counterDataSize, counterTypeEnum, counterDataTypeEnum, rawCounterMaxValue);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfCounterInfoINTEL (queryId, counterId, counterNameLength, counterName, counterDescLength, counterDesc, counterOffset, counterDataSize, counterTypeEnum, counterDataTypeEnum, rawCounterMaxValue);
   }
 }
 
@@ -4942,14 +5641,15 @@ void  glew::gles::glGetPerfCounterInfoINTEL (GLuint queryId, GLuint counterId, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfQueryDataINTEL
-
-void  glew::gles::glGetPerfQueryDataINTEL (GLuint queryHandle, GLuint flags, GLsizei dataSize, GLvoid * data, GLuint * bytesWritten)
+void  _glew_gles_glGetPerfQueryDataINTEL (GLuint queryHandle, GLuint flags, GLsizei dataSize, GLvoid * data, GLuint * bytesWritten)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glGetPerfQueryDataINTEL
-  if (s_deviceConfig.m_glGetPerfQueryDataINTEL)
+  if (!prototypeCalled && glesConfig.m_glGetPerfQueryDataINTEL)
   {
-    s_deviceConfig.m_glGetPerfQueryDataINTEL (queryHandle, flags, dataSize, data, bytesWritten);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfQueryDataINTEL (queryHandle, flags, dataSize, data, bytesWritten);
   }
 }
 
@@ -4957,14 +5657,15 @@ void  glew::gles::glGetPerfQueryDataINTEL (GLuint queryHandle, GLuint flags, GLs
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfQueryIdByNameINTEL
-
-void  glew::gles::glGetPerfQueryIdByNameINTEL (GLchar * queryName, GLuint * queryId)
+void  _glew_gles_glGetPerfQueryIdByNameINTEL (GLchar * queryName, GLuint * queryId)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glGetPerfQueryIdByNameINTEL
-  if (s_deviceConfig.m_glGetPerfQueryIdByNameINTEL)
+  if (!prototypeCalled && glesConfig.m_glGetPerfQueryIdByNameINTEL)
   {
-    s_deviceConfig.m_glGetPerfQueryIdByNameINTEL (queryName, queryId);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfQueryIdByNameINTEL (queryName, queryId);
   }
 }
 
@@ -4972,14 +5673,15 @@ void  glew::gles::glGetPerfQueryIdByNameINTEL (GLchar * queryName, GLuint * quer
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPerfQueryInfoINTEL
-
-void  glew::gles::glGetPerfQueryInfoINTEL (GLuint queryId, GLuint queryNameLength, GLchar * queryName, GLuint * dataSize, GLuint * noCounters, GLuint * noInstances, GLuint * capsMask)
+void  _glew_gles_glGetPerfQueryInfoINTEL (GLuint queryId, GLuint queryNameLength, GLchar * queryName, GLuint * dataSize, GLuint * noCounters, GLuint * noInstances, GLuint * capsMask)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_INTEL_performance_query - glGetPerfQueryInfoINTEL
-  if (s_deviceConfig.m_glGetPerfQueryInfoINTEL)
+  if (!prototypeCalled && glesConfig.m_glGetPerfQueryInfoINTEL)
   {
-    s_deviceConfig.m_glGetPerfQueryInfoINTEL (queryId, queryNameLength, queryName, dataSize, noCounters, noInstances, capsMask);
+    prototypeCalled = true;
+    glesConfig.m_glGetPerfQueryInfoINTEL (queryId, queryNameLength, queryName, dataSize, noCounters, noInstances, capsMask);
   }
 }
 
@@ -4987,14 +5689,15 @@ void  glew::gles::glGetPerfQueryInfoINTEL (GLuint queryId, GLuint queryNameLengt
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendBarrierKHR
-
-void  glew::gles::glBlendBarrierKHR ()
+void  _glew_gles_glBlendBarrierKHR ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_blend_equation_advanced - glBlendBarrierKHR
-  if (s_deviceConfig.m_glBlendBarrierKHR)
+  if (!prototypeCalled && glesConfig.m_glBlendBarrierKHR)
   {
-    s_deviceConfig.m_glBlendBarrierKHR ();
+    prototypeCalled = true;
+    glesConfig.m_glBlendBarrierKHR ();
   }
 }
 
@@ -5002,14 +5705,15 @@ void  glew::gles::glBlendBarrierKHR ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDebugMessageControlKHR
-
-void  glew::gles::glDebugMessageControlKHR (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint * ids, GLboolean enabled)
+void  _glew_gles_glDebugMessageControlKHR (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint * ids, GLboolean enabled)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glDebugMessageControlKHR
-  if (s_deviceConfig.m_glDebugMessageControlKHR)
+  if (!prototypeCalled && glesConfig.m_glDebugMessageControlKHR)
   {
-    s_deviceConfig.m_glDebugMessageControlKHR (source, type, severity, count, ids, enabled);
+    prototypeCalled = true;
+    glesConfig.m_glDebugMessageControlKHR (source, type, severity, count, ids, enabled);
   }
 }
 
@@ -5017,14 +5721,15 @@ void  glew::gles::glDebugMessageControlKHR (GLenum source, GLenum type, GLenum s
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDebugMessageInsertKHR
-
-void  glew::gles::glDebugMessageInsertKHR (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar * buf)
+void  _glew_gles_glDebugMessageInsertKHR (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar * buf)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glDebugMessageInsertKHR
-  if (s_deviceConfig.m_glDebugMessageInsertKHR)
+  if (!prototypeCalled && glesConfig.m_glDebugMessageInsertKHR)
   {
-    s_deviceConfig.m_glDebugMessageInsertKHR (source, type, id, severity, length, buf);
+    prototypeCalled = true;
+    glesConfig.m_glDebugMessageInsertKHR (source, type, id, severity, length, buf);
   }
 }
 
@@ -5032,14 +5737,15 @@ void  glew::gles::glDebugMessageInsertKHR (GLenum source, GLenum type, GLuint id
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDebugMessageCallbackKHR
-
-void  glew::gles::glDebugMessageCallbackKHR (GLDEBUGPROCKHR callback, const void * userParam)
+void  _glew_gles_glDebugMessageCallbackKHR (GLDEBUGPROCKHR callback, const void * userParam)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glDebugMessageCallbackKHR
-  if (s_deviceConfig.m_glDebugMessageCallbackKHR)
+  if (!prototypeCalled && glesConfig.m_glDebugMessageCallbackKHR)
   {
-    s_deviceConfig.m_glDebugMessageCallbackKHR (callback, userParam);
+    prototypeCalled = true;
+    glesConfig.m_glDebugMessageCallbackKHR (callback, userParam);
   }
 }
 
@@ -5047,14 +5753,15 @@ void  glew::gles::glDebugMessageCallbackKHR (GLDEBUGPROCKHR callback, const void
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetDebugMessageLogKHR
-
-GLuint glew::gles::glGetDebugMessageLogKHR (GLuint count, GLsizei bufSize, GLenum * sources, GLenum * types, GLuint * ids, GLenum * severities, GLsizei * lengths, GLchar * messageLog)
+GLuint _glew_gles_glGetDebugMessageLogKHR (GLuint count, GLsizei bufSize, GLenum * sources, GLenum * types, GLuint * ids, GLenum * severities, GLsizei * lengths, GLchar * messageLog)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glGetDebugMessageLogKHR
-  if (s_deviceConfig.m_glGetDebugMessageLogKHR)
+  if (!prototypeCalled && glesConfig.m_glGetDebugMessageLogKHR)
   {
-    return s_deviceConfig.m_glGetDebugMessageLogKHR (count, bufSize, sources, types, ids, severities, lengths, messageLog);
+    prototypeCalled = true;
+    return glesConfig.m_glGetDebugMessageLogKHR (count, bufSize, sources, types, ids, severities, lengths, messageLog);
   }
   return ((GLuint)0);
 }
@@ -5063,14 +5770,15 @@ GLuint glew::gles::glGetDebugMessageLogKHR (GLuint count, GLsizei bufSize, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPushDebugGroupKHR
-
-void  glew::gles::glPushDebugGroupKHR (GLenum source, GLuint id, GLsizei length, const GLchar * message)
+void  _glew_gles_glPushDebugGroupKHR (GLenum source, GLuint id, GLsizei length, const GLchar * message)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glPushDebugGroupKHR
-  if (s_deviceConfig.m_glPushDebugGroupKHR)
+  if (!prototypeCalled && glesConfig.m_glPushDebugGroupKHR)
   {
-    s_deviceConfig.m_glPushDebugGroupKHR (source, id, length, message);
+    prototypeCalled = true;
+    glesConfig.m_glPushDebugGroupKHR (source, id, length, message);
   }
 }
 
@@ -5078,14 +5786,15 @@ void  glew::gles::glPushDebugGroupKHR (GLenum source, GLuint id, GLsizei length,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPopDebugGroupKHR
-
-void  glew::gles::glPopDebugGroupKHR ()
+void  _glew_gles_glPopDebugGroupKHR ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glPopDebugGroupKHR
-  if (s_deviceConfig.m_glPopDebugGroupKHR)
+  if (!prototypeCalled && glesConfig.m_glPopDebugGroupKHR)
   {
-    s_deviceConfig.m_glPopDebugGroupKHR ();
+    prototypeCalled = true;
+    glesConfig.m_glPopDebugGroupKHR ();
   }
 }
 
@@ -5093,14 +5802,15 @@ void  glew::gles::glPopDebugGroupKHR ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glObjectLabelKHR
-
-void  glew::gles::glObjectLabelKHR (GLenum identifier, GLuint name, GLsizei length, const GLchar * label)
+void  _glew_gles_glObjectLabelKHR (GLenum identifier, GLuint name, GLsizei length, const GLchar * label)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glObjectLabelKHR
-  if (s_deviceConfig.m_glObjectLabelKHR)
+  if (!prototypeCalled && glesConfig.m_glObjectLabelKHR)
   {
-    s_deviceConfig.m_glObjectLabelKHR (identifier, name, length, label);
+    prototypeCalled = true;
+    glesConfig.m_glObjectLabelKHR (identifier, name, length, label);
   }
 }
 
@@ -5108,14 +5818,15 @@ void  glew::gles::glObjectLabelKHR (GLenum identifier, GLuint name, GLsizei leng
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetObjectLabelKHR
-
-void  glew::gles::glGetObjectLabelKHR (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei * length, GLchar * label)
+void  _glew_gles_glGetObjectLabelKHR (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei * length, GLchar * label)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glGetObjectLabelKHR
-  if (s_deviceConfig.m_glGetObjectLabelKHR)
+  if (!prototypeCalled && glesConfig.m_glGetObjectLabelKHR)
   {
-    s_deviceConfig.m_glGetObjectLabelKHR (identifier, name, bufSize, length, label);
+    prototypeCalled = true;
+    glesConfig.m_glGetObjectLabelKHR (identifier, name, bufSize, length, label);
   }
 }
 
@@ -5123,14 +5834,15 @@ void  glew::gles::glGetObjectLabelKHR (GLenum identifier, GLuint name, GLsizei b
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glObjectPtrLabelKHR
-
-void  glew::gles::glObjectPtrLabelKHR (const void * ptr, GLsizei length, const GLchar * label)
+void  _glew_gles_glObjectPtrLabelKHR (const void * ptr, GLsizei length, const GLchar * label)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glObjectPtrLabelKHR
-  if (s_deviceConfig.m_glObjectPtrLabelKHR)
+  if (!prototypeCalled && glesConfig.m_glObjectPtrLabelKHR)
   {
-    s_deviceConfig.m_glObjectPtrLabelKHR (ptr, length, label);
+    prototypeCalled = true;
+    glesConfig.m_glObjectPtrLabelKHR (ptr, length, label);
   }
 }
 
@@ -5138,14 +5850,15 @@ void  glew::gles::glObjectPtrLabelKHR (const void * ptr, GLsizei length, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetObjectPtrLabelKHR
-
-void  glew::gles::glGetObjectPtrLabelKHR (const void * ptr, GLsizei bufSize, GLsizei * length, GLchar * label)
+void  _glew_gles_glGetObjectPtrLabelKHR (const void * ptr, GLsizei bufSize, GLsizei * length, GLchar * label)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glGetObjectPtrLabelKHR
-  if (s_deviceConfig.m_glGetObjectPtrLabelKHR)
+  if (!prototypeCalled && glesConfig.m_glGetObjectPtrLabelKHR)
   {
-    s_deviceConfig.m_glGetObjectPtrLabelKHR (ptr, bufSize, length, label);
+    prototypeCalled = true;
+    glesConfig.m_glGetObjectPtrLabelKHR (ptr, bufSize, length, label);
   }
 }
 
@@ -5153,14 +5866,15 @@ void  glew::gles::glGetObjectPtrLabelKHR (const void * ptr, GLsizei bufSize, GLs
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPointervKHR
-
-void  glew::gles::glGetPointervKHR (GLenum pname, void ** params)
+void  _glew_gles_glGetPointervKHR (GLenum pname, void ** params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_debug - glGetPointervKHR
-  if (s_deviceConfig.m_glGetPointervKHR)
+  if (!prototypeCalled && glesConfig.m_glGetPointervKHR)
   {
-    s_deviceConfig.m_glGetPointervKHR (pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetPointervKHR (pname, params);
   }
 }
 
@@ -5168,14 +5882,15 @@ void  glew::gles::glGetPointervKHR (GLenum pname, void ** params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetGraphicsResetStatusKHR
-
-GLenum glew::gles::glGetGraphicsResetStatusKHR ()
+GLenum _glew_gles_glGetGraphicsResetStatusKHR ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_robustness - glGetGraphicsResetStatusKHR
-  if (s_deviceConfig.m_glGetGraphicsResetStatusKHR)
+  if (!prototypeCalled && glesConfig.m_glGetGraphicsResetStatusKHR)
   {
-    return s_deviceConfig.m_glGetGraphicsResetStatusKHR ();
+    prototypeCalled = true;
+    return glesConfig.m_glGetGraphicsResetStatusKHR ();
   }
   return ((GLenum)0);
 }
@@ -5184,14 +5899,15 @@ GLenum glew::gles::glGetGraphicsResetStatusKHR ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glReadnPixelsKHR
-
-void  glew::gles::glReadnPixelsKHR (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data)
+void  _glew_gles_glReadnPixelsKHR (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLsizei bufSize, void * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_robustness - glReadnPixelsKHR
-  if (s_deviceConfig.m_glReadnPixelsKHR)
+  if (!prototypeCalled && glesConfig.m_glReadnPixelsKHR)
   {
-    s_deviceConfig.m_glReadnPixelsKHR (x, y, width, height, format, type, bufSize, data);
+    prototypeCalled = true;
+    glesConfig.m_glReadnPixelsKHR (x, y, width, height, format, type, bufSize, data);
   }
 }
 
@@ -5199,14 +5915,15 @@ void  glew::gles::glReadnPixelsKHR (GLint x, GLint y, GLsizei width, GLsizei hei
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetnUniformfvKHR
-
-void  glew::gles::glGetnUniformfvKHR (GLuint program, GLint location, GLsizei bufSize, GLfloat * params)
+void  _glew_gles_glGetnUniformfvKHR (GLuint program, GLint location, GLsizei bufSize, GLfloat * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_robustness - glGetnUniformfvKHR
-  if (s_deviceConfig.m_glGetnUniformfvKHR)
+  if (!prototypeCalled && glesConfig.m_glGetnUniformfvKHR)
   {
-    s_deviceConfig.m_glGetnUniformfvKHR (program, location, bufSize, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetnUniformfvKHR (program, location, bufSize, params);
   }
 }
 
@@ -5214,14 +5931,15 @@ void  glew::gles::glGetnUniformfvKHR (GLuint program, GLint location, GLsizei bu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetnUniformivKHR
-
-void  glew::gles::glGetnUniformivKHR (GLuint program, GLint location, GLsizei bufSize, GLint * params)
+void  _glew_gles_glGetnUniformivKHR (GLuint program, GLint location, GLsizei bufSize, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_robustness - glGetnUniformivKHR
-  if (s_deviceConfig.m_glGetnUniformivKHR)
+  if (!prototypeCalled && glesConfig.m_glGetnUniformivKHR)
   {
-    s_deviceConfig.m_glGetnUniformivKHR (program, location, bufSize, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetnUniformivKHR (program, location, bufSize, params);
   }
 }
 
@@ -5229,14 +5947,15 @@ void  glew::gles::glGetnUniformivKHR (GLuint program, GLint location, GLsizei bu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetnUniformuivKHR
-
-void  glew::gles::glGetnUniformuivKHR (GLuint program, GLint location, GLsizei bufSize, GLuint * params)
+void  _glew_gles_glGetnUniformuivKHR (GLuint program, GLint location, GLsizei bufSize, GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_KHR_robustness - glGetnUniformuivKHR
-  if (s_deviceConfig.m_glGetnUniformuivKHR)
+  if (!prototypeCalled && glesConfig.m_glGetnUniformuivKHR)
   {
-    s_deviceConfig.m_glGetnUniformuivKHR (program, location, bufSize, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetnUniformuivKHR (program, location, bufSize, params);
   }
 }
 
@@ -5244,14 +5963,15 @@ void  glew::gles::glGetnUniformuivKHR (GLuint program, GLint location, GLsizei b
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTextureHandleNV
-
-GLuint64 glew::gles::glGetTextureHandleNV (GLuint texture)
+GLuint64 _glew_gles_glGetTextureHandleNV (GLuint texture)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glGetTextureHandleNV
-  if (s_deviceConfig.m_glGetTextureHandleNV)
+  if (!prototypeCalled && glesConfig.m_glGetTextureHandleNV)
   {
-    return s_deviceConfig.m_glGetTextureHandleNV (texture);
+    prototypeCalled = true;
+    return glesConfig.m_glGetTextureHandleNV (texture);
   }
   return ((GLuint64)0);
 }
@@ -5260,14 +5980,15 @@ GLuint64 glew::gles::glGetTextureHandleNV (GLuint texture)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTextureSamplerHandleNV
-
-GLuint64 glew::gles::glGetTextureSamplerHandleNV (GLuint texture, GLuint sampler)
+GLuint64 _glew_gles_glGetTextureSamplerHandleNV (GLuint texture, GLuint sampler)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glGetTextureSamplerHandleNV
-  if (s_deviceConfig.m_glGetTextureSamplerHandleNV)
+  if (!prototypeCalled && glesConfig.m_glGetTextureSamplerHandleNV)
   {
-    return s_deviceConfig.m_glGetTextureSamplerHandleNV (texture, sampler);
+    prototypeCalled = true;
+    return glesConfig.m_glGetTextureSamplerHandleNV (texture, sampler);
   }
   return ((GLuint64)0);
 }
@@ -5276,14 +5997,15 @@ GLuint64 glew::gles::glGetTextureSamplerHandleNV (GLuint texture, GLuint sampler
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMakeTextureHandleResidentNV
-
-void  glew::gles::glMakeTextureHandleResidentNV (GLuint64 handle)
+void  _glew_gles_glMakeTextureHandleResidentNV (GLuint64 handle)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glMakeTextureHandleResidentNV
-  if (s_deviceConfig.m_glMakeTextureHandleResidentNV)
+  if (!prototypeCalled && glesConfig.m_glMakeTextureHandleResidentNV)
   {
-    s_deviceConfig.m_glMakeTextureHandleResidentNV (handle);
+    prototypeCalled = true;
+    glesConfig.m_glMakeTextureHandleResidentNV (handle);
   }
 }
 
@@ -5291,14 +6013,15 @@ void  glew::gles::glMakeTextureHandleResidentNV (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMakeTextureHandleNonResidentNV
-
-void  glew::gles::glMakeTextureHandleNonResidentNV (GLuint64 handle)
+void  _glew_gles_glMakeTextureHandleNonResidentNV (GLuint64 handle)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glMakeTextureHandleNonResidentNV
-  if (s_deviceConfig.m_glMakeTextureHandleNonResidentNV)
+  if (!prototypeCalled && glesConfig.m_glMakeTextureHandleNonResidentNV)
   {
-    s_deviceConfig.m_glMakeTextureHandleNonResidentNV (handle);
+    prototypeCalled = true;
+    glesConfig.m_glMakeTextureHandleNonResidentNV (handle);
   }
 }
 
@@ -5306,14 +6029,15 @@ void  glew::gles::glMakeTextureHandleNonResidentNV (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetImageHandleNV
-
-GLuint64 glew::gles::glGetImageHandleNV (GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum format)
+GLuint64 _glew_gles_glGetImageHandleNV (GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum format)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glGetImageHandleNV
-  if (s_deviceConfig.m_glGetImageHandleNV)
+  if (!prototypeCalled && glesConfig.m_glGetImageHandleNV)
   {
-    return s_deviceConfig.m_glGetImageHandleNV (texture, level, layered, layer, format);
+    prototypeCalled = true;
+    return glesConfig.m_glGetImageHandleNV (texture, level, layered, layer, format);
   }
   return ((GLuint64)0);
 }
@@ -5322,14 +6046,15 @@ GLuint64 glew::gles::glGetImageHandleNV (GLuint texture, GLint level, GLboolean 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMakeImageHandleResidentNV
-
-void  glew::gles::glMakeImageHandleResidentNV (GLuint64 handle, GLenum access)
+void  _glew_gles_glMakeImageHandleResidentNV (GLuint64 handle, GLenum access)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glMakeImageHandleResidentNV
-  if (s_deviceConfig.m_glMakeImageHandleResidentNV)
+  if (!prototypeCalled && glesConfig.m_glMakeImageHandleResidentNV)
   {
-    s_deviceConfig.m_glMakeImageHandleResidentNV (handle, access);
+    prototypeCalled = true;
+    glesConfig.m_glMakeImageHandleResidentNV (handle, access);
   }
 }
 
@@ -5337,14 +6062,15 @@ void  glew::gles::glMakeImageHandleResidentNV (GLuint64 handle, GLenum access)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMakeImageHandleNonResidentNV
-
-void  glew::gles::glMakeImageHandleNonResidentNV (GLuint64 handle)
+void  _glew_gles_glMakeImageHandleNonResidentNV (GLuint64 handle)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glMakeImageHandleNonResidentNV
-  if (s_deviceConfig.m_glMakeImageHandleNonResidentNV)
+  if (!prototypeCalled && glesConfig.m_glMakeImageHandleNonResidentNV)
   {
-    s_deviceConfig.m_glMakeImageHandleNonResidentNV (handle);
+    prototypeCalled = true;
+    glesConfig.m_glMakeImageHandleNonResidentNV (handle);
   }
 }
 
@@ -5352,14 +6078,15 @@ void  glew::gles::glMakeImageHandleNonResidentNV (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformHandleui64NV
-
-void  glew::gles::glUniformHandleui64NV (GLint location, GLuint64 value)
+void  _glew_gles_glUniformHandleui64NV (GLint location, GLuint64 value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glUniformHandleui64NV
-  if (s_deviceConfig.m_glUniformHandleui64NV)
+  if (!prototypeCalled && glesConfig.m_glUniformHandleui64NV)
   {
-    s_deviceConfig.m_glUniformHandleui64NV (location, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformHandleui64NV (location, value);
   }
 }
 
@@ -5367,14 +6094,15 @@ void  glew::gles::glUniformHandleui64NV (GLint location, GLuint64 value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformHandleui64vNV
-
-void  glew::gles::glUniformHandleui64vNV (GLint location, GLsizei count, const GLuint64 * value)
+void  _glew_gles_glUniformHandleui64vNV (GLint location, GLsizei count, const GLuint64 * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glUniformHandleui64vNV
-  if (s_deviceConfig.m_glUniformHandleui64vNV)
+  if (!prototypeCalled && glesConfig.m_glUniformHandleui64vNV)
   {
-    s_deviceConfig.m_glUniformHandleui64vNV (location, count, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformHandleui64vNV (location, count, value);
   }
 }
 
@@ -5382,14 +6110,15 @@ void  glew::gles::glUniformHandleui64vNV (GLint location, GLsizei count, const G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformHandleui64NV
-
-void  glew::gles::glProgramUniformHandleui64NV (GLuint program, GLint location, GLuint64 value)
+void  _glew_gles_glProgramUniformHandleui64NV (GLuint program, GLint location, GLuint64 value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glProgramUniformHandleui64NV
-  if (s_deviceConfig.m_glProgramUniformHandleui64NV)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformHandleui64NV)
   {
-    s_deviceConfig.m_glProgramUniformHandleui64NV (program, location, value);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformHandleui64NV (program, location, value);
   }
 }
 
@@ -5397,14 +6126,15 @@ void  glew::gles::glProgramUniformHandleui64NV (GLuint program, GLint location, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramUniformHandleui64vNV
-
-void  glew::gles::glProgramUniformHandleui64vNV (GLuint program, GLint location, GLsizei count, const GLuint64 * values)
+void  _glew_gles_glProgramUniformHandleui64vNV (GLuint program, GLint location, GLsizei count, const GLuint64 * values)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glProgramUniformHandleui64vNV
-  if (s_deviceConfig.m_glProgramUniformHandleui64vNV)
+  if (!prototypeCalled && glesConfig.m_glProgramUniformHandleui64vNV)
   {
-    s_deviceConfig.m_glProgramUniformHandleui64vNV (program, location, count, values);
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformHandleui64vNV (program, location, count, values);
   }
 }
 
@@ -5412,14 +6142,15 @@ void  glew::gles::glProgramUniformHandleui64vNV (GLuint program, GLint location,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsTextureHandleResidentNV
-
-GLboolean glew::gles::glIsTextureHandleResidentNV (GLuint64 handle)
+GLboolean _glew_gles_glIsTextureHandleResidentNV (GLuint64 handle)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glIsTextureHandleResidentNV
-  if (s_deviceConfig.m_glIsTextureHandleResidentNV)
+  if (!prototypeCalled && glesConfig.m_glIsTextureHandleResidentNV)
   {
-    return s_deviceConfig.m_glIsTextureHandleResidentNV (handle);
+    prototypeCalled = true;
+    return glesConfig.m_glIsTextureHandleResidentNV (handle);
   }
   return ((GLboolean)0);
 }
@@ -5428,14 +6159,15 @@ GLboolean glew::gles::glIsTextureHandleResidentNV (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsImageHandleResidentNV
-
-GLboolean glew::gles::glIsImageHandleResidentNV (GLuint64 handle)
+GLboolean _glew_gles_glIsImageHandleResidentNV (GLuint64 handle)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_bindless_texture - glIsImageHandleResidentNV
-  if (s_deviceConfig.m_glIsImageHandleResidentNV)
+  if (!prototypeCalled && glesConfig.m_glIsImageHandleResidentNV)
   {
-    return s_deviceConfig.m_glIsImageHandleResidentNV (handle);
+    prototypeCalled = true;
+    return glesConfig.m_glIsImageHandleResidentNV (handle);
   }
   return ((GLboolean)0);
 }
@@ -5444,14 +6176,15 @@ GLboolean glew::gles::glIsImageHandleResidentNV (GLuint64 handle)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendParameteriNV
-
-void  glew::gles::glBlendParameteriNV (GLenum pname, GLint value)
+void  _glew_gles_glBlendParameteriNV (GLenum pname, GLint value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_blend_equation_advanced - glBlendParameteriNV
-  if (s_deviceConfig.m_glBlendParameteriNV)
+  if (!prototypeCalled && glesConfig.m_glBlendParameteriNV)
   {
-    s_deviceConfig.m_glBlendParameteriNV (pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glBlendParameteriNV (pname, value);
   }
 }
 
@@ -5459,14 +6192,15 @@ void  glew::gles::glBlendParameteriNV (GLenum pname, GLint value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendBarrierNV
-
-void  glew::gles::glBlendBarrierNV ()
+void  _glew_gles_glBlendBarrierNV ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_blend_equation_advanced - glBlendBarrierNV
-  if (s_deviceConfig.m_glBlendBarrierNV)
+  if (!prototypeCalled && glesConfig.m_glBlendBarrierNV)
   {
-    s_deviceConfig.m_glBlendBarrierNV ();
+    prototypeCalled = true;
+    glesConfig.m_glBlendBarrierNV ();
   }
 }
 
@@ -5474,14 +6208,15 @@ void  glew::gles::glBlendBarrierNV ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBeginConditionalRenderNV
-
-void  glew::gles::glBeginConditionalRenderNV (GLuint id, GLenum mode)
+void  _glew_gles_glBeginConditionalRenderNV (GLuint id, GLenum mode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_conditional_render - glBeginConditionalRenderNV
-  if (s_deviceConfig.m_glBeginConditionalRenderNV)
+  if (!prototypeCalled && glesConfig.m_glBeginConditionalRenderNV)
   {
-    s_deviceConfig.m_glBeginConditionalRenderNV (id, mode);
+    prototypeCalled = true;
+    glesConfig.m_glBeginConditionalRenderNV (id, mode);
   }
 }
 
@@ -5489,14 +6224,15 @@ void  glew::gles::glBeginConditionalRenderNV (GLuint id, GLenum mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEndConditionalRenderNV
-
-void  glew::gles::glEndConditionalRenderNV ()
+void  _glew_gles_glEndConditionalRenderNV ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_conditional_render - glEndConditionalRenderNV
-  if (s_deviceConfig.m_glEndConditionalRenderNV)
+  if (!prototypeCalled && glesConfig.m_glEndConditionalRenderNV)
   {
-    s_deviceConfig.m_glEndConditionalRenderNV ();
+    prototypeCalled = true;
+    glesConfig.m_glEndConditionalRenderNV ();
   }
 }
 
@@ -5504,14 +6240,15 @@ void  glew::gles::glEndConditionalRenderNV ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSubpixelPrecisionBiasNV
-
-void  glew::gles::glSubpixelPrecisionBiasNV (GLuint xbits, GLuint ybits)
+void  _glew_gles_glSubpixelPrecisionBiasNV (GLuint xbits, GLuint ybits)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_conservative_raster - glSubpixelPrecisionBiasNV
-  if (s_deviceConfig.m_glSubpixelPrecisionBiasNV)
+  if (!prototypeCalled && glesConfig.m_glSubpixelPrecisionBiasNV)
   {
-    s_deviceConfig.m_glSubpixelPrecisionBiasNV (xbits, ybits);
+    prototypeCalled = true;
+    glesConfig.m_glSubpixelPrecisionBiasNV (xbits, ybits);
   }
 }
 
@@ -5519,14 +6256,15 @@ void  glew::gles::glSubpixelPrecisionBiasNV (GLuint xbits, GLuint ybits)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCopyBufferSubDataNV
-
-void  glew::gles::glCopyBufferSubDataNV (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
+void  _glew_gles_glCopyBufferSubDataNV (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_copy_buffer - glCopyBufferSubDataNV
-  if (s_deviceConfig.m_glCopyBufferSubDataNV)
+  if (!prototypeCalled && glesConfig.m_glCopyBufferSubDataNV)
   {
-    s_deviceConfig.m_glCopyBufferSubDataNV (readTarget, writeTarget, readOffset, writeOffset, size);
+    prototypeCalled = true;
+    glesConfig.m_glCopyBufferSubDataNV (readTarget, writeTarget, readOffset, writeOffset, size);
   }
 }
 
@@ -5534,14 +6272,15 @@ void  glew::gles::glCopyBufferSubDataNV (GLenum readTarget, GLenum writeTarget, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCoverageMaskNV
-
-void  glew::gles::glCoverageMaskNV (GLboolean mask)
+void  _glew_gles_glCoverageMaskNV (GLboolean mask)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_coverage_sample - glCoverageMaskNV
-  if (s_deviceConfig.m_glCoverageMaskNV)
+  if (!prototypeCalled && glesConfig.m_glCoverageMaskNV)
   {
-    s_deviceConfig.m_glCoverageMaskNV (mask);
+    prototypeCalled = true;
+    glesConfig.m_glCoverageMaskNV (mask);
   }
 }
 
@@ -5549,14 +6288,15 @@ void  glew::gles::glCoverageMaskNV (GLboolean mask)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCoverageOperationNV
-
-void  glew::gles::glCoverageOperationNV (GLenum operation)
+void  _glew_gles_glCoverageOperationNV (GLenum operation)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_coverage_sample - glCoverageOperationNV
-  if (s_deviceConfig.m_glCoverageOperationNV)
+  if (!prototypeCalled && glesConfig.m_glCoverageOperationNV)
   {
-    s_deviceConfig.m_glCoverageOperationNV (operation);
+    prototypeCalled = true;
+    glesConfig.m_glCoverageOperationNV (operation);
   }
 }
 
@@ -5564,14 +6304,15 @@ void  glew::gles::glCoverageOperationNV (GLenum operation)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawBuffersNV
-
-void  glew::gles::glDrawBuffersNV (GLsizei n, const GLenum * bufs)
+void  _glew_gles_glDrawBuffersNV (GLsizei n, const GLenum * bufs)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_draw_buffers - glDrawBuffersNV
-  if (s_deviceConfig.m_glDrawBuffersNV)
+  if (!prototypeCalled && glesConfig.m_glDrawBuffersNV)
   {
-    s_deviceConfig.m_glDrawBuffersNV (n, bufs);
+    prototypeCalled = true;
+    glesConfig.m_glDrawBuffersNV (n, bufs);
   }
 }
 
@@ -5579,14 +6320,15 @@ void  glew::gles::glDrawBuffersNV (GLsizei n, const GLenum * bufs)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawArraysInstancedNV
-
-void  glew::gles::glDrawArraysInstancedNV (GLenum mode, GLint first, GLsizei count, GLsizei primcount)
+void  _glew_gles_glDrawArraysInstancedNV (GLenum mode, GLint first, GLsizei count, GLsizei primcount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_draw_instanced - glDrawArraysInstancedNV
-  if (s_deviceConfig.m_glDrawArraysInstancedNV)
+  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedNV)
   {
-    s_deviceConfig.m_glDrawArraysInstancedNV (mode, first, count, primcount);
+    prototypeCalled = true;
+    glesConfig.m_glDrawArraysInstancedNV (mode, first, count, primcount);
   }
 }
 
@@ -5594,14 +6336,15 @@ void  glew::gles::glDrawArraysInstancedNV (GLenum mode, GLint first, GLsizei cou
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsInstancedNV
-
-void  glew::gles::glDrawElementsInstancedNV (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei primcount)
+void  _glew_gles_glDrawElementsInstancedNV (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei primcount)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_draw_instanced - glDrawElementsInstancedNV
-  if (s_deviceConfig.m_glDrawElementsInstancedNV)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedNV)
   {
-    s_deviceConfig.m_glDrawElementsInstancedNV (mode, count, type, indices, primcount);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedNV (mode, count, type, indices, primcount);
   }
 }
 
@@ -5609,14 +6352,15 @@ void  glew::gles::glDrawElementsInstancedNV (GLenum mode, GLsizei count, GLenum 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteFencesNV
-
-void  glew::gles::glDeleteFencesNV (GLsizei n, const GLuint * fences)
+void  _glew_gles_glDeleteFencesNV (GLsizei n, const GLuint * fences)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_fence - glDeleteFencesNV
-  if (s_deviceConfig.m_glDeleteFencesNV)
+  if (!prototypeCalled && glesConfig.m_glDeleteFencesNV)
   {
-    s_deviceConfig.m_glDeleteFencesNV (n, fences);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteFencesNV (n, fences);
   }
 }
 
@@ -5624,14 +6368,15 @@ void  glew::gles::glDeleteFencesNV (GLsizei n, const GLuint * fences)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenFencesNV
-
-void  glew::gles::glGenFencesNV (GLsizei n, GLuint * fences)
+void  _glew_gles_glGenFencesNV (GLsizei n, GLuint * fences)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_fence - glGenFencesNV
-  if (s_deviceConfig.m_glGenFencesNV)
+  if (!prototypeCalled && glesConfig.m_glGenFencesNV)
   {
-    s_deviceConfig.m_glGenFencesNV (n, fences);
+    prototypeCalled = true;
+    glesConfig.m_glGenFencesNV (n, fences);
   }
 }
 
@@ -5639,14 +6384,15 @@ void  glew::gles::glGenFencesNV (GLsizei n, GLuint * fences)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsFenceNV
-
-GLboolean glew::gles::glIsFenceNV (GLuint fence)
+GLboolean _glew_gles_glIsFenceNV (GLuint fence)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_fence - glIsFenceNV
-  if (s_deviceConfig.m_glIsFenceNV)
+  if (!prototypeCalled && glesConfig.m_glIsFenceNV)
   {
-    return s_deviceConfig.m_glIsFenceNV (fence);
+    prototypeCalled = true;
+    return glesConfig.m_glIsFenceNV (fence);
   }
   return ((GLboolean)0);
 }
@@ -5655,14 +6401,15 @@ GLboolean glew::gles::glIsFenceNV (GLuint fence)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTestFenceNV
-
-GLboolean glew::gles::glTestFenceNV (GLuint fence)
+GLboolean _glew_gles_glTestFenceNV (GLuint fence)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_fence - glTestFenceNV
-  if (s_deviceConfig.m_glTestFenceNV)
+  if (!prototypeCalled && glesConfig.m_glTestFenceNV)
   {
-    return s_deviceConfig.m_glTestFenceNV (fence);
+    prototypeCalled = true;
+    return glesConfig.m_glTestFenceNV (fence);
   }
   return ((GLboolean)0);
 }
@@ -5671,14 +6418,15 @@ GLboolean glew::gles::glTestFenceNV (GLuint fence)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetFenceivNV
-
-void  glew::gles::glGetFenceivNV (GLuint fence, GLenum pname, GLint * params)
+void  _glew_gles_glGetFenceivNV (GLuint fence, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_fence - glGetFenceivNV
-  if (s_deviceConfig.m_glGetFenceivNV)
+  if (!prototypeCalled && glesConfig.m_glGetFenceivNV)
   {
-    s_deviceConfig.m_glGetFenceivNV (fence, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetFenceivNV (fence, pname, params);
   }
 }
 
@@ -5686,14 +6434,15 @@ void  glew::gles::glGetFenceivNV (GLuint fence, GLenum pname, GLint * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFinishFenceNV
-
-void  glew::gles::glFinishFenceNV (GLuint fence)
+void  _glew_gles_glFinishFenceNV (GLuint fence)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_fence - glFinishFenceNV
-  if (s_deviceConfig.m_glFinishFenceNV)
+  if (!prototypeCalled && glesConfig.m_glFinishFenceNV)
   {
-    s_deviceConfig.m_glFinishFenceNV (fence);
+    prototypeCalled = true;
+    glesConfig.m_glFinishFenceNV (fence);
   }
 }
 
@@ -5701,14 +6450,15 @@ void  glew::gles::glFinishFenceNV (GLuint fence)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSetFenceNV
-
-void  glew::gles::glSetFenceNV (GLuint fence, GLenum condition)
+void  _glew_gles_glSetFenceNV (GLuint fence, GLenum condition)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_fence - glSetFenceNV
-  if (s_deviceConfig.m_glSetFenceNV)
+  if (!prototypeCalled && glesConfig.m_glSetFenceNV)
   {
-    s_deviceConfig.m_glSetFenceNV (fence, condition);
+    prototypeCalled = true;
+    glesConfig.m_glSetFenceNV (fence, condition);
   }
 }
 
@@ -5716,14 +6466,15 @@ void  glew::gles::glSetFenceNV (GLuint fence, GLenum condition)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFragmentCoverageColorNV
-
-void  glew::gles::glFragmentCoverageColorNV (GLuint color)
+void  _glew_gles_glFragmentCoverageColorNV (GLuint color)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_fragment_coverage_to_color - glFragmentCoverageColorNV
-  if (s_deviceConfig.m_glFragmentCoverageColorNV)
+  if (!prototypeCalled && glesConfig.m_glFragmentCoverageColorNV)
   {
-    s_deviceConfig.m_glFragmentCoverageColorNV (color);
+    prototypeCalled = true;
+    glesConfig.m_glFragmentCoverageColorNV (color);
   }
 }
 
@@ -5731,14 +6482,15 @@ void  glew::gles::glFragmentCoverageColorNV (GLuint color)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlitFramebufferNV
-
-void  glew::gles::glBlitFramebufferNV (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
+void  _glew_gles_glBlitFramebufferNV (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_framebuffer_blit - glBlitFramebufferNV
-  if (s_deviceConfig.m_glBlitFramebufferNV)
+  if (!prototypeCalled && glesConfig.m_glBlitFramebufferNV)
   {
-    s_deviceConfig.m_glBlitFramebufferNV (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+    prototypeCalled = true;
+    glesConfig.m_glBlitFramebufferNV (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
 }
 
@@ -5746,14 +6498,15 @@ void  glew::gles::glBlitFramebufferNV (GLint srcX0, GLint srcY0, GLint srcX1, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCoverageModulationTableNV
-
-void  glew::gles::glCoverageModulationTableNV (GLsizei n, const GLfloat * v)
+void  _glew_gles_glCoverageModulationTableNV (GLsizei n, const GLfloat * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_framebuffer_mixed_samples - glCoverageModulationTableNV
-  if (s_deviceConfig.m_glCoverageModulationTableNV)
+  if (!prototypeCalled && glesConfig.m_glCoverageModulationTableNV)
   {
-    s_deviceConfig.m_glCoverageModulationTableNV (n, v);
+    prototypeCalled = true;
+    glesConfig.m_glCoverageModulationTableNV (n, v);
   }
 }
 
@@ -5761,14 +6514,15 @@ void  glew::gles::glCoverageModulationTableNV (GLsizei n, const GLfloat * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetCoverageModulationTableNV
-
-void  glew::gles::glGetCoverageModulationTableNV (GLsizei bufsize, GLfloat * v)
+void  _glew_gles_glGetCoverageModulationTableNV (GLsizei bufsize, GLfloat * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_framebuffer_mixed_samples - glGetCoverageModulationTableNV
-  if (s_deviceConfig.m_glGetCoverageModulationTableNV)
+  if (!prototypeCalled && glesConfig.m_glGetCoverageModulationTableNV)
   {
-    s_deviceConfig.m_glGetCoverageModulationTableNV (bufsize, v);
+    prototypeCalled = true;
+    glesConfig.m_glGetCoverageModulationTableNV (bufsize, v);
   }
 }
 
@@ -5776,14 +6530,15 @@ void  glew::gles::glGetCoverageModulationTableNV (GLsizei bufsize, GLfloat * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCoverageModulationNV
-
-void  glew::gles::glCoverageModulationNV (GLenum components)
+void  _glew_gles_glCoverageModulationNV (GLenum components)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_framebuffer_mixed_samples - glCoverageModulationNV
-  if (s_deviceConfig.m_glCoverageModulationNV)
+  if (!prototypeCalled && glesConfig.m_glCoverageModulationNV)
   {
-    s_deviceConfig.m_glCoverageModulationNV (components);
+    prototypeCalled = true;
+    glesConfig.m_glCoverageModulationNV (components);
   }
 }
 
@@ -5791,14 +6546,15 @@ void  glew::gles::glCoverageModulationNV (GLenum components)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glRenderbufferStorageMultisampleNV
-
-void  glew::gles::glRenderbufferStorageMultisampleNV (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
+void  _glew_gles_glRenderbufferStorageMultisampleNV (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_framebuffer_multisample - glRenderbufferStorageMultisampleNV
-  if (s_deviceConfig.m_glRenderbufferStorageMultisampleNV)
+  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleNV)
   {
-    s_deviceConfig.m_glRenderbufferStorageMultisampleNV (target, samples, internalformat, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glRenderbufferStorageMultisampleNV (target, samples, internalformat, width, height);
   }
 }
 
@@ -5806,14 +6562,15 @@ void  glew::gles::glRenderbufferStorageMultisampleNV (GLenum target, GLsizei sam
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glVertexAttribDivisorNV
-
-void  glew::gles::glVertexAttribDivisorNV (GLuint index, GLuint divisor)
+void  _glew_gles_glVertexAttribDivisorNV (GLuint index, GLuint divisor)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_instanced_arrays - glVertexAttribDivisorNV
-  if (s_deviceConfig.m_glVertexAttribDivisorNV)
+  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorNV)
   {
-    s_deviceConfig.m_glVertexAttribDivisorNV (index, divisor);
+    prototypeCalled = true;
+    glesConfig.m_glVertexAttribDivisorNV (index, divisor);
   }
 }
 
@@ -5821,14 +6578,15 @@ void  glew::gles::glVertexAttribDivisorNV (GLuint index, GLuint divisor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetInternalformatSampleivNV
-
-void  glew::gles::glGetInternalformatSampleivNV (GLenum target, GLenum internalformat, GLsizei samples, GLenum pname, GLsizei bufSize, GLint * params)
+void  _glew_gles_glGetInternalformatSampleivNV (GLenum target, GLenum internalformat, GLsizei samples, GLenum pname, GLsizei bufSize, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_internalformat_sample_query - glGetInternalformatSampleivNV
-  if (s_deviceConfig.m_glGetInternalformatSampleivNV)
+  if (!prototypeCalled && glesConfig.m_glGetInternalformatSampleivNV)
   {
-    s_deviceConfig.m_glGetInternalformatSampleivNV (target, internalformat, samples, pname, bufSize, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetInternalformatSampleivNV (target, internalformat, samples, pname, bufSize, params);
   }
 }
 
@@ -5836,14 +6594,15 @@ void  glew::gles::glGetInternalformatSampleivNV (GLenum target, GLenum internalf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix2x3fvNV
-
-void  glew::gles::glUniformMatrix2x3fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix2x3fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_non_square_matrices - glUniformMatrix2x3fvNV
-  if (s_deviceConfig.m_glUniformMatrix2x3fvNV)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x3fvNV)
   {
-    s_deviceConfig.m_glUniformMatrix2x3fvNV (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix2x3fvNV (location, count, transpose, value);
   }
 }
 
@@ -5851,14 +6610,15 @@ void  glew::gles::glUniformMatrix2x3fvNV (GLint location, GLsizei count, GLboole
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix3x2fvNV
-
-void  glew::gles::glUniformMatrix3x2fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix3x2fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_non_square_matrices - glUniformMatrix3x2fvNV
-  if (s_deviceConfig.m_glUniformMatrix3x2fvNV)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x2fvNV)
   {
-    s_deviceConfig.m_glUniformMatrix3x2fvNV (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix3x2fvNV (location, count, transpose, value);
   }
 }
 
@@ -5866,14 +6626,15 @@ void  glew::gles::glUniformMatrix3x2fvNV (GLint location, GLsizei count, GLboole
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix2x4fvNV
-
-void  glew::gles::glUniformMatrix2x4fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix2x4fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_non_square_matrices - glUniformMatrix2x4fvNV
-  if (s_deviceConfig.m_glUniformMatrix2x4fvNV)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x4fvNV)
   {
-    s_deviceConfig.m_glUniformMatrix2x4fvNV (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix2x4fvNV (location, count, transpose, value);
   }
 }
 
@@ -5881,14 +6642,15 @@ void  glew::gles::glUniformMatrix2x4fvNV (GLint location, GLsizei count, GLboole
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix4x2fvNV
-
-void  glew::gles::glUniformMatrix4x2fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix4x2fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_non_square_matrices - glUniformMatrix4x2fvNV
-  if (s_deviceConfig.m_glUniformMatrix4x2fvNV)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x2fvNV)
   {
-    s_deviceConfig.m_glUniformMatrix4x2fvNV (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix4x2fvNV (location, count, transpose, value);
   }
 }
 
@@ -5896,14 +6658,15 @@ void  glew::gles::glUniformMatrix4x2fvNV (GLint location, GLsizei count, GLboole
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix3x4fvNV
-
-void  glew::gles::glUniformMatrix3x4fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix3x4fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_non_square_matrices - glUniformMatrix3x4fvNV
-  if (s_deviceConfig.m_glUniformMatrix3x4fvNV)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x4fvNV)
   {
-    s_deviceConfig.m_glUniformMatrix3x4fvNV (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix3x4fvNV (location, count, transpose, value);
   }
 }
 
@@ -5911,14 +6674,15 @@ void  glew::gles::glUniformMatrix3x4fvNV (GLint location, GLsizei count, GLboole
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUniformMatrix4x3fvNV
-
-void  glew::gles::glUniformMatrix4x3fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+void  _glew_gles_glUniformMatrix4x3fvNV (GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_non_square_matrices - glUniformMatrix4x3fvNV
-  if (s_deviceConfig.m_glUniformMatrix4x3fvNV)
+  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x3fvNV)
   {
-    s_deviceConfig.m_glUniformMatrix4x3fvNV (location, count, transpose, value);
+    prototypeCalled = true;
+    glesConfig.m_glUniformMatrix4x3fvNV (location, count, transpose, value);
   }
 }
 
@@ -5926,14 +6690,15 @@ void  glew::gles::glUniformMatrix4x3fvNV (GLint location, GLsizei count, GLboole
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenPathsNV
-
-GLuint glew::gles::glGenPathsNV (GLsizei range)
+GLuint _glew_gles_glGenPathsNV (GLsizei range)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGenPathsNV
-  if (s_deviceConfig.m_glGenPathsNV)
+  if (!prototypeCalled && glesConfig.m_glGenPathsNV)
   {
-    return s_deviceConfig.m_glGenPathsNV (range);
+    prototypeCalled = true;
+    return glesConfig.m_glGenPathsNV (range);
   }
   return ((GLuint)0);
 }
@@ -5942,14 +6707,15 @@ GLuint glew::gles::glGenPathsNV (GLsizei range)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeletePathsNV
-
-void  glew::gles::glDeletePathsNV (GLuint path, GLsizei range)
+void  _glew_gles_glDeletePathsNV (GLuint path, GLsizei range)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glDeletePathsNV
-  if (s_deviceConfig.m_glDeletePathsNV)
+  if (!prototypeCalled && glesConfig.m_glDeletePathsNV)
   {
-    s_deviceConfig.m_glDeletePathsNV (path, range);
+    prototypeCalled = true;
+    glesConfig.m_glDeletePathsNV (path, range);
   }
 }
 
@@ -5957,14 +6723,15 @@ void  glew::gles::glDeletePathsNV (GLuint path, GLsizei range)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsPathNV
-
-GLboolean glew::gles::glIsPathNV (GLuint path)
+GLboolean _glew_gles_glIsPathNV (GLuint path)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glIsPathNV
-  if (s_deviceConfig.m_glIsPathNV)
+  if (!prototypeCalled && glesConfig.m_glIsPathNV)
   {
-    return s_deviceConfig.m_glIsPathNV (path);
+    prototypeCalled = true;
+    return glesConfig.m_glIsPathNV (path);
   }
   return ((GLboolean)0);
 }
@@ -5973,14 +6740,15 @@ GLboolean glew::gles::glIsPathNV (GLuint path)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathCommandsNV
-
-void  glew::gles::glPathCommandsNV (GLuint path, GLsizei numCommands, const GLubyte * commands, GLsizei numCoords, GLenum coordType, const void * coords)
+void  _glew_gles_glPathCommandsNV (GLuint path, GLsizei numCommands, const GLubyte * commands, GLsizei numCoords, GLenum coordType, const void * coords)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathCommandsNV
-  if (s_deviceConfig.m_glPathCommandsNV)
+  if (!prototypeCalled && glesConfig.m_glPathCommandsNV)
   {
-    s_deviceConfig.m_glPathCommandsNV (path, numCommands, commands, numCoords, coordType, coords);
+    prototypeCalled = true;
+    glesConfig.m_glPathCommandsNV (path, numCommands, commands, numCoords, coordType, coords);
   }
 }
 
@@ -5988,14 +6756,15 @@ void  glew::gles::glPathCommandsNV (GLuint path, GLsizei numCommands, const GLub
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathCoordsNV
-
-void  glew::gles::glPathCoordsNV (GLuint path, GLsizei numCoords, GLenum coordType, const void * coords)
+void  _glew_gles_glPathCoordsNV (GLuint path, GLsizei numCoords, GLenum coordType, const void * coords)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathCoordsNV
-  if (s_deviceConfig.m_glPathCoordsNV)
+  if (!prototypeCalled && glesConfig.m_glPathCoordsNV)
   {
-    s_deviceConfig.m_glPathCoordsNV (path, numCoords, coordType, coords);
+    prototypeCalled = true;
+    glesConfig.m_glPathCoordsNV (path, numCoords, coordType, coords);
   }
 }
 
@@ -6003,14 +6772,15 @@ void  glew::gles::glPathCoordsNV (GLuint path, GLsizei numCoords, GLenum coordTy
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathSubCommandsNV
-
-void  glew::gles::glPathSubCommandsNV (GLuint path, GLsizei commandStart, GLsizei commandsToDelete, GLsizei numCommands, const GLubyte * commands, GLsizei numCoords, GLenum coordType, const void * coords)
+void  _glew_gles_glPathSubCommandsNV (GLuint path, GLsizei commandStart, GLsizei commandsToDelete, GLsizei numCommands, const GLubyte * commands, GLsizei numCoords, GLenum coordType, const void * coords)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathSubCommandsNV
-  if (s_deviceConfig.m_glPathSubCommandsNV)
+  if (!prototypeCalled && glesConfig.m_glPathSubCommandsNV)
   {
-    s_deviceConfig.m_glPathSubCommandsNV (path, commandStart, commandsToDelete, numCommands, commands, numCoords, coordType, coords);
+    prototypeCalled = true;
+    glesConfig.m_glPathSubCommandsNV (path, commandStart, commandsToDelete, numCommands, commands, numCoords, coordType, coords);
   }
 }
 
@@ -6018,14 +6788,15 @@ void  glew::gles::glPathSubCommandsNV (GLuint path, GLsizei commandStart, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathSubCoordsNV
-
-void  glew::gles::glPathSubCoordsNV (GLuint path, GLsizei coordStart, GLsizei numCoords, GLenum coordType, const void * coords)
+void  _glew_gles_glPathSubCoordsNV (GLuint path, GLsizei coordStart, GLsizei numCoords, GLenum coordType, const void * coords)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathSubCoordsNV
-  if (s_deviceConfig.m_glPathSubCoordsNV)
+  if (!prototypeCalled && glesConfig.m_glPathSubCoordsNV)
   {
-    s_deviceConfig.m_glPathSubCoordsNV (path, coordStart, numCoords, coordType, coords);
+    prototypeCalled = true;
+    glesConfig.m_glPathSubCoordsNV (path, coordStart, numCoords, coordType, coords);
   }
 }
 
@@ -6033,14 +6804,15 @@ void  glew::gles::glPathSubCoordsNV (GLuint path, GLsizei coordStart, GLsizei nu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathStringNV
-
-void  glew::gles::glPathStringNV (GLuint path, GLenum format, GLsizei length, const void * pathString)
+void  _glew_gles_glPathStringNV (GLuint path, GLenum format, GLsizei length, const void * pathString)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathStringNV
-  if (s_deviceConfig.m_glPathStringNV)
+  if (!prototypeCalled && glesConfig.m_glPathStringNV)
   {
-    s_deviceConfig.m_glPathStringNV (path, format, length, pathString);
+    prototypeCalled = true;
+    glesConfig.m_glPathStringNV (path, format, length, pathString);
   }
 }
 
@@ -6048,14 +6820,15 @@ void  glew::gles::glPathStringNV (GLuint path, GLenum format, GLsizei length, co
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathGlyphsNV
-
-void  glew::gles::glPathGlyphsNV (GLuint firstPathName, GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLsizei numGlyphs, GLenum type, const void * charcodes, GLenum handleMissingGlyphs, GLuint pathParameterTemplate, GLfloat emScale)
+void  _glew_gles_glPathGlyphsNV (GLuint firstPathName, GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLsizei numGlyphs, GLenum type, const void * charcodes, GLenum handleMissingGlyphs, GLuint pathParameterTemplate, GLfloat emScale)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathGlyphsNV
-  if (s_deviceConfig.m_glPathGlyphsNV)
+  if (!prototypeCalled && glesConfig.m_glPathGlyphsNV)
   {
-    s_deviceConfig.m_glPathGlyphsNV (firstPathName, fontTarget, fontName, fontStyle, numGlyphs, type, charcodes, handleMissingGlyphs, pathParameterTemplate, emScale);
+    prototypeCalled = true;
+    glesConfig.m_glPathGlyphsNV (firstPathName, fontTarget, fontName, fontStyle, numGlyphs, type, charcodes, handleMissingGlyphs, pathParameterTemplate, emScale);
   }
 }
 
@@ -6063,14 +6836,15 @@ void  glew::gles::glPathGlyphsNV (GLuint firstPathName, GLenum fontTarget, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathGlyphRangeNV
-
-void  glew::gles::glPathGlyphRangeNV (GLuint firstPathName, GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLuint firstGlyph, GLsizei numGlyphs, GLenum handleMissingGlyphs, GLuint pathParameterTemplate, GLfloat emScale)
+void  _glew_gles_glPathGlyphRangeNV (GLuint firstPathName, GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLuint firstGlyph, GLsizei numGlyphs, GLenum handleMissingGlyphs, GLuint pathParameterTemplate, GLfloat emScale)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathGlyphRangeNV
-  if (s_deviceConfig.m_glPathGlyphRangeNV)
+  if (!prototypeCalled && glesConfig.m_glPathGlyphRangeNV)
   {
-    s_deviceConfig.m_glPathGlyphRangeNV (firstPathName, fontTarget, fontName, fontStyle, firstGlyph, numGlyphs, handleMissingGlyphs, pathParameterTemplate, emScale);
+    prototypeCalled = true;
+    glesConfig.m_glPathGlyphRangeNV (firstPathName, fontTarget, fontName, fontStyle, firstGlyph, numGlyphs, handleMissingGlyphs, pathParameterTemplate, emScale);
   }
 }
 
@@ -6078,14 +6852,15 @@ void  glew::gles::glPathGlyphRangeNV (GLuint firstPathName, GLenum fontTarget, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glWeightPathsNV
-
-void  glew::gles::glWeightPathsNV (GLuint resultPath, GLsizei numPaths, const GLuint * paths, const GLfloat * weights)
+void  _glew_gles_glWeightPathsNV (GLuint resultPath, GLsizei numPaths, const GLuint * paths, const GLfloat * weights)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glWeightPathsNV
-  if (s_deviceConfig.m_glWeightPathsNV)
+  if (!prototypeCalled && glesConfig.m_glWeightPathsNV)
   {
-    s_deviceConfig.m_glWeightPathsNV (resultPath, numPaths, paths, weights);
+    prototypeCalled = true;
+    glesConfig.m_glWeightPathsNV (resultPath, numPaths, paths, weights);
   }
 }
 
@@ -6093,14 +6868,15 @@ void  glew::gles::glWeightPathsNV (GLuint resultPath, GLsizei numPaths, const GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCopyPathNV
-
-void  glew::gles::glCopyPathNV (GLuint resultPath, GLuint srcPath)
+void  _glew_gles_glCopyPathNV (GLuint resultPath, GLuint srcPath)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glCopyPathNV
-  if (s_deviceConfig.m_glCopyPathNV)
+  if (!prototypeCalled && glesConfig.m_glCopyPathNV)
   {
-    s_deviceConfig.m_glCopyPathNV (resultPath, srcPath);
+    prototypeCalled = true;
+    glesConfig.m_glCopyPathNV (resultPath, srcPath);
   }
 }
 
@@ -6108,14 +6884,15 @@ void  glew::gles::glCopyPathNV (GLuint resultPath, GLuint srcPath)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glInterpolatePathsNV
-
-void  glew::gles::glInterpolatePathsNV (GLuint resultPath, GLuint pathA, GLuint pathB, GLfloat weight)
+void  _glew_gles_glInterpolatePathsNV (GLuint resultPath, GLuint pathA, GLuint pathB, GLfloat weight)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glInterpolatePathsNV
-  if (s_deviceConfig.m_glInterpolatePathsNV)
+  if (!prototypeCalled && glesConfig.m_glInterpolatePathsNV)
   {
-    s_deviceConfig.m_glInterpolatePathsNV (resultPath, pathA, pathB, weight);
+    prototypeCalled = true;
+    glesConfig.m_glInterpolatePathsNV (resultPath, pathA, pathB, weight);
   }
 }
 
@@ -6123,14 +6900,15 @@ void  glew::gles::glInterpolatePathsNV (GLuint resultPath, GLuint pathA, GLuint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTransformPathNV
-
-void  glew::gles::glTransformPathNV (GLuint resultPath, GLuint srcPath, GLenum transformType, const GLfloat * transformValues)
+void  _glew_gles_glTransformPathNV (GLuint resultPath, GLuint srcPath, GLenum transformType, const GLfloat * transformValues)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glTransformPathNV
-  if (s_deviceConfig.m_glTransformPathNV)
+  if (!prototypeCalled && glesConfig.m_glTransformPathNV)
   {
-    s_deviceConfig.m_glTransformPathNV (resultPath, srcPath, transformType, transformValues);
+    prototypeCalled = true;
+    glesConfig.m_glTransformPathNV (resultPath, srcPath, transformType, transformValues);
   }
 }
 
@@ -6138,14 +6916,15 @@ void  glew::gles::glTransformPathNV (GLuint resultPath, GLuint srcPath, GLenum t
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathParameterivNV
-
-void  glew::gles::glPathParameterivNV (GLuint path, GLenum pname, const GLint * value)
+void  _glew_gles_glPathParameterivNV (GLuint path, GLenum pname, const GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathParameterivNV
-  if (s_deviceConfig.m_glPathParameterivNV)
+  if (!prototypeCalled && glesConfig.m_glPathParameterivNV)
   {
-    s_deviceConfig.m_glPathParameterivNV (path, pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glPathParameterivNV (path, pname, value);
   }
 }
 
@@ -6153,14 +6932,15 @@ void  glew::gles::glPathParameterivNV (GLuint path, GLenum pname, const GLint * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathParameteriNV
-
-void  glew::gles::glPathParameteriNV (GLuint path, GLenum pname, GLint value)
+void  _glew_gles_glPathParameteriNV (GLuint path, GLenum pname, GLint value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathParameteriNV
-  if (s_deviceConfig.m_glPathParameteriNV)
+  if (!prototypeCalled && glesConfig.m_glPathParameteriNV)
   {
-    s_deviceConfig.m_glPathParameteriNV (path, pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glPathParameteriNV (path, pname, value);
   }
 }
 
@@ -6168,14 +6948,15 @@ void  glew::gles::glPathParameteriNV (GLuint path, GLenum pname, GLint value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathParameterfvNV
-
-void  glew::gles::glPathParameterfvNV (GLuint path, GLenum pname, const GLfloat * value)
+void  _glew_gles_glPathParameterfvNV (GLuint path, GLenum pname, const GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathParameterfvNV
-  if (s_deviceConfig.m_glPathParameterfvNV)
+  if (!prototypeCalled && glesConfig.m_glPathParameterfvNV)
   {
-    s_deviceConfig.m_glPathParameterfvNV (path, pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glPathParameterfvNV (path, pname, value);
   }
 }
 
@@ -6183,14 +6964,15 @@ void  glew::gles::glPathParameterfvNV (GLuint path, GLenum pname, const GLfloat 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathParameterfNV
-
-void  glew::gles::glPathParameterfNV (GLuint path, GLenum pname, GLfloat value)
+void  _glew_gles_glPathParameterfNV (GLuint path, GLenum pname, GLfloat value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathParameterfNV
-  if (s_deviceConfig.m_glPathParameterfNV)
+  if (!prototypeCalled && glesConfig.m_glPathParameterfNV)
   {
-    s_deviceConfig.m_glPathParameterfNV (path, pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glPathParameterfNV (path, pname, value);
   }
 }
 
@@ -6198,14 +6980,15 @@ void  glew::gles::glPathParameterfNV (GLuint path, GLenum pname, GLfloat value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathDashArrayNV
-
-void  glew::gles::glPathDashArrayNV (GLuint path, GLsizei dashCount, const GLfloat * dashArray)
+void  _glew_gles_glPathDashArrayNV (GLuint path, GLsizei dashCount, const GLfloat * dashArray)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathDashArrayNV
-  if (s_deviceConfig.m_glPathDashArrayNV)
+  if (!prototypeCalled && glesConfig.m_glPathDashArrayNV)
   {
-    s_deviceConfig.m_glPathDashArrayNV (path, dashCount, dashArray);
+    prototypeCalled = true;
+    glesConfig.m_glPathDashArrayNV (path, dashCount, dashArray);
   }
 }
 
@@ -6213,14 +6996,15 @@ void  glew::gles::glPathDashArrayNV (GLuint path, GLsizei dashCount, const GLflo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathStencilFuncNV
-
-void  glew::gles::glPathStencilFuncNV (GLenum func, GLint ref, GLuint mask)
+void  _glew_gles_glPathStencilFuncNV (GLenum func, GLint ref, GLuint mask)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathStencilFuncNV
-  if (s_deviceConfig.m_glPathStencilFuncNV)
+  if (!prototypeCalled && glesConfig.m_glPathStencilFuncNV)
   {
-    s_deviceConfig.m_glPathStencilFuncNV (func, ref, mask);
+    prototypeCalled = true;
+    glesConfig.m_glPathStencilFuncNV (func, ref, mask);
   }
 }
 
@@ -6228,14 +7012,15 @@ void  glew::gles::glPathStencilFuncNV (GLenum func, GLint ref, GLuint mask)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathStencilDepthOffsetNV
-
-void  glew::gles::glPathStencilDepthOffsetNV (GLfloat factor, GLfloat units)
+void  _glew_gles_glPathStencilDepthOffsetNV (GLfloat factor, GLfloat units)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathStencilDepthOffsetNV
-  if (s_deviceConfig.m_glPathStencilDepthOffsetNV)
+  if (!prototypeCalled && glesConfig.m_glPathStencilDepthOffsetNV)
   {
-    s_deviceConfig.m_glPathStencilDepthOffsetNV (factor, units);
+    prototypeCalled = true;
+    glesConfig.m_glPathStencilDepthOffsetNV (factor, units);
   }
 }
 
@@ -6243,14 +7028,15 @@ void  glew::gles::glPathStencilDepthOffsetNV (GLfloat factor, GLfloat units)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glStencilFillPathNV
-
-void  glew::gles::glStencilFillPathNV (GLuint path, GLenum fillMode, GLuint mask)
+void  _glew_gles_glStencilFillPathNV (GLuint path, GLenum fillMode, GLuint mask)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glStencilFillPathNV
-  if (s_deviceConfig.m_glStencilFillPathNV)
+  if (!prototypeCalled && glesConfig.m_glStencilFillPathNV)
   {
-    s_deviceConfig.m_glStencilFillPathNV (path, fillMode, mask);
+    prototypeCalled = true;
+    glesConfig.m_glStencilFillPathNV (path, fillMode, mask);
   }
 }
 
@@ -6258,14 +7044,15 @@ void  glew::gles::glStencilFillPathNV (GLuint path, GLenum fillMode, GLuint mask
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glStencilStrokePathNV
-
-void  glew::gles::glStencilStrokePathNV (GLuint path, GLint reference, GLuint mask)
+void  _glew_gles_glStencilStrokePathNV (GLuint path, GLint reference, GLuint mask)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glStencilStrokePathNV
-  if (s_deviceConfig.m_glStencilStrokePathNV)
+  if (!prototypeCalled && glesConfig.m_glStencilStrokePathNV)
   {
-    s_deviceConfig.m_glStencilStrokePathNV (path, reference, mask);
+    prototypeCalled = true;
+    glesConfig.m_glStencilStrokePathNV (path, reference, mask);
   }
 }
 
@@ -6273,14 +7060,15 @@ void  glew::gles::glStencilStrokePathNV (GLuint path, GLint reference, GLuint ma
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glStencilFillPathInstancedNV
-
-void  glew::gles::glStencilFillPathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLenum fillMode, GLuint mask, GLenum transformType, const GLfloat * transformValues)
+void  _glew_gles_glStencilFillPathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLenum fillMode, GLuint mask, GLenum transformType, const GLfloat * transformValues)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glStencilFillPathInstancedNV
-  if (s_deviceConfig.m_glStencilFillPathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_glStencilFillPathInstancedNV)
   {
-    s_deviceConfig.m_glStencilFillPathInstancedNV (numPaths, pathNameType, paths, pathBase, fillMode, mask, transformType, transformValues);
+    prototypeCalled = true;
+    glesConfig.m_glStencilFillPathInstancedNV (numPaths, pathNameType, paths, pathBase, fillMode, mask, transformType, transformValues);
   }
 }
 
@@ -6288,14 +7076,15 @@ void  glew::gles::glStencilFillPathInstancedNV (GLsizei numPaths, GLenum pathNam
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glStencilStrokePathInstancedNV
-
-void  glew::gles::glStencilStrokePathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLint reference, GLuint mask, GLenum transformType, const GLfloat * transformValues)
+void  _glew_gles_glStencilStrokePathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLint reference, GLuint mask, GLenum transformType, const GLfloat * transformValues)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glStencilStrokePathInstancedNV
-  if (s_deviceConfig.m_glStencilStrokePathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_glStencilStrokePathInstancedNV)
   {
-    s_deviceConfig.m_glStencilStrokePathInstancedNV (numPaths, pathNameType, paths, pathBase, reference, mask, transformType, transformValues);
+    prototypeCalled = true;
+    glesConfig.m_glStencilStrokePathInstancedNV (numPaths, pathNameType, paths, pathBase, reference, mask, transformType, transformValues);
   }
 }
 
@@ -6303,14 +7092,15 @@ void  glew::gles::glStencilStrokePathInstancedNV (GLsizei numPaths, GLenum pathN
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathCoverDepthFuncNV
-
-void  glew::gles::glPathCoverDepthFuncNV (GLenum func)
+void  _glew_gles_glPathCoverDepthFuncNV (GLenum func)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathCoverDepthFuncNV
-  if (s_deviceConfig.m_glPathCoverDepthFuncNV)
+  if (!prototypeCalled && glesConfig.m_glPathCoverDepthFuncNV)
   {
-    s_deviceConfig.m_glPathCoverDepthFuncNV (func);
+    prototypeCalled = true;
+    glesConfig.m_glPathCoverDepthFuncNV (func);
   }
 }
 
@@ -6318,14 +7108,15 @@ void  glew::gles::glPathCoverDepthFuncNV (GLenum func)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCoverFillPathNV
-
-void  glew::gles::glCoverFillPathNV (GLuint path, GLenum coverMode)
+void  _glew_gles_glCoverFillPathNV (GLuint path, GLenum coverMode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glCoverFillPathNV
-  if (s_deviceConfig.m_glCoverFillPathNV)
+  if (!prototypeCalled && glesConfig.m_glCoverFillPathNV)
   {
-    s_deviceConfig.m_glCoverFillPathNV (path, coverMode);
+    prototypeCalled = true;
+    glesConfig.m_glCoverFillPathNV (path, coverMode);
   }
 }
 
@@ -6333,14 +7124,15 @@ void  glew::gles::glCoverFillPathNV (GLuint path, GLenum coverMode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCoverStrokePathNV
-
-void  glew::gles::glCoverStrokePathNV (GLuint path, GLenum coverMode)
+void  _glew_gles_glCoverStrokePathNV (GLuint path, GLenum coverMode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glCoverStrokePathNV
-  if (s_deviceConfig.m_glCoverStrokePathNV)
+  if (!prototypeCalled && glesConfig.m_glCoverStrokePathNV)
   {
-    s_deviceConfig.m_glCoverStrokePathNV (path, coverMode);
+    prototypeCalled = true;
+    glesConfig.m_glCoverStrokePathNV (path, coverMode);
   }
 }
 
@@ -6348,14 +7140,15 @@ void  glew::gles::glCoverStrokePathNV (GLuint path, GLenum coverMode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCoverFillPathInstancedNV
-
-void  glew::gles::glCoverFillPathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLenum coverMode, GLenum transformType, const GLfloat * transformValues)
+void  _glew_gles_glCoverFillPathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLenum coverMode, GLenum transformType, const GLfloat * transformValues)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glCoverFillPathInstancedNV
-  if (s_deviceConfig.m_glCoverFillPathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_glCoverFillPathInstancedNV)
   {
-    s_deviceConfig.m_glCoverFillPathInstancedNV (numPaths, pathNameType, paths, pathBase, coverMode, transformType, transformValues);
+    prototypeCalled = true;
+    glesConfig.m_glCoverFillPathInstancedNV (numPaths, pathNameType, paths, pathBase, coverMode, transformType, transformValues);
   }
 }
 
@@ -6363,14 +7156,15 @@ void  glew::gles::glCoverFillPathInstancedNV (GLsizei numPaths, GLenum pathNameT
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCoverStrokePathInstancedNV
-
-void  glew::gles::glCoverStrokePathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLenum coverMode, GLenum transformType, const GLfloat * transformValues)
+void  _glew_gles_glCoverStrokePathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLenum coverMode, GLenum transformType, const GLfloat * transformValues)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glCoverStrokePathInstancedNV
-  if (s_deviceConfig.m_glCoverStrokePathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_glCoverStrokePathInstancedNV)
   {
-    s_deviceConfig.m_glCoverStrokePathInstancedNV (numPaths, pathNameType, paths, pathBase, coverMode, transformType, transformValues);
+    prototypeCalled = true;
+    glesConfig.m_glCoverStrokePathInstancedNV (numPaths, pathNameType, paths, pathBase, coverMode, transformType, transformValues);
   }
 }
 
@@ -6378,14 +7172,15 @@ void  glew::gles::glCoverStrokePathInstancedNV (GLsizei numPaths, GLenum pathNam
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPathParameterivNV
-
-void  glew::gles::glGetPathParameterivNV (GLuint path, GLenum pname, GLint * value)
+void  _glew_gles_glGetPathParameterivNV (GLuint path, GLenum pname, GLint * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetPathParameterivNV
-  if (s_deviceConfig.m_glGetPathParameterivNV)
+  if (!prototypeCalled && glesConfig.m_glGetPathParameterivNV)
   {
-    s_deviceConfig.m_glGetPathParameterivNV (path, pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glGetPathParameterivNV (path, pname, value);
   }
 }
 
@@ -6393,14 +7188,15 @@ void  glew::gles::glGetPathParameterivNV (GLuint path, GLenum pname, GLint * val
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPathParameterfvNV
-
-void  glew::gles::glGetPathParameterfvNV (GLuint path, GLenum pname, GLfloat * value)
+void  _glew_gles_glGetPathParameterfvNV (GLuint path, GLenum pname, GLfloat * value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetPathParameterfvNV
-  if (s_deviceConfig.m_glGetPathParameterfvNV)
+  if (!prototypeCalled && glesConfig.m_glGetPathParameterfvNV)
   {
-    s_deviceConfig.m_glGetPathParameterfvNV (path, pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glGetPathParameterfvNV (path, pname, value);
   }
 }
 
@@ -6408,14 +7204,15 @@ void  glew::gles::glGetPathParameterfvNV (GLuint path, GLenum pname, GLfloat * v
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPathCommandsNV
-
-void  glew::gles::glGetPathCommandsNV (GLuint path, GLubyte * commands)
+void  _glew_gles_glGetPathCommandsNV (GLuint path, GLubyte * commands)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetPathCommandsNV
-  if (s_deviceConfig.m_glGetPathCommandsNV)
+  if (!prototypeCalled && glesConfig.m_glGetPathCommandsNV)
   {
-    s_deviceConfig.m_glGetPathCommandsNV (path, commands);
+    prototypeCalled = true;
+    glesConfig.m_glGetPathCommandsNV (path, commands);
   }
 }
 
@@ -6423,14 +7220,15 @@ void  glew::gles::glGetPathCommandsNV (GLuint path, GLubyte * commands)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPathCoordsNV
-
-void  glew::gles::glGetPathCoordsNV (GLuint path, GLfloat * coords)
+void  _glew_gles_glGetPathCoordsNV (GLuint path, GLfloat * coords)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetPathCoordsNV
-  if (s_deviceConfig.m_glGetPathCoordsNV)
+  if (!prototypeCalled && glesConfig.m_glGetPathCoordsNV)
   {
-    s_deviceConfig.m_glGetPathCoordsNV (path, coords);
+    prototypeCalled = true;
+    glesConfig.m_glGetPathCoordsNV (path, coords);
   }
 }
 
@@ -6438,14 +7236,15 @@ void  glew::gles::glGetPathCoordsNV (GLuint path, GLfloat * coords)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPathDashArrayNV
-
-void  glew::gles::glGetPathDashArrayNV (GLuint path, GLfloat * dashArray)
+void  _glew_gles_glGetPathDashArrayNV (GLuint path, GLfloat * dashArray)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetPathDashArrayNV
-  if (s_deviceConfig.m_glGetPathDashArrayNV)
+  if (!prototypeCalled && glesConfig.m_glGetPathDashArrayNV)
   {
-    s_deviceConfig.m_glGetPathDashArrayNV (path, dashArray);
+    prototypeCalled = true;
+    glesConfig.m_glGetPathDashArrayNV (path, dashArray);
   }
 }
 
@@ -6453,14 +7252,15 @@ void  glew::gles::glGetPathDashArrayNV (GLuint path, GLfloat * dashArray)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPathMetricsNV
-
-void  glew::gles::glGetPathMetricsNV (GLbitfield metricQueryMask, GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLsizei stride, GLfloat * metrics)
+void  _glew_gles_glGetPathMetricsNV (GLbitfield metricQueryMask, GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLsizei stride, GLfloat * metrics)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetPathMetricsNV
-  if (s_deviceConfig.m_glGetPathMetricsNV)
+  if (!prototypeCalled && glesConfig.m_glGetPathMetricsNV)
   {
-    s_deviceConfig.m_glGetPathMetricsNV (metricQueryMask, numPaths, pathNameType, paths, pathBase, stride, metrics);
+    prototypeCalled = true;
+    glesConfig.m_glGetPathMetricsNV (metricQueryMask, numPaths, pathNameType, paths, pathBase, stride, metrics);
   }
 }
 
@@ -6468,14 +7268,15 @@ void  glew::gles::glGetPathMetricsNV (GLbitfield metricQueryMask, GLsizei numPat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPathMetricRangeNV
-
-void  glew::gles::glGetPathMetricRangeNV (GLbitfield metricQueryMask, GLuint firstPathName, GLsizei numPaths, GLsizei stride, GLfloat * metrics)
+void  _glew_gles_glGetPathMetricRangeNV (GLbitfield metricQueryMask, GLuint firstPathName, GLsizei numPaths, GLsizei stride, GLfloat * metrics)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetPathMetricRangeNV
-  if (s_deviceConfig.m_glGetPathMetricRangeNV)
+  if (!prototypeCalled && glesConfig.m_glGetPathMetricRangeNV)
   {
-    s_deviceConfig.m_glGetPathMetricRangeNV (metricQueryMask, firstPathName, numPaths, stride, metrics);
+    prototypeCalled = true;
+    glesConfig.m_glGetPathMetricRangeNV (metricQueryMask, firstPathName, numPaths, stride, metrics);
   }
 }
 
@@ -6483,14 +7284,15 @@ void  glew::gles::glGetPathMetricRangeNV (GLbitfield metricQueryMask, GLuint fir
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPathSpacingNV
-
-void  glew::gles::glGetPathSpacingNV (GLenum pathListMode, GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLfloat advanceScale, GLfloat kerningScale, GLenum transformType, GLfloat * returnedSpacing)
+void  _glew_gles_glGetPathSpacingNV (GLenum pathListMode, GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLfloat advanceScale, GLfloat kerningScale, GLenum transformType, GLfloat * returnedSpacing)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetPathSpacingNV
-  if (s_deviceConfig.m_glGetPathSpacingNV)
+  if (!prototypeCalled && glesConfig.m_glGetPathSpacingNV)
   {
-    s_deviceConfig.m_glGetPathSpacingNV (pathListMode, numPaths, pathNameType, paths, pathBase, advanceScale, kerningScale, transformType, returnedSpacing);
+    prototypeCalled = true;
+    glesConfig.m_glGetPathSpacingNV (pathListMode, numPaths, pathNameType, paths, pathBase, advanceScale, kerningScale, transformType, returnedSpacing);
   }
 }
 
@@ -6498,14 +7300,15 @@ void  glew::gles::glGetPathSpacingNV (GLenum pathListMode, GLsizei numPaths, GLe
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsPointInFillPathNV
-
-GLboolean glew::gles::glIsPointInFillPathNV (GLuint path, GLuint mask, GLfloat x, GLfloat y)
+GLboolean _glew_gles_glIsPointInFillPathNV (GLuint path, GLuint mask, GLfloat x, GLfloat y)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glIsPointInFillPathNV
-  if (s_deviceConfig.m_glIsPointInFillPathNV)
+  if (!prototypeCalled && glesConfig.m_glIsPointInFillPathNV)
   {
-    return s_deviceConfig.m_glIsPointInFillPathNV (path, mask, x, y);
+    prototypeCalled = true;
+    return glesConfig.m_glIsPointInFillPathNV (path, mask, x, y);
   }
   return ((GLboolean)0);
 }
@@ -6514,14 +7317,15 @@ GLboolean glew::gles::glIsPointInFillPathNV (GLuint path, GLuint mask, GLfloat x
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsPointInStrokePathNV
-
-GLboolean glew::gles::glIsPointInStrokePathNV (GLuint path, GLfloat x, GLfloat y)
+GLboolean _glew_gles_glIsPointInStrokePathNV (GLuint path, GLfloat x, GLfloat y)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glIsPointInStrokePathNV
-  if (s_deviceConfig.m_glIsPointInStrokePathNV)
+  if (!prototypeCalled && glesConfig.m_glIsPointInStrokePathNV)
   {
-    return s_deviceConfig.m_glIsPointInStrokePathNV (path, x, y);
+    prototypeCalled = true;
+    return glesConfig.m_glIsPointInStrokePathNV (path, x, y);
   }
   return ((GLboolean)0);
 }
@@ -6530,14 +7334,15 @@ GLboolean glew::gles::glIsPointInStrokePathNV (GLuint path, GLfloat x, GLfloat y
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetPathLengthNV
-
-GLfloat glew::gles::glGetPathLengthNV (GLuint path, GLsizei startSegment, GLsizei numSegments)
+GLfloat _glew_gles_glGetPathLengthNV (GLuint path, GLsizei startSegment, GLsizei numSegments)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetPathLengthNV
-  if (s_deviceConfig.m_glGetPathLengthNV)
+  if (!prototypeCalled && glesConfig.m_glGetPathLengthNV)
   {
-    return s_deviceConfig.m_glGetPathLengthNV (path, startSegment, numSegments);
+    prototypeCalled = true;
+    return glesConfig.m_glGetPathLengthNV (path, startSegment, numSegments);
   }
   return ((GLfloat)0);
 }
@@ -6546,14 +7351,15 @@ GLfloat glew::gles::glGetPathLengthNV (GLuint path, GLsizei startSegment, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPointAlongPathNV
-
-GLboolean glew::gles::glPointAlongPathNV (GLuint path, GLsizei startSegment, GLsizei numSegments, GLfloat distance, GLfloat * x, GLfloat * y, GLfloat * tangentX, GLfloat * tangentY)
+GLboolean _glew_gles_glPointAlongPathNV (GLuint path, GLsizei startSegment, GLsizei numSegments, GLfloat distance, GLfloat * x, GLfloat * y, GLfloat * tangentX, GLfloat * tangentY)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPointAlongPathNV
-  if (s_deviceConfig.m_glPointAlongPathNV)
+  if (!prototypeCalled && glesConfig.m_glPointAlongPathNV)
   {
-    return s_deviceConfig.m_glPointAlongPathNV (path, startSegment, numSegments, distance, x, y, tangentX, tangentY);
+    prototypeCalled = true;
+    return glesConfig.m_glPointAlongPathNV (path, startSegment, numSegments, distance, x, y, tangentX, tangentY);
   }
   return ((GLboolean)0);
 }
@@ -6562,14 +7368,15 @@ GLboolean glew::gles::glPointAlongPathNV (GLuint path, GLsizei startSegment, GLs
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMatrixLoad3x2fNV
-
-void  glew::gles::glMatrixLoad3x2fNV (GLenum matrixMode, const GLfloat * m)
+void  _glew_gles_glMatrixLoad3x2fNV (GLenum matrixMode, const GLfloat * m)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glMatrixLoad3x2fNV
-  if (s_deviceConfig.m_glMatrixLoad3x2fNV)
+  if (!prototypeCalled && glesConfig.m_glMatrixLoad3x2fNV)
   {
-    s_deviceConfig.m_glMatrixLoad3x2fNV (matrixMode, m);
+    prototypeCalled = true;
+    glesConfig.m_glMatrixLoad3x2fNV (matrixMode, m);
   }
 }
 
@@ -6577,14 +7384,15 @@ void  glew::gles::glMatrixLoad3x2fNV (GLenum matrixMode, const GLfloat * m)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMatrixLoad3x3fNV
-
-void  glew::gles::glMatrixLoad3x3fNV (GLenum matrixMode, const GLfloat * m)
+void  _glew_gles_glMatrixLoad3x3fNV (GLenum matrixMode, const GLfloat * m)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glMatrixLoad3x3fNV
-  if (s_deviceConfig.m_glMatrixLoad3x3fNV)
+  if (!prototypeCalled && glesConfig.m_glMatrixLoad3x3fNV)
   {
-    s_deviceConfig.m_glMatrixLoad3x3fNV (matrixMode, m);
+    prototypeCalled = true;
+    glesConfig.m_glMatrixLoad3x3fNV (matrixMode, m);
   }
 }
 
@@ -6592,14 +7400,15 @@ void  glew::gles::glMatrixLoad3x3fNV (GLenum matrixMode, const GLfloat * m)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMatrixLoadTranspose3x3fNV
-
-void  glew::gles::glMatrixLoadTranspose3x3fNV (GLenum matrixMode, const GLfloat * m)
+void  _glew_gles_glMatrixLoadTranspose3x3fNV (GLenum matrixMode, const GLfloat * m)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glMatrixLoadTranspose3x3fNV
-  if (s_deviceConfig.m_glMatrixLoadTranspose3x3fNV)
+  if (!prototypeCalled && glesConfig.m_glMatrixLoadTranspose3x3fNV)
   {
-    s_deviceConfig.m_glMatrixLoadTranspose3x3fNV (matrixMode, m);
+    prototypeCalled = true;
+    glesConfig.m_glMatrixLoadTranspose3x3fNV (matrixMode, m);
   }
 }
 
@@ -6607,14 +7416,15 @@ void  glew::gles::glMatrixLoadTranspose3x3fNV (GLenum matrixMode, const GLfloat 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMatrixMult3x2fNV
-
-void  glew::gles::glMatrixMult3x2fNV (GLenum matrixMode, const GLfloat * m)
+void  _glew_gles_glMatrixMult3x2fNV (GLenum matrixMode, const GLfloat * m)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glMatrixMult3x2fNV
-  if (s_deviceConfig.m_glMatrixMult3x2fNV)
+  if (!prototypeCalled && glesConfig.m_glMatrixMult3x2fNV)
   {
-    s_deviceConfig.m_glMatrixMult3x2fNV (matrixMode, m);
+    prototypeCalled = true;
+    glesConfig.m_glMatrixMult3x2fNV (matrixMode, m);
   }
 }
 
@@ -6622,14 +7432,15 @@ void  glew::gles::glMatrixMult3x2fNV (GLenum matrixMode, const GLfloat * m)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMatrixMult3x3fNV
-
-void  glew::gles::glMatrixMult3x3fNV (GLenum matrixMode, const GLfloat * m)
+void  _glew_gles_glMatrixMult3x3fNV (GLenum matrixMode, const GLfloat * m)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glMatrixMult3x3fNV
-  if (s_deviceConfig.m_glMatrixMult3x3fNV)
+  if (!prototypeCalled && glesConfig.m_glMatrixMult3x3fNV)
   {
-    s_deviceConfig.m_glMatrixMult3x3fNV (matrixMode, m);
+    prototypeCalled = true;
+    glesConfig.m_glMatrixMult3x3fNV (matrixMode, m);
   }
 }
 
@@ -6637,14 +7448,15 @@ void  glew::gles::glMatrixMult3x3fNV (GLenum matrixMode, const GLfloat * m)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMatrixMultTranspose3x3fNV
-
-void  glew::gles::glMatrixMultTranspose3x3fNV (GLenum matrixMode, const GLfloat * m)
+void  _glew_gles_glMatrixMultTranspose3x3fNV (GLenum matrixMode, const GLfloat * m)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glMatrixMultTranspose3x3fNV
-  if (s_deviceConfig.m_glMatrixMultTranspose3x3fNV)
+  if (!prototypeCalled && glesConfig.m_glMatrixMultTranspose3x3fNV)
   {
-    s_deviceConfig.m_glMatrixMultTranspose3x3fNV (matrixMode, m);
+    prototypeCalled = true;
+    glesConfig.m_glMatrixMultTranspose3x3fNV (matrixMode, m);
   }
 }
 
@@ -6652,14 +7464,15 @@ void  glew::gles::glMatrixMultTranspose3x3fNV (GLenum matrixMode, const GLfloat 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glStencilThenCoverFillPathNV
-
-void  glew::gles::glStencilThenCoverFillPathNV (GLuint path, GLenum fillMode, GLuint mask, GLenum coverMode)
+void  _glew_gles_glStencilThenCoverFillPathNV (GLuint path, GLenum fillMode, GLuint mask, GLenum coverMode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glStencilThenCoverFillPathNV
-  if (s_deviceConfig.m_glStencilThenCoverFillPathNV)
+  if (!prototypeCalled && glesConfig.m_glStencilThenCoverFillPathNV)
   {
-    s_deviceConfig.m_glStencilThenCoverFillPathNV (path, fillMode, mask, coverMode);
+    prototypeCalled = true;
+    glesConfig.m_glStencilThenCoverFillPathNV (path, fillMode, mask, coverMode);
   }
 }
 
@@ -6667,14 +7480,15 @@ void  glew::gles::glStencilThenCoverFillPathNV (GLuint path, GLenum fillMode, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glStencilThenCoverStrokePathNV
-
-void  glew::gles::glStencilThenCoverStrokePathNV (GLuint path, GLint reference, GLuint mask, GLenum coverMode)
+void  _glew_gles_glStencilThenCoverStrokePathNV (GLuint path, GLint reference, GLuint mask, GLenum coverMode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glStencilThenCoverStrokePathNV
-  if (s_deviceConfig.m_glStencilThenCoverStrokePathNV)
+  if (!prototypeCalled && glesConfig.m_glStencilThenCoverStrokePathNV)
   {
-    s_deviceConfig.m_glStencilThenCoverStrokePathNV (path, reference, mask, coverMode);
+    prototypeCalled = true;
+    glesConfig.m_glStencilThenCoverStrokePathNV (path, reference, mask, coverMode);
   }
 }
 
@@ -6682,14 +7496,15 @@ void  glew::gles::glStencilThenCoverStrokePathNV (GLuint path, GLint reference, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glStencilThenCoverFillPathInstancedNV
-
-void  glew::gles::glStencilThenCoverFillPathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLenum fillMode, GLuint mask, GLenum coverMode, GLenum transformType, const GLfloat * transformValues)
+void  _glew_gles_glStencilThenCoverFillPathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLenum fillMode, GLuint mask, GLenum coverMode, GLenum transformType, const GLfloat * transformValues)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glStencilThenCoverFillPathInstancedNV
-  if (s_deviceConfig.m_glStencilThenCoverFillPathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_glStencilThenCoverFillPathInstancedNV)
   {
-    s_deviceConfig.m_glStencilThenCoverFillPathInstancedNV (numPaths, pathNameType, paths, pathBase, fillMode, mask, coverMode, transformType, transformValues);
+    prototypeCalled = true;
+    glesConfig.m_glStencilThenCoverFillPathInstancedNV (numPaths, pathNameType, paths, pathBase, fillMode, mask, coverMode, transformType, transformValues);
   }
 }
 
@@ -6697,14 +7512,15 @@ void  glew::gles::glStencilThenCoverFillPathInstancedNV (GLsizei numPaths, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glStencilThenCoverStrokePathInstancedNV
-
-void  glew::gles::glStencilThenCoverStrokePathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLint reference, GLuint mask, GLenum coverMode, GLenum transformType, const GLfloat * transformValues)
+void  _glew_gles_glStencilThenCoverStrokePathInstancedNV (GLsizei numPaths, GLenum pathNameType, const void * paths, GLuint pathBase, GLint reference, GLuint mask, GLenum coverMode, GLenum transformType, const GLfloat * transformValues)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glStencilThenCoverStrokePathInstancedNV
-  if (s_deviceConfig.m_glStencilThenCoverStrokePathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_glStencilThenCoverStrokePathInstancedNV)
   {
-    s_deviceConfig.m_glStencilThenCoverStrokePathInstancedNV (numPaths, pathNameType, paths, pathBase, reference, mask, coverMode, transformType, transformValues);
+    prototypeCalled = true;
+    glesConfig.m_glStencilThenCoverStrokePathInstancedNV (numPaths, pathNameType, paths, pathBase, reference, mask, coverMode, transformType, transformValues);
   }
 }
 
@@ -6712,14 +7528,15 @@ void  glew::gles::glStencilThenCoverStrokePathInstancedNV (GLsizei numPaths, GLe
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathGlyphIndexRangeNV
-
-GLenum glew::gles::glPathGlyphIndexRangeNV (GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLuint pathParameterTemplate, GLfloat emScale, GLuint baseAndCount[2])
+GLenum _glew_gles_glPathGlyphIndexRangeNV (GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLuint pathParameterTemplate, GLfloat emScale, GLuint baseAndCount[2])
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathGlyphIndexRangeNV
-  if (s_deviceConfig.m_glPathGlyphIndexRangeNV)
+  if (!prototypeCalled && glesConfig.m_glPathGlyphIndexRangeNV)
   {
-    return s_deviceConfig.m_glPathGlyphIndexRangeNV (fontTarget, fontName, fontStyle, pathParameterTemplate, emScale, baseAndCount);
+    prototypeCalled = true;
+    return glesConfig.m_glPathGlyphIndexRangeNV (fontTarget, fontName, fontStyle, pathParameterTemplate, emScale, baseAndCount);
   }
   return ((GLenum)0);
 }
@@ -6728,14 +7545,15 @@ GLenum glew::gles::glPathGlyphIndexRangeNV (GLenum fontTarget, const void * font
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathGlyphIndexArrayNV
-
-GLenum glew::gles::glPathGlyphIndexArrayNV (GLuint firstPathName, GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLuint firstGlyphIndex, GLsizei numGlyphs, GLuint pathParameterTemplate, GLfloat emScale)
+GLenum _glew_gles_glPathGlyphIndexArrayNV (GLuint firstPathName, GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLuint firstGlyphIndex, GLsizei numGlyphs, GLuint pathParameterTemplate, GLfloat emScale)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathGlyphIndexArrayNV
-  if (s_deviceConfig.m_glPathGlyphIndexArrayNV)
+  if (!prototypeCalled && glesConfig.m_glPathGlyphIndexArrayNV)
   {
-    return s_deviceConfig.m_glPathGlyphIndexArrayNV (firstPathName, fontTarget, fontName, fontStyle, firstGlyphIndex, numGlyphs, pathParameterTemplate, emScale);
+    prototypeCalled = true;
+    return glesConfig.m_glPathGlyphIndexArrayNV (firstPathName, fontTarget, fontName, fontStyle, firstGlyphIndex, numGlyphs, pathParameterTemplate, emScale);
   }
   return ((GLenum)0);
 }
@@ -6744,14 +7562,15 @@ GLenum glew::gles::glPathGlyphIndexArrayNV (GLuint firstPathName, GLenum fontTar
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPathMemoryGlyphIndexArrayNV
-
-GLenum glew::gles::glPathMemoryGlyphIndexArrayNV (GLuint firstPathName, GLenum fontTarget, GLsizeiptr fontSize, const void * fontData, GLsizei faceIndex, GLuint firstGlyphIndex, GLsizei numGlyphs, GLuint pathParameterTemplate, GLfloat emScale)
+GLenum _glew_gles_glPathMemoryGlyphIndexArrayNV (GLuint firstPathName, GLenum fontTarget, GLsizeiptr fontSize, const void * fontData, GLsizei faceIndex, GLuint firstGlyphIndex, GLsizei numGlyphs, GLuint pathParameterTemplate, GLfloat emScale)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glPathMemoryGlyphIndexArrayNV
-  if (s_deviceConfig.m_glPathMemoryGlyphIndexArrayNV)
+  if (!prototypeCalled && glesConfig.m_glPathMemoryGlyphIndexArrayNV)
   {
-    return s_deviceConfig.m_glPathMemoryGlyphIndexArrayNV (firstPathName, fontTarget, fontSize, fontData, faceIndex, firstGlyphIndex, numGlyphs, pathParameterTemplate, emScale);
+    prototypeCalled = true;
+    return glesConfig.m_glPathMemoryGlyphIndexArrayNV (firstPathName, fontTarget, fontSize, fontData, faceIndex, firstGlyphIndex, numGlyphs, pathParameterTemplate, emScale);
   }
   return ((GLenum)0);
 }
@@ -6760,14 +7579,15 @@ GLenum glew::gles::glPathMemoryGlyphIndexArrayNV (GLuint firstPathName, GLenum f
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramPathFragmentInputGenNV
-
-void  glew::gles::glProgramPathFragmentInputGenNV (GLuint program, GLint location, GLenum genMode, GLint components, const GLfloat * coeffs)
+void  _glew_gles_glProgramPathFragmentInputGenNV (GLuint program, GLint location, GLenum genMode, GLint components, const GLfloat * coeffs)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glProgramPathFragmentInputGenNV
-  if (s_deviceConfig.m_glProgramPathFragmentInputGenNV)
+  if (!prototypeCalled && glesConfig.m_glProgramPathFragmentInputGenNV)
   {
-    s_deviceConfig.m_glProgramPathFragmentInputGenNV (program, location, genMode, components, coeffs);
+    prototypeCalled = true;
+    glesConfig.m_glProgramPathFragmentInputGenNV (program, location, genMode, components, coeffs);
   }
 }
 
@@ -6775,14 +7595,15 @@ void  glew::gles::glProgramPathFragmentInputGenNV (GLuint program, GLint locatio
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramResourcefvNV
-
-void  glew::gles::glGetProgramResourcefvNV (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLfloat * params)
+void  _glew_gles_glGetProgramResourcefvNV (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLfloat * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_path_rendering - glGetProgramResourcefvNV
-  if (s_deviceConfig.m_glGetProgramResourcefvNV)
+  if (!prototypeCalled && glesConfig.m_glGetProgramResourcefvNV)
   {
-    s_deviceConfig.m_glGetProgramResourcefvNV (program, programInterface, index, propCount, props, bufSize, length, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramResourcefvNV (program, programInterface, index, propCount, props, bufSize, length, params);
   }
 }
 
@@ -6790,14 +7611,15 @@ void  glew::gles::glGetProgramResourcefvNV (GLuint program, GLenum programInterf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPolygonModeNV
-
-void  glew::gles::glPolygonModeNV (GLenum face, GLenum mode)
+void  _glew_gles_glPolygonModeNV (GLenum face, GLenum mode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_polygon_mode - glPolygonModeNV
-  if (s_deviceConfig.m_glPolygonModeNV)
+  if (!prototypeCalled && glesConfig.m_glPolygonModeNV)
   {
-    s_deviceConfig.m_glPolygonModeNV (face, mode);
+    prototypeCalled = true;
+    glesConfig.m_glPolygonModeNV (face, mode);
   }
 }
 
@@ -6805,14 +7627,15 @@ void  glew::gles::glPolygonModeNV (GLenum face, GLenum mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glReadBufferNV
-
-void  glew::gles::glReadBufferNV (GLenum mode)
+void  _glew_gles_glReadBufferNV (GLenum mode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_read_buffer - glReadBufferNV
-  if (s_deviceConfig.m_glReadBufferNV)
+  if (!prototypeCalled && glesConfig.m_glReadBufferNV)
   {
-    s_deviceConfig.m_glReadBufferNV (mode);
+    prototypeCalled = true;
+    glesConfig.m_glReadBufferNV (mode);
   }
 }
 
@@ -6820,14 +7643,15 @@ void  glew::gles::glReadBufferNV (GLenum mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFramebufferSampleLocationsfvNV
-
-void  glew::gles::glFramebufferSampleLocationsfvNV (GLenum target, GLuint start, GLsizei count, const GLfloat * v)
+void  _glew_gles_glFramebufferSampleLocationsfvNV (GLenum target, GLuint start, GLsizei count, const GLfloat * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_sample_locations - glFramebufferSampleLocationsfvNV
-  if (s_deviceConfig.m_glFramebufferSampleLocationsfvNV)
+  if (!prototypeCalled && glesConfig.m_glFramebufferSampleLocationsfvNV)
   {
-    s_deviceConfig.m_glFramebufferSampleLocationsfvNV (target, start, count, v);
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferSampleLocationsfvNV (target, start, count, v);
   }
 }
 
@@ -6835,14 +7659,15 @@ void  glew::gles::glFramebufferSampleLocationsfvNV (GLenum target, GLuint start,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glNamedFramebufferSampleLocationsfvNV
-
-void  glew::gles::glNamedFramebufferSampleLocationsfvNV (GLuint framebuffer, GLuint start, GLsizei count, const GLfloat * v)
+void  _glew_gles_glNamedFramebufferSampleLocationsfvNV (GLuint framebuffer, GLuint start, GLsizei count, const GLfloat * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_sample_locations - glNamedFramebufferSampleLocationsfvNV
-  if (s_deviceConfig.m_glNamedFramebufferSampleLocationsfvNV)
+  if (!prototypeCalled && glesConfig.m_glNamedFramebufferSampleLocationsfvNV)
   {
-    s_deviceConfig.m_glNamedFramebufferSampleLocationsfvNV (framebuffer, start, count, v);
+    prototypeCalled = true;
+    glesConfig.m_glNamedFramebufferSampleLocationsfvNV (framebuffer, start, count, v);
   }
 }
 
@@ -6850,14 +7675,15 @@ void  glew::gles::glNamedFramebufferSampleLocationsfvNV (GLuint framebuffer, GLu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glResolveDepthValuesNV
-
-void  glew::gles::glResolveDepthValuesNV ()
+void  _glew_gles_glResolveDepthValuesNV ()
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_sample_locations - glResolveDepthValuesNV
-  if (s_deviceConfig.m_glResolveDepthValuesNV)
+  if (!prototypeCalled && glesConfig.m_glResolveDepthValuesNV)
   {
-    s_deviceConfig.m_glResolveDepthValuesNV ();
+    prototypeCalled = true;
+    glesConfig.m_glResolveDepthValuesNV ();
   }
 }
 
@@ -6865,14 +7691,15 @@ void  glew::gles::glResolveDepthValuesNV ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glViewportArrayvNV
-
-void  glew::gles::glViewportArrayvNV (GLuint first, GLsizei count, const GLfloat * v)
+void  _glew_gles_glViewportArrayvNV (GLuint first, GLsizei count, const GLfloat * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glViewportArrayvNV
-  if (s_deviceConfig.m_glViewportArrayvNV)
+  if (!prototypeCalled && glesConfig.m_glViewportArrayvNV)
   {
-    s_deviceConfig.m_glViewportArrayvNV (first, count, v);
+    prototypeCalled = true;
+    glesConfig.m_glViewportArrayvNV (first, count, v);
   }
 }
 
@@ -6880,14 +7707,15 @@ void  glew::gles::glViewportArrayvNV (GLuint first, GLsizei count, const GLfloat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glViewportIndexedfNV
-
-void  glew::gles::glViewportIndexedfNV (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)
+void  _glew_gles_glViewportIndexedfNV (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glViewportIndexedfNV
-  if (s_deviceConfig.m_glViewportIndexedfNV)
+  if (!prototypeCalled && glesConfig.m_glViewportIndexedfNV)
   {
-    s_deviceConfig.m_glViewportIndexedfNV (index, x, y, w, h);
+    prototypeCalled = true;
+    glesConfig.m_glViewportIndexedfNV (index, x, y, w, h);
   }
 }
 
@@ -6895,14 +7723,15 @@ void  glew::gles::glViewportIndexedfNV (GLuint index, GLfloat x, GLfloat y, GLfl
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glViewportIndexedfvNV
-
-void  glew::gles::glViewportIndexedfvNV (GLuint index, const GLfloat * v)
+void  _glew_gles_glViewportIndexedfvNV (GLuint index, const GLfloat * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glViewportIndexedfvNV
-  if (s_deviceConfig.m_glViewportIndexedfvNV)
+  if (!prototypeCalled && glesConfig.m_glViewportIndexedfvNV)
   {
-    s_deviceConfig.m_glViewportIndexedfvNV (index, v);
+    prototypeCalled = true;
+    glesConfig.m_glViewportIndexedfvNV (index, v);
   }
 }
 
@@ -6910,14 +7739,15 @@ void  glew::gles::glViewportIndexedfvNV (GLuint index, const GLfloat * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glScissorArrayvNV
-
-void  glew::gles::glScissorArrayvNV (GLuint first, GLsizei count, const GLint * v)
+void  _glew_gles_glScissorArrayvNV (GLuint first, GLsizei count, const GLint * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glScissorArrayvNV
-  if (s_deviceConfig.m_glScissorArrayvNV)
+  if (!prototypeCalled && glesConfig.m_glScissorArrayvNV)
   {
-    s_deviceConfig.m_glScissorArrayvNV (first, count, v);
+    prototypeCalled = true;
+    glesConfig.m_glScissorArrayvNV (first, count, v);
   }
 }
 
@@ -6925,14 +7755,15 @@ void  glew::gles::glScissorArrayvNV (GLuint first, GLsizei count, const GLint * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glScissorIndexedNV
-
-void  glew::gles::glScissorIndexedNV (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height)
+void  _glew_gles_glScissorIndexedNV (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glScissorIndexedNV
-  if (s_deviceConfig.m_glScissorIndexedNV)
+  if (!prototypeCalled && glesConfig.m_glScissorIndexedNV)
   {
-    s_deviceConfig.m_glScissorIndexedNV (index, left, bottom, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glScissorIndexedNV (index, left, bottom, width, height);
   }
 }
 
@@ -6940,14 +7771,15 @@ void  glew::gles::glScissorIndexedNV (GLuint index, GLint left, GLint bottom, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glScissorIndexedvNV
-
-void  glew::gles::glScissorIndexedvNV (GLuint index, const GLint * v)
+void  _glew_gles_glScissorIndexedvNV (GLuint index, const GLint * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glScissorIndexedvNV
-  if (s_deviceConfig.m_glScissorIndexedvNV)
+  if (!prototypeCalled && glesConfig.m_glScissorIndexedvNV)
   {
-    s_deviceConfig.m_glScissorIndexedvNV (index, v);
+    prototypeCalled = true;
+    glesConfig.m_glScissorIndexedvNV (index, v);
   }
 }
 
@@ -6955,14 +7787,15 @@ void  glew::gles::glScissorIndexedvNV (GLuint index, const GLint * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDepthRangeArrayfvNV
-
-void  glew::gles::glDepthRangeArrayfvNV (GLuint first, GLsizei count, const GLfloat * v)
+void  _glew_gles_glDepthRangeArrayfvNV (GLuint first, GLsizei count, const GLfloat * v)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glDepthRangeArrayfvNV
-  if (s_deviceConfig.m_glDepthRangeArrayfvNV)
+  if (!prototypeCalled && glesConfig.m_glDepthRangeArrayfvNV)
   {
-    s_deviceConfig.m_glDepthRangeArrayfvNV (first, count, v);
+    prototypeCalled = true;
+    glesConfig.m_glDepthRangeArrayfvNV (first, count, v);
   }
 }
 
@@ -6970,14 +7803,15 @@ void  glew::gles::glDepthRangeArrayfvNV (GLuint first, GLsizei count, const GLfl
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDepthRangeIndexedfNV
-
-void  glew::gles::glDepthRangeIndexedfNV (GLuint index, GLfloat n, GLfloat f)
+void  _glew_gles_glDepthRangeIndexedfNV (GLuint index, GLfloat n, GLfloat f)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glDepthRangeIndexedfNV
-  if (s_deviceConfig.m_glDepthRangeIndexedfNV)
+  if (!prototypeCalled && glesConfig.m_glDepthRangeIndexedfNV)
   {
-    s_deviceConfig.m_glDepthRangeIndexedfNV (index, n, f);
+    prototypeCalled = true;
+    glesConfig.m_glDepthRangeIndexedfNV (index, n, f);
   }
 }
 
@@ -6985,14 +7819,15 @@ void  glew::gles::glDepthRangeIndexedfNV (GLuint index, GLfloat n, GLfloat f)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetFloati_vNV
-
-void  glew::gles::glGetFloati_vNV (GLenum target, GLuint index, GLfloat * data)
+void  _glew_gles_glGetFloati_vNV (GLenum target, GLuint index, GLfloat * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glGetFloati_vNV
-  if (s_deviceConfig.m_glGetFloati_vNV)
+  if (!prototypeCalled && glesConfig.m_glGetFloati_vNV)
   {
-    s_deviceConfig.m_glGetFloati_vNV (target, index, data);
+    prototypeCalled = true;
+    glesConfig.m_glGetFloati_vNV (target, index, data);
   }
 }
 
@@ -7000,14 +7835,15 @@ void  glew::gles::glGetFloati_vNV (GLenum target, GLuint index, GLfloat * data)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEnableiNV
-
-void  glew::gles::glEnableiNV (GLenum target, GLuint index)
+void  _glew_gles_glEnableiNV (GLenum target, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glEnableiNV
-  if (s_deviceConfig.m_glEnableiNV)
+  if (!prototypeCalled && glesConfig.m_glEnableiNV)
   {
-    s_deviceConfig.m_glEnableiNV (target, index);
+    prototypeCalled = true;
+    glesConfig.m_glEnableiNV (target, index);
   }
 }
 
@@ -7015,14 +7851,15 @@ void  glew::gles::glEnableiNV (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDisableiNV
-
-void  glew::gles::glDisableiNV (GLenum target, GLuint index)
+void  _glew_gles_glDisableiNV (GLenum target, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glDisableiNV
-  if (s_deviceConfig.m_glDisableiNV)
+  if (!prototypeCalled && glesConfig.m_glDisableiNV)
   {
-    s_deviceConfig.m_glDisableiNV (target, index);
+    prototypeCalled = true;
+    glesConfig.m_glDisableiNV (target, index);
   }
 }
 
@@ -7030,14 +7867,15 @@ void  glew::gles::glDisableiNV (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsEnablediNV
-
-GLboolean glew::gles::glIsEnablediNV (GLenum target, GLuint index)
+GLboolean _glew_gles_glIsEnablediNV (GLenum target, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_NV_viewport_array - glIsEnablediNV
-  if (s_deviceConfig.m_glIsEnablediNV)
+  if (!prototypeCalled && glesConfig.m_glIsEnablediNV)
   {
-    return s_deviceConfig.m_glIsEnablediNV (target, index);
+    prototypeCalled = true;
+    return glesConfig.m_glIsEnablediNV (target, index);
   }
   return ((GLboolean)0);
 }
@@ -7046,14 +7884,15 @@ GLboolean glew::gles::glIsEnablediNV (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEGLImageTargetTexture2DOES
-
-void  glew::gles::glEGLImageTargetTexture2DOES (GLenum target, GLeglImageOES image)
+void  _glew_gles_glEGLImageTargetTexture2DOES (GLenum target, GLeglImageOES image)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_EGL_image - glEGLImageTargetTexture2DOES
-  if (s_deviceConfig.m_glEGLImageTargetTexture2DOES)
+  if (!prototypeCalled && glesConfig.m_glEGLImageTargetTexture2DOES)
   {
-    s_deviceConfig.m_glEGLImageTargetTexture2DOES (target, image);
+    prototypeCalled = true;
+    glesConfig.m_glEGLImageTargetTexture2DOES (target, image);
   }
 }
 
@@ -7061,14 +7900,15 @@ void  glew::gles::glEGLImageTargetTexture2DOES (GLenum target, GLeglImageOES ima
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEGLImageTargetRenderbufferStorageOES
-
-void  glew::gles::glEGLImageTargetRenderbufferStorageOES (GLenum target, GLeglImageOES image)
+void  _glew_gles_glEGLImageTargetRenderbufferStorageOES (GLenum target, GLeglImageOES image)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_EGL_image - glEGLImageTargetRenderbufferStorageOES
-  if (s_deviceConfig.m_glEGLImageTargetRenderbufferStorageOES)
+  if (!prototypeCalled && glesConfig.m_glEGLImageTargetRenderbufferStorageOES)
   {
-    s_deviceConfig.m_glEGLImageTargetRenderbufferStorageOES (target, image);
+    prototypeCalled = true;
+    glesConfig.m_glEGLImageTargetRenderbufferStorageOES (target, image);
   }
 }
 
@@ -7076,14 +7916,15 @@ void  glew::gles::glEGLImageTargetRenderbufferStorageOES (GLenum target, GLeglIm
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCopyImageSubDataOES
-
-void  glew::gles::glCopyImageSubDataOES (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth)
+void  _glew_gles_glCopyImageSubDataOES (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_copy_image - glCopyImageSubDataOES
-  if (s_deviceConfig.m_glCopyImageSubDataOES)
+  if (!prototypeCalled && glesConfig.m_glCopyImageSubDataOES)
   {
-    s_deviceConfig.m_glCopyImageSubDataOES (srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth);
+    prototypeCalled = true;
+    glesConfig.m_glCopyImageSubDataOES (srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth);
   }
 }
 
@@ -7091,14 +7932,15 @@ void  glew::gles::glCopyImageSubDataOES (GLuint srcName, GLenum srcTarget, GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEnableiOES
-
-void  glew::gles::glEnableiOES (GLenum target, GLuint index)
+void  _glew_gles_glEnableiOES (GLenum target, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_buffers_indexed - glEnableiOES
-  if (s_deviceConfig.m_glEnableiOES)
+  if (!prototypeCalled && glesConfig.m_glEnableiOES)
   {
-    s_deviceConfig.m_glEnableiOES (target, index);
+    prototypeCalled = true;
+    glesConfig.m_glEnableiOES (target, index);
   }
 }
 
@@ -7106,14 +7948,15 @@ void  glew::gles::glEnableiOES (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDisableiOES
-
-void  glew::gles::glDisableiOES (GLenum target, GLuint index)
+void  _glew_gles_glDisableiOES (GLenum target, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_buffers_indexed - glDisableiOES
-  if (s_deviceConfig.m_glDisableiOES)
+  if (!prototypeCalled && glesConfig.m_glDisableiOES)
   {
-    s_deviceConfig.m_glDisableiOES (target, index);
+    prototypeCalled = true;
+    glesConfig.m_glDisableiOES (target, index);
   }
 }
 
@@ -7121,14 +7964,15 @@ void  glew::gles::glDisableiOES (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendEquationiOES
-
-void  glew::gles::glBlendEquationiOES (GLuint buf, GLenum mode)
+void  _glew_gles_glBlendEquationiOES (GLuint buf, GLenum mode)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_buffers_indexed - glBlendEquationiOES
-  if (s_deviceConfig.m_glBlendEquationiOES)
+  if (!prototypeCalled && glesConfig.m_glBlendEquationiOES)
   {
-    s_deviceConfig.m_glBlendEquationiOES (buf, mode);
+    prototypeCalled = true;
+    glesConfig.m_glBlendEquationiOES (buf, mode);
   }
 }
 
@@ -7136,14 +7980,15 @@ void  glew::gles::glBlendEquationiOES (GLuint buf, GLenum mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendEquationSeparateiOES
-
-void  glew::gles::glBlendEquationSeparateiOES (GLuint buf, GLenum modeRGB, GLenum modeAlpha)
+void  _glew_gles_glBlendEquationSeparateiOES (GLuint buf, GLenum modeRGB, GLenum modeAlpha)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_buffers_indexed - glBlendEquationSeparateiOES
-  if (s_deviceConfig.m_glBlendEquationSeparateiOES)
+  if (!prototypeCalled && glesConfig.m_glBlendEquationSeparateiOES)
   {
-    s_deviceConfig.m_glBlendEquationSeparateiOES (buf, modeRGB, modeAlpha);
+    prototypeCalled = true;
+    glesConfig.m_glBlendEquationSeparateiOES (buf, modeRGB, modeAlpha);
   }
 }
 
@@ -7151,14 +7996,15 @@ void  glew::gles::glBlendEquationSeparateiOES (GLuint buf, GLenum modeRGB, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendFunciOES
-
-void  glew::gles::glBlendFunciOES (GLuint buf, GLenum src, GLenum dst)
+void  _glew_gles_glBlendFunciOES (GLuint buf, GLenum src, GLenum dst)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_buffers_indexed - glBlendFunciOES
-  if (s_deviceConfig.m_glBlendFunciOES)
+  if (!prototypeCalled && glesConfig.m_glBlendFunciOES)
   {
-    s_deviceConfig.m_glBlendFunciOES (buf, src, dst);
+    prototypeCalled = true;
+    glesConfig.m_glBlendFunciOES (buf, src, dst);
   }
 }
 
@@ -7166,14 +8012,15 @@ void  glew::gles::glBlendFunciOES (GLuint buf, GLenum src, GLenum dst)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBlendFuncSeparateiOES
-
-void  glew::gles::glBlendFuncSeparateiOES (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
+void  _glew_gles_glBlendFuncSeparateiOES (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_buffers_indexed - glBlendFuncSeparateiOES
-  if (s_deviceConfig.m_glBlendFuncSeparateiOES)
+  if (!prototypeCalled && glesConfig.m_glBlendFuncSeparateiOES)
   {
-    s_deviceConfig.m_glBlendFuncSeparateiOES (buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
+    prototypeCalled = true;
+    glesConfig.m_glBlendFuncSeparateiOES (buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
   }
 }
 
@@ -7181,14 +8028,15 @@ void  glew::gles::glBlendFuncSeparateiOES (GLuint buf, GLenum srcRGB, GLenum dst
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glColorMaskiOES
-
-void  glew::gles::glColorMaskiOES (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a)
+void  _glew_gles_glColorMaskiOES (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_buffers_indexed - glColorMaskiOES
-  if (s_deviceConfig.m_glColorMaskiOES)
+  if (!prototypeCalled && glesConfig.m_glColorMaskiOES)
   {
-    s_deviceConfig.m_glColorMaskiOES (index, r, g, b, a);
+    prototypeCalled = true;
+    glesConfig.m_glColorMaskiOES (index, r, g, b, a);
   }
 }
 
@@ -7196,14 +8044,15 @@ void  glew::gles::glColorMaskiOES (GLuint index, GLboolean r, GLboolean g, GLboo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsEnablediOES
-
-GLboolean glew::gles::glIsEnablediOES (GLenum target, GLuint index)
+GLboolean _glew_gles_glIsEnablediOES (GLenum target, GLuint index)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_buffers_indexed - glIsEnablediOES
-  if (s_deviceConfig.m_glIsEnablediOES)
+  if (!prototypeCalled && glesConfig.m_glIsEnablediOES)
   {
-    return s_deviceConfig.m_glIsEnablediOES (target, index);
+    prototypeCalled = true;
+    return glesConfig.m_glIsEnablediOES (target, index);
   }
   return ((GLboolean)0);
 }
@@ -7212,14 +8061,15 @@ GLboolean glew::gles::glIsEnablediOES (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsBaseVertexOES
-
-void  glew::gles::glDrawElementsBaseVertexOES (GLenum mode, GLsizei count, GLenum type, const void * indices, GLint basevertex)
+void  _glew_gles_glDrawElementsBaseVertexOES (GLenum mode, GLsizei count, GLenum type, const void * indices, GLint basevertex)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_elements_base_vertex - glDrawElementsBaseVertexOES
-  if (s_deviceConfig.m_glDrawElementsBaseVertexOES)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsBaseVertexOES)
   {
-    s_deviceConfig.m_glDrawElementsBaseVertexOES (mode, count, type, indices, basevertex);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsBaseVertexOES (mode, count, type, indices, basevertex);
   }
 }
 
@@ -7227,14 +8077,15 @@ void  glew::gles::glDrawElementsBaseVertexOES (GLenum mode, GLsizei count, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawRangeElementsBaseVertexOES
-
-void  glew::gles::glDrawRangeElementsBaseVertexOES (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices, GLint basevertex)
+void  _glew_gles_glDrawRangeElementsBaseVertexOES (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices, GLint basevertex)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_elements_base_vertex - glDrawRangeElementsBaseVertexOES
-  if (s_deviceConfig.m_glDrawRangeElementsBaseVertexOES)
+  if (!prototypeCalled && glesConfig.m_glDrawRangeElementsBaseVertexOES)
   {
-    s_deviceConfig.m_glDrawRangeElementsBaseVertexOES (mode, start, end, count, type, indices, basevertex);
+    prototypeCalled = true;
+    glesConfig.m_glDrawRangeElementsBaseVertexOES (mode, start, end, count, type, indices, basevertex);
   }
 }
 
@@ -7242,14 +8093,15 @@ void  glew::gles::glDrawRangeElementsBaseVertexOES (GLenum mode, GLuint start, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDrawElementsInstancedBaseVertexOES
-
-void  glew::gles::glDrawElementsInstancedBaseVertexOES (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex)
+void  _glew_gles_glDrawElementsInstancedBaseVertexOES (GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_elements_base_vertex - glDrawElementsInstancedBaseVertexOES
-  if (s_deviceConfig.m_glDrawElementsInstancedBaseVertexOES)
+  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedBaseVertexOES)
   {
-    s_deviceConfig.m_glDrawElementsInstancedBaseVertexOES (mode, count, type, indices, instancecount, basevertex);
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedBaseVertexOES (mode, count, type, indices, instancecount, basevertex);
   }
 }
 
@@ -7257,14 +8109,15 @@ void  glew::gles::glDrawElementsInstancedBaseVertexOES (GLenum mode, GLsizei cou
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMultiDrawElementsBaseVertexOES
-
-void  glew::gles::glMultiDrawElementsBaseVertexOES (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount, const GLint * basevertex)
+void  _glew_gles_glMultiDrawElementsBaseVertexOES (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount, const GLint * basevertex)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_draw_elements_base_vertex - glMultiDrawElementsBaseVertexOES
-  if (s_deviceConfig.m_glMultiDrawElementsBaseVertexOES)
+  if (!prototypeCalled && glesConfig.m_glMultiDrawElementsBaseVertexOES)
   {
-    s_deviceConfig.m_glMultiDrawElementsBaseVertexOES (mode, count, type, indices, primcount, basevertex);
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawElementsBaseVertexOES (mode, count, type, indices, primcount, basevertex);
   }
 }
 
@@ -7272,14 +8125,15 @@ void  glew::gles::glMultiDrawElementsBaseVertexOES (GLenum mode, const GLsizei *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFramebufferTextureOES
-
-void  glew::gles::glFramebufferTextureOES (GLenum target, GLenum attachment, GLuint texture, GLint level)
+void  _glew_gles_glFramebufferTextureOES (GLenum target, GLenum attachment, GLuint texture, GLint level)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_geometry_shader - glFramebufferTextureOES
-  if (s_deviceConfig.m_glFramebufferTextureOES)
+  if (!prototypeCalled && glesConfig.m_glFramebufferTextureOES)
   {
-    s_deviceConfig.m_glFramebufferTextureOES (target, attachment, texture, level);
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferTextureOES (target, attachment, texture, level);
   }
 }
 
@@ -7287,14 +8141,15 @@ void  glew::gles::glFramebufferTextureOES (GLenum target, GLenum attachment, GLu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetProgramBinaryOES
-
-void  glew::gles::glGetProgramBinaryOES (GLuint program, GLsizei bufSize, GLsizei * length, GLenum * binaryFormat, void * binary)
+void  _glew_gles_glGetProgramBinaryOES (GLuint program, GLsizei bufSize, GLsizei * length, GLenum * binaryFormat, void * binary)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_get_program_binary - glGetProgramBinaryOES
-  if (s_deviceConfig.m_glGetProgramBinaryOES)
+  if (!prototypeCalled && glesConfig.m_glGetProgramBinaryOES)
   {
-    s_deviceConfig.m_glGetProgramBinaryOES (program, bufSize, length, binaryFormat, binary);
+    prototypeCalled = true;
+    glesConfig.m_glGetProgramBinaryOES (program, bufSize, length, binaryFormat, binary);
   }
 }
 
@@ -7302,14 +8157,15 @@ void  glew::gles::glGetProgramBinaryOES (GLuint program, GLsizei bufSize, GLsize
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glProgramBinaryOES
-
-void  glew::gles::glProgramBinaryOES (GLuint program, GLenum binaryFormat, const void * binary, GLint length)
+void  _glew_gles_glProgramBinaryOES (GLuint program, GLenum binaryFormat, const void * binary, GLint length)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_get_program_binary - glProgramBinaryOES
-  if (s_deviceConfig.m_glProgramBinaryOES)
+  if (!prototypeCalled && glesConfig.m_glProgramBinaryOES)
   {
-    s_deviceConfig.m_glProgramBinaryOES (program, binaryFormat, binary, length);
+    prototypeCalled = true;
+    glesConfig.m_glProgramBinaryOES (program, binaryFormat, binary, length);
   }
 }
 
@@ -7317,14 +8173,15 @@ void  glew::gles::glProgramBinaryOES (GLuint program, GLenum binaryFormat, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMapBufferOES
-
-void * glew::gles::glMapBufferOES (GLenum target, GLenum access)
+void * _glew_gles_glMapBufferOES (GLenum target, GLenum access)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_mapbuffer - glMapBufferOES
-  if (s_deviceConfig.m_glMapBufferOES)
+  if (!prototypeCalled && glesConfig.m_glMapBufferOES)
   {
-    return s_deviceConfig.m_glMapBufferOES (target, access);
+    prototypeCalled = true;
+    return glesConfig.m_glMapBufferOES (target, access);
   }
   return ((void *)0);
 }
@@ -7333,14 +8190,15 @@ void * glew::gles::glMapBufferOES (GLenum target, GLenum access)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glUnmapBufferOES
-
-GLboolean glew::gles::glUnmapBufferOES (GLenum target)
+GLboolean _glew_gles_glUnmapBufferOES (GLenum target)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_mapbuffer - glUnmapBufferOES
-  if (s_deviceConfig.m_glUnmapBufferOES)
+  if (!prototypeCalled && glesConfig.m_glUnmapBufferOES)
   {
-    return s_deviceConfig.m_glUnmapBufferOES (target);
+    prototypeCalled = true;
+    return glesConfig.m_glUnmapBufferOES (target);
   }
   return ((GLboolean)0);
 }
@@ -7349,14 +8207,15 @@ GLboolean glew::gles::glUnmapBufferOES (GLenum target)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetBufferPointervOES
-
-void  glew::gles::glGetBufferPointervOES (GLenum target, GLenum pname, void ** params)
+void  _glew_gles_glGetBufferPointervOES (GLenum target, GLenum pname, void ** params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_mapbuffer - glGetBufferPointervOES
-  if (s_deviceConfig.m_glGetBufferPointervOES)
+  if (!prototypeCalled && glesConfig.m_glGetBufferPointervOES)
   {
-    s_deviceConfig.m_glGetBufferPointervOES (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetBufferPointervOES (target, pname, params);
   }
 }
 
@@ -7364,14 +8223,15 @@ void  glew::gles::glGetBufferPointervOES (GLenum target, GLenum pname, void ** p
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPrimitiveBoundingBoxOES
-
-void  glew::gles::glPrimitiveBoundingBoxOES (GLfloat minX, GLfloat minY, GLfloat minZ, GLfloat minW, GLfloat maxX, GLfloat maxY, GLfloat maxZ, GLfloat maxW)
+void  _glew_gles_glPrimitiveBoundingBoxOES (GLfloat minX, GLfloat minY, GLfloat minZ, GLfloat minW, GLfloat maxX, GLfloat maxY, GLfloat maxZ, GLfloat maxW)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_primitive_bounding_box - glPrimitiveBoundingBoxOES
-  if (s_deviceConfig.m_glPrimitiveBoundingBoxOES)
+  if (!prototypeCalled && glesConfig.m_glPrimitiveBoundingBoxOES)
   {
-    s_deviceConfig.m_glPrimitiveBoundingBoxOES (minX, minY, minZ, minW, maxX, maxY, maxZ, maxW);
+    prototypeCalled = true;
+    glesConfig.m_glPrimitiveBoundingBoxOES (minX, minY, minZ, minW, maxX, maxY, maxZ, maxW);
   }
 }
 
@@ -7379,14 +8239,15 @@ void  glew::gles::glPrimitiveBoundingBoxOES (GLfloat minX, GLfloat minY, GLfloat
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glMinSampleShadingOES
-
-void  glew::gles::glMinSampleShadingOES (GLfloat value)
+void  _glew_gles_glMinSampleShadingOES (GLfloat value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_sample_shading - glMinSampleShadingOES
-  if (s_deviceConfig.m_glMinSampleShadingOES)
+  if (!prototypeCalled && glesConfig.m_glMinSampleShadingOES)
   {
-    s_deviceConfig.m_glMinSampleShadingOES (value);
+    prototypeCalled = true;
+    glesConfig.m_glMinSampleShadingOES (value);
   }
 }
 
@@ -7394,14 +8255,15 @@ void  glew::gles::glMinSampleShadingOES (GLfloat value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glPatchParameteriOES
-
-void  glew::gles::glPatchParameteriOES (GLenum pname, GLint value)
+void  _glew_gles_glPatchParameteriOES (GLenum pname, GLint value)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_tessellation_shader - glPatchParameteriOES
-  if (s_deviceConfig.m_glPatchParameteriOES)
+  if (!prototypeCalled && glesConfig.m_glPatchParameteriOES)
   {
-    s_deviceConfig.m_glPatchParameteriOES (pname, value);
+    prototypeCalled = true;
+    glesConfig.m_glPatchParameteriOES (pname, value);
   }
 }
 
@@ -7409,14 +8271,15 @@ void  glew::gles::glPatchParameteriOES (GLenum pname, GLint value)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexImage3DOES
-
-void  glew::gles::glTexImage3DOES (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void * pixels)
+void  _glew_gles_glTexImage3DOES (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void * pixels)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_3D - glTexImage3DOES
-  if (s_deviceConfig.m_glTexImage3DOES)
+  if (!prototypeCalled && glesConfig.m_glTexImage3DOES)
   {
-    s_deviceConfig.m_glTexImage3DOES (target, level, internalformat, width, height, depth, border, format, type, pixels);
+    prototypeCalled = true;
+    glesConfig.m_glTexImage3DOES (target, level, internalformat, width, height, depth, border, format, type, pixels);
   }
 }
 
@@ -7424,14 +8287,15 @@ void  glew::gles::glTexImage3DOES (GLenum target, GLint level, GLenum internalfo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexSubImage3DOES
-
-void  glew::gles::glTexSubImage3DOES (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * pixels)
+void  _glew_gles_glTexSubImage3DOES (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * pixels)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_3D - glTexSubImage3DOES
-  if (s_deviceConfig.m_glTexSubImage3DOES)
+  if (!prototypeCalled && glesConfig.m_glTexSubImage3DOES)
   {
-    s_deviceConfig.m_glTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+    prototypeCalled = true;
+    glesConfig.m_glTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
   }
 }
 
@@ -7439,14 +8303,15 @@ void  glew::gles::glTexSubImage3DOES (GLenum target, GLint level, GLint xoffset,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCopyTexSubImage3DOES
-
-void  glew::gles::glCopyTexSubImage3DOES (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
+void  _glew_gles_glCopyTexSubImage3DOES (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_3D - glCopyTexSubImage3DOES
-  if (s_deviceConfig.m_glCopyTexSubImage3DOES)
+  if (!prototypeCalled && glesConfig.m_glCopyTexSubImage3DOES)
   {
-    s_deviceConfig.m_glCopyTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, x, y, width, height);
+    prototypeCalled = true;
+    glesConfig.m_glCopyTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, x, y, width, height);
   }
 }
 
@@ -7454,14 +8319,15 @@ void  glew::gles::glCopyTexSubImage3DOES (GLenum target, GLint level, GLint xoff
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCompressedTexImage3DOES
-
-void  glew::gles::glCompressedTexImage3DOES (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const void * data)
+void  _glew_gles_glCompressedTexImage3DOES (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const void * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_3D - glCompressedTexImage3DOES
-  if (s_deviceConfig.m_glCompressedTexImage3DOES)
+  if (!prototypeCalled && glesConfig.m_glCompressedTexImage3DOES)
   {
-    s_deviceConfig.m_glCompressedTexImage3DOES (target, level, internalformat, width, height, depth, border, imageSize, data);
+    prototypeCalled = true;
+    glesConfig.m_glCompressedTexImage3DOES (target, level, internalformat, width, height, depth, border, imageSize, data);
   }
 }
 
@@ -7469,14 +8335,15 @@ void  glew::gles::glCompressedTexImage3DOES (GLenum target, GLint level, GLenum 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glCompressedTexSubImage3DOES
-
-void  glew::gles::glCompressedTexSubImage3DOES (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void * data)
+void  _glew_gles_glCompressedTexSubImage3DOES (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void * data)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_3D - glCompressedTexSubImage3DOES
-  if (s_deviceConfig.m_glCompressedTexSubImage3DOES)
+  if (!prototypeCalled && glesConfig.m_glCompressedTexSubImage3DOES)
   {
-    s_deviceConfig.m_glCompressedTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
+    prototypeCalled = true;
+    glesConfig.m_glCompressedTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
   }
 }
 
@@ -7484,14 +8351,15 @@ void  glew::gles::glCompressedTexSubImage3DOES (GLenum target, GLint level, GLin
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFramebufferTexture3DOES
-
-void  glew::gles::glFramebufferTexture3DOES (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset)
+void  _glew_gles_glFramebufferTexture3DOES (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_3D - glFramebufferTexture3DOES
-  if (s_deviceConfig.m_glFramebufferTexture3DOES)
+  if (!prototypeCalled && glesConfig.m_glFramebufferTexture3DOES)
   {
-    s_deviceConfig.m_glFramebufferTexture3DOES (target, attachment, textarget, texture, level, zoffset);
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferTexture3DOES (target, attachment, textarget, texture, level, zoffset);
   }
 }
 
@@ -7499,14 +8367,15 @@ void  glew::gles::glFramebufferTexture3DOES (GLenum target, GLenum attachment, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexParameterIivOES
-
-void  glew::gles::glTexParameterIivOES (GLenum target, GLenum pname, const GLint * params)
+void  _glew_gles_glTexParameterIivOES (GLenum target, GLenum pname, const GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_border_clamp - glTexParameterIivOES
-  if (s_deviceConfig.m_glTexParameterIivOES)
+  if (!prototypeCalled && glesConfig.m_glTexParameterIivOES)
   {
-    s_deviceConfig.m_glTexParameterIivOES (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glTexParameterIivOES (target, pname, params);
   }
 }
 
@@ -7514,14 +8383,15 @@ void  glew::gles::glTexParameterIivOES (GLenum target, GLenum pname, const GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexParameterIuivOES
-
-void  glew::gles::glTexParameterIuivOES (GLenum target, GLenum pname, const GLuint * params)
+void  _glew_gles_glTexParameterIuivOES (GLenum target, GLenum pname, const GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_border_clamp - glTexParameterIuivOES
-  if (s_deviceConfig.m_glTexParameterIuivOES)
+  if (!prototypeCalled && glesConfig.m_glTexParameterIuivOES)
   {
-    s_deviceConfig.m_glTexParameterIuivOES (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glTexParameterIuivOES (target, pname, params);
   }
 }
 
@@ -7529,14 +8399,15 @@ void  glew::gles::glTexParameterIuivOES (GLenum target, GLenum pname, const GLui
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTexParameterIivOES
-
-void  glew::gles::glGetTexParameterIivOES (GLenum target, GLenum pname, GLint * params)
+void  _glew_gles_glGetTexParameterIivOES (GLenum target, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_border_clamp - glGetTexParameterIivOES
-  if (s_deviceConfig.m_glGetTexParameterIivOES)
+  if (!prototypeCalled && glesConfig.m_glGetTexParameterIivOES)
   {
-    s_deviceConfig.m_glGetTexParameterIivOES (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetTexParameterIivOES (target, pname, params);
   }
 }
 
@@ -7544,14 +8415,15 @@ void  glew::gles::glGetTexParameterIivOES (GLenum target, GLenum pname, GLint * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetTexParameterIuivOES
-
-void  glew::gles::glGetTexParameterIuivOES (GLenum target, GLenum pname, GLuint * params)
+void  _glew_gles_glGetTexParameterIuivOES (GLenum target, GLenum pname, GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_border_clamp - glGetTexParameterIuivOES
-  if (s_deviceConfig.m_glGetTexParameterIuivOES)
+  if (!prototypeCalled && glesConfig.m_glGetTexParameterIuivOES)
   {
-    s_deviceConfig.m_glGetTexParameterIuivOES (target, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetTexParameterIuivOES (target, pname, params);
   }
 }
 
@@ -7559,14 +8431,15 @@ void  glew::gles::glGetTexParameterIuivOES (GLenum target, GLenum pname, GLuint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSamplerParameterIivOES
-
-void  glew::gles::glSamplerParameterIivOES (GLuint sampler, GLenum pname, const GLint * param)
+void  _glew_gles_glSamplerParameterIivOES (GLuint sampler, GLenum pname, const GLint * param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_border_clamp - glSamplerParameterIivOES
-  if (s_deviceConfig.m_glSamplerParameterIivOES)
+  if (!prototypeCalled && glesConfig.m_glSamplerParameterIivOES)
   {
-    s_deviceConfig.m_glSamplerParameterIivOES (sampler, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glSamplerParameterIivOES (sampler, pname, param);
   }
 }
 
@@ -7574,14 +8447,15 @@ void  glew::gles::glSamplerParameterIivOES (GLuint sampler, GLenum pname, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glSamplerParameterIuivOES
-
-void  glew::gles::glSamplerParameterIuivOES (GLuint sampler, GLenum pname, const GLuint * param)
+void  _glew_gles_glSamplerParameterIuivOES (GLuint sampler, GLenum pname, const GLuint * param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_border_clamp - glSamplerParameterIuivOES
-  if (s_deviceConfig.m_glSamplerParameterIuivOES)
+  if (!prototypeCalled && glesConfig.m_glSamplerParameterIuivOES)
   {
-    s_deviceConfig.m_glSamplerParameterIuivOES (sampler, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glSamplerParameterIuivOES (sampler, pname, param);
   }
 }
 
@@ -7589,14 +8463,15 @@ void  glew::gles::glSamplerParameterIuivOES (GLuint sampler, GLenum pname, const
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetSamplerParameterIivOES
-
-void  glew::gles::glGetSamplerParameterIivOES (GLuint sampler, GLenum pname, GLint * params)
+void  _glew_gles_glGetSamplerParameterIivOES (GLuint sampler, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_border_clamp - glGetSamplerParameterIivOES
-  if (s_deviceConfig.m_glGetSamplerParameterIivOES)
+  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterIivOES)
   {
-    s_deviceConfig.m_glGetSamplerParameterIivOES (sampler, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetSamplerParameterIivOES (sampler, pname, params);
   }
 }
 
@@ -7604,14 +8479,15 @@ void  glew::gles::glGetSamplerParameterIivOES (GLuint sampler, GLenum pname, GLi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetSamplerParameterIuivOES
-
-void  glew::gles::glGetSamplerParameterIuivOES (GLuint sampler, GLenum pname, GLuint * params)
+void  _glew_gles_glGetSamplerParameterIuivOES (GLuint sampler, GLenum pname, GLuint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_border_clamp - glGetSamplerParameterIuivOES
-  if (s_deviceConfig.m_glGetSamplerParameterIuivOES)
+  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterIuivOES)
   {
-    s_deviceConfig.m_glGetSamplerParameterIuivOES (sampler, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glGetSamplerParameterIuivOES (sampler, pname, params);
   }
 }
 
@@ -7619,14 +8495,15 @@ void  glew::gles::glGetSamplerParameterIuivOES (GLuint sampler, GLenum pname, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexBufferOES
-
-void  glew::gles::glTexBufferOES (GLenum target, GLenum internalformat, GLuint buffer)
+void  _glew_gles_glTexBufferOES (GLenum target, GLenum internalformat, GLuint buffer)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_buffer - glTexBufferOES
-  if (s_deviceConfig.m_glTexBufferOES)
+  if (!prototypeCalled && glesConfig.m_glTexBufferOES)
   {
-    s_deviceConfig.m_glTexBufferOES (target, internalformat, buffer);
+    prototypeCalled = true;
+    glesConfig.m_glTexBufferOES (target, internalformat, buffer);
   }
 }
 
@@ -7634,14 +8511,15 @@ void  glew::gles::glTexBufferOES (GLenum target, GLenum internalformat, GLuint b
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexBufferRangeOES
-
-void  glew::gles::glTexBufferRangeOES (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
+void  _glew_gles_glTexBufferRangeOES (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_buffer - glTexBufferRangeOES
-  if (s_deviceConfig.m_glTexBufferRangeOES)
+  if (!prototypeCalled && glesConfig.m_glTexBufferRangeOES)
   {
-    s_deviceConfig.m_glTexBufferRangeOES (target, internalformat, buffer, offset, size);
+    prototypeCalled = true;
+    glesConfig.m_glTexBufferRangeOES (target, internalformat, buffer, offset, size);
   }
 }
 
@@ -7649,14 +8527,15 @@ void  glew::gles::glTexBufferRangeOES (GLenum target, GLenum internalformat, GLu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTexStorage3DMultisampleOES
-
-void  glew::gles::glTexStorage3DMultisampleOES (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
+void  _glew_gles_glTexStorage3DMultisampleOES (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_storage_multisample_2d_array - glTexStorage3DMultisampleOES
-  if (s_deviceConfig.m_glTexStorage3DMultisampleOES)
+  if (!prototypeCalled && glesConfig.m_glTexStorage3DMultisampleOES)
   {
-    s_deviceConfig.m_glTexStorage3DMultisampleOES (target, samples, internalformat, width, height, depth, fixedsamplelocations);
+    prototypeCalled = true;
+    glesConfig.m_glTexStorage3DMultisampleOES (target, samples, internalformat, width, height, depth, fixedsamplelocations);
   }
 }
 
@@ -7664,14 +8543,15 @@ void  glew::gles::glTexStorage3DMultisampleOES (GLenum target, GLsizei samples, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glTextureViewOES
-
-void  glew::gles::glTextureViewOES (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers)
+void  _glew_gles_glTextureViewOES (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_texture_view - glTextureViewOES
-  if (s_deviceConfig.m_glTextureViewOES)
+  if (!prototypeCalled && glesConfig.m_glTextureViewOES)
   {
-    s_deviceConfig.m_glTextureViewOES (texture, target, origtexture, internalformat, minlevel, numlevels, minlayer, numlayers);
+    prototypeCalled = true;
+    glesConfig.m_glTextureViewOES (texture, target, origtexture, internalformat, minlevel, numlevels, minlayer, numlayers);
   }
 }
 
@@ -7679,14 +8559,15 @@ void  glew::gles::glTextureViewOES (GLuint texture, GLenum target, GLuint origte
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glBindVertexArrayOES
-
-void  glew::gles::glBindVertexArrayOES (GLuint array)
+void  _glew_gles_glBindVertexArrayOES (GLuint array)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_vertex_array_object - glBindVertexArrayOES
-  if (s_deviceConfig.m_glBindVertexArrayOES)
+  if (!prototypeCalled && glesConfig.m_glBindVertexArrayOES)
   {
-    s_deviceConfig.m_glBindVertexArrayOES (array);
+    prototypeCalled = true;
+    glesConfig.m_glBindVertexArrayOES (array);
   }
 }
 
@@ -7694,14 +8575,15 @@ void  glew::gles::glBindVertexArrayOES (GLuint array)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDeleteVertexArraysOES
-
-void  glew::gles::glDeleteVertexArraysOES (GLsizei n, const GLuint * arrays)
+void  _glew_gles_glDeleteVertexArraysOES (GLsizei n, const GLuint * arrays)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_vertex_array_object - glDeleteVertexArraysOES
-  if (s_deviceConfig.m_glDeleteVertexArraysOES)
+  if (!prototypeCalled && glesConfig.m_glDeleteVertexArraysOES)
   {
-    s_deviceConfig.m_glDeleteVertexArraysOES (n, arrays);
+    prototypeCalled = true;
+    glesConfig.m_glDeleteVertexArraysOES (n, arrays);
   }
 }
 
@@ -7709,14 +8591,15 @@ void  glew::gles::glDeleteVertexArraysOES (GLsizei n, const GLuint * arrays)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGenVertexArraysOES
-
-void  glew::gles::glGenVertexArraysOES (GLsizei n, GLuint * arrays)
+void  _glew_gles_glGenVertexArraysOES (GLsizei n, GLuint * arrays)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_vertex_array_object - glGenVertexArraysOES
-  if (s_deviceConfig.m_glGenVertexArraysOES)
+  if (!prototypeCalled && glesConfig.m_glGenVertexArraysOES)
   {
-    s_deviceConfig.m_glGenVertexArraysOES (n, arrays);
+    prototypeCalled = true;
+    glesConfig.m_glGenVertexArraysOES (n, arrays);
   }
 }
 
@@ -7724,14 +8607,15 @@ void  glew::gles::glGenVertexArraysOES (GLsizei n, GLuint * arrays)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glIsVertexArrayOES
-
-GLboolean glew::gles::glIsVertexArrayOES (GLuint array)
+GLboolean _glew_gles_glIsVertexArrayOES (GLuint array)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OES_vertex_array_object - glIsVertexArrayOES
-  if (s_deviceConfig.m_glIsVertexArrayOES)
+  if (!prototypeCalled && glesConfig.m_glIsVertexArrayOES)
   {
-    return s_deviceConfig.m_glIsVertexArrayOES (array);
+    prototypeCalled = true;
+    return glesConfig.m_glIsVertexArrayOES (array);
   }
   return ((GLboolean)0);
 }
@@ -7740,14 +8624,15 @@ GLboolean glew::gles::glIsVertexArrayOES (GLuint array)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glFramebufferTextureMultiviewOVR
-
-void  glew::gles::glFramebufferTextureMultiviewOVR (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint baseViewIndex, GLsizei numViews)
+void  _glew_gles_glFramebufferTextureMultiviewOVR (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint baseViewIndex, GLsizei numViews)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_OVR_multiview - glFramebufferTextureMultiviewOVR
-  if (s_deviceConfig.m_glFramebufferTextureMultiviewOVR)
+  if (!prototypeCalled && glesConfig.m_glFramebufferTextureMultiviewOVR)
   {
-    s_deviceConfig.m_glFramebufferTextureMultiviewOVR (target, attachment, texture, level, baseViewIndex, numViews);
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferTextureMultiviewOVR (target, attachment, texture, level, baseViewIndex, numViews);
   }
 }
 
@@ -7755,14 +8640,15 @@ void  glew::gles::glFramebufferTextureMultiviewOVR (GLenum target, GLenum attach
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glAlphaFuncQCOM
-
-void  glew::gles::glAlphaFuncQCOM (GLenum func, GLclampf ref)
+void  _glew_gles_glAlphaFuncQCOM (GLenum func, GLclampf ref)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_alpha_test - glAlphaFuncQCOM
-  if (s_deviceConfig.m_glAlphaFuncQCOM)
+  if (!prototypeCalled && glesConfig.m_glAlphaFuncQCOM)
   {
-    s_deviceConfig.m_glAlphaFuncQCOM (func, ref);
+    prototypeCalled = true;
+    glesConfig.m_glAlphaFuncQCOM (func, ref);
   }
 }
 
@@ -7770,14 +8656,15 @@ void  glew::gles::glAlphaFuncQCOM (GLenum func, GLclampf ref)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetDriverControlsQCOM
-
-void  glew::gles::glGetDriverControlsQCOM (GLint * num, GLsizei size, GLuint * driverControls)
+void  _glew_gles_glGetDriverControlsQCOM (GLint * num, GLsizei size, GLuint * driverControls)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_driver_control - glGetDriverControlsQCOM
-  if (s_deviceConfig.m_glGetDriverControlsQCOM)
+  if (!prototypeCalled && glesConfig.m_glGetDriverControlsQCOM)
   {
-    s_deviceConfig.m_glGetDriverControlsQCOM (num, size, driverControls);
+    prototypeCalled = true;
+    glesConfig.m_glGetDriverControlsQCOM (num, size, driverControls);
   }
 }
 
@@ -7785,14 +8672,15 @@ void  glew::gles::glGetDriverControlsQCOM (GLint * num, GLsizei size, GLuint * d
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glGetDriverControlStringQCOM
-
-void  glew::gles::glGetDriverControlStringQCOM (GLuint driverControl, GLsizei bufSize, GLsizei * length, GLchar * driverControlString)
+void  _glew_gles_glGetDriverControlStringQCOM (GLuint driverControl, GLsizei bufSize, GLsizei * length, GLchar * driverControlString)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_driver_control - glGetDriverControlStringQCOM
-  if (s_deviceConfig.m_glGetDriverControlStringQCOM)
+  if (!prototypeCalled && glesConfig.m_glGetDriverControlStringQCOM)
   {
-    s_deviceConfig.m_glGetDriverControlStringQCOM (driverControl, bufSize, length, driverControlString);
+    prototypeCalled = true;
+    glesConfig.m_glGetDriverControlStringQCOM (driverControl, bufSize, length, driverControlString);
   }
 }
 
@@ -7800,14 +8688,15 @@ void  glew::gles::glGetDriverControlStringQCOM (GLuint driverControl, GLsizei bu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEnableDriverControlQCOM
-
-void  glew::gles::glEnableDriverControlQCOM (GLuint driverControl)
+void  _glew_gles_glEnableDriverControlQCOM (GLuint driverControl)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_driver_control - glEnableDriverControlQCOM
-  if (s_deviceConfig.m_glEnableDriverControlQCOM)
+  if (!prototypeCalled && glesConfig.m_glEnableDriverControlQCOM)
   {
-    s_deviceConfig.m_glEnableDriverControlQCOM (driverControl);
+    prototypeCalled = true;
+    glesConfig.m_glEnableDriverControlQCOM (driverControl);
   }
 }
 
@@ -7815,14 +8704,15 @@ void  glew::gles::glEnableDriverControlQCOM (GLuint driverControl)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glDisableDriverControlQCOM
-
-void  glew::gles::glDisableDriverControlQCOM (GLuint driverControl)
+void  _glew_gles_glDisableDriverControlQCOM (GLuint driverControl)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_driver_control - glDisableDriverControlQCOM
-  if (s_deviceConfig.m_glDisableDriverControlQCOM)
+  if (!prototypeCalled && glesConfig.m_glDisableDriverControlQCOM)
   {
-    s_deviceConfig.m_glDisableDriverControlQCOM (driverControl);
+    prototypeCalled = true;
+    glesConfig.m_glDisableDriverControlQCOM (driverControl);
   }
 }
 
@@ -7830,14 +8720,15 @@ void  glew::gles::glDisableDriverControlQCOM (GLuint driverControl)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetTexturesQCOM
-
-void  glew::gles::glExtGetTexturesQCOM (GLuint * textures, GLint maxTextures, GLint * numTextures)
+void  _glew_gles_glExtGetTexturesQCOM (GLuint * textures, GLint maxTextures, GLint * numTextures)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get - glExtGetTexturesQCOM
-  if (s_deviceConfig.m_glExtGetTexturesQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetTexturesQCOM)
   {
-    s_deviceConfig.m_glExtGetTexturesQCOM (textures, maxTextures, numTextures);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetTexturesQCOM (textures, maxTextures, numTextures);
   }
 }
 
@@ -7845,14 +8736,15 @@ void  glew::gles::glExtGetTexturesQCOM (GLuint * textures, GLint maxTextures, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetBuffersQCOM
-
-void  glew::gles::glExtGetBuffersQCOM (GLuint * buffers, GLint maxBuffers, GLint * numBuffers)
+void  _glew_gles_glExtGetBuffersQCOM (GLuint * buffers, GLint maxBuffers, GLint * numBuffers)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get - glExtGetBuffersQCOM
-  if (s_deviceConfig.m_glExtGetBuffersQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetBuffersQCOM)
   {
-    s_deviceConfig.m_glExtGetBuffersQCOM (buffers, maxBuffers, numBuffers);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetBuffersQCOM (buffers, maxBuffers, numBuffers);
   }
 }
 
@@ -7860,14 +8752,15 @@ void  glew::gles::glExtGetBuffersQCOM (GLuint * buffers, GLint maxBuffers, GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetRenderbuffersQCOM
-
-void  glew::gles::glExtGetRenderbuffersQCOM (GLuint * renderbuffers, GLint maxRenderbuffers, GLint * numRenderbuffers)
+void  _glew_gles_glExtGetRenderbuffersQCOM (GLuint * renderbuffers, GLint maxRenderbuffers, GLint * numRenderbuffers)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get - glExtGetRenderbuffersQCOM
-  if (s_deviceConfig.m_glExtGetRenderbuffersQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetRenderbuffersQCOM)
   {
-    s_deviceConfig.m_glExtGetRenderbuffersQCOM (renderbuffers, maxRenderbuffers, numRenderbuffers);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetRenderbuffersQCOM (renderbuffers, maxRenderbuffers, numRenderbuffers);
   }
 }
 
@@ -7875,14 +8768,15 @@ void  glew::gles::glExtGetRenderbuffersQCOM (GLuint * renderbuffers, GLint maxRe
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetFramebuffersQCOM
-
-void  glew::gles::glExtGetFramebuffersQCOM (GLuint * framebuffers, GLint maxFramebuffers, GLint * numFramebuffers)
+void  _glew_gles_glExtGetFramebuffersQCOM (GLuint * framebuffers, GLint maxFramebuffers, GLint * numFramebuffers)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get - glExtGetFramebuffersQCOM
-  if (s_deviceConfig.m_glExtGetFramebuffersQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetFramebuffersQCOM)
   {
-    s_deviceConfig.m_glExtGetFramebuffersQCOM (framebuffers, maxFramebuffers, numFramebuffers);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetFramebuffersQCOM (framebuffers, maxFramebuffers, numFramebuffers);
   }
 }
 
@@ -7890,14 +8784,15 @@ void  glew::gles::glExtGetFramebuffersQCOM (GLuint * framebuffers, GLint maxFram
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetTexLevelParameterivQCOM
-
-void  glew::gles::glExtGetTexLevelParameterivQCOM (GLuint texture, GLenum face, GLint level, GLenum pname, GLint * params)
+void  _glew_gles_glExtGetTexLevelParameterivQCOM (GLuint texture, GLenum face, GLint level, GLenum pname, GLint * params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get - glExtGetTexLevelParameterivQCOM
-  if (s_deviceConfig.m_glExtGetTexLevelParameterivQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetTexLevelParameterivQCOM)
   {
-    s_deviceConfig.m_glExtGetTexLevelParameterivQCOM (texture, face, level, pname, params);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetTexLevelParameterivQCOM (texture, face, level, pname, params);
   }
 }
 
@@ -7905,14 +8800,15 @@ void  glew::gles::glExtGetTexLevelParameterivQCOM (GLuint texture, GLenum face, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtTexObjectStateOverrideiQCOM
-
-void  glew::gles::glExtTexObjectStateOverrideiQCOM (GLenum target, GLenum pname, GLint param)
+void  _glew_gles_glExtTexObjectStateOverrideiQCOM (GLenum target, GLenum pname, GLint param)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get - glExtTexObjectStateOverrideiQCOM
-  if (s_deviceConfig.m_glExtTexObjectStateOverrideiQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtTexObjectStateOverrideiQCOM)
   {
-    s_deviceConfig.m_glExtTexObjectStateOverrideiQCOM (target, pname, param);
+    prototypeCalled = true;
+    glesConfig.m_glExtTexObjectStateOverrideiQCOM (target, pname, param);
   }
 }
 
@@ -7920,14 +8816,15 @@ void  glew::gles::glExtTexObjectStateOverrideiQCOM (GLenum target, GLenum pname,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetTexSubImageQCOM
-
-void  glew::gles::glExtGetTexSubImageQCOM (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, void * texels)
+void  _glew_gles_glExtGetTexSubImageQCOM (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, void * texels)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get - glExtGetTexSubImageQCOM
-  if (s_deviceConfig.m_glExtGetTexSubImageQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetTexSubImageQCOM)
   {
-    s_deviceConfig.m_glExtGetTexSubImageQCOM (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, texels);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetTexSubImageQCOM (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, texels);
   }
 }
 
@@ -7935,14 +8832,15 @@ void  glew::gles::glExtGetTexSubImageQCOM (GLenum target, GLint level, GLint xof
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetBufferPointervQCOM
-
-void  glew::gles::glExtGetBufferPointervQCOM (GLenum target, void ** params)
+void  _glew_gles_glExtGetBufferPointervQCOM (GLenum target, void ** params)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get - glExtGetBufferPointervQCOM
-  if (s_deviceConfig.m_glExtGetBufferPointervQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetBufferPointervQCOM)
   {
-    s_deviceConfig.m_glExtGetBufferPointervQCOM (target, params);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetBufferPointervQCOM (target, params);
   }
 }
 
@@ -7950,14 +8848,15 @@ void  glew::gles::glExtGetBufferPointervQCOM (GLenum target, void ** params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetShadersQCOM
-
-void  glew::gles::glExtGetShadersQCOM (GLuint * shaders, GLint maxShaders, GLint * numShaders)
+void  _glew_gles_glExtGetShadersQCOM (GLuint * shaders, GLint maxShaders, GLint * numShaders)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get2 - glExtGetShadersQCOM
-  if (s_deviceConfig.m_glExtGetShadersQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetShadersQCOM)
   {
-    s_deviceConfig.m_glExtGetShadersQCOM (shaders, maxShaders, numShaders);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetShadersQCOM (shaders, maxShaders, numShaders);
   }
 }
 
@@ -7965,14 +8864,15 @@ void  glew::gles::glExtGetShadersQCOM (GLuint * shaders, GLint maxShaders, GLint
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetProgramsQCOM
-
-void  glew::gles::glExtGetProgramsQCOM (GLuint * programs, GLint maxPrograms, GLint * numPrograms)
+void  _glew_gles_glExtGetProgramsQCOM (GLuint * programs, GLint maxPrograms, GLint * numPrograms)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get2 - glExtGetProgramsQCOM
-  if (s_deviceConfig.m_glExtGetProgramsQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetProgramsQCOM)
   {
-    s_deviceConfig.m_glExtGetProgramsQCOM (programs, maxPrograms, numPrograms);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetProgramsQCOM (programs, maxPrograms, numPrograms);
   }
 }
 
@@ -7980,14 +8880,15 @@ void  glew::gles::glExtGetProgramsQCOM (GLuint * programs, GLint maxPrograms, GL
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtIsProgramBinaryQCOM
-
-GLboolean glew::gles::glExtIsProgramBinaryQCOM (GLuint program)
+GLboolean _glew_gles_glExtIsProgramBinaryQCOM (GLuint program)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get2 - glExtIsProgramBinaryQCOM
-  if (s_deviceConfig.m_glExtIsProgramBinaryQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtIsProgramBinaryQCOM)
   {
-    return s_deviceConfig.m_glExtIsProgramBinaryQCOM (program);
+    prototypeCalled = true;
+    return glesConfig.m_glExtIsProgramBinaryQCOM (program);
   }
   return ((GLboolean)0);
 }
@@ -7996,14 +8897,15 @@ GLboolean glew::gles::glExtIsProgramBinaryQCOM (GLuint program)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glExtGetProgramBinarySourceQCOM
-
-void  glew::gles::glExtGetProgramBinarySourceQCOM (GLuint program, GLenum shadertype, GLchar * source, GLint * length)
+void  _glew_gles_glExtGetProgramBinarySourceQCOM (GLuint program, GLenum shadertype, GLchar * source, GLint * length)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_extended_get2 - glExtGetProgramBinarySourceQCOM
-  if (s_deviceConfig.m_glExtGetProgramBinarySourceQCOM)
+  if (!prototypeCalled && glesConfig.m_glExtGetProgramBinarySourceQCOM)
   {
-    s_deviceConfig.m_glExtGetProgramBinarySourceQCOM (program, shadertype, source, length);
+    prototypeCalled = true;
+    glesConfig.m_glExtGetProgramBinarySourceQCOM (program, shadertype, source, length);
   }
 }
 
@@ -8011,14 +8913,15 @@ void  glew::gles::glExtGetProgramBinarySourceQCOM (GLuint program, GLenum shader
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glStartTilingQCOM
-
-void  glew::gles::glStartTilingQCOM (GLuint x, GLuint y, GLuint width, GLuint height, GLbitfield preserveMask)
+void  _glew_gles_glStartTilingQCOM (GLuint x, GLuint y, GLuint width, GLuint height, GLbitfield preserveMask)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_tiled_rendering - glStartTilingQCOM
-  if (s_deviceConfig.m_glStartTilingQCOM)
+  if (!prototypeCalled && glesConfig.m_glStartTilingQCOM)
   {
-    s_deviceConfig.m_glStartTilingQCOM (x, y, width, height, preserveMask);
+    prototypeCalled = true;
+    glesConfig.m_glStartTilingQCOM (x, y, width, height, preserveMask);
   }
 }
 
@@ -8026,15 +8929,25 @@ void  glew::gles::glStartTilingQCOM (GLuint x, GLuint y, GLuint width, GLuint he
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#undef glEndTilingQCOM
-
-void  glew::gles::glEndTilingQCOM (GLbitfield preserveMask)
+void  _glew_gles_glEndTilingQCOM (GLbitfield preserveMask)
 {
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
   // GL_QCOM_tiled_rendering - glEndTilingQCOM
-  if (s_deviceConfig.m_glEndTilingQCOM)
+  if (!prototypeCalled && glesConfig.m_glEndTilingQCOM)
   {
-    s_deviceConfig.m_glEndTilingQCOM (preserveMask);
+    prototypeCalled = true;
+    glesConfig.m_glEndTilingQCOM (preserveMask);
   }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+bool glew::IsSupported (GLEW_GLES_FeatureSet feature)
+{
+  return glew::gles::IsSupported (feature);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8055,8 +8968,6 @@ void glew::gles::Initialise ()
   // Determine current driver's feature reporting.
   // 
 
-  #undef glGetString
-
   const unsigned char *glVersion = glGetString (GL_VERSION);
 
   if (!glVersion)
@@ -8068,17 +8979,28 @@ void glew::gles::Initialise ()
 
   if (glVersionLen)
   {
+    unsigned int major = 0, minor = 0;
+
 #if _WIN32
   #define strncasecmp _strnicmp
 #endif
 
-    const bool es20Supported = (strncasecmp ((const char *) glVersion, "OpenGL ES 2", 11) == 0);
-    const bool es30Supported = (strncasecmp ((const char *) glVersion, "OpenGL ES 3", 11) == 0);
-    const bool es31Supported = (strncasecmp ((const char *) glVersion, "OpenGL ES 3.1", 13) == 0);
+    const bool openGlEsSupported = (strncasecmp ((const char *) glVersion, "OpenGL ES", 9) == 0);
 
-    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = es20Supported;
-    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = es30Supported;
-    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = es31Supported;
+    const char *divisor = strchr ((const char *) glVersion, '.');
+
+    if (divisor)
+    {
+      major = (*(char *) (divisor - 1)) - '0';
+      minor = (*(char *) (divisor + 1)) - '0';
+    }
+
+    if (openGlEsSupported)
+    {
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = ((major >= 2));
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = ((major >= 3));
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = ((major >= 3) && (minor >= 1));
+    }
   }
 
   // 
@@ -8369,7 +9291,7 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_VIV_shader_binary] = (supportedExtensions.find ("GL_VIV_shader_binary") != supportedExtensions.end ());
 
   // GL_ES_VERSION_3_0
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0])
   {
     s_deviceConfig.m_glReadBuffer = (PFNGLREADBUFFERPROC) glewGetProcAddress ("glReadBuffer");
     s_deviceConfig.m_glDrawRangeElements = (PFNGLDRAWRANGEELEMENTSPROC) glewGetProcAddress ("glDrawRangeElements");
@@ -8478,28 +9400,28 @@ void glew::gles::Initialise ()
   }
 
   // GL_ES_VERSION_3_1
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
   {
     s_deviceConfig.m_glDispatchCompute = (PFNGLDISPATCHCOMPUTEPROC) glewGetProcAddress ("glDispatchCompute");
     s_deviceConfig.m_glDispatchComputeIndirect = (PFNGLDISPATCHCOMPUTEINDIRECTPROC) glewGetProcAddress ("glDispatchComputeIndirect");
   }
 
   // GL_ES_VERSION_3_1
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
   {
     s_deviceConfig.m_glDrawArraysIndirect = (PFNGLDRAWARRAYSINDIRECTPROC) glewGetProcAddress ("glDrawArraysIndirect");
     s_deviceConfig.m_glDrawElementsIndirect = (PFNGLDRAWELEMENTSINDIRECTPROC) glewGetProcAddress ("glDrawElementsIndirect");
   }
 
   // GL_ES_VERSION_3_1
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
   {
     s_deviceConfig.m_glFramebufferParameteri = (PFNGLFRAMEBUFFERPARAMETERIPROC) glewGetProcAddress ("glFramebufferParameteri");
     s_deviceConfig.m_glGetFramebufferParameteriv = (PFNGLGETFRAMEBUFFERPARAMETERIVPROC) glewGetProcAddress ("glGetFramebufferParameteriv");
   }
 
   // GL_ES_VERSION_3_1
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
   {
     s_deviceConfig.m_glGetProgramInterfaceiv = (PFNGLGETPROGRAMINTERFACEIVPROC) glewGetProcAddress ("glGetProgramInterfaceiv");
     s_deviceConfig.m_glGetProgramResourceIndex = (PFNGLGETPROGRAMRESOURCEINDEXPROC) glewGetProcAddress ("glGetProgramResourceIndex");
@@ -8509,7 +9431,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_ES_VERSION_3_1
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
   {
     s_deviceConfig.m_glUseProgramStages = (PFNGLUSEPROGRAMSTAGESPROC) glewGetProcAddress ("glUseProgramStages");
     s_deviceConfig.m_glActiveShaderProgram = (PFNGLACTIVESHADERPROGRAMPROC) glewGetProcAddress ("glActiveShaderProgram");
@@ -8557,7 +9479,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_ES_VERSION_3_1
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
   {
     s_deviceConfig.m_glBindImageTexture = (PFNGLBINDIMAGETEXTUREPROC) glewGetProcAddress ("glBindImageTexture");
     s_deviceConfig.m_glGetBooleani_v = (PFNGLGETBOOLEANI_VPROC) glewGetProcAddress ("glGetBooleani_v");
@@ -8566,7 +9488,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_ES_VERSION_3_1
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
   {
     s_deviceConfig.m_glTexStorage2DMultisample = (PFNGLTEXSTORAGE2DMULTISAMPLEPROC) glewGetProcAddress ("glTexStorage2DMultisample");
     s_deviceConfig.m_glGetMultisamplefv = (PFNGLGETMULTISAMPLEFVPROC) glewGetProcAddress ("glGetMultisamplefv");
@@ -8576,7 +9498,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_ES_VERSION_3_1
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1])
   {
     s_deviceConfig.m_glBindVertexBuffer = (PFNGLBINDVERTEXBUFFERPROC) glewGetProcAddress ("glBindVertexBuffer");
     s_deviceConfig.m_glVertexAttribFormat = (PFNGLVERTEXATTRIBFORMATPROC) glewGetProcAddress ("glVertexAttribFormat");
@@ -8586,7 +9508,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_AMD_performance_monitor
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor])
   {
     s_deviceConfig.m_glGetPerfMonitorGroupsAMD = (PFNGLGETPERFMONITORGROUPSAMDPROC) glewGetProcAddress ("glGetPerfMonitorGroupsAMD");
     s_deviceConfig.m_glGetPerfMonitorCountersAMD = (PFNGLGETPERFMONITORCOUNTERSAMDPROC) glewGetProcAddress ("glGetPerfMonitorCountersAMD");
@@ -8602,19 +9524,19 @@ void glew::gles::Initialise ()
   }
 
   // GL_ANGLE_framebuffer_blit
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ANGLE_framebuffer_blit])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ANGLE_framebuffer_blit])
   {
     s_deviceConfig.m_glBlitFramebufferANGLE = (PFNGLBLITFRAMEBUFFERANGLEPROC) glewGetProcAddress ("glBlitFramebufferANGLE");
   }
 
   // GL_ANGLE_framebuffer_multisample
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ANGLE_framebuffer_multisample])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ANGLE_framebuffer_multisample])
   {
     s_deviceConfig.m_glRenderbufferStorageMultisampleANGLE = (PFNGLRENDERBUFFERSTORAGEMULTISAMPLEANGLEPROC) glewGetProcAddress ("glRenderbufferStorageMultisampleANGLE");
   }
 
   // GL_ANGLE_instanced_arrays
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ANGLE_instanced_arrays])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ANGLE_instanced_arrays])
   {
     s_deviceConfig.m_glDrawArraysInstancedANGLE = (PFNGLDRAWARRAYSINSTANCEDANGLEPROC) glewGetProcAddress ("glDrawArraysInstancedANGLE");
     s_deviceConfig.m_glDrawElementsInstancedANGLE = (PFNGLDRAWELEMENTSINSTANCEDANGLEPROC) glewGetProcAddress ("glDrawElementsInstancedANGLE");
@@ -8622,26 +9544,26 @@ void glew::gles::Initialise ()
   }
 
   // GL_ANGLE_translated_shader_source
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_ANGLE_translated_shader_source])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_ANGLE_translated_shader_source])
   {
     s_deviceConfig.m_glGetTranslatedShaderSourceANGLE = (PFNGLGETTRANSLATEDSHADERSOURCEANGLEPROC) glewGetProcAddress ("glGetTranslatedShaderSourceANGLE");
   }
 
   // GL_APPLE_copy_texture_levels
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_APPLE_copy_texture_levels])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_APPLE_copy_texture_levels])
   {
     s_deviceConfig.m_glCopyTextureLevelsAPPLE = (PFNGLCOPYTEXTURELEVELSAPPLEPROC) glewGetProcAddress ("glCopyTextureLevelsAPPLE");
   }
 
   // GL_APPLE_framebuffer_multisample
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_APPLE_framebuffer_multisample])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_APPLE_framebuffer_multisample])
   {
     s_deviceConfig.m_glRenderbufferStorageMultisampleAPPLE = (PFNGLRENDERBUFFERSTORAGEMULTISAMPLEAPPLEPROC) glewGetProcAddress ("glRenderbufferStorageMultisampleAPPLE");
     s_deviceConfig.m_glResolveMultisampleFramebufferAPPLE = (PFNGLRESOLVEMULTISAMPLEFRAMEBUFFERAPPLEPROC) glewGetProcAddress ("glResolveMultisampleFramebufferAPPLE");
   }
 
   // GL_APPLE_sync
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_APPLE_sync])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_APPLE_sync])
   {
     s_deviceConfig.m_glFenceSyncAPPLE = (PFNGLFENCESYNCAPPLEPROC) glewGetProcAddress ("glFenceSyncAPPLE");
     s_deviceConfig.m_glIsSyncAPPLE = (PFNGLISSYNCAPPLEPROC) glewGetProcAddress ("glIsSyncAPPLE");
@@ -8653,7 +9575,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_base_instance
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_base_instance])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_base_instance])
   {
     s_deviceConfig.m_glDrawArraysInstancedBaseInstanceEXT = (PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEEXTPROC) glewGetProcAddress ("glDrawArraysInstancedBaseInstanceEXT");
     s_deviceConfig.m_glDrawElementsInstancedBaseInstanceEXT = (PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEEXTPROC) glewGetProcAddress ("glDrawElementsInstancedBaseInstanceEXT");
@@ -8661,26 +9583,26 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_buffer_storage
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_buffer_storage])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_buffer_storage])
   {
     s_deviceConfig.m_glBufferStorageEXT = (PFNGLBUFFERSTORAGEEXTPROC) glewGetProcAddress ("glBufferStorageEXT");
   }
 
   // GL_EXT_copy_image
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_copy_image])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_copy_image])
   {
     s_deviceConfig.m_glCopyImageSubDataEXT = (PFNGLCOPYIMAGESUBDATAEXTPROC) glewGetProcAddress ("glCopyImageSubDataEXT");
   }
 
   // GL_EXT_debug_label
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_debug_label])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_debug_label])
   {
     s_deviceConfig.m_glLabelObjectEXT = (PFNGLLABELOBJECTEXTPROC) glewGetProcAddress ("glLabelObjectEXT");
     s_deviceConfig.m_glGetObjectLabelEXT = (PFNGLGETOBJECTLABELEXTPROC) glewGetProcAddress ("glGetObjectLabelEXT");
   }
 
   // GL_EXT_debug_marker
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_debug_marker])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_debug_marker])
   {
     s_deviceConfig.m_glInsertEventMarkerEXT = (PFNGLINSERTEVENTMARKEREXTPROC) glewGetProcAddress ("glInsertEventMarkerEXT");
     s_deviceConfig.m_glPushGroupMarkerEXT = (PFNGLPUSHGROUPMARKEREXTPROC) glewGetProcAddress ("glPushGroupMarkerEXT");
@@ -8688,13 +9610,13 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_discard_framebuffer
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_discard_framebuffer])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_discard_framebuffer])
   {
     s_deviceConfig.m_glDiscardFramebufferEXT = (PFNGLDISCARDFRAMEBUFFEREXTPROC) glewGetProcAddress ("glDiscardFramebufferEXT");
   }
 
   // GL_EXT_disjoint_timer_query
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query])
   {
     s_deviceConfig.m_glGenQueriesEXT = (PFNGLGENQUERIESEXTPROC) glewGetProcAddress ("glGenQueriesEXT");
     s_deviceConfig.m_glDeleteQueriesEXT = (PFNGLDELETEQUERIESEXTPROC) glewGetProcAddress ("glDeleteQueriesEXT");
@@ -8710,13 +9632,13 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_draw_buffers
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers])
   {
     s_deviceConfig.m_glDrawBuffersEXT = (PFNGLDRAWBUFFERSEXTPROC) glewGetProcAddress ("glDrawBuffersEXT");
   }
 
   // GL_EXT_draw_buffers_indexed
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed])
   {
     s_deviceConfig.m_glEnableiEXT = (PFNGLENABLEIEXTPROC) glewGetProcAddress ("glEnableiEXT");
     s_deviceConfig.m_glDisableiEXT = (PFNGLDISABLEIEXTPROC) glewGetProcAddress ("glDisableiEXT");
@@ -8729,7 +9651,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_draw_elements_base_vertex
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_elements_base_vertex])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_elements_base_vertex])
   {
     s_deviceConfig.m_glDrawElementsBaseVertexEXT = (PFNGLDRAWELEMENTSBASEVERTEXEXTPROC) glewGetProcAddress ("glDrawElementsBaseVertexEXT");
     s_deviceConfig.m_glDrawRangeElementsBaseVertexEXT = (PFNGLDRAWRANGEELEMENTSBASEVERTEXEXTPROC) glewGetProcAddress ("glDrawRangeElementsBaseVertexEXT");
@@ -8738,88 +9660,74 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_draw_instanced
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_instanced])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_instanced])
   {
     s_deviceConfig.m_glDrawArraysInstancedEXT = (PFNGLDRAWARRAYSINSTANCEDEXTPROC) glewGetProcAddress ("glDrawArraysInstancedEXT");
     s_deviceConfig.m_glDrawElementsInstancedEXT = (PFNGLDRAWELEMENTSINSTANCEDEXTPROC) glewGetProcAddress ("glDrawElementsInstancedEXT");
   }
 
   // GL_EXT_geometry_shader
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_geometry_shader])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_geometry_shader])
   {
     s_deviceConfig.m_glFramebufferTextureEXT = (PFNGLFRAMEBUFFERTEXTUREEXTPROC) glewGetProcAddress ("glFramebufferTextureEXT");
   }
 
   // GL_EXT_instanced_arrays
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_instanced_arrays])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_instanced_arrays])
   {
-    s_deviceConfig.m_glDrawArraysInstancedEXT = (PFNGLDRAWARRAYSINSTANCEDEXTPROC) glewGetProcAddress ("glDrawArraysInstancedEXT");
-    s_deviceConfig.m_glDrawElementsInstancedEXT = (PFNGLDRAWELEMENTSINSTANCEDEXTPROC) glewGetProcAddress ("glDrawElementsInstancedEXT");
     s_deviceConfig.m_glVertexAttribDivisorEXT = (PFNGLVERTEXATTRIBDIVISOREXTPROC) glewGetProcAddress ("glVertexAttribDivisorEXT");
   }
 
   // GL_EXT_map_buffer_range
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_map_buffer_range])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_map_buffer_range])
   {
     s_deviceConfig.m_glMapBufferRangeEXT = (PFNGLMAPBUFFERRANGEEXTPROC) glewGetProcAddress ("glMapBufferRangeEXT");
     s_deviceConfig.m_glFlushMappedBufferRangeEXT = (PFNGLFLUSHMAPPEDBUFFERRANGEEXTPROC) glewGetProcAddress ("glFlushMappedBufferRangeEXT");
   }
 
   // GL_EXT_multi_draw_arrays
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_arrays])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_arrays])
   {
     s_deviceConfig.m_glMultiDrawArraysEXT = (PFNGLMULTIDRAWARRAYSEXTPROC) glewGetProcAddress ("glMultiDrawArraysEXT");
     s_deviceConfig.m_glMultiDrawElementsEXT = (PFNGLMULTIDRAWELEMENTSEXTPROC) glewGetProcAddress ("glMultiDrawElementsEXT");
   }
 
   // GL_EXT_multi_draw_indirect
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_indirect])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_indirect])
   {
     s_deviceConfig.m_glMultiDrawArraysIndirectEXT = (PFNGLMULTIDRAWARRAYSINDIRECTEXTPROC) glewGetProcAddress ("glMultiDrawArraysIndirectEXT");
     s_deviceConfig.m_glMultiDrawElementsIndirectEXT = (PFNGLMULTIDRAWELEMENTSINDIRECTEXTPROC) glewGetProcAddress ("glMultiDrawElementsIndirectEXT");
   }
 
   // GL_EXT_multisampled_render_to_texture
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multisampled_render_to_texture])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multisampled_render_to_texture])
   {
     s_deviceConfig.m_glRenderbufferStorageMultisampleEXT = (PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC) glewGetProcAddress ("glRenderbufferStorageMultisampleEXT");
     s_deviceConfig.m_glFramebufferTexture2DMultisampleEXT = (PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEEXTPROC) glewGetProcAddress ("glFramebufferTexture2DMultisampleEXT");
   }
 
   // GL_EXT_multiview_draw_buffers
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multiview_draw_buffers])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multiview_draw_buffers])
   {
     s_deviceConfig.m_glReadBufferIndexedEXT = (PFNGLREADBUFFERINDEXEDEXTPROC) glewGetProcAddress ("glReadBufferIndexedEXT");
     s_deviceConfig.m_glDrawBuffersIndexedEXT = (PFNGLDRAWBUFFERSINDEXEDEXTPROC) glewGetProcAddress ("glDrawBuffersIndexedEXT");
     s_deviceConfig.m_glGetIntegeri_vEXT = (PFNGLGETINTEGERI_VEXTPROC) glewGetProcAddress ("glGetIntegeri_vEXT");
   }
 
-  // GL_EXT_occlusion_query_boolean
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_occlusion_query_boolean])
-  {
-    s_deviceConfig.m_glGenQueriesEXT = (PFNGLGENQUERIESEXTPROC) glewGetProcAddress ("glGenQueriesEXT");
-    s_deviceConfig.m_glDeleteQueriesEXT = (PFNGLDELETEQUERIESEXTPROC) glewGetProcAddress ("glDeleteQueriesEXT");
-    s_deviceConfig.m_glIsQueryEXT = (PFNGLISQUERYEXTPROC) glewGetProcAddress ("glIsQueryEXT");
-    s_deviceConfig.m_glBeginQueryEXT = (PFNGLBEGINQUERYEXTPROC) glewGetProcAddress ("glBeginQueryEXT");
-    s_deviceConfig.m_glEndQueryEXT = (PFNGLENDQUERYEXTPROC) glewGetProcAddress ("glEndQueryEXT");
-    s_deviceConfig.m_glGetQueryivEXT = (PFNGLGETQUERYIVEXTPROC) glewGetProcAddress ("glGetQueryivEXT");
-    s_deviceConfig.m_glGetQueryObjectuivEXT = (PFNGLGETQUERYOBJECTUIVEXTPROC) glewGetProcAddress ("glGetQueryObjectuivEXT");
-  }
-
   // GL_EXT_primitive_bounding_box
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_primitive_bounding_box])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_primitive_bounding_box])
   {
     s_deviceConfig.m_glPrimitiveBoundingBoxEXT = (PFNGLPRIMITIVEBOUNDINGBOXEXTPROC) glewGetProcAddress ("glPrimitiveBoundingBoxEXT");
   }
 
   // GL_EXT_raster_multisample
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_raster_multisample])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_raster_multisample])
   {
     s_deviceConfig.m_glRasterSamplesEXT = (PFNGLRASTERSAMPLESEXTPROC) glewGetProcAddress ("glRasterSamplesEXT");
   }
 
   // GL_EXT_robustness
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_robustness])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_robustness])
   {
     s_deviceConfig.m_glGetGraphicsResetStatusEXT = (PFNGLGETGRAPHICSRESETSTATUSEXTPROC) glewGetProcAddress ("glGetGraphicsResetStatusEXT");
     s_deviceConfig.m_glReadnPixelsEXT = (PFNGLREADNPIXELSEXTPROC) glewGetProcAddress ("glReadnPixelsEXT");
@@ -8828,7 +9736,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_separate_shader_objects
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects])
   {
     s_deviceConfig.m_glActiveShaderProgramEXT = (PFNGLACTIVESHADERPROGRAMEXTPROC) glewGetProcAddress ("glActiveShaderProgramEXT");
     s_deviceConfig.m_glBindProgramPipelineEXT = (PFNGLBINDPROGRAMPIPELINEEXTPROC) glewGetProcAddress ("glBindProgramPipelineEXT");
@@ -8863,7 +9771,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_separate_shader_objects
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects])
   {
     s_deviceConfig.m_glProgramUniform1uiEXT = (PFNGLPROGRAMUNIFORM1UIEXTPROC) glewGetProcAddress ("glProgramUniform1uiEXT");
     s_deviceConfig.m_glProgramUniform2uiEXT = (PFNGLPROGRAMUNIFORM2UIEXTPROC) glewGetProcAddress ("glProgramUniform2uiEXT");
@@ -8873,7 +9781,6 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glProgramUniform2uivEXT = (PFNGLPROGRAMUNIFORM2UIVEXTPROC) glewGetProcAddress ("glProgramUniform2uivEXT");
     s_deviceConfig.m_glProgramUniform3uivEXT = (PFNGLPROGRAMUNIFORM3UIVEXTPROC) glewGetProcAddress ("glProgramUniform3uivEXT");
     s_deviceConfig.m_glProgramUniform4uivEXT = (PFNGLPROGRAMUNIFORM4UIVEXTPROC) glewGetProcAddress ("glProgramUniform4uivEXT");
-    s_deviceConfig.m_glProgramUniformMatrix4fvEXT = (PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC) glewGetProcAddress ("glProgramUniformMatrix4fvEXT");
     s_deviceConfig.m_glProgramUniformMatrix2x3fvEXT = (PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC) glewGetProcAddress ("glProgramUniformMatrix2x3fvEXT");
     s_deviceConfig.m_glProgramUniformMatrix3x2fvEXT = (PFNGLPROGRAMUNIFORMMATRIX3X2FVEXTPROC) glewGetProcAddress ("glProgramUniformMatrix3x2fvEXT");
     s_deviceConfig.m_glProgramUniformMatrix2x4fvEXT = (PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC) glewGetProcAddress ("glProgramUniformMatrix2x4fvEXT");
@@ -8883,19 +9790,19 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_sparse_texture
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_sparse_texture])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_sparse_texture])
   {
     s_deviceConfig.m_glTexPageCommitmentARB = (PFNGLTEXPAGECOMMITMENTARBPROC) glewGetProcAddress ("glTexPageCommitmentARB");
   }
 
   // GL_EXT_tessellation_shader
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_tessellation_shader])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_tessellation_shader])
   {
     s_deviceConfig.m_glPatchParameteriEXT = (PFNGLPATCHPARAMETERIEXTPROC) glewGetProcAddress ("glPatchParameteriEXT");
   }
 
   // GL_EXT_texture_border_clamp
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp])
   {
     s_deviceConfig.m_glTexParameterIivEXT = (PFNGLTEXPARAMETERIIVEXTPROC) glewGetProcAddress ("glTexParameterIivEXT");
     s_deviceConfig.m_glTexParameterIuivEXT = (PFNGLTEXPARAMETERIUIVEXTPROC) glewGetProcAddress ("glTexParameterIuivEXT");
@@ -8908,20 +9815,14 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_texture_buffer
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_buffer])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_buffer])
   {
     s_deviceConfig.m_glTexBufferEXT = (PFNGLTEXBUFFEREXTPROC) glewGetProcAddress ("glTexBufferEXT");
     s_deviceConfig.m_glTexBufferRangeEXT = (PFNGLTEXBUFFERRANGEEXTPROC) glewGetProcAddress ("glTexBufferRangeEXT");
   }
 
-  // GL_EXT_texture_filter_minmax
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_filter_minmax])
-  {
-    s_deviceConfig.m_glRasterSamplesEXT = (PFNGLRASTERSAMPLESEXTPROC) glewGetProcAddress ("glRasterSamplesEXT");
-  }
-
   // GL_EXT_texture_storage
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_storage])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_storage])
   {
     s_deviceConfig.m_glTexStorage1DEXT = (PFNGLTEXSTORAGE1DEXTPROC) glewGetProcAddress ("glTexStorage1DEXT");
     s_deviceConfig.m_glTexStorage2DEXT = (PFNGLTEXSTORAGE2DEXTPROC) glewGetProcAddress ("glTexStorage2DEXT");
@@ -8929,7 +9830,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_texture_storage
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_storage])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_storage])
   {
     s_deviceConfig.m_glTextureStorage1DEXT = (PFNGLTEXTURESTORAGE1DEXTPROC) glewGetProcAddress ("glTextureStorage1DEXT");
     s_deviceConfig.m_glTextureStorage2DEXT = (PFNGLTEXTURESTORAGE2DEXTPROC) glewGetProcAddress ("glTextureStorage2DEXT");
@@ -8937,20 +9838,20 @@ void glew::gles::Initialise ()
   }
 
   // GL_EXT_texture_view
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_view])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_view])
   {
     s_deviceConfig.m_glTextureViewEXT = (PFNGLTEXTUREVIEWEXTPROC) glewGetProcAddress ("glTextureViewEXT");
   }
 
   // GL_IMG_multisampled_render_to_texture
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_IMG_multisampled_render_to_texture])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_IMG_multisampled_render_to_texture])
   {
     s_deviceConfig.m_glRenderbufferStorageMultisampleIMG = (PFNGLRENDERBUFFERSTORAGEMULTISAMPLEIMGPROC) glewGetProcAddress ("glRenderbufferStorageMultisampleIMG");
     s_deviceConfig.m_glFramebufferTexture2DMultisampleIMG = (PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC) glewGetProcAddress ("glFramebufferTexture2DMultisampleIMG");
   }
 
   // GL_INTEL_performance_query
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_INTEL_performance_query])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_INTEL_performance_query])
   {
     s_deviceConfig.m_glBeginPerfQueryINTEL = (PFNGLBEGINPERFQUERYINTELPROC) glewGetProcAddress ("glBeginPerfQueryINTEL");
     s_deviceConfig.m_glCreatePerfQueryINTEL = (PFNGLCREATEPERFQUERYINTELPROC) glewGetProcAddress ("glCreatePerfQueryINTEL");
@@ -8965,13 +9866,13 @@ void glew::gles::Initialise ()
   }
 
   // GL_KHR_blend_equation_advanced
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_KHR_blend_equation_advanced])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_KHR_blend_equation_advanced])
   {
     s_deviceConfig.m_glBlendBarrierKHR = (PFNGLBLENDBARRIERKHRPROC) glewGetProcAddress ("glBlendBarrierKHR");
   }
 
   // GL_KHR_debug
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_KHR_debug])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_KHR_debug])
   {
     s_deviceConfig.m_glDebugMessageControlKHR = (PFNGLDEBUGMESSAGECONTROLKHRPROC) glewGetProcAddress ("glDebugMessageControlKHR");
     s_deviceConfig.m_glDebugMessageInsertKHR = (PFNGLDEBUGMESSAGEINSERTKHRPROC) glewGetProcAddress ("glDebugMessageInsertKHR");
@@ -8987,7 +9888,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_KHR_robustness
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_KHR_robustness])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_KHR_robustness])
   {
     s_deviceConfig.m_glGetGraphicsResetStatusKHR = (PFNGLGETGRAPHICSRESETSTATUSKHRPROC) glewGetProcAddress ("glGetGraphicsResetStatusKHR");
     s_deviceConfig.m_glReadnPixelsKHR = (PFNGLREADNPIXELSKHRPROC) glewGetProcAddress ("glReadnPixelsKHR");
@@ -8997,7 +9898,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_NV_bindless_texture
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_bindless_texture])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_bindless_texture])
   {
     s_deviceConfig.m_glGetTextureHandleNV = (PFNGLGETTEXTUREHANDLENVPROC) glewGetProcAddress ("glGetTextureHandleNV");
     s_deviceConfig.m_glGetTextureSamplerHandleNV = (PFNGLGETTEXTURESAMPLERHANDLENVPROC) glewGetProcAddress ("glGetTextureSamplerHandleNV");
@@ -9015,53 +9916,53 @@ void glew::gles::Initialise ()
   }
 
   // GL_NV_blend_equation_advanced
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_blend_equation_advanced])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_blend_equation_advanced])
   {
     s_deviceConfig.m_glBlendParameteriNV = (PFNGLBLENDPARAMETERINVPROC) glewGetProcAddress ("glBlendParameteriNV");
     s_deviceConfig.m_glBlendBarrierNV = (PFNGLBLENDBARRIERNVPROC) glewGetProcAddress ("glBlendBarrierNV");
   }
 
   // GL_NV_conditional_render
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_conditional_render])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_conditional_render])
   {
     s_deviceConfig.m_glBeginConditionalRenderNV = (PFNGLBEGINCONDITIONALRENDERNVPROC) glewGetProcAddress ("glBeginConditionalRenderNV");
     s_deviceConfig.m_glEndConditionalRenderNV = (PFNGLENDCONDITIONALRENDERNVPROC) glewGetProcAddress ("glEndConditionalRenderNV");
   }
 
   // GL_NV_conservative_raster
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_conservative_raster])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_conservative_raster])
   {
     s_deviceConfig.m_glSubpixelPrecisionBiasNV = (PFNGLSUBPIXELPRECISIONBIASNVPROC) glewGetProcAddress ("glSubpixelPrecisionBiasNV");
   }
 
   // GL_NV_copy_buffer
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_copy_buffer])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_copy_buffer])
   {
     s_deviceConfig.m_glCopyBufferSubDataNV = (PFNGLCOPYBUFFERSUBDATANVPROC) glewGetProcAddress ("glCopyBufferSubDataNV");
   }
 
   // GL_NV_coverage_sample
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_coverage_sample])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_coverage_sample])
   {
     s_deviceConfig.m_glCoverageMaskNV = (PFNGLCOVERAGEMASKNVPROC) glewGetProcAddress ("glCoverageMaskNV");
     s_deviceConfig.m_glCoverageOperationNV = (PFNGLCOVERAGEOPERATIONNVPROC) glewGetProcAddress ("glCoverageOperationNV");
   }
 
   // GL_NV_draw_buffers
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_draw_buffers])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_draw_buffers])
   {
     s_deviceConfig.m_glDrawBuffersNV = (PFNGLDRAWBUFFERSNVPROC) glewGetProcAddress ("glDrawBuffersNV");
   }
 
   // GL_NV_draw_instanced
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_draw_instanced])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_draw_instanced])
   {
     s_deviceConfig.m_glDrawArraysInstancedNV = (PFNGLDRAWARRAYSINSTANCEDNVPROC) glewGetProcAddress ("glDrawArraysInstancedNV");
     s_deviceConfig.m_glDrawElementsInstancedNV = (PFNGLDRAWELEMENTSINSTANCEDNVPROC) glewGetProcAddress ("glDrawElementsInstancedNV");
   }
 
   // GL_NV_fence
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_fence])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_fence])
   {
     s_deviceConfig.m_glDeleteFencesNV = (PFNGLDELETEFENCESNVPROC) glewGetProcAddress ("glDeleteFencesNV");
     s_deviceConfig.m_glGenFencesNV = (PFNGLGENFENCESNVPROC) glewGetProcAddress ("glGenFencesNV");
@@ -9073,46 +9974,45 @@ void glew::gles::Initialise ()
   }
 
   // GL_NV_fragment_coverage_to_color
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_fragment_coverage_to_color])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_fragment_coverage_to_color])
   {
     s_deviceConfig.m_glFragmentCoverageColorNV = (PFNGLFRAGMENTCOVERAGECOLORNVPROC) glewGetProcAddress ("glFragmentCoverageColorNV");
   }
 
   // GL_NV_framebuffer_blit
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_framebuffer_blit])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_framebuffer_blit])
   {
     s_deviceConfig.m_glBlitFramebufferNV = (PFNGLBLITFRAMEBUFFERNVPROC) glewGetProcAddress ("glBlitFramebufferNV");
   }
 
   // GL_NV_framebuffer_mixed_samples
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_framebuffer_mixed_samples])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_framebuffer_mixed_samples])
   {
-    s_deviceConfig.m_glRasterSamplesEXT = (PFNGLRASTERSAMPLESEXTPROC) glewGetProcAddress ("glRasterSamplesEXT");
     s_deviceConfig.m_glCoverageModulationTableNV = (PFNGLCOVERAGEMODULATIONTABLENVPROC) glewGetProcAddress ("glCoverageModulationTableNV");
     s_deviceConfig.m_glGetCoverageModulationTableNV = (PFNGLGETCOVERAGEMODULATIONTABLENVPROC) glewGetProcAddress ("glGetCoverageModulationTableNV");
     s_deviceConfig.m_glCoverageModulationNV = (PFNGLCOVERAGEMODULATIONNVPROC) glewGetProcAddress ("glCoverageModulationNV");
   }
 
   // GL_NV_framebuffer_multisample
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_framebuffer_multisample])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_framebuffer_multisample])
   {
     s_deviceConfig.m_glRenderbufferStorageMultisampleNV = (PFNGLRENDERBUFFERSTORAGEMULTISAMPLENVPROC) glewGetProcAddress ("glRenderbufferStorageMultisampleNV");
   }
 
   // GL_NV_instanced_arrays
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_instanced_arrays])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_instanced_arrays])
   {
     s_deviceConfig.m_glVertexAttribDivisorNV = (PFNGLVERTEXATTRIBDIVISORNVPROC) glewGetProcAddress ("glVertexAttribDivisorNV");
   }
 
   // GL_NV_internalformat_sample_query
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_internalformat_sample_query])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_internalformat_sample_query])
   {
     s_deviceConfig.m_glGetInternalformatSampleivNV = (PFNGLGETINTERNALFORMATSAMPLEIVNVPROC) glewGetProcAddress ("glGetInternalformatSampleivNV");
   }
 
   // GL_NV_non_square_matrices
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices])
   {
     s_deviceConfig.m_glUniformMatrix2x3fvNV = (PFNGLUNIFORMMATRIX2X3FVNVPROC) glewGetProcAddress ("glUniformMatrix2x3fvNV");
     s_deviceConfig.m_glUniformMatrix3x2fvNV = (PFNGLUNIFORMMATRIX3X2FVNVPROC) glewGetProcAddress ("glUniformMatrix3x2fvNV");
@@ -9123,7 +10023,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_NV_path_rendering
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_path_rendering])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_path_rendering])
   {
     s_deviceConfig.m_glGenPathsNV = (PFNGLGENPATHSNVPROC) glewGetProcAddress ("glGenPathsNV");
     s_deviceConfig.m_glDeletePathsNV = (PFNGLDELETEPATHSNVPROC) glewGetProcAddress ("glDeletePathsNV");
@@ -9170,7 +10070,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_NV_path_rendering
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_path_rendering])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_path_rendering])
   {
     s_deviceConfig.m_glMatrixLoad3x2fNV = (PFNGLMATRIXLOAD3X2FNVPROC) glewGetProcAddress ("glMatrixLoad3x2fNV");
     s_deviceConfig.m_glMatrixLoad3x3fNV = (PFNGLMATRIXLOAD3X3FNVPROC) glewGetProcAddress ("glMatrixLoad3x3fNV");
@@ -9186,7 +10086,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_NV_path_rendering
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_path_rendering])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_path_rendering])
   {
     s_deviceConfig.m_glPathGlyphIndexArrayNV = (PFNGLPATHGLYPHINDEXARRAYNVPROC) glewGetProcAddress ("glPathGlyphIndexArrayNV");
     s_deviceConfig.m_glPathMemoryGlyphIndexArrayNV = (PFNGLPATHMEMORYGLYPHINDEXARRAYNVPROC) glewGetProcAddress ("glPathMemoryGlyphIndexArrayNV");
@@ -9195,19 +10095,19 @@ void glew::gles::Initialise ()
   }
 
   // GL_NV_polygon_mode
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_polygon_mode])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_polygon_mode])
   {
     s_deviceConfig.m_glPolygonModeNV = (PFNGLPOLYGONMODENVPROC) glewGetProcAddress ("glPolygonModeNV");
   }
 
   // GL_NV_read_buffer
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_read_buffer])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_read_buffer])
   {
     s_deviceConfig.m_glReadBufferNV = (PFNGLREADBUFFERNVPROC) glewGetProcAddress ("glReadBufferNV");
   }
 
   // GL_NV_sample_locations
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_sample_locations])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_sample_locations])
   {
     s_deviceConfig.m_glFramebufferSampleLocationsfvNV = (PFNGLFRAMEBUFFERSAMPLELOCATIONSFVNVPROC) glewGetProcAddress ("glFramebufferSampleLocationsfvNV");
     s_deviceConfig.m_glNamedFramebufferSampleLocationsfvNV = (PFNGLNAMEDFRAMEBUFFERSAMPLELOCATIONSFVNVPROC) glewGetProcAddress ("glNamedFramebufferSampleLocationsfvNV");
@@ -9215,7 +10115,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_NV_viewport_array
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_viewport_array])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_viewport_array])
   {
     s_deviceConfig.m_glViewportArrayvNV = (PFNGLVIEWPORTARRAYVNVPROC) glewGetProcAddress ("glViewportArrayvNV");
     s_deviceConfig.m_glViewportIndexedfNV = (PFNGLVIEWPORTINDEXEDFNVPROC) glewGetProcAddress ("glViewportIndexedfNV");
@@ -9232,20 +10132,20 @@ void glew::gles::Initialise ()
   }
 
   // GL_OES_EGL_image
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_EGL_image])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_EGL_image])
   {
     s_deviceConfig.m_glEGLImageTargetTexture2DOES = (PFNGLEGLIMAGETARGETTEXTURE2DOESPROC) glewGetProcAddress ("glEGLImageTargetTexture2DOES");
     s_deviceConfig.m_glEGLImageTargetRenderbufferStorageOES = (PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC) glewGetProcAddress ("glEGLImageTargetRenderbufferStorageOES");
   }
 
   // GL_OES_copy_image
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_copy_image])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_copy_image])
   {
     s_deviceConfig.m_glCopyImageSubDataOES = (PFNGLCOPYIMAGESUBDATAOESPROC) glewGetProcAddress ("glCopyImageSubDataOES");
   }
 
   // GL_OES_draw_buffers_indexed
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed])
   {
     s_deviceConfig.m_glEnableiOES = (PFNGLENABLEIOESPROC) glewGetProcAddress ("glEnableiOES");
     s_deviceConfig.m_glDisableiOES = (PFNGLDISABLEIOESPROC) glewGetProcAddress ("glDisableiOES");
@@ -9258,7 +10158,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_OES_draw_elements_base_vertex
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_draw_elements_base_vertex])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_draw_elements_base_vertex])
   {
     s_deviceConfig.m_glDrawElementsBaseVertexOES = (PFNGLDRAWELEMENTSBASEVERTEXOESPROC) glewGetProcAddress ("glDrawElementsBaseVertexOES");
     s_deviceConfig.m_glDrawRangeElementsBaseVertexOES = (PFNGLDRAWRANGEELEMENTSBASEVERTEXOESPROC) glewGetProcAddress ("glDrawRangeElementsBaseVertexOES");
@@ -9267,20 +10167,20 @@ void glew::gles::Initialise ()
   }
 
   // GL_OES_geometry_shader
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_geometry_shader])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_geometry_shader])
   {
     s_deviceConfig.m_glFramebufferTextureOES = (PFNGLFRAMEBUFFERTEXTUREOESPROC) glewGetProcAddress ("glFramebufferTextureOES");
   }
 
   // GL_OES_get_program_binary
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_get_program_binary])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_get_program_binary])
   {
     s_deviceConfig.m_glGetProgramBinaryOES = (PFNGLGETPROGRAMBINARYOESPROC) glewGetProcAddress ("glGetProgramBinaryOES");
     s_deviceConfig.m_glProgramBinaryOES = (PFNGLPROGRAMBINARYOESPROC) glewGetProcAddress ("glProgramBinaryOES");
   }
 
   // GL_OES_mapbuffer
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_mapbuffer])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_mapbuffer])
   {
     s_deviceConfig.m_glMapBufferOES = (PFNGLMAPBUFFEROESPROC) glewGetProcAddress ("glMapBufferOES");
     s_deviceConfig.m_glUnmapBufferOES = (PFNGLUNMAPBUFFEROESPROC) glewGetProcAddress ("glUnmapBufferOES");
@@ -9288,25 +10188,25 @@ void glew::gles::Initialise ()
   }
 
   // GL_OES_primitive_bounding_box
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_primitive_bounding_box])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_primitive_bounding_box])
   {
     s_deviceConfig.m_glPrimitiveBoundingBoxOES = (PFNGLPRIMITIVEBOUNDINGBOXOESPROC) glewGetProcAddress ("glPrimitiveBoundingBoxOES");
   }
 
   // GL_OES_sample_shading
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_sample_shading])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_sample_shading])
   {
     s_deviceConfig.m_glMinSampleShadingOES = (PFNGLMINSAMPLESHADINGOESPROC) glewGetProcAddress ("glMinSampleShadingOES");
   }
 
   // GL_OES_tessellation_shader
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_tessellation_shader])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_tessellation_shader])
   {
     s_deviceConfig.m_glPatchParameteriOES = (PFNGLPATCHPARAMETERIOESPROC) glewGetProcAddress ("glPatchParameteriOES");
   }
 
   // GL_OES_texture_3D
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_3D])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_3D])
   {
     s_deviceConfig.m_glTexImage3DOES = (PFNGLTEXIMAGE3DOESPROC) glewGetProcAddress ("glTexImage3DOES");
     s_deviceConfig.m_glTexSubImage3DOES = (PFNGLTEXSUBIMAGE3DOESPROC) glewGetProcAddress ("glTexSubImage3DOES");
@@ -9317,7 +10217,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_OES_texture_border_clamp
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp])
   {
     s_deviceConfig.m_glTexParameterIivOES = (PFNGLTEXPARAMETERIIVOESPROC) glewGetProcAddress ("glTexParameterIivOES");
     s_deviceConfig.m_glTexParameterIuivOES = (PFNGLTEXPARAMETERIUIVOESPROC) glewGetProcAddress ("glTexParameterIuivOES");
@@ -9330,26 +10230,26 @@ void glew::gles::Initialise ()
   }
 
   // GL_OES_texture_buffer
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_buffer])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_buffer])
   {
     s_deviceConfig.m_glTexBufferOES = (PFNGLTEXBUFFEROESPROC) glewGetProcAddress ("glTexBufferOES");
     s_deviceConfig.m_glTexBufferRangeOES = (PFNGLTEXBUFFERRANGEOESPROC) glewGetProcAddress ("glTexBufferRangeOES");
   }
 
   // GL_OES_texture_storage_multisample_2d_array
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_storage_multisample_2d_array])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_storage_multisample_2d_array])
   {
     s_deviceConfig.m_glTexStorage3DMultisampleOES = (PFNGLTEXSTORAGE3DMULTISAMPLEOESPROC) glewGetProcAddress ("glTexStorage3DMultisampleOES");
   }
 
   // GL_OES_texture_view
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_view])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_texture_view])
   {
     s_deviceConfig.m_glTextureViewOES = (PFNGLTEXTUREVIEWOESPROC) glewGetProcAddress ("glTextureViewOES");
   }
 
   // GL_OES_vertex_array_object
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object])
   {
     s_deviceConfig.m_glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC) glewGetProcAddress ("glBindVertexArrayOES");
     s_deviceConfig.m_glDeleteVertexArraysOES = (PFNGLDELETEVERTEXARRAYSOESPROC) glewGetProcAddress ("glDeleteVertexArraysOES");
@@ -9358,19 +10258,19 @@ void glew::gles::Initialise ()
   }
 
   // GL_OVR_multiview
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_OVR_multiview])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_OVR_multiview])
   {
     s_deviceConfig.m_glFramebufferTextureMultiviewOVR = (PFNGLFRAMEBUFFERTEXTUREMULTIVIEWOVRPROC) glewGetProcAddress ("glFramebufferTextureMultiviewOVR");
   }
 
   // GL_QCOM_alpha_test
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_alpha_test])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_alpha_test])
   {
     s_deviceConfig.m_glAlphaFuncQCOM = (PFNGLALPHAFUNCQCOMPROC) glewGetProcAddress ("glAlphaFuncQCOM");
   }
 
   // GL_QCOM_driver_control
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_driver_control])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_driver_control])
   {
     s_deviceConfig.m_glGetDriverControlsQCOM = (PFNGLGETDRIVERCONTROLSQCOMPROC) glewGetProcAddress ("glGetDriverControlsQCOM");
     s_deviceConfig.m_glGetDriverControlStringQCOM = (PFNGLGETDRIVERCONTROLSTRINGQCOMPROC) glewGetProcAddress ("glGetDriverControlStringQCOM");
@@ -9379,7 +10279,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_QCOM_extended_get
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_extended_get])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_extended_get])
   {
     s_deviceConfig.m_glExtGetTexturesQCOM = (PFNGLEXTGETTEXTURESQCOMPROC) glewGetProcAddress ("glExtGetTexturesQCOM");
     s_deviceConfig.m_glExtGetBuffersQCOM = (PFNGLEXTGETBUFFERSQCOMPROC) glewGetProcAddress ("glExtGetBuffersQCOM");
@@ -9392,7 +10292,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_QCOM_extended_get2
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_extended_get2])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_extended_get2])
   {
     s_deviceConfig.m_glExtGetShadersQCOM = (PFNGLEXTGETSHADERSQCOMPROC) glewGetProcAddress ("glExtGetShadersQCOM");
     s_deviceConfig.m_glExtGetProgramsQCOM = (PFNGLEXTGETPROGRAMSQCOMPROC) glewGetProcAddress ("glExtGetProgramsQCOM");
@@ -9401,7 +10301,7 @@ void glew::gles::Initialise ()
   }
 
   // GL_QCOM_tiled_rendering
-  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_tiled_rendering])
+  //if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_tiled_rendering])
   {
     s_deviceConfig.m_glStartTilingQCOM = (PFNGLSTARTTILINGQCOMPROC) glewGetProcAddress ("glStartTilingQCOM");
     s_deviceConfig.m_glEndTilingQCOM = (PFNGLENDTILINGQCOMPROC) glewGetProcAddress ("glEndTilingQCOM");

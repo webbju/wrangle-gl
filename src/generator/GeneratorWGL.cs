@@ -28,7 +28,10 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public GeneratorWGL (string filename)
-      : base (filename, new string [] { "wgl" })
+      : base (filename, new string [] []
+      {
+        new string []{ "wgl", "1.0" }
+      })
     {
       m_funcApiEntryPrefix = "WINGDIAPI";
 
@@ -238,29 +241,6 @@ typedef void GLvoid;
           XmlNode featureNode = keypair.Value;
 
           // 
-          // Evaluate whether this feature is part of the 'base spec'.
-          // 
-
-          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
-
-          bool baseSpecFeatureSet = false;
-
-          if (featureNumberNode != null)
-          {
-            float version = m_baseSpecVersion;
-
-            if (float.TryParse (featureNumberNode.Value, out version))
-            {
-              baseSpecFeatureSet = version <= m_baseSpecVersion;
-            }
-          }
-
-          if (baseSpecFeatureSet)
-          {
-            continue; // Skip any base spec versions.
-          }
-
-          // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
 
@@ -273,12 +253,41 @@ typedef void GLvoid;
 
           foreach (XmlNode requireNode in requireNodes)
           {
+            string api = m_api [0];
+
             XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
-            if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
+            if (requireApiNode != null)
             {
-              continue;
+              api = requireApiNode.Value;
+
+              if (!IsApiSupported (requireApiNode.Value))
+              {
+                continue; // Skip non-supported APIs.
+              }
             }
+
+            // 
+            // Evaluate whether this feature is part of the 'base spec'.
+            // 
+
+            XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+            bool baseSpecFeatureSet = false;
+
+            if (featureNumberNode != null)
+            {
+              float version = m_apiBaseSpecVersion [api];
+
+              if (float.TryParse (featureNumberNode.Value, out version))
+              {
+                baseSpecFeatureSet = version <= m_apiBaseSpecVersion [api];
+              }
+            }
+
+            // 
+            // Export code for seeding available function/command addresses.
+            // 
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -287,27 +296,42 @@ typedef void GLvoid;
               continue;
             }
 
-            writer.Write (string.Format ("  // {0}\n", keypair.Key));
-
-            writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
-
-            /*foreach (XmlNode commandNode in requireCommandNodes)
-            {
-              string command = commandNode.Attributes ["name"].Value;
-
-              writer.Write (string.Format ("    #undef {0}\n", command));
-            }*/
+            HashSet<string> requiredCommands = new HashSet<string> ();
 
             foreach (XmlNode commandNode in requireCommandNodes)
             {
               string command = commandNode.Attributes ["name"].Value;
 
-              string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+              if (definedPrototypes.Contains (command))
+              {
+                continue;
+              }
 
-              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) wglGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+              definedPrototypes.Add (command);
+
+              if (baseSpecFeatureSet)
+              {
+                continue; // Skip any base spec versions.
+              }
+
+              requiredCommands.Add (command);
             }
 
-            writer.Write ("  }\n\n");
+            if (requiredCommands.Count > 0)
+            {
+              writer.Write (string.Format ("  // {0}\n", keypair.Key));
+
+              writer.Write (string.Format ("  //if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
+
+              foreach (string command in requiredCommands)
+              {
+                string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+                writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+              }
+
+              writer.Write ("  }\n\n");
+            }
           }
         }
       }

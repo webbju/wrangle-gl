@@ -27,7 +27,10 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public GeneratorGLX (string filename)
-      : base (filename, new string [] { "glx" })
+      : base (filename, new string [] []
+      {
+        new string []{ "glx", "1.0" }
+      })
     {
 
     }

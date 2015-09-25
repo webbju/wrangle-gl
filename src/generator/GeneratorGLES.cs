@@ -28,10 +28,13 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public GeneratorGLES (string filename)
-      : base (filename, new string [] { "gles", /*"gles1",*/ "gles2" })
+      : base (filename, new string [] []
+      {
+        new string [] {"gles", "2.0"},
+        //new string [] {"gles1", "2.0"},
+        new string [] {"gles2", "2.0"},
+      })
     {
-      m_baseSpecVersion = 2.0f;
-
       m_funcApiEntryPrefix = "GL_APICALL";
 
       m_funcApiEntryPostfix = "GL_APIENTRY";
@@ -53,22 +56,11 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
-      //writer.Write ("\n#ifdef GL_GLEXT_PROTOTYPES\n#undef GL_GLEXT_PROTOTYPES\n#endif\n");
-
       writer.Write (@"
 #if defined (_WIN32)
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN 1
-#define _WIN32_LEAN_AND_MEAN 1
-#endif
-#include <windows.h>
 #define GL_APICALL WINGDIAPI
 #define GL_APIENTRY WINAPI
 #define GL_APIENTRYP WINAPI*
-#ifdef _WIN32_LEAN_AND_MEAN
-#undef WIN32_LEAN_AND_MEAN
-#undef _WIN32_LEAN_AND_MEAN
-#endif
 #endif
 
 ");
@@ -118,8 +110,6 @@ namespace wrangle_gl_generator
   // Determine current driver's feature reporting.
   // 
 
-  #undef glGetString
-
   const unsigned char *glVersion = glGetString (GL_VERSION);
 
   if (!glVersion)
@@ -131,17 +121,28 @@ namespace wrangle_gl_generator
 
   if (glVersionLen)
   {
+    unsigned int major = 0, minor = 0;
+
 #if _WIN32
   #define strncasecmp _strnicmp
 #endif
 
-    const bool es20Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 2"", 11) == 0);
-    const bool es30Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 3"", 11) == 0);
-    const bool es31Supported = (strncasecmp ((const char *) glVersion, ""OpenGL ES 3.1"", 13) == 0);
+    const bool openGlEsSupported = (strncasecmp ((const char *) glVersion, ""OpenGL ES"", 9) == 0);
 
-    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = es20Supported;
-    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = es30Supported;
-    s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = es31Supported;
+    const char *divisor = strchr ((const char *) glVersion, '.');
+
+    if (divisor)
+    {
+      major = (*(char *) (divisor - 1)) - '0';
+      minor = (*(char *) (divisor + 1)) - '0';
+    }
+
+    if (openGlEsSupported)
+    {
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = ((major >= 2));
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = ((major >= 3));
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = ((major >= 3) && (minor >= 1));
+    }
   }
 
   // 
@@ -254,29 +255,6 @@ namespace wrangle_gl_generator
           XmlNode featureNode = keypair.Value;
 
           // 
-          // Evaluate whether this feature is part of the 'base spec'.
-          // 
-
-          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
-
-          bool baseSpecFeatureSet = false;
-
-          if (featureNumberNode != null)
-          {
-            float version = m_baseSpecVersion;
-
-            if (float.TryParse (featureNumberNode.Value, out version))
-            {
-              baseSpecFeatureSet = version <= m_baseSpecVersion;
-            }
-          }
-
-          if (baseSpecFeatureSet)
-          {
-            continue; // Skip any base spec versions.
-          }
-
-          // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
 
@@ -289,12 +267,41 @@ namespace wrangle_gl_generator
 
           foreach (XmlNode requireNode in requireNodes)
           {
+            string api = m_api [0];
+
             XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
-            if ((requireApiNode != null) && (!IsApiSupported (requireApiNode.Value)))
+            if (requireApiNode != null)
             {
-              continue;
+              api = requireApiNode.Value;
+
+              if (!IsApiSupported (requireApiNode.Value))
+              {
+                continue; // Skip non-supported APIs.
+              }
             }
+
+            // 
+            // Evaluate whether this feature is part of the 'base spec'.
+            // 
+
+            XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+            bool baseSpecFeatureSet = false;
+
+            if (featureNumberNode != null)
+            {
+              float version = m_apiBaseSpecVersion [api];
+
+              if (float.TryParse (featureNumberNode.Value, out version))
+              {
+                baseSpecFeatureSet = version <= m_apiBaseSpecVersion [api];
+              }
+            }
+
+            // 
+            // Export code for seeding available function/command addresses.
+            // 
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -303,27 +310,42 @@ namespace wrangle_gl_generator
               continue;
             }
 
-            writer.Write (string.Format ("  // {0}\n", keypair.Key));
-
-            writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
-
-            /*foreach (XmlNode commandNode in requireCommandNodes)
-            {
-              string command = commandNode.Attributes ["name"].Value;
-
-              writer.Write (string.Format ("    #undef {0}\n", command));
-            }*/
+            HashSet<string> requiredCommands = new HashSet<string> ();
 
             foreach (XmlNode commandNode in requireCommandNodes)
             {
               string command = commandNode.Attributes ["name"].Value;
 
-              string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+              if (definedPrototypes.Contains (command))
+              {
+                continue;
+              }
 
-              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+              definedPrototypes.Add (command);
+
+              if (baseSpecFeatureSet)
+              {
+                continue; // Skip any base spec versions.
+              }
+
+              requiredCommands.Add (command);
             }
 
-            writer.Write ("  }\n\n");
+            if (requiredCommands.Count > 0)
+            {
+              writer.Write (string.Format ("  // {0}\n", keypair.Key));
+
+              writer.Write (string.Format ("  //if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
+
+              foreach (string command in requiredCommands)
+              {
+                string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+                writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+              }
+
+              writer.Write ("  }\n\n");
+            }
           }
         }
       }
