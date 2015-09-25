@@ -264,6 +264,8 @@ void glew::egl::Initialise (EGLDisplay display)
       {
         HashSet<string> definedPrototypes = new HashSet<string> ();
 
+        Dictionary <string, HashSet <string>> featureBasedPrototypes = new Dictionary<string,HashSet<string>> ();
+
         foreach (var keypair in featureAndExtensionNodes)
         {
           XmlNode featureNode = keypair.Value;
@@ -324,7 +326,12 @@ void glew::egl::Initialise (EGLDisplay display)
               continue;
             }
 
-            HashSet<string> requiredCommands = new HashSet<string> ();
+            HashSet<string> requiredCommands;
+
+            if (!featureBasedPrototypes.TryGetValue (keypair.Key, out requiredCommands))
+            {
+              requiredCommands = new HashSet<string> ();
+            }
 
             foreach (XmlNode commandNode in requireCommandNodes)
             {
@@ -345,21 +352,35 @@ void glew::egl::Initialise (EGLDisplay display)
               requiredCommands.Add (command);
             }
 
-            if (requiredCommands.Count > 0)
+            featureBasedPrototypes [keypair.Key] = requiredCommands;
+          }
+        }
+
+        // 
+        // Output condensed feature organised prototypes.
+        // 
+
+        if (featureBasedPrototypes.Count > 0)
+        {
+          foreach (var keypair in featureBasedPrototypes)
+          {
+            if (keypair.Value.Count == 0)
             {
-              writer.Write (string.Format ("  // {0}\n", keypair.Key));
-
-              writer.Write (string.Format ("  //if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
-
-              foreach (string command in requiredCommands)
-              {
-                string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
-
-                writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
-              }
-
-              writer.Write ("  }\n\n");
+              continue;
             }
+
+            writer.Write (string.Format ("  // {0}\n", keypair.Key));
+
+            writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
+
+            foreach (string command in keypair.Value)
+            {
+              string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
+            }
+
+            writer.Write ("  }\n\n");
           }
         }
       }
