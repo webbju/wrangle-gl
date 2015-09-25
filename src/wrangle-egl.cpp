@@ -1720,7 +1720,7 @@ void glew::egl::Initialise (EGLDisplay display)
   s_deviceConfig.m_featureSupported [GLEW_EGL_TIZEN_image_native_surface] = (supportedExtensions.find ("EGL_TIZEN_image_native_surface") != supportedExtensions.end ());
 
   // EGL_VERSION_1_1
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_1])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_1])
   {
     s_deviceConfig.m_eglBindTexImage = (PFNEGLBINDTEXIMAGEPROC) glewGetProcAddress ("eglBindTexImage");
     s_deviceConfig.m_eglReleaseTexImage = (PFNEGLRELEASETEXIMAGEPROC) glewGetProcAddress ("eglReleaseTexImage");
@@ -1729,7 +1729,7 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_VERSION_1_2
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_2])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_2])
   {
     s_deviceConfig.m_eglBindAPI = (PFNEGLBINDAPIPROC) glewGetProcAddress ("eglBindAPI");
     s_deviceConfig.m_eglQueryAPI = (PFNEGLQUERYAPIPROC) glewGetProcAddress ("eglQueryAPI");
@@ -1739,61 +1739,46 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_VERSION_1_4
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_4])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_4])
   {
     s_deviceConfig.m_eglGetCurrentContext = (PFNEGLGETCURRENTCONTEXTPROC) glewGetProcAddress ("eglGetCurrentContext");
   }
 
   // EGL_VERSION_1_5
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5])
   {
     s_deviceConfig.m_eglCreateSync = (PFNEGLCREATESYNCPROC) glewGetProcAddress ("eglCreateSync");
     s_deviceConfig.m_eglDestroySync = (PFNEGLDESTROYSYNCPROC) glewGetProcAddress ("eglDestroySync");
     s_deviceConfig.m_eglClientWaitSync = (PFNEGLCLIENTWAITSYNCPROC) glewGetProcAddress ("eglClientWaitSync");
     s_deviceConfig.m_eglGetSyncAttrib = (PFNEGLGETSYNCATTRIBPROC) glewGetProcAddress ("eglGetSyncAttrib");
-  }
-
-  // EGL_VERSION_1_5
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5])
-  {
     s_deviceConfig.m_eglCreateImage = (PFNEGLCREATEIMAGEPROC) glewGetProcAddress ("eglCreateImage");
     s_deviceConfig.m_eglDestroyImage = (PFNEGLDESTROYIMAGEPROC) glewGetProcAddress ("eglDestroyImage");
-  }
-
-  // EGL_VERSION_1_5
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5])
-  {
     s_deviceConfig.m_eglGetPlatformDisplay = (PFNEGLGETPLATFORMDISPLAYPROC) glewGetProcAddress ("eglGetPlatformDisplay");
     s_deviceConfig.m_eglCreatePlatformWindowSurface = (PFNEGLCREATEPLATFORMWINDOWSURFACEPROC) glewGetProcAddress ("eglCreatePlatformWindowSurface");
     s_deviceConfig.m_eglCreatePlatformPixmapSurface = (PFNEGLCREATEPLATFORMPIXMAPSURFACEPROC) glewGetProcAddress ("eglCreatePlatformPixmapSurface");
-  }
-
-  // EGL_VERSION_1_5
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5])
-  {
     s_deviceConfig.m_eglWaitSync = (PFNEGLWAITSYNCPROC) glewGetProcAddress ("eglWaitSync");
   }
 
   // EGL_ANDROID_blob_cache
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_blob_cache])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_blob_cache])
   {
     s_deviceConfig.m_eglSetBlobCacheFuncsANDROID = (PFNEGLSETBLOBCACHEFUNCSANDROIDPROC) glewGetProcAddress ("eglSetBlobCacheFuncsANDROID");
   }
 
   // EGL_ANDROID_native_fence_sync
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_native_fence_sync])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_ANDROID_native_fence_sync])
   {
     s_deviceConfig.m_eglDupNativeFenceFDANDROID = (PFNEGLDUPNATIVEFENCEFDANDROIDPROC) glewGetProcAddress ("eglDupNativeFenceFDANDROID");
   }
 
   // EGL_ANGLE_query_surface_pointer
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_ANGLE_query_surface_pointer])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_ANGLE_query_surface_pointer])
   {
     s_deviceConfig.m_eglQuerySurfacePointerANGLE = (PFNEGLQUERYSURFACEPOINTERANGLEPROC) glewGetProcAddress ("eglQuerySurfacePointerANGLE");
   }
 
   // EGL_EXT_device_base
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_base])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_base])
   {
     s_deviceConfig.m_eglQueryDeviceAttribEXT = (PFNEGLQUERYDEVICEATTRIBEXTPROC) glewGetProcAddress ("eglQueryDeviceAttribEXT");
     s_deviceConfig.m_eglQueryDeviceStringEXT = (PFNEGLQUERYDEVICESTRINGEXTPROC) glewGetProcAddress ("eglQueryDeviceStringEXT");
@@ -1802,7 +1787,7 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_EXT_output_base
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_output_base])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_output_base])
   {
     s_deviceConfig.m_eglGetOutputLayersEXT = (PFNEGLGETOUTPUTLAYERSEXTPROC) glewGetProcAddress ("eglGetOutputLayersEXT");
     s_deviceConfig.m_eglGetOutputPortsEXT = (PFNEGLGETOUTPUTPORTSEXTPROC) glewGetProcAddress ("eglGetOutputPortsEXT");
@@ -1815,7 +1800,7 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_EXT_platform_base
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_platform_base])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_platform_base])
   {
     s_deviceConfig.m_eglGetPlatformDisplayEXT = (PFNEGLGETPLATFORMDISPLAYEXTPROC) glewGetProcAddress ("eglGetPlatformDisplayEXT");
     s_deviceConfig.m_eglCreatePlatformWindowSurfaceEXT = (PFNEGLCREATEPLATFORMWINDOWSURFACEEXTPROC) glewGetProcAddress ("eglCreatePlatformWindowSurfaceEXT");
@@ -1823,31 +1808,31 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_EXT_stream_consumer_egloutput
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_stream_consumer_egloutput])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_stream_consumer_egloutput])
   {
     s_deviceConfig.m_eglStreamConsumerOutputEXT = (PFNEGLSTREAMCONSUMEROUTPUTEXTPROC) glewGetProcAddress ("eglStreamConsumerOutputEXT");
   }
 
   // EGL_EXT_swap_buffers_with_damage
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_swap_buffers_with_damage])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_swap_buffers_with_damage])
   {
     s_deviceConfig.m_eglSwapBuffersWithDamageEXT = (PFNEGLSWAPBUFFERSWITHDAMAGEEXTPROC) glewGetProcAddress ("eglSwapBuffersWithDamageEXT");
   }
 
   // EGL_HI_clientpixmap
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_HI_clientpixmap])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_HI_clientpixmap])
   {
     s_deviceConfig.m_eglCreatePixmapSurfaceHI = (PFNEGLCREATEPIXMAPSURFACEHIPROC) glewGetProcAddress ("eglCreatePixmapSurfaceHI");
   }
 
   // EGL_KHR_cl_event2
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_cl_event2])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_cl_event2])
   {
     s_deviceConfig.m_eglCreateSync64KHR = (PFNEGLCREATESYNC64KHRPROC) glewGetProcAddress ("eglCreateSync64KHR");
   }
 
   // EGL_KHR_fence_sync
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_fence_sync])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_fence_sync])
   {
     s_deviceConfig.m_eglCreateSyncKHR = (PFNEGLCREATESYNCKHRPROC) glewGetProcAddress ("eglCreateSyncKHR");
     s_deviceConfig.m_eglDestroySyncKHR = (PFNEGLDESTROYSYNCKHRPROC) glewGetProcAddress ("eglDestroySyncKHR");
@@ -1856,39 +1841,39 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_KHR_image
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_image])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_image])
   {
     s_deviceConfig.m_eglCreateImageKHR = (PFNEGLCREATEIMAGEKHRPROC) glewGetProcAddress ("eglCreateImageKHR");
     s_deviceConfig.m_eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC) glewGetProcAddress ("eglDestroyImageKHR");
   }
 
   // EGL_KHR_lock_surface
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface])
   {
     s_deviceConfig.m_eglLockSurfaceKHR = (PFNEGLLOCKSURFACEKHRPROC) glewGetProcAddress ("eglLockSurfaceKHR");
     s_deviceConfig.m_eglUnlockSurfaceKHR = (PFNEGLUNLOCKSURFACEKHRPROC) glewGetProcAddress ("eglUnlockSurfaceKHR");
   }
 
   // EGL_KHR_lock_surface3
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface3])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface3])
   {
     s_deviceConfig.m_eglQuerySurface64KHR = (PFNEGLQUERYSURFACE64KHRPROC) glewGetProcAddress ("eglQuerySurface64KHR");
   }
 
   // EGL_KHR_partial_update
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_partial_update])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_partial_update])
   {
     s_deviceConfig.m_eglSetDamageRegionKHR = (PFNEGLSETDAMAGEREGIONKHRPROC) glewGetProcAddress ("eglSetDamageRegionKHR");
   }
 
   // EGL_KHR_reusable_sync
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_reusable_sync])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_reusable_sync])
   {
     s_deviceConfig.m_eglSignalSyncKHR = (PFNEGLSIGNALSYNCKHRPROC) glewGetProcAddress ("eglSignalSyncKHR");
   }
 
   // EGL_KHR_stream
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream])
   {
     s_deviceConfig.m_eglCreateStreamKHR = (PFNEGLCREATESTREAMKHRPROC) glewGetProcAddress ("eglCreateStreamKHR");
     s_deviceConfig.m_eglDestroyStreamKHR = (PFNEGLDESTROYSTREAMKHRPROC) glewGetProcAddress ("eglDestroyStreamKHR");
@@ -1898,7 +1883,7 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_KHR_stream_consumer_gltexture
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_consumer_gltexture])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_consumer_gltexture])
   {
     s_deviceConfig.m_eglStreamConsumerGLTextureExternalKHR = (PFNEGLSTREAMCONSUMERGLTEXTUREEXTERNALKHRPROC) glewGetProcAddress ("eglStreamConsumerGLTextureExternalKHR");
     s_deviceConfig.m_eglStreamConsumerAcquireKHR = (PFNEGLSTREAMCONSUMERACQUIREKHRPROC) glewGetProcAddress ("eglStreamConsumerAcquireKHR");
@@ -1906,64 +1891,64 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_KHR_stream_cross_process_fd
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_cross_process_fd])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_cross_process_fd])
   {
     s_deviceConfig.m_eglGetStreamFileDescriptorKHR = (PFNEGLGETSTREAMFILEDESCRIPTORKHRPROC) glewGetProcAddress ("eglGetStreamFileDescriptorKHR");
     s_deviceConfig.m_eglCreateStreamFromFileDescriptorKHR = (PFNEGLCREATESTREAMFROMFILEDESCRIPTORKHRPROC) glewGetProcAddress ("eglCreateStreamFromFileDescriptorKHR");
   }
 
   // EGL_KHR_stream_fifo
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_fifo])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_fifo])
   {
     s_deviceConfig.m_eglQueryStreamTimeKHR = (PFNEGLQUERYSTREAMTIMEKHRPROC) glewGetProcAddress ("eglQueryStreamTimeKHR");
   }
 
   // EGL_KHR_stream_producer_eglsurface
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_producer_eglsurface])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_stream_producer_eglsurface])
   {
     s_deviceConfig.m_eglCreateStreamProducerSurfaceKHR = (PFNEGLCREATESTREAMPRODUCERSURFACEKHRPROC) glewGetProcAddress ("eglCreateStreamProducerSurfaceKHR");
   }
 
   // EGL_KHR_swap_buffers_with_damage
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_swap_buffers_with_damage])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_swap_buffers_with_damage])
   {
     s_deviceConfig.m_eglSwapBuffersWithDamageKHR = (PFNEGLSWAPBUFFERSWITHDAMAGEKHRPROC) glewGetProcAddress ("eglSwapBuffersWithDamageKHR");
   }
 
   // EGL_KHR_wait_sync
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_wait_sync])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_wait_sync])
   {
     s_deviceConfig.m_eglWaitSyncKHR = (PFNEGLWAITSYNCKHRPROC) glewGetProcAddress ("eglWaitSyncKHR");
   }
 
   // EGL_MESA_drm_image
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_MESA_drm_image])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_MESA_drm_image])
   {
     s_deviceConfig.m_eglCreateDRMImageMESA = (PFNEGLCREATEDRMIMAGEMESAPROC) glewGetProcAddress ("eglCreateDRMImageMESA");
     s_deviceConfig.m_eglExportDRMImageMESA = (PFNEGLEXPORTDRMIMAGEMESAPROC) glewGetProcAddress ("eglExportDRMImageMESA");
   }
 
   // EGL_MESA_image_dma_buf_export
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_MESA_image_dma_buf_export])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_MESA_image_dma_buf_export])
   {
     s_deviceConfig.m_eglExportDMABUFImageQueryMESA = (PFNEGLEXPORTDMABUFIMAGEQUERYMESAPROC) glewGetProcAddress ("eglExportDMABUFImageQueryMESA");
     s_deviceConfig.m_eglExportDMABUFImageMESA = (PFNEGLEXPORTDMABUFIMAGEMESAPROC) glewGetProcAddress ("eglExportDMABUFImageMESA");
   }
 
   // EGL_NOK_swap_region
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_NOK_swap_region])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NOK_swap_region])
   {
     s_deviceConfig.m_eglSwapBuffersRegionNOK = (PFNEGLSWAPBUFFERSREGIONNOKPROC) glewGetProcAddress ("eglSwapBuffersRegionNOK");
   }
 
   // EGL_NOK_swap_region2
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_NOK_swap_region2])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NOK_swap_region2])
   {
     s_deviceConfig.m_eglSwapBuffersRegion2NOK = (PFNEGLSWAPBUFFERSREGION2NOKPROC) glewGetProcAddress ("eglSwapBuffersRegion2NOK");
   }
 
   // EGL_NV_native_query
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_native_query])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_native_query])
   {
     s_deviceConfig.m_eglQueryNativeDisplayNV = (PFNEGLQUERYNATIVEDISPLAYNVPROC) glewGetProcAddress ("eglQueryNativeDisplayNV");
     s_deviceConfig.m_eglQueryNativeWindowNV = (PFNEGLQUERYNATIVEWINDOWNVPROC) glewGetProcAddress ("eglQueryNativeWindowNV");
@@ -1971,19 +1956,19 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_NV_post_sub_buffer
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_post_sub_buffer])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_post_sub_buffer])
   {
     s_deviceConfig.m_eglPostSubBufferNV = (PFNEGLPOSTSUBBUFFERNVPROC) glewGetProcAddress ("eglPostSubBufferNV");
   }
 
   // EGL_NV_stream_sync
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_stream_sync])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_stream_sync])
   {
     s_deviceConfig.m_eglCreateStreamSyncNV = (PFNEGLCREATESTREAMSYNCNVPROC) glewGetProcAddress ("eglCreateStreamSyncNV");
   }
 
   // EGL_NV_sync
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_sync])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_sync])
   {
     s_deviceConfig.m_eglCreateFenceSyncNV = (PFNEGLCREATEFENCESYNCNVPROC) glewGetProcAddress ("eglCreateFenceSyncNV");
     s_deviceConfig.m_eglDestroySyncNV = (PFNEGLDESTROYSYNCNVPROC) glewGetProcAddress ("eglDestroySyncNV");
@@ -1994,7 +1979,7 @@ void glew::egl::Initialise (EGLDisplay display)
   }
 
   // EGL_NV_system_time
-  //if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_system_time])
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_NV_system_time])
   {
     s_deviceConfig.m_eglGetSystemTimeFrequencyNV = (PFNEGLGETSYSTEMTIMEFREQUENCYNVPROC) glewGetProcAddress ("eglGetSystemTimeFrequencyNV");
     s_deviceConfig.m_eglGetSystemTimeNV = (PFNEGLGETSYSTEMTIMENVPROC) glewGetProcAddress ("eglGetSystemTimeNV");

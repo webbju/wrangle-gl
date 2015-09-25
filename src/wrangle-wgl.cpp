@@ -2197,13 +2197,13 @@ void glew::wgl::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_WGL_OML_sync_control] = (supportedExtensions.find ("WGL_OML_sync_control") != supportedExtensions.end ());
 
   // WGL_3DL_stereo_control
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_3DL_stereo_control])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_3DL_stereo_control])
   {
     s_deviceConfig.m_wglSetStereoEmitterState3DL = (PFNWGLSETSTEREOEMITTERSTATE3DLPROC) glewGetProcAddress ("wglSetStereoEmitterState3DL");
   }
 
   // WGL_AMD_gpu_association
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_AMD_gpu_association])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_AMD_gpu_association])
   {
     s_deviceConfig.m_wglGetGPUIDsAMD = (PFNWGLGETGPUIDSAMDPROC) glewGetProcAddress ("wglGetGPUIDsAMD");
     s_deviceConfig.m_wglGetGPUInfoAMD = (PFNWGLGETGPUINFOAMDPROC) glewGetProcAddress ("wglGetGPUInfoAMD");
@@ -2217,7 +2217,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_ARB_buffer_region
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_buffer_region])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_buffer_region])
   {
     s_deviceConfig.m_wglCreateBufferRegionARB = (PFNWGLCREATEBUFFERREGIONARBPROC) glewGetProcAddress ("wglCreateBufferRegionARB");
     s_deviceConfig.m_wglDeleteBufferRegionARB = (PFNWGLDELETEBUFFERREGIONARBPROC) glewGetProcAddress ("wglDeleteBufferRegionARB");
@@ -2226,26 +2226,26 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_ARB_create_context
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context])
   {
     s_deviceConfig.m_wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC) glewGetProcAddress ("wglCreateContextAttribsARB");
   }
 
   // WGL_ARB_extensions_string
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_extensions_string])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_extensions_string])
   {
     s_deviceConfig.m_wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) glewGetProcAddress ("wglGetExtensionsStringARB");
   }
 
   // WGL_ARB_make_current_read
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_make_current_read])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_make_current_read])
   {
     s_deviceConfig.m_wglMakeContextCurrentARB = (PFNWGLMAKECONTEXTCURRENTARBPROC) glewGetProcAddress ("wglMakeContextCurrentARB");
     s_deviceConfig.m_wglGetCurrentReadDCARB = (PFNWGLGETCURRENTREADDCARBPROC) glewGetProcAddress ("wglGetCurrentReadDCARB");
   }
 
   // WGL_ARB_pbuffer
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pbuffer])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pbuffer])
   {
     s_deviceConfig.m_wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC) glewGetProcAddress ("wglCreatePbufferARB");
     s_deviceConfig.m_wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC) glewGetProcAddress ("wglGetPbufferDCARB");
@@ -2255,7 +2255,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_ARB_pixel_format
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pixel_format])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_pixel_format])
   {
     s_deviceConfig.m_wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC) glewGetProcAddress ("wglGetPixelFormatAttribivARB");
     s_deviceConfig.m_wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC) glewGetProcAddress ("wglGetPixelFormatAttribfvARB");
@@ -2263,7 +2263,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_ARB_render_texture
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_render_texture])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_render_texture])
   {
     s_deviceConfig.m_wglBindTexImageARB = (PFNWGLBINDTEXIMAGEARBPROC) glewGetProcAddress ("wglBindTexImageARB");
     s_deviceConfig.m_wglReleaseTexImageARB = (PFNWGLRELEASETEXIMAGEARBPROC) glewGetProcAddress ("wglReleaseTexImageARB");
@@ -2271,7 +2271,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_EXT_display_color_table
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_display_color_table])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_display_color_table])
   {
     s_deviceConfig.m_wglCreateDisplayColorTableEXT = (PFNWGLCREATEDISPLAYCOLORTABLEEXTPROC) glewGetProcAddress ("wglCreateDisplayColorTableEXT");
     s_deviceConfig.m_wglLoadDisplayColorTableEXT = (PFNWGLLOADDISPLAYCOLORTABLEEXTPROC) glewGetProcAddress ("wglLoadDisplayColorTableEXT");
@@ -2280,20 +2280,20 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_EXT_extensions_string
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_extensions_string])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_extensions_string])
   {
     s_deviceConfig.m_wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) glewGetProcAddress ("wglGetExtensionsStringEXT");
   }
 
   // WGL_EXT_make_current_read
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_make_current_read])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_make_current_read])
   {
     s_deviceConfig.m_wglMakeContextCurrentEXT = (PFNWGLMAKECONTEXTCURRENTEXTPROC) glewGetProcAddress ("wglMakeContextCurrentEXT");
     s_deviceConfig.m_wglGetCurrentReadDCEXT = (PFNWGLGETCURRENTREADDCEXTPROC) glewGetProcAddress ("wglGetCurrentReadDCEXT");
   }
 
   // WGL_EXT_pbuffer
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pbuffer])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pbuffer])
   {
     s_deviceConfig.m_wglCreatePbufferEXT = (PFNWGLCREATEPBUFFEREXTPROC) glewGetProcAddress ("wglCreatePbufferEXT");
     s_deviceConfig.m_wglGetPbufferDCEXT = (PFNWGLGETPBUFFERDCEXTPROC) glewGetProcAddress ("wglGetPbufferDCEXT");
@@ -2303,7 +2303,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_EXT_pixel_format
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pixel_format])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_pixel_format])
   {
     s_deviceConfig.m_wglGetPixelFormatAttribivEXT = (PFNWGLGETPIXELFORMATATTRIBIVEXTPROC) glewGetProcAddress ("wglGetPixelFormatAttribivEXT");
     s_deviceConfig.m_wglGetPixelFormatAttribfvEXT = (PFNWGLGETPIXELFORMATATTRIBFVEXTPROC) glewGetProcAddress ("wglGetPixelFormatAttribfvEXT");
@@ -2311,21 +2311,21 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_EXT_swap_control
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_swap_control])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_swap_control])
   {
     s_deviceConfig.m_wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC) glewGetProcAddress ("wglSwapIntervalEXT");
     s_deviceConfig.m_wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC) glewGetProcAddress ("wglGetSwapIntervalEXT");
   }
 
   // WGL_I3D_digital_video_control
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_digital_video_control])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_digital_video_control])
   {
     s_deviceConfig.m_wglGetDigitalVideoParametersI3D = (PFNWGLGETDIGITALVIDEOPARAMETERSI3DPROC) glewGetProcAddress ("wglGetDigitalVideoParametersI3D");
     s_deviceConfig.m_wglSetDigitalVideoParametersI3D = (PFNWGLSETDIGITALVIDEOPARAMETERSI3DPROC) glewGetProcAddress ("wglSetDigitalVideoParametersI3D");
   }
 
   // WGL_I3D_gamma
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_gamma])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_gamma])
   {
     s_deviceConfig.m_wglGetGammaTableParametersI3D = (PFNWGLGETGAMMATABLEPARAMETERSI3DPROC) glewGetProcAddress ("wglGetGammaTableParametersI3D");
     s_deviceConfig.m_wglSetGammaTableParametersI3D = (PFNWGLSETGAMMATABLEPARAMETERSI3DPROC) glewGetProcAddress ("wglSetGammaTableParametersI3D");
@@ -2334,7 +2334,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_I3D_genlock
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_genlock])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_genlock])
   {
     s_deviceConfig.m_wglEnableGenlockI3D = (PFNWGLENABLEGENLOCKI3DPROC) glewGetProcAddress ("wglEnableGenlockI3D");
     s_deviceConfig.m_wglDisableGenlockI3D = (PFNWGLDISABLEGENLOCKI3DPROC) glewGetProcAddress ("wglDisableGenlockI3D");
@@ -2351,7 +2351,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_I3D_image_buffer
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_image_buffer])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_image_buffer])
   {
     s_deviceConfig.m_wglCreateImageBufferI3D = (PFNWGLCREATEIMAGEBUFFERI3DPROC) glewGetProcAddress ("wglCreateImageBufferI3D");
     s_deviceConfig.m_wglDestroyImageBufferI3D = (PFNWGLDESTROYIMAGEBUFFERI3DPROC) glewGetProcAddress ("wglDestroyImageBufferI3D");
@@ -2360,7 +2360,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_I3D_swap_frame_lock
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_lock])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_lock])
   {
     s_deviceConfig.m_wglEnableFrameLockI3D = (PFNWGLENABLEFRAMELOCKI3DPROC) glewGetProcAddress ("wglEnableFrameLockI3D");
     s_deviceConfig.m_wglDisableFrameLockI3D = (PFNWGLDISABLEFRAMELOCKI3DPROC) glewGetProcAddress ("wglDisableFrameLockI3D");
@@ -2369,7 +2369,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_I3D_swap_frame_usage
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_usage])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_I3D_swap_frame_usage])
   {
     s_deviceConfig.m_wglGetFrameUsageI3D = (PFNWGLGETFRAMEUSAGEI3DPROC) glewGetProcAddress ("wglGetFrameUsageI3D");
     s_deviceConfig.m_wglBeginFrameTrackingI3D = (PFNWGLBEGINFRAMETRACKINGI3DPROC) glewGetProcAddress ("wglBeginFrameTrackingI3D");
@@ -2378,19 +2378,19 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_NV_copy_image
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_copy_image])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_copy_image])
   {
     s_deviceConfig.m_wglCopyImageSubDataNV = (PFNWGLCOPYIMAGESUBDATANVPROC) glewGetProcAddress ("wglCopyImageSubDataNV");
   }
 
   // WGL_NV_delay_before_swap
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_delay_before_swap])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_delay_before_swap])
   {
     s_deviceConfig.m_wglDelayBeforeSwapNV = (PFNWGLDELAYBEFORESWAPNVPROC) glewGetProcAddress ("wglDelayBeforeSwapNV");
   }
 
   // WGL_NV_DX_interop
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_DX_interop])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_DX_interop])
   {
     s_deviceConfig.m_wglDXSetResourceShareHandleNV = (PFNWGLDXSETRESOURCESHAREHANDLENVPROC) glewGetProcAddress ("wglDXSetResourceShareHandleNV");
     s_deviceConfig.m_wglDXOpenDeviceNV = (PFNWGLDXOPENDEVICENVPROC) glewGetProcAddress ("wglDXOpenDeviceNV");
@@ -2403,7 +2403,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_NV_gpu_affinity
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_gpu_affinity])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_gpu_affinity])
   {
     s_deviceConfig.m_wglEnumGpusNV = (PFNWGLENUMGPUSNVPROC) glewGetProcAddress ("wglEnumGpusNV");
     s_deviceConfig.m_wglEnumGpuDevicesNV = (PFNWGLENUMGPUDEVICESNVPROC) glewGetProcAddress ("wglEnumGpuDevicesNV");
@@ -2413,7 +2413,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_NV_present_video
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_present_video])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_present_video])
   {
     s_deviceConfig.m_wglEnumerateVideoDevicesNV = (PFNWGLENUMERATEVIDEODEVICESNVPROC) glewGetProcAddress ("wglEnumerateVideoDevicesNV");
     s_deviceConfig.m_wglBindVideoDeviceNV = (PFNWGLBINDVIDEODEVICENVPROC) glewGetProcAddress ("wglBindVideoDeviceNV");
@@ -2421,7 +2421,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_NV_swap_group
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_swap_group])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_swap_group])
   {
     s_deviceConfig.m_wglJoinSwapGroupNV = (PFNWGLJOINSWAPGROUPNVPROC) glewGetProcAddress ("wglJoinSwapGroupNV");
     s_deviceConfig.m_wglBindSwapBarrierNV = (PFNWGLBINDSWAPBARRIERNVPROC) glewGetProcAddress ("wglBindSwapBarrierNV");
@@ -2432,7 +2432,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_NV_video_capture
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_capture])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_capture])
   {
     s_deviceConfig.m_wglBindVideoCaptureDeviceNV = (PFNWGLBINDVIDEOCAPTUREDEVICENVPROC) glewGetProcAddress ("wglBindVideoCaptureDeviceNV");
     s_deviceConfig.m_wglEnumerateVideoCaptureDevicesNV = (PFNWGLENUMERATEVIDEOCAPTUREDEVICESNVPROC) glewGetProcAddress ("wglEnumerateVideoCaptureDevicesNV");
@@ -2442,7 +2442,7 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_NV_video_output
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_output])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_output])
   {
     s_deviceConfig.m_wglGetVideoDeviceNV = (PFNWGLGETVIDEODEVICENVPROC) glewGetProcAddress ("wglGetVideoDeviceNV");
     s_deviceConfig.m_wglReleaseVideoDeviceNV = (PFNWGLRELEASEVIDEODEVICENVPROC) glewGetProcAddress ("wglReleaseVideoDeviceNV");
@@ -2453,14 +2453,14 @@ void glew::wgl::Initialise ()
   }
 
   // WGL_NV_vertex_array_range
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_vertex_array_range])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_NV_vertex_array_range])
   {
     s_deviceConfig.m_wglAllocateMemoryNV = (PFNWGLALLOCATEMEMORYNVPROC) glewGetProcAddress ("wglAllocateMemoryNV");
     s_deviceConfig.m_wglFreeMemoryNV = (PFNWGLFREEMEMORYNVPROC) glewGetProcAddress ("wglFreeMemoryNV");
   }
 
   // WGL_OML_sync_control
-  //if (s_deviceConfig.m_featureSupported [GLEW_WGL_OML_sync_control])
+  if (s_deviceConfig.m_featureSupported [GLEW_WGL_OML_sync_control])
   {
     s_deviceConfig.m_wglGetSyncValuesOML = (PFNWGLGETSYNCVALUESOMLPROC) glewGetProcAddress ("wglGetSyncValuesOML");
     s_deviceConfig.m_wglGetMscRateOML = (PFNWGLGETMSCRATEOMLPROC) glewGetProcAddress ("wglGetMscRateOML");
