@@ -116,32 +116,33 @@ typedef void GLvoid;
   // Determine current driver's feature reporting.
   // 
 
-  PFNWGLGETEXTENSIONSSTRINGARBPROC _wglewGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) wglGetProcAddress (""wglGetExtensionsStringARB"");
-
-  PFNWGLGETEXTENSIONSSTRINGEXTPROC _wglewGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) wglGetProcAddress (""wglGetExtensionsStringEXT"");
-
   s_deviceConfig.m_featureSupported [GLEW_WGL_VERSION_1_0] = true;
 
   // 
   // Evaluate extension support.
   // 
 
+
   std::unordered_set <std::string> supportedExtensions;
 
   const unsigned char *wglExtensions = NULL;
 
-  if (_wglewGetExtensionsStringEXT != NULL)
+  PFNWGLGETEXTENSIONSSTRINGARBPROC _wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) wglGetProcAddress (""wglGetExtensionsStringARB"");
+
+  PFNWGLGETEXTENSIONSSTRINGEXTPROC _wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) wglGetProcAddress (""wglGetExtensionsStringEXT"");
+
+  if (_wglGetExtensionsStringEXT != NULL)
   {
-    wglExtensions = (const unsigned char*) _wglewGetExtensionsStringEXT ();
+    wglExtensions = (const unsigned char*) _wglGetExtensionsStringEXT ();
   }
-  else if (_wglewGetExtensionsStringARB != NULL)
+  else if (_wglGetExtensionsStringARB != NULL)
   {
-    wglExtensions = (const unsigned char*) _wglewGetExtensionsStringARB (wglGetCurrentDC());
+    wglExtensions = (const unsigned char*) _wglGetExtensionsStringARB (wglGetCurrentDC());
   }
 
   if (!wglExtensions)
   {
-    wglExtensions = (const unsigned char*) """"; // Protect against some drivers will happily passing back NULL.
+    wglExtensions = (const unsigned char*) """"; // Protect against some drivers will happily pass back NULL.
   }
 
   const size_t wglExtensionsLen = strlen ((const char *) wglExtensions);

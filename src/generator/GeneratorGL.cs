@@ -147,7 +147,7 @@ typedef void* GLeglImageOES;
 
   if (!glVersion)
   {
-    glVersion = (const unsigned char*) """"; // Protect against some drivers will happily passing back NULL.
+    glVersion = (const unsigned char*) """"; // Protect against some drivers will happily pass back NULL.
   }
 
   const size_t glVersionLen = strlen ((const char *) glVersion);
@@ -209,7 +209,7 @@ typedef void* GLeglImageOES;
 
   if (!glExtensions)
   {
-    glExtensions = (const unsigned char*) """"; // Protect against some drivers will happily passing back NULL.
+    glExtensions = (const unsigned char*) """"; // Protect against some drivers will happily pass back NULL.
   }
 
   const size_t glExtensionsLen = strlen ((const char *) glExtensions);

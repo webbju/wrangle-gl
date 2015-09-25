@@ -11,11 +11,9 @@ add_executable ("test-egl"
   "include/wrangle.h" 
   "include/wrangle-egl.h" 
   "include/wrangle-gl.h"
-  "include/wrangle-glcore.h"
   "include/wrangle-gles.h"
   "src/wrangle-egl.cpp"
   "src/wrangle-gl.cpp"
-  "src/wrangle-glcore.cpp"
   "src/wrangle-gles.cpp"
   "tests/test-egl.cpp")
 
@@ -41,11 +39,9 @@ add_executable ("test-wgl"
   "include/wrangle.h" 
   "include/wrangle-wgl.h" 
   "include/wrangle-gl.h"
-  "include/wrangle-glcore.h"
   "include/wrangle-gles.h"
   "src/wrangle-wgl.cpp"
   "src/wrangle-gl.cpp"
-  "src/wrangle-glcore.cpp"
   "src/wrangle-gles.cpp"
   "tests/test-wgl.cpp")
 

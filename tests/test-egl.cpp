@@ -4,8 +4,6 @@
 
 #if defined(GLEW_USE_OPENGL)
 #include <wrangle-gl.h>
-#elif defined(GLEW_USE_OPENGL_CORE)
-#include <wrangle-glcore.h>
 #elif defined(GLEW_USE_OPENGL_ES)
 #include <wrangle-gles.h>
 #endif
@@ -26,33 +24,71 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+static const char* DescribeGLError (GLenum err)
+{
+  const char *errorText = "Unknown";
+
+  return errorText;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static const char* DescribeEGLError (EGLint err)
 {
   const char *errorText = "Unknown";
 
   switch (err)
   {
-  case EGL_TRUE:                errorText = "EGL_TRUE"; break;
-  case EGL_FALSE:               errorText = "EGL_FALSE"; break;
+    case EGL_TRUE:                errorText = "EGL_TRUE"; break;
+    case EGL_FALSE:               errorText = "EGL_FALSE"; break;
     // Error codes:
-  case EGL_NOT_INITIALIZED:     errorText = "EGL_NOT_INITIALIZED"; break;
-  case EGL_BAD_ACCESS:          errorText = "EGL_BAD_ACCESS"; break;
-  case EGL_BAD_ALLOC:           errorText = "EGL_BAD_ALLOC"; break;
-  case EGL_BAD_ATTRIBUTE:       errorText = "EGL_BAD_ATTRIBUTE"; break;
-  case EGL_BAD_CONTEXT:         errorText = "EGL_BAD_CONTEXT"; break;
-  case EGL_BAD_CONFIG:          errorText = "EGL_BAD_CONFIG"; break;
-  case EGL_BAD_CURRENT_SURFACE: errorText = "EGL_BAD_CURRENT_SURFACE"; break;
-  case EGL_BAD_DISPLAY:         errorText = "EGL_BAD_DISPLAY"; break;
-  case EGL_BAD_SURFACE:         errorText = "EGL_BAD_SURFACE"; break;
-  case EGL_BAD_MATCH:           errorText = "EGL_BAD_MATCH"; break;
-  case EGL_BAD_PARAMETER:       errorText = "EGL_BAD_PARAMETER"; break;
-  case EGL_BAD_NATIVE_PIXMAP:   errorText = "EGL_BAD_NATIVE_PIXMAP"; break;
-  case EGL_BAD_NATIVE_WINDOW:   errorText = "EGL_BAD_NATIVE_WINDOW"; break;
-  case EGL_CONTEXT_LOST:        errorText = "EGL_CONTEXT_LOST"; break;
-  case EGL_SUCCESS:             errorText = "EGL_SUCCESS"; break;
+    case EGL_NOT_INITIALIZED:     errorText = "EGL_NOT_INITIALIZED"; break;
+    case EGL_BAD_ACCESS:          errorText = "EGL_BAD_ACCESS"; break;
+    case EGL_BAD_ALLOC:           errorText = "EGL_BAD_ALLOC"; break;
+    case EGL_BAD_ATTRIBUTE:       errorText = "EGL_BAD_ATTRIBUTE"; break;
+    case EGL_BAD_CONTEXT:         errorText = "EGL_BAD_CONTEXT"; break;
+    case EGL_BAD_CONFIG:          errorText = "EGL_BAD_CONFIG"; break;
+    case EGL_BAD_CURRENT_SURFACE: errorText = "EGL_BAD_CURRENT_SURFACE"; break;
+    case EGL_BAD_DISPLAY:         errorText = "EGL_BAD_DISPLAY"; break;
+    case EGL_BAD_SURFACE:         errorText = "EGL_BAD_SURFACE"; break;
+    case EGL_BAD_MATCH:           errorText = "EGL_BAD_MATCH"; break;
+    case EGL_BAD_PARAMETER:       errorText = "EGL_BAD_PARAMETER"; break;
+    case EGL_BAD_NATIVE_PIXMAP:   errorText = "EGL_BAD_NATIVE_PIXMAP"; break;
+    case EGL_BAD_NATIVE_WINDOW:   errorText = "EGL_BAD_NATIVE_WINDOW"; break;
+    case EGL_CONTEXT_LOST:        errorText = "EGL_CONTEXT_LOST"; break;
+    case EGL_SUCCESS:             errorText = "EGL_SUCCESS"; break;
   }
 
   return errorText;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+static void CheckGLError (const bool shouldAssert, const char* file, const int line)
+{
+  GLenum err = glGetError ();
+
+  if (err != GL_NO_ERROR)
+  {
+    char buffer [512];
+
+    sprintf (buffer, "[%s : %d] glGetError returned %d (%s)", file, line, err, DescribeGLError (err));
+
+    OutputDebugString (buffer);
+
+    fprintf (stderr, buffer);
+
+    fflush (stderr);
+  }
+
+  if (shouldAssert)
+  {
+    assert (err == GL_NO_ERROR);
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +106,10 @@ static void CheckEGLError (const bool shouldAssert, const char* file, const int 
     sprintf (buffer, "[%s : %d] eglGetError returned %d (%s)", file, line, err, DescribeEGLError (err));
 
     OutputDebugString (buffer);
+
+    fprintf (stderr, buffer);
+
+    fflush (stderr);
   }
 
   if (shouldAssert)
@@ -77,6 +117,12 @@ static void CheckEGLError (const bool shouldAssert, const char* file, const int 
     assert (err == EGL_SUCCESS);
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#define AssertNoGLErrors() CheckGLError(true, __FILE__, __LINE__)
 
 #define AssertNoEGLErrors() CheckEGLError(true, __FILE__, __LINE__)
 
@@ -86,6 +132,10 @@ static void CheckEGLError (const bool shouldAssert, const char* file, const int 
 
 int WINAPI WinMain (__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd)
 {
+  (void) hPrevInstance;
+  (void) lpCmdLine;
+  (void) nShowCmd;
+
   MSG msg = {0};
   WNDCLASS wc = {0};
   wc.lpfnWndProc = WndProc;
@@ -218,25 +268,31 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
   #if defined(GLEW_USE_OPENGL)
       glew::gl::Initialise ();
-  #elif defined(GLEW_USE_OPENGL_CORE)
-      glew::glcore::Initialise ();
   #elif defined(GLEW_USE_OPENGL_ES)
       glew::gles::Initialise ();
   #endif
 
+      AssertNoGLErrors ();
+
       const char *renderer = (const char *) glGetString (GL_RENDERER);
+
+      AssertNoGLErrors ();
 
       const char *version = (const char *) glGetString (GL_VERSION);
 
+      AssertNoGLErrors ();
+
       const char *extensions = (const char *) glGetString (GL_EXTENSIONS);
+
+      AssertNoGLErrors ();
 
   #if defined(GLEW_USE_OPENGL)
       glew::gl::Deinitialise ();
-  #elif defined(GLEW_USE_OPENGL_CORE)
-      glew::glcore::Deinitialise ();
   #elif defined(GLEW_USE_OPENGL_ES)
       glew::gles::Deinitialise ();
   #endif
+
+      AssertNoGLErrors ();
 
       glew::egl::Deinitialise ();
 

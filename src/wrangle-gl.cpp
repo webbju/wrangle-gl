@@ -46136,7 +46136,7 @@ void glew::gl::Initialise ()
 
   if (!glVersion)
   {
-    glVersion = (const unsigned char*) ""; // Protect against some drivers will happily passing back NULL.
+    glVersion = (const unsigned char*) ""; // Protect against some drivers will happily pass back NULL.
   }
 
   const size_t glVersionLen = strlen ((const char *) glVersion);
@@ -46198,7 +46198,7 @@ void glew::gl::Initialise ()
 
   if (!glExtensions)
   {
-    glExtensions = (const unsigned char*) ""; // Protect against some drivers will happily passing back NULL.
+    glExtensions = (const unsigned char*) ""; // Protect against some drivers will happily pass back NULL.
   }
 
   const size_t glExtensionsLen = strlen ((const char *) glExtensions);

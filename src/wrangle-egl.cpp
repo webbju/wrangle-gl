@@ -1533,7 +1533,7 @@ void glew::egl::Initialise (EGLDisplay display)
 
   if (!eglVersion)
   {
-    eglVersion = (const unsigned char*) ""; // Protect against some drivers will happily passing back NULL.
+    eglVersion = (const unsigned char*) ""; // Protect against some drivers will happily pass back NULL.
   }
 
   const size_t eglVersionLen = strlen ((const char *) eglVersion);
@@ -1568,7 +1568,7 @@ void glew::egl::Initialise (EGLDisplay display)
 
   if (!eglExtensions)
   {
-    eglExtensions = (const unsigned char*) ""; // Protect against some drivers will happily passing back NULL.
+    eglExtensions = (const unsigned char*) ""; // Protect against some drivers will happily pass back NULL.
   }
 
   const size_t eglExtensionsLen = strlen ((const char *) eglExtensions);
