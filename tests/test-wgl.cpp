@@ -12,6 +12,8 @@
 
 #include <wrangle-wgl.h>
 
+#include <assert.h>
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,6 +26,10 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 int WINAPI WinMain (__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd)
 {
+  (void) hPrevInstance;
+  (void) lpCmdLine;
+  (void) nShowCmd;
+
   MSG msg = {0};
   WNDCLASS wc = {0};
   wc.lpfnWndProc = WndProc;
@@ -98,9 +104,9 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
   #if 1 && WGL_ARB_create_context
       const glew::wgl::DeviceConfig &wglConfig = glew::wgl::GetConfig ();
 
-      if (wglConfig.m_featureSupported [glew::wgl::GLEW_WGL_ARB_create_context]
+      if (wglConfig.m_featureSupported [GLEW_WGL_ARB_create_context]
     #if GLEW_USE_OPENGL_ES && WGL_ARB_create_context_profile
-        && wglConfig.m_featureSupported [glew::wgl::GLEW_WGL_ARB_create_context_profile]
+        && wglConfig.m_featureSupported [GLEW_WGL_ARB_create_context_profile]
     #endif
         )
       {
@@ -137,13 +143,15 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       const char *renderer = (const char *) glGetString (GL_RENDERER);
 
+      assert (renderer);
+
       const char *version = (const char *) glGetString (GL_VERSION);
+
+      assert (version);
 
       const char *extensions = (const char *) glGetString (GL_EXTENSIONS);
 
-      int swapInterval = wglGetSwapIntervalEXT ();
-
-      (void) swapInterval;
+      assert (extensions);
 
 #if defined(GLEW_USE_OPENGL)
       glew::gl::Deinitialise ();

@@ -98,12 +98,14 @@ static inline void *dlGetProcAddress (const char *library, const char *symbol)
   #include "TargetConditionals.h"
   #define OPENGL_FRAMEWORK "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
   #define OPENGL_ES_FRAMEWORK "/System/Library/Frameworks/OpenGLES.framework/OpenGLES"
-  #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-    #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_ES_FRAMEWORK,(const char *)proc)
-  #elif TARGET_OS_MAC
-    #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
-  #else
-    #error Unrecognised Apple platform.
+  #if !defined (glewGetProcAddress)
+    #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_ES_FRAMEWORK,(const char *)proc)
+    #elif TARGET_OS_MAC
+      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
+    #else
+      #error Unrecognised Apple target.
+    #endif
   #endif
 #endif
 
