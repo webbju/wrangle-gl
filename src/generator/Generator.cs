@@ -1323,13 +1323,15 @@ namespace wrangle_gl_generator
         {
           int protoNameIndex = protoNode.InnerXml.IndexOf ("<name>");
 
-          string protoType = protoNode.InnerXml.Substring (0, protoNameIndex);
+          string protoReturnType = protoNode.InnerXml.Substring (0, protoNameIndex);
 
-          protoType = protoType.Replace ("<ptype>", "");
+          protoReturnType = protoReturnType.Replace ("<ptype>", "");
 
-          protoType = protoType.Replace ("</ptype>", "");
+          protoReturnType = protoReturnType.Replace ("</ptype>", "");
 
-          returnType = protoType;
+          protoReturnType = protoReturnType.Trim ();
+
+          returnType = protoReturnType;
 
           string protoName = protoNode.InnerXml.Substring (protoNameIndex);
 
@@ -1337,7 +1339,9 @@ namespace wrangle_gl_generator
 
           protoName = protoName.Replace ("</name>", "");
 
-          prototypeBuilder.Append (protoType + " " + protoName);
+          protoName = protoName.Trim ();
+
+          prototypeBuilder.Append (protoReturnType + " " + protoName);
 
           prototypeBuilder.Append (" (");
         }
