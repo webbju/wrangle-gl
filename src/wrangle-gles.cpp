@@ -16,12 +16,15 @@ void _glew_gles_glReadBuffer (GLenum src)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glReadBuffer
-  if (!prototypeCalled && glesConfig.m_glReadBuffer)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glReadBuffer)
   {
     prototypeCalled = true;
     glesConfig.m_glReadBuffer (src);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,12 +35,15 @@ void _glew_gles_glDrawRangeElements (GLenum mode, GLuint start, GLuint end, GLsi
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glDrawRangeElements
-  if (!prototypeCalled && glesConfig.m_glDrawRangeElements)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glDrawRangeElements)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawRangeElements (mode, start, end, count, type, indices);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,18 +54,21 @@ void _glew_gles_glTexImage3D (GLenum target, GLint level, GLint internalformat, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glTexImage3D
-  if (!prototypeCalled && glesConfig.m_glTexImage3D)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glTexImage3D)
   {
     prototypeCalled = true;
     glesConfig.m_glTexImage3D (target, level, internalformat, width, height, depth, border, format, type, pixels);
   }
   // GL_OES_texture_3D - glTexImage3D
-  if (!prototypeCalled && glesConfig.m_glTexImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glTexImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTexImage3DOES (target, level, (GLenum) internalformat, width, height, depth, border, format, type, pixels);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,18 +79,21 @@ void _glew_gles_glTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glTexSubImage3D
-  if (!prototypeCalled && glesConfig.m_glTexSubImage3D)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glTexSubImage3D)
   {
     prototypeCalled = true;
     glesConfig.m_glTexSubImage3D (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
   }
   // GL_OES_texture_3D - glTexSubImage3D
-  if (!prototypeCalled && glesConfig.m_glTexSubImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glTexSubImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -92,18 +104,21 @@ void _glew_gles_glCopyTexSubImage3D (GLenum target, GLint level, GLint xoffset, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glCopyTexSubImage3D
-  if (!prototypeCalled && glesConfig.m_glCopyTexSubImage3D)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glCopyTexSubImage3D)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyTexSubImage3D (target, level, xoffset, yoffset, zoffset, x, y, width, height);
   }
   // GL_OES_texture_3D - glCopyTexSubImage3D
-  if (!prototypeCalled && glesConfig.m_glCopyTexSubImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glCopyTexSubImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, x, y, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,18 +129,21 @@ void _glew_gles_glCompressedTexImage3D (GLenum target, GLint level, GLenum inter
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glCompressedTexImage3D
-  if (!prototypeCalled && glesConfig.m_glCompressedTexImage3D)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glCompressedTexImage3D)
   {
     prototypeCalled = true;
     glesConfig.m_glCompressedTexImage3D (target, level, internalformat, width, height, depth, border, imageSize, data);
   }
   // GL_OES_texture_3D - glCompressedTexImage3D
-  if (!prototypeCalled && glesConfig.m_glCompressedTexImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glCompressedTexImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glCompressedTexImage3DOES (target, level, internalformat, width, height, depth, border, imageSize, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,18 +154,21 @@ void _glew_gles_glCompressedTexSubImage3D (GLenum target, GLint level, GLint xof
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glCompressedTexSubImage3D
-  if (!prototypeCalled && glesConfig.m_glCompressedTexSubImage3D)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glCompressedTexSubImage3D)
   {
     prototypeCalled = true;
     glesConfig.m_glCompressedTexSubImage3D (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
   }
   // GL_OES_texture_3D - glCompressedTexSubImage3D
-  if (!prototypeCalled && glesConfig.m_glCompressedTexSubImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glCompressedTexSubImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glCompressedTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,12 +179,15 @@ void _glew_gles_glGenQueries (GLsizei n, GLuint * ids)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGenQueries
-  if (!prototypeCalled && glesConfig.m_glGenQueries)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGenQueries)
   {
     prototypeCalled = true;
     glesConfig.m_glGenQueries (n, ids);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,12 +198,15 @@ void _glew_gles_glDeleteQueries (GLsizei n, const GLuint * ids)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glDeleteQueries
-  if (!prototypeCalled && glesConfig.m_glDeleteQueries)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glDeleteQueries)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteQueries (n, ids);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -190,13 +217,17 @@ GLboolean _glew_gles_glIsQuery (GLuint id)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glIsQuery
-  if (!prototypeCalled && glesConfig.m_glIsQuery)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glIsQuery)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsQuery (id);
+    result = glesConfig.m_glIsQuery (id);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -207,12 +238,15 @@ void _glew_gles_glBeginQuery (GLenum target, GLuint id)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glBeginQuery
-  if (!prototypeCalled && glesConfig.m_glBeginQuery)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glBeginQuery)
   {
     prototypeCalled = true;
     glesConfig.m_glBeginQuery (target, id);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -223,12 +257,15 @@ void _glew_gles_glEndQuery (GLenum target)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glEndQuery
-  if (!prototypeCalled && glesConfig.m_glEndQuery)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glEndQuery)
   {
     prototypeCalled = true;
     glesConfig.m_glEndQuery (target);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -239,12 +276,15 @@ void _glew_gles_glGetQueryiv (GLenum target, GLenum pname, GLint * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetQueryiv
-  if (!prototypeCalled && glesConfig.m_glGetQueryiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetQueryiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetQueryiv (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -255,12 +295,15 @@ void _glew_gles_glGetQueryObjectuiv (GLuint id, GLenum pname, GLuint * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetQueryObjectuiv
-  if (!prototypeCalled && glesConfig.m_glGetQueryObjectuiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetQueryObjectuiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetQueryObjectuiv (id, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -271,19 +314,23 @@ GLboolean _glew_gles_glUnmapBuffer (GLenum target)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUnmapBuffer
-  if (!prototypeCalled && glesConfig.m_glUnmapBuffer)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUnmapBuffer)
   {
     prototypeCalled = true;
-    return glesConfig.m_glUnmapBuffer (target);
+    result = glesConfig.m_glUnmapBuffer (target);
   }
   // GL_OES_mapbuffer - glUnmapBuffer
-  if (!prototypeCalled && glesConfig.m_glUnmapBufferOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_mapbuffer] && glesConfig.m_glUnmapBufferOES)
   {
     prototypeCalled = true;
-    return glesConfig.m_glUnmapBufferOES (target);
+    result = glesConfig.m_glUnmapBufferOES (target);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -294,18 +341,21 @@ void _glew_gles_glGetBufferPointerv (GLenum target, GLenum pname, void ** params
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetBufferPointerv
-  if (!prototypeCalled && glesConfig.m_glGetBufferPointerv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetBufferPointerv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetBufferPointerv (target, pname, params);
   }
   // GL_OES_mapbuffer - glGetBufferPointerv
-  if (!prototypeCalled && glesConfig.m_glGetBufferPointervOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_mapbuffer] && glesConfig.m_glGetBufferPointervOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGetBufferPointervOES (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -316,18 +366,21 @@ void _glew_gles_glDrawBuffers (GLsizei n, const GLenum * bufs)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glDrawBuffers
-  if (!prototypeCalled && glesConfig.m_glDrawBuffers)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glDrawBuffers)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawBuffers (n, bufs);
   }
   // GL_EXT_draw_buffers - glDrawBuffers
-  if (!prototypeCalled && glesConfig.m_glDrawBuffersEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers] && glesConfig.m_glDrawBuffersEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawBuffersEXT (n, bufs);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -338,18 +391,21 @@ void _glew_gles_glUniformMatrix2x3fv (GLint location, GLsizei count, GLboolean t
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniformMatrix2x3fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x3fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniformMatrix2x3fv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix2x3fv (location, count, transpose, value);
   }
   // GL_NV_non_square_matrices - glUniformMatrix2x3fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x3fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix2x3fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix2x3fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -360,18 +416,21 @@ void _glew_gles_glUniformMatrix3x2fv (GLint location, GLsizei count, GLboolean t
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniformMatrix3x2fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x2fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniformMatrix3x2fv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix3x2fv (location, count, transpose, value);
   }
   // GL_NV_non_square_matrices - glUniformMatrix3x2fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x2fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix3x2fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix3x2fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -382,18 +441,21 @@ void _glew_gles_glUniformMatrix2x4fv (GLint location, GLsizei count, GLboolean t
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniformMatrix2x4fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x4fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniformMatrix2x4fv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix2x4fv (location, count, transpose, value);
   }
   // GL_NV_non_square_matrices - glUniformMatrix2x4fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x4fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix2x4fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix2x4fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -404,18 +466,21 @@ void _glew_gles_glUniformMatrix4x2fv (GLint location, GLsizei count, GLboolean t
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniformMatrix4x2fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x2fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniformMatrix4x2fv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix4x2fv (location, count, transpose, value);
   }
   // GL_NV_non_square_matrices - glUniformMatrix4x2fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x2fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix4x2fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix4x2fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -426,18 +491,21 @@ void _glew_gles_glUniformMatrix3x4fv (GLint location, GLsizei count, GLboolean t
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniformMatrix3x4fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x4fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniformMatrix3x4fv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix3x4fv (location, count, transpose, value);
   }
   // GL_NV_non_square_matrices - glUniformMatrix3x4fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x4fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix3x4fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix3x4fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -448,18 +516,21 @@ void _glew_gles_glUniformMatrix4x3fv (GLint location, GLsizei count, GLboolean t
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniformMatrix4x3fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x3fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniformMatrix4x3fv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix4x3fv (location, count, transpose, value);
   }
   // GL_NV_non_square_matrices - glUniformMatrix4x3fv
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x3fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix4x3fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix4x3fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -470,18 +541,21 @@ void _glew_gles_glBlitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glBlitFramebuffer
-  if (!prototypeCalled && glesConfig.m_glBlitFramebuffer)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glBlitFramebuffer)
   {
     prototypeCalled = true;
     glesConfig.m_glBlitFramebuffer (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
   // GL_NV_framebuffer_blit - glBlitFramebuffer
-  if (!prototypeCalled && glesConfig.m_glBlitFramebufferNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_framebuffer_blit] && glesConfig.m_glBlitFramebufferNV)
   {
     prototypeCalled = true;
     glesConfig.m_glBlitFramebufferNV (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -492,24 +566,27 @@ void _glew_gles_glRenderbufferStorageMultisample (GLenum target, GLsizei samples
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glRenderbufferStorageMultisample
-  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisample)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glRenderbufferStorageMultisample)
   {
     prototypeCalled = true;
     glesConfig.m_glRenderbufferStorageMultisample (target, samples, internalformat, width, height);
   }
   // GL_EXT_multisampled_render_to_texture - glRenderbufferStorageMultisample
-  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multisampled_render_to_texture] && glesConfig.m_glRenderbufferStorageMultisampleEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glRenderbufferStorageMultisampleEXT (target, samples, internalformat, width, height);
   }
   // GL_NV_framebuffer_multisample - glRenderbufferStorageMultisample
-  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_framebuffer_multisample] && glesConfig.m_glRenderbufferStorageMultisampleNV)
   {
     prototypeCalled = true;
     glesConfig.m_glRenderbufferStorageMultisampleNV (target, samples, internalformat, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -520,12 +597,15 @@ void _glew_gles_glFramebufferTextureLayer (GLenum target, GLenum attachment, GLu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glFramebufferTextureLayer
-  if (!prototypeCalled && glesConfig.m_glFramebufferTextureLayer)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glFramebufferTextureLayer)
   {
     prototypeCalled = true;
     glesConfig.m_glFramebufferTextureLayer (target, attachment, texture, level, layer);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -536,19 +616,23 @@ void * _glew_gles_glMapBufferRange (GLenum target, GLintptr offset, GLsizeiptr l
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  void * result = ((void *)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glMapBufferRange
-  if (!prototypeCalled && glesConfig.m_glMapBufferRange)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glMapBufferRange)
   {
     prototypeCalled = true;
-    return glesConfig.m_glMapBufferRange (target, offset, length, access);
+    result = glesConfig.m_glMapBufferRange (target, offset, length, access);
   }
   // GL_EXT_map_buffer_range - glMapBufferRange
-  if (!prototypeCalled && glesConfig.m_glMapBufferRangeEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_map_buffer_range] && glesConfig.m_glMapBufferRangeEXT)
   {
     prototypeCalled = true;
-    return glesConfig.m_glMapBufferRangeEXT (target, offset, length, access);
+    result = glesConfig.m_glMapBufferRangeEXT (target, offset, length, access);
   }
-  return ((void *)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -559,18 +643,21 @@ void _glew_gles_glFlushMappedBufferRange (GLenum target, GLintptr offset, GLsize
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glFlushMappedBufferRange
-  if (!prototypeCalled && glesConfig.m_glFlushMappedBufferRange)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glFlushMappedBufferRange)
   {
     prototypeCalled = true;
     glesConfig.m_glFlushMappedBufferRange (target, offset, length);
   }
   // GL_EXT_map_buffer_range - glFlushMappedBufferRange
-  if (!prototypeCalled && glesConfig.m_glFlushMappedBufferRangeEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_map_buffer_range] && glesConfig.m_glFlushMappedBufferRangeEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glFlushMappedBufferRangeEXT (target, offset, length);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -581,18 +668,21 @@ void _glew_gles_glBindVertexArray (GLuint array)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glBindVertexArray
-  if (!prototypeCalled && glesConfig.m_glBindVertexArray)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glBindVertexArray)
   {
     prototypeCalled = true;
     glesConfig.m_glBindVertexArray (array);
   }
   // GL_OES_vertex_array_object - glBindVertexArray
-  if (!prototypeCalled && glesConfig.m_glBindVertexArrayOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object] && glesConfig.m_glBindVertexArrayOES)
   {
     prototypeCalled = true;
     glesConfig.m_glBindVertexArrayOES (array);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -603,18 +693,21 @@ void _glew_gles_glDeleteVertexArrays (GLsizei n, const GLuint * arrays)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glDeleteVertexArrays
-  if (!prototypeCalled && glesConfig.m_glDeleteVertexArrays)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glDeleteVertexArrays)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteVertexArrays (n, arrays);
   }
   // GL_OES_vertex_array_object - glDeleteVertexArrays
-  if (!prototypeCalled && glesConfig.m_glDeleteVertexArraysOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object] && glesConfig.m_glDeleteVertexArraysOES)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteVertexArraysOES (n, arrays);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -625,18 +718,21 @@ void _glew_gles_glGenVertexArrays (GLsizei n, GLuint * arrays)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGenVertexArrays
-  if (!prototypeCalled && glesConfig.m_glGenVertexArrays)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGenVertexArrays)
   {
     prototypeCalled = true;
     glesConfig.m_glGenVertexArrays (n, arrays);
   }
   // GL_OES_vertex_array_object - glGenVertexArrays
-  if (!prototypeCalled && glesConfig.m_glGenVertexArraysOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object] && glesConfig.m_glGenVertexArraysOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGenVertexArraysOES (n, arrays);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -647,19 +743,23 @@ GLboolean _glew_gles_glIsVertexArray (GLuint array)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glIsVertexArray
-  if (!prototypeCalled && glesConfig.m_glIsVertexArray)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glIsVertexArray)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsVertexArray (array);
+    result = glesConfig.m_glIsVertexArray (array);
   }
   // GL_OES_vertex_array_object - glIsVertexArray
-  if (!prototypeCalled && glesConfig.m_glIsVertexArrayOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object] && glesConfig.m_glIsVertexArrayOES)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsVertexArrayOES (array);
+    result = glesConfig.m_glIsVertexArrayOES (array);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -670,12 +770,15 @@ void _glew_gles_glGetIntegeri_v (GLenum target, GLuint index, GLint * data)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetIntegeri_v
-  if (!prototypeCalled && glesConfig.m_glGetIntegeri_v)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetIntegeri_v)
   {
     prototypeCalled = true;
     glesConfig.m_glGetIntegeri_v (target, index, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -686,12 +789,15 @@ void _glew_gles_glBeginTransformFeedback (GLenum primitiveMode)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glBeginTransformFeedback
-  if (!prototypeCalled && glesConfig.m_glBeginTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glBeginTransformFeedback)
   {
     prototypeCalled = true;
     glesConfig.m_glBeginTransformFeedback (primitiveMode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -702,12 +808,15 @@ void _glew_gles_glEndTransformFeedback ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glEndTransformFeedback
-  if (!prototypeCalled && glesConfig.m_glEndTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glEndTransformFeedback)
   {
     prototypeCalled = true;
     glesConfig.m_glEndTransformFeedback ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -718,12 +827,15 @@ void _glew_gles_glBindBufferRange (GLenum target, GLuint index, GLuint buffer, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glBindBufferRange
-  if (!prototypeCalled && glesConfig.m_glBindBufferRange)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glBindBufferRange)
   {
     prototypeCalled = true;
     glesConfig.m_glBindBufferRange (target, index, buffer, offset, size);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -734,12 +846,15 @@ void _glew_gles_glBindBufferBase (GLenum target, GLuint index, GLuint buffer)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glBindBufferBase
-  if (!prototypeCalled && glesConfig.m_glBindBufferBase)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glBindBufferBase)
   {
     prototypeCalled = true;
     glesConfig.m_glBindBufferBase (target, index, buffer);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -750,12 +865,15 @@ void _glew_gles_glTransformFeedbackVaryings (GLuint program, GLsizei count, cons
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glTransformFeedbackVaryings
-  if (!prototypeCalled && glesConfig.m_glTransformFeedbackVaryings)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glTransformFeedbackVaryings)
   {
     prototypeCalled = true;
     glesConfig.m_glTransformFeedbackVaryings (program, count, varyings, bufferMode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -766,12 +884,15 @@ void _glew_gles_glGetTransformFeedbackVarying (GLuint program, GLuint index, GLs
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetTransformFeedbackVarying
-  if (!prototypeCalled && glesConfig.m_glGetTransformFeedbackVarying)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetTransformFeedbackVarying)
   {
     prototypeCalled = true;
     glesConfig.m_glGetTransformFeedbackVarying (program, index, bufSize, length, size, type, name);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -782,12 +903,15 @@ void _glew_gles_glVertexAttribIPointer (GLuint index, GLint size, GLenum type, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glVertexAttribIPointer
-  if (!prototypeCalled && glesConfig.m_glVertexAttribIPointer)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glVertexAttribIPointer)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribIPointer (index, size, type, stride, pointer);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -798,12 +922,15 @@ void _glew_gles_glGetVertexAttribIiv (GLuint index, GLenum pname, GLint * params
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetVertexAttribIiv
-  if (!prototypeCalled && glesConfig.m_glGetVertexAttribIiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetVertexAttribIiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetVertexAttribIiv (index, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -814,12 +941,15 @@ void _glew_gles_glGetVertexAttribIuiv (GLuint index, GLenum pname, GLuint * para
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetVertexAttribIuiv
-  if (!prototypeCalled && glesConfig.m_glGetVertexAttribIuiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetVertexAttribIuiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetVertexAttribIuiv (index, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -830,12 +960,15 @@ void _glew_gles_glVertexAttribI4i (GLuint index, GLint x, GLint y, GLint z, GLin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glVertexAttribI4i
-  if (!prototypeCalled && glesConfig.m_glVertexAttribI4i)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glVertexAttribI4i)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribI4i (index, x, y, z, w);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -846,12 +979,15 @@ void _glew_gles_glVertexAttribI4ui (GLuint index, GLuint x, GLuint y, GLuint z, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glVertexAttribI4ui
-  if (!prototypeCalled && glesConfig.m_glVertexAttribI4ui)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glVertexAttribI4ui)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribI4ui (index, x, y, z, w);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -862,12 +998,15 @@ void _glew_gles_glVertexAttribI4iv (GLuint index, const GLint * v)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glVertexAttribI4iv
-  if (!prototypeCalled && glesConfig.m_glVertexAttribI4iv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glVertexAttribI4iv)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribI4iv (index, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -878,12 +1017,15 @@ void _glew_gles_glVertexAttribI4uiv (GLuint index, const GLuint * v)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glVertexAttribI4uiv
-  if (!prototypeCalled && glesConfig.m_glVertexAttribI4uiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glVertexAttribI4uiv)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribI4uiv (index, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -894,12 +1036,15 @@ void _glew_gles_glGetUniformuiv (GLuint program, GLint location, GLuint * params
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetUniformuiv
-  if (!prototypeCalled && glesConfig.m_glGetUniformuiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetUniformuiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetUniformuiv (program, location, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -910,13 +1055,17 @@ GLint _glew_gles_glGetFragDataLocation (GLuint program, const GLchar * name)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLint result = ((GLint)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetFragDataLocation
-  if (!prototypeCalled && glesConfig.m_glGetFragDataLocation)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetFragDataLocation)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetFragDataLocation (program, name);
+    result = glesConfig.m_glGetFragDataLocation (program, name);
   }
-  return ((GLint)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -927,12 +1076,15 @@ void _glew_gles_glUniform1ui (GLint location, GLuint v0)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniform1ui
-  if (!prototypeCalled && glesConfig.m_glUniform1ui)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniform1ui)
   {
     prototypeCalled = true;
     glesConfig.m_glUniform1ui (location, v0);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -943,12 +1095,15 @@ void _glew_gles_glUniform2ui (GLint location, GLuint v0, GLuint v1)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniform2ui
-  if (!prototypeCalled && glesConfig.m_glUniform2ui)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniform2ui)
   {
     prototypeCalled = true;
     glesConfig.m_glUniform2ui (location, v0, v1);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -959,12 +1114,15 @@ void _glew_gles_glUniform3ui (GLint location, GLuint v0, GLuint v1, GLuint v2)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniform3ui
-  if (!prototypeCalled && glesConfig.m_glUniform3ui)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniform3ui)
   {
     prototypeCalled = true;
     glesConfig.m_glUniform3ui (location, v0, v1, v2);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -975,12 +1133,15 @@ void _glew_gles_glUniform4ui (GLint location, GLuint v0, GLuint v1, GLuint v2, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniform4ui
-  if (!prototypeCalled && glesConfig.m_glUniform4ui)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniform4ui)
   {
     prototypeCalled = true;
     glesConfig.m_glUniform4ui (location, v0, v1, v2, v3);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -991,12 +1152,15 @@ void _glew_gles_glUniform1uiv (GLint location, GLsizei count, const GLuint * val
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniform1uiv
-  if (!prototypeCalled && glesConfig.m_glUniform1uiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniform1uiv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniform1uiv (location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1007,12 +1171,15 @@ void _glew_gles_glUniform2uiv (GLint location, GLsizei count, const GLuint * val
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniform2uiv
-  if (!prototypeCalled && glesConfig.m_glUniform2uiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniform2uiv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniform2uiv (location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1023,12 +1190,15 @@ void _glew_gles_glUniform3uiv (GLint location, GLsizei count, const GLuint * val
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniform3uiv
-  if (!prototypeCalled && glesConfig.m_glUniform3uiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniform3uiv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniform3uiv (location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1039,12 +1209,15 @@ void _glew_gles_glUniform4uiv (GLint location, GLsizei count, const GLuint * val
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniform4uiv
-  if (!prototypeCalled && glesConfig.m_glUniform4uiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniform4uiv)
   {
     prototypeCalled = true;
     glesConfig.m_glUniform4uiv (location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1055,12 +1228,15 @@ void _glew_gles_glClearBufferiv (GLenum buffer, GLint drawbuffer, const GLint * 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glClearBufferiv
-  if (!prototypeCalled && glesConfig.m_glClearBufferiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glClearBufferiv)
   {
     prototypeCalled = true;
     glesConfig.m_glClearBufferiv (buffer, drawbuffer, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1071,12 +1247,15 @@ void _glew_gles_glClearBufferuiv (GLenum buffer, GLint drawbuffer, const GLuint 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glClearBufferuiv
-  if (!prototypeCalled && glesConfig.m_glClearBufferuiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glClearBufferuiv)
   {
     prototypeCalled = true;
     glesConfig.m_glClearBufferuiv (buffer, drawbuffer, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1087,12 +1266,15 @@ void _glew_gles_glClearBufferfv (GLenum buffer, GLint drawbuffer, const GLfloat 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glClearBufferfv
-  if (!prototypeCalled && glesConfig.m_glClearBufferfv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glClearBufferfv)
   {
     prototypeCalled = true;
     glesConfig.m_glClearBufferfv (buffer, drawbuffer, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1103,12 +1285,15 @@ void _glew_gles_glClearBufferfi (GLenum buffer, GLint drawbuffer, GLfloat depth,
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glClearBufferfi
-  if (!prototypeCalled && glesConfig.m_glClearBufferfi)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glClearBufferfi)
   {
     prototypeCalled = true;
     glesConfig.m_glClearBufferfi (buffer, drawbuffer, depth, stencil);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1119,13 +1304,17 @@ const GLubyte * _glew_gles_glGetStringi (GLenum name, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  const GLubyte * result = ((const GLubyte *)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetStringi
-  if (!prototypeCalled && glesConfig.m_glGetStringi)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetStringi)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetStringi (name, index);
+    result = glesConfig.m_glGetStringi (name, index);
   }
-  return ((const GLubyte *)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1136,18 +1325,21 @@ void _glew_gles_glCopyBufferSubData (GLenum readTarget, GLenum writeTarget, GLin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glCopyBufferSubData
-  if (!prototypeCalled && glesConfig.m_glCopyBufferSubData)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glCopyBufferSubData)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyBufferSubData (readTarget, writeTarget, readOffset, writeOffset, size);
   }
   // GL_NV_copy_buffer - glCopyBufferSubData
-  if (!prototypeCalled && glesConfig.m_glCopyBufferSubDataNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_copy_buffer] && glesConfig.m_glCopyBufferSubDataNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyBufferSubDataNV (readTarget, writeTarget, readOffset, writeOffset, size);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1158,12 +1350,15 @@ void _glew_gles_glGetUniformIndices (GLuint program, GLsizei uniformCount, const
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetUniformIndices
-  if (!prototypeCalled && glesConfig.m_glGetUniformIndices)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetUniformIndices)
   {
     prototypeCalled = true;
     glesConfig.m_glGetUniformIndices (program, uniformCount, uniformNames, uniformIndices);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1174,12 +1369,15 @@ void _glew_gles_glGetActiveUniformsiv (GLuint program, GLsizei uniformCount, con
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetActiveUniformsiv
-  if (!prototypeCalled && glesConfig.m_glGetActiveUniformsiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetActiveUniformsiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetActiveUniformsiv (program, uniformCount, uniformIndices, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1190,13 +1388,17 @@ GLuint _glew_gles_glGetUniformBlockIndex (GLuint program, const GLchar * uniform
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint result = ((GLuint)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetUniformBlockIndex
-  if (!prototypeCalled && glesConfig.m_glGetUniformBlockIndex)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetUniformBlockIndex)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetUniformBlockIndex (program, uniformBlockName);
+    result = glesConfig.m_glGetUniformBlockIndex (program, uniformBlockName);
   }
-  return ((GLuint)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1207,12 +1409,15 @@ void _glew_gles_glGetActiveUniformBlockiv (GLuint program, GLuint uniformBlockIn
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetActiveUniformBlockiv
-  if (!prototypeCalled && glesConfig.m_glGetActiveUniformBlockiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetActiveUniformBlockiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetActiveUniformBlockiv (program, uniformBlockIndex, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1223,12 +1428,15 @@ void _glew_gles_glGetActiveUniformBlockName (GLuint program, GLuint uniformBlock
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetActiveUniformBlockName
-  if (!prototypeCalled && glesConfig.m_glGetActiveUniformBlockName)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetActiveUniformBlockName)
   {
     prototypeCalled = true;
     glesConfig.m_glGetActiveUniformBlockName (program, uniformBlockIndex, bufSize, length, uniformBlockName);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1239,12 +1447,15 @@ void _glew_gles_glUniformBlockBinding (GLuint program, GLuint uniformBlockIndex,
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glUniformBlockBinding
-  if (!prototypeCalled && glesConfig.m_glUniformBlockBinding)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glUniformBlockBinding)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformBlockBinding (program, uniformBlockIndex, uniformBlockBinding);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1255,24 +1466,27 @@ void _glew_gles_glDrawArraysInstanced (GLenum mode, GLint first, GLsizei count, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glDrawArraysInstanced
-  if (!prototypeCalled && glesConfig.m_glDrawArraysInstanced)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glDrawArraysInstanced)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawArraysInstanced (mode, first, count, instancecount);
   }
   // GL_ANGLE_instanced_arrays - glDrawArraysInstanced
-  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedANGLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_instanced_arrays] && glesConfig.m_glDrawArraysInstancedANGLE)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawArraysInstancedANGLE (mode, first, count, instancecount);
   }
   // GL_EXT_instanced_arrays - glDrawArraysInstanced
-  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_instanced_arrays] && glesConfig.m_glDrawArraysInstancedEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawArraysInstancedEXT (mode, first, count, instancecount);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1283,24 +1497,27 @@ void _glew_gles_glDrawElementsInstanced (GLenum mode, GLsizei count, GLenum type
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glDrawElementsInstanced
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstanced)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glDrawElementsInstanced)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstanced (mode, count, type, indices, instancecount);
   }
   // GL_ANGLE_instanced_arrays - glDrawElementsInstanced
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedANGLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_instanced_arrays] && glesConfig.m_glDrawElementsInstancedANGLE)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedANGLE (mode, count, type, indices, instancecount);
   }
   // GL_EXT_instanced_arrays - glDrawElementsInstanced
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_instanced_arrays] && glesConfig.m_glDrawElementsInstancedEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedEXT (mode, count, type, indices, instancecount);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1311,19 +1528,23 @@ GLsync _glew_gles_glFenceSync (GLenum condition, GLbitfield flags)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLsync result = ((GLsync)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glFenceSync
-  if (!prototypeCalled && glesConfig.m_glFenceSync)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glFenceSync)
   {
     prototypeCalled = true;
-    return glesConfig.m_glFenceSync (condition, flags);
+    result = glesConfig.m_glFenceSync (condition, flags);
   }
   // GL_APPLE_sync - glFenceSync
-  if (!prototypeCalled && glesConfig.m_glFenceSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glFenceSyncAPPLE)
   {
     prototypeCalled = true;
-    return glesConfig.m_glFenceSyncAPPLE (condition, flags);
+    result = glesConfig.m_glFenceSyncAPPLE (condition, flags);
   }
-  return ((GLsync)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1334,19 +1555,23 @@ GLboolean _glew_gles_glIsSync (GLsync sync)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glIsSync
-  if (!prototypeCalled && glesConfig.m_glIsSync)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glIsSync)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsSync (sync);
+    result = glesConfig.m_glIsSync (sync);
   }
   // GL_APPLE_sync - glIsSync
-  if (!prototypeCalled && glesConfig.m_glIsSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glIsSyncAPPLE)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsSyncAPPLE (sync);
+    result = glesConfig.m_glIsSyncAPPLE (sync);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1357,18 +1582,21 @@ void _glew_gles_glDeleteSync (GLsync sync)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glDeleteSync
-  if (!prototypeCalled && glesConfig.m_glDeleteSync)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glDeleteSync)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteSync (sync);
   }
   // GL_APPLE_sync - glDeleteSync
-  if (!prototypeCalled && glesConfig.m_glDeleteSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glDeleteSyncAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteSyncAPPLE (sync);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1379,19 +1607,23 @@ GLenum _glew_gles_glClientWaitSync (GLsync sync, GLbitfield flags, GLuint64 time
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLenum result = ((GLenum)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glClientWaitSync
-  if (!prototypeCalled && glesConfig.m_glClientWaitSync)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glClientWaitSync)
   {
     prototypeCalled = true;
-    return glesConfig.m_glClientWaitSync (sync, flags, timeout);
+    result = glesConfig.m_glClientWaitSync (sync, flags, timeout);
   }
   // GL_APPLE_sync - glClientWaitSync
-  if (!prototypeCalled && glesConfig.m_glClientWaitSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glClientWaitSyncAPPLE)
   {
     prototypeCalled = true;
-    return glesConfig.m_glClientWaitSyncAPPLE (sync, flags, timeout);
+    result = glesConfig.m_glClientWaitSyncAPPLE (sync, flags, timeout);
   }
-  return ((GLenum)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1402,18 +1634,21 @@ void _glew_gles_glWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glWaitSync
-  if (!prototypeCalled && glesConfig.m_glWaitSync)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glWaitSync)
   {
     prototypeCalled = true;
     glesConfig.m_glWaitSync (sync, flags, timeout);
   }
   // GL_APPLE_sync - glWaitSync
-  if (!prototypeCalled && glesConfig.m_glWaitSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glWaitSyncAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glWaitSyncAPPLE (sync, flags, timeout);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1424,18 +1659,21 @@ void _glew_gles_glGetInteger64v (GLenum pname, GLint64 * data)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetInteger64v
-  if (!prototypeCalled && glesConfig.m_glGetInteger64v)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetInteger64v)
   {
     prototypeCalled = true;
     glesConfig.m_glGetInteger64v (pname, data);
   }
   // GL_APPLE_sync - glGetInteger64v
-  if (!prototypeCalled && glesConfig.m_glGetInteger64vAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glGetInteger64vAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glGetInteger64vAPPLE (pname, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1446,18 +1684,21 @@ void _glew_gles_glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetSynciv
-  if (!prototypeCalled && glesConfig.m_glGetSynciv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetSynciv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetSynciv (sync, pname, bufSize, length, values);
   }
   // GL_APPLE_sync - glGetSynciv
-  if (!prototypeCalled && glesConfig.m_glGetSyncivAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glGetSyncivAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glGetSyncivAPPLE (sync, pname, bufSize, length, values);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1468,12 +1709,15 @@ void _glew_gles_glGetInteger64i_v (GLenum target, GLuint index, GLint64 * data)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetInteger64i_v
-  if (!prototypeCalled && glesConfig.m_glGetInteger64i_v)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetInteger64i_v)
   {
     prototypeCalled = true;
     glesConfig.m_glGetInteger64i_v (target, index, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1484,12 +1728,15 @@ void _glew_gles_glGetBufferParameteri64v (GLenum target, GLenum pname, GLint64 *
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetBufferParameteri64v
-  if (!prototypeCalled && glesConfig.m_glGetBufferParameteri64v)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetBufferParameteri64v)
   {
     prototypeCalled = true;
     glesConfig.m_glGetBufferParameteri64v (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1500,12 +1747,15 @@ void _glew_gles_glGenSamplers (GLsizei count, GLuint * samplers)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGenSamplers
-  if (!prototypeCalled && glesConfig.m_glGenSamplers)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGenSamplers)
   {
     prototypeCalled = true;
     glesConfig.m_glGenSamplers (count, samplers);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1516,12 +1766,15 @@ void _glew_gles_glDeleteSamplers (GLsizei count, const GLuint * samplers)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glDeleteSamplers
-  if (!prototypeCalled && glesConfig.m_glDeleteSamplers)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glDeleteSamplers)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteSamplers (count, samplers);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1532,13 +1785,17 @@ GLboolean _glew_gles_glIsSampler (GLuint sampler)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glIsSampler
-  if (!prototypeCalled && glesConfig.m_glIsSampler)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glIsSampler)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsSampler (sampler);
+    result = glesConfig.m_glIsSampler (sampler);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1549,12 +1806,15 @@ void _glew_gles_glBindSampler (GLuint unit, GLuint sampler)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glBindSampler
-  if (!prototypeCalled && glesConfig.m_glBindSampler)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glBindSampler)
   {
     prototypeCalled = true;
     glesConfig.m_glBindSampler (unit, sampler);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1565,12 +1825,15 @@ void _glew_gles_glSamplerParameteri (GLuint sampler, GLenum pname, GLint param)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glSamplerParameteri
-  if (!prototypeCalled && glesConfig.m_glSamplerParameteri)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glSamplerParameteri)
   {
     prototypeCalled = true;
     glesConfig.m_glSamplerParameteri (sampler, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1581,12 +1844,15 @@ void _glew_gles_glSamplerParameteriv (GLuint sampler, GLenum pname, const GLint 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glSamplerParameteriv
-  if (!prototypeCalled && glesConfig.m_glSamplerParameteriv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glSamplerParameteriv)
   {
     prototypeCalled = true;
     glesConfig.m_glSamplerParameteriv (sampler, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1597,12 +1863,15 @@ void _glew_gles_glSamplerParameterf (GLuint sampler, GLenum pname, GLfloat param
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glSamplerParameterf
-  if (!prototypeCalled && glesConfig.m_glSamplerParameterf)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glSamplerParameterf)
   {
     prototypeCalled = true;
     glesConfig.m_glSamplerParameterf (sampler, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1613,12 +1882,15 @@ void _glew_gles_glSamplerParameterfv (GLuint sampler, GLenum pname, const GLfloa
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glSamplerParameterfv
-  if (!prototypeCalled && glesConfig.m_glSamplerParameterfv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glSamplerParameterfv)
   {
     prototypeCalled = true;
     glesConfig.m_glSamplerParameterfv (sampler, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1629,12 +1901,15 @@ void _glew_gles_glGetSamplerParameteriv (GLuint sampler, GLenum pname, GLint * p
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetSamplerParameteriv
-  if (!prototypeCalled && glesConfig.m_glGetSamplerParameteriv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetSamplerParameteriv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetSamplerParameteriv (sampler, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1645,12 +1920,15 @@ void _glew_gles_glGetSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat *
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetSamplerParameterfv
-  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterfv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetSamplerParameterfv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetSamplerParameterfv (sampler, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1661,30 +1939,33 @@ void _glew_gles_glVertexAttribDivisor (GLuint index, GLuint divisor)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glVertexAttribDivisor
-  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisor)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glVertexAttribDivisor)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribDivisor (index, divisor);
   }
   // GL_ANGLE_instanced_arrays - glVertexAttribDivisor
-  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorANGLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_instanced_arrays] && glesConfig.m_glVertexAttribDivisorANGLE)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribDivisorANGLE (index, divisor);
   }
   // GL_EXT_instanced_arrays - glVertexAttribDivisor
-  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_instanced_arrays] && glesConfig.m_glVertexAttribDivisorEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribDivisorEXT (index, divisor);
   }
   // GL_NV_instanced_arrays - glVertexAttribDivisor
-  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_instanced_arrays] && glesConfig.m_glVertexAttribDivisorNV)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribDivisorNV (index, divisor);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1695,12 +1976,15 @@ void _glew_gles_glBindTransformFeedback (GLenum target, GLuint id)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glBindTransformFeedback
-  if (!prototypeCalled && glesConfig.m_glBindTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glBindTransformFeedback)
   {
     prototypeCalled = true;
     glesConfig.m_glBindTransformFeedback (target, id);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1711,12 +1995,15 @@ void _glew_gles_glDeleteTransformFeedbacks (GLsizei n, const GLuint * ids)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glDeleteTransformFeedbacks
-  if (!prototypeCalled && glesConfig.m_glDeleteTransformFeedbacks)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glDeleteTransformFeedbacks)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteTransformFeedbacks (n, ids);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1727,12 +2014,15 @@ void _glew_gles_glGenTransformFeedbacks (GLsizei n, GLuint * ids)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGenTransformFeedbacks
-  if (!prototypeCalled && glesConfig.m_glGenTransformFeedbacks)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGenTransformFeedbacks)
   {
     prototypeCalled = true;
     glesConfig.m_glGenTransformFeedbacks (n, ids);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1743,13 +2033,17 @@ GLboolean _glew_gles_glIsTransformFeedback (GLuint id)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glIsTransformFeedback
-  if (!prototypeCalled && glesConfig.m_glIsTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glIsTransformFeedback)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsTransformFeedback (id);
+    result = glesConfig.m_glIsTransformFeedback (id);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1760,12 +2054,15 @@ void _glew_gles_glPauseTransformFeedback ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glPauseTransformFeedback
-  if (!prototypeCalled && glesConfig.m_glPauseTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glPauseTransformFeedback)
   {
     prototypeCalled = true;
     glesConfig.m_glPauseTransformFeedback ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1776,12 +2073,15 @@ void _glew_gles_glResumeTransformFeedback ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glResumeTransformFeedback
-  if (!prototypeCalled && glesConfig.m_glResumeTransformFeedback)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glResumeTransformFeedback)
   {
     prototypeCalled = true;
     glesConfig.m_glResumeTransformFeedback ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1792,18 +2092,21 @@ void _glew_gles_glGetProgramBinary (GLuint program, GLsizei bufSize, GLsizei * l
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetProgramBinary
-  if (!prototypeCalled && glesConfig.m_glGetProgramBinary)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetProgramBinary)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramBinary (program, bufSize, length, binaryFormat, binary);
   }
   // GL_OES_get_program_binary - glGetProgramBinary
-  if (!prototypeCalled && glesConfig.m_glGetProgramBinaryOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_get_program_binary] && glesConfig.m_glGetProgramBinaryOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramBinaryOES (program, bufSize, length, binaryFormat, binary);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1814,18 +2117,21 @@ void _glew_gles_glProgramBinary (GLuint program, GLenum binaryFormat, const void
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glProgramBinary
-  if (!prototypeCalled && glesConfig.m_glProgramBinary)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glProgramBinary)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramBinary (program, binaryFormat, binary, length);
   }
   // GL_OES_get_program_binary - glProgramBinary
-  if (!prototypeCalled && glesConfig.m_glProgramBinaryOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_get_program_binary] && glesConfig.m_glProgramBinaryOES)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramBinaryOES (program, binaryFormat, binary, (GLint) length);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1836,18 +2142,21 @@ void _glew_gles_glProgramParameteri (GLuint program, GLenum pname, GLint value)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glProgramParameteri
-  if (!prototypeCalled && glesConfig.m_glProgramParameteri)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glProgramParameteri)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramParameteri (program, pname, value);
   }
   // GL_EXT_separate_shader_objects - glProgramParameteri
-  if (!prototypeCalled && glesConfig.m_glProgramParameteriEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramParameteriEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramParameteriEXT (program, pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1858,12 +2167,15 @@ void _glew_gles_glInvalidateFramebuffer (GLenum target, GLsizei numAttachments, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glInvalidateFramebuffer
-  if (!prototypeCalled && glesConfig.m_glInvalidateFramebuffer)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glInvalidateFramebuffer)
   {
     prototypeCalled = true;
     glesConfig.m_glInvalidateFramebuffer (target, numAttachments, attachments);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1874,12 +2186,15 @@ void _glew_gles_glInvalidateSubFramebuffer (GLenum target, GLsizei numAttachment
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glInvalidateSubFramebuffer
-  if (!prototypeCalled && glesConfig.m_glInvalidateSubFramebuffer)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glInvalidateSubFramebuffer)
   {
     prototypeCalled = true;
     glesConfig.m_glInvalidateSubFramebuffer (target, numAttachments, attachments, x, y, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1890,18 +2205,21 @@ void _glew_gles_glTexStorage2D (GLenum target, GLsizei levels, GLenum internalfo
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glTexStorage2D
-  if (!prototypeCalled && glesConfig.m_glTexStorage2D)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glTexStorage2D)
   {
     prototypeCalled = true;
     glesConfig.m_glTexStorage2D (target, levels, internalformat, width, height);
   }
   // GL_EXT_texture_storage - glTexStorage2D
-  if (!prototypeCalled && glesConfig.m_glTexStorage2DEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_storage] && glesConfig.m_glTexStorage2DEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTexStorage2DEXT (target, levels, internalformat, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1912,18 +2230,21 @@ void _glew_gles_glTexStorage3D (GLenum target, GLsizei levels, GLenum internalfo
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glTexStorage3D
-  if (!prototypeCalled && glesConfig.m_glTexStorage3D)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glTexStorage3D)
   {
     prototypeCalled = true;
     glesConfig.m_glTexStorage3D (target, levels, internalformat, width, height, depth);
   }
   // GL_EXT_texture_storage - glTexStorage3D
-  if (!prototypeCalled && glesConfig.m_glTexStorage3DEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_storage] && glesConfig.m_glTexStorage3DEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTexStorage3DEXT (target, levels, internalformat, width, height, depth);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1934,12 +2255,15 @@ void _glew_gles_glGetInternalformativ (GLenum target, GLenum internalformat, GLe
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_0 - glGetInternalformativ
-  if (!prototypeCalled && glesConfig.m_glGetInternalformativ)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetInternalformativ)
   {
     prototypeCalled = true;
     glesConfig.m_glGetInternalformativ (target, internalformat, pname, bufSize, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1950,12 +2274,15 @@ void _glew_gles_glDispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glDispatchCompute
-  if (!prototypeCalled && glesConfig.m_glDispatchCompute)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glDispatchCompute)
   {
     prototypeCalled = true;
     glesConfig.m_glDispatchCompute (num_groups_x, num_groups_y, num_groups_z);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1966,12 +2293,15 @@ void _glew_gles_glDispatchComputeIndirect (GLintptr indirect)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glDispatchComputeIndirect
-  if (!prototypeCalled && glesConfig.m_glDispatchComputeIndirect)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glDispatchComputeIndirect)
   {
     prototypeCalled = true;
     glesConfig.m_glDispatchComputeIndirect (indirect);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1982,12 +2312,15 @@ void _glew_gles_glDrawArraysIndirect (GLenum mode, const void * indirect)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glDrawArraysIndirect
-  if (!prototypeCalled && glesConfig.m_glDrawArraysIndirect)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glDrawArraysIndirect)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawArraysIndirect (mode, indirect);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1998,12 +2331,15 @@ void _glew_gles_glDrawElementsIndirect (GLenum mode, GLenum type, const void * i
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glDrawElementsIndirect
-  if (!prototypeCalled && glesConfig.m_glDrawElementsIndirect)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glDrawElementsIndirect)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsIndirect (mode, type, indirect);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2014,12 +2350,15 @@ void _glew_gles_glFramebufferParameteri (GLenum target, GLenum pname, GLint para
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glFramebufferParameteri
-  if (!prototypeCalled && glesConfig.m_glFramebufferParameteri)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glFramebufferParameteri)
   {
     prototypeCalled = true;
     glesConfig.m_glFramebufferParameteri (target, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2030,12 +2369,15 @@ void _glew_gles_glGetFramebufferParameteriv (GLenum target, GLenum pname, GLint 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetFramebufferParameteriv
-  if (!prototypeCalled && glesConfig.m_glGetFramebufferParameteriv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetFramebufferParameteriv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetFramebufferParameteriv (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2046,12 +2388,15 @@ void _glew_gles_glGetProgramInterfaceiv (GLuint program, GLenum programInterface
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetProgramInterfaceiv
-  if (!prototypeCalled && glesConfig.m_glGetProgramInterfaceiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetProgramInterfaceiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramInterfaceiv (program, programInterface, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2062,13 +2407,17 @@ GLuint _glew_gles_glGetProgramResourceIndex (GLuint program, GLenum programInter
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint result = ((GLuint)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetProgramResourceIndex
-  if (!prototypeCalled && glesConfig.m_glGetProgramResourceIndex)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetProgramResourceIndex)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetProgramResourceIndex (program, programInterface, name);
+    result = glesConfig.m_glGetProgramResourceIndex (program, programInterface, name);
   }
-  return ((GLuint)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2079,12 +2428,15 @@ void _glew_gles_glGetProgramResourceName (GLuint program, GLenum programInterfac
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetProgramResourceName
-  if (!prototypeCalled && glesConfig.m_glGetProgramResourceName)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetProgramResourceName)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramResourceName (program, programInterface, index, bufSize, length, name);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2095,12 +2447,15 @@ void _glew_gles_glGetProgramResourceiv (GLuint program, GLenum programInterface,
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetProgramResourceiv
-  if (!prototypeCalled && glesConfig.m_glGetProgramResourceiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetProgramResourceiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramResourceiv (program, programInterface, index, propCount, props, bufSize, length, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2111,13 +2466,17 @@ GLint _glew_gles_glGetProgramResourceLocation (GLuint program, GLenum programInt
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLint result = ((GLint)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetProgramResourceLocation
-  if (!prototypeCalled && glesConfig.m_glGetProgramResourceLocation)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetProgramResourceLocation)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetProgramResourceLocation (program, programInterface, name);
+    result = glesConfig.m_glGetProgramResourceLocation (program, programInterface, name);
   }
-  return ((GLint)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2128,12 +2487,15 @@ void _glew_gles_glUseProgramStages (GLuint pipeline, GLbitfield stages, GLuint p
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glUseProgramStages
-  if (!prototypeCalled && glesConfig.m_glUseProgramStages)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glUseProgramStages)
   {
     prototypeCalled = true;
     glesConfig.m_glUseProgramStages (pipeline, stages, program);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2144,12 +2506,15 @@ void _glew_gles_glActiveShaderProgram (GLuint pipeline, GLuint program)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glActiveShaderProgram
-  if (!prototypeCalled && glesConfig.m_glActiveShaderProgram)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glActiveShaderProgram)
   {
     prototypeCalled = true;
     glesConfig.m_glActiveShaderProgram (pipeline, program);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2160,13 +2525,17 @@ GLuint _glew_gles_glCreateShaderProgramv (GLenum type, GLsizei count, const GLch
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint result = ((GLuint)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glCreateShaderProgramv
-  if (!prototypeCalled && glesConfig.m_glCreateShaderProgramv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glCreateShaderProgramv)
   {
     prototypeCalled = true;
-    return glesConfig.m_glCreateShaderProgramv (type, count, strings);
+    result = glesConfig.m_glCreateShaderProgramv (type, count, strings);
   }
-  return ((GLuint)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2177,12 +2546,15 @@ void _glew_gles_glBindProgramPipeline (GLuint pipeline)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glBindProgramPipeline
-  if (!prototypeCalled && glesConfig.m_glBindProgramPipeline)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glBindProgramPipeline)
   {
     prototypeCalled = true;
     glesConfig.m_glBindProgramPipeline (pipeline);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2193,12 +2565,15 @@ void _glew_gles_glDeleteProgramPipelines (GLsizei n, const GLuint * pipelines)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glDeleteProgramPipelines
-  if (!prototypeCalled && glesConfig.m_glDeleteProgramPipelines)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glDeleteProgramPipelines)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteProgramPipelines (n, pipelines);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2209,12 +2584,15 @@ void _glew_gles_glGenProgramPipelines (GLsizei n, GLuint * pipelines)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGenProgramPipelines
-  if (!prototypeCalled && glesConfig.m_glGenProgramPipelines)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGenProgramPipelines)
   {
     prototypeCalled = true;
     glesConfig.m_glGenProgramPipelines (n, pipelines);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2225,13 +2603,17 @@ GLboolean _glew_gles_glIsProgramPipeline (GLuint pipeline)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glIsProgramPipeline
-  if (!prototypeCalled && glesConfig.m_glIsProgramPipeline)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glIsProgramPipeline)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsProgramPipeline (pipeline);
+    result = glesConfig.m_glIsProgramPipeline (pipeline);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2242,12 +2624,15 @@ void _glew_gles_glGetProgramPipelineiv (GLuint pipeline, GLenum pname, GLint * p
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetProgramPipelineiv
-  if (!prototypeCalled && glesConfig.m_glGetProgramPipelineiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetProgramPipelineiv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramPipelineiv (pipeline, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2258,18 +2643,21 @@ void _glew_gles_glProgramUniform1i (GLuint program, GLint location, GLint v0)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform1i
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1i)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform1i)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1i (program, location, v0);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform1i
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1iEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1iEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1iEXT (program, location, v0);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2280,18 +2668,21 @@ void _glew_gles_glProgramUniform2i (GLuint program, GLint location, GLint v0, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform2i
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2i)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform2i)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2i (program, location, v0, v1);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform2i
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2iEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2iEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2iEXT (program, location, v0, v1);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2302,18 +2693,21 @@ void _glew_gles_glProgramUniform3i (GLuint program, GLint location, GLint v0, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform3i
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3i)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform3i)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3i (program, location, v0, v1, v2);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform3i
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3iEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3iEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3iEXT (program, location, v0, v1, v2);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2324,18 +2718,21 @@ void _glew_gles_glProgramUniform4i (GLuint program, GLint location, GLint v0, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform4i
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4i)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform4i)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4i (program, location, v0, v1, v2, v3);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform4i
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4iEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4iEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4iEXT (program, location, v0, v1, v2, v3);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2346,12 +2743,15 @@ void _glew_gles_glProgramUniform1ui (GLuint program, GLint location, GLuint v0)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform1ui
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1ui)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform1ui)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1ui (program, location, v0);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2362,12 +2762,15 @@ void _glew_gles_glProgramUniform2ui (GLuint program, GLint location, GLuint v0, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform2ui
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2ui)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform2ui)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2ui (program, location, v0, v1);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2378,12 +2781,15 @@ void _glew_gles_glProgramUniform3ui (GLuint program, GLint location, GLuint v0, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform3ui
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3ui)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform3ui)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3ui (program, location, v0, v1, v2);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2394,12 +2800,15 @@ void _glew_gles_glProgramUniform4ui (GLuint program, GLint location, GLuint v0, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform4ui
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4ui)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform4ui)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4ui (program, location, v0, v1, v2, v3);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2410,18 +2819,21 @@ void _glew_gles_glProgramUniform1f (GLuint program, GLint location, GLfloat v0)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform1f
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1f)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform1f)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1f (program, location, v0);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform1f
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1fEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1fEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1fEXT (program, location, v0);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2432,18 +2844,21 @@ void _glew_gles_glProgramUniform2f (GLuint program, GLint location, GLfloat v0, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform2f
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2f)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform2f)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2f (program, location, v0, v1);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform2f
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2fEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2fEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2fEXT (program, location, v0, v1);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2454,18 +2869,21 @@ void _glew_gles_glProgramUniform3f (GLuint program, GLint location, GLfloat v0, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform3f
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3f)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform3f)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3f (program, location, v0, v1, v2);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform3f
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3fEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3fEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3fEXT (program, location, v0, v1, v2);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2476,18 +2894,21 @@ void _glew_gles_glProgramUniform4f (GLuint program, GLint location, GLfloat v0, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform4f
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4f)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform4f)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4f (program, location, v0, v1, v2, v3);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform4f
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4fEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4fEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4fEXT (program, location, v0, v1, v2, v3);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2498,18 +2919,21 @@ void _glew_gles_glProgramUniform1iv (GLuint program, GLint location, GLsizei cou
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform1iv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1iv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform1iv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1iv (program, location, count, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform1iv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1ivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1ivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1ivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2520,18 +2944,21 @@ void _glew_gles_glProgramUniform2iv (GLuint program, GLint location, GLsizei cou
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform2iv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2iv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform2iv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2iv (program, location, count, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform2iv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2ivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2ivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2ivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2542,18 +2969,21 @@ void _glew_gles_glProgramUniform3iv (GLuint program, GLint location, GLsizei cou
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform3iv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3iv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform3iv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3iv (program, location, count, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform3iv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3ivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3ivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3ivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2564,18 +2994,21 @@ void _glew_gles_glProgramUniform4iv (GLuint program, GLint location, GLsizei cou
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform4iv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4iv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform4iv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4iv (program, location, count, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform4iv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4ivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4ivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4ivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2586,12 +3019,15 @@ void _glew_gles_glProgramUniform1uiv (GLuint program, GLint location, GLsizei co
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform1uiv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1uiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform1uiv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1uiv (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2602,12 +3038,15 @@ void _glew_gles_glProgramUniform2uiv (GLuint program, GLint location, GLsizei co
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform2uiv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2uiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform2uiv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2uiv (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2618,12 +3057,15 @@ void _glew_gles_glProgramUniform3uiv (GLuint program, GLint location, GLsizei co
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform3uiv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3uiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform3uiv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3uiv (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2634,12 +3076,15 @@ void _glew_gles_glProgramUniform4uiv (GLuint program, GLint location, GLsizei co
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform4uiv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4uiv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform4uiv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4uiv (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2650,18 +3095,21 @@ void _glew_gles_glProgramUniform1fv (GLuint program, GLint location, GLsizei cou
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform1fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform1fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1fv (program, location, count, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform1fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1fvEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2672,18 +3120,21 @@ void _glew_gles_glProgramUniform2fv (GLuint program, GLint location, GLsizei cou
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform2fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform2fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2fv (program, location, count, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform2fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2fvEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2694,18 +3145,21 @@ void _glew_gles_glProgramUniform3fv (GLuint program, GLint location, GLsizei cou
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform3fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform3fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3fv (program, location, count, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform3fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3fvEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2716,18 +3170,21 @@ void _glew_gles_glProgramUniform4fv (GLuint program, GLint location, GLsizei cou
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniform4fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniform4fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4fv (program, location, count, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniform4fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4fvEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2738,18 +3195,21 @@ void _glew_gles_glProgramUniformMatrix2fv (GLuint program, GLint location, GLsiz
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix2fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniformMatrix2fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix2fv (program, location, count, transpose, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix2fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix2fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix2fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2760,18 +3220,21 @@ void _glew_gles_glProgramUniformMatrix3fv (GLuint program, GLint location, GLsiz
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix3fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniformMatrix3fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix3fv (program, location, count, transpose, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix3fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix3fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix3fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2782,18 +3245,21 @@ void _glew_gles_glProgramUniformMatrix4fv (GLuint program, GLint location, GLsiz
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix4fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniformMatrix4fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix4fv (program, location, count, transpose, value);
   }
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix4fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix4fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix4fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2804,12 +3270,15 @@ void _glew_gles_glProgramUniformMatrix2x3fv (GLuint program, GLint location, GLs
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix2x3fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2x3fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniformMatrix2x3fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix2x3fv (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2820,12 +3289,15 @@ void _glew_gles_glProgramUniformMatrix3x2fv (GLuint program, GLint location, GLs
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix3x2fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3x2fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniformMatrix3x2fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix3x2fv (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2836,12 +3308,15 @@ void _glew_gles_glProgramUniformMatrix2x4fv (GLuint program, GLint location, GLs
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix2x4fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2x4fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniformMatrix2x4fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix2x4fv (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2852,12 +3327,15 @@ void _glew_gles_glProgramUniformMatrix4x2fv (GLuint program, GLint location, GLs
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix4x2fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4x2fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniformMatrix4x2fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix4x2fv (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2868,12 +3346,15 @@ void _glew_gles_glProgramUniformMatrix3x4fv (GLuint program, GLint location, GLs
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix3x4fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3x4fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniformMatrix3x4fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix3x4fv (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2884,12 +3365,15 @@ void _glew_gles_glProgramUniformMatrix4x3fv (GLuint program, GLint location, GLs
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glProgramUniformMatrix4x3fv
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4x3fv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glProgramUniformMatrix4x3fv)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix4x3fv (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2900,12 +3384,15 @@ void _glew_gles_glValidateProgramPipeline (GLuint pipeline)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glValidateProgramPipeline
-  if (!prototypeCalled && glesConfig.m_glValidateProgramPipeline)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glValidateProgramPipeline)
   {
     prototypeCalled = true;
     glesConfig.m_glValidateProgramPipeline (pipeline);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2916,12 +3403,15 @@ void _glew_gles_glGetProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetProgramPipelineInfoLog
-  if (!prototypeCalled && glesConfig.m_glGetProgramPipelineInfoLog)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetProgramPipelineInfoLog)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramPipelineInfoLog (pipeline, bufSize, length, infoLog);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2932,12 +3422,15 @@ void _glew_gles_glBindImageTexture (GLuint unit, GLuint texture, GLint level, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glBindImageTexture
-  if (!prototypeCalled && glesConfig.m_glBindImageTexture)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glBindImageTexture)
   {
     prototypeCalled = true;
     glesConfig.m_glBindImageTexture (unit, texture, level, layered, layer, access, format);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2948,12 +3441,15 @@ void _glew_gles_glGetBooleani_v (GLenum target, GLuint index, GLboolean * data)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetBooleani_v
-  if (!prototypeCalled && glesConfig.m_glGetBooleani_v)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetBooleani_v)
   {
     prototypeCalled = true;
     glesConfig.m_glGetBooleani_v (target, index, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2964,12 +3460,15 @@ void _glew_gles_glMemoryBarrier (GLbitfield barriers)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glMemoryBarrier
-  if (!prototypeCalled && glesConfig.m_glMemoryBarrier)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glMemoryBarrier)
   {
     prototypeCalled = true;
     glesConfig.m_glMemoryBarrier (barriers);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2980,12 +3479,15 @@ void _glew_gles_glMemoryBarrierByRegion (GLbitfield barriers)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glMemoryBarrierByRegion
-  if (!prototypeCalled && glesConfig.m_glMemoryBarrierByRegion)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glMemoryBarrierByRegion)
   {
     prototypeCalled = true;
     glesConfig.m_glMemoryBarrierByRegion (barriers);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2996,12 +3498,15 @@ void _glew_gles_glTexStorage2DMultisample (GLenum target, GLsizei samples, GLenu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glTexStorage2DMultisample
-  if (!prototypeCalled && glesConfig.m_glTexStorage2DMultisample)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glTexStorage2DMultisample)
   {
     prototypeCalled = true;
     glesConfig.m_glTexStorage2DMultisample (target, samples, internalformat, width, height, fixedsamplelocations);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3012,12 +3517,15 @@ void _glew_gles_glGetMultisamplefv (GLenum pname, GLuint index, GLfloat * val)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetMultisamplefv
-  if (!prototypeCalled && glesConfig.m_glGetMultisamplefv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetMultisamplefv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetMultisamplefv (pname, index, val);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3028,12 +3536,15 @@ void _glew_gles_glSampleMaski (GLuint maskNumber, GLbitfield mask)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glSampleMaski
-  if (!prototypeCalled && glesConfig.m_glSampleMaski)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glSampleMaski)
   {
     prototypeCalled = true;
     glesConfig.m_glSampleMaski (maskNumber, mask);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3044,12 +3555,15 @@ void _glew_gles_glGetTexLevelParameteriv (GLenum target, GLint level, GLenum pna
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetTexLevelParameteriv
-  if (!prototypeCalled && glesConfig.m_glGetTexLevelParameteriv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetTexLevelParameteriv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetTexLevelParameteriv (target, level, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3060,12 +3574,15 @@ void _glew_gles_glGetTexLevelParameterfv (GLenum target, GLint level, GLenum pna
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glGetTexLevelParameterfv
-  if (!prototypeCalled && glesConfig.m_glGetTexLevelParameterfv)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetTexLevelParameterfv)
   {
     prototypeCalled = true;
     glesConfig.m_glGetTexLevelParameterfv (target, level, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3076,12 +3593,15 @@ void _glew_gles_glBindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glBindVertexBuffer
-  if (!prototypeCalled && glesConfig.m_glBindVertexBuffer)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glBindVertexBuffer)
   {
     prototypeCalled = true;
     glesConfig.m_glBindVertexBuffer (bindingindex, buffer, offset, stride);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3092,12 +3612,15 @@ void _glew_gles_glVertexAttribFormat (GLuint attribindex, GLint size, GLenum typ
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glVertexAttribFormat
-  if (!prototypeCalled && glesConfig.m_glVertexAttribFormat)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glVertexAttribFormat)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribFormat (attribindex, size, type, normalized, relativeoffset);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3108,12 +3631,15 @@ void _glew_gles_glVertexAttribIFormat (GLuint attribindex, GLint size, GLenum ty
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glVertexAttribIFormat
-  if (!prototypeCalled && glesConfig.m_glVertexAttribIFormat)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glVertexAttribIFormat)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribIFormat (attribindex, size, type, relativeoffset);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3124,12 +3650,15 @@ void _glew_gles_glVertexAttribBinding (GLuint attribindex, GLuint bindingindex)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glVertexAttribBinding
-  if (!prototypeCalled && glesConfig.m_glVertexAttribBinding)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glVertexAttribBinding)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribBinding (attribindex, bindingindex);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3140,12 +3669,15 @@ void _glew_gles_glVertexBindingDivisor (GLuint bindingindex, GLuint divisor)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ES_VERSION_3_1 - glVertexBindingDivisor
-  if (!prototypeCalled && glesConfig.m_glVertexBindingDivisor)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glVertexBindingDivisor)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexBindingDivisor (bindingindex, divisor);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3156,12 +3688,15 @@ void _glew_gles_glGetPerfMonitorGroupsAMD (GLint * numGroups, GLsizei groupsSize
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glGetPerfMonitorGroupsAMD
-  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorGroupsAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glGetPerfMonitorGroupsAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfMonitorGroupsAMD (numGroups, groupsSize, groups);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3172,12 +3707,15 @@ void _glew_gles_glGetPerfMonitorCountersAMD (GLuint group, GLint * numCounters, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glGetPerfMonitorCountersAMD
-  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorCountersAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glGetPerfMonitorCountersAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfMonitorCountersAMD (group, numCounters, maxActiveCounters, counterSize, counters);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3188,12 +3726,15 @@ void _glew_gles_glGetPerfMonitorGroupStringAMD (GLuint group, GLsizei bufSize, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glGetPerfMonitorGroupStringAMD
-  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorGroupStringAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glGetPerfMonitorGroupStringAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfMonitorGroupStringAMD (group, bufSize, length, groupString);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3204,12 +3745,15 @@ void _glew_gles_glGetPerfMonitorCounterStringAMD (GLuint group, GLuint counter, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glGetPerfMonitorCounterStringAMD
-  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorCounterStringAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glGetPerfMonitorCounterStringAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfMonitorCounterStringAMD (group, counter, bufSize, length, counterString);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3220,12 +3764,15 @@ void _glew_gles_glGetPerfMonitorCounterInfoAMD (GLuint group, GLuint counter, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glGetPerfMonitorCounterInfoAMD
-  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorCounterInfoAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glGetPerfMonitorCounterInfoAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfMonitorCounterInfoAMD (group, counter, pname, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3236,12 +3783,15 @@ void _glew_gles_glGenPerfMonitorsAMD (GLsizei n, GLuint * monitors)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glGenPerfMonitorsAMD
-  if (!prototypeCalled && glesConfig.m_glGenPerfMonitorsAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glGenPerfMonitorsAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glGenPerfMonitorsAMD (n, monitors);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3252,12 +3802,15 @@ void _glew_gles_glDeletePerfMonitorsAMD (GLsizei n, GLuint * monitors)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glDeletePerfMonitorsAMD
-  if (!prototypeCalled && glesConfig.m_glDeletePerfMonitorsAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glDeletePerfMonitorsAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glDeletePerfMonitorsAMD (n, monitors);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3268,12 +3821,15 @@ void _glew_gles_glSelectPerfMonitorCountersAMD (GLuint monitor, GLboolean enable
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glSelectPerfMonitorCountersAMD
-  if (!prototypeCalled && glesConfig.m_glSelectPerfMonitorCountersAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glSelectPerfMonitorCountersAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glSelectPerfMonitorCountersAMD (monitor, enable, group, numCounters, counterList);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3284,12 +3840,15 @@ void _glew_gles_glBeginPerfMonitorAMD (GLuint monitor)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glBeginPerfMonitorAMD
-  if (!prototypeCalled && glesConfig.m_glBeginPerfMonitorAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glBeginPerfMonitorAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glBeginPerfMonitorAMD (monitor);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3300,12 +3859,15 @@ void _glew_gles_glEndPerfMonitorAMD (GLuint monitor)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glEndPerfMonitorAMD
-  if (!prototypeCalled && glesConfig.m_glEndPerfMonitorAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glEndPerfMonitorAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glEndPerfMonitorAMD (monitor);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3316,12 +3878,15 @@ void _glew_gles_glGetPerfMonitorCounterDataAMD (GLuint monitor, GLenum pname, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_AMD_performance_monitor - glGetPerfMonitorCounterDataAMD
-  if (!prototypeCalled && glesConfig.m_glGetPerfMonitorCounterDataAMD)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] && glesConfig.m_glGetPerfMonitorCounterDataAMD)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfMonitorCounterDataAMD (monitor, pname, dataSize, data, bytesWritten);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3332,12 +3897,15 @@ void _glew_gles_glBlitFramebufferANGLE (GLint srcX0, GLint srcY0, GLint srcX1, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ANGLE_framebuffer_blit - glBlitFramebufferANGLE
-  if (!prototypeCalled && glesConfig.m_glBlitFramebufferANGLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_framebuffer_blit] && glesConfig.m_glBlitFramebufferANGLE)
   {
     prototypeCalled = true;
     glesConfig.m_glBlitFramebufferANGLE (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3348,12 +3916,15 @@ void _glew_gles_glRenderbufferStorageMultisampleANGLE (GLenum target, GLsizei sa
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ANGLE_framebuffer_multisample - glRenderbufferStorageMultisampleANGLE
-  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleANGLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_framebuffer_multisample] && glesConfig.m_glRenderbufferStorageMultisampleANGLE)
   {
     prototypeCalled = true;
     glesConfig.m_glRenderbufferStorageMultisampleANGLE (target, samples, internalformat, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3364,12 +3935,15 @@ void _glew_gles_glDrawArraysInstancedANGLE (GLenum mode, GLint first, GLsizei co
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ANGLE_instanced_arrays - glDrawArraysInstancedANGLE
-  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedANGLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_instanced_arrays] && glesConfig.m_glDrawArraysInstancedANGLE)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawArraysInstancedANGLE (mode, first, count, primcount);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3380,12 +3954,15 @@ void _glew_gles_glDrawElementsInstancedANGLE (GLenum mode, GLsizei count, GLenum
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ANGLE_instanced_arrays - glDrawElementsInstancedANGLE
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedANGLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_instanced_arrays] && glesConfig.m_glDrawElementsInstancedANGLE)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedANGLE (mode, count, type, indices, primcount);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3396,12 +3973,15 @@ void _glew_gles_glVertexAttribDivisorANGLE (GLuint index, GLuint divisor)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ANGLE_instanced_arrays - glVertexAttribDivisorANGLE
-  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorANGLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_instanced_arrays] && glesConfig.m_glVertexAttribDivisorANGLE)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribDivisorANGLE (index, divisor);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3412,12 +3992,15 @@ void _glew_gles_glGetTranslatedShaderSourceANGLE (GLuint shader, GLsizei bufsize
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_ANGLE_translated_shader_source - glGetTranslatedShaderSourceANGLE
-  if (!prototypeCalled && glesConfig.m_glGetTranslatedShaderSourceANGLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_translated_shader_source] && glesConfig.m_glGetTranslatedShaderSourceANGLE)
   {
     prototypeCalled = true;
     glesConfig.m_glGetTranslatedShaderSourceANGLE (shader, bufsize, length, source);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3428,12 +4011,15 @@ void _glew_gles_glCopyTextureLevelsAPPLE (GLuint destinationTexture, GLuint sour
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_copy_texture_levels - glCopyTextureLevelsAPPLE
-  if (!prototypeCalled && glesConfig.m_glCopyTextureLevelsAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_copy_texture_levels] && glesConfig.m_glCopyTextureLevelsAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyTextureLevelsAPPLE (destinationTexture, sourceTexture, sourceBaseLevel, sourceLevelCount);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3444,12 +4030,15 @@ void _glew_gles_glRenderbufferStorageMultisampleAPPLE (GLenum target, GLsizei sa
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_framebuffer_multisample - glRenderbufferStorageMultisampleAPPLE
-  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_framebuffer_multisample] && glesConfig.m_glRenderbufferStorageMultisampleAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glRenderbufferStorageMultisampleAPPLE (target, samples, internalformat, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3460,12 +4049,15 @@ void _glew_gles_glResolveMultisampleFramebufferAPPLE ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_framebuffer_multisample - glResolveMultisampleFramebufferAPPLE
-  if (!prototypeCalled && glesConfig.m_glResolveMultisampleFramebufferAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_framebuffer_multisample] && glesConfig.m_glResolveMultisampleFramebufferAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glResolveMultisampleFramebufferAPPLE ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3476,13 +4068,17 @@ GLsync _glew_gles_glFenceSyncAPPLE (GLenum condition, GLbitfield flags)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLsync result = ((GLsync)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_sync - glFenceSyncAPPLE
-  if (!prototypeCalled && glesConfig.m_glFenceSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glFenceSyncAPPLE)
   {
     prototypeCalled = true;
-    return glesConfig.m_glFenceSyncAPPLE (condition, flags);
+    result = glesConfig.m_glFenceSyncAPPLE (condition, flags);
   }
-  return ((GLsync)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3493,13 +4089,17 @@ GLboolean _glew_gles_glIsSyncAPPLE (GLsync sync)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_sync - glIsSyncAPPLE
-  if (!prototypeCalled && glesConfig.m_glIsSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glIsSyncAPPLE)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsSyncAPPLE (sync);
+    result = glesConfig.m_glIsSyncAPPLE (sync);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3510,12 +4110,15 @@ void _glew_gles_glDeleteSyncAPPLE (GLsync sync)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_sync - glDeleteSyncAPPLE
-  if (!prototypeCalled && glesConfig.m_glDeleteSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glDeleteSyncAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteSyncAPPLE (sync);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3526,13 +4129,17 @@ GLenum _glew_gles_glClientWaitSyncAPPLE (GLsync sync, GLbitfield flags, GLuint64
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLenum result = ((GLenum)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_sync - glClientWaitSyncAPPLE
-  if (!prototypeCalled && glesConfig.m_glClientWaitSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glClientWaitSyncAPPLE)
   {
     prototypeCalled = true;
-    return glesConfig.m_glClientWaitSyncAPPLE (sync, flags, timeout);
+    result = glesConfig.m_glClientWaitSyncAPPLE (sync, flags, timeout);
   }
-  return ((GLenum)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3543,12 +4150,15 @@ void _glew_gles_glWaitSyncAPPLE (GLsync sync, GLbitfield flags, GLuint64 timeout
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_sync - glWaitSyncAPPLE
-  if (!prototypeCalled && glesConfig.m_glWaitSyncAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glWaitSyncAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glWaitSyncAPPLE (sync, flags, timeout);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3559,12 +4169,15 @@ void _glew_gles_glGetInteger64vAPPLE (GLenum pname, GLint64 * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_sync - glGetInteger64vAPPLE
-  if (!prototypeCalled && glesConfig.m_glGetInteger64vAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glGetInteger64vAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glGetInteger64vAPPLE (pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3575,12 +4188,15 @@ void _glew_gles_glGetSyncivAPPLE (GLsync sync, GLenum pname, GLsizei bufSize, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_APPLE_sync - glGetSyncivAPPLE
-  if (!prototypeCalled && glesConfig.m_glGetSyncivAPPLE)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glGetSyncivAPPLE)
   {
     prototypeCalled = true;
     glesConfig.m_glGetSyncivAPPLE (sync, pname, bufSize, length, values);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3591,12 +4207,15 @@ void _glew_gles_glDrawArraysInstancedBaseInstanceEXT (GLenum mode, GLint first, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_base_instance - glDrawArraysInstancedBaseInstanceEXT
-  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedBaseInstanceEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_base_instance] && glesConfig.m_glDrawArraysInstancedBaseInstanceEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawArraysInstancedBaseInstanceEXT (mode, first, count, instancecount, baseinstance);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3607,12 +4226,15 @@ void _glew_gles_glDrawElementsInstancedBaseInstanceEXT (GLenum mode, GLsizei cou
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_base_instance - glDrawElementsInstancedBaseInstanceEXT
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedBaseInstanceEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_base_instance] && glesConfig.m_glDrawElementsInstancedBaseInstanceEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedBaseInstanceEXT (mode, count, type, indices, instancecount, baseinstance);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3623,12 +4245,15 @@ void _glew_gles_glDrawElementsInstancedBaseVertexBaseInstanceEXT (GLenum mode, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_base_instance - glDrawElementsInstancedBaseVertexBaseInstanceEXT
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedBaseVertexBaseInstanceEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_base_instance] && glesConfig.m_glDrawElementsInstancedBaseVertexBaseInstanceEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedBaseVertexBaseInstanceEXT (mode, count, type, indices, instancecount, basevertex, baseinstance);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3639,12 +4264,15 @@ void _glew_gles_glBufferStorageEXT (GLenum target, GLsizeiptr size, const void *
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_buffer_storage - glBufferStorageEXT
-  if (!prototypeCalled && glesConfig.m_glBufferStorageEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_buffer_storage] && glesConfig.m_glBufferStorageEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glBufferStorageEXT (target, size, data, flags);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3655,12 +4283,15 @@ void _glew_gles_glCopyImageSubDataEXT (GLuint srcName, GLenum srcTarget, GLint s
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_copy_image - glCopyImageSubDataEXT
-  if (!prototypeCalled && glesConfig.m_glCopyImageSubDataEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_copy_image] && glesConfig.m_glCopyImageSubDataEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyImageSubDataEXT (srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3671,12 +4302,15 @@ void _glew_gles_glLabelObjectEXT (GLenum type, GLuint object, GLsizei length, co
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_debug_label - glLabelObjectEXT
-  if (!prototypeCalled && glesConfig.m_glLabelObjectEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_debug_label] && glesConfig.m_glLabelObjectEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glLabelObjectEXT (type, object, length, label);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3687,12 +4321,15 @@ void _glew_gles_glGetObjectLabelEXT (GLenum type, GLuint object, GLsizei bufSize
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_debug_label - glGetObjectLabelEXT
-  if (!prototypeCalled && glesConfig.m_glGetObjectLabelEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_debug_label] && glesConfig.m_glGetObjectLabelEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetObjectLabelEXT (type, object, bufSize, length, label);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3703,12 +4340,15 @@ void _glew_gles_glInsertEventMarkerEXT (GLsizei length, const GLchar * marker)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_debug_marker - glInsertEventMarkerEXT
-  if (!prototypeCalled && glesConfig.m_glInsertEventMarkerEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_debug_marker] && glesConfig.m_glInsertEventMarkerEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glInsertEventMarkerEXT (length, marker);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3719,12 +4359,15 @@ void _glew_gles_glPushGroupMarkerEXT (GLsizei length, const GLchar * marker)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_debug_marker - glPushGroupMarkerEXT
-  if (!prototypeCalled && glesConfig.m_glPushGroupMarkerEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_debug_marker] && glesConfig.m_glPushGroupMarkerEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glPushGroupMarkerEXT (length, marker);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3735,12 +4378,15 @@ void _glew_gles_glPopGroupMarkerEXT ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_debug_marker - glPopGroupMarkerEXT
-  if (!prototypeCalled && glesConfig.m_glPopGroupMarkerEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_debug_marker] && glesConfig.m_glPopGroupMarkerEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glPopGroupMarkerEXT ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3751,12 +4397,15 @@ void _glew_gles_glDiscardFramebufferEXT (GLenum target, GLsizei numAttachments, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_discard_framebuffer - glDiscardFramebufferEXT
-  if (!prototypeCalled && glesConfig.m_glDiscardFramebufferEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_discard_framebuffer] && glesConfig.m_glDiscardFramebufferEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDiscardFramebufferEXT (target, numAttachments, attachments);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3767,12 +4416,21 @@ void _glew_gles_glGenQueriesEXT (GLsizei n, GLuint * ids)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glGenQueriesEXT
-  if (!prototypeCalled && glesConfig.m_glGenQueriesEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glGenQueriesEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGenQueriesEXT (n, ids);
   }
+  // GL_EXT_occlusion_query_boolean - glGenQueriesEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_occlusion_query_boolean] && glesConfig.m_glGenQueriesEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGenQueriesEXT (n, ids);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3783,12 +4441,21 @@ void _glew_gles_glDeleteQueriesEXT (GLsizei n, const GLuint * ids)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glDeleteQueriesEXT
-  if (!prototypeCalled && glesConfig.m_glDeleteQueriesEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glDeleteQueriesEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteQueriesEXT (n, ids);
   }
+  // GL_EXT_occlusion_query_boolean - glDeleteQueriesEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_occlusion_query_boolean] && glesConfig.m_glDeleteQueriesEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDeleteQueriesEXT (n, ids);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3799,13 +4466,23 @@ GLboolean _glew_gles_glIsQueryEXT (GLuint id)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glIsQueryEXT
-  if (!prototypeCalled && glesConfig.m_glIsQueryEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glIsQueryEXT)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsQueryEXT (id);
+    result = glesConfig.m_glIsQueryEXT (id);
   }
-  return ((GLboolean)0);
+  // GL_EXT_occlusion_query_boolean - glIsQueryEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_occlusion_query_boolean] && glesConfig.m_glIsQueryEXT)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glIsQueryEXT (id);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3816,12 +4493,21 @@ void _glew_gles_glBeginQueryEXT (GLenum target, GLuint id)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glBeginQueryEXT
-  if (!prototypeCalled && glesConfig.m_glBeginQueryEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glBeginQueryEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glBeginQueryEXT (target, id);
   }
+  // GL_EXT_occlusion_query_boolean - glBeginQueryEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_occlusion_query_boolean] && glesConfig.m_glBeginQueryEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glBeginQueryEXT (target, id);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3832,12 +4518,21 @@ void _glew_gles_glEndQueryEXT (GLenum target)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glEndQueryEXT
-  if (!prototypeCalled && glesConfig.m_glEndQueryEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glEndQueryEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glEndQueryEXT (target);
   }
+  // GL_EXT_occlusion_query_boolean - glEndQueryEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_occlusion_query_boolean] && glesConfig.m_glEndQueryEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glEndQueryEXT (target);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3848,12 +4543,15 @@ void _glew_gles_glQueryCounterEXT (GLuint id, GLenum target)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glQueryCounterEXT
-  if (!prototypeCalled && glesConfig.m_glQueryCounterEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glQueryCounterEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glQueryCounterEXT (id, target);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3864,12 +4562,21 @@ void _glew_gles_glGetQueryivEXT (GLenum target, GLenum pname, GLint * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glGetQueryivEXT
-  if (!prototypeCalled && glesConfig.m_glGetQueryivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glGetQueryivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetQueryivEXT (target, pname, params);
   }
+  // GL_EXT_occlusion_query_boolean - glGetQueryivEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_occlusion_query_boolean] && glesConfig.m_glGetQueryivEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetQueryivEXT (target, pname, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3880,12 +4587,15 @@ void _glew_gles_glGetQueryObjectivEXT (GLuint id, GLenum pname, GLint * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glGetQueryObjectivEXT
-  if (!prototypeCalled && glesConfig.m_glGetQueryObjectivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glGetQueryObjectivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetQueryObjectivEXT (id, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3896,12 +4606,21 @@ void _glew_gles_glGetQueryObjectuivEXT (GLuint id, GLenum pname, GLuint * params
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glGetQueryObjectuivEXT
-  if (!prototypeCalled && glesConfig.m_glGetQueryObjectuivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glGetQueryObjectuivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetQueryObjectuivEXT (id, pname, params);
   }
+  // GL_EXT_occlusion_query_boolean - glGetQueryObjectuivEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_occlusion_query_boolean] && glesConfig.m_glGetQueryObjectuivEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetQueryObjectuivEXT (id, pname, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3912,12 +4631,15 @@ void _glew_gles_glGetQueryObjecti64vEXT (GLuint id, GLenum pname, GLint64 * para
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glGetQueryObjecti64vEXT
-  if (!prototypeCalled && glesConfig.m_glGetQueryObjecti64vEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glGetQueryObjecti64vEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetQueryObjecti64vEXT (id, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3928,12 +4650,15 @@ void _glew_gles_glGetQueryObjectui64vEXT (GLuint id, GLenum pname, GLuint64 * pa
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_disjoint_timer_query - glGetQueryObjectui64vEXT
-  if (!prototypeCalled && glesConfig.m_glGetQueryObjectui64vEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glGetQueryObjectui64vEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetQueryObjectui64vEXT (id, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3944,12 +4669,15 @@ void _glew_gles_glDrawBuffersEXT (GLsizei n, const GLenum * bufs)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_buffers - glDrawBuffersEXT
-  if (!prototypeCalled && glesConfig.m_glDrawBuffersEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers] && glesConfig.m_glDrawBuffersEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawBuffersEXT (n, bufs);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3960,12 +4688,15 @@ void _glew_gles_glEnableiEXT (GLenum target, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_buffers_indexed - glEnableiEXT
-  if (!prototypeCalled && glesConfig.m_glEnableiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed] && glesConfig.m_glEnableiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glEnableiEXT (target, index);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3976,12 +4707,15 @@ void _glew_gles_glDisableiEXT (GLenum target, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_buffers_indexed - glDisableiEXT
-  if (!prototypeCalled && glesConfig.m_glDisableiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed] && glesConfig.m_glDisableiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDisableiEXT (target, index);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3992,12 +4726,15 @@ void _glew_gles_glBlendEquationiEXT (GLuint buf, GLenum mode)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_buffers_indexed - glBlendEquationiEXT
-  if (!prototypeCalled && glesConfig.m_glBlendEquationiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed] && glesConfig.m_glBlendEquationiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendEquationiEXT (buf, mode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4008,12 +4745,15 @@ void _glew_gles_glBlendEquationSeparateiEXT (GLuint buf, GLenum modeRGB, GLenum 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_buffers_indexed - glBlendEquationSeparateiEXT
-  if (!prototypeCalled && glesConfig.m_glBlendEquationSeparateiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed] && glesConfig.m_glBlendEquationSeparateiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendEquationSeparateiEXT (buf, modeRGB, modeAlpha);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4024,12 +4764,15 @@ void _glew_gles_glBlendFunciEXT (GLuint buf, GLenum src, GLenum dst)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_buffers_indexed - glBlendFunciEXT
-  if (!prototypeCalled && glesConfig.m_glBlendFunciEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed] && glesConfig.m_glBlendFunciEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendFunciEXT (buf, src, dst);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4040,12 +4783,15 @@ void _glew_gles_glBlendFuncSeparateiEXT (GLuint buf, GLenum srcRGB, GLenum dstRG
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_buffers_indexed - glBlendFuncSeparateiEXT
-  if (!prototypeCalled && glesConfig.m_glBlendFuncSeparateiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed] && glesConfig.m_glBlendFuncSeparateiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendFuncSeparateiEXT (buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4056,12 +4802,15 @@ void _glew_gles_glColorMaskiEXT (GLuint index, GLboolean r, GLboolean g, GLboole
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_buffers_indexed - glColorMaskiEXT
-  if (!prototypeCalled && glesConfig.m_glColorMaskiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed] && glesConfig.m_glColorMaskiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glColorMaskiEXT (index, r, g, b, a);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4072,13 +4821,17 @@ GLboolean _glew_gles_glIsEnablediEXT (GLenum target, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_buffers_indexed - glIsEnablediEXT
-  if (!prototypeCalled && glesConfig.m_glIsEnablediEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed] && glesConfig.m_glIsEnablediEXT)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsEnablediEXT (target, index);
+    result = glesConfig.m_glIsEnablediEXT (target, index);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4089,12 +4842,15 @@ void _glew_gles_glDrawElementsBaseVertexEXT (GLenum mode, GLsizei count, GLenum 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_elements_base_vertex - glDrawElementsBaseVertexEXT
-  if (!prototypeCalled && glesConfig.m_glDrawElementsBaseVertexEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_elements_base_vertex] && glesConfig.m_glDrawElementsBaseVertexEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsBaseVertexEXT (mode, count, type, indices, basevertex);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4105,12 +4861,15 @@ void _glew_gles_glDrawRangeElementsBaseVertexEXT (GLenum mode, GLuint start, GLu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_elements_base_vertex - glDrawRangeElementsBaseVertexEXT
-  if (!prototypeCalled && glesConfig.m_glDrawRangeElementsBaseVertexEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_elements_base_vertex] && glesConfig.m_glDrawRangeElementsBaseVertexEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawRangeElementsBaseVertexEXT (mode, start, end, count, type, indices, basevertex);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4121,12 +4880,15 @@ void _glew_gles_glDrawElementsInstancedBaseVertexEXT (GLenum mode, GLsizei count
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_elements_base_vertex - glDrawElementsInstancedBaseVertexEXT
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedBaseVertexEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_elements_base_vertex] && glesConfig.m_glDrawElementsInstancedBaseVertexEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedBaseVertexEXT (mode, count, type, indices, instancecount, basevertex);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4137,12 +4899,15 @@ void _glew_gles_glMultiDrawElementsBaseVertexEXT (GLenum mode, const GLsizei * c
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_elements_base_vertex - glMultiDrawElementsBaseVertexEXT
-  if (!prototypeCalled && glesConfig.m_glMultiDrawElementsBaseVertexEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_elements_base_vertex] && glesConfig.m_glMultiDrawElementsBaseVertexEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glMultiDrawElementsBaseVertexEXT (mode, count, type, indices, primcount, basevertex);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4153,12 +4918,21 @@ void _glew_gles_glDrawArraysInstancedEXT (GLenum mode, GLint start, GLsizei coun
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_instanced - glDrawArraysInstancedEXT
-  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_instanced] && glesConfig.m_glDrawArraysInstancedEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawArraysInstancedEXT (mode, start, count, primcount);
   }
+  // GL_EXT_instanced_arrays - glDrawArraysInstancedEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_instanced_arrays] && glesConfig.m_glDrawArraysInstancedEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawArraysInstancedEXT (mode, start, count, primcount);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4169,12 +4943,21 @@ void _glew_gles_glDrawElementsInstancedEXT (GLenum mode, GLsizei count, GLenum t
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_draw_instanced - glDrawElementsInstancedEXT
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_instanced] && glesConfig.m_glDrawElementsInstancedEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedEXT (mode, count, type, indices, primcount);
   }
+  // GL_EXT_instanced_arrays - glDrawElementsInstancedEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_instanced_arrays] && glesConfig.m_glDrawElementsInstancedEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawElementsInstancedEXT (mode, count, type, indices, primcount);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4185,12 +4968,15 @@ void _glew_gles_glFramebufferTextureEXT (GLenum target, GLenum attachment, GLuin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_geometry_shader - glFramebufferTextureEXT
-  if (!prototypeCalled && glesConfig.m_glFramebufferTextureEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_geometry_shader] && glesConfig.m_glFramebufferTextureEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glFramebufferTextureEXT (target, attachment, texture, level);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4201,12 +4987,15 @@ void _glew_gles_glVertexAttribDivisorEXT (GLuint index, GLuint divisor)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_instanced_arrays - glVertexAttribDivisorEXT
-  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_instanced_arrays] && glesConfig.m_glVertexAttribDivisorEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribDivisorEXT (index, divisor);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4217,13 +5006,17 @@ void * _glew_gles_glMapBufferRangeEXT (GLenum target, GLintptr offset, GLsizeipt
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  void * result = ((void *)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_map_buffer_range - glMapBufferRangeEXT
-  if (!prototypeCalled && glesConfig.m_glMapBufferRangeEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_map_buffer_range] && glesConfig.m_glMapBufferRangeEXT)
   {
     prototypeCalled = true;
-    return glesConfig.m_glMapBufferRangeEXT (target, offset, length, access);
+    result = glesConfig.m_glMapBufferRangeEXT (target, offset, length, access);
   }
-  return ((void *)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4234,12 +5027,15 @@ void _glew_gles_glFlushMappedBufferRangeEXT (GLenum target, GLintptr offset, GLs
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_map_buffer_range - glFlushMappedBufferRangeEXT
-  if (!prototypeCalled && glesConfig.m_glFlushMappedBufferRangeEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_map_buffer_range] && glesConfig.m_glFlushMappedBufferRangeEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glFlushMappedBufferRangeEXT (target, offset, length);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4250,12 +5046,15 @@ void _glew_gles_glMultiDrawArraysEXT (GLenum mode, const GLint * first, const GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_multi_draw_arrays - glMultiDrawArraysEXT
-  if (!prototypeCalled && glesConfig.m_glMultiDrawArraysEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_arrays] && glesConfig.m_glMultiDrawArraysEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glMultiDrawArraysEXT (mode, first, count, primcount);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4266,12 +5065,15 @@ void _glew_gles_glMultiDrawElementsEXT (GLenum mode, const GLsizei * count, GLen
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_multi_draw_arrays - glMultiDrawElementsEXT
-  if (!prototypeCalled && glesConfig.m_glMultiDrawElementsEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_arrays] && glesConfig.m_glMultiDrawElementsEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glMultiDrawElementsEXT (mode, count, type, indices, primcount);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4282,12 +5084,15 @@ void _glew_gles_glMultiDrawArraysIndirectEXT (GLenum mode, const void * indirect
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_multi_draw_indirect - glMultiDrawArraysIndirectEXT
-  if (!prototypeCalled && glesConfig.m_glMultiDrawArraysIndirectEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_indirect] && glesConfig.m_glMultiDrawArraysIndirectEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glMultiDrawArraysIndirectEXT (mode, indirect, drawcount, stride);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4298,12 +5103,15 @@ void _glew_gles_glMultiDrawElementsIndirectEXT (GLenum mode, GLenum type, const 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_multi_draw_indirect - glMultiDrawElementsIndirectEXT
-  if (!prototypeCalled && glesConfig.m_glMultiDrawElementsIndirectEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_indirect] && glesConfig.m_glMultiDrawElementsIndirectEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glMultiDrawElementsIndirectEXT (mode, type, indirect, drawcount, stride);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4314,12 +5122,15 @@ void _glew_gles_glRenderbufferStorageMultisampleEXT (GLenum target, GLsizei samp
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_multisampled_render_to_texture - glRenderbufferStorageMultisampleEXT
-  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multisampled_render_to_texture] && glesConfig.m_glRenderbufferStorageMultisampleEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glRenderbufferStorageMultisampleEXT (target, samples, internalformat, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4330,12 +5141,15 @@ void _glew_gles_glFramebufferTexture2DMultisampleEXT (GLenum target, GLenum atta
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_multisampled_render_to_texture - glFramebufferTexture2DMultisampleEXT
-  if (!prototypeCalled && glesConfig.m_glFramebufferTexture2DMultisampleEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multisampled_render_to_texture] && glesConfig.m_glFramebufferTexture2DMultisampleEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glFramebufferTexture2DMultisampleEXT (target, attachment, textarget, texture, level, samples);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4346,12 +5160,15 @@ void _glew_gles_glReadBufferIndexedEXT (GLenum src, GLint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_multiview_draw_buffers - glReadBufferIndexedEXT
-  if (!prototypeCalled && glesConfig.m_glReadBufferIndexedEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multiview_draw_buffers] && glesConfig.m_glReadBufferIndexedEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glReadBufferIndexedEXT (src, index);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4362,12 +5179,15 @@ void _glew_gles_glDrawBuffersIndexedEXT (GLint n, const GLenum * location, const
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_multiview_draw_buffers - glDrawBuffersIndexedEXT
-  if (!prototypeCalled && glesConfig.m_glDrawBuffersIndexedEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multiview_draw_buffers] && glesConfig.m_glDrawBuffersIndexedEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawBuffersIndexedEXT (n, location, indices);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4378,12 +5198,15 @@ void _glew_gles_glGetIntegeri_vEXT (GLenum target, GLuint index, GLint * data)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_multiview_draw_buffers - glGetIntegeri_vEXT
-  if (!prototypeCalled && glesConfig.m_glGetIntegeri_vEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_multiview_draw_buffers] && glesConfig.m_glGetIntegeri_vEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetIntegeri_vEXT (target, index, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4394,12 +5217,15 @@ void _glew_gles_glPrimitiveBoundingBoxEXT (GLfloat minX, GLfloat minY, GLfloat m
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_primitive_bounding_box - glPrimitiveBoundingBoxEXT
-  if (!prototypeCalled && glesConfig.m_glPrimitiveBoundingBoxEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_primitive_bounding_box] && glesConfig.m_glPrimitiveBoundingBoxEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glPrimitiveBoundingBoxEXT (minX, minY, minZ, minW, maxX, maxY, maxZ, maxW);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4410,12 +5236,27 @@ void _glew_gles_glRasterSamplesEXT (GLuint samples, GLboolean fixedsamplelocatio
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_raster_multisample - glRasterSamplesEXT
-  if (!prototypeCalled && glesConfig.m_glRasterSamplesEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_raster_multisample] && glesConfig.m_glRasterSamplesEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glRasterSamplesEXT (samples, fixedsamplelocations);
   }
+  // GL_EXT_texture_filter_minmax - glRasterSamplesEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_filter_minmax] && glesConfig.m_glRasterSamplesEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glRasterSamplesEXT (samples, fixedsamplelocations);
+  }
+  // GL_NV_framebuffer_mixed_samples - glRasterSamplesEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_framebuffer_mixed_samples] && glesConfig.m_glRasterSamplesEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glRasterSamplesEXT (samples, fixedsamplelocations);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4426,13 +5267,17 @@ GLenum _glew_gles_glGetGraphicsResetStatusEXT ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLenum result = ((GLenum)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_robustness - glGetGraphicsResetStatusEXT
-  if (!prototypeCalled && glesConfig.m_glGetGraphicsResetStatusEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_robustness] && glesConfig.m_glGetGraphicsResetStatusEXT)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetGraphicsResetStatusEXT ();
+    result = glesConfig.m_glGetGraphicsResetStatusEXT ();
   }
-  return ((GLenum)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4443,12 +5288,15 @@ void _glew_gles_glReadnPixelsEXT (GLint x, GLint y, GLsizei width, GLsizei heigh
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_robustness - glReadnPixelsEXT
-  if (!prototypeCalled && glesConfig.m_glReadnPixelsEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_robustness] && glesConfig.m_glReadnPixelsEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glReadnPixelsEXT (x, y, width, height, format, type, bufSize, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4459,12 +5307,15 @@ void _glew_gles_glGetnUniformfvEXT (GLuint program, GLint location, GLsizei bufS
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_robustness - glGetnUniformfvEXT
-  if (!prototypeCalled && glesConfig.m_glGetnUniformfvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_robustness] && glesConfig.m_glGetnUniformfvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetnUniformfvEXT (program, location, bufSize, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4475,12 +5326,15 @@ void _glew_gles_glGetnUniformivEXT (GLuint program, GLint location, GLsizei bufS
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_robustness - glGetnUniformivEXT
-  if (!prototypeCalled && glesConfig.m_glGetnUniformivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_robustness] && glesConfig.m_glGetnUniformivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetnUniformivEXT (program, location, bufSize, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4491,12 +5345,15 @@ void _glew_gles_glActiveShaderProgramEXT (GLuint pipeline, GLuint program)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glActiveShaderProgramEXT
-  if (!prototypeCalled && glesConfig.m_glActiveShaderProgramEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glActiveShaderProgramEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glActiveShaderProgramEXT (pipeline, program);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4507,12 +5364,15 @@ void _glew_gles_glBindProgramPipelineEXT (GLuint pipeline)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glBindProgramPipelineEXT
-  if (!prototypeCalled && glesConfig.m_glBindProgramPipelineEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glBindProgramPipelineEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glBindProgramPipelineEXT (pipeline);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4523,13 +5383,17 @@ GLuint _glew_gles_glCreateShaderProgramvEXT (GLenum type, GLsizei count, const G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint result = ((GLuint)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glCreateShaderProgramvEXT
-  if (!prototypeCalled && glesConfig.m_glCreateShaderProgramvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glCreateShaderProgramvEXT)
   {
     prototypeCalled = true;
-    return glesConfig.m_glCreateShaderProgramvEXT (type, count, strings);
+    result = glesConfig.m_glCreateShaderProgramvEXT (type, count, strings);
   }
-  return ((GLuint)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4540,12 +5404,15 @@ void _glew_gles_glDeleteProgramPipelinesEXT (GLsizei n, const GLuint * pipelines
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glDeleteProgramPipelinesEXT
-  if (!prototypeCalled && glesConfig.m_glDeleteProgramPipelinesEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glDeleteProgramPipelinesEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteProgramPipelinesEXT (n, pipelines);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4556,12 +5423,15 @@ void _glew_gles_glGenProgramPipelinesEXT (GLsizei n, GLuint * pipelines)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glGenProgramPipelinesEXT
-  if (!prototypeCalled && glesConfig.m_glGenProgramPipelinesEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glGenProgramPipelinesEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGenProgramPipelinesEXT (n, pipelines);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4572,12 +5442,15 @@ void _glew_gles_glGetProgramPipelineInfoLogEXT (GLuint pipeline, GLsizei bufSize
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glGetProgramPipelineInfoLogEXT
-  if (!prototypeCalled && glesConfig.m_glGetProgramPipelineInfoLogEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glGetProgramPipelineInfoLogEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramPipelineInfoLogEXT (pipeline, bufSize, length, infoLog);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4588,12 +5461,15 @@ void _glew_gles_glGetProgramPipelineivEXT (GLuint pipeline, GLenum pname, GLint 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glGetProgramPipelineivEXT
-  if (!prototypeCalled && glesConfig.m_glGetProgramPipelineivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glGetProgramPipelineivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramPipelineivEXT (pipeline, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4604,13 +5480,17 @@ GLboolean _glew_gles_glIsProgramPipelineEXT (GLuint pipeline)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glIsProgramPipelineEXT
-  if (!prototypeCalled && glesConfig.m_glIsProgramPipelineEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glIsProgramPipelineEXT)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsProgramPipelineEXT (pipeline);
+    result = glesConfig.m_glIsProgramPipelineEXT (pipeline);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4621,12 +5501,15 @@ void _glew_gles_glProgramParameteriEXT (GLuint program, GLenum pname, GLint valu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramParameteriEXT
-  if (!prototypeCalled && glesConfig.m_glProgramParameteriEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramParameteriEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramParameteriEXT (program, pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4637,12 +5520,15 @@ void _glew_gles_glProgramUniform1fEXT (GLuint program, GLint location, GLfloat v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform1fEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1fEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1fEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1fEXT (program, location, v0);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4653,12 +5539,15 @@ void _glew_gles_glProgramUniform1fvEXT (GLuint program, GLint location, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform1fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1fvEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4669,12 +5558,15 @@ void _glew_gles_glProgramUniform1iEXT (GLuint program, GLint location, GLint v0)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform1iEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1iEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1iEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1iEXT (program, location, v0);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4685,12 +5577,15 @@ void _glew_gles_glProgramUniform1ivEXT (GLuint program, GLint location, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform1ivEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1ivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1ivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1ivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4701,12 +5596,15 @@ void _glew_gles_glProgramUniform2fEXT (GLuint program, GLint location, GLfloat v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform2fEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2fEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2fEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2fEXT (program, location, v0, v1);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4717,12 +5615,15 @@ void _glew_gles_glProgramUniform2fvEXT (GLuint program, GLint location, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform2fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2fvEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4733,12 +5634,15 @@ void _glew_gles_glProgramUniform2iEXT (GLuint program, GLint location, GLint v0,
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform2iEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2iEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2iEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2iEXT (program, location, v0, v1);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4749,12 +5653,15 @@ void _glew_gles_glProgramUniform2ivEXT (GLuint program, GLint location, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform2ivEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2ivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2ivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2ivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4765,12 +5672,15 @@ void _glew_gles_glProgramUniform3fEXT (GLuint program, GLint location, GLfloat v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform3fEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3fEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3fEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3fEXT (program, location, v0, v1, v2);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4781,12 +5691,15 @@ void _glew_gles_glProgramUniform3fvEXT (GLuint program, GLint location, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform3fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3fvEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4797,12 +5710,15 @@ void _glew_gles_glProgramUniform3iEXT (GLuint program, GLint location, GLint v0,
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform3iEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3iEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3iEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3iEXT (program, location, v0, v1, v2);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4813,12 +5729,15 @@ void _glew_gles_glProgramUniform3ivEXT (GLuint program, GLint location, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform3ivEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3ivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3ivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3ivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4829,12 +5748,15 @@ void _glew_gles_glProgramUniform4fEXT (GLuint program, GLint location, GLfloat v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform4fEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4fEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4fEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4fEXT (program, location, v0, v1, v2, v3);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4845,12 +5767,15 @@ void _glew_gles_glProgramUniform4fvEXT (GLuint program, GLint location, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform4fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4fvEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4861,12 +5786,15 @@ void _glew_gles_glProgramUniform4iEXT (GLuint program, GLint location, GLint v0,
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform4iEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4iEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4iEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4iEXT (program, location, v0, v1, v2, v3);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4877,12 +5805,15 @@ void _glew_gles_glProgramUniform4ivEXT (GLuint program, GLint location, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform4ivEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4ivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4ivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4ivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4893,12 +5824,15 @@ void _glew_gles_glProgramUniformMatrix2fvEXT (GLuint program, GLint location, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix2fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix2fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix2fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4909,12 +5843,15 @@ void _glew_gles_glProgramUniformMatrix3fvEXT (GLuint program, GLint location, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix3fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix3fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix3fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4925,12 +5862,21 @@ void _glew_gles_glProgramUniformMatrix4fvEXT (GLuint program, GLint location, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix4fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix4fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix4fvEXT (program, location, count, transpose, value);
   }
+  // GL_EXT_separate_shader_objects - glProgramUniformMatrix4fvEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix4fvEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformMatrix4fvEXT (program, location, count, transpose, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4941,12 +5887,15 @@ void _glew_gles_glUseProgramStagesEXT (GLuint pipeline, GLbitfield stages, GLuin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glUseProgramStagesEXT
-  if (!prototypeCalled && glesConfig.m_glUseProgramStagesEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glUseProgramStagesEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glUseProgramStagesEXT (pipeline, stages, program);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4957,12 +5906,15 @@ void _glew_gles_glValidateProgramPipelineEXT (GLuint pipeline)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glValidateProgramPipelineEXT
-  if (!prototypeCalled && glesConfig.m_glValidateProgramPipelineEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glValidateProgramPipelineEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glValidateProgramPipelineEXT (pipeline);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4973,12 +5925,15 @@ void _glew_gles_glProgramUniform1uiEXT (GLuint program, GLint location, GLuint v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform1uiEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1uiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1uiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1uiEXT (program, location, v0);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4989,12 +5944,15 @@ void _glew_gles_glProgramUniform2uiEXT (GLuint program, GLint location, GLuint v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform2uiEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2uiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2uiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2uiEXT (program, location, v0, v1);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5005,12 +5963,15 @@ void _glew_gles_glProgramUniform3uiEXT (GLuint program, GLint location, GLuint v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform3uiEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3uiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3uiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3uiEXT (program, location, v0, v1, v2);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5021,12 +5982,15 @@ void _glew_gles_glProgramUniform4uiEXT (GLuint program, GLint location, GLuint v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform4uiEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4uiEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4uiEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4uiEXT (program, location, v0, v1, v2, v3);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5037,12 +6001,15 @@ void _glew_gles_glProgramUniform1uivEXT (GLuint program, GLint location, GLsizei
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform1uivEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform1uivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform1uivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform1uivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5053,12 +6020,15 @@ void _glew_gles_glProgramUniform2uivEXT (GLuint program, GLint location, GLsizei
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform2uivEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform2uivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform2uivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform2uivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5069,12 +6039,15 @@ void _glew_gles_glProgramUniform3uivEXT (GLuint program, GLint location, GLsizei
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform3uivEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform3uivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform3uivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform3uivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5085,12 +6058,15 @@ void _glew_gles_glProgramUniform4uivEXT (GLuint program, GLint location, GLsizei
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniform4uivEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniform4uivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniform4uivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniform4uivEXT (program, location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5101,12 +6077,15 @@ void _glew_gles_glProgramUniformMatrix2x3fvEXT (GLuint program, GLint location, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix2x3fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2x3fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix2x3fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix2x3fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5117,12 +6096,15 @@ void _glew_gles_glProgramUniformMatrix3x2fvEXT (GLuint program, GLint location, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix3x2fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3x2fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix3x2fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix3x2fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5133,12 +6115,15 @@ void _glew_gles_glProgramUniformMatrix2x4fvEXT (GLuint program, GLint location, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix2x4fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix2x4fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix2x4fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix2x4fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5149,12 +6134,15 @@ void _glew_gles_glProgramUniformMatrix4x2fvEXT (GLuint program, GLint location, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix4x2fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4x2fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix4x2fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix4x2fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5165,12 +6153,15 @@ void _glew_gles_glProgramUniformMatrix3x4fvEXT (GLuint program, GLint location, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix3x4fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix3x4fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix3x4fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix3x4fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5181,12 +6172,15 @@ void _glew_gles_glProgramUniformMatrix4x3fvEXT (GLuint program, GLint location, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_separate_shader_objects - glProgramUniformMatrix4x3fvEXT
-  if (!prototypeCalled && glesConfig.m_glProgramUniformMatrix4x3fvEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix4x3fvEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix4x3fvEXT (program, location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5197,12 +6191,15 @@ void _glew_gles_glTexPageCommitmentARB (GLenum target, GLint level, GLint xoffse
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_sparse_texture - glTexPageCommitmentARB
-  if (!prototypeCalled && glesConfig.m_glTexPageCommitmentARB)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_sparse_texture] && glesConfig.m_glTexPageCommitmentARB)
   {
     prototypeCalled = true;
     glesConfig.m_glTexPageCommitmentARB (target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5213,12 +6210,15 @@ void _glew_gles_glPatchParameteriEXT (GLenum pname, GLint value)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_tessellation_shader - glPatchParameteriEXT
-  if (!prototypeCalled && glesConfig.m_glPatchParameteriEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_tessellation_shader] && glesConfig.m_glPatchParameteriEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glPatchParameteriEXT (pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5229,12 +6229,15 @@ void _glew_gles_glTexParameterIivEXT (GLenum target, GLenum pname, const GLint *
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_border_clamp - glTexParameterIivEXT
-  if (!prototypeCalled && glesConfig.m_glTexParameterIivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp] && glesConfig.m_glTexParameterIivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTexParameterIivEXT (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5245,12 +6248,15 @@ void _glew_gles_glTexParameterIuivEXT (GLenum target, GLenum pname, const GLuint
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_border_clamp - glTexParameterIuivEXT
-  if (!prototypeCalled && glesConfig.m_glTexParameterIuivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp] && glesConfig.m_glTexParameterIuivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTexParameterIuivEXT (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5261,12 +6267,15 @@ void _glew_gles_glGetTexParameterIivEXT (GLenum target, GLenum pname, GLint * pa
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_border_clamp - glGetTexParameterIivEXT
-  if (!prototypeCalled && glesConfig.m_glGetTexParameterIivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp] && glesConfig.m_glGetTexParameterIivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetTexParameterIivEXT (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5277,12 +6286,15 @@ void _glew_gles_glGetTexParameterIuivEXT (GLenum target, GLenum pname, GLuint * 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_border_clamp - glGetTexParameterIuivEXT
-  if (!prototypeCalled && glesConfig.m_glGetTexParameterIuivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp] && glesConfig.m_glGetTexParameterIuivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetTexParameterIuivEXT (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5293,12 +6305,15 @@ void _glew_gles_glSamplerParameterIivEXT (GLuint sampler, GLenum pname, const GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_border_clamp - glSamplerParameterIivEXT
-  if (!prototypeCalled && glesConfig.m_glSamplerParameterIivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp] && glesConfig.m_glSamplerParameterIivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glSamplerParameterIivEXT (sampler, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5309,12 +6324,15 @@ void _glew_gles_glSamplerParameterIuivEXT (GLuint sampler, GLenum pname, const G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_border_clamp - glSamplerParameterIuivEXT
-  if (!prototypeCalled && glesConfig.m_glSamplerParameterIuivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp] && glesConfig.m_glSamplerParameterIuivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glSamplerParameterIuivEXT (sampler, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5325,12 +6343,15 @@ void _glew_gles_glGetSamplerParameterIivEXT (GLuint sampler, GLenum pname, GLint
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_border_clamp - glGetSamplerParameterIivEXT
-  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterIivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp] && glesConfig.m_glGetSamplerParameterIivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetSamplerParameterIivEXT (sampler, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5341,12 +6362,15 @@ void _glew_gles_glGetSamplerParameterIuivEXT (GLuint sampler, GLenum pname, GLui
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_border_clamp - glGetSamplerParameterIuivEXT
-  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterIuivEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp] && glesConfig.m_glGetSamplerParameterIuivEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glGetSamplerParameterIuivEXT (sampler, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5357,12 +6381,15 @@ void _glew_gles_glTexBufferEXT (GLenum target, GLenum internalformat, GLuint buf
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_buffer - glTexBufferEXT
-  if (!prototypeCalled && glesConfig.m_glTexBufferEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_buffer] && glesConfig.m_glTexBufferEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTexBufferEXT (target, internalformat, buffer);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5373,12 +6400,15 @@ void _glew_gles_glTexBufferRangeEXT (GLenum target, GLenum internalformat, GLuin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_buffer - glTexBufferRangeEXT
-  if (!prototypeCalled && glesConfig.m_glTexBufferRangeEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_buffer] && glesConfig.m_glTexBufferRangeEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTexBufferRangeEXT (target, internalformat, buffer, offset, size);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5389,12 +6419,15 @@ void _glew_gles_glTexStorage1DEXT (GLenum target, GLsizei levels, GLenum interna
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_storage - glTexStorage1DEXT
-  if (!prototypeCalled && glesConfig.m_glTexStorage1DEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_storage] && glesConfig.m_glTexStorage1DEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTexStorage1DEXT (target, levels, internalformat, width);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5405,12 +6438,15 @@ void _glew_gles_glTexStorage2DEXT (GLenum target, GLsizei levels, GLenum interna
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_storage - glTexStorage2DEXT
-  if (!prototypeCalled && glesConfig.m_glTexStorage2DEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_storage] && glesConfig.m_glTexStorage2DEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTexStorage2DEXT (target, levels, internalformat, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5421,12 +6457,15 @@ void _glew_gles_glTexStorage3DEXT (GLenum target, GLsizei levels, GLenum interna
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_storage - glTexStorage3DEXT
-  if (!prototypeCalled && glesConfig.m_glTexStorage3DEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_storage] && glesConfig.m_glTexStorage3DEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTexStorage3DEXT (target, levels, internalformat, width, height, depth);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5437,12 +6476,15 @@ void _glew_gles_glTextureStorage1DEXT (GLuint texture, GLenum target, GLsizei le
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_storage - glTextureStorage1DEXT
-  if (!prototypeCalled && glesConfig.m_glTextureStorage1DEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_storage] && glesConfig.m_glTextureStorage1DEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTextureStorage1DEXT (texture, target, levels, internalformat, width);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5453,12 +6495,15 @@ void _glew_gles_glTextureStorage2DEXT (GLuint texture, GLenum target, GLsizei le
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_storage - glTextureStorage2DEXT
-  if (!prototypeCalled && glesConfig.m_glTextureStorage2DEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_storage] && glesConfig.m_glTextureStorage2DEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTextureStorage2DEXT (texture, target, levels, internalformat, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5469,12 +6514,15 @@ void _glew_gles_glTextureStorage3DEXT (GLuint texture, GLenum target, GLsizei le
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_storage - glTextureStorage3DEXT
-  if (!prototypeCalled && glesConfig.m_glTextureStorage3DEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_storage] && glesConfig.m_glTextureStorage3DEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTextureStorage3DEXT (texture, target, levels, internalformat, width, height, depth);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5485,12 +6533,15 @@ void _glew_gles_glTextureViewEXT (GLuint texture, GLenum target, GLuint origtext
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_EXT_texture_view - glTextureViewEXT
-  if (!prototypeCalled && glesConfig.m_glTextureViewEXT)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_view] && glesConfig.m_glTextureViewEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glTextureViewEXT (texture, target, origtexture, internalformat, minlevel, numlevels, minlayer, numlayers);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5501,12 +6552,15 @@ void _glew_gles_glRenderbufferStorageMultisampleIMG (GLenum target, GLsizei samp
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_IMG_multisampled_render_to_texture - glRenderbufferStorageMultisampleIMG
-  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleIMG)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_multisampled_render_to_texture] && glesConfig.m_glRenderbufferStorageMultisampleIMG)
   {
     prototypeCalled = true;
     glesConfig.m_glRenderbufferStorageMultisampleIMG (target, samples, internalformat, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5517,12 +6571,15 @@ void _glew_gles_glFramebufferTexture2DMultisampleIMG (GLenum target, GLenum atta
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_IMG_multisampled_render_to_texture - glFramebufferTexture2DMultisampleIMG
-  if (!prototypeCalled && glesConfig.m_glFramebufferTexture2DMultisampleIMG)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_multisampled_render_to_texture] && glesConfig.m_glFramebufferTexture2DMultisampleIMG)
   {
     prototypeCalled = true;
     glesConfig.m_glFramebufferTexture2DMultisampleIMG (target, attachment, textarget, texture, level, samples);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5533,12 +6590,15 @@ void _glew_gles_glBeginPerfQueryINTEL (GLuint queryHandle)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glBeginPerfQueryINTEL
-  if (!prototypeCalled && glesConfig.m_glBeginPerfQueryINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glBeginPerfQueryINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glBeginPerfQueryINTEL (queryHandle);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5549,12 +6609,15 @@ void _glew_gles_glCreatePerfQueryINTEL (GLuint queryId, GLuint * queryHandle)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glCreatePerfQueryINTEL
-  if (!prototypeCalled && glesConfig.m_glCreatePerfQueryINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glCreatePerfQueryINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glCreatePerfQueryINTEL (queryId, queryHandle);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5565,12 +6628,15 @@ void _glew_gles_glDeletePerfQueryINTEL (GLuint queryHandle)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glDeletePerfQueryINTEL
-  if (!prototypeCalled && glesConfig.m_glDeletePerfQueryINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glDeletePerfQueryINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glDeletePerfQueryINTEL (queryHandle);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5581,12 +6647,15 @@ void _glew_gles_glEndPerfQueryINTEL (GLuint queryHandle)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glEndPerfQueryINTEL
-  if (!prototypeCalled && glesConfig.m_glEndPerfQueryINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glEndPerfQueryINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glEndPerfQueryINTEL (queryHandle);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5597,12 +6666,15 @@ void _glew_gles_glGetFirstPerfQueryIdINTEL (GLuint * queryId)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glGetFirstPerfQueryIdINTEL
-  if (!prototypeCalled && glesConfig.m_glGetFirstPerfQueryIdINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glGetFirstPerfQueryIdINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glGetFirstPerfQueryIdINTEL (queryId);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5613,12 +6685,15 @@ void _glew_gles_glGetNextPerfQueryIdINTEL (GLuint queryId, GLuint * nextQueryId)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glGetNextPerfQueryIdINTEL
-  if (!prototypeCalled && glesConfig.m_glGetNextPerfQueryIdINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glGetNextPerfQueryIdINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glGetNextPerfQueryIdINTEL (queryId, nextQueryId);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5629,12 +6704,15 @@ void _glew_gles_glGetPerfCounterInfoINTEL (GLuint queryId, GLuint counterId, GLu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glGetPerfCounterInfoINTEL
-  if (!prototypeCalled && glesConfig.m_glGetPerfCounterInfoINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glGetPerfCounterInfoINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfCounterInfoINTEL (queryId, counterId, counterNameLength, counterName, counterDescLength, counterDesc, counterOffset, counterDataSize, counterTypeEnum, counterDataTypeEnum, rawCounterMaxValue);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5645,12 +6723,15 @@ void _glew_gles_glGetPerfQueryDataINTEL (GLuint queryHandle, GLuint flags, GLsiz
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glGetPerfQueryDataINTEL
-  if (!prototypeCalled && glesConfig.m_glGetPerfQueryDataINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glGetPerfQueryDataINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfQueryDataINTEL (queryHandle, flags, dataSize, data, bytesWritten);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5661,12 +6742,15 @@ void _glew_gles_glGetPerfQueryIdByNameINTEL (GLchar * queryName, GLuint * queryI
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glGetPerfQueryIdByNameINTEL
-  if (!prototypeCalled && glesConfig.m_glGetPerfQueryIdByNameINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glGetPerfQueryIdByNameINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfQueryIdByNameINTEL (queryName, queryId);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5677,12 +6761,15 @@ void _glew_gles_glGetPerfQueryInfoINTEL (GLuint queryId, GLuint queryNameLength,
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_INTEL_performance_query - glGetPerfQueryInfoINTEL
-  if (!prototypeCalled && glesConfig.m_glGetPerfQueryInfoINTEL)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] && glesConfig.m_glGetPerfQueryInfoINTEL)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPerfQueryInfoINTEL (queryId, queryNameLength, queryName, dataSize, noCounters, noInstances, capsMask);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5693,12 +6780,15 @@ void _glew_gles_glBlendBarrierKHR ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_blend_equation_advanced - glBlendBarrierKHR
-  if (!prototypeCalled && glesConfig.m_glBlendBarrierKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_blend_equation_advanced] && glesConfig.m_glBlendBarrierKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendBarrierKHR ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5709,12 +6799,15 @@ void _glew_gles_glDebugMessageControlKHR (GLenum source, GLenum type, GLenum sev
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glDebugMessageControlKHR
-  if (!prototypeCalled && glesConfig.m_glDebugMessageControlKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glDebugMessageControlKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glDebugMessageControlKHR (source, type, severity, count, ids, enabled);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5725,12 +6818,15 @@ void _glew_gles_glDebugMessageInsertKHR (GLenum source, GLenum type, GLuint id, 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glDebugMessageInsertKHR
-  if (!prototypeCalled && glesConfig.m_glDebugMessageInsertKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glDebugMessageInsertKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glDebugMessageInsertKHR (source, type, id, severity, length, buf);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5741,12 +6837,15 @@ void _glew_gles_glDebugMessageCallbackKHR (GLDEBUGPROCKHR callback, const void *
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glDebugMessageCallbackKHR
-  if (!prototypeCalled && glesConfig.m_glDebugMessageCallbackKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glDebugMessageCallbackKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glDebugMessageCallbackKHR (callback, userParam);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5757,13 +6856,17 @@ GLuint _glew_gles_glGetDebugMessageLogKHR (GLuint count, GLsizei bufSize, GLenum
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint result = ((GLuint)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glGetDebugMessageLogKHR
-  if (!prototypeCalled && glesConfig.m_glGetDebugMessageLogKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glGetDebugMessageLogKHR)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetDebugMessageLogKHR (count, bufSize, sources, types, ids, severities, lengths, messageLog);
+    result = glesConfig.m_glGetDebugMessageLogKHR (count, bufSize, sources, types, ids, severities, lengths, messageLog);
   }
-  return ((GLuint)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5774,12 +6877,15 @@ void _glew_gles_glPushDebugGroupKHR (GLenum source, GLuint id, GLsizei length, c
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glPushDebugGroupKHR
-  if (!prototypeCalled && glesConfig.m_glPushDebugGroupKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glPushDebugGroupKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glPushDebugGroupKHR (source, id, length, message);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5790,12 +6896,15 @@ void _glew_gles_glPopDebugGroupKHR ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glPopDebugGroupKHR
-  if (!prototypeCalled && glesConfig.m_glPopDebugGroupKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glPopDebugGroupKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glPopDebugGroupKHR ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5806,12 +6915,15 @@ void _glew_gles_glObjectLabelKHR (GLenum identifier, GLuint name, GLsizei length
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glObjectLabelKHR
-  if (!prototypeCalled && glesConfig.m_glObjectLabelKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glObjectLabelKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glObjectLabelKHR (identifier, name, length, label);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5822,12 +6934,15 @@ void _glew_gles_glGetObjectLabelKHR (GLenum identifier, GLuint name, GLsizei buf
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glGetObjectLabelKHR
-  if (!prototypeCalled && glesConfig.m_glGetObjectLabelKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glGetObjectLabelKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glGetObjectLabelKHR (identifier, name, bufSize, length, label);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5838,12 +6953,15 @@ void _glew_gles_glObjectPtrLabelKHR (const void * ptr, GLsizei length, const GLc
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glObjectPtrLabelKHR
-  if (!prototypeCalled && glesConfig.m_glObjectPtrLabelKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glObjectPtrLabelKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glObjectPtrLabelKHR (ptr, length, label);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5854,12 +6972,15 @@ void _glew_gles_glGetObjectPtrLabelKHR (const void * ptr, GLsizei bufSize, GLsiz
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glGetObjectPtrLabelKHR
-  if (!prototypeCalled && glesConfig.m_glGetObjectPtrLabelKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glGetObjectPtrLabelKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glGetObjectPtrLabelKHR (ptr, bufSize, length, label);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5870,12 +6991,15 @@ void _glew_gles_glGetPointervKHR (GLenum pname, void ** params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_debug - glGetPointervKHR
-  if (!prototypeCalled && glesConfig.m_glGetPointervKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_debug] && glesConfig.m_glGetPointervKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPointervKHR (pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5886,13 +7010,17 @@ GLenum _glew_gles_glGetGraphicsResetStatusKHR ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLenum result = ((GLenum)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_robustness - glGetGraphicsResetStatusKHR
-  if (!prototypeCalled && glesConfig.m_glGetGraphicsResetStatusKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_robustness] && glesConfig.m_glGetGraphicsResetStatusKHR)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetGraphicsResetStatusKHR ();
+    result = glesConfig.m_glGetGraphicsResetStatusKHR ();
   }
-  return ((GLenum)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5903,12 +7031,15 @@ void _glew_gles_glReadnPixelsKHR (GLint x, GLint y, GLsizei width, GLsizei heigh
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_robustness - glReadnPixelsKHR
-  if (!prototypeCalled && glesConfig.m_glReadnPixelsKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_robustness] && glesConfig.m_glReadnPixelsKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glReadnPixelsKHR (x, y, width, height, format, type, bufSize, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5919,12 +7050,15 @@ void _glew_gles_glGetnUniformfvKHR (GLuint program, GLint location, GLsizei bufS
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_robustness - glGetnUniformfvKHR
-  if (!prototypeCalled && glesConfig.m_glGetnUniformfvKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_robustness] && glesConfig.m_glGetnUniformfvKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glGetnUniformfvKHR (program, location, bufSize, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5935,12 +7069,15 @@ void _glew_gles_glGetnUniformivKHR (GLuint program, GLint location, GLsizei bufS
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_robustness - glGetnUniformivKHR
-  if (!prototypeCalled && glesConfig.m_glGetnUniformivKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_robustness] && glesConfig.m_glGetnUniformivKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glGetnUniformivKHR (program, location, bufSize, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5951,12 +7088,15 @@ void _glew_gles_glGetnUniformuivKHR (GLuint program, GLint location, GLsizei buf
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_KHR_robustness - glGetnUniformuivKHR
-  if (!prototypeCalled && glesConfig.m_glGetnUniformuivKHR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_robustness] && glesConfig.m_glGetnUniformuivKHR)
   {
     prototypeCalled = true;
     glesConfig.m_glGetnUniformuivKHR (program, location, bufSize, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5967,13 +7107,17 @@ GLuint64 _glew_gles_glGetTextureHandleNV (GLuint texture)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint64 result = ((GLuint64)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glGetTextureHandleNV
-  if (!prototypeCalled && glesConfig.m_glGetTextureHandleNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glGetTextureHandleNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetTextureHandleNV (texture);
+    result = glesConfig.m_glGetTextureHandleNV (texture);
   }
-  return ((GLuint64)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5984,13 +7128,17 @@ GLuint64 _glew_gles_glGetTextureSamplerHandleNV (GLuint texture, GLuint sampler)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint64 result = ((GLuint64)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glGetTextureSamplerHandleNV
-  if (!prototypeCalled && glesConfig.m_glGetTextureSamplerHandleNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glGetTextureSamplerHandleNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetTextureSamplerHandleNV (texture, sampler);
+    result = glesConfig.m_glGetTextureSamplerHandleNV (texture, sampler);
   }
-  return ((GLuint64)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6001,12 +7149,15 @@ void _glew_gles_glMakeTextureHandleResidentNV (GLuint64 handle)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glMakeTextureHandleResidentNV
-  if (!prototypeCalled && glesConfig.m_glMakeTextureHandleResidentNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glMakeTextureHandleResidentNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMakeTextureHandleResidentNV (handle);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6017,12 +7168,15 @@ void _glew_gles_glMakeTextureHandleNonResidentNV (GLuint64 handle)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glMakeTextureHandleNonResidentNV
-  if (!prototypeCalled && glesConfig.m_glMakeTextureHandleNonResidentNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glMakeTextureHandleNonResidentNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMakeTextureHandleNonResidentNV (handle);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6033,13 +7187,17 @@ GLuint64 _glew_gles_glGetImageHandleNV (GLuint texture, GLint level, GLboolean l
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint64 result = ((GLuint64)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glGetImageHandleNV
-  if (!prototypeCalled && glesConfig.m_glGetImageHandleNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glGetImageHandleNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetImageHandleNV (texture, level, layered, layer, format);
+    result = glesConfig.m_glGetImageHandleNV (texture, level, layered, layer, format);
   }
-  return ((GLuint64)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6050,12 +7208,15 @@ void _glew_gles_glMakeImageHandleResidentNV (GLuint64 handle, GLenum access)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glMakeImageHandleResidentNV
-  if (!prototypeCalled && glesConfig.m_glMakeImageHandleResidentNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glMakeImageHandleResidentNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMakeImageHandleResidentNV (handle, access);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6066,12 +7227,15 @@ void _glew_gles_glMakeImageHandleNonResidentNV (GLuint64 handle)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glMakeImageHandleNonResidentNV
-  if (!prototypeCalled && glesConfig.m_glMakeImageHandleNonResidentNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glMakeImageHandleNonResidentNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMakeImageHandleNonResidentNV (handle);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6082,12 +7246,15 @@ void _glew_gles_glUniformHandleui64NV (GLint location, GLuint64 value)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glUniformHandleui64NV
-  if (!prototypeCalled && glesConfig.m_glUniformHandleui64NV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glUniformHandleui64NV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformHandleui64NV (location, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6098,12 +7265,15 @@ void _glew_gles_glUniformHandleui64vNV (GLint location, GLsizei count, const GLu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glUniformHandleui64vNV
-  if (!prototypeCalled && glesConfig.m_glUniformHandleui64vNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glUniformHandleui64vNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformHandleui64vNV (location, count, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6114,12 +7284,15 @@ void _glew_gles_glProgramUniformHandleui64NV (GLuint program, GLint location, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glProgramUniformHandleui64NV
-  if (!prototypeCalled && glesConfig.m_glProgramUniformHandleui64NV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glProgramUniformHandleui64NV)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformHandleui64NV (program, location, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6130,12 +7303,15 @@ void _glew_gles_glProgramUniformHandleui64vNV (GLuint program, GLint location, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glProgramUniformHandleui64vNV
-  if (!prototypeCalled && glesConfig.m_glProgramUniformHandleui64vNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glProgramUniformHandleui64vNV)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformHandleui64vNV (program, location, count, values);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6146,13 +7322,17 @@ GLboolean _glew_gles_glIsTextureHandleResidentNV (GLuint64 handle)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glIsTextureHandleResidentNV
-  if (!prototypeCalled && glesConfig.m_glIsTextureHandleResidentNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glIsTextureHandleResidentNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsTextureHandleResidentNV (handle);
+    result = glesConfig.m_glIsTextureHandleResidentNV (handle);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6163,13 +7343,17 @@ GLboolean _glew_gles_glIsImageHandleResidentNV (GLuint64 handle)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_bindless_texture - glIsImageHandleResidentNV
-  if (!prototypeCalled && glesConfig.m_glIsImageHandleResidentNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] && glesConfig.m_glIsImageHandleResidentNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsImageHandleResidentNV (handle);
+    result = glesConfig.m_glIsImageHandleResidentNV (handle);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6180,12 +7364,15 @@ void _glew_gles_glBlendParameteriNV (GLenum pname, GLint value)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_blend_equation_advanced - glBlendParameteriNV
-  if (!prototypeCalled && glesConfig.m_glBlendParameteriNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_blend_equation_advanced] && glesConfig.m_glBlendParameteriNV)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendParameteriNV (pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6196,12 +7383,15 @@ void _glew_gles_glBlendBarrierNV ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_blend_equation_advanced - glBlendBarrierNV
-  if (!prototypeCalled && glesConfig.m_glBlendBarrierNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_blend_equation_advanced] && glesConfig.m_glBlendBarrierNV)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendBarrierNV ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6212,12 +7402,15 @@ void _glew_gles_glBeginConditionalRenderNV (GLuint id, GLenum mode)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_conditional_render - glBeginConditionalRenderNV
-  if (!prototypeCalled && glesConfig.m_glBeginConditionalRenderNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_conditional_render] && glesConfig.m_glBeginConditionalRenderNV)
   {
     prototypeCalled = true;
     glesConfig.m_glBeginConditionalRenderNV (id, mode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6228,12 +7421,15 @@ void _glew_gles_glEndConditionalRenderNV ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_conditional_render - glEndConditionalRenderNV
-  if (!prototypeCalled && glesConfig.m_glEndConditionalRenderNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_conditional_render] && glesConfig.m_glEndConditionalRenderNV)
   {
     prototypeCalled = true;
     glesConfig.m_glEndConditionalRenderNV ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6244,12 +7440,15 @@ void _glew_gles_glSubpixelPrecisionBiasNV (GLuint xbits, GLuint ybits)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_conservative_raster - glSubpixelPrecisionBiasNV
-  if (!prototypeCalled && glesConfig.m_glSubpixelPrecisionBiasNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_conservative_raster] && glesConfig.m_glSubpixelPrecisionBiasNV)
   {
     prototypeCalled = true;
     glesConfig.m_glSubpixelPrecisionBiasNV (xbits, ybits);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6260,12 +7459,15 @@ void _glew_gles_glCopyBufferSubDataNV (GLenum readTarget, GLenum writeTarget, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_copy_buffer - glCopyBufferSubDataNV
-  if (!prototypeCalled && glesConfig.m_glCopyBufferSubDataNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_copy_buffer] && glesConfig.m_glCopyBufferSubDataNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyBufferSubDataNV (readTarget, writeTarget, readOffset, writeOffset, size);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6276,12 +7478,15 @@ void _glew_gles_glCoverageMaskNV (GLboolean mask)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_coverage_sample - glCoverageMaskNV
-  if (!prototypeCalled && glesConfig.m_glCoverageMaskNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_coverage_sample] && glesConfig.m_glCoverageMaskNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCoverageMaskNV (mask);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6292,12 +7497,15 @@ void _glew_gles_glCoverageOperationNV (GLenum operation)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_coverage_sample - glCoverageOperationNV
-  if (!prototypeCalled && glesConfig.m_glCoverageOperationNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_coverage_sample] && glesConfig.m_glCoverageOperationNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCoverageOperationNV (operation);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6308,12 +7516,15 @@ void _glew_gles_glDrawBuffersNV (GLsizei n, const GLenum * bufs)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_draw_buffers - glDrawBuffersNV
-  if (!prototypeCalled && glesConfig.m_glDrawBuffersNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_draw_buffers] && glesConfig.m_glDrawBuffersNV)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawBuffersNV (n, bufs);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6324,12 +7535,15 @@ void _glew_gles_glDrawArraysInstancedNV (GLenum mode, GLint first, GLsizei count
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_draw_instanced - glDrawArraysInstancedNV
-  if (!prototypeCalled && glesConfig.m_glDrawArraysInstancedNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_draw_instanced] && glesConfig.m_glDrawArraysInstancedNV)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawArraysInstancedNV (mode, first, count, primcount);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6340,12 +7554,15 @@ void _glew_gles_glDrawElementsInstancedNV (GLenum mode, GLsizei count, GLenum ty
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_draw_instanced - glDrawElementsInstancedNV
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_draw_instanced] && glesConfig.m_glDrawElementsInstancedNV)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedNV (mode, count, type, indices, primcount);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6356,12 +7573,15 @@ void _glew_gles_glDeleteFencesNV (GLsizei n, const GLuint * fences)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_fence - glDeleteFencesNV
-  if (!prototypeCalled && glesConfig.m_glDeleteFencesNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_fence] && glesConfig.m_glDeleteFencesNV)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteFencesNV (n, fences);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6372,12 +7592,15 @@ void _glew_gles_glGenFencesNV (GLsizei n, GLuint * fences)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_fence - glGenFencesNV
-  if (!prototypeCalled && glesConfig.m_glGenFencesNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_fence] && glesConfig.m_glGenFencesNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGenFencesNV (n, fences);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6388,13 +7611,17 @@ GLboolean _glew_gles_glIsFenceNV (GLuint fence)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_fence - glIsFenceNV
-  if (!prototypeCalled && glesConfig.m_glIsFenceNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_fence] && glesConfig.m_glIsFenceNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsFenceNV (fence);
+    result = glesConfig.m_glIsFenceNV (fence);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6405,13 +7632,17 @@ GLboolean _glew_gles_glTestFenceNV (GLuint fence)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_fence - glTestFenceNV
-  if (!prototypeCalled && glesConfig.m_glTestFenceNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_fence] && glesConfig.m_glTestFenceNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glTestFenceNV (fence);
+    result = glesConfig.m_glTestFenceNV (fence);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6422,12 +7653,15 @@ void _glew_gles_glGetFenceivNV (GLuint fence, GLenum pname, GLint * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_fence - glGetFenceivNV
-  if (!prototypeCalled && glesConfig.m_glGetFenceivNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_fence] && glesConfig.m_glGetFenceivNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetFenceivNV (fence, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6438,12 +7672,15 @@ void _glew_gles_glFinishFenceNV (GLuint fence)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_fence - glFinishFenceNV
-  if (!prototypeCalled && glesConfig.m_glFinishFenceNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_fence] && glesConfig.m_glFinishFenceNV)
   {
     prototypeCalled = true;
     glesConfig.m_glFinishFenceNV (fence);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6454,12 +7691,15 @@ void _glew_gles_glSetFenceNV (GLuint fence, GLenum condition)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_fence - glSetFenceNV
-  if (!prototypeCalled && glesConfig.m_glSetFenceNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_fence] && glesConfig.m_glSetFenceNV)
   {
     prototypeCalled = true;
     glesConfig.m_glSetFenceNV (fence, condition);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6470,12 +7710,15 @@ void _glew_gles_glFragmentCoverageColorNV (GLuint color)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_fragment_coverage_to_color - glFragmentCoverageColorNV
-  if (!prototypeCalled && glesConfig.m_glFragmentCoverageColorNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_fragment_coverage_to_color] && glesConfig.m_glFragmentCoverageColorNV)
   {
     prototypeCalled = true;
     glesConfig.m_glFragmentCoverageColorNV (color);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6486,12 +7729,15 @@ void _glew_gles_glBlitFramebufferNV (GLint srcX0, GLint srcY0, GLint srcX1, GLin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_framebuffer_blit - glBlitFramebufferNV
-  if (!prototypeCalled && glesConfig.m_glBlitFramebufferNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_framebuffer_blit] && glesConfig.m_glBlitFramebufferNV)
   {
     prototypeCalled = true;
     glesConfig.m_glBlitFramebufferNV (srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6502,12 +7748,15 @@ void _glew_gles_glCoverageModulationTableNV (GLsizei n, const GLfloat * v)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_framebuffer_mixed_samples - glCoverageModulationTableNV
-  if (!prototypeCalled && glesConfig.m_glCoverageModulationTableNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_framebuffer_mixed_samples] && glesConfig.m_glCoverageModulationTableNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCoverageModulationTableNV (n, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6518,12 +7767,15 @@ void _glew_gles_glGetCoverageModulationTableNV (GLsizei bufsize, GLfloat * v)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_framebuffer_mixed_samples - glGetCoverageModulationTableNV
-  if (!prototypeCalled && glesConfig.m_glGetCoverageModulationTableNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_framebuffer_mixed_samples] && glesConfig.m_glGetCoverageModulationTableNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetCoverageModulationTableNV (bufsize, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6534,12 +7786,15 @@ void _glew_gles_glCoverageModulationNV (GLenum components)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_framebuffer_mixed_samples - glCoverageModulationNV
-  if (!prototypeCalled && glesConfig.m_glCoverageModulationNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_framebuffer_mixed_samples] && glesConfig.m_glCoverageModulationNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCoverageModulationNV (components);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6550,12 +7805,15 @@ void _glew_gles_glRenderbufferStorageMultisampleNV (GLenum target, GLsizei sampl
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_framebuffer_multisample - glRenderbufferStorageMultisampleNV
-  if (!prototypeCalled && glesConfig.m_glRenderbufferStorageMultisampleNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_framebuffer_multisample] && glesConfig.m_glRenderbufferStorageMultisampleNV)
   {
     prototypeCalled = true;
     glesConfig.m_glRenderbufferStorageMultisampleNV (target, samples, internalformat, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6566,12 +7824,15 @@ void _glew_gles_glVertexAttribDivisorNV (GLuint index, GLuint divisor)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_instanced_arrays - glVertexAttribDivisorNV
-  if (!prototypeCalled && glesConfig.m_glVertexAttribDivisorNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_instanced_arrays] && glesConfig.m_glVertexAttribDivisorNV)
   {
     prototypeCalled = true;
     glesConfig.m_glVertexAttribDivisorNV (index, divisor);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6582,12 +7843,15 @@ void _glew_gles_glGetInternalformatSampleivNV (GLenum target, GLenum internalfor
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_internalformat_sample_query - glGetInternalformatSampleivNV
-  if (!prototypeCalled && glesConfig.m_glGetInternalformatSampleivNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_internalformat_sample_query] && glesConfig.m_glGetInternalformatSampleivNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetInternalformatSampleivNV (target, internalformat, samples, pname, bufSize, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6598,12 +7862,15 @@ void _glew_gles_glUniformMatrix2x3fvNV (GLint location, GLsizei count, GLboolean
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_non_square_matrices - glUniformMatrix2x3fvNV
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x3fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix2x3fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix2x3fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6614,12 +7881,15 @@ void _glew_gles_glUniformMatrix3x2fvNV (GLint location, GLsizei count, GLboolean
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_non_square_matrices - glUniformMatrix3x2fvNV
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x2fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix3x2fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix3x2fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6630,12 +7900,15 @@ void _glew_gles_glUniformMatrix2x4fvNV (GLint location, GLsizei count, GLboolean
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_non_square_matrices - glUniformMatrix2x4fvNV
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix2x4fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix2x4fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix2x4fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6646,12 +7919,15 @@ void _glew_gles_glUniformMatrix4x2fvNV (GLint location, GLsizei count, GLboolean
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_non_square_matrices - glUniformMatrix4x2fvNV
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x2fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix4x2fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix4x2fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6662,12 +7938,15 @@ void _glew_gles_glUniformMatrix3x4fvNV (GLint location, GLsizei count, GLboolean
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_non_square_matrices - glUniformMatrix3x4fvNV
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix3x4fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix3x4fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix3x4fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6678,12 +7957,15 @@ void _glew_gles_glUniformMatrix4x3fvNV (GLint location, GLsizei count, GLboolean
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_non_square_matrices - glUniformMatrix4x3fvNV
-  if (!prototypeCalled && glesConfig.m_glUniformMatrix4x3fvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] && glesConfig.m_glUniformMatrix4x3fvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glUniformMatrix4x3fvNV (location, count, transpose, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6694,13 +7976,17 @@ GLuint _glew_gles_glGenPathsNV (GLsizei range)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint result = ((GLuint)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGenPathsNV
-  if (!prototypeCalled && glesConfig.m_glGenPathsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGenPathsNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGenPathsNV (range);
+    result = glesConfig.m_glGenPathsNV (range);
   }
-  return ((GLuint)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6711,12 +7997,15 @@ void _glew_gles_glDeletePathsNV (GLuint path, GLsizei range)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glDeletePathsNV
-  if (!prototypeCalled && glesConfig.m_glDeletePathsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glDeletePathsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glDeletePathsNV (path, range);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6727,13 +8016,17 @@ GLboolean _glew_gles_glIsPathNV (GLuint path)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glIsPathNV
-  if (!prototypeCalled && glesConfig.m_glIsPathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glIsPathNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsPathNV (path);
+    result = glesConfig.m_glIsPathNV (path);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6744,12 +8037,15 @@ void _glew_gles_glPathCommandsNV (GLuint path, GLsizei numCommands, const GLubyt
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathCommandsNV
-  if (!prototypeCalled && glesConfig.m_glPathCommandsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathCommandsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathCommandsNV (path, numCommands, commands, numCoords, coordType, coords);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6760,12 +8056,15 @@ void _glew_gles_glPathCoordsNV (GLuint path, GLsizei numCoords, GLenum coordType
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathCoordsNV
-  if (!prototypeCalled && glesConfig.m_glPathCoordsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathCoordsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathCoordsNV (path, numCoords, coordType, coords);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6776,12 +8075,15 @@ void _glew_gles_glPathSubCommandsNV (GLuint path, GLsizei commandStart, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathSubCommandsNV
-  if (!prototypeCalled && glesConfig.m_glPathSubCommandsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathSubCommandsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathSubCommandsNV (path, commandStart, commandsToDelete, numCommands, commands, numCoords, coordType, coords);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6792,12 +8094,15 @@ void _glew_gles_glPathSubCoordsNV (GLuint path, GLsizei coordStart, GLsizei numC
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathSubCoordsNV
-  if (!prototypeCalled && glesConfig.m_glPathSubCoordsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathSubCoordsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathSubCoordsNV (path, coordStart, numCoords, coordType, coords);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6808,12 +8113,15 @@ void _glew_gles_glPathStringNV (GLuint path, GLenum format, GLsizei length, cons
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathStringNV
-  if (!prototypeCalled && glesConfig.m_glPathStringNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathStringNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathStringNV (path, format, length, pathString);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6824,12 +8132,15 @@ void _glew_gles_glPathGlyphsNV (GLuint firstPathName, GLenum fontTarget, const v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathGlyphsNV
-  if (!prototypeCalled && glesConfig.m_glPathGlyphsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathGlyphsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathGlyphsNV (firstPathName, fontTarget, fontName, fontStyle, numGlyphs, type, charcodes, handleMissingGlyphs, pathParameterTemplate, emScale);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6840,12 +8151,15 @@ void _glew_gles_glPathGlyphRangeNV (GLuint firstPathName, GLenum fontTarget, con
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathGlyphRangeNV
-  if (!prototypeCalled && glesConfig.m_glPathGlyphRangeNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathGlyphRangeNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathGlyphRangeNV (firstPathName, fontTarget, fontName, fontStyle, firstGlyph, numGlyphs, handleMissingGlyphs, pathParameterTemplate, emScale);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6856,12 +8170,15 @@ void _glew_gles_glWeightPathsNV (GLuint resultPath, GLsizei numPaths, const GLui
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glWeightPathsNV
-  if (!prototypeCalled && glesConfig.m_glWeightPathsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glWeightPathsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glWeightPathsNV (resultPath, numPaths, paths, weights);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6872,12 +8189,15 @@ void _glew_gles_glCopyPathNV (GLuint resultPath, GLuint srcPath)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glCopyPathNV
-  if (!prototypeCalled && glesConfig.m_glCopyPathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glCopyPathNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyPathNV (resultPath, srcPath);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6888,12 +8208,15 @@ void _glew_gles_glInterpolatePathsNV (GLuint resultPath, GLuint pathA, GLuint pa
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glInterpolatePathsNV
-  if (!prototypeCalled && glesConfig.m_glInterpolatePathsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glInterpolatePathsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glInterpolatePathsNV (resultPath, pathA, pathB, weight);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6904,12 +8227,15 @@ void _glew_gles_glTransformPathNV (GLuint resultPath, GLuint srcPath, GLenum tra
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glTransformPathNV
-  if (!prototypeCalled && glesConfig.m_glTransformPathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glTransformPathNV)
   {
     prototypeCalled = true;
     glesConfig.m_glTransformPathNV (resultPath, srcPath, transformType, transformValues);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6920,12 +8246,15 @@ void _glew_gles_glPathParameterivNV (GLuint path, GLenum pname, const GLint * va
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathParameterivNV
-  if (!prototypeCalled && glesConfig.m_glPathParameterivNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathParameterivNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathParameterivNV (path, pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6936,12 +8265,15 @@ void _glew_gles_glPathParameteriNV (GLuint path, GLenum pname, GLint value)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathParameteriNV
-  if (!prototypeCalled && glesConfig.m_glPathParameteriNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathParameteriNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathParameteriNV (path, pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6952,12 +8284,15 @@ void _glew_gles_glPathParameterfvNV (GLuint path, GLenum pname, const GLfloat * 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathParameterfvNV
-  if (!prototypeCalled && glesConfig.m_glPathParameterfvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathParameterfvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathParameterfvNV (path, pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6968,12 +8303,15 @@ void _glew_gles_glPathParameterfNV (GLuint path, GLenum pname, GLfloat value)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathParameterfNV
-  if (!prototypeCalled && glesConfig.m_glPathParameterfNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathParameterfNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathParameterfNV (path, pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6984,12 +8322,15 @@ void _glew_gles_glPathDashArrayNV (GLuint path, GLsizei dashCount, const GLfloat
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathDashArrayNV
-  if (!prototypeCalled && glesConfig.m_glPathDashArrayNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathDashArrayNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathDashArrayNV (path, dashCount, dashArray);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7000,12 +8341,15 @@ void _glew_gles_glPathStencilFuncNV (GLenum func, GLint ref, GLuint mask)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathStencilFuncNV
-  if (!prototypeCalled && glesConfig.m_glPathStencilFuncNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathStencilFuncNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathStencilFuncNV (func, ref, mask);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7016,12 +8360,15 @@ void _glew_gles_glPathStencilDepthOffsetNV (GLfloat factor, GLfloat units)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathStencilDepthOffsetNV
-  if (!prototypeCalled && glesConfig.m_glPathStencilDepthOffsetNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathStencilDepthOffsetNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathStencilDepthOffsetNV (factor, units);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7032,12 +8379,15 @@ void _glew_gles_glStencilFillPathNV (GLuint path, GLenum fillMode, GLuint mask)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glStencilFillPathNV
-  if (!prototypeCalled && glesConfig.m_glStencilFillPathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glStencilFillPathNV)
   {
     prototypeCalled = true;
     glesConfig.m_glStencilFillPathNV (path, fillMode, mask);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7048,12 +8398,15 @@ void _glew_gles_glStencilStrokePathNV (GLuint path, GLint reference, GLuint mask
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glStencilStrokePathNV
-  if (!prototypeCalled && glesConfig.m_glStencilStrokePathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glStencilStrokePathNV)
   {
     prototypeCalled = true;
     glesConfig.m_glStencilStrokePathNV (path, reference, mask);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7064,12 +8417,15 @@ void _glew_gles_glStencilFillPathInstancedNV (GLsizei numPaths, GLenum pathNameT
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glStencilFillPathInstancedNV
-  if (!prototypeCalled && glesConfig.m_glStencilFillPathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glStencilFillPathInstancedNV)
   {
     prototypeCalled = true;
     glesConfig.m_glStencilFillPathInstancedNV (numPaths, pathNameType, paths, pathBase, fillMode, mask, transformType, transformValues);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7080,12 +8436,15 @@ void _glew_gles_glStencilStrokePathInstancedNV (GLsizei numPaths, GLenum pathNam
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glStencilStrokePathInstancedNV
-  if (!prototypeCalled && glesConfig.m_glStencilStrokePathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glStencilStrokePathInstancedNV)
   {
     prototypeCalled = true;
     glesConfig.m_glStencilStrokePathInstancedNV (numPaths, pathNameType, paths, pathBase, reference, mask, transformType, transformValues);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7096,12 +8455,15 @@ void _glew_gles_glPathCoverDepthFuncNV (GLenum func)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathCoverDepthFuncNV
-  if (!prototypeCalled && glesConfig.m_glPathCoverDepthFuncNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathCoverDepthFuncNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPathCoverDepthFuncNV (func);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7112,12 +8474,15 @@ void _glew_gles_glCoverFillPathNV (GLuint path, GLenum coverMode)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glCoverFillPathNV
-  if (!prototypeCalled && glesConfig.m_glCoverFillPathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glCoverFillPathNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCoverFillPathNV (path, coverMode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7128,12 +8493,15 @@ void _glew_gles_glCoverStrokePathNV (GLuint path, GLenum coverMode)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glCoverStrokePathNV
-  if (!prototypeCalled && glesConfig.m_glCoverStrokePathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glCoverStrokePathNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCoverStrokePathNV (path, coverMode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7144,12 +8512,15 @@ void _glew_gles_glCoverFillPathInstancedNV (GLsizei numPaths, GLenum pathNameTyp
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glCoverFillPathInstancedNV
-  if (!prototypeCalled && glesConfig.m_glCoverFillPathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glCoverFillPathInstancedNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCoverFillPathInstancedNV (numPaths, pathNameType, paths, pathBase, coverMode, transformType, transformValues);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7160,12 +8531,15 @@ void _glew_gles_glCoverStrokePathInstancedNV (GLsizei numPaths, GLenum pathNameT
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glCoverStrokePathInstancedNV
-  if (!prototypeCalled && glesConfig.m_glCoverStrokePathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glCoverStrokePathInstancedNV)
   {
     prototypeCalled = true;
     glesConfig.m_glCoverStrokePathInstancedNV (numPaths, pathNameType, paths, pathBase, coverMode, transformType, transformValues);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7176,12 +8550,15 @@ void _glew_gles_glGetPathParameterivNV (GLuint path, GLenum pname, GLint * value
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetPathParameterivNV
-  if (!prototypeCalled && glesConfig.m_glGetPathParameterivNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetPathParameterivNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPathParameterivNV (path, pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7192,12 +8569,15 @@ void _glew_gles_glGetPathParameterfvNV (GLuint path, GLenum pname, GLfloat * val
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetPathParameterfvNV
-  if (!prototypeCalled && glesConfig.m_glGetPathParameterfvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetPathParameterfvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPathParameterfvNV (path, pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7208,12 +8588,15 @@ void _glew_gles_glGetPathCommandsNV (GLuint path, GLubyte * commands)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetPathCommandsNV
-  if (!prototypeCalled && glesConfig.m_glGetPathCommandsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetPathCommandsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPathCommandsNV (path, commands);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7224,12 +8607,15 @@ void _glew_gles_glGetPathCoordsNV (GLuint path, GLfloat * coords)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetPathCoordsNV
-  if (!prototypeCalled && glesConfig.m_glGetPathCoordsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetPathCoordsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPathCoordsNV (path, coords);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7240,12 +8626,15 @@ void _glew_gles_glGetPathDashArrayNV (GLuint path, GLfloat * dashArray)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetPathDashArrayNV
-  if (!prototypeCalled && glesConfig.m_glGetPathDashArrayNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetPathDashArrayNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPathDashArrayNV (path, dashArray);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7256,12 +8645,15 @@ void _glew_gles_glGetPathMetricsNV (GLbitfield metricQueryMask, GLsizei numPaths
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetPathMetricsNV
-  if (!prototypeCalled && glesConfig.m_glGetPathMetricsNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetPathMetricsNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPathMetricsNV (metricQueryMask, numPaths, pathNameType, paths, pathBase, stride, metrics);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7272,12 +8664,15 @@ void _glew_gles_glGetPathMetricRangeNV (GLbitfield metricQueryMask, GLuint first
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetPathMetricRangeNV
-  if (!prototypeCalled && glesConfig.m_glGetPathMetricRangeNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetPathMetricRangeNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPathMetricRangeNV (metricQueryMask, firstPathName, numPaths, stride, metrics);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7288,12 +8683,15 @@ void _glew_gles_glGetPathSpacingNV (GLenum pathListMode, GLsizei numPaths, GLenu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetPathSpacingNV
-  if (!prototypeCalled && glesConfig.m_glGetPathSpacingNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetPathSpacingNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetPathSpacingNV (pathListMode, numPaths, pathNameType, paths, pathBase, advanceScale, kerningScale, transformType, returnedSpacing);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7304,13 +8702,17 @@ GLboolean _glew_gles_glIsPointInFillPathNV (GLuint path, GLuint mask, GLfloat x,
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glIsPointInFillPathNV
-  if (!prototypeCalled && glesConfig.m_glIsPointInFillPathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glIsPointInFillPathNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsPointInFillPathNV (path, mask, x, y);
+    result = glesConfig.m_glIsPointInFillPathNV (path, mask, x, y);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7321,13 +8723,17 @@ GLboolean _glew_gles_glIsPointInStrokePathNV (GLuint path, GLfloat x, GLfloat y)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glIsPointInStrokePathNV
-  if (!prototypeCalled && glesConfig.m_glIsPointInStrokePathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glIsPointInStrokePathNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsPointInStrokePathNV (path, x, y);
+    result = glesConfig.m_glIsPointInStrokePathNV (path, x, y);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7338,13 +8744,17 @@ GLfloat _glew_gles_glGetPathLengthNV (GLuint path, GLsizei startSegment, GLsizei
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLfloat result = ((GLfloat)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetPathLengthNV
-  if (!prototypeCalled && glesConfig.m_glGetPathLengthNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetPathLengthNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glGetPathLengthNV (path, startSegment, numSegments);
+    result = glesConfig.m_glGetPathLengthNV (path, startSegment, numSegments);
   }
-  return ((GLfloat)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7355,13 +8765,17 @@ GLboolean _glew_gles_glPointAlongPathNV (GLuint path, GLsizei startSegment, GLsi
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPointAlongPathNV
-  if (!prototypeCalled && glesConfig.m_glPointAlongPathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPointAlongPathNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glPointAlongPathNV (path, startSegment, numSegments, distance, x, y, tangentX, tangentY);
+    result = glesConfig.m_glPointAlongPathNV (path, startSegment, numSegments, distance, x, y, tangentX, tangentY);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7372,12 +8786,15 @@ void _glew_gles_glMatrixLoad3x2fNV (GLenum matrixMode, const GLfloat * m)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glMatrixLoad3x2fNV
-  if (!prototypeCalled && glesConfig.m_glMatrixLoad3x2fNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glMatrixLoad3x2fNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMatrixLoad3x2fNV (matrixMode, m);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7388,12 +8805,15 @@ void _glew_gles_glMatrixLoad3x3fNV (GLenum matrixMode, const GLfloat * m)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glMatrixLoad3x3fNV
-  if (!prototypeCalled && glesConfig.m_glMatrixLoad3x3fNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glMatrixLoad3x3fNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMatrixLoad3x3fNV (matrixMode, m);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7404,12 +8824,15 @@ void _glew_gles_glMatrixLoadTranspose3x3fNV (GLenum matrixMode, const GLfloat * 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glMatrixLoadTranspose3x3fNV
-  if (!prototypeCalled && glesConfig.m_glMatrixLoadTranspose3x3fNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glMatrixLoadTranspose3x3fNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMatrixLoadTranspose3x3fNV (matrixMode, m);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7420,12 +8843,15 @@ void _glew_gles_glMatrixMult3x2fNV (GLenum matrixMode, const GLfloat * m)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glMatrixMult3x2fNV
-  if (!prototypeCalled && glesConfig.m_glMatrixMult3x2fNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glMatrixMult3x2fNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMatrixMult3x2fNV (matrixMode, m);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7436,12 +8862,15 @@ void _glew_gles_glMatrixMult3x3fNV (GLenum matrixMode, const GLfloat * m)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glMatrixMult3x3fNV
-  if (!prototypeCalled && glesConfig.m_glMatrixMult3x3fNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glMatrixMult3x3fNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMatrixMult3x3fNV (matrixMode, m);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7452,12 +8881,15 @@ void _glew_gles_glMatrixMultTranspose3x3fNV (GLenum matrixMode, const GLfloat * 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glMatrixMultTranspose3x3fNV
-  if (!prototypeCalled && glesConfig.m_glMatrixMultTranspose3x3fNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glMatrixMultTranspose3x3fNV)
   {
     prototypeCalled = true;
     glesConfig.m_glMatrixMultTranspose3x3fNV (matrixMode, m);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7468,12 +8900,15 @@ void _glew_gles_glStencilThenCoverFillPathNV (GLuint path, GLenum fillMode, GLui
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glStencilThenCoverFillPathNV
-  if (!prototypeCalled && glesConfig.m_glStencilThenCoverFillPathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glStencilThenCoverFillPathNV)
   {
     prototypeCalled = true;
     glesConfig.m_glStencilThenCoverFillPathNV (path, fillMode, mask, coverMode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7484,12 +8919,15 @@ void _glew_gles_glStencilThenCoverStrokePathNV (GLuint path, GLint reference, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glStencilThenCoverStrokePathNV
-  if (!prototypeCalled && glesConfig.m_glStencilThenCoverStrokePathNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glStencilThenCoverStrokePathNV)
   {
     prototypeCalled = true;
     glesConfig.m_glStencilThenCoverStrokePathNV (path, reference, mask, coverMode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7500,12 +8938,15 @@ void _glew_gles_glStencilThenCoverFillPathInstancedNV (GLsizei numPaths, GLenum 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glStencilThenCoverFillPathInstancedNV
-  if (!prototypeCalled && glesConfig.m_glStencilThenCoverFillPathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glStencilThenCoverFillPathInstancedNV)
   {
     prototypeCalled = true;
     glesConfig.m_glStencilThenCoverFillPathInstancedNV (numPaths, pathNameType, paths, pathBase, fillMode, mask, coverMode, transformType, transformValues);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7516,12 +8957,15 @@ void _glew_gles_glStencilThenCoverStrokePathInstancedNV (GLsizei numPaths, GLenu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glStencilThenCoverStrokePathInstancedNV
-  if (!prototypeCalled && glesConfig.m_glStencilThenCoverStrokePathInstancedNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glStencilThenCoverStrokePathInstancedNV)
   {
     prototypeCalled = true;
     glesConfig.m_glStencilThenCoverStrokePathInstancedNV (numPaths, pathNameType, paths, pathBase, reference, mask, coverMode, transformType, transformValues);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7532,13 +8976,17 @@ GLenum _glew_gles_glPathGlyphIndexRangeNV (GLenum fontTarget, const void * fontN
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLenum result = ((GLenum)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathGlyphIndexRangeNV
-  if (!prototypeCalled && glesConfig.m_glPathGlyphIndexRangeNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathGlyphIndexRangeNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glPathGlyphIndexRangeNV (fontTarget, fontName, fontStyle, pathParameterTemplate, emScale, baseAndCount);
+    result = glesConfig.m_glPathGlyphIndexRangeNV (fontTarget, fontName, fontStyle, pathParameterTemplate, emScale, baseAndCount);
   }
-  return ((GLenum)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7549,13 +8997,17 @@ GLenum _glew_gles_glPathGlyphIndexArrayNV (GLuint firstPathName, GLenum fontTarg
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLenum result = ((GLenum)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathGlyphIndexArrayNV
-  if (!prototypeCalled && glesConfig.m_glPathGlyphIndexArrayNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathGlyphIndexArrayNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glPathGlyphIndexArrayNV (firstPathName, fontTarget, fontName, fontStyle, firstGlyphIndex, numGlyphs, pathParameterTemplate, emScale);
+    result = glesConfig.m_glPathGlyphIndexArrayNV (firstPathName, fontTarget, fontName, fontStyle, firstGlyphIndex, numGlyphs, pathParameterTemplate, emScale);
   }
-  return ((GLenum)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7566,13 +9018,17 @@ GLenum _glew_gles_glPathMemoryGlyphIndexArrayNV (GLuint firstPathName, GLenum fo
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLenum result = ((GLenum)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glPathMemoryGlyphIndexArrayNV
-  if (!prototypeCalled && glesConfig.m_glPathMemoryGlyphIndexArrayNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glPathMemoryGlyphIndexArrayNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glPathMemoryGlyphIndexArrayNV (firstPathName, fontTarget, fontSize, fontData, faceIndex, firstGlyphIndex, numGlyphs, pathParameterTemplate, emScale);
+    result = glesConfig.m_glPathMemoryGlyphIndexArrayNV (firstPathName, fontTarget, fontSize, fontData, faceIndex, firstGlyphIndex, numGlyphs, pathParameterTemplate, emScale);
   }
-  return ((GLenum)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7583,12 +9039,15 @@ void _glew_gles_glProgramPathFragmentInputGenNV (GLuint program, GLint location,
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glProgramPathFragmentInputGenNV
-  if (!prototypeCalled && glesConfig.m_glProgramPathFragmentInputGenNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glProgramPathFragmentInputGenNV)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramPathFragmentInputGenNV (program, location, genMode, components, coeffs);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7599,12 +9058,15 @@ void _glew_gles_glGetProgramResourcefvNV (GLuint program, GLenum programInterfac
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_path_rendering - glGetProgramResourcefvNV
-  if (!prototypeCalled && glesConfig.m_glGetProgramResourcefvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetProgramResourcefvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramResourcefvNV (program, programInterface, index, propCount, props, bufSize, length, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7615,12 +9077,15 @@ void _glew_gles_glPolygonModeNV (GLenum face, GLenum mode)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_polygon_mode - glPolygonModeNV
-  if (!prototypeCalled && glesConfig.m_glPolygonModeNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_polygon_mode] && glesConfig.m_glPolygonModeNV)
   {
     prototypeCalled = true;
     glesConfig.m_glPolygonModeNV (face, mode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7631,12 +9096,15 @@ void _glew_gles_glReadBufferNV (GLenum mode)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_read_buffer - glReadBufferNV
-  if (!prototypeCalled && glesConfig.m_glReadBufferNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_read_buffer] && glesConfig.m_glReadBufferNV)
   {
     prototypeCalled = true;
     glesConfig.m_glReadBufferNV (mode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7647,12 +9115,15 @@ void _glew_gles_glFramebufferSampleLocationsfvNV (GLenum target, GLuint start, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_sample_locations - glFramebufferSampleLocationsfvNV
-  if (!prototypeCalled && glesConfig.m_glFramebufferSampleLocationsfvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_sample_locations] && glesConfig.m_glFramebufferSampleLocationsfvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glFramebufferSampleLocationsfvNV (target, start, count, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7663,12 +9134,15 @@ void _glew_gles_glNamedFramebufferSampleLocationsfvNV (GLuint framebuffer, GLuin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_sample_locations - glNamedFramebufferSampleLocationsfvNV
-  if (!prototypeCalled && glesConfig.m_glNamedFramebufferSampleLocationsfvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_sample_locations] && glesConfig.m_glNamedFramebufferSampleLocationsfvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glNamedFramebufferSampleLocationsfvNV (framebuffer, start, count, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7679,12 +9153,15 @@ void _glew_gles_glResolveDepthValuesNV ()
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_sample_locations - glResolveDepthValuesNV
-  if (!prototypeCalled && glesConfig.m_glResolveDepthValuesNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_sample_locations] && glesConfig.m_glResolveDepthValuesNV)
   {
     prototypeCalled = true;
     glesConfig.m_glResolveDepthValuesNV ();
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7695,12 +9172,15 @@ void _glew_gles_glViewportArrayvNV (GLuint first, GLsizei count, const GLfloat *
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glViewportArrayvNV
-  if (!prototypeCalled && glesConfig.m_glViewportArrayvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glViewportArrayvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glViewportArrayvNV (first, count, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7711,12 +9191,15 @@ void _glew_gles_glViewportIndexedfNV (GLuint index, GLfloat x, GLfloat y, GLfloa
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glViewportIndexedfNV
-  if (!prototypeCalled && glesConfig.m_glViewportIndexedfNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glViewportIndexedfNV)
   {
     prototypeCalled = true;
     glesConfig.m_glViewportIndexedfNV (index, x, y, w, h);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7727,12 +9210,15 @@ void _glew_gles_glViewportIndexedfvNV (GLuint index, const GLfloat * v)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glViewportIndexedfvNV
-  if (!prototypeCalled && glesConfig.m_glViewportIndexedfvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glViewportIndexedfvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glViewportIndexedfvNV (index, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7743,12 +9229,15 @@ void _glew_gles_glScissorArrayvNV (GLuint first, GLsizei count, const GLint * v)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glScissorArrayvNV
-  if (!prototypeCalled && glesConfig.m_glScissorArrayvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glScissorArrayvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glScissorArrayvNV (first, count, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7759,12 +9248,15 @@ void _glew_gles_glScissorIndexedNV (GLuint index, GLint left, GLint bottom, GLsi
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glScissorIndexedNV
-  if (!prototypeCalled && glesConfig.m_glScissorIndexedNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glScissorIndexedNV)
   {
     prototypeCalled = true;
     glesConfig.m_glScissorIndexedNV (index, left, bottom, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7775,12 +9267,15 @@ void _glew_gles_glScissorIndexedvNV (GLuint index, const GLint * v)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glScissorIndexedvNV
-  if (!prototypeCalled && glesConfig.m_glScissorIndexedvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glScissorIndexedvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glScissorIndexedvNV (index, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7791,12 +9286,15 @@ void _glew_gles_glDepthRangeArrayfvNV (GLuint first, GLsizei count, const GLfloa
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glDepthRangeArrayfvNV
-  if (!prototypeCalled && glesConfig.m_glDepthRangeArrayfvNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glDepthRangeArrayfvNV)
   {
     prototypeCalled = true;
     glesConfig.m_glDepthRangeArrayfvNV (first, count, v);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7807,12 +9305,15 @@ void _glew_gles_glDepthRangeIndexedfNV (GLuint index, GLfloat n, GLfloat f)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glDepthRangeIndexedfNV
-  if (!prototypeCalled && glesConfig.m_glDepthRangeIndexedfNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glDepthRangeIndexedfNV)
   {
     prototypeCalled = true;
     glesConfig.m_glDepthRangeIndexedfNV (index, n, f);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7823,12 +9324,15 @@ void _glew_gles_glGetFloati_vNV (GLenum target, GLuint index, GLfloat * data)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glGetFloati_vNV
-  if (!prototypeCalled && glesConfig.m_glGetFloati_vNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glGetFloati_vNV)
   {
     prototypeCalled = true;
     glesConfig.m_glGetFloati_vNV (target, index, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7839,12 +9343,15 @@ void _glew_gles_glEnableiNV (GLenum target, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glEnableiNV
-  if (!prototypeCalled && glesConfig.m_glEnableiNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glEnableiNV)
   {
     prototypeCalled = true;
     glesConfig.m_glEnableiNV (target, index);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7855,12 +9362,15 @@ void _glew_gles_glDisableiNV (GLenum target, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glDisableiNV
-  if (!prototypeCalled && glesConfig.m_glDisableiNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glDisableiNV)
   {
     prototypeCalled = true;
     glesConfig.m_glDisableiNV (target, index);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7871,13 +9381,17 @@ GLboolean _glew_gles_glIsEnablediNV (GLenum target, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_NV_viewport_array - glIsEnablediNV
-  if (!prototypeCalled && glesConfig.m_glIsEnablediNV)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_array] && glesConfig.m_glIsEnablediNV)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsEnablediNV (target, index);
+    result = glesConfig.m_glIsEnablediNV (target, index);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7888,12 +9402,15 @@ void _glew_gles_glEGLImageTargetTexture2DOES (GLenum target, GLeglImageOES image
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_EGL_image - glEGLImageTargetTexture2DOES
-  if (!prototypeCalled && glesConfig.m_glEGLImageTargetTexture2DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_EGL_image] && glesConfig.m_glEGLImageTargetTexture2DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glEGLImageTargetTexture2DOES (target, image);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7904,12 +9421,15 @@ void _glew_gles_glEGLImageTargetRenderbufferStorageOES (GLenum target, GLeglImag
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_EGL_image - glEGLImageTargetRenderbufferStorageOES
-  if (!prototypeCalled && glesConfig.m_glEGLImageTargetRenderbufferStorageOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_EGL_image] && glesConfig.m_glEGLImageTargetRenderbufferStorageOES)
   {
     prototypeCalled = true;
     glesConfig.m_glEGLImageTargetRenderbufferStorageOES (target, image);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7920,12 +9440,15 @@ void _glew_gles_glCopyImageSubDataOES (GLuint srcName, GLenum srcTarget, GLint s
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_copy_image - glCopyImageSubDataOES
-  if (!prototypeCalled && glesConfig.m_glCopyImageSubDataOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_copy_image] && glesConfig.m_glCopyImageSubDataOES)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyImageSubDataOES (srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, srcWidth, srcHeight, srcDepth);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7936,12 +9459,15 @@ void _glew_gles_glEnableiOES (GLenum target, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_buffers_indexed - glEnableiOES
-  if (!prototypeCalled && glesConfig.m_glEnableiOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed] && glesConfig.m_glEnableiOES)
   {
     prototypeCalled = true;
     glesConfig.m_glEnableiOES (target, index);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7952,12 +9478,15 @@ void _glew_gles_glDisableiOES (GLenum target, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_buffers_indexed - glDisableiOES
-  if (!prototypeCalled && glesConfig.m_glDisableiOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed] && glesConfig.m_glDisableiOES)
   {
     prototypeCalled = true;
     glesConfig.m_glDisableiOES (target, index);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7968,12 +9497,15 @@ void _glew_gles_glBlendEquationiOES (GLuint buf, GLenum mode)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_buffers_indexed - glBlendEquationiOES
-  if (!prototypeCalled && glesConfig.m_glBlendEquationiOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed] && glesConfig.m_glBlendEquationiOES)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendEquationiOES (buf, mode);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -7984,12 +9516,15 @@ void _glew_gles_glBlendEquationSeparateiOES (GLuint buf, GLenum modeRGB, GLenum 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_buffers_indexed - glBlendEquationSeparateiOES
-  if (!prototypeCalled && glesConfig.m_glBlendEquationSeparateiOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed] && glesConfig.m_glBlendEquationSeparateiOES)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendEquationSeparateiOES (buf, modeRGB, modeAlpha);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8000,12 +9535,15 @@ void _glew_gles_glBlendFunciOES (GLuint buf, GLenum src, GLenum dst)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_buffers_indexed - glBlendFunciOES
-  if (!prototypeCalled && glesConfig.m_glBlendFunciOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed] && glesConfig.m_glBlendFunciOES)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendFunciOES (buf, src, dst);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8016,12 +9554,15 @@ void _glew_gles_glBlendFuncSeparateiOES (GLuint buf, GLenum srcRGB, GLenum dstRG
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_buffers_indexed - glBlendFuncSeparateiOES
-  if (!prototypeCalled && glesConfig.m_glBlendFuncSeparateiOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed] && glesConfig.m_glBlendFuncSeparateiOES)
   {
     prototypeCalled = true;
     glesConfig.m_glBlendFuncSeparateiOES (buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8032,12 +9573,15 @@ void _glew_gles_glColorMaskiOES (GLuint index, GLboolean r, GLboolean g, GLboole
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_buffers_indexed - glColorMaskiOES
-  if (!prototypeCalled && glesConfig.m_glColorMaskiOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed] && glesConfig.m_glColorMaskiOES)
   {
     prototypeCalled = true;
     glesConfig.m_glColorMaskiOES (index, r, g, b, a);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8048,13 +9592,17 @@ GLboolean _glew_gles_glIsEnablediOES (GLenum target, GLuint index)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_buffers_indexed - glIsEnablediOES
-  if (!prototypeCalled && glesConfig.m_glIsEnablediOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed] && glesConfig.m_glIsEnablediOES)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsEnablediOES (target, index);
+    result = glesConfig.m_glIsEnablediOES (target, index);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8065,12 +9613,15 @@ void _glew_gles_glDrawElementsBaseVertexOES (GLenum mode, GLsizei count, GLenum 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_elements_base_vertex - glDrawElementsBaseVertexOES
-  if (!prototypeCalled && glesConfig.m_glDrawElementsBaseVertexOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_elements_base_vertex] && glesConfig.m_glDrawElementsBaseVertexOES)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsBaseVertexOES (mode, count, type, indices, basevertex);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8081,12 +9632,15 @@ void _glew_gles_glDrawRangeElementsBaseVertexOES (GLenum mode, GLuint start, GLu
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_elements_base_vertex - glDrawRangeElementsBaseVertexOES
-  if (!prototypeCalled && glesConfig.m_glDrawRangeElementsBaseVertexOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_elements_base_vertex] && glesConfig.m_glDrawRangeElementsBaseVertexOES)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawRangeElementsBaseVertexOES (mode, start, end, count, type, indices, basevertex);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8097,12 +9651,15 @@ void _glew_gles_glDrawElementsInstancedBaseVertexOES (GLenum mode, GLsizei count
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_elements_base_vertex - glDrawElementsInstancedBaseVertexOES
-  if (!prototypeCalled && glesConfig.m_glDrawElementsInstancedBaseVertexOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_elements_base_vertex] && glesConfig.m_glDrawElementsInstancedBaseVertexOES)
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedBaseVertexOES (mode, count, type, indices, instancecount, basevertex);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8113,12 +9670,15 @@ void _glew_gles_glMultiDrawElementsBaseVertexOES (GLenum mode, const GLsizei * c
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_draw_elements_base_vertex - glMultiDrawElementsBaseVertexOES
-  if (!prototypeCalled && glesConfig.m_glMultiDrawElementsBaseVertexOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_elements_base_vertex] && glesConfig.m_glMultiDrawElementsBaseVertexOES)
   {
     prototypeCalled = true;
     glesConfig.m_glMultiDrawElementsBaseVertexOES (mode, count, type, indices, primcount, basevertex);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8129,12 +9689,15 @@ void _glew_gles_glFramebufferTextureOES (GLenum target, GLenum attachment, GLuin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_geometry_shader - glFramebufferTextureOES
-  if (!prototypeCalled && glesConfig.m_glFramebufferTextureOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_geometry_shader] && glesConfig.m_glFramebufferTextureOES)
   {
     prototypeCalled = true;
     glesConfig.m_glFramebufferTextureOES (target, attachment, texture, level);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8145,12 +9708,15 @@ void _glew_gles_glGetProgramBinaryOES (GLuint program, GLsizei bufSize, GLsizei 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_get_program_binary - glGetProgramBinaryOES
-  if (!prototypeCalled && glesConfig.m_glGetProgramBinaryOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_get_program_binary] && glesConfig.m_glGetProgramBinaryOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGetProgramBinaryOES (program, bufSize, length, binaryFormat, binary);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8161,12 +9727,15 @@ void _glew_gles_glProgramBinaryOES (GLuint program, GLenum binaryFormat, const v
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_get_program_binary - glProgramBinaryOES
-  if (!prototypeCalled && glesConfig.m_glProgramBinaryOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_get_program_binary] && glesConfig.m_glProgramBinaryOES)
   {
     prototypeCalled = true;
     glesConfig.m_glProgramBinaryOES (program, binaryFormat, binary, length);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8177,13 +9746,17 @@ void * _glew_gles_glMapBufferOES (GLenum target, GLenum access)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  void * result = ((void *)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_mapbuffer - glMapBufferOES
-  if (!prototypeCalled && glesConfig.m_glMapBufferOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_mapbuffer] && glesConfig.m_glMapBufferOES)
   {
     prototypeCalled = true;
-    return glesConfig.m_glMapBufferOES (target, access);
+    result = glesConfig.m_glMapBufferOES (target, access);
   }
-  return ((void *)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8194,13 +9767,17 @@ GLboolean _glew_gles_glUnmapBufferOES (GLenum target)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_mapbuffer - glUnmapBufferOES
-  if (!prototypeCalled && glesConfig.m_glUnmapBufferOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_mapbuffer] && glesConfig.m_glUnmapBufferOES)
   {
     prototypeCalled = true;
-    return glesConfig.m_glUnmapBufferOES (target);
+    result = glesConfig.m_glUnmapBufferOES (target);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8211,12 +9788,15 @@ void _glew_gles_glGetBufferPointervOES (GLenum target, GLenum pname, void ** par
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_mapbuffer - glGetBufferPointervOES
-  if (!prototypeCalled && glesConfig.m_glGetBufferPointervOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_mapbuffer] && glesConfig.m_glGetBufferPointervOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGetBufferPointervOES (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8227,12 +9807,15 @@ void _glew_gles_glPrimitiveBoundingBoxOES (GLfloat minX, GLfloat minY, GLfloat m
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_primitive_bounding_box - glPrimitiveBoundingBoxOES
-  if (!prototypeCalled && glesConfig.m_glPrimitiveBoundingBoxOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_primitive_bounding_box] && glesConfig.m_glPrimitiveBoundingBoxOES)
   {
     prototypeCalled = true;
     glesConfig.m_glPrimitiveBoundingBoxOES (minX, minY, minZ, minW, maxX, maxY, maxZ, maxW);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8243,12 +9826,15 @@ void _glew_gles_glMinSampleShadingOES (GLfloat value)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_sample_shading - glMinSampleShadingOES
-  if (!prototypeCalled && glesConfig.m_glMinSampleShadingOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_sample_shading] && glesConfig.m_glMinSampleShadingOES)
   {
     prototypeCalled = true;
     glesConfig.m_glMinSampleShadingOES (value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8259,12 +9845,15 @@ void _glew_gles_glPatchParameteriOES (GLenum pname, GLint value)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_tessellation_shader - glPatchParameteriOES
-  if (!prototypeCalled && glesConfig.m_glPatchParameteriOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_tessellation_shader] && glesConfig.m_glPatchParameteriOES)
   {
     prototypeCalled = true;
     glesConfig.m_glPatchParameteriOES (pname, value);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8275,12 +9864,15 @@ void _glew_gles_glTexImage3DOES (GLenum target, GLint level, GLenum internalform
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_3D - glTexImage3DOES
-  if (!prototypeCalled && glesConfig.m_glTexImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glTexImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTexImage3DOES (target, level, internalformat, width, height, depth, border, format, type, pixels);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8291,12 +9883,15 @@ void _glew_gles_glTexSubImage3DOES (GLenum target, GLint level, GLint xoffset, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_3D - glTexSubImage3DOES
-  if (!prototypeCalled && glesConfig.m_glTexSubImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glTexSubImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8307,12 +9902,15 @@ void _glew_gles_glCopyTexSubImage3DOES (GLenum target, GLint level, GLint xoffse
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_3D - glCopyTexSubImage3DOES
-  if (!prototypeCalled && glesConfig.m_glCopyTexSubImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glCopyTexSubImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glCopyTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, x, y, width, height);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8323,12 +9921,15 @@ void _glew_gles_glCompressedTexImage3DOES (GLenum target, GLint level, GLenum in
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_3D - glCompressedTexImage3DOES
-  if (!prototypeCalled && glesConfig.m_glCompressedTexImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glCompressedTexImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glCompressedTexImage3DOES (target, level, internalformat, width, height, depth, border, imageSize, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8339,12 +9940,15 @@ void _glew_gles_glCompressedTexSubImage3DOES (GLenum target, GLint level, GLint 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_3D - glCompressedTexSubImage3DOES
-  if (!prototypeCalled && glesConfig.m_glCompressedTexSubImage3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glCompressedTexSubImage3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glCompressedTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8355,12 +9959,15 @@ void _glew_gles_glFramebufferTexture3DOES (GLenum target, GLenum attachment, GLe
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_3D - glFramebufferTexture3DOES
-  if (!prototypeCalled && glesConfig.m_glFramebufferTexture3DOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glFramebufferTexture3DOES)
   {
     prototypeCalled = true;
     glesConfig.m_glFramebufferTexture3DOES (target, attachment, textarget, texture, level, zoffset);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8371,12 +9978,15 @@ void _glew_gles_glTexParameterIivOES (GLenum target, GLenum pname, const GLint *
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_border_clamp - glTexParameterIivOES
-  if (!prototypeCalled && glesConfig.m_glTexParameterIivOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp] && glesConfig.m_glTexParameterIivOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTexParameterIivOES (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8387,12 +9997,15 @@ void _glew_gles_glTexParameterIuivOES (GLenum target, GLenum pname, const GLuint
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_border_clamp - glTexParameterIuivOES
-  if (!prototypeCalled && glesConfig.m_glTexParameterIuivOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp] && glesConfig.m_glTexParameterIuivOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTexParameterIuivOES (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8403,12 +10016,15 @@ void _glew_gles_glGetTexParameterIivOES (GLenum target, GLenum pname, GLint * pa
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_border_clamp - glGetTexParameterIivOES
-  if (!prototypeCalled && glesConfig.m_glGetTexParameterIivOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp] && glesConfig.m_glGetTexParameterIivOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGetTexParameterIivOES (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8419,12 +10035,15 @@ void _glew_gles_glGetTexParameterIuivOES (GLenum target, GLenum pname, GLuint * 
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_border_clamp - glGetTexParameterIuivOES
-  if (!prototypeCalled && glesConfig.m_glGetTexParameterIuivOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp] && glesConfig.m_glGetTexParameterIuivOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGetTexParameterIuivOES (target, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8435,12 +10054,15 @@ void _glew_gles_glSamplerParameterIivOES (GLuint sampler, GLenum pname, const GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_border_clamp - glSamplerParameterIivOES
-  if (!prototypeCalled && glesConfig.m_glSamplerParameterIivOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp] && glesConfig.m_glSamplerParameterIivOES)
   {
     prototypeCalled = true;
     glesConfig.m_glSamplerParameterIivOES (sampler, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8451,12 +10073,15 @@ void _glew_gles_glSamplerParameterIuivOES (GLuint sampler, GLenum pname, const G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_border_clamp - glSamplerParameterIuivOES
-  if (!prototypeCalled && glesConfig.m_glSamplerParameterIuivOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp] && glesConfig.m_glSamplerParameterIuivOES)
   {
     prototypeCalled = true;
     glesConfig.m_glSamplerParameterIuivOES (sampler, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8467,12 +10092,15 @@ void _glew_gles_glGetSamplerParameterIivOES (GLuint sampler, GLenum pname, GLint
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_border_clamp - glGetSamplerParameterIivOES
-  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterIivOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp] && glesConfig.m_glGetSamplerParameterIivOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGetSamplerParameterIivOES (sampler, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8483,12 +10111,15 @@ void _glew_gles_glGetSamplerParameterIuivOES (GLuint sampler, GLenum pname, GLui
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_border_clamp - glGetSamplerParameterIuivOES
-  if (!prototypeCalled && glesConfig.m_glGetSamplerParameterIuivOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_border_clamp] && glesConfig.m_glGetSamplerParameterIuivOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGetSamplerParameterIuivOES (sampler, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8499,12 +10130,15 @@ void _glew_gles_glTexBufferOES (GLenum target, GLenum internalformat, GLuint buf
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_buffer - glTexBufferOES
-  if (!prototypeCalled && glesConfig.m_glTexBufferOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_buffer] && glesConfig.m_glTexBufferOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTexBufferOES (target, internalformat, buffer);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8515,12 +10149,15 @@ void _glew_gles_glTexBufferRangeOES (GLenum target, GLenum internalformat, GLuin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_buffer - glTexBufferRangeOES
-  if (!prototypeCalled && glesConfig.m_glTexBufferRangeOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_buffer] && glesConfig.m_glTexBufferRangeOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTexBufferRangeOES (target, internalformat, buffer, offset, size);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8531,12 +10168,15 @@ void _glew_gles_glTexStorage3DMultisampleOES (GLenum target, GLsizei samples, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_storage_multisample_2d_array - glTexStorage3DMultisampleOES
-  if (!prototypeCalled && glesConfig.m_glTexStorage3DMultisampleOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_storage_multisample_2d_array] && glesConfig.m_glTexStorage3DMultisampleOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTexStorage3DMultisampleOES (target, samples, internalformat, width, height, depth, fixedsamplelocations);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8547,12 +10187,15 @@ void _glew_gles_glTextureViewOES (GLuint texture, GLenum target, GLuint origtext
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_texture_view - glTextureViewOES
-  if (!prototypeCalled && glesConfig.m_glTextureViewOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_view] && glesConfig.m_glTextureViewOES)
   {
     prototypeCalled = true;
     glesConfig.m_glTextureViewOES (texture, target, origtexture, internalformat, minlevel, numlevels, minlayer, numlayers);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8563,12 +10206,15 @@ void _glew_gles_glBindVertexArrayOES (GLuint array)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_vertex_array_object - glBindVertexArrayOES
-  if (!prototypeCalled && glesConfig.m_glBindVertexArrayOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object] && glesConfig.m_glBindVertexArrayOES)
   {
     prototypeCalled = true;
     glesConfig.m_glBindVertexArrayOES (array);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8579,12 +10225,15 @@ void _glew_gles_glDeleteVertexArraysOES (GLsizei n, const GLuint * arrays)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_vertex_array_object - glDeleteVertexArraysOES
-  if (!prototypeCalled && glesConfig.m_glDeleteVertexArraysOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object] && glesConfig.m_glDeleteVertexArraysOES)
   {
     prototypeCalled = true;
     glesConfig.m_glDeleteVertexArraysOES (n, arrays);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8595,12 +10244,15 @@ void _glew_gles_glGenVertexArraysOES (GLsizei n, GLuint * arrays)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_vertex_array_object - glGenVertexArraysOES
-  if (!prototypeCalled && glesConfig.m_glGenVertexArraysOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object] && glesConfig.m_glGenVertexArraysOES)
   {
     prototypeCalled = true;
     glesConfig.m_glGenVertexArraysOES (n, arrays);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8611,13 +10263,17 @@ GLboolean _glew_gles_glIsVertexArrayOES (GLuint array)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OES_vertex_array_object - glIsVertexArrayOES
-  if (!prototypeCalled && glesConfig.m_glIsVertexArrayOES)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object] && glesConfig.m_glIsVertexArrayOES)
   {
     prototypeCalled = true;
-    return glesConfig.m_glIsVertexArrayOES (array);
+    result = glesConfig.m_glIsVertexArrayOES (array);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8628,12 +10284,15 @@ void _glew_gles_glFramebufferTextureMultiviewOVR (GLenum target, GLenum attachme
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_OVR_multiview - glFramebufferTextureMultiviewOVR
-  if (!prototypeCalled && glesConfig.m_glFramebufferTextureMultiviewOVR)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OVR_multiview] && glesConfig.m_glFramebufferTextureMultiviewOVR)
   {
     prototypeCalled = true;
     glesConfig.m_glFramebufferTextureMultiviewOVR (target, attachment, texture, level, baseViewIndex, numViews);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8644,12 +10303,15 @@ void _glew_gles_glAlphaFuncQCOM (GLenum func, GLclampf ref)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_alpha_test - glAlphaFuncQCOM
-  if (!prototypeCalled && glesConfig.m_glAlphaFuncQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_alpha_test] && glesConfig.m_glAlphaFuncQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glAlphaFuncQCOM (func, ref);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8660,12 +10322,15 @@ void _glew_gles_glGetDriverControlsQCOM (GLint * num, GLsizei size, GLuint * dri
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_driver_control - glGetDriverControlsQCOM
-  if (!prototypeCalled && glesConfig.m_glGetDriverControlsQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_driver_control] && glesConfig.m_glGetDriverControlsQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glGetDriverControlsQCOM (num, size, driverControls);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8676,12 +10341,15 @@ void _glew_gles_glGetDriverControlStringQCOM (GLuint driverControl, GLsizei bufS
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_driver_control - glGetDriverControlStringQCOM
-  if (!prototypeCalled && glesConfig.m_glGetDriverControlStringQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_driver_control] && glesConfig.m_glGetDriverControlStringQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glGetDriverControlStringQCOM (driverControl, bufSize, length, driverControlString);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8692,12 +10360,15 @@ void _glew_gles_glEnableDriverControlQCOM (GLuint driverControl)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_driver_control - glEnableDriverControlQCOM
-  if (!prototypeCalled && glesConfig.m_glEnableDriverControlQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_driver_control] && glesConfig.m_glEnableDriverControlQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glEnableDriverControlQCOM (driverControl);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8708,12 +10379,15 @@ void _glew_gles_glDisableDriverControlQCOM (GLuint driverControl)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_driver_control - glDisableDriverControlQCOM
-  if (!prototypeCalled && glesConfig.m_glDisableDriverControlQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_driver_control] && glesConfig.m_glDisableDriverControlQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glDisableDriverControlQCOM (driverControl);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8724,12 +10398,15 @@ void _glew_gles_glExtGetTexturesQCOM (GLuint * textures, GLint maxTextures, GLin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get - glExtGetTexturesQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetTexturesQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get] && glesConfig.m_glExtGetTexturesQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetTexturesQCOM (textures, maxTextures, numTextures);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8740,12 +10417,15 @@ void _glew_gles_glExtGetBuffersQCOM (GLuint * buffers, GLint maxBuffers, GLint *
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get - glExtGetBuffersQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetBuffersQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get] && glesConfig.m_glExtGetBuffersQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetBuffersQCOM (buffers, maxBuffers, numBuffers);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8756,12 +10436,15 @@ void _glew_gles_glExtGetRenderbuffersQCOM (GLuint * renderbuffers, GLint maxRend
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get - glExtGetRenderbuffersQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetRenderbuffersQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get] && glesConfig.m_glExtGetRenderbuffersQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetRenderbuffersQCOM (renderbuffers, maxRenderbuffers, numRenderbuffers);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8772,12 +10455,15 @@ void _glew_gles_glExtGetFramebuffersQCOM (GLuint * framebuffers, GLint maxFrameb
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get - glExtGetFramebuffersQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetFramebuffersQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get] && glesConfig.m_glExtGetFramebuffersQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetFramebuffersQCOM (framebuffers, maxFramebuffers, numFramebuffers);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8788,12 +10474,15 @@ void _glew_gles_glExtGetTexLevelParameterivQCOM (GLuint texture, GLenum face, GL
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get - glExtGetTexLevelParameterivQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetTexLevelParameterivQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get] && glesConfig.m_glExtGetTexLevelParameterivQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetTexLevelParameterivQCOM (texture, face, level, pname, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8804,12 +10493,15 @@ void _glew_gles_glExtTexObjectStateOverrideiQCOM (GLenum target, GLenum pname, G
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get - glExtTexObjectStateOverrideiQCOM
-  if (!prototypeCalled && glesConfig.m_glExtTexObjectStateOverrideiQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get] && glesConfig.m_glExtTexObjectStateOverrideiQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtTexObjectStateOverrideiQCOM (target, pname, param);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8820,12 +10512,15 @@ void _glew_gles_glExtGetTexSubImageQCOM (GLenum target, GLint level, GLint xoffs
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get - glExtGetTexSubImageQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetTexSubImageQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get] && glesConfig.m_glExtGetTexSubImageQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetTexSubImageQCOM (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, texels);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8836,12 +10531,15 @@ void _glew_gles_glExtGetBufferPointervQCOM (GLenum target, void ** params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get - glExtGetBufferPointervQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetBufferPointervQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get] && glesConfig.m_glExtGetBufferPointervQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetBufferPointervQCOM (target, params);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8852,12 +10550,15 @@ void _glew_gles_glExtGetShadersQCOM (GLuint * shaders, GLint maxShaders, GLint *
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get2 - glExtGetShadersQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetShadersQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get2] && glesConfig.m_glExtGetShadersQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetShadersQCOM (shaders, maxShaders, numShaders);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8868,12 +10569,15 @@ void _glew_gles_glExtGetProgramsQCOM (GLuint * programs, GLint maxPrograms, GLin
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get2 - glExtGetProgramsQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetProgramsQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get2] && glesConfig.m_glExtGetProgramsQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetProgramsQCOM (programs, maxPrograms, numPrograms);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8884,13 +10588,17 @@ GLboolean _glew_gles_glExtIsProgramBinaryQCOM (GLuint program)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get2 - glExtIsProgramBinaryQCOM
-  if (!prototypeCalled && glesConfig.m_glExtIsProgramBinaryQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get2] && glesConfig.m_glExtIsProgramBinaryQCOM)
   {
     prototypeCalled = true;
-    return glesConfig.m_glExtIsProgramBinaryQCOM (program);
+    result = glesConfig.m_glExtIsProgramBinaryQCOM (program);
   }
-  return ((GLboolean)0);
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8901,12 +10609,15 @@ void _glew_gles_glExtGetProgramBinarySourceQCOM (GLuint program, GLenum shaderty
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_extended_get2 - glExtGetProgramBinarySourceQCOM
-  if (!prototypeCalled && glesConfig.m_glExtGetProgramBinarySourceQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_extended_get2] && glesConfig.m_glExtGetProgramBinarySourceQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glExtGetProgramBinarySourceQCOM (program, shadertype, source, length);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8917,12 +10628,15 @@ void _glew_gles_glStartTilingQCOM (GLuint x, GLuint y, GLuint width, GLuint heig
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_tiled_rendering - glStartTilingQCOM
-  if (!prototypeCalled && glesConfig.m_glStartTilingQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_tiled_rendering] && glesConfig.m_glStartTilingQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glStartTilingQCOM (x, y, width, height, preserveMask);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -8933,12 +10647,15 @@ void _glew_gles_glEndTilingQCOM (GLbitfield preserveMask)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
   // GL_QCOM_tiled_rendering - glEndTilingQCOM
-  if (!prototypeCalled && glesConfig.m_glEndTilingQCOM)
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_tiled_rendering] && glesConfig.m_glEndTilingQCOM)
   {
     prototypeCalled = true;
     glesConfig.m_glEndTilingQCOM (preserveMask);
   }
+  GLEW_ASSERT (prototypeCalled);
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

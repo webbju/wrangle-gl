@@ -31,7 +31,7 @@ namespace wrangle_gl_generator
       : base (filename, new string [] []
       { 
         new string [] { "gl", "1.0" }, 
-        new string [] { "gles2", "2.0"},
+        new string [] { "gles2", "1.0"},
       })
     {
       m_funcApiEntryPrefix = "GLAPI";
@@ -96,6 +96,14 @@ namespace wrangle_gl_generator
       WriteCommentDivider (ref writer);
 
       writer.Write (@"
+// Prevent including duplicate <GL/gl.h> headers.
+#ifndef __gl_h_
+#define __gl_h_
+#endif
+#ifndef __GL_H__
+#define __GL_H__
+#endif
+
 // glext.h defines GL_KHR_debug, but not the function pointer.
 typedef void (APIENTRY  *GLDEBUGPROCKHR)(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const void *userParam);
 
@@ -302,13 +310,22 @@ typedef void* GLeglImageOES;
 
       if (featureAndExtensionNodes.Count > 0)
       {
-        HashSet<string> definedPrototypes = new HashSet<string> ();
-
         Dictionary<string, HashSet<string>> featureBasedPrototypes = new Dictionary<string, HashSet<string>> ();
 
         foreach (var keypair in featureAndExtensionNodes)
         {
           XmlNode featureNode = keypair.Value;
+
+          string api = m_api [0];
+
+          {
+            XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+
+            if (featureApiNode != null)
+            {
+              api = featureApiNode.Value;
+            }
+          }
 
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
@@ -323,18 +340,16 @@ typedef void* GLeglImageOES;
 
           foreach (XmlNode requireNode in requireNodes)
           {
-            string api = m_api [0];
-
             XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
             if (requireApiNode != null)
             {
               api = requireApiNode.Value;
+            }
 
-              if (!IsApiSupported (requireApiNode.Value))
-              {
-                continue; // Skip non-supported APIs.
-              }
+            if (!IsApiSupported (api))
+            {
+              continue; // Skip non-supported APIs.
             }
 
             // 
@@ -377,16 +392,14 @@ typedef void* GLeglImageOES;
             {
               string command = commandNode.Attributes ["name"].Value;
 
-              if (definedPrototypes.Contains (command))
-              {
-                continue;
-              }
-
-              definedPrototypes.Add (command);
-
               if (baseSpecFeatureSet)
               {
                 continue; // Skip any base spec versions.
+              }
+
+              if (requiredCommands.Contains (command))
+              {
+                continue;
               }
 
               requiredCommands.Add (command);

@@ -243,6 +243,17 @@ typedef void GLvoid;
         {
           XmlNode featureNode = keypair.Value;
 
+          string api = m_api [0];
+
+          {
+            XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+
+            if (featureApiNode != null)
+            {
+              api = featureApiNode.Value;
+            }
+          }
+
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
@@ -256,18 +267,16 @@ typedef void GLvoid;
 
           foreach (XmlNode requireNode in requireNodes)
           {
-            string api = m_api [0];
-
             XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
             if (requireApiNode != null)
             {
               api = requireApiNode.Value;
+            }
 
-              if (!IsApiSupported (requireApiNode.Value))
-              {
-                continue; // Skip non-supported APIs.
-              }
+            if (!IsApiSupported (api))
+            {
+              continue; // Skip non-supported APIs.
             }
 
             // 

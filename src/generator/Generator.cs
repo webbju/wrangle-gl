@@ -20,6 +20,25 @@ namespace wrangle_gl_generator
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  public class CommandPrototype
+  {
+    public XmlNode commandNode = null;
+
+    public string functionName = null;
+
+    public string returnType = null;
+
+    public List<string> paramTypes = null;
+
+    public List<string> paramNames = null;
+
+    public string fullPrototype = null;
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   public class Generator : XmlDocument
   {
 
@@ -321,10 +340,12 @@ namespace wrangle_gl_generator
               {
                 string enumNodeName = enumNode.Attributes ["name"].Value;
 
-                if (!m_featureEnumNodesLookup.ContainsKey (enumNodeName))
+                if (m_featureEnumNodesLookup.ContainsKey (enumNodeName))
                 {
-                  m_featureEnumNodesLookup.Add (enumNodeName, enumNode);
+                  continue;
                 }
+
+                m_featureEnumNodesLookup.Add (enumNodeName, enumNode);
               }
             }
 
@@ -344,10 +365,12 @@ namespace wrangle_gl_generator
               {
                 string commandNodeName = commandNode.Attributes ["name"].Value;
 
-                if (!m_featureCommandNodesLookup.ContainsKey (commandNodeName))
+                if (m_featureCommandNodesLookup.ContainsKey (commandNodeName))
                 {
-                  m_featureCommandNodesLookup.Add (commandNodeName, commandNode);
+                  continue;
                 }
+
+                m_featureCommandNodesLookup.Add (commandNodeName, commandNode);
               }
             }
           }
@@ -409,6 +432,17 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          string api = m_api [0];
+
+          {
+            XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+
+            if (featureApiNode != null)
+            {
+              api = featureApiNode.Value;
+            }
+          }
+
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
@@ -422,18 +456,16 @@ namespace wrangle_gl_generator
 
           foreach (XmlNode requireNode in requireNodes)
           {
-            string api = m_api [0];
-
             XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
             if (requireApiNode != null)
             {
               api = requireApiNode.Value;
+            }
 
-              if (!IsApiSupported (requireApiNode.Value))
-              {
-                continue; // Skip non-supported APIs.
-              }
+            if (!IsApiSupported (api))
+            {
+              continue; // Skip non-supported APIs.
             }
 
             // 
@@ -473,45 +505,41 @@ namespace wrangle_gl_generator
 
               string command = commandNode.Attributes ["name"].Value;
 
-              string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+              CommandPrototype commandPrototype = GetCommandPrototype (command);
 
-              string returnType;
-
-              List<string> paramTypes;
-
-              List<string> paramNames;
-
-              string prototype = GetFullCommandPrototype (command, out returnType, out paramTypes, out paramNames);
-
-              if (definedPrototypes.Contains (prototype))
+              if (definedPrototypes.Contains (commandPrototype.fullPrototype))
               {
                 continue; // Skip any duplicate prototypes.
               }
-
-              definedPrototypes.Add (prototype);
 
               bool shouldExternC = !m_api [0].Equals ("wgl");
 
               if (baseSpecFeatureSet && shouldExternC)
               {
-                commandFuncPointerBuilder.AppendFormat ("GLEW_EXTERN_C {0} {1} {2} {3} (", m_funcApiEntryPrefix, returnType, m_funcApiEntryPostfix, command);
+                commandFuncPointerBuilder.AppendFormat ("GLEW_EXTERN_C {0} {1} {2} {3} (", m_funcApiEntryPrefix, commandPrototype.returnType, m_funcApiEntryPostfix, commandPrototype.functionName);
+
+                definedPrototypes.Add (commandPrototype.fullPrototype);
               }
               else if (baseSpecFeatureSet)
               {
-                commandFuncPointerBuilder.AppendFormat ("GLEW_EXTERN {0} {1} {2} {3} (", m_funcApiEntryPrefix, returnType, m_funcApiEntryPostfix, command);
+                commandFuncPointerBuilder.AppendFormat ("GLEW_EXTERN {0} {1} {2} {3} (", m_funcApiEntryPrefix, commandPrototype.returnType, m_funcApiEntryPostfix, commandPrototype.functionName);
+
+                definedPrototypes.Add (commandPrototype.fullPrototype);
               }
               else
               {
-                commandFuncPointerBuilder.AppendFormat ("typedef {0} {1} ({2} {3}) /* {4} */ (", m_funcPointerApiEntryPrefix, returnType, m_funcPointerApiEntryPostfix, mangedFunctionPointer, command);
+                string mangedFunctionPointer = string.Format ("PFN{0}PROC", commandPrototype.functionName.ToUpperInvariant ());
+
+                commandFuncPointerBuilder.AppendFormat ("typedef {0} {1} ({2} {3}) /* {4} */ (", m_funcPointerApiEntryPrefix, commandPrototype.returnType, m_funcPointerApiEntryPostfix, mangedFunctionPointer, commandPrototype.functionName);
               }
 
-              if (paramNames.Count > 0)
+              if (commandPrototype.paramNames.Count > 0)
               {
-                for (int i = 0; i < paramNames.Count; ++i)
+                for (int i = 0; i < commandPrototype.paramNames.Count; ++i)
                 {
-                  string name = paramNames [i];
+                  string name = commandPrototype.paramNames [i];
 
-                  string type = paramTypes [i];
+                  string type = commandPrototype.paramTypes [i];
 
                   commandFuncPointerBuilder.AppendFormat ("{0} {1}, ", type, name);
                 }
@@ -526,7 +554,9 @@ namespace wrangle_gl_generator
 
               commandFuncPointerBuilder.Replace ("  ", " ");
 
-              writer.Write (string.Format ("{0};\n", commandFuncPointerBuilder.ToString ()));
+              string commandFuncPointer = commandFuncPointerBuilder.ToString ();
+
+              writer.Write (string.Format ("{0};\n", commandFuncPointer));
             }
           }
         }
@@ -566,6 +596,17 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          string api = m_api [0];
+
+          {
+            XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+
+            if (featureApiNode != null)
+            {
+              api = featureApiNode.Value;
+            }
+          }
+
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
@@ -579,18 +620,16 @@ namespace wrangle_gl_generator
 
           foreach (XmlNode requireNode in requireNodes)
           {
-            string api = m_api [0];
-
             XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
             if (requireApiNode != null)
             {
               api = requireApiNode.Value;
+            }
 
-              if (!IsApiSupported (requireApiNode.Value))
-              {
-                continue; // Skip non-supported APIs.
-              }
+            if (!IsApiSupported (api))
+            {
+              continue; // Skip non-supported APIs.
             }
 
             // 
@@ -633,12 +672,12 @@ namespace wrangle_gl_generator
                 continue;
               }
 
-              definedCommands.Add (command);
-
               if (baseSpecFeatureSet)
               {
                 continue; // Skip any base spec versions.
               }
+
+              definedCommands.Add (command);
 
               string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
 
@@ -850,6 +889,7 @@ namespace wrangle_gl_generator
 
             // 
             // Export code to #define pass-through prototypes to non-base spec functions.
+            // 
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -876,25 +916,19 @@ namespace wrangle_gl_generator
                 continue; // Skip any base spec versions.
               }
 
-              string returnType;
-
-              List<string> paramTypes;
-
-              List<string> paramNames;
-
-              string prototype = GetFullCommandPrototype (command, out returnType, out paramTypes, out paramNames);
+              CommandPrototype commandPrototype = GetCommandPrototype (command);
 
               commandFuncBuilder.Clear ();
 
-              commandFuncBuilder.AppendFormat ("GLEW_EXTERN_C {0} _glew_{1}_{2} (", returnType, m_api [0], command);
+              commandFuncBuilder.AppendFormat ("GLEW_API {0} GLEW_APIENTRY _glew_{1}_{2} (", commandPrototype.returnType, m_api [0], command);
 
-              if (paramNames.Count > 0)
+              if (commandPrototype.paramNames.Count > 0)
               {
-                for (int i = 0; i < paramNames.Count; ++i)
+                for (int i = 0; i < commandPrototype.paramNames.Count; ++i)
                 {
-                  string type = paramTypes [i];
+                  string type = commandPrototype.paramTypes [i];
 
-                  string name = paramNames [i];
+                  string name = commandPrototype.paramNames [i];
 
                   commandFuncBuilder.AppendFormat ("{0} {1}, ", type, name);
                 }
@@ -909,7 +943,22 @@ namespace wrangle_gl_generator
 
               commandFuncBuilder.Replace ("  ", " ");
 
-              writer.Write (string.Format ("{0};\n", commandFuncBuilder.ToString ()));
+              string commandFunc = commandFuncBuilder.ToString ();
+
+              writer.Write (string.Format ("{0};\n", commandFunc));
+
+
+              // 
+              // If the prototype contains non-Khronos standard 'const GLchar **', add a passthrough to accept 'const GLchar *const*'.
+              // 
+#if false
+              if (commandFunc.Contains ("const GLchar **"))
+              {
+                string khronosStandardFuncPointer  = commandFunc.Replace ("const GLchar **", "const GLchar *const*");
+
+                writer.Write (string.Format ("{0};\n", khronosStandardFuncPointer));
+              }
+#endif
 
               exportedCommands.Add (command);
             }
@@ -1003,11 +1052,22 @@ namespace wrangle_gl_generator
 
       if (featureAndExtensionNodes.Count > 0)
       {
-        HashSet<string> definedPrototypes = new HashSet<string> ();
+        Dictionary<string, List<XmlNode>> duplicatePrototypeRequireNodes = new Dictionary<string, List<XmlNode>> ();
 
         foreach (var keypair in featureAndExtensionNodes)
         {
           XmlNode featureNode = keypair.Value;
+
+          string api = m_api [0];
+
+          {
+            XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+
+            if (featureApiNode != null)
+            {
+              api = featureApiNode.Value;
+            }
+          }
 
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
@@ -1022,18 +1082,16 @@ namespace wrangle_gl_generator
 
           foreach (XmlNode requireNode in requireNodes)
           {
-            string api = m_api [0];
-
             XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
             if (requireApiNode != null)
             {
               api = requireApiNode.Value;
+            }
 
-              if (!IsApiSupported (requireApiNode.Value))
-              {
-                continue; // Skip non-supported APIs.
-              }
+            if (!IsApiSupported (api))
+            {
+              continue; // Skip non-supported APIs.
             }
 
             // 
@@ -1067,39 +1125,36 @@ namespace wrangle_gl_generator
 
             foreach (XmlNode commandNode in requireCommandNodes)
             {
-              string returnType;
-
-              List<string> paramTypes;
-
-              List<string> paramNames;
-
               string command = commandNode.Attributes ["name"].Value;
 
-              string prototype = GetFullCommandPrototype (command, out returnType, out paramTypes, out paramNames);
-
-              if (definedPrototypes.Contains (prototype))
-              {
-                continue;
-              }
-
-              definedPrototypes.Add (prototype);
-
-              if (baseSpecFeatureSet)
+              /*if (baseSpecFeatureSet)
               {
                 continue; // Skip any base spec versions.
+              }*/
+
+              List <XmlNode> prototypeRequireNodes;
+
+              if (!duplicatePrototypeRequireNodes.TryGetValue (command, out prototypeRequireNodes))
+              {
+                prototypeRequireNodes = new List<XmlNode> ();
               }
 
-              bool voidFunction = (returnType.Contains ("void") && !returnType.Contains ("*"));
+              prototypeRequireNodes.Add (requireNode);
+
+              duplicatePrototypeRequireNodes [command] = prototypeRequireNodes;
+
+#if false
+              bool voidFunction = (commandPrototype.returnType.Contains ("void") && !commandPrototype.returnType.Contains ("*"));
 
               StringBuilder paramBuilder = new StringBuilder ();
 
-              if (paramNames.Count > 0)
+              if (commandPrototype.paramNames.Count > 0)
               {
-                for (int i = 0; i < paramNames.Count; ++i)
+                for (int i = 0; i < commandPrototype.paramNames.Count; ++i)
                 {
-                  string type = paramTypes [i];
+                  string type = commandPrototype.paramTypes [i];
 
-                  string name = paramNames [i];
+                  string name = commandPrototype.paramNames [i];
 
                   paramBuilder.AppendFormat ("{0} {1}, ", type, name);
                 }
@@ -1110,9 +1165,59 @@ namespace wrangle_gl_generator
                 }
               }
 
-              //writer.Write (string.Format ("\n#undef {0}\n", command));
+              string prototypeParameters = paramBuilder.ToString ();
 
-              writer.Write (string.Format ("\n{0} _glew_{1}_{2} ({3})\n{{\n", returnType, m_api [0], command, paramBuilder.ToString ()));
+              // 
+              // If the prototype contains non-Khronos standard 'const GLchar **', add a passthrough to accept 'const GLchar *const*'.
+              // 
+
+#if false
+              if (prototypeParameters.Contains ("const GLchar **"))
+              {
+                // 
+                // Clear and re-evaluate pass-through parameters.
+                // 
+
+                paramBuilder.Clear ();
+
+                if (commandPrototype.paramNames.Count > 0)
+                {
+                  for (int i = 0; i < commandPrototype.paramNames.Count; ++i)
+                  {
+                    if (commandPrototype.paramTypes [i].Equals ("const GLchar **"))
+                    {
+                      paramBuilder.AppendFormat ("({0}) ", commandPrototype.paramTypes [i]);
+                    }
+
+                    string param = commandPrototype.paramNames [i];
+
+                    int arrayOffset = param.IndexOf ('[');
+
+                    if (arrayOffset != -1)
+                    {
+                      param = param.Substring (0, arrayOffset);
+                    }
+
+                    paramBuilder.Append (param + ", ");
+                  }
+
+                  if (paramBuilder.Length >= 2)
+                  {
+                    paramBuilder.Length -= 2; // strip trailing ", "
+                  }
+                }
+
+                string khronosStandardParameters  = prototypeParameters.Replace ("const GLchar **", "const GLchar *const*");
+
+                writer.Write (string.Format ("\n{0} _glew_{1}_{2} ({3})\n{{\n", commandPrototype.returnType, m_api [0], commandPrototype.functionName, khronosStandardParameters));
+
+                writer.Write (string.Format ("  {0}", (voidFunction ? "" : "return ")));
+
+                writer.Write (string.Format ("_glew_{1}_{2} ({3});\n}}\n\n", commandPrototype.returnType, m_api [0], commandPrototype.functionName, paramBuilder.ToString ()));
+
+                WriteCommentDivider (ref writer);
+              }
+#endif
 
               // 
               // Clear and re-evaluate pass-through parameters.
@@ -1120,11 +1225,11 @@ namespace wrangle_gl_generator
 
               paramBuilder.Clear ();
 
-              if (paramNames.Count > 0)
+              if (commandPrototype.paramNames.Count > 0)
               {
-                for (int i = 0; i < paramNames.Count; ++i)
+                for (int i = 0; i < commandPrototype.paramNames.Count; ++i)
                 {
-                  string param = paramNames [i];
+                  string param = commandPrototype.paramNames [i];
 
                   int arrayOffset = param.IndexOf ('[');
 
@@ -1142,19 +1247,23 @@ namespace wrangle_gl_generator
                 }
               }
 
+              writer.Write (string.Format ("\n{0} _glew_{1}_{2} ({3})\n{{\n", commandPrototype.returnType, m_api [0], commandPrototype.functionName, prototypeParameters));
+
               writer.Write (string.Format ("  bool prototypeCalled = false;\n"));
 
-              writer.Write (string.Format ("  const glew::{0}::DeviceConfig &{0}Config = glew::{0}::GetConfig ();\n", m_api [0], command));
+              writer.Write (string.Format ("  const glew::{0}::DeviceConfig &{0}Config = glew::{0}::GetConfig ();\n", m_api [0]));
 
-              writer.Write (string.Format ("  // {0} - {1}\n", keypair.Key, command));
+              string feature = keypair.Key;
 
-              writer.Write (string.Format ("  if (!prototypeCalled && {0}Config.m_{1})\n  {{\n", m_api [0], command));
+              writer.Write (string.Format ("  // {0} - {1}\n", keypair.Key, commandPrototype.functionName));
+
+              writer.Write (string.Format ("  if (!prototypeCalled && {0}Config.m_featureSupported [GLEW_{1}] && {0}Config.m_{2})\n  {{\n", m_api [0], feature, commandPrototype.functionName));
 
               writer.Write (string.Format ("    prototypeCalled = true;\n"));
 
               writer.Write (string.Format ("    {0}", (voidFunction ? "" : "return ")));
 
-              writer.Write (string.Format ("{0}Config.m_{1} ({2});\n  }}\n", m_api [0], command, paramBuilder.ToString ()));
+              writer.Write (string.Format ("{0}Config.m_{1} ({2});\n  }}\n", m_api [0], commandPrototype.functionName, paramBuilder.ToString ()));
 
               // 
               // Aliases
@@ -1176,9 +1285,11 @@ namespace wrangle_gl_generator
                   {
                     XmlNode aliasCommandFeatureNode = aliasCommandRequireNode.ParentNode.ParentNode;
 
-                    writer.Write (string.Format ("  // {0} - {1}\n", aliasCommandFeatureNode.Attributes ["name"].Value, command));
+                    string aliasFeature = aliasCommandFeatureNode.Attributes ["name"].Value;
 
-                    writer.Write (string.Format ("  if (!prototypeCalled && {0}Config.m_{1})\n  {{\n", m_api [0], aliasCommand));
+                    writer.Write (string.Format ("  // {0} - {1}\n", aliasFeature, command));
+
+                    writer.Write (string.Format ("  if (!prototypeCalled && {0}Config.m_featureSupported [GLEW_{1}] && {0}Config.m_{2})\n  {{\n", m_api [0], aliasFeature, aliasCommand));
 
                     writer.Write (string.Format ("    prototypeCalled = true;\n"));
 
@@ -1188,31 +1299,25 @@ namespace wrangle_gl_generator
                     // Sometimes aliases use slightly modified prototypes, so we need to manage casts.
                     // 
 
-                    string aliasReturnType;
-
-                    List<string> aliasParamTypes;
-
-                    List<string> aliasParamNames;
-
-                    string aliasPrototypex = GetFullCommandPrototype (aliasCommand, out aliasReturnType, out aliasParamTypes, out aliasParamNames);
+                    CommandPrototype aliasPrototype = GetCommandPrototype (aliasCommand);
 
                     paramBuilder.Clear ();
 
-                    if (!returnType.Equals (aliasReturnType))
+                    if (!aliasPrototype.returnType.Equals (aliasPrototype.returnType))
                     {
-                      writer.Write (string.Format ("({0}) ", returnType)); // original return type
+                      writer.Write (string.Format ("({0}) ", commandPrototype.returnType)); // original return type
                     }
 
-                    if (paramNames.Count > 0)
+                    if (aliasPrototype.paramNames.Count > 0)
                     {
-                      for (int i = 0; i < paramNames.Count; ++i)
+                      for (int i = 0; i < aliasPrototype.paramNames.Count; ++i)
                       {
-                        if (!paramTypes [i].Equals (aliasParamTypes [i]))
+                        if (!aliasPrototype.paramTypes [i].Equals (commandPrototype.paramTypes [i]))
                         {
-                          paramBuilder.AppendFormat ("({0}) ", aliasParamTypes [i]);
+                          paramBuilder.AppendFormat ("({0}) ", aliasPrototype.paramTypes [i]);
                         }
 
-                        string param = paramNames [i]; // original param name
+                        string param = commandPrototype.paramNames [i]; // original param name
 
                         int arrayOffset = param.IndexOf ('[');
 
@@ -1230,21 +1335,243 @@ namespace wrangle_gl_generator
                       }
                     }
 
-                    writer.Write (string.Format ("{0}Config.m_{1} ({2});\n  }}\n", m_api [0], aliasCommand, paramBuilder.ToString ()));
+                    writer.Write (string.Format ("{0}Config.m_{1} ({2});\n  }}\n", m_api [0], aliasPrototype.functionName, paramBuilder.ToString ()));
                   }
                 }
               }
 
+              writer.Write ("  GLEW_ASSERT (prototypeCalled);\n");
+
               if (!voidFunction)
               {
-                writer.Write (string.Format ("  return (({0})0);\n", returnType));
+                writer.Write (string.Format ("  return (({0})0);\n", commandPrototype.returnType));
               }
 
               writer.Write ("}\n\n");
 
               WriteCommentDivider (ref writer);
+#endif
             }
           }
+        }
+
+        foreach (var prototypeRequireNodes in duplicatePrototypeRequireNodes)
+        {
+          string command = prototypeRequireNodes.Key;
+
+          // 
+          // Evaluate whether this feature should be included, as isn't part of the 'base spec'.
+          // 
+
+          string api = m_api [0];
+
+          bool baseSpecFeatureSet = false;
+
+          foreach (XmlNode requireNode in prototypeRequireNodes.Value)
+          {
+            XmlNode featureNode = requireNode.ParentNode;
+
+            {
+              XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+
+              if (featureApiNode != null)
+              {
+                api = featureApiNode.Value;
+              }
+            }
+
+            XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+            if (featureNumberNode != null)
+            {
+              float version = m_apiBaseSpecVersion [api];
+
+              if (float.TryParse (featureNumberNode.Value, out version))
+              {
+                baseSpecFeatureSet |= version <= m_apiBaseSpecVersion [api];
+              }
+            }
+          }
+
+          if (baseSpecFeatureSet)
+          {
+            continue; // Skip any base spec versions.
+          }
+
+          // 
+          // Begin prototype definition.
+          // 
+
+          CommandPrototype commandPrototype = GetCommandPrototype (command);
+
+          StringBuilder paramBuilder = new StringBuilder ();
+
+          if (commandPrototype.paramNames.Count > 0)
+          {
+            for (int i = 0; i < commandPrototype.paramNames.Count; ++i)
+            {
+              string type = commandPrototype.paramTypes [i];
+
+              string name = commandPrototype.paramNames [i];
+
+              paramBuilder.AppendFormat ("{0} {1}, ", type, name);
+            }
+
+            if (paramBuilder.Length >= 2)
+            {
+              paramBuilder.Length -= 2; // strip trailing ", "
+            }
+          }
+
+          writer.Write (string.Format ("\n{0} _glew_{1}_{2} ({3})\n{{\n", commandPrototype.returnType, m_api [0], commandPrototype.functionName, paramBuilder.ToString ()));
+
+          writer.Write (string.Format ("  bool prototypeCalled = false;\n"));
+
+          writer.Write (string.Format ("  const glew::{0}::DeviceConfig &{0}Config = glew::{0}::GetConfig ();\n", m_api [0]));
+
+          bool voidFunction = (commandPrototype.returnType.Equals ("void", StringComparison.InvariantCultureIgnoreCase) && !commandPrototype.returnType.Contains ("*"));
+
+          if (!voidFunction)
+          {
+            writer.Write (string.Format ("  {0} result = (({0})0);\n", commandPrototype.returnType));
+          }
+
+          if (m_api [0].Equals ("gl") || m_api [0].Equals ("gles"))
+          {
+            writer.Write ("  GLEW_ASSERT (glGetError () == GL_NO_ERROR);\n");
+          }
+          else if (m_api [0].Equals ("egl"))
+          {
+            writer.Write ("  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);\n");
+          }
+
+          foreach (XmlNode requireNode in prototypeRequireNodes.Value)
+          {
+            XmlNode featureNode = requireNode.ParentNode;
+
+            string feature = featureNode.Attributes ["name"].Value;
+
+            writer.Write (string.Format ("  // {0} - {1}\n", feature, command));
+
+            writer.Write (string.Format ("  if (!prototypeCalled && {0}Config.m_featureSupported [GLEW_{1}] && {0}Config.m_{2})\n  {{\n", m_api [0], feature, commandPrototype.functionName));
+
+            writer.Write (string.Format ("    prototypeCalled = true;\n"));
+
+            writer.Write (string.Format ("    {0}", (voidFunction ? "" : "result = ")));
+
+            paramBuilder.Clear ();
+
+            if (commandPrototype.paramNames.Count > 0)
+            {
+              for (int i = 0; i < commandPrototype.paramNames.Count; ++i)
+              {
+                string param = commandPrototype.paramNames [i];
+
+                int arrayOffset = param.IndexOf ('[');
+
+                if (arrayOffset != -1)
+                {
+                  param = param.Substring (0, arrayOffset);
+                }
+
+                paramBuilder.Append (param + ", ");
+              }
+
+              if (paramBuilder.Length >= 2)
+              {
+                paramBuilder.Length -= 2; // strip trailing ", "
+              }
+            }
+
+            writer.Write (string.Format ("{0}Config.m_{1} ({2});\n  }}\n", m_api [0], commandPrototype.functionName, paramBuilder.ToString ()));
+          }
+
+          List<XmlNode> aliasCommandNodes;
+
+          if (m_commandsAliasNodesLookup.TryGetValue (command, out aliasCommandNodes) && (aliasCommandNodes.Count > 0))
+          {
+            foreach (XmlNode aliasCommandNode in aliasCommandNodes)
+            {
+              XmlNode commandProtoNameNode = aliasCommandNode.SelectSingleNode ("proto/name");
+
+              string aliasCommand = commandProtoNameNode.InnerText;
+
+              CommandPrototype aliasPrototype = GetCommandPrototype (aliasCommandNode);
+
+              XmlNode aliasCommandRequireNode;
+
+              if (m_featureCommandNodesLookup.TryGetValue (aliasCommand, out aliasCommandRequireNode))
+              {
+                XmlNode aliasCommandFeatureNode = aliasCommandRequireNode.ParentNode.ParentNode;
+
+                string aliasFeature = aliasCommandFeatureNode.Attributes ["name"].Value;
+
+                writer.Write (string.Format ("  // {0} - {1}\n", aliasFeature, command));
+
+                writer.Write (string.Format ("  if (!prototypeCalled && {0}Config.m_featureSupported [GLEW_{1}] && {0}Config.m_{2})\n  {{\n", m_api [0], aliasFeature, aliasCommand));
+
+                writer.Write (string.Format ("    prototypeCalled = true;\n"));
+
+                writer.Write (string.Format ("    {0}", (voidFunction ? "" : "result = ")));
+
+                paramBuilder.Clear ();
+
+                if (!aliasPrototype.returnType.Equals (aliasPrototype.returnType))
+                {
+                  writer.Write (string.Format ("({0}) ", commandPrototype.returnType)); // original return type
+                }
+
+                if (aliasPrototype.paramNames.Count > 0)
+                {
+                  for (int i = 0; i < aliasPrototype.paramNames.Count; ++i)
+                  {
+                    if (!aliasPrototype.paramTypes [i].Equals (commandPrototype.paramTypes [i]))
+                    {
+                      paramBuilder.AppendFormat ("({0}) ", aliasPrototype.paramTypes [i]);
+                    }
+
+                    string param = commandPrototype.paramNames [i]; // original param name
+
+                    int arrayOffset = param.IndexOf ('[');
+
+                    if (arrayOffset != -1)
+                    {
+                      param = param.Substring (0, arrayOffset);
+                    }
+
+                    paramBuilder.Append (param + ", ");
+                  }
+
+                  if (paramBuilder.Length >= 2)
+                  {
+                    paramBuilder.Length -= 2; // strip trailing ", "
+                  }
+                }
+
+                writer.Write (string.Format ("{0}Config.m_{1} ({2});\n  }}\n", m_api [0], aliasPrototype.functionName, paramBuilder.ToString ()));
+              }
+            }
+          }
+
+          writer.Write ("  GLEW_ASSERT (prototypeCalled);\n");
+
+          if (m_api [0].Equals ("gl") || m_api [0].Equals ("gles"))
+          {
+            writer.Write ("  GLEW_ASSERT (glGetError () == GL_NO_ERROR);\n");
+          }
+          else if (m_api [0].Equals ("egl"))
+          {
+            writer.Write ("  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);\n");
+          }
+
+          if (!voidFunction)
+          {
+            writer.Write (string.Format ("  return result;\n", commandPrototype.returnType));
+          }
+
+          writer.Write ("}\n\n");
+
+          WriteCommentDivider (ref writer);
         }
       }
 
@@ -1279,116 +1606,112 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected string GetFullCommandPrototype (string command)
+    protected CommandPrototype GetCommandPrototype (string command)
     {
-      string returnType = null;
+      XmlNode commandNode;
 
-      List<string> paramTypes = null;
+      if (m_commandsNodesLookup.TryGetValue (command, out commandNode))
+      {
+        return GetCommandPrototype (commandNode);
+      }
 
-      List<string> paramNames = null;
-
-      return GetFullCommandPrototype (command, out returnType, out paramTypes, out paramNames);
+      return null;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected string GetFullCommandPrototype (string command, out string returnType, out List<string> paramTypes, out List<string> paramNames)
+    protected CommandPrototype GetCommandPrototype (XmlNode commandNode)
     {
-      XmlNode commandNode = null;
+      CommandPrototype commandPrototype = new CommandPrototype ();
 
-      returnType = null;
+      commandPrototype.commandNode = commandNode;
 
-      paramTypes = null;
+      commandPrototype.paramTypes = new List<string> ();
 
-      paramNames = null;
+      commandPrototype.paramNames = new List<string> ();
 
-      if (m_commandsNodesLookup.TryGetValue (command, out commandNode))
+      StringBuilder prototypeBuilder = new StringBuilder ();
+
+      // 
+      // Make an identical copy of the XML contents of component of the prototype/params.
+      // 
+
+      XmlNode protoNode = commandNode.SelectSingleNode ("proto");
+
+      XmlNodeList protoParamNodes = commandNode.SelectNodes ("param");
+
       {
-        StringBuilder prototypeBuilder = new StringBuilder ();
+        int protoNameIndex = protoNode.InnerXml.IndexOf ("<name>");
 
-        // 
-        // Make an identical copy of the XML contents of component of the prototype/params.
-        // 
+        string protoReturnType = protoNode.InnerXml.Substring (0, protoNameIndex);
 
-        XmlNode protoNode = commandNode.SelectSingleNode ("proto");
+        protoReturnType = protoReturnType.Replace ("<ptype>", "");
 
-        XmlNodeList protoParamNodes = commandNode.SelectNodes ("param");
+        protoReturnType = protoReturnType.Replace ("</ptype>", "");
 
-        paramTypes = new List<string> ();
+        protoReturnType = protoReturnType.Trim ();
 
-        paramNames = new List<string> ();
+        commandPrototype.returnType = protoReturnType;
 
-        {
-          int protoNameIndex = protoNode.InnerXml.IndexOf ("<name>");
+        string protoName = protoNode.InnerXml.Substring (protoNameIndex);
 
-          string protoReturnType = protoNode.InnerXml.Substring (0, protoNameIndex);
+        protoName = protoName.Replace ("<name>", "");
 
-          protoReturnType = protoReturnType.Replace ("<ptype>", "");
+        protoName = protoName.Replace ("</name>", "");
 
-          protoReturnType = protoReturnType.Replace ("</ptype>", "");
+        protoName = protoName.Trim ();
 
-          protoReturnType = protoReturnType.Trim ();
+        commandPrototype.functionName = protoName;
 
-          returnType = protoReturnType;
+        prototypeBuilder.Append (protoReturnType + " " + protoName);
 
-          string protoName = protoNode.InnerXml.Substring (protoNameIndex);
-
-          protoName = protoName.Replace ("<name>", "");
-
-          protoName = protoName.Replace ("</name>", "");
-
-          protoName = protoName.Trim ();
-
-          prototypeBuilder.Append (protoReturnType + " " + protoName);
-
-          prototypeBuilder.Append (" (");
-        }
-
-        for (int i = 0; i < protoParamNodes.Count; ++i)
-        {
-          XmlNode paramNode = protoParamNodes.Item (i);
-
-          int paramNameIndex = paramNode.InnerXml.IndexOf ("<name>");
-
-          string paramType = paramNode.InnerXml.Substring (0, paramNameIndex);
-
-          paramType = paramType.Replace ("<ptype>", "");
-
-          paramType = paramType.Replace ("</ptype>", "");
-
-          string paramName = paramNode.InnerXml.Substring (paramNameIndex);
-
-          paramName = paramName.Replace ("<name>", "");
-
-          paramName = paramName.Replace ("</name>", "");
-
-          prototypeBuilder.Append (paramType + " " + paramName);
-
-          paramTypes.Add (paramType);
-
-          paramNames.Add (paramName);
-
-          if (i < (protoParamNodes.Count - 1))
-          {
-            prototypeBuilder.Append (", ");
-          }
-        }
-
-        prototypeBuilder.Append (")");
-
-        prototypeBuilder.Replace ("  ", " ");
-
-        if (paramNames.Count != paramTypes.Count)
-        {
-          throw new InvalidOperationException ("Output names/types do not match.");
-        }
-
-        return prototypeBuilder.ToString ();
+        prototypeBuilder.Append (" (");
       }
 
-      return string.Empty;
+      for (int i = 0; i < protoParamNodes.Count; ++i)
+      {
+        XmlNode paramNode = protoParamNodes.Item (i);
+
+        int paramNameIndex = paramNode.InnerXml.IndexOf ("<name>");
+
+        string paramType = paramNode.InnerXml.Substring (0, paramNameIndex);
+
+        paramType = paramType.Replace ("<ptype>", "");
+
+        paramType = paramType.Replace ("</ptype>", "");
+
+        string paramName = paramNode.InnerXml.Substring (paramNameIndex);
+
+        paramName = paramName.Replace ("<name>", "");
+
+        paramName = paramName.Replace ("</name>", "");
+
+        prototypeBuilder.Append (paramType + " " + paramName);
+
+        commandPrototype.paramTypes.Add (paramType);
+
+        commandPrototype.paramNames.Add (paramName);
+
+        if (i < (protoParamNodes.Count - 1))
+        {
+          prototypeBuilder.Append (", ");
+        }
+      }
+
+      prototypeBuilder.Append (")");
+
+      prototypeBuilder.Replace ("  ", " ");
+
+      if (commandPrototype.paramNames.Count != commandPrototype.paramTypes.Count)
+      {
+        throw new InvalidOperationException ("Output names/types do not match.");
+      }
+
+      commandPrototype.fullPrototype = prototypeBuilder.ToString ();
+
+      return commandPrototype;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

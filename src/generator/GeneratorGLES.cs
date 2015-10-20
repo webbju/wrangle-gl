@@ -73,6 +73,25 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n#include <GLES2/gl2ext.h>\n\n");
 
+      WriteCommentDivider (ref writer);
+
+      writer.Write (@"
+// iOS/OSX frameworks use a slightly different style of header guard.
+#ifndef __gl_es20_h_
+#define __gl_es20_h_
+#endif
+#ifndef __gl_es20ext_h_
+#define __gl_es20ext_h_
+#endif
+#ifndef __gl_es30_h_
+#define __gl_es30_h_
+#endif
+#ifndef __gl_es30ext_h_
+#define __gl_es30ext_h_
+#endif
+
+");
+
       base.ExportHpp (ref writer);
 
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
@@ -256,6 +275,17 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
+          string api = m_api [0];
+
+          {
+            XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+
+            if (featureApiNode != null)
+            {
+              api = featureApiNode.Value;
+            }
+          }
+
           // 
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           // 
@@ -269,18 +299,16 @@ namespace wrangle_gl_generator
 
           foreach (XmlNode requireNode in requireNodes)
           {
-            string api = m_api [0];
-
             XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
 
             if (requireApiNode != null)
             {
               api = requireApiNode.Value;
+            }
 
-              if (!IsApiSupported (requireApiNode.Value))
-              {
-                continue; // Skip non-supported APIs.
-              }
+            if (!IsApiSupported (api))
+            {
+              continue; // Skip non-supported APIs.
             }
 
             // 
