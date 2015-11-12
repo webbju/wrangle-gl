@@ -138,6 +138,8 @@ typedef void* GLeglImageOES;
       // glew::gl::Initialise
       // 
 
+      writer.Write ("bool glew::gl::s_initialised = false;\n\n");
+
       writer.Write ("glew::gl::DeviceConfig glew::gl::s_deviceConfig;\n\n");
 
       WriteCommentDivider (ref writer);
@@ -183,6 +185,7 @@ typedef void* GLeglImageOES;
       s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = ((major >= 2));
       s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = ((major >= 3));
       s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = ((major >= 3) && (minor >= 1));
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_2] = ((major >= 3) && (minor >= 2));
     }
     else
     {
@@ -438,6 +441,8 @@ typedef void* GLeglImageOES;
         }
       }
 
+      writer.Write ("  s_initialised = true;\n");
+
       writer.Write ("}\n\n");
 
       WriteCommentDivider (ref writer);
@@ -447,6 +452,8 @@ typedef void* GLeglImageOES;
       // 
 
       writer.Write ("\nvoid glew::gl::Deinitialise ()\n{\n");
+
+      writer.Write ("  s_initialised = false;\n");
 
       writer.Write ("}\n\n");
 

@@ -27,6 +27,7 @@ DIAG: *** Including extension EGL_KHR_reusable_sync (defaultExtensions matches t
 DIAG: *** Including extension EGL_IMG_context_priority (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_KHR_stream_cross_process_fd (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_EXT_protected_surface (defaultExtensions matches the 'supported' attribute)
+DIAG: *** Including extension EGL_KHR_debug (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_NV_coverage_sample_resolve (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_EXT_device_query (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_KHR_gl_texture_3D_image (defaultExtensions matches the 'supported' attribute)
@@ -46,6 +47,7 @@ DIAG: *** Including extension EGL_KHR_image_base (defaultExtensions matches the 
 DIAG: *** Including extension EGL_ANDROID_blob_cache (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_KHR_vg_parent_image (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_KHR_platform_x11 (defaultExtensions matches the 'supported' attribute)
+DIAG: *** Including extension EGL_NV_stream_metadata (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_ANGLE_d3d_share_handle_client_buffer (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_NV_native_query (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_KHR_stream_consumer_gltexture (defaultExtensions matches the 'supported' attribute)
@@ -81,6 +83,7 @@ DIAG: *** Including extension EGL_NV_stream_sync (defaultExtensions matches the 
 DIAG: *** Including extension EGL_NOK_texture_from_pixmap (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_EXT_yuv_surface (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_EXT_swap_buffers_with_damage (defaultExtensions matches the 'supported' attribute)
+DIAG: *** Including extension EGL_NV_stream_consumer_gltexture_yuv (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_EXT_platform_wayland (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_NV_depth_nonlinear (defaultExtensions matches the 'supported' attribute)
 DIAG: *** Including extension EGL_NV_sync (defaultExtensions matches the 'supported' attribute)
@@ -836,6 +839,63 @@ DIAG: *** tagging enum: EGL_OPENGL_ES3_BIT_KHR -> required = True
 DIAG: *** PASS 1: Tagging required and removed features for EGL_KHR_create_context_no_error
 DIAG: *** markRequired (features = <too long to print>, required = True )
 DIAG: *** tagging enum: EGL_CONTEXT_OPENGL_NO_ERROR_KHR -> required = True
+DIAG: *** PASS 1: Tagging required and removed features for EGL_KHR_debug
+DIAG: *** markRequired (features = <too long to print>, required = True )
+DIAG: *** tagging type: EGLLabelKHR -> required = True
+DIAG: *** tagging type: EGLObjectKHR -> required = True
+DIAG: *** tagging enum: EGL_OBJECT_THREAD_KHR -> required = True
+DIAG: *** tagging enum: EGL_OBJECT_DISPLAY_KHR -> required = True
+DIAG: *** tagging enum: EGL_OBJECT_CONTEXT_KHR -> required = True
+DIAG: *** tagging enum: EGL_OBJECT_SURFACE_KHR -> required = True
+DIAG: *** tagging enum: EGL_OBJECT_IMAGE_KHR -> required = True
+DIAG: *** tagging enum: EGL_OBJECT_SYNC_KHR -> required = True
+DIAG: *** tagging enum: EGL_OBJECT_STREAM_KHR -> required = True
+DIAG: *** tagging enum: EGL_DEBUG_MSG_CRITICAL_KHR -> required = True
+DIAG: *** tagging enum: EGL_DEBUG_MSG_ERROR_KHR -> required = True
+DIAG: *** tagging enum: EGL_DEBUG_MSG_WARN_KHR -> required = True
+DIAG: *** tagging enum: EGL_DEBUG_MSG_INFO_KHR -> required = True
+DIAG: *** tagging enum: EGL_DEBUG_CALLBACK_KHR -> required = True
+DIAG: *** tagging command: eglDebugMessageControlKHR -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLDEBUGPROCKHR
+DIAG: *** tagging type: EGLDEBUGPROCKHR -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLAttrib
+DIAG: *** tagging type: EGLAttrib -> required = True
+DIAG: *** Generating dependent type khrplatform for type EGLAttrib
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** tagging command: eglQueryDebugKHR -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLBoolean
+DIAG: *** tagging type: EGLBoolean -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLAttrib
+DIAG: *** tagging type: EGLAttrib -> required = True
+DIAG: *** Generating dependent type khrplatform for type EGLAttrib
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** tagging command: eglLabelObjectKHR -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLDisplay
+DIAG: *** tagging type: EGLDisplay -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLenum
+DIAG: *** tagging type: EGLenum -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLObjectKHR
+DIAG: *** tagging type: EGLObjectKHR -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLLabelKHR
+DIAG: *** tagging type: EGLLabelKHR -> required = True
 DIAG: *** PASS 1: Tagging required and removed features for EGL_KHR_fence_sync
 DIAG: *** markRequired (features = <too long to print>, required = True )
 DIAG: *** tagging enum: EGL_SYNC_PRIOR_COMMANDS_COMPLETE_KHR -> required = True
@@ -2165,6 +2225,107 @@ DIAG: *** Generating dependent type eglplatform for type EGLint
 DIAG: *** tagging type: eglplatform -> required = True
 DIAG: *** Generating dependent type khrplatform for type eglplatform
 DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** PASS 1: Tagging required and removed features for EGL_NV_stream_consumer_gltexture_yuv
+DIAG: *** markRequired (features = <too long to print>, required = True )
+DIAG: *** tagging enum: EGL_YUV_PLANE0_TEXTURE_UNIT_NV -> required = True
+DIAG: *** tagging enum: EGL_YUV_PLANE1_TEXTURE_UNIT_NV -> required = True
+DIAG: *** tagging enum: EGL_YUV_PLANE2_TEXTURE_UNIT_NV -> required = True
+DIAG: *** tagging enum: EGL_YUV_NUMBER_OF_PLANES_EXT -> required = True
+DIAG: *** tagging enum: EGL_YUV_BUFFER_EXT -> required = True
+DIAG: *** tagging command: eglStreamConsumerGLTextureExternalAttribsNV -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLBoolean
+DIAG: *** tagging type: EGLBoolean -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLDisplay
+DIAG: *** tagging type: EGLDisplay -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLStreamKHR
+DIAG: *** tagging type: EGLStreamKHR -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLAttrib
+DIAG: *** tagging type: EGLAttrib -> required = True
+DIAG: *** Generating dependent type khrplatform for type EGLAttrib
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** PASS 1: Tagging required and removed features for EGL_NV_stream_metadata
+DIAG: *** markRequired (features = <too long to print>, required = True )
+DIAG: *** tagging enum: EGL_MAX_STREAM_METADATA_BLOCKS_NV -> required = True
+DIAG: *** tagging enum: EGL_MAX_STREAM_METADATA_BLOCK_SIZE_NV -> required = True
+DIAG: *** tagging enum: EGL_MAX_STREAM_METADATA_TOTAL_SIZE_NV -> required = True
+DIAG: *** tagging enum: EGL_PRODUCER_METADATA_NV -> required = True
+DIAG: *** tagging enum: EGL_CONSUMER_METADATA_NV -> required = True
+DIAG: *** tagging enum: EGL_PENDING_METADATA_NV -> required = True
+DIAG: *** tagging enum: EGL_METADATA0_SIZE_NV -> required = True
+DIAG: *** tagging enum: EGL_METADATA1_SIZE_NV -> required = True
+DIAG: *** tagging enum: EGL_METADATA2_SIZE_NV -> required = True
+DIAG: *** tagging enum: EGL_METADATA3_SIZE_NV -> required = True
+DIAG: *** tagging enum: EGL_METADATA0_TYPE_NV -> required = True
+DIAG: *** tagging enum: EGL_METADATA1_TYPE_NV -> required = True
+DIAG: *** tagging enum: EGL_METADATA2_TYPE_NV -> required = True
+DIAG: *** tagging enum: EGL_METADATA3_TYPE_NV -> required = True
+DIAG: *** tagging command: eglQueryDisplayAttribNV -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLBoolean
+DIAG: *** tagging type: EGLBoolean -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLDisplay
+DIAG: *** tagging type: EGLDisplay -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLAttrib
+DIAG: *** tagging type: EGLAttrib -> required = True
+DIAG: *** Generating dependent type khrplatform for type EGLAttrib
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** tagging command: eglSetStreamMetadataNV -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLBoolean
+DIAG: *** tagging type: EGLBoolean -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLDisplay
+DIAG: *** tagging type: EGLDisplay -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLStreamKHR
+DIAG: *** tagging type: EGLStreamKHR -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** tagging command: eglQueryStreamMetadataNV -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLBoolean
+DIAG: *** tagging type: EGLBoolean -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLDisplay
+DIAG: *** tagging type: EGLDisplay -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLStreamKHR
+DIAG: *** tagging type: EGLStreamKHR -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLenum
+DIAG: *** tagging type: EGLenum -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
+DIAG: *** markRequired: command implicitly requires dependent type EGLint
+DIAG: *** tagging type: EGLint -> required = True
+DIAG: *** Generating dependent type eglplatform for type EGLint
+DIAG: *** tagging type: eglplatform -> required = True
+DIAG: *** Generating dependent type khrplatform for type eglplatform
+DIAG: *** tagging type: khrplatform -> required = True
 DIAG: *** PASS 1: Tagging required and removed features for EGL_NV_stream_sync
 DIAG: *** markRequired (features = <too long to print>, required = True )
 DIAG: *** tagging enum: EGL_SYNC_TYPE_KHR -> required = True
@@ -2862,6 +3023,46 @@ DIAG: *** Skipping enum EGL_OPENGL_ES3_BIT (already declared)
 DIAG: *** Emitting enum decl for EGL_OPENGL_ES3_BIT_KHR
 DIAG: *** PASS 2: Generating interface for EGL_KHR_create_context_no_error
 DIAG: *** Emitting enum decl for EGL_CONTEXT_OPENGL_NO_ERROR_KHR
+DIAG: *** PASS 2: Generating interface for EGL_KHR_debug
+DIAG: *** Emitting type decl for EGLLabelKHR
+DIAG: *** Emitting type decl for EGLObjectKHR
+DIAG: *** Emitting enum decl for EGL_OBJECT_THREAD_KHR
+DIAG: *** Emitting enum decl for EGL_OBJECT_DISPLAY_KHR
+DIAG: *** Emitting enum decl for EGL_OBJECT_CONTEXT_KHR
+DIAG: *** Emitting enum decl for EGL_OBJECT_SURFACE_KHR
+DIAG: *** Emitting enum decl for EGL_OBJECT_IMAGE_KHR
+DIAG: *** Emitting enum decl for EGL_OBJECT_SYNC_KHR
+DIAG: *** Emitting enum decl for EGL_OBJECT_STREAM_KHR
+DIAG: *** Emitting enum decl for EGL_DEBUG_MSG_CRITICAL_KHR
+DIAG: *** Emitting enum decl for EGL_DEBUG_MSG_ERROR_KHR
+DIAG: *** Emitting enum decl for EGL_DEBUG_MSG_WARN_KHR
+DIAG: *** Emitting enum decl for EGL_DEBUG_MSG_INFO_KHR
+DIAG: *** Emitting enum decl for EGL_DEBUG_CALLBACK_KHR
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Generating required parameter type EGLDEBUGPROCKHR
+DIAG: *** Emitting type decl for EGLDEBUGPROCKHR
+DIAG: *** Generating required parameter type EGLAttrib
+DIAG: *** Skipping type EGLAttrib (already declared)
+DIAG: *** Emitting command decl for eglDebugMessageControlKHR
+DIAG: *** Generating required parameter type EGLBoolean
+DIAG: *** Skipping type EGLBoolean (already declared)
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Generating required parameter type EGLAttrib
+DIAG: *** Skipping type EGLAttrib (already declared)
+DIAG: *** Emitting command decl for eglQueryDebugKHR
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Generating required parameter type EGLDisplay
+DIAG: *** Skipping type EGLDisplay (already declared)
+DIAG: *** Generating required parameter type EGLenum
+DIAG: *** Skipping type EGLenum (already declared)
+DIAG: *** Generating required parameter type EGLObjectKHR
+DIAG: *** Skipping type EGLObjectKHR (already declared)
+DIAG: *** Generating required parameter type EGLLabelKHR
+DIAG: *** Skipping type EGLLabelKHR (already declared)
+DIAG: *** Emitting command decl for eglLabelObjectKHR
 DIAG: *** PASS 2: Generating interface for EGL_KHR_fence_sync
 DIAG: *** Emitting enum decl for EGL_SYNC_PRIOR_COMMANDS_COMPLETE_KHR
 DIAG: *** Emitting enum decl for EGL_SYNC_CONDITION_KHR
@@ -3714,6 +3915,73 @@ DIAG: *** Skipping type EGLint (already declared)
 DIAG: *** Generating required parameter type EGLint
 DIAG: *** Skipping type EGLint (already declared)
 DIAG: *** Emitting command decl for eglPostSubBufferNV
+DIAG: *** PASS 2: Generating interface for EGL_NV_stream_consumer_gltexture_yuv
+DIAG: *** Emitting enum decl for EGL_YUV_PLANE0_TEXTURE_UNIT_NV
+DIAG: *** Emitting enum decl for EGL_YUV_PLANE1_TEXTURE_UNIT_NV
+DIAG: *** Emitting enum decl for EGL_YUV_PLANE2_TEXTURE_UNIT_NV
+DIAG: *** Skipping enum EGL_YUV_NUMBER_OF_PLANES_EXT (already declared)
+DIAG: *** Skipping enum EGL_YUV_BUFFER_EXT (already declared)
+DIAG: *** Generating required parameter type EGLBoolean
+DIAG: *** Skipping type EGLBoolean (already declared)
+DIAG: *** Generating required parameter type EGLDisplay
+DIAG: *** Skipping type EGLDisplay (already declared)
+DIAG: *** Generating required parameter type EGLStreamKHR
+DIAG: *** Skipping type EGLStreamKHR (already declared)
+DIAG: *** Generating required parameter type EGLAttrib
+DIAG: *** Skipping type EGLAttrib (already declared)
+DIAG: *** Emitting command decl for eglStreamConsumerGLTextureExternalAttribsNV
+DIAG: *** PASS 2: Generating interface for EGL_NV_stream_metadata
+DIAG: *** Emitting enum decl for EGL_MAX_STREAM_METADATA_BLOCKS_NV
+DIAG: *** Emitting enum decl for EGL_MAX_STREAM_METADATA_BLOCK_SIZE_NV
+DIAG: *** Emitting enum decl for EGL_MAX_STREAM_METADATA_TOTAL_SIZE_NV
+DIAG: *** Emitting enum decl for EGL_PRODUCER_METADATA_NV
+DIAG: *** Emitting enum decl for EGL_CONSUMER_METADATA_NV
+DIAG: *** Emitting enum decl for EGL_PENDING_METADATA_NV
+DIAG: *** Emitting enum decl for EGL_METADATA0_SIZE_NV
+DIAG: *** Emitting enum decl for EGL_METADATA1_SIZE_NV
+DIAG: *** Emitting enum decl for EGL_METADATA2_SIZE_NV
+DIAG: *** Emitting enum decl for EGL_METADATA3_SIZE_NV
+DIAG: *** Emitting enum decl for EGL_METADATA0_TYPE_NV
+DIAG: *** Emitting enum decl for EGL_METADATA1_TYPE_NV
+DIAG: *** Emitting enum decl for EGL_METADATA2_TYPE_NV
+DIAG: *** Emitting enum decl for EGL_METADATA3_TYPE_NV
+DIAG: *** Generating required parameter type EGLBoolean
+DIAG: *** Skipping type EGLBoolean (already declared)
+DIAG: *** Generating required parameter type EGLDisplay
+DIAG: *** Skipping type EGLDisplay (already declared)
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Generating required parameter type EGLAttrib
+DIAG: *** Skipping type EGLAttrib (already declared)
+DIAG: *** Emitting command decl for eglQueryDisplayAttribNV
+DIAG: *** Generating required parameter type EGLBoolean
+DIAG: *** Skipping type EGLBoolean (already declared)
+DIAG: *** Generating required parameter type EGLDisplay
+DIAG: *** Skipping type EGLDisplay (already declared)
+DIAG: *** Generating required parameter type EGLStreamKHR
+DIAG: *** Skipping type EGLStreamKHR (already declared)
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Emitting command decl for eglSetStreamMetadataNV
+DIAG: *** Generating required parameter type EGLBoolean
+DIAG: *** Skipping type EGLBoolean (already declared)
+DIAG: *** Generating required parameter type EGLDisplay
+DIAG: *** Skipping type EGLDisplay (already declared)
+DIAG: *** Generating required parameter type EGLStreamKHR
+DIAG: *** Skipping type EGLStreamKHR (already declared)
+DIAG: *** Generating required parameter type EGLenum
+DIAG: *** Skipping type EGLenum (already declared)
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Generating required parameter type EGLint
+DIAG: *** Skipping type EGLint (already declared)
+DIAG: *** Emitting command decl for eglQueryStreamMetadataNV
 DIAG: *** PASS 2: Generating interface for EGL_NV_stream_sync
 DIAG: *** Skipping enum EGL_SYNC_TYPE_KHR (already declared)
 DIAG: *** Emitting enum decl for EGL_SYNC_NEW_FRAME_NV

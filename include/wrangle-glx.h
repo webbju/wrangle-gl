@@ -389,13 +389,30 @@ namespace glew
 
     static void Deinitialise ();
 
-    static bool IsSupported (GLEW_GLX_FeatureSet feature) { return s_deviceConfig.m_featureSupported [feature]; }
+    static bool IsSupported (GLEW_GLX_FeatureSet feature)
+    {
+      GLEW_ASSERT (s_initialised);
 
-    static void SetConfig (glew::glx::DeviceConfig &deviceConfig) { s_deviceConfig = deviceConfig; }
+      return s_deviceConfig.m_featureSupported [feature];
+    }
 
-    static glew::glx::DeviceConfig &GetConfig () { return s_deviceConfig; }
+    static void SetConfig (glew::glx::DeviceConfig &deviceConfig)
+    {
+      GLEW_ASSERT (s_initialised);
+
+      s_deviceConfig = deviceConfig;
+    }
+
+    static glew::glx::DeviceConfig &GetConfig ()
+    {
+      GLEW_ASSERT (s_initialised);
+
+      return s_deviceConfig;
+    }
 
   protected:
+
+    static bool s_initialised;
 
     static glew::glx::DeviceConfig s_deviceConfig;
 

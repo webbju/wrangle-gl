@@ -38,7 +38,7 @@ extern "C" {
 
 #include <EGL/eglplatform.h>
 
-/* Generated on date 20150716 */
+/* Generated on date 20151103 */
 
 /* Generated C header for:
  * API: egl

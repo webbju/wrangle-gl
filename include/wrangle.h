@@ -90,23 +90,23 @@ static inline void *dlGetProcAddress (const char *library, const char *symbol)
     #define GLEW_USE_EGL 1
   #endif
   #include <EGL\egl.h>
-GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
-#if !defined (glewGetProcAddress)
-#define glewGetProcAddress(proc) eglGetProcAddress((const char *)proc)
-#endif
+  GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
+  #if !defined (glewGetProcAddress)
+  #define glewGetProcAddress(proc) eglGetProcAddress((const char *)proc)
+  #endif
 #elif defined(__APPLE__)
-#include "TargetConditionals.h"
-#define OPENGL_FRAMEWORK "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
-#define OPENGL_ES_FRAMEWORK "/System/Library/Frameworks/OpenGLES.framework/OpenGLES"
-#if !defined (glewGetProcAddress)
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-#define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_ES_FRAMEWORK,(const char *)proc)
-#elif TARGET_OS_MAC
-#define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
-#else
-#error Unrecognised Apple target.
-#endif
-#endif
+  #include "TargetConditionals.h"
+  #define OPENGL_FRAMEWORK "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
+  #define OPENGL_ES_FRAMEWORK "/System/Library/Frameworks/OpenGLES.framework/OpenGLES"
+  #if !defined (glewGetProcAddress)
+    #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_ES_FRAMEWORK,(const char *)proc)
+    #elif TARGET_OS_MAC
+      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
+    #else
+      #error Unrecognised Apple target.
+  #endif
+  #endif
 #endif
 
 #if !defined (glewGetProcAddress)
@@ -125,16 +125,33 @@ GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGet
 #define GLEW_MAX(a,b) ((a > b) ? a : b)
 #endif
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #if !defined(GLEW_ASSERT) && (defined(_DEBUG) || defined(DEBUG))
 #if defined(__GNUC__) || defined(__clang__)
-#define GLEW_ASSERT(X) if(!(X)) { __builtin_trap(); }
+#define GLEW_ASSERT(X) if(!(X)) { __builtin_trap (); }
 #elif WIN32
 #define GLEW_ASSERT(X) if(!(X)) { __debugbreak (); }
 #endif
 #endif
 
 #if !defined(GLEW_ASSERT)
-#define GLEW_ASSERT(X) do { (void)sizeof ((X)); } while (0)
+#if WIN32
+#define GLEW_ASSERT(X) \
+  do { \
+  __pragma(warning(push)) \
+  __pragma(warning (disable:4127)) \
+    (void)(true ? 0 : ((X), void(), 0)); \
+  } while (0) \
+  __pragma(warning(pop))
+#else
+#define GLEW_ASSERT(X) \
+  do { \
+    (void)(true ? 0 : ((X), void(), 0)); \
+  } while (0)
+#endif
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

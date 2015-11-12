@@ -77,13 +77,15 @@ namespace wrangle_gl_generator
 
       writer.Write (string.Format ("    static void Deinitialise ();\n\n"));
 
-      writer.Write (string.Format ("    static bool IsSupported (GLEW_{0}_FeatureSet feature) {{ return s_deviceConfig.m_featureSupported [feature]; }}\n\n", m_api [0].ToUpperInvariant ()));
+      writer.Write (string.Format ("    static bool IsSupported (GLEW_{0}_FeatureSet feature)\n    {{\n      GLEW_ASSERT (s_initialised);\n\n      return s_deviceConfig.m_featureSupported [feature];\n    }}\n\n", m_api [0].ToUpperInvariant ()));
 
-      writer.Write (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig) {{ s_deviceConfig = deviceConfig; }}\n\n", m_api [0]));
+      writer.Write (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig)\n    {{\n      GLEW_ASSERT (s_initialised);\n\n      s_deviceConfig = deviceConfig;\n    }}\n\n", m_api [0]));
 
-      writer.Write (string.Format ("    static glew::{0}::DeviceConfig &GetConfig () {{ return s_deviceConfig; }}\n", m_api [0]));
+      writer.Write (string.Format ("    static glew::{0}::DeviceConfig &GetConfig ()\n    {{\n      GLEW_ASSERT (s_initialised);\n\n      return s_deviceConfig;\n    }}\n", m_api [0]));
 
       writer.Write (string.Format ("\n  protected:\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static bool s_initialised;\n\n"));
 
       writer.Write (string.Format ("    static EGLDisplay s_display;\n\n"));
 
@@ -107,6 +109,8 @@ namespace wrangle_gl_generator
       // 
       // glew::egl::Initialise
       // 
+
+      writer.Write ("bool glew::egl::s_initialised = false;\n\n");
 
       writer.Write ("EGLDisplay glew::egl::s_display = EGL_NO_DISPLAY;\n\n");
 
@@ -394,6 +398,8 @@ void glew::egl::Initialise (EGLDisplay display)
         }
       }
 
+      writer.Write ("  s_initialised = true;\n");
+
       writer.Write ("}\n\n");
 
       WriteCommentDivider (ref writer);
@@ -403,6 +409,8 @@ void glew::egl::Initialise (EGLDisplay display)
       // 
 
       writer.Write ("\nvoid glew::egl::Deinitialise ()\n{\n");
+
+      writer.Write ("  s_initialised = false;\n");
 
       writer.Write ("}\n\n");
 

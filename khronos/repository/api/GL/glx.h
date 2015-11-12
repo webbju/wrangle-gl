@@ -36,7 +36,7 @@ extern "C" {
 ** Khronos $Revision$ on $Date$
 */
 
-/* Generated on date 20150716 */
+/* Generated on date 20151103 */
 
 /* Generated C header for:
  * API: glx

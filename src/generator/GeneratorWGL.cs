@@ -104,6 +104,8 @@ typedef void GLvoid;
       // glew::wgl::Initialise
       // 
 
+      writer.Write ("bool glew::wgl::s_initialised = false;\n\n");
+
       writer.Write ("glew::wgl::DeviceConfig glew::wgl::s_deviceConfig;\n\n");
 
       WriteCommentDivider (ref writer);
@@ -367,6 +369,8 @@ typedef void GLvoid;
         }
       }
 
+      writer.Write ("  s_initialised = true;\n");
+
       writer.Write ("}\n\n");
 
       WriteCommentDivider (ref writer);
@@ -376,6 +380,8 @@ typedef void GLvoid;
       // 
 
       writer.Write ("\nvoid glew::wgl::Deinitialise ()\n{\n");
+
+      writer.Write ("  s_initialised = false;\n");
 
       writer.Write ("}\n\n");
 

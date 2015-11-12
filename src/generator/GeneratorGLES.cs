@@ -69,7 +69,7 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n#include <wrangle.h>\n");
 
-      writer.Write ("\n#include <GLES3/gl31.h>\n");
+      writer.Write ("\n#include <GLES3/gl32.h>\n");
 
       writer.Write ("\n#include <GLES2/gl2ext.h>\n\n");
 
@@ -88,6 +88,18 @@ namespace wrangle_gl_generator
 #endif
 #ifndef __gl_es30ext_h_
 #define __gl_es30ext_h_
+#endif
+#ifndef __gl_es31_h_
+#define __gl_es31_h_
+#endif
+#ifndef __gl_es31ext_h_
+#define __gl_es31ext_h_
+#endif
+#ifndef __gl_es32_h_
+#define __gl_es32_h_
+#endif
+#ifndef __gl_es32ext_h_
+#define __gl_es32ext_h_
 #endif
 
 ");
@@ -116,6 +128,8 @@ namespace wrangle_gl_generator
       // 
       // glew::gles::Initialise
       // 
+
+      writer.Write ("bool glew::gles::s_initialised = false;\n\n");
 
       writer.Write ("glew::gles::DeviceConfig glew::gles::s_deviceConfig;\n\n");
 
@@ -161,6 +175,7 @@ namespace wrangle_gl_generator
       s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_2_0] = ((major >= 2));
       s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] = ((major >= 3));
       s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] = ((major >= 3) && (minor >= 1));
+      s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_2] = ((major >= 3) && (minor >= 2));
     }
   }
 
@@ -399,6 +414,8 @@ namespace wrangle_gl_generator
         }
       }
 
+      writer.Write ("  s_initialised = true;\n");
+
       writer.Write ("}\n\n");
 
       WriteCommentDivider (ref writer);
@@ -408,6 +425,8 @@ namespace wrangle_gl_generator
       // 
 
       writer.Write ("\nvoid glew::gles::Deinitialise ()\n{\n");
+
+      writer.Write ("  s_initialised = false;\n");
 
       writer.Write ("}\n\n");
 

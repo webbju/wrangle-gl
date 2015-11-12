@@ -999,17 +999,21 @@ namespace wrangle_gl_generator
 
     public virtual void ExportHppPublicGlewApi (ref StreamWriter writer)
     {
-      writer.Write (string.Format ("\n  public:\n\n    static void Initialise ();\n\n", m_api [0]));
+      writer.Write (string.Format ("\n  public:\n\n"));
+
+      writer.Write (string.Format ("    static void Initialise ();\n\n", m_api [0]));
 
       writer.Write (string.Format ("    static void Deinitialise ();\n\n"));
 
-      writer.Write (string.Format ("    static bool IsSupported (GLEW_{0}_FeatureSet feature) {{ return s_deviceConfig.m_featureSupported [feature]; }}\n\n", m_api [0].ToUpperInvariant ()));
+      writer.Write (string.Format ("    static bool IsSupported (GLEW_{0}_FeatureSet feature)\n    {{\n      GLEW_ASSERT (s_initialised);\n\n      return s_deviceConfig.m_featureSupported [feature];\n    }}\n\n", m_api [0].ToUpperInvariant ()));
 
-      writer.Write (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig) {{ s_deviceConfig = deviceConfig; }}\n\n", m_api [0]));
+      writer.Write (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig)\n    {{\n      GLEW_ASSERT (s_initialised);\n\n      s_deviceConfig = deviceConfig;\n    }}\n\n", m_api [0]));
 
-      writer.Write (string.Format ("    static glew::{0}::DeviceConfig &GetConfig () {{ return s_deviceConfig; }}\n", m_api [0]));
+      writer.Write (string.Format ("    static glew::{0}::DeviceConfig &GetConfig ()\n    {{\n      GLEW_ASSERT (s_initialised);\n\n      return s_deviceConfig;\n    }}\n", m_api [0]));
 
       writer.Write (string.Format ("\n  protected:\n\n", m_api [0]));
+
+      writer.Write (string.Format ("    static bool s_initialised;\n\n"));
 
       writer.Write (string.Format ("    static glew::{0}::DeviceConfig s_deviceConfig;\n\n", m_api [0]));
     }
@@ -1438,11 +1442,11 @@ namespace wrangle_gl_generator
 
           if (m_api [0].Equals ("gl") || m_api [0].Equals ("gles"))
           {
-            writer.Write ("  GLEW_ASSERT (glGetError () == GL_NO_ERROR);\n");
+            writer.Write ("#if GLEW_GL_PRE_ERROR_CHECK\n  GLEW_ASSERT (glGetError () == GL_NO_ERROR);\n#endif\n");
           }
           else if (m_api [0].Equals ("egl"))
           {
-            writer.Write ("  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);\n");
+            writer.Write ("#if GLEW_EGL_PRE_ERROR_CHECK\n  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);\n#endif\n");
           }
 
           foreach (XmlNode requireNode in prototypeRequireNodes.Value)
@@ -1557,11 +1561,11 @@ namespace wrangle_gl_generator
 
           if (m_api [0].Equals ("gl") || m_api [0].Equals ("gles"))
           {
-            writer.Write ("  GLEW_ASSERT (glGetError () == GL_NO_ERROR);\n");
+            writer.Write ("#if GLEW_GL_POST_ERROR_CHECK\n  GLEW_ASSERT (glGetError () == GL_NO_ERROR);\n#endif\n");
           }
           else if (m_api [0].Equals ("egl"))
           {
-            writer.Write ("  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);\n");
+            writer.Write ("#if GLEW_GL_POST_ERROR_CHECK\n  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);\n#endif\n");
           }
 
           if (!voidFunction)
@@ -1660,6 +1664,8 @@ namespace wrangle_gl_generator
         protoName = protoName.Replace ("<name>", "");
 
         protoName = protoName.Replace ("</name>", "");
+
+        protoName = protoName.Replace ("*", "");
 
         protoName = protoName.Trim ();
 
