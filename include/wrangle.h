@@ -50,10 +50,53 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#if (_WIN32 || GLEW_USE_WGL)
+  #if !defined (GLEW_USE_WGL)
+    #define GLEW_USE_WGL 1
+  #endif
+  GLEW_EXTERN WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
+  #undef wglUseFontBitmaps
+  #undef wglUseFontOutlines
+  #if !defined (glewGetProcAddress)
+    #define glewGetProcAddress(proc) wglGetProcAddress((LPCSTR)proc)
+  #endif
+#elif __ANDROID__ || GLEW_USE_EGL
+  #if !defined (GLEW_USE_EGL)
+    #define GLEW_USE_EGL 1
+  #endif
+  #include <EGL\egl.h>
+  #define EGL_SHARED_LIBRARY "libEGL.so"
+  GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
+  #if !defined (glewGetProcAddress)
+  #define glewGetProcAddress(proc) _eglGetProcAddress((const char *)proc)
+  #endif
+#elif defined(__APPLE__)
+  #include "TargetConditionals.h"
+  #define OPENGL_FRAMEWORK "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
+  #define OPENGL_ES_FRAMEWORK "/System/Library/Frameworks/OpenGLES.framework/OpenGLES"
+  #if !defined (glewGetProcAddress)
+    #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_ES_FRAMEWORK,(const char *)proc)
+    #elif TARGET_OS_MAC
+      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
+    #else
+      #error Unrecognised Apple target.
+  #endif
+  #endif
+#endif
+
+#if !defined (glewGetProcAddress)
+#error glewGetProcAddress definition required.
+#endif
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // /System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL
 // /System/Library/Frameworks/OpenGLES.framework/OpenGLES
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || GLEW_USE_EGL
 #include <dlfcn.h>
 static inline void *dlGetProcAddress (const char *library, const char *symbol)
 {
@@ -75,42 +118,28 @@ static inline void *dlGetProcAddress (const char *library, const char *symbol)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if (_WIN32 || GLEW_USE_WGL)
-  #if !defined (GLEW_USE_WGL)
-    #define GLEW_USE_WGL 1
-  #endif
-  GLEW_EXTERN WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
-  #undef wglUseFontBitmaps
-  #undef wglUseFontOutlines
-  #if !defined (glewGetProcAddress)
-    #define glewGetProcAddress(proc) wglGetProcAddress((LPCSTR)proc)
-  #endif
-#elif __ANDROID__ || GLEW_USE_EGL
-  #if !defined (GLEW_USE_EGL)
-    #define GLEW_USE_EGL 1
-  #endif
-  #include <EGL\egl.h>
-  GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
-  #if !defined (glewGetProcAddress)
-  #define glewGetProcAddress(proc) eglGetProcAddress((const char *)proc)
-  #endif
-#elif defined(__APPLE__)
-  #include "TargetConditionals.h"
-  #define OPENGL_FRAMEWORK "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
-  #define OPENGL_ES_FRAMEWORK "/System/Library/Frameworks/OpenGLES.framework/OpenGLES"
-  #if !defined (glewGetProcAddress)
-    #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_ES_FRAMEWORK,(const char *)proc)
-    #elif TARGET_OS_MAC
-      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
-    #else
-      #error Unrecognised Apple target.
-  #endif
-  #endif
-#endif
+#if GLEW_USE_EGL
+static inline __eglMustCastToProperFunctionPointerType _eglGetProcAddress (const char *procname)
+{
+  __eglMustCastToProperFunctionPointerType fp = NULL;
 
-#if !defined (glewGetProcAddress)
-#error glewGetProcAddress definition required.
+  if (procname && !fp)
+  {
+    fp = eglGetProcAddress (procname);
+  }
+
+  // 
+  // Sometimes we don't even receive valid addresses for base spec functions using eglGetProcAddress.
+  // It seems this is isolated to early PowerVR and Mali drivers, but we workaround it by probing the EGL library directly.
+  // 
+
+  if (procname && !fp && (memcmp (procname, "egl", sizeof (char) * 3) == 0))
+  {
+    fp = (__eglMustCastToProperFunctionPointerType) dlGetProcAddress (EGL_SHARED_LIBRARY, procname);
+  }
+
+  return fp;
+}
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
