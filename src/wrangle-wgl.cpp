@@ -2,6 +2,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include <cstring>
+
 #include <string>
 
 #include <unordered_set>
@@ -50,7 +52,7 @@ UINT _glew_wgl_wglGetGPUIDsAMD (UINT maxCount, UINT * ids)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-INT _glew_wgl_wglGetGPUInfoAMD (UINT id, int  property, GLenum dataType, UINT size, void * data)
+INT _glew_wgl_wglGetGPUInfoAMD (UINT id, INT property, GLenum dataType, UINT size, void * data)
 {
   bool prototypeCalled = false;
   const glew::wgl::DeviceConfig &wglConfig = glew::wgl::GetConfig ();
@@ -1735,7 +1737,7 @@ BOOL _glew_wgl_wglDeleteDCNV (HDC hdc)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_wgl_wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList)
+int _glew_wgl_wglEnumerateVideoDevicesNV (HDC hDc, HVIDEOOUTPUTDEVICENV * phDeviceList)
 {
   bool prototypeCalled = false;
   const glew::wgl::DeviceConfig &wglConfig = glew::wgl::GetConfig ();
@@ -1744,7 +1746,7 @@ int _glew_wgl_wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDevi
   if (!prototypeCalled && wglConfig.m_featureSupported [GLEW_WGL_NV_present_video] && wglConfig.m_wglEnumerateVideoDevicesNV)
   {
     prototypeCalled = true;
-    result = wglConfig.m_wglEnumerateVideoDevicesNV (hDC, phDeviceList);
+    result = wglConfig.m_wglEnumerateVideoDevicesNV (hDc, phDeviceList);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1754,7 +1756,7 @@ int _glew_wgl_wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDevi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL _glew_wgl_wglBindVideoDeviceNV (HDC hDC, unsigned int  uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList)
+BOOL _glew_wgl_wglBindVideoDeviceNV (HDC hDc, unsigned int  uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList)
 {
   bool prototypeCalled = false;
   const glew::wgl::DeviceConfig &wglConfig = glew::wgl::GetConfig ();
@@ -1763,7 +1765,7 @@ BOOL _glew_wgl_wglBindVideoDeviceNV (HDC hDC, unsigned int  uVideoSlot, HVIDEOOU
   if (!prototypeCalled && wglConfig.m_featureSupported [GLEW_WGL_NV_present_video] && wglConfig.m_wglBindVideoDeviceNV)
   {
     prototypeCalled = true;
-    result = wglConfig.m_wglBindVideoDeviceNV (hDC, uVideoSlot, hVideoDevice, piAttribList);
+    result = wglConfig.m_wglBindVideoDeviceNV (hDc, uVideoSlot, hVideoDevice, piAttribList);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -2208,7 +2210,7 @@ INT64 _glew_wgl_wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-INT64 _glew_wgl_wglSwapLayerBuffersMscOML (HDC hdc, int  fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder)
+INT64 _glew_wgl_wglSwapLayerBuffersMscOML (HDC hdc, INT fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder)
 {
   bool prototypeCalled = false;
   const glew::wgl::DeviceConfig &wglConfig = glew::wgl::GetConfig ();
@@ -2286,15 +2288,15 @@ void glew::wgl::Initialise ()
 {
   memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));
 
-  // 
+  //
   // Determine current driver's feature reporting.
-  // 
+  //
 
   s_deviceConfig.m_featureSupported [GLEW_WGL_VERSION_1_0] = true;
 
-  // 
+  //
   // Evaluate extension support.
-  // 
+  //
 
 
   std::unordered_set <std::string> supportedExtensions;
@@ -2331,7 +2333,7 @@ void glew::wgl::Initialise ()
 
     memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
 
-    do 
+    do
     {
       const char * seperator = strchr ((const char *) thisExtStart, ' ');
 
@@ -2341,7 +2343,7 @@ void glew::wgl::Initialise ()
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -2355,7 +2357,7 @@ void glew::wgl::Initialise ()
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -2382,6 +2384,7 @@ void glew::wgl::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_buffer_region] = (supportedExtensions.find ("WGL_ARB_buffer_region") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_context_flush_control] = (supportedExtensions.find ("WGL_ARB_context_flush_control") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context] = (supportedExtensions.find ("WGL_ARB_create_context") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context_no_error] = (supportedExtensions.find ("WGL_ARB_create_context_no_error") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context_profile] = (supportedExtensions.find ("WGL_ARB_create_context_profile") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_create_context_robustness] = (supportedExtensions.find ("WGL_ARB_create_context_robustness") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_extensions_string] = (supportedExtensions.find ("WGL_ARB_extensions_string") != supportedExtensions.end ());
@@ -2395,6 +2398,8 @@ void glew::wgl::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_robustness_application_isolation] = (supportedExtensions.find ("WGL_ARB_robustness_application_isolation") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_ARB_robustness_share_group_isolation] = (supportedExtensions.find ("WGL_ARB_robustness_share_group_isolation") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_ATI_pixel_format_float] = (supportedExtensions.find ("WGL_ATI_pixel_format_float") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_ATI_render_texture_rectangle] = (supportedExtensions.find ("WGL_ATI_render_texture_rectangle") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_colorspace] = (supportedExtensions.find ("WGL_EXT_colorspace") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_create_context_es_profile] = (supportedExtensions.find ("WGL_EXT_create_context_es_profile") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_create_context_es2_profile] = (supportedExtensions.find ("WGL_EXT_create_context_es2_profile") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_EXT_depth_float] = (supportedExtensions.find ("WGL_EXT_depth_float") != supportedExtensions.end ());
@@ -2429,6 +2434,7 @@ void glew::wgl::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_WGL_NV_video_output] = (supportedExtensions.find ("WGL_NV_video_output") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_NV_vertex_array_range] = (supportedExtensions.find ("WGL_NV_vertex_array_range") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_WGL_OML_sync_control] = (supportedExtensions.find ("WGL_OML_sync_control") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_WGL_NV_multigpu_context] = (supportedExtensions.find ("WGL_NV_multigpu_context") != supportedExtensions.end ());
 
   // WGL_3DL_stereo_control
   if (s_deviceConfig.m_featureSupported [GLEW_WGL_3DL_stereo_control])

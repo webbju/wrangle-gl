@@ -12,24 +12,11 @@
 
 #include <cstdio>
 
-#include <assert.h>
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-static const char* DescribeGLError (GLenum err)
-{
-  const char *errorText = "Unknown";
-
-  return errorText;
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,18 +30,20 @@ static void CheckGLError (const bool shouldAssert, const char* file, const int l
   {
     char buffer [512];
 
-    sprintf (buffer, "[%s : %d] glGetError returned %d (%s)", file, line, err, DescribeGLError (err));
+    sprintf (buffer, "[%s:%d] glGetError returned 0x%x\n", file, line, err);
 
+#if WIN32
     OutputDebugString (buffer);
+#endif
 
-    fprintf (stderr, buffer);
+    fputs (buffer, stderr);
 
     fflush (stderr);
   }
 
   if (shouldAssert)
   {
-    assert (err == GL_NO_ERROR);
+    GLEW_ASSERT (err == GL_NO_ERROR);
   }
 }
 
@@ -135,9 +124,9 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       SetPixelFormat (deviceContext, windowsPixelFormat, &pfd);
 
-      // 
+      //
       // Context creation and tear-down.
-      // 
+      //
 
       HGLRC deviceRenderContext = wglCreateContext (deviceContext);
 
@@ -189,13 +178,19 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       AssertNoGLErrors ();
 
+      fprintf(stdout, "Renderer: %s", renderer);
+
       const char *version = (const char *) glGetString (GL_VERSION);
 
       AssertNoGLErrors ();
 
+      fprintf(stdout, "Version: %s", version);
+
       const char *extensions = (const char *) glGetString (GL_EXTENSIONS);
 
       AssertNoGLErrors ();
+
+      fprintf(stdout, "Extensions: %s", extensions);
 
 #if defined(GLEW_USE_OPENGL)
       glew::gl::Deinitialise ();

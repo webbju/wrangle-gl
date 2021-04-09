@@ -915,16 +915,54 @@ Bool _glew_glx_glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXSet3DfxModeMESA (int  mode)
+GLboolean _glew_glx_glXSet3DfxModeMESA (GLint mode)
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  Bool result = ((Bool)0);
+  GLboolean result = ((GLboolean)0);
   // GLX_MESA_set_3dfx_mode - glXSet3DfxModeMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_set_3dfx_mode] && glxConfig.m_glXSet3DfxModeMESA)
   {
     prototypeCalled = true;
     result = glxConfig.m_glXSet3DfxModeMESA (mode);
+  }
+  GLEW_ASSERT (prototypeCalled);
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int _glew_glx_glXGetSwapIntervalMESA ()
+{
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  int result = ((int)0);
+  // GLX_MESA_swap_control - glXGetSwapIntervalMESA
+  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_swap_control] && glxConfig.m_glXGetSwapIntervalMESA)
+  {
+    prototypeCalled = true;
+    result = glxConfig.m_glXGetSwapIntervalMESA ();
+  }
+  GLEW_ASSERT (prototypeCalled);
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int _glew_glx_glXSwapIntervalMESA (unsigned int  interval)
+{
+  bool prototypeCalled = false;
+  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  int result = ((int)0);
+  // GLX_MESA_swap_control - glXSwapIntervalMESA
+  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_swap_control] && glxConfig.m_glXSwapIntervalMESA)
+  {
+    prototypeCalled = true;
+    result = glxConfig.m_glXSwapIntervalMESA (interval);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1889,19 +1927,17 @@ void _glew_glx_glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int  attribute, unsigned int * value)
+void _glew_glx_glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int  attribute, unsigned int * value)
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  int result = ((int)0);
   // GLX_SGIX_pbuffer - glXQueryGLXPbufferSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXQueryGLXPbufferSGIX)
   {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryGLXPbufferSGIX (dpy, pbuf, attribute, value);
+    glxConfig.m_glXQueryGLXPbufferSGIX (dpy, pbuf, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2126,7 +2162,7 @@ void _glew_glx_glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX g
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Status _glew_glx_glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex)
+Status _glew_glx_glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, unsigned long * pTransparentIndex)
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
