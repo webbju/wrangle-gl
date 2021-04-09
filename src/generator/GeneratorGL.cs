@@ -29,8 +29,8 @@ namespace wrangle_gl_generator
 
     public GeneratorGL (string filename)
       : base (filename, new string [] []
-      { 
-        new string [] { "gl", "1.0" }, 
+      {
+        new string [] { "gl", "1.0" },
         new string [] { "gles2", "1.0"},
       })
     {
@@ -80,7 +80,7 @@ namespace wrangle_gl_generator
 // GLAPI is defined to 'extern' in <GL/glcorearb.h>
 // Prevents duplicate 'extern' on GLEW_EXTERN_C GLAPI definitions.
 #ifndef GLAPI
-#define GLAPI 
+#define GLAPI
 #endif
 
 ");
@@ -128,15 +128,15 @@ typedef void* GLeglImageOES;
     {
       WriteCommentDivider (ref writer);
 
-      writer.Write ("\n#include <string>\n\n#include <unordered_set>\n\n");
+      writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <unordered_set>\n\n");
 
       base.ExportCpp (ref writer);
 
       writer.Write ("\n");
 
-      // 
+      //
       // glew::gl::Initialise
-      // 
+      //
 
       writer.Write ("bool glew::gl::s_initialised = false;\n\n");
 
@@ -149,9 +149,9 @@ typedef void* GLeglImageOES;
       writer.Write ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));\n");
 
       writer.Write (@"
-  // 
+  //
   // Determine current driver's feature reporting.
-  // 
+  //
 
   const unsigned char *glVersion = glGetString (GL_VERSION);
 
@@ -210,9 +210,9 @@ typedef void* GLeglImageOES;
     }
   }
 
-  // 
+  //
   // Evaluate extension support.
-  // 
+  //
 
   std::unordered_set <std::string> supportedExtensions;
 
@@ -235,7 +235,7 @@ typedef void* GLeglImageOES;
 
     memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
 
-    do 
+    do
     {
       const char * seperator = strchr ((const char *) thisExtStart, ' ');
 
@@ -245,7 +245,7 @@ typedef void* GLeglImageOES;
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -259,7 +259,7 @@ typedef void* GLeglImageOES;
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -289,9 +289,9 @@ typedef void* GLeglImageOES;
 
       writer.Write ("\n");
 
-      // 
+      //
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
-      // 
+      //
 
       Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
 
@@ -330,9 +330,9 @@ typedef void* GLeglImageOES;
             }
           }
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -355,9 +355,9 @@ typedef void* GLeglImageOES;
               continue; // Skip non-supported APIs.
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
@@ -373,9 +373,9 @@ typedef void* GLeglImageOES;
               }
             }
 
-            // 
+            //
             // Export code for seeding available function/command addresses.
-            // 
+            //
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -412,9 +412,9 @@ typedef void* GLeglImageOES;
           }
         }
 
-        // 
+        //
         // Output condensed feature organised prototypes.
-        // 
+        //
 
         if (featureBasedPrototypes.Count > 0)
         {
@@ -447,9 +447,9 @@ typedef void* GLeglImageOES;
 
       WriteCommentDivider (ref writer);
 
-      // 
+      //
       // glew::gl::Deinitialise
-      // 
+      //
 
       writer.Write ("\nvoid glew::gl::Deinitialise ()\n{\n");
 

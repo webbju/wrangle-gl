@@ -1,6 +1,0 @@
-
-set (CMAKE_SYSTEM_NAME "Android++")
-
-set (CMAKE_GENERATOR_PLATFORM "Android++")
-
-set (CMAKE_GENERATOR_TOOLSET "clang3.3")

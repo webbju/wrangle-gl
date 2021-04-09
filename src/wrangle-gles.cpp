@@ -2,6 +2,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include <cstring>
+
+#include <string>
+
 #include <string>
 
 #include <unordered_set>
@@ -71,12 +75,6 @@ void _glew_gles_glTexImage3D (GLenum target, GLint level, GLint internalformat, 
     prototypeCalled = true;
     glesConfig.m_glTexImage3D (target, level, internalformat, width, height, depth, border, format, type, pixels);
   }
-  // GL_OES_texture_3D - glTexImage3D
-  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glTexImage3DOES)
-  {
-    prototypeCalled = true;
-    glesConfig.m_glTexImage3DOES (target, level, (GLenum) internalformat, width, height, depth, border, format, type, pixels);
-  }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
   GLEW_ASSERT (glGetError () == GL_NO_ERROR);
@@ -99,12 +97,6 @@ void _glew_gles_glTexSubImage3D (GLenum target, GLint level, GLint xoffset, GLin
   {
     prototypeCalled = true;
     glesConfig.m_glTexSubImage3D (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
-  }
-  // GL_OES_texture_3D - glTexSubImage3D
-  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glTexSubImage3DOES)
-  {
-    prototypeCalled = true;
-    glesConfig.m_glTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -129,12 +121,6 @@ void _glew_gles_glCopyTexSubImage3D (GLenum target, GLint level, GLint xoffset, 
     prototypeCalled = true;
     glesConfig.m_glCopyTexSubImage3D (target, level, xoffset, yoffset, zoffset, x, y, width, height);
   }
-  // GL_OES_texture_3D - glCopyTexSubImage3D
-  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glCopyTexSubImage3DOES)
-  {
-    prototypeCalled = true;
-    glesConfig.m_glCopyTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, x, y, width, height);
-  }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
   GLEW_ASSERT (glGetError () == GL_NO_ERROR);
@@ -158,12 +144,6 @@ void _glew_gles_glCompressedTexImage3D (GLenum target, GLint level, GLenum inter
     prototypeCalled = true;
     glesConfig.m_glCompressedTexImage3D (target, level, internalformat, width, height, depth, border, imageSize, data);
   }
-  // GL_OES_texture_3D - glCompressedTexImage3D
-  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glCompressedTexImage3DOES)
-  {
-    prototypeCalled = true;
-    glesConfig.m_glCompressedTexImage3DOES (target, level, internalformat, width, height, depth, border, imageSize, data);
-  }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
   GLEW_ASSERT (glGetError () == GL_NO_ERROR);
@@ -186,12 +166,6 @@ void _glew_gles_glCompressedTexSubImage3D (GLenum target, GLint level, GLint xof
   {
     prototypeCalled = true;
     glesConfig.m_glCompressedTexSubImage3D (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
-  }
-  // GL_OES_texture_3D - glCompressedTexSubImage3D
-  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_texture_3D] && glesConfig.m_glCompressedTexSubImage3DOES)
-  {
-    prototypeCalled = true;
-    glesConfig.m_glCompressedTexSubImage3DOES (target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -1974,6 +1948,12 @@ void _glew_gles_glGetInteger64v (GLenum pname, GLint64 * data)
     prototypeCalled = true;
     glesConfig.m_glGetInteger64vAPPLE (pname, data);
   }
+  // GL_EXT_disjoint_timer_query - glGetInteger64v
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glGetInteger64vEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetInteger64vEXT (pname, data);
+  }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
   GLEW_ASSERT (glGetError () == GL_NO_ERROR);
@@ -1984,7 +1964,7 @@ void _glew_gles_glGetInteger64v (GLenum pname, GLint64 * data)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values)
+void _glew_gles_glGetSynciv (GLsync sync, GLenum pname, GLsizei count, GLsizei * length, GLint * values)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -1995,13 +1975,13 @@ void _glew_gles_glGetSynciv (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetSynciv)
   {
     prototypeCalled = true;
-    glesConfig.m_glGetSynciv (sync, pname, bufSize, length, values);
+    glesConfig.m_glGetSynciv (sync, pname, count, length, values);
   }
   // GL_APPLE_sync - glGetSynciv
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glGetSyncivAPPLE)
   {
     prototypeCalled = true;
-    glesConfig.m_glGetSyncivAPPLE (sync, pname, bufSize, length, values);
+    glesConfig.m_glGetSyncivAPPLE (sync, pname, count, length, values);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -2663,7 +2643,7 @@ void _glew_gles_glTexStorage3D (GLenum target, GLsizei levels, GLenum internalfo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint * params)
+void _glew_gles_glGetInternalformativ (GLenum target, GLenum internalformat, GLenum pname, GLsizei count, GLint * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -2674,7 +2654,7 @@ void _glew_gles_glGetInternalformativ (GLenum target, GLenum internalformat, GLe
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0] && glesConfig.m_glGetInternalformativ)
   {
     prototypeCalled = true;
-    glesConfig.m_glGetInternalformativ (target, internalformat, pname, bufSize, params);
+    glesConfig.m_glGetInternalformativ (target, internalformat, pname, count, params);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -2895,7 +2875,7 @@ void _glew_gles_glGetProgramResourceName (GLuint program, GLenum programInterfac
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLint * params)
+void _glew_gles_glGetProgramResourceiv (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei count, GLsizei * length, GLint * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -2906,7 +2886,7 @@ void _glew_gles_glGetProgramResourceiv (GLuint program, GLenum programInterface,
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_1] && glesConfig.m_glGetProgramResourceiv)
   {
     prototypeCalled = true;
-    glesConfig.m_glGetProgramResourceiv (program, programInterface, index, propCount, props, bufSize, length, params);
+    glesConfig.m_glGetProgramResourceiv (program, programInterface, index, propCount, props, count, length, params);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -5204,6 +5184,12 @@ GLenum _glew_gles_glGetGraphicsResetStatus ()
     prototypeCalled = true;
     result = glesConfig.m_glGetGraphicsResetStatus ();
   }
+  // GL_EXT_robustness - glGetGraphicsResetStatus
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_robustness] && glesConfig.m_glGetGraphicsResetStatusEXT)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glGetGraphicsResetStatusEXT ();
+  }
   // GL_KHR_robustness - glGetGraphicsResetStatus
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_robustness] && glesConfig.m_glGetGraphicsResetStatusKHR)
   {
@@ -5269,6 +5255,12 @@ void _glew_gles_glGetnUniformfv (GLuint program, GLint location, GLsizei bufSize
     prototypeCalled = true;
     glesConfig.m_glGetnUniformfv (program, location, bufSize, params);
   }
+  // GL_EXT_robustness - glGetnUniformfv
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_robustness] && glesConfig.m_glGetnUniformfvEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetnUniformfvEXT (program, location, bufSize, params);
+  }
   // GL_KHR_robustness - glGetnUniformfv
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_robustness] && glesConfig.m_glGetnUniformfvKHR)
   {
@@ -5297,6 +5289,12 @@ void _glew_gles_glGetnUniformiv (GLuint program, GLint location, GLsizei bufSize
   {
     prototypeCalled = true;
     glesConfig.m_glGetnUniformiv (program, location, bufSize, params);
+  }
+  // GL_EXT_robustness - glGetnUniformiv
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_robustness] && glesConfig.m_glGetnUniformivEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetnUniformivEXT (program, location, bufSize, params);
   }
   // GL_KHR_robustness - glGetnUniformiv
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_robustness] && glesConfig.m_glGetnUniformivKHR)
@@ -5786,6 +5784,52 @@ void _glew_gles_glTexStorage3DMultisample (GLenum target, GLsizei samples, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glRenderbufferStorageMultisampleAdvancedAMD (GLenum target, GLsizei samples, GLsizei storageSamples, GLenum internalformat, GLsizei width, GLsizei height)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_AMD_framebuffer_multisample_advanced - glRenderbufferStorageMultisampleAdvancedAMD
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_framebuffer_multisample_advanced] && glesConfig.m_glRenderbufferStorageMultisampleAdvancedAMD)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glRenderbufferStorageMultisampleAdvancedAMD (target, samples, storageSamples, internalformat, width, height);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glNamedRenderbufferStorageMultisampleAdvancedAMD (GLuint renderbuffer, GLsizei samples, GLsizei storageSamples, GLenum internalformat, GLsizei width, GLsizei height)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_AMD_framebuffer_multisample_advanced - glNamedRenderbufferStorageMultisampleAdvancedAMD
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_AMD_framebuffer_multisample_advanced] && glesConfig.m_glNamedRenderbufferStorageMultisampleAdvancedAMD)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glNamedRenderbufferStorageMultisampleAdvancedAMD (renderbuffer, samples, storageSamples, internalformat, width, height);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glGetPerfMonitorGroupsAMD (GLint * numGroups, GLsizei groupsSize, GLuint * groups)
 {
   bool prototypeCalled = false;
@@ -6154,7 +6198,7 @@ void _glew_gles_glVertexAttribDivisorANGLE (GLuint index, GLuint divisor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glGetTranslatedShaderSourceANGLE (GLuint shader, GLsizei bufsize, GLsizei * length, GLchar * source)
+void _glew_gles_glGetTranslatedShaderSourceANGLE (GLuint shader, GLsizei bufSize, GLsizei * length, GLchar * source)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -6165,7 +6209,7 @@ void _glew_gles_glGetTranslatedShaderSourceANGLE (GLuint shader, GLsizei bufsize
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_ANGLE_translated_shader_source] && glesConfig.m_glGetTranslatedShaderSourceANGLE)
   {
     prototypeCalled = true;
-    glesConfig.m_glGetTranslatedShaderSourceANGLE (shader, bufsize, length, source);
+    glesConfig.m_glGetTranslatedShaderSourceANGLE (shader, bufSize, length, source);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -6390,7 +6434,7 @@ void _glew_gles_glGetInteger64vAPPLE (GLenum pname, GLint64 * params)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glGetSyncivAPPLE (GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values)
+void _glew_gles_glGetSyncivAPPLE (GLsync sync, GLenum pname, GLsizei count, GLsizei * length, GLint * values)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -6401,7 +6445,53 @@ void _glew_gles_glGetSyncivAPPLE (GLsync sync, GLenum pname, GLsizei bufSize, GL
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_APPLE_sync] && glesConfig.m_glGetSyncivAPPLE)
   {
     prototypeCalled = true;
-    glesConfig.m_glGetSyncivAPPLE (sync, pname, bufSize, length, values);
+    glesConfig.m_glGetSyncivAPPLE (sync, pname, count, length, values);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glEGLImageTargetTexStorageEXT (GLenum target, GLeglImageOES image, const GLint*  attrib_list)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_EGL_image_storage - glEGLImageTargetTexStorageEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_EGL_image_storage] && glesConfig.m_glEGLImageTargetTexStorageEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glEGLImageTargetTexStorageEXT (target, image, attrib_list);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glEGLImageTargetTextureStorageEXT (GLuint texture, GLeglImageOES image, const GLint*  attrib_list)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_EGL_image_storage - glEGLImageTargetTextureStorageEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_EGL_image_storage] && glesConfig.m_glEGLImageTargetTextureStorageEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glEGLImageTargetTextureStorageEXT (texture, image, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -6590,6 +6680,75 @@ void _glew_gles_glBufferStorageEXT (GLenum target, GLsizeiptr size, const void *
   {
     prototypeCalled = true;
     glesConfig.m_glBufferStorageEXT (target, size, data, flags);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glClearTexImageEXT (GLuint texture, GLint level, GLenum format, GLenum type, const void * data)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_clear_texture - glClearTexImageEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_clear_texture] && glesConfig.m_glClearTexImageEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glClearTexImageEXT (texture, level, format, type, data);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glClearTexSubImageEXT (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * data)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_clear_texture - glClearTexSubImageEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_clear_texture] && glesConfig.m_glClearTexSubImageEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glClearTexSubImageEXT (texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glClipControlEXT (GLenum origin, GLenum depth)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_clip_control - glClipControlEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_clip_control] && glesConfig.m_glClipControlEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glClipControlEXT (origin, depth);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -7059,6 +7218,29 @@ void _glew_gles_glGetQueryObjectui64vEXT (GLuint id, GLenum pname, GLuint64 * pa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glGetInteger64vEXT (GLenum pname, GLint64 * data)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_disjoint_timer_query - glGetInteger64vEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] && glesConfig.m_glGetInteger64vEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetInteger64vEXT (pname, data);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glDrawBuffersEXT (GLsizei n, const GLenum * bufs)
 {
   bool prototypeCalled = false;
@@ -7337,7 +7519,7 @@ void _glew_gles_glDrawElementsInstancedBaseVertexEXT (GLenum mode, GLsizei count
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glMultiDrawElementsBaseVertexEXT (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount, const GLint * basevertex)
+void _glew_gles_glMultiDrawElementsBaseVertexEXT (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei drawcount, const GLint * basevertex)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -7348,7 +7530,13 @@ void _glew_gles_glMultiDrawElementsBaseVertexEXT (GLenum mode, const GLsizei * c
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_elements_base_vertex] && glesConfig.m_glMultiDrawElementsBaseVertexEXT)
   {
     prototypeCalled = true;
-    glesConfig.m_glMultiDrawElementsBaseVertexEXT (mode, count, type, indices, primcount, basevertex);
+    glesConfig.m_glMultiDrawElementsBaseVertexEXT (mode, count, type, indices, drawcount, basevertex);
+  }
+  // GL_OES_draw_elements_base_vertex - glMultiDrawElementsBaseVertexEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_elements_base_vertex] && glesConfig.m_glMultiDrawElementsBaseVertexEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawElementsBaseVertexEXT (mode, count, type, indices, drawcount, basevertex);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -7407,6 +7595,98 @@ void _glew_gles_glDrawElementsInstancedEXT (GLenum mode, GLsizei count, GLenum t
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedEXT (mode, count, type, indices, primcount);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDrawTransformFeedbackEXT (GLenum mode, GLuint id)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_draw_transform_feedback - glDrawTransformFeedbackEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_transform_feedback] && glesConfig.m_glDrawTransformFeedbackEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawTransformFeedbackEXT (mode, id);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDrawTransformFeedbackInstancedEXT (GLenum mode, GLuint id, GLsizei instancecount)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_draw_transform_feedback - glDrawTransformFeedbackInstancedEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_draw_transform_feedback] && glesConfig.m_glDrawTransformFeedbackInstancedEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawTransformFeedbackInstancedEXT (mode, id, instancecount);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glBufferStorageExternalEXT (GLenum target, GLintptr offset, GLsizeiptr size, GLeglClientBufferEXT clientBuffer, GLbitfield flags)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_external_buffer - glBufferStorageExternalEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_external_buffer] && glesConfig.m_glBufferStorageExternalEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glBufferStorageExternalEXT (target, offset, size, clientBuffer, flags);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glNamedBufferStorageExternalEXT (GLuint buffer, GLintptr offset, GLsizeiptr size, GLeglClientBufferEXT clientBuffer, GLbitfield flags)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_external_buffer - glNamedBufferStorageExternalEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_external_buffer] && glesConfig.m_glNamedBufferStorageExternalEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glNamedBufferStorageExternalEXT (buffer, offset, size, clientBuffer, flags);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -7501,6 +7781,480 @@ void _glew_gles_glFlushMappedBufferRangeEXT (GLenum target, GLintptr offset, GLs
   {
     prototypeCalled = true;
     glesConfig.m_glFlushMappedBufferRangeEXT (target, offset, length);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetUnsignedBytevEXT (GLenum pname, GLubyte * data)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glGetUnsignedBytevEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glGetUnsignedBytevEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetUnsignedBytevEXT (pname, data);
+  }
+  // GL_EXT_semaphore - glGetUnsignedBytevEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore] && glesConfig.m_glGetUnsignedBytevEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetUnsignedBytevEXT (pname, data);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetUnsignedBytei_vEXT (GLenum target, GLuint index, GLubyte * data)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glGetUnsignedBytei_vEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glGetUnsignedBytei_vEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetUnsignedBytei_vEXT (target, index, data);
+  }
+  // GL_EXT_semaphore - glGetUnsignedBytei_vEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore] && glesConfig.m_glGetUnsignedBytei_vEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetUnsignedBytei_vEXT (target, index, data);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDeleteMemoryObjectsEXT (GLsizei n, const GLuint * memoryObjects)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glDeleteMemoryObjectsEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glDeleteMemoryObjectsEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDeleteMemoryObjectsEXT (n, memoryObjects);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+GLboolean _glew_gles_glIsMemoryObjectEXT (GLuint memoryObject)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glIsMemoryObjectEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glIsMemoryObjectEXT)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glIsMemoryObjectEXT (memoryObject);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glCreateMemoryObjectsEXT (GLsizei n, GLuint * memoryObjects)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glCreateMemoryObjectsEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glCreateMemoryObjectsEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glCreateMemoryObjectsEXT (n, memoryObjects);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glMemoryObjectParameterivEXT (GLuint memoryObject, GLenum pname, const GLint * params)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glMemoryObjectParameterivEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glMemoryObjectParameterivEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glMemoryObjectParameterivEXT (memoryObject, pname, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetMemoryObjectParameterivEXT (GLuint memoryObject, GLenum pname, GLint * params)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glGetMemoryObjectParameterivEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glGetMemoryObjectParameterivEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetMemoryObjectParameterivEXT (memoryObject, pname, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTexStorageMem2DEXT (GLenum target, GLsizei levels, GLenum internalFormat, GLsizei width, GLsizei height, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glTexStorageMem2DEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glTexStorageMem2DEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexStorageMem2DEXT (target, levels, internalFormat, width, height, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTexStorageMem2DMultisampleEXT (GLenum target, GLsizei samples, GLenum internalFormat, GLsizei width, GLsizei height, GLboolean fixedSampleLocations, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glTexStorageMem2DMultisampleEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glTexStorageMem2DMultisampleEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexStorageMem2DMultisampleEXT (target, samples, internalFormat, width, height, fixedSampleLocations, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTexStorageMem3DEXT (GLenum target, GLsizei levels, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glTexStorageMem3DEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glTexStorageMem3DEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexStorageMem3DEXT (target, levels, internalFormat, width, height, depth, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTexStorageMem3DMultisampleEXT (GLenum target, GLsizei samples, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedSampleLocations, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glTexStorageMem3DMultisampleEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glTexStorageMem3DMultisampleEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexStorageMem3DMultisampleEXT (target, samples, internalFormat, width, height, depth, fixedSampleLocations, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glBufferStorageMemEXT (GLenum target, GLsizeiptr size, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glBufferStorageMemEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glBufferStorageMemEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glBufferStorageMemEXT (target, size, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTextureStorageMem2DEXT (GLuint texture, GLsizei levels, GLenum internalFormat, GLsizei width, GLsizei height, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glTextureStorageMem2DEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glTextureStorageMem2DEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTextureStorageMem2DEXT (texture, levels, internalFormat, width, height, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTextureStorageMem2DMultisampleEXT (GLuint texture, GLsizei samples, GLenum internalFormat, GLsizei width, GLsizei height, GLboolean fixedSampleLocations, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glTextureStorageMem2DMultisampleEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glTextureStorageMem2DMultisampleEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTextureStorageMem2DMultisampleEXT (texture, samples, internalFormat, width, height, fixedSampleLocations, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTextureStorageMem3DEXT (GLuint texture, GLsizei levels, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glTextureStorageMem3DEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glTextureStorageMem3DEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTextureStorageMem3DEXT (texture, levels, internalFormat, width, height, depth, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTextureStorageMem3DMultisampleEXT (GLuint texture, GLsizei samples, GLenum internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedSampleLocations, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glTextureStorageMem3DMultisampleEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glTextureStorageMem3DMultisampleEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTextureStorageMem3DMultisampleEXT (texture, samples, internalFormat, width, height, depth, fixedSampleLocations, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glNamedBufferStorageMemEXT (GLuint buffer, GLsizeiptr size, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object - glNamedBufferStorageMemEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object] && glesConfig.m_glNamedBufferStorageMemEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glNamedBufferStorageMemEXT (buffer, size, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glImportMemoryFdEXT (GLuint memory, GLuint64 size, GLenum handleType, GLint fd)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object_fd - glImportMemoryFdEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object_fd] && glesConfig.m_glImportMemoryFdEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glImportMemoryFdEXT (memory, size, handleType, fd);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glImportMemoryWin32HandleEXT (GLuint memory, GLuint64 size, GLenum handleType, void * handle)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object_win32 - glImportMemoryWin32HandleEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object_win32] && glesConfig.m_glImportMemoryWin32HandleEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glImportMemoryWin32HandleEXT (memory, size, handleType, handle);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glImportMemoryWin32NameEXT (GLuint memory, GLuint64 size, GLenum handleType, const void * name)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_memory_object_win32 - glImportMemoryWin32NameEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_memory_object_win32] && glesConfig.m_glImportMemoryWin32NameEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glImportMemoryWin32NameEXT (memory, size, handleType, name);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -7719,6 +8473,29 @@ void _glew_gles_glGetIntegeri_vEXT (GLenum target, GLuint index, GLint * data)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glPolygonOffsetClampEXT (GLfloat factor, GLfloat units, GLfloat clamp)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_polygon_offset_clamp - glPolygonOffsetClampEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_polygon_offset_clamp] && glesConfig.m_glPolygonOffsetClampEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glPolygonOffsetClampEXT (factor, units, clamp);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glPrimitiveBoundingBoxEXT (GLfloat minX, GLfloat minY, GLfloat minZ, GLfloat minW, GLfloat maxX, GLfloat maxY, GLfloat maxZ, GLfloat maxW)
 {
   bool prototypeCalled = false;
@@ -7751,12 +8528,6 @@ void _glew_gles_glRasterSamplesEXT (GLuint samples, GLboolean fixedsamplelocatio
 #endif
   // GL_EXT_raster_multisample - glRasterSamplesEXT
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_raster_multisample] && glesConfig.m_glRasterSamplesEXT)
-  {
-    prototypeCalled = true;
-    glesConfig.m_glRasterSamplesEXT (samples, fixedsamplelocations);
-  }
-  // GL_EXT_texture_filter_minmax - glRasterSamplesEXT
-  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_texture_filter_minmax] && glesConfig.m_glRasterSamplesEXT)
   {
     prototypeCalled = true;
     glesConfig.m_glRasterSamplesEXT (samples, fixedsamplelocations);
@@ -7860,6 +8631,238 @@ void _glew_gles_glGetnUniformivEXT (GLuint program, GLint location, GLsizei bufS
   {
     prototypeCalled = true;
     glesConfig.m_glGetnUniformivEXT (program, location, bufSize, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGenSemaphoresEXT (GLsizei n, GLuint * semaphores)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore - glGenSemaphoresEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore] && glesConfig.m_glGenSemaphoresEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGenSemaphoresEXT (n, semaphores);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDeleteSemaphoresEXT (GLsizei n, const GLuint * semaphores)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore - glDeleteSemaphoresEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore] && glesConfig.m_glDeleteSemaphoresEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDeleteSemaphoresEXT (n, semaphores);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+GLboolean _glew_gles_glIsSemaphoreEXT (GLuint semaphore)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore - glIsSemaphoreEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore] && glesConfig.m_glIsSemaphoreEXT)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glIsSemaphoreEXT (semaphore);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glSemaphoreParameterui64vEXT (GLuint semaphore, GLenum pname, const GLuint64 * params)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore - glSemaphoreParameterui64vEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore] && glesConfig.m_glSemaphoreParameterui64vEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glSemaphoreParameterui64vEXT (semaphore, pname, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetSemaphoreParameterui64vEXT (GLuint semaphore, GLenum pname, GLuint64 * params)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore - glGetSemaphoreParameterui64vEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore] && glesConfig.m_glGetSemaphoreParameterui64vEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetSemaphoreParameterui64vEXT (semaphore, pname, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glWaitSemaphoreEXT (GLuint semaphore, GLuint numBufferBarriers, const GLuint * buffers, GLuint numTextureBarriers, const GLuint * textures, const GLenum * srcLayouts)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore - glWaitSemaphoreEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore] && glesConfig.m_glWaitSemaphoreEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glWaitSemaphoreEXT (semaphore, numBufferBarriers, buffers, numTextureBarriers, textures, srcLayouts);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glSignalSemaphoreEXT (GLuint semaphore, GLuint numBufferBarriers, const GLuint * buffers, GLuint numTextureBarriers, const GLuint * textures, const GLenum * dstLayouts)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore - glSignalSemaphoreEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore] && glesConfig.m_glSignalSemaphoreEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glSignalSemaphoreEXT (semaphore, numBufferBarriers, buffers, numTextureBarriers, textures, dstLayouts);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glImportSemaphoreFdEXT (GLuint semaphore, GLenum handleType, GLint fd)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore_fd - glImportSemaphoreFdEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore_fd] && glesConfig.m_glImportSemaphoreFdEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glImportSemaphoreFdEXT (semaphore, handleType, fd);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glImportSemaphoreWin32HandleEXT (GLuint semaphore, GLenum handleType, void * handle)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore_win32 - glImportSemaphoreWin32HandleEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore_win32] && glesConfig.m_glImportSemaphoreWin32HandleEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glImportSemaphoreWin32HandleEXT (semaphore, handleType, handle);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glImportSemaphoreWin32NameEXT (GLuint semaphore, GLenum handleType, const void * name)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_semaphore_win32 - glImportSemaphoreWin32NameEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_semaphore_win32] && glesConfig.m_glImportSemaphoreWin32NameEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glImportSemaphoreWin32NameEXT (semaphore, handleType, name);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -8509,12 +9512,6 @@ void _glew_gles_glProgramUniformMatrix4fvEXT (GLuint program, GLint location, GL
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix4fvEXT (program, location, count, transpose, value);
   }
-  // GL_EXT_separate_shader_objects - glProgramUniformMatrix4fvEXT
-  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] && glesConfig.m_glProgramUniformMatrix4fvEXT)
-  {
-    prototypeCalled = true;
-    glesConfig.m_glProgramUniformMatrix4fvEXT (program, location, count, transpose, value);
-  }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
   GLEW_ASSERT (glGetError () == GL_NO_ERROR);
@@ -8882,6 +9879,100 @@ void _glew_gles_glProgramUniformMatrix4x3fvEXT (GLuint program, GLint location, 
   {
     prototypeCalled = true;
     glesConfig.m_glProgramUniformMatrix4x3fvEXT (program, location, count, transpose, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glFramebufferFetchBarrierEXT ()
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_shader_framebuffer_fetch_non_coherent - glFramebufferFetchBarrierEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_shader_framebuffer_fetch_non_coherent] && glesConfig.m_glFramebufferFetchBarrierEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferFetchBarrierEXT ();
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glFramebufferPixelLocalStorageSizeEXT (GLuint target, GLsizei size)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_shader_pixel_local_storage2 - glFramebufferPixelLocalStorageSizeEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_shader_pixel_local_storage2] && glesConfig.m_glFramebufferPixelLocalStorageSizeEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferPixelLocalStorageSizeEXT (target, size);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+GLsizei _glew_gles_glGetFramebufferPixelLocalStorageSizeEXT (GLuint target)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLsizei result = ((GLsizei)0);
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_shader_pixel_local_storage2 - glGetFramebufferPixelLocalStorageSizeEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_shader_pixel_local_storage2] && glesConfig.m_glGetFramebufferPixelLocalStorageSizeEXT)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glGetFramebufferPixelLocalStorageSizeEXT (target);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glClearPixelLocalStorageuiEXT (GLsizei offset, GLsizei n, const GLuint * values)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_shader_pixel_local_storage2 - glClearPixelLocalStorageuiEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_shader_pixel_local_storage2] && glesConfig.m_glClearPixelLocalStorageuiEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glClearPixelLocalStorageuiEXT (offset, n, values);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -9330,6 +10421,336 @@ void _glew_gles_glTextureViewEXT (GLuint texture, GLenum target, GLuint origtext
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glCreateSemaphoresNV (GLsizei n, GLuint * semaphores)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_timeline_semaphore - glCreateSemaphoresNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_timeline_semaphore] && glesConfig.m_glCreateSemaphoresNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glCreateSemaphoresNV (n, semaphores);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glSemaphoreParameterivNV (GLuint semaphore, GLenum pname, const GLint * params)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_timeline_semaphore - glSemaphoreParameterivNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_timeline_semaphore] && glesConfig.m_glSemaphoreParameterivNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glSemaphoreParameterivNV (semaphore, pname, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetSemaphoreParameterivNV (GLuint semaphore, GLenum pname, GLint * params)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_timeline_semaphore - glGetSemaphoreParameterivNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_timeline_semaphore] && glesConfig.m_glGetSemaphoreParameterivNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetSemaphoreParameterivNV (semaphore, pname, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+GLboolean _glew_gles_glAcquireKeyedMutexWin32EXT (GLuint memory, GLuint64 key, GLuint timeout)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_win32_keyed_mutex - glAcquireKeyedMutexWin32EXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_win32_keyed_mutex] && glesConfig.m_glAcquireKeyedMutexWin32EXT)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glAcquireKeyedMutexWin32EXT (memory, key, timeout);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+GLboolean _glew_gles_glReleaseKeyedMutexWin32EXT (GLuint memory, GLuint64 key)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLboolean result = ((GLboolean)0);
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_win32_keyed_mutex - glReleaseKeyedMutexWin32EXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_win32_keyed_mutex] && glesConfig.m_glReleaseKeyedMutexWin32EXT)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glReleaseKeyedMutexWin32EXT (memory, key);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glWindowRectanglesEXT (GLenum mode, GLsizei count, const GLint * box)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_window_rectangles - glWindowRectanglesEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_window_rectangles] && glesConfig.m_glWindowRectanglesEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glWindowRectanglesEXT (mode, count, box);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+GLuint64 _glew_gles_glGetTextureHandleIMG (GLuint texture)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint64 result = ((GLuint64)0);
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_IMG_bindless_texture - glGetTextureHandleIMG
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_bindless_texture] && glesConfig.m_glGetTextureHandleIMG)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glGetTextureHandleIMG (texture);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+GLuint64 _glew_gles_glGetTextureSamplerHandleIMG (GLuint texture, GLuint sampler)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLuint64 result = ((GLuint64)0);
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_IMG_bindless_texture - glGetTextureSamplerHandleIMG
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_bindless_texture] && glesConfig.m_glGetTextureSamplerHandleIMG)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glGetTextureSamplerHandleIMG (texture, sampler);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniformHandleui64IMG (GLint location, GLuint64 value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_IMG_bindless_texture - glUniformHandleui64IMG
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_bindless_texture] && glesConfig.m_glUniformHandleui64IMG)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniformHandleui64IMG (location, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniformHandleui64vIMG (GLint location, GLsizei count, const GLuint64 * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_IMG_bindless_texture - glUniformHandleui64vIMG
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_bindless_texture] && glesConfig.m_glUniformHandleui64vIMG)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniformHandleui64vIMG (location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniformHandleui64IMG (GLuint program, GLint location, GLuint64 value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_IMG_bindless_texture - glProgramUniformHandleui64IMG
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_bindless_texture] && glesConfig.m_glProgramUniformHandleui64IMG)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformHandleui64IMG (program, location, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniformHandleui64vIMG (GLuint program, GLint location, GLsizei count, const GLuint64 * values)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_IMG_bindless_texture - glProgramUniformHandleui64vIMG
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_bindless_texture] && glesConfig.m_glProgramUniformHandleui64vIMG)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniformHandleui64vIMG (program, location, count, values);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glFramebufferTexture2DDownsampleIMG (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint xscale, GLint yscale)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_IMG_framebuffer_downsample - glFramebufferTexture2DDownsampleIMG
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_framebuffer_downsample] && glesConfig.m_glFramebufferTexture2DDownsampleIMG)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferTexture2DDownsampleIMG (target, attachment, textarget, texture, level, xscale, yscale);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glFramebufferTextureLayerDownsampleIMG (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer, GLint xscale, GLint yscale)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_IMG_framebuffer_downsample - glFramebufferTextureLayerDownsampleIMG
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_IMG_framebuffer_downsample] && glesConfig.m_glFramebufferTextureLayerDownsampleIMG)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferTextureLayerDownsampleIMG (target, attachment, texture, level, layer, xscale, yscale);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glRenderbufferStorageMultisampleIMG (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)
 {
   bool prototypeCalled = false;
@@ -9560,7 +10981,7 @@ void _glew_gles_glGetPerfCounterInfoINTEL (GLuint queryId, GLuint counterId, GLu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glGetPerfQueryDataINTEL (GLuint queryHandle, GLuint flags, GLsizei dataSize, GLvoid * data, GLuint * bytesWritten)
+void _glew_gles_glGetPerfQueryDataINTEL (GLuint queryHandle, GLuint flags, GLsizei dataSize, void * data, GLuint * bytesWritten)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -10024,6 +11445,75 @@ void _glew_gles_glGetnUniformuivKHR (GLuint program, GLint location, GLsizei buf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glMaxShaderCompilerThreadsKHR (GLuint count)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_KHR_parallel_shader_compile - glMaxShaderCompilerThreadsKHR
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_KHR_parallel_shader_compile] && glesConfig.m_glMaxShaderCompilerThreadsKHR)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glMaxShaderCompilerThreadsKHR (count);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glFramebufferParameteriMESA (GLenum target, GLenum pname, GLint param)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_MESA_framebuffer_flip_y - glFramebufferParameteriMESA
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_MESA_framebuffer_flip_y] && glesConfig.m_glFramebufferParameteriMESA)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferParameteriMESA (target, pname, param);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetFramebufferParameterivMESA (GLenum target, GLenum pname, GLint * params)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_MESA_framebuffer_flip_y - glGetFramebufferParameterivMESA
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_MESA_framebuffer_flip_y] && glesConfig.m_glGetFramebufferParameterivMESA)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetFramebufferParameterivMESA (target, pname, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 GLuint64 _glew_gles_glGetTextureHandleNV (GLuint texture)
 {
   bool prototypeCalled = false;
@@ -10379,6 +11869,29 @@ void _glew_gles_glBlendBarrierNV ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glViewportPositionWScaleNV (GLuint index, GLfloat xcoeff, GLfloat ycoeff)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_clip_space_w_scaling - glViewportPositionWScaleNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_clip_space_w_scaling] && glesConfig.m_glViewportPositionWScaleNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glViewportPositionWScaleNV (index, xcoeff, ycoeff);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glBeginConditionalRenderNV (GLuint id, GLenum mode)
 {
   bool prototypeCalled = false;
@@ -10437,6 +11950,29 @@ void _glew_gles_glSubpixelPrecisionBiasNV (GLuint xbits, GLuint ybits)
   {
     prototypeCalled = true;
     glesConfig.m_glSubpixelPrecisionBiasNV (xbits, ybits);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glConservativeRasterParameteriNV (GLenum pname, GLint param)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_conservative_raster_pre_snap_triangles - glConservativeRasterParameteriNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_conservative_raster_pre_snap_triangles] && glesConfig.m_glConservativeRasterParameteriNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glConservativeRasterParameteriNV (pname, param);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -10575,6 +12111,123 @@ void _glew_gles_glDrawElementsInstancedNV (GLenum mode, GLsizei count, GLenum ty
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedNV (mode, count, type, indices, primcount);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDrawVkImageNV (GLuint64 vkImage, GLuint sampler, GLfloat x0, GLfloat y0, GLfloat x1, GLfloat y1, GLfloat z, GLfloat s0, GLfloat t0, GLfloat s1, GLfloat t1)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_draw_vulkan_image - glDrawVkImageNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_draw_vulkan_image] && glesConfig.m_glDrawVkImageNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawVkImageNV (vkImage, sampler, x0, y0, x1, y1, z, s0, t0, s1, t1);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+GLVULKANPROCNV _glew_gles_glGetVkProcAddrNV (const GLchar * name)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+  GLVULKANPROCNV result = ((GLVULKANPROCNV)0);
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_draw_vulkan_image - glGetVkProcAddrNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_draw_vulkan_image] && glesConfig.m_glGetVkProcAddrNV)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glGetVkProcAddrNV (name);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  return result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glWaitVkSemaphoreNV (GLuint64 vkSemaphore)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_draw_vulkan_image - glWaitVkSemaphoreNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_draw_vulkan_image] && glesConfig.m_glWaitVkSemaphoreNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glWaitVkSemaphoreNV (vkSemaphore);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glSignalVkSemaphoreNV (GLuint64 vkSemaphore)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_draw_vulkan_image - glSignalVkSemaphoreNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_draw_vulkan_image] && glesConfig.m_glSignalVkSemaphoreNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glSignalVkSemaphoreNV (vkSemaphore);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glSignalVkFenceNV (GLuint64 vkFence)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_draw_vulkan_image - glSignalVkFenceNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_draw_vulkan_image] && glesConfig.m_glSignalVkFenceNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glSignalVkFenceNV (vkFence);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -10820,7 +12473,7 @@ void _glew_gles_glCoverageModulationTableNV (GLsizei n, const GLfloat * v)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glGetCoverageModulationTableNV (GLsizei bufsize, GLfloat * v)
+void _glew_gles_glGetCoverageModulationTableNV (GLsizei bufSize, GLfloat * v)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -10831,7 +12484,7 @@ void _glew_gles_glGetCoverageModulationTableNV (GLsizei bufsize, GLfloat * v)
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_framebuffer_mixed_samples] && glesConfig.m_glGetCoverageModulationTableNV)
   {
     prototypeCalled = true;
-    glesConfig.m_glGetCoverageModulationTableNV (bufsize, v);
+    glesConfig.m_glGetCoverageModulationTableNV (bufSize, v);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -10889,6 +12542,765 @@ void _glew_gles_glRenderbufferStorageMultisampleNV (GLenum target, GLsizei sampl
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glUniform1i64NV (GLint location, GLint64EXT x)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform1i64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform1i64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform1i64NV (location, x);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform2i64NV (GLint location, GLint64EXT x, GLint64EXT y)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform2i64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform2i64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform2i64NV (location, x, y);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform3i64NV (GLint location, GLint64EXT x, GLint64EXT y, GLint64EXT z)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform3i64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform3i64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform3i64NV (location, x, y, z);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform4i64NV (GLint location, GLint64EXT x, GLint64EXT y, GLint64EXT z, GLint64EXT w)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform4i64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform4i64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform4i64NV (location, x, y, z, w);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform1i64vNV (GLint location, GLsizei count, const GLint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform1i64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform1i64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform1i64vNV (location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform2i64vNV (GLint location, GLsizei count, const GLint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform2i64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform2i64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform2i64vNV (location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform3i64vNV (GLint location, GLsizei count, const GLint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform3i64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform3i64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform3i64vNV (location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform4i64vNV (GLint location, GLsizei count, const GLint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform4i64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform4i64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform4i64vNV (location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform1ui64NV (GLint location, GLuint64EXT x)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform1ui64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform1ui64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform1ui64NV (location, x);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform2ui64NV (GLint location, GLuint64EXT x, GLuint64EXT y)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform2ui64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform2ui64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform2ui64NV (location, x, y);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform3ui64NV (GLint location, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform3ui64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform3ui64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform3ui64NV (location, x, y, z);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform4ui64NV (GLint location, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z, GLuint64EXT w)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform4ui64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform4ui64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform4ui64NV (location, x, y, z, w);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform1ui64vNV (GLint location, GLsizei count, const GLuint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform1ui64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform1ui64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform1ui64vNV (location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform2ui64vNV (GLint location, GLsizei count, const GLuint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform2ui64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform2ui64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform2ui64vNV (location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform3ui64vNV (GLint location, GLsizei count, const GLuint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform3ui64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform3ui64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform3ui64vNV (location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glUniform4ui64vNV (GLint location, GLsizei count, const GLuint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glUniform4ui64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glUniform4ui64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glUniform4ui64vNV (location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetUniformi64vNV (GLuint program, GLint location, GLint64EXT * params)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glGetUniformi64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glGetUniformi64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetUniformi64vNV (program, location, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform1i64NV (GLuint program, GLint location, GLint64EXT x)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform1i64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform1i64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1i64NV (program, location, x);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform2i64NV (GLuint program, GLint location, GLint64EXT x, GLint64EXT y)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform2i64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform2i64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2i64NV (program, location, x, y);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform3i64NV (GLuint program, GLint location, GLint64EXT x, GLint64EXT y, GLint64EXT z)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform3i64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform3i64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3i64NV (program, location, x, y, z);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform4i64NV (GLuint program, GLint location, GLint64EXT x, GLint64EXT y, GLint64EXT z, GLint64EXT w)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform4i64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform4i64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4i64NV (program, location, x, y, z, w);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform1i64vNV (GLuint program, GLint location, GLsizei count, const GLint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform1i64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform1i64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1i64vNV (program, location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform2i64vNV (GLuint program, GLint location, GLsizei count, const GLint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform2i64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform2i64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2i64vNV (program, location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform3i64vNV (GLuint program, GLint location, GLsizei count, const GLint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform3i64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform3i64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3i64vNV (program, location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform4i64vNV (GLuint program, GLint location, GLsizei count, const GLint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform4i64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform4i64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4i64vNV (program, location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform1ui64NV (GLuint program, GLint location, GLuint64EXT x)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform1ui64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform1ui64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1ui64NV (program, location, x);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform2ui64NV (GLuint program, GLint location, GLuint64EXT x, GLuint64EXT y)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform2ui64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform2ui64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2ui64NV (program, location, x, y);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform3ui64NV (GLuint program, GLint location, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform3ui64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform3ui64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3ui64NV (program, location, x, y, z);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform4ui64NV (GLuint program, GLint location, GLuint64EXT x, GLuint64EXT y, GLuint64EXT z, GLuint64EXT w)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform4ui64NV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform4ui64NV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4ui64NV (program, location, x, y, z, w);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform1ui64vNV (GLuint program, GLint location, GLsizei count, const GLuint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform1ui64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform1ui64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform1ui64vNV (program, location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform2ui64vNV (GLuint program, GLint location, GLsizei count, const GLuint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform2ui64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform2ui64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform2ui64vNV (program, location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform3ui64vNV (GLuint program, GLint location, GLsizei count, const GLuint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform3ui64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform3ui64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform3ui64vNV (program, location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glProgramUniform4ui64vNV (GLuint program, GLint location, GLsizei count, const GLuint64EXT * value)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_gpu_shader5 - glProgramUniform4ui64vNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] && glesConfig.m_glProgramUniform4ui64vNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glProgramUniform4ui64vNV (program, location, count, value);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glVertexAttribDivisorNV (GLuint index, GLuint divisor)
 {
   bool prototypeCalled = false;
@@ -10912,7 +13324,7 @@ void _glew_gles_glVertexAttribDivisorNV (GLuint index, GLuint divisor)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glGetInternalformatSampleivNV (GLenum target, GLenum internalformat, GLsizei samples, GLenum pname, GLsizei bufSize, GLint * params)
+void _glew_gles_glGetInternalformatSampleivNV (GLenum target, GLenum internalformat, GLsizei samples, GLenum pname, GLsizei count, GLint * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -10923,7 +13335,329 @@ void _glew_gles_glGetInternalformatSampleivNV (GLenum target, GLenum internalfor
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_internalformat_sample_query] && glesConfig.m_glGetInternalformatSampleivNV)
   {
     prototypeCalled = true;
-    glesConfig.m_glGetInternalformatSampleivNV (target, internalformat, samples, pname, bufSize, params);
+    glesConfig.m_glGetInternalformatSampleivNV (target, internalformat, samples, pname, count, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetMemoryObjectDetachedResourcesuivNV (GLuint memory, GLenum pname, GLint first, GLsizei count, GLuint * params)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_attachment - glGetMemoryObjectDetachedResourcesuivNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_attachment] && glesConfig.m_glGetMemoryObjectDetachedResourcesuivNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetMemoryObjectDetachedResourcesuivNV (memory, pname, first, count, params);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glResetMemoryObjectParameterNV (GLuint memory, GLenum pname)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_attachment - glResetMemoryObjectParameterNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_attachment] && glesConfig.m_glResetMemoryObjectParameterNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glResetMemoryObjectParameterNV (memory, pname);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTexAttachMemoryNV (GLenum target, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_attachment - glTexAttachMemoryNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_attachment] && glesConfig.m_glTexAttachMemoryNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexAttachMemoryNV (target, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glBufferAttachMemoryNV (GLenum target, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_attachment - glBufferAttachMemoryNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_attachment] && glesConfig.m_glBufferAttachMemoryNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glBufferAttachMemoryNV (target, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTextureAttachMemoryNV (GLuint texture, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_attachment - glTextureAttachMemoryNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_attachment] && glesConfig.m_glTextureAttachMemoryNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTextureAttachMemoryNV (texture, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glNamedBufferAttachMemoryNV (GLuint buffer, GLuint memory, GLuint64 offset)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_attachment - glNamedBufferAttachMemoryNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_attachment] && glesConfig.m_glNamedBufferAttachMemoryNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glNamedBufferAttachMemoryNV (buffer, memory, offset);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glBufferPageCommitmentMemNV (GLenum target, GLintptr offset, GLsizeiptr size, GLuint memory, GLuint64 memOffset, GLboolean commit)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_object_sparse - glBufferPageCommitmentMemNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_object_sparse] && glesConfig.m_glBufferPageCommitmentMemNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glBufferPageCommitmentMemNV (target, offset, size, memory, memOffset, commit);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTexPageCommitmentMemNV (GLenum target, GLint layer, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLuint memory, GLuint64 offset, GLboolean commit)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_object_sparse - glTexPageCommitmentMemNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_object_sparse] && glesConfig.m_glTexPageCommitmentMemNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexPageCommitmentMemNV (target, layer, level, xoffset, yoffset, zoffset, width, height, depth, memory, offset, commit);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glNamedBufferPageCommitmentMemNV (GLuint buffer, GLintptr offset, GLsizeiptr size, GLuint memory, GLuint64 memOffset, GLboolean commit)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_object_sparse - glNamedBufferPageCommitmentMemNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_object_sparse] && glesConfig.m_glNamedBufferPageCommitmentMemNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glNamedBufferPageCommitmentMemNV (buffer, offset, size, memory, memOffset, commit);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTexturePageCommitmentMemNV (GLuint texture, GLint layer, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLuint memory, GLuint64 offset, GLboolean commit)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_memory_object_sparse - glTexturePageCommitmentMemNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_memory_object_sparse] && glesConfig.m_glTexturePageCommitmentMemNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexturePageCommitmentMemNV (texture, layer, level, xoffset, yoffset, zoffset, width, height, depth, memory, offset, commit);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDrawMeshTasksNV (GLuint first, GLuint count)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_mesh_shader - glDrawMeshTasksNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_mesh_shader] && glesConfig.m_glDrawMeshTasksNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawMeshTasksNV (first, count);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDrawMeshTasksIndirectNV (GLintptr indirect)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_mesh_shader - glDrawMeshTasksIndirectNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_mesh_shader] && glesConfig.m_glDrawMeshTasksIndirectNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawMeshTasksIndirectNV (indirect);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glMultiDrawMeshTasksIndirectNV (GLintptr indirect, GLsizei drawcount, GLsizei stride)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_mesh_shader - glMultiDrawMeshTasksIndirectNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_mesh_shader] && glesConfig.m_glMultiDrawMeshTasksIndirectNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawMeshTasksIndirectNV (indirect, drawcount, stride);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glMultiDrawMeshTasksIndirectCountNV (GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_mesh_shader - glMultiDrawMeshTasksIndirectCountNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_mesh_shader] && glesConfig.m_glMultiDrawMeshTasksIndirectCountNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawMeshTasksIndirectCountNV (indirect, drawcount, maxdrawcount, stride);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -12281,7 +15015,7 @@ void _glew_gles_glStencilThenCoverStrokePathInstancedNV (GLsizei numPaths, GLenu
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLenum _glew_gles_glPathGlyphIndexRangeNV (GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLuint pathParameterTemplate, GLfloat emScale, GLuint baseAndCount[2])
+GLenum _glew_gles_glPathGlyphIndexRangeNV (GLenum fontTarget, const void * fontName, GLbitfield fontStyle, GLuint pathParameterTemplate, GLfloat emScale, GLuint * baseAndCount)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -12379,7 +15113,7 @@ void _glew_gles_glProgramPathFragmentInputGenNV (GLuint program, GLint location,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_gles_glGetProgramResourcefvNV (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei bufSize, GLsizei * length, GLfloat * params)
+void _glew_gles_glGetProgramResourcefvNV (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const GLenum * props, GLsizei count, GLsizei * length, GLfloat * params)
 {
   bool prototypeCalled = false;
   const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
@@ -12390,7 +15124,7 @@ void _glew_gles_glGetProgramResourcefvNV (GLuint program, GLenum programInterfac
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_path_rendering] && glesConfig.m_glGetProgramResourcefvNV)
   {
     prototypeCalled = true;
-    glesConfig.m_glGetProgramResourcefvNV (program, programInterface, index, propCount, props, bufSize, length, params);
+    glesConfig.m_glGetProgramResourcefvNV (program, programInterface, index, propCount, props, count, length, params);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -12506,6 +15240,213 @@ void _glew_gles_glResolveDepthValuesNV ()
   {
     prototypeCalled = true;
     glesConfig.m_glResolveDepthValuesNV ();
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glScissorExclusiveNV (GLint x, GLint y, GLsizei width, GLsizei height)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_scissor_exclusive - glScissorExclusiveNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_scissor_exclusive] && glesConfig.m_glScissorExclusiveNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glScissorExclusiveNV (x, y, width, height);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glScissorExclusiveArrayvNV (GLuint first, GLsizei count, const GLint * v)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_scissor_exclusive - glScissorExclusiveArrayvNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_scissor_exclusive] && glesConfig.m_glScissorExclusiveArrayvNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glScissorExclusiveArrayvNV (first, count, v);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glBindShadingRateImageNV (GLuint texture)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_shading_rate_image - glBindShadingRateImageNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_shading_rate_image] && glesConfig.m_glBindShadingRateImageNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glBindShadingRateImageNV (texture);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetShadingRateImagePaletteNV (GLuint viewport, GLuint entry, GLenum * rate)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_shading_rate_image - glGetShadingRateImagePaletteNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_shading_rate_image] && glesConfig.m_glGetShadingRateImagePaletteNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetShadingRateImagePaletteNV (viewport, entry, rate);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetShadingRateSampleLocationivNV (GLenum rate, GLuint samples, GLuint index, GLint * location)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_shading_rate_image - glGetShadingRateSampleLocationivNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_shading_rate_image] && glesConfig.m_glGetShadingRateSampleLocationivNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetShadingRateSampleLocationivNV (rate, samples, index, location);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glShadingRateImageBarrierNV (GLboolean synchronize)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_shading_rate_image - glShadingRateImageBarrierNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_shading_rate_image] && glesConfig.m_glShadingRateImageBarrierNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glShadingRateImageBarrierNV (synchronize);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glShadingRateImagePaletteNV (GLuint viewport, GLuint first, GLsizei count, const GLenum * rates)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_shading_rate_image - glShadingRateImagePaletteNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_shading_rate_image] && glesConfig.m_glShadingRateImagePaletteNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glShadingRateImagePaletteNV (viewport, first, count, rates);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glShadingRateSampleOrderNV (GLenum order)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_shading_rate_image - glShadingRateSampleOrderNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_shading_rate_image] && glesConfig.m_glShadingRateSampleOrderNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glShadingRateSampleOrderNV (order);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glShadingRateSampleOrderCustomNV (GLenum rate, GLuint samples, const GLint * locations)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_shading_rate_image - glShadingRateSampleOrderCustomNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_shading_rate_image] && glesConfig.m_glShadingRateSampleOrderCustomNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glShadingRateSampleOrderCustomNV (rate, samples, locations);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -12795,6 +15736,29 @@ GLboolean _glew_gles_glIsEnablediNV (GLenum target, GLuint index)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glViewportSwizzleNV (GLuint index, GLenum swizzlex, GLenum swizzley, GLenum swizzlez, GLenum swizzlew)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_NV_viewport_swizzle - glViewportSwizzleNV
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_NV_viewport_swizzle] && glesConfig.m_glViewportSwizzleNV)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glViewportSwizzleNV (index, swizzlex, swizzley, swizzlez, swizzlew);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glEGLImageTargetTexture2DOES (GLenum target, GLeglImageOES image)
 {
   bool prototypeCalled = false;
@@ -12877,6 +15841,12 @@ void _glew_gles_glEnableiOES (GLenum target, GLuint index)
     prototypeCalled = true;
     glesConfig.m_glEnableiOES (target, index);
   }
+  // GL_OES_viewport_array - glEnableiOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glEnableiOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glEnableiOES (target, index);
+  }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
   GLEW_ASSERT (glGetError () == GL_NO_ERROR);
@@ -12896,6 +15866,12 @@ void _glew_gles_glDisableiOES (GLenum target, GLuint index)
 #endif
   // GL_OES_draw_buffers_indexed - glDisableiOES
   if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_buffers_indexed] && glesConfig.m_glDisableiOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDisableiOES (target, index);
+  }
+  // GL_OES_viewport_array - glDisableiOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glDisableiOES)
   {
     prototypeCalled = true;
     glesConfig.m_glDisableiOES (target, index);
@@ -13039,6 +16015,12 @@ GLboolean _glew_gles_glIsEnablediOES (GLenum target, GLuint index)
     prototypeCalled = true;
     result = glesConfig.m_glIsEnablediOES (target, index);
   }
+  // GL_OES_viewport_array - glIsEnablediOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glIsEnablediOES)
+  {
+    prototypeCalled = true;
+    result = glesConfig.m_glIsEnablediOES (target, index);
+  }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
   GLEW_ASSERT (glGetError () == GL_NO_ERROR);
@@ -13108,29 +16090,6 @@ void _glew_gles_glDrawElementsInstancedBaseVertexOES (GLenum mode, GLsizei count
   {
     prototypeCalled = true;
     glesConfig.m_glDrawElementsInstancedBaseVertexOES (mode, count, type, indices, instancecount, basevertex);
-  }
-  GLEW_ASSERT (prototypeCalled);
-#if GLEW_GL_POST_ERROR_CHECK
-  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
-#endif
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-void _glew_gles_glMultiDrawElementsBaseVertexOES (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount, const GLint * basevertex)
-{
-  bool prototypeCalled = false;
-  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
-#if GLEW_GL_PRE_ERROR_CHECK
-  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
-#endif
-  // GL_OES_draw_elements_base_vertex - glMultiDrawElementsBaseVertexOES
-  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_draw_elements_base_vertex] && glesConfig.m_glMultiDrawElementsBaseVertexOES)
-  {
-    prototypeCalled = true;
-    glesConfig.m_glMultiDrawElementsBaseVertexOES (mode, count, type, indices, primcount, basevertex);
   }
   GLEW_ASSERT (prototypeCalled);
 #if GLEW_GL_POST_ERROR_CHECK
@@ -13861,6 +16820,213 @@ GLboolean _glew_gles_glIsVertexArrayOES (GLuint array)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glViewportArrayvOES (GLuint first, GLsizei count, const GLfloat * v)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_OES_viewport_array - glViewportArrayvOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glViewportArrayvOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glViewportArrayvOES (first, count, v);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glViewportIndexedfOES (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_OES_viewport_array - glViewportIndexedfOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glViewportIndexedfOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glViewportIndexedfOES (index, x, y, w, h);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glViewportIndexedfvOES (GLuint index, const GLfloat * v)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_OES_viewport_array - glViewportIndexedfvOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glViewportIndexedfvOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glViewportIndexedfvOES (index, v);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glScissorArrayvOES (GLuint first, GLsizei count, const GLint * v)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_OES_viewport_array - glScissorArrayvOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glScissorArrayvOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glScissorArrayvOES (first, count, v);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glScissorIndexedOES (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_OES_viewport_array - glScissorIndexedOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glScissorIndexedOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glScissorIndexedOES (index, left, bottom, width, height);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glScissorIndexedvOES (GLuint index, const GLint * v)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_OES_viewport_array - glScissorIndexedvOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glScissorIndexedvOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glScissorIndexedvOES (index, v);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDepthRangeArrayfvOES (GLuint first, GLsizei count, const GLfloat * v)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_OES_viewport_array - glDepthRangeArrayfvOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glDepthRangeArrayfvOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDepthRangeArrayfvOES (first, count, v);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDepthRangeIndexedfOES (GLuint index, GLfloat n, GLfloat f)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_OES_viewport_array - glDepthRangeIndexedfOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glDepthRangeIndexedfOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDepthRangeIndexedfOES (index, n, f);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glGetFloati_vOES (GLenum target, GLuint index, GLfloat * data)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_OES_viewport_array - glGetFloati_vOES
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_OES_viewport_array] && glesConfig.m_glGetFloati_vOES)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glGetFloati_vOES (target, index, data);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glFramebufferTextureMultiviewOVR (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint baseViewIndex, GLsizei numViews)
 {
   bool prototypeCalled = false;
@@ -14300,6 +17466,190 @@ void _glew_gles_glExtGetProgramBinarySourceQCOM (GLuint program, GLenum shaderty
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glFramebufferFoveationConfigQCOM (GLuint framebuffer, GLuint numLayers, GLuint focalPointsPerLayer, GLuint requestedFeatures, GLuint * providedFeatures)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_QCOM_framebuffer_foveated - glFramebufferFoveationConfigQCOM
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_framebuffer_foveated] && glesConfig.m_glFramebufferFoveationConfigQCOM)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferFoveationConfigQCOM (framebuffer, numLayers, focalPointsPerLayer, requestedFeatures, providedFeatures);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glFramebufferFoveationParametersQCOM (GLuint framebuffer, GLuint layer, GLuint focalPoint, GLfloat focalX, GLfloat focalY, GLfloat gainX, GLfloat gainY, GLfloat foveaArea)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_QCOM_framebuffer_foveated - glFramebufferFoveationParametersQCOM
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_framebuffer_foveated] && glesConfig.m_glFramebufferFoveationParametersQCOM)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferFoveationParametersQCOM (framebuffer, layer, focalPoint, focalX, focalY, gainX, gainY, foveaArea);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTexEstimateMotionQCOM (GLuint ref, GLuint target, GLuint output)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_QCOM_motion_estimation - glTexEstimateMotionQCOM
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_motion_estimation] && glesConfig.m_glTexEstimateMotionQCOM)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexEstimateMotionQCOM (ref, target, output);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTexEstimateMotionRegionsQCOM (GLuint ref, GLuint target, GLuint output, GLuint mask)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_QCOM_motion_estimation - glTexEstimateMotionRegionsQCOM
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_motion_estimation] && glesConfig.m_glTexEstimateMotionRegionsQCOM)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTexEstimateMotionRegionsQCOM (ref, target, output, mask);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glExtrapolateTex2DQCOM (GLuint src1, GLuint src2, GLuint output, GLfloat scaleFactor)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_QCOM_frame_extrapolation - glExtrapolateTex2DQCOM
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_frame_extrapolation] && glesConfig.m_glExtrapolateTex2DQCOM)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glExtrapolateTex2DQCOM (src1, src2, output, scaleFactor);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glTextureFoveationParametersQCOM (GLuint texture, GLuint layer, GLuint focalPoint, GLfloat focalX, GLfloat focalY, GLfloat gainX, GLfloat gainY, GLfloat foveaArea)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_QCOM_texture_foveated - glTextureFoveationParametersQCOM
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_texture_foveated] && glesConfig.m_glTextureFoveationParametersQCOM)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glTextureFoveationParametersQCOM (texture, layer, focalPoint, focalX, focalY, gainX, gainY, foveaArea);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glFramebufferFetchBarrierQCOM ()
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_QCOM_shader_framebuffer_fetch_noncoherent - glFramebufferFetchBarrierQCOM
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_shader_framebuffer_fetch_noncoherent] && glesConfig.m_glFramebufferFetchBarrierQCOM)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glFramebufferFetchBarrierQCOM ();
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glShadingRateQCOM (GLenum rate)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_QCOM_shading_rate - glShadingRateQCOM
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_QCOM_shading_rate] && glesConfig.m_glShadingRateQCOM)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glShadingRateQCOM (rate);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glStartTilingQCOM (GLuint x, GLuint y, GLuint width, GLuint height, GLbitfield preserveMask)
 {
   bool prototypeCalled = false;
@@ -14367,9 +17717,9 @@ void glew::gles::Initialise ()
 {
   memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));
 
-  // 
+  //
   // Determine current driver's feature reporting.
-  // 
+  //
 
   const unsigned char *glVersion = glGetString (GL_VERSION);
 
@@ -14407,9 +17757,9 @@ void glew::gles::Initialise ()
     }
   }
 
-  // 
+  //
   // Evaluate extension support.
-  // 
+  //
 
   std::unordered_set <std::string> supportedExtensions;
 
@@ -14432,7 +17782,7 @@ void glew::gles::Initialise ()
 
     memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
 
-    do 
+    do
     {
       const char * seperator = strchr ((const char *) thisExtStart, ' ');
 
@@ -14442,7 +17792,7 @@ void glew::gles::Initialise ()
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -14456,7 +17806,7 @@ void glew::gles::Initialise ()
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -14479,6 +17829,7 @@ void glew::gles::Initialise ()
 
   s_deviceConfig.m_featureSupported [GLEW_GL_AMD_compressed_3DC_texture] = (supportedExtensions.find ("GL_AMD_compressed_3DC_texture") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_AMD_compressed_ATC_texture] = (supportedExtensions.find ("GL_AMD_compressed_ATC_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_AMD_framebuffer_multisample_advanced] = (supportedExtensions.find ("GL_AMD_framebuffer_multisample_advanced") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor] = (supportedExtensions.find ("GL_AMD_performance_monitor") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_AMD_program_binary_Z400] = (supportedExtensions.find ("GL_AMD_program_binary_Z400") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_ANDROID_extension_pack_es31a] = (supportedExtensions.find ("GL_ANDROID_extension_pack_es31a") != supportedExtensions.end ());
@@ -14506,65 +17857,99 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_ARM_rgba8] = (supportedExtensions.find ("GL_ARM_rgba8") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_ARM_shader_framebuffer_fetch] = (supportedExtensions.find ("GL_ARM_shader_framebuffer_fetch") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_ARM_shader_framebuffer_fetch_depth_stencil] = (supportedExtensions.find ("GL_ARM_shader_framebuffer_fetch_depth_stencil") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_ARM_texture_unnormalized_coordinates] = (supportedExtensions.find ("GL_ARM_texture_unnormalized_coordinates") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_DMP_program_binary] = (supportedExtensions.find ("GL_DMP_program_binary") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_DMP_shader_binary] = (supportedExtensions.find ("GL_DMP_shader_binary") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_EGL_image_array] = (supportedExtensions.find ("GL_EXT_EGL_image_array") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_EGL_image_storage] = (supportedExtensions.find ("GL_EXT_EGL_image_storage") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_YUV_target] = (supportedExtensions.find ("GL_EXT_YUV_target") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_base_instance] = (supportedExtensions.find ("GL_EXT_base_instance") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_blend_func_extended] = (supportedExtensions.find ("GL_EXT_blend_func_extended") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_blend_minmax] = (supportedExtensions.find ("GL_EXT_blend_minmax") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_buffer_storage] = (supportedExtensions.find ("GL_EXT_buffer_storage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_clear_texture] = (supportedExtensions.find ("GL_EXT_clear_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_clip_control] = (supportedExtensions.find ("GL_EXT_clip_control") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_clip_cull_distance] = (supportedExtensions.find ("GL_EXT_clip_cull_distance") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_color_buffer_float] = (supportedExtensions.find ("GL_EXT_color_buffer_float") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_color_buffer_half_float] = (supportedExtensions.find ("GL_EXT_color_buffer_half_float") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_conservative_depth] = (supportedExtensions.find ("GL_EXT_conservative_depth") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_copy_image] = (supportedExtensions.find ("GL_EXT_copy_image") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_debug_label] = (supportedExtensions.find ("GL_EXT_debug_label") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_debug_marker] = (supportedExtensions.find ("GL_EXT_debug_marker") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_depth_clamp] = (supportedExtensions.find ("GL_EXT_depth_clamp") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_discard_framebuffer] = (supportedExtensions.find ("GL_EXT_discard_framebuffer") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_disjoint_timer_query] = (supportedExtensions.find ("GL_EXT_disjoint_timer_query") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers] = (supportedExtensions.find ("GL_EXT_draw_buffers") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_buffers_indexed] = (supportedExtensions.find ("GL_EXT_draw_buffers_indexed") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_elements_base_vertex] = (supportedExtensions.find ("GL_EXT_draw_elements_base_vertex") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_instanced] = (supportedExtensions.find ("GL_EXT_draw_instanced") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_transform_feedback] = (supportedExtensions.find ("GL_EXT_draw_transform_feedback") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_external_buffer] = (supportedExtensions.find ("GL_EXT_external_buffer") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_float_blend] = (supportedExtensions.find ("GL_EXT_float_blend") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_geometry_point_size] = (supportedExtensions.find ("GL_EXT_geometry_point_size") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_geometry_shader] = (supportedExtensions.find ("GL_EXT_geometry_shader") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_gpu_shader5] = (supportedExtensions.find ("GL_EXT_gpu_shader5") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_instanced_arrays] = (supportedExtensions.find ("GL_EXT_instanced_arrays") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_map_buffer_range] = (supportedExtensions.find ("GL_EXT_map_buffer_range") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_memory_object] = (supportedExtensions.find ("GL_EXT_memory_object") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_memory_object_fd] = (supportedExtensions.find ("GL_EXT_memory_object_fd") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_memory_object_win32] = (supportedExtensions.find ("GL_EXT_memory_object_win32") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_arrays] = (supportedExtensions.find ("GL_EXT_multi_draw_arrays") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_indirect] = (supportedExtensions.find ("GL_EXT_multi_draw_indirect") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multisampled_compatibility] = (supportedExtensions.find ("GL_EXT_multisampled_compatibility") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multisampled_render_to_texture] = (supportedExtensions.find ("GL_EXT_multisampled_render_to_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multisampled_render_to_texture2] = (supportedExtensions.find ("GL_EXT_multisampled_render_to_texture2") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multiview_draw_buffers] = (supportedExtensions.find ("GL_EXT_multiview_draw_buffers") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multiview_tessellation_geometry_shader] = (supportedExtensions.find ("GL_EXT_multiview_tessellation_geometry_shader") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multiview_texture_multisample] = (supportedExtensions.find ("GL_EXT_multiview_texture_multisample") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multiview_timer_query] = (supportedExtensions.find ("GL_EXT_multiview_timer_query") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_occlusion_query_boolean] = (supportedExtensions.find ("GL_EXT_occlusion_query_boolean") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_polygon_offset_clamp] = (supportedExtensions.find ("GL_EXT_polygon_offset_clamp") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_post_depth_coverage] = (supportedExtensions.find ("GL_EXT_post_depth_coverage") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_primitive_bounding_box] = (supportedExtensions.find ("GL_EXT_primitive_bounding_box") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_protected_textures] = (supportedExtensions.find ("GL_EXT_protected_textures") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_pvrtc_sRGB] = (supportedExtensions.find ("GL_EXT_pvrtc_sRGB") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_raster_multisample] = (supportedExtensions.find ("GL_EXT_raster_multisample") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_read_format_bgra] = (supportedExtensions.find ("GL_EXT_read_format_bgra") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_render_snorm] = (supportedExtensions.find ("GL_EXT_render_snorm") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_robustness] = (supportedExtensions.find ("GL_EXT_robustness") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_semaphore] = (supportedExtensions.find ("GL_EXT_semaphore") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_semaphore_fd] = (supportedExtensions.find ("GL_EXT_semaphore_fd") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_semaphore_win32] = (supportedExtensions.find ("GL_EXT_semaphore_win32") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_sRGB] = (supportedExtensions.find ("GL_EXT_sRGB") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_sRGB_write_control] = (supportedExtensions.find ("GL_EXT_sRGB_write_control") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_separate_shader_objects] = (supportedExtensions.find ("GL_EXT_separate_shader_objects") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_framebuffer_fetch] = (supportedExtensions.find ("GL_EXT_shader_framebuffer_fetch") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_framebuffer_fetch_non_coherent] = (supportedExtensions.find ("GL_EXT_shader_framebuffer_fetch_non_coherent") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_group_vote] = (supportedExtensions.find ("GL_EXT_shader_group_vote") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_implicit_conversions] = (supportedExtensions.find ("GL_EXT_shader_implicit_conversions") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_integer_mix] = (supportedExtensions.find ("GL_EXT_shader_integer_mix") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_io_blocks] = (supportedExtensions.find ("GL_EXT_shader_io_blocks") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_non_constant_global_initializers] = (supportedExtensions.find ("GL_EXT_shader_non_constant_global_initializers") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_pixel_local_storage] = (supportedExtensions.find ("GL_EXT_shader_pixel_local_storage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_pixel_local_storage2] = (supportedExtensions.find ("GL_EXT_shader_pixel_local_storage2") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_texture_lod] = (supportedExtensions.find ("GL_EXT_shader_texture_lod") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shadow_samplers] = (supportedExtensions.find ("GL_EXT_shadow_samplers") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_sparse_texture] = (supportedExtensions.find ("GL_EXT_sparse_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_sparse_texture2] = (supportedExtensions.find ("GL_EXT_sparse_texture2") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_tessellation_point_size] = (supportedExtensions.find ("GL_EXT_tessellation_point_size") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_tessellation_shader] = (supportedExtensions.find ("GL_EXT_tessellation_shader") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_border_clamp] = (supportedExtensions.find ("GL_EXT_texture_border_clamp") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_buffer] = (supportedExtensions.find ("GL_EXT_texture_buffer") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_compression_astc_decode_mode] = (supportedExtensions.find ("GL_EXT_texture_compression_astc_decode_mode") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_compression_bptc] = (supportedExtensions.find ("GL_EXT_texture_compression_bptc") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_compression_dxt1] = (supportedExtensions.find ("GL_EXT_texture_compression_dxt1") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_compression_rgtc] = (supportedExtensions.find ("GL_EXT_texture_compression_rgtc") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_compression_s3tc] = (supportedExtensions.find ("GL_EXT_texture_compression_s3tc") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_compression_s3tc_srgb] = (supportedExtensions.find ("GL_EXT_texture_compression_s3tc_srgb") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_cube_map_array] = (supportedExtensions.find ("GL_EXT_texture_cube_map_array") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_filter_anisotropic] = (supportedExtensions.find ("GL_EXT_texture_filter_anisotropic") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_filter_minmax] = (supportedExtensions.find ("GL_EXT_texture_filter_minmax") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_format_BGRA8888] = (supportedExtensions.find ("GL_EXT_texture_format_BGRA8888") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_format_sRGB_override] = (supportedExtensions.find ("GL_EXT_texture_format_sRGB_override") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_mirror_clamp_to_edge] = (supportedExtensions.find ("GL_EXT_texture_mirror_clamp_to_edge") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_norm16] = (supportedExtensions.find ("GL_EXT_texture_norm16") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_query_lod] = (supportedExtensions.find ("GL_EXT_texture_query_lod") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_rg] = (supportedExtensions.find ("GL_EXT_texture_rg") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_sRGB_R8] = (supportedExtensions.find ("GL_EXT_texture_sRGB_R8") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_sRGB_RG8] = (supportedExtensions.find ("GL_EXT_texture_sRGB_RG8") != supportedExtensions.end ());
@@ -14572,8 +17957,13 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_storage] = (supportedExtensions.find ("GL_EXT_texture_storage") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_type_2_10_10_10_REV] = (supportedExtensions.find ("GL_EXT_texture_type_2_10_10_10_REV") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_view] = (supportedExtensions.find ("GL_EXT_texture_view") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_timeline_semaphore] = (supportedExtensions.find ("GL_NV_timeline_semaphore") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_unpack_subimage] = (supportedExtensions.find ("GL_EXT_unpack_subimage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_win32_keyed_mutex] = (supportedExtensions.find ("GL_EXT_win32_keyed_mutex") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_window_rectangles] = (supportedExtensions.find ("GL_EXT_window_rectangles") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_FJ_shader_binary_GCCSO] = (supportedExtensions.find ("GL_FJ_shader_binary_GCCSO") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_IMG_bindless_texture] = (supportedExtensions.find ("GL_IMG_bindless_texture") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_IMG_framebuffer_downsample] = (supportedExtensions.find ("GL_IMG_framebuffer_downsample") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_IMG_multisampled_render_to_texture] = (supportedExtensions.find ("GL_IMG_multisampled_render_to_texture") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_IMG_program_binary] = (supportedExtensions.find ("GL_IMG_program_binary") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_IMG_read_format] = (supportedExtensions.find ("GL_IMG_read_format") != supportedExtensions.end ());
@@ -14581,7 +17971,9 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_IMG_texture_compression_pvrtc] = (supportedExtensions.find ("GL_IMG_texture_compression_pvrtc") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_IMG_texture_compression_pvrtc2] = (supportedExtensions.find ("GL_IMG_texture_compression_pvrtc2") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_IMG_texture_filter_cubic] = (supportedExtensions.find ("GL_IMG_texture_filter_cubic") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_INTEL_conservative_rasterization] = (supportedExtensions.find ("GL_INTEL_conservative_rasterization") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_INTEL_framebuffer_CMAA] = (supportedExtensions.find ("GL_INTEL_framebuffer_CMAA") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_INTEL_blackhole_render] = (supportedExtensions.find ("GL_INTEL_blackhole_render") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_INTEL_performance_query] = (supportedExtensions.find ("GL_INTEL_performance_query") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_KHR_blend_equation_advanced] = (supportedExtensions.find ("GL_KHR_blend_equation_advanced") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_KHR_blend_equation_advanced_coherent] = (supportedExtensions.find ("GL_KHR_blend_equation_advanced_coherent") != supportedExtensions.end ());
@@ -14590,53 +17982,82 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_KHR_no_error] = (supportedExtensions.find ("GL_KHR_no_error") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_KHR_robust_buffer_access_behavior] = (supportedExtensions.find ("GL_KHR_robust_buffer_access_behavior") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_KHR_robustness] = (supportedExtensions.find ("GL_KHR_robustness") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_KHR_shader_subgroup] = (supportedExtensions.find ("GL_KHR_shader_subgroup") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_KHR_texture_compression_astc_hdr] = (supportedExtensions.find ("GL_KHR_texture_compression_astc_hdr") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_KHR_texture_compression_astc_ldr] = (supportedExtensions.find ("GL_KHR_texture_compression_astc_ldr") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_KHR_texture_compression_astc_sliced_3d] = (supportedExtensions.find ("GL_KHR_texture_compression_astc_sliced_3d") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_KHR_parallel_shader_compile] = (supportedExtensions.find ("GL_KHR_parallel_shader_compile") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_MESA_framebuffer_flip_x] = (supportedExtensions.find ("GL_MESA_framebuffer_flip_x") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_MESA_framebuffer_flip_y] = (supportedExtensions.find ("GL_MESA_framebuffer_flip_y") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_MESA_framebuffer_swap_xy] = (supportedExtensions.find ("GL_MESA_framebuffer_swap_xy") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_MESA_program_binary_formats] = (supportedExtensions.find ("GL_MESA_program_binary_formats") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_MESA_shader_integer_functions] = (supportedExtensions.find ("GL_MESA_shader_integer_functions") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NVX_blend_equation_advanced_multi_draw_buffers] = (supportedExtensions.find ("GL_NVX_blend_equation_advanced_multi_draw_buffers") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_bindless_texture] = (supportedExtensions.find ("GL_NV_bindless_texture") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_blend_equation_advanced] = (supportedExtensions.find ("GL_NV_blend_equation_advanced") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_blend_equation_advanced_coherent] = (supportedExtensions.find ("GL_NV_blend_equation_advanced_coherent") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_blend_minmax_factor] = (supportedExtensions.find ("GL_NV_blend_minmax_factor") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_clip_space_w_scaling] = (supportedExtensions.find ("GL_NV_clip_space_w_scaling") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_compute_shader_derivatives] = (supportedExtensions.find ("GL_NV_compute_shader_derivatives") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_conditional_render] = (supportedExtensions.find ("GL_NV_conditional_render") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_conservative_raster] = (supportedExtensions.find ("GL_NV_conservative_raster") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_conservative_raster_pre_snap] = (supportedExtensions.find ("GL_NV_conservative_raster_pre_snap") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_conservative_raster_pre_snap_triangles] = (supportedExtensions.find ("GL_NV_conservative_raster_pre_snap_triangles") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_copy_buffer] = (supportedExtensions.find ("GL_NV_copy_buffer") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_coverage_sample] = (supportedExtensions.find ("GL_NV_coverage_sample") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_depth_nonlinear] = (supportedExtensions.find ("GL_NV_depth_nonlinear") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_draw_buffers] = (supportedExtensions.find ("GL_NV_draw_buffers") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_draw_instanced] = (supportedExtensions.find ("GL_NV_draw_instanced") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_draw_vulkan_image] = (supportedExtensions.find ("GL_NV_draw_vulkan_image") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_explicit_attrib_location] = (supportedExtensions.find ("GL_NV_explicit_attrib_location") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_fbo_color_attachments] = (supportedExtensions.find ("GL_NV_fbo_color_attachments") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_fence] = (supportedExtensions.find ("GL_NV_fence") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_fill_rectangle] = (supportedExtensions.find ("GL_NV_fill_rectangle") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_fragment_coverage_to_color] = (supportedExtensions.find ("GL_NV_fragment_coverage_to_color") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_fragment_shader_barycentric] = (supportedExtensions.find ("GL_NV_fragment_shader_barycentric") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_fragment_shader_interlock] = (supportedExtensions.find ("GL_NV_fragment_shader_interlock") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_framebuffer_blit] = (supportedExtensions.find ("GL_NV_framebuffer_blit") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_framebuffer_mixed_samples] = (supportedExtensions.find ("GL_NV_framebuffer_mixed_samples") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_framebuffer_multisample] = (supportedExtensions.find ("GL_NV_framebuffer_multisample") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_generate_mipmap_sRGB] = (supportedExtensions.find ("GL_NV_generate_mipmap_sRGB") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_geometry_shader_passthrough] = (supportedExtensions.find ("GL_NV_geometry_shader_passthrough") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5] = (supportedExtensions.find ("GL_NV_gpu_shader5") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_image_formats] = (supportedExtensions.find ("GL_NV_image_formats") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_instanced_arrays] = (supportedExtensions.find ("GL_NV_instanced_arrays") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_internalformat_sample_query] = (supportedExtensions.find ("GL_NV_internalformat_sample_query") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_memory_attachment] = (supportedExtensions.find ("GL_NV_memory_attachment") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_memory_object_sparse] = (supportedExtensions.find ("GL_NV_memory_object_sparse") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_mesh_shader] = (supportedExtensions.find ("GL_NV_mesh_shader") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_non_square_matrices] = (supportedExtensions.find ("GL_NV_non_square_matrices") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_path_rendering] = (supportedExtensions.find ("GL_NV_path_rendering") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_path_rendering_shared_edge] = (supportedExtensions.find ("GL_NV_path_rendering_shared_edge") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_pixel_buffer_object] = (supportedExtensions.find ("GL_NV_pixel_buffer_object") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_polygon_mode] = (supportedExtensions.find ("GL_NV_polygon_mode") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_primitive_shading_rate] = (supportedExtensions.find ("GL_NV_primitive_shading_rate") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_read_buffer] = (supportedExtensions.find ("GL_NV_read_buffer") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_read_buffer_front] = (supportedExtensions.find ("GL_NV_read_buffer_front") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_read_depth] = (supportedExtensions.find ("GL_NV_read_depth") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_read_depth_stencil] = (supportedExtensions.find ("GL_NV_read_depth_stencil") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_read_stencil] = (supportedExtensions.find ("GL_NV_read_stencil") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_representative_fragment_test] = (supportedExtensions.find ("GL_NV_representative_fragment_test") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_sRGB_formats] = (supportedExtensions.find ("GL_NV_sRGB_formats") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_sample_locations] = (supportedExtensions.find ("GL_NV_sample_locations") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_sample_mask_override_coverage] = (supportedExtensions.find ("GL_NV_sample_mask_override_coverage") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_scissor_exclusive] = (supportedExtensions.find ("GL_NV_scissor_exclusive") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_shader_atomic_fp16_vector] = (supportedExtensions.find ("GL_NV_shader_atomic_fp16_vector") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_shader_noperspective_interpolation] = (supportedExtensions.find ("GL_NV_shader_noperspective_interpolation") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_shader_subgroup_partitioned] = (supportedExtensions.find ("GL_NV_shader_subgroup_partitioned") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_shader_texture_footprint] = (supportedExtensions.find ("GL_NV_shader_texture_footprint") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_shading_rate_image] = (supportedExtensions.find ("GL_NV_shading_rate_image") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_shadow_samplers_array] = (supportedExtensions.find ("GL_NV_shadow_samplers_array") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_shadow_samplers_cube] = (supportedExtensions.find ("GL_NV_shadow_samplers_cube") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_stereo_view_rendering] = (supportedExtensions.find ("GL_NV_stereo_view_rendering") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_texture_border_clamp] = (supportedExtensions.find ("GL_NV_texture_border_clamp") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_texture_compression_s3tc_update] = (supportedExtensions.find ("GL_NV_texture_compression_s3tc_update") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_texture_npot_2D_mipmap] = (supportedExtensions.find ("GL_NV_texture_npot_2D_mipmap") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_viewport_array] = (supportedExtensions.find ("GL_NV_viewport_array") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_NV_viewport_array2] = (supportedExtensions.find ("GL_NV_viewport_array2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_NV_viewport_swizzle] = (supportedExtensions.find ("GL_NV_viewport_swizzle") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_OES_EGL_image] = (supportedExtensions.find ("GL_OES_EGL_image") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_OES_EGL_image_external] = (supportedExtensions.find ("GL_OES_EGL_image_external") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_OES_EGL_image_external_essl3] = (supportedExtensions.find ("GL_OES_EGL_image_external_essl3") != supportedExtensions.end ());
@@ -14688,6 +18109,7 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_OES_vertex_array_object] = (supportedExtensions.find ("GL_OES_vertex_array_object") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_OES_vertex_half_float] = (supportedExtensions.find ("GL_OES_vertex_half_float") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_OES_vertex_type_10_10_10_2] = (supportedExtensions.find ("GL_OES_vertex_type_10_10_10_2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_OES_viewport_array] = (supportedExtensions.find ("GL_OES_viewport_array") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_OVR_multiview] = (supportedExtensions.find ("GL_OVR_multiview") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_OVR_multiview2] = (supportedExtensions.find ("GL_OVR_multiview2") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_OVR_multiview_multisampled_render_to_texture] = (supportedExtensions.find ("GL_OVR_multiview_multisampled_render_to_texture") != supportedExtensions.end ());
@@ -14696,10 +18118,21 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_driver_control] = (supportedExtensions.find ("GL_QCOM_driver_control") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_extended_get] = (supportedExtensions.find ("GL_QCOM_extended_get") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_extended_get2] = (supportedExtensions.find ("GL_QCOM_extended_get2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_framebuffer_foveated] = (supportedExtensions.find ("GL_QCOM_framebuffer_foveated") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_motion_estimation] = (supportedExtensions.find ("GL_QCOM_motion_estimation") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_frame_extrapolation] = (supportedExtensions.find ("GL_QCOM_frame_extrapolation") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_texture_foveated] = (supportedExtensions.find ("GL_QCOM_texture_foveated") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_texture_foveated2] = (supportedExtensions.find ("GL_QCOM_texture_foveated2") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_texture_foveated_subsampled_layout] = (supportedExtensions.find ("GL_QCOM_texture_foveated_subsampled_layout") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_perfmon_global_mode] = (supportedExtensions.find ("GL_QCOM_perfmon_global_mode") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_shader_framebuffer_fetch_noncoherent] = (supportedExtensions.find ("GL_QCOM_shader_framebuffer_fetch_noncoherent") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_shader_framebuffer_fetch_rate] = (supportedExtensions.find ("GL_QCOM_shader_framebuffer_fetch_rate") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_shading_rate] = (supportedExtensions.find ("GL_QCOM_shading_rate") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_tiled_rendering] = (supportedExtensions.find ("GL_QCOM_tiled_rendering") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_writeonly_rendering] = (supportedExtensions.find ("GL_QCOM_writeonly_rendering") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_YUV_texture_gather] = (supportedExtensions.find ("GL_QCOM_YUV_texture_gather") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_VIV_shader_binary] = (supportedExtensions.find ("GL_VIV_shader_binary") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_shadow_lod] = (supportedExtensions.find ("GL_EXT_texture_shadow_lod") != supportedExtensions.end ());
 
   // GL_ES_VERSION_3_0
   if (s_deviceConfig.m_featureSupported [GLEW_GL_ES_VERSION_3_0])
@@ -14932,6 +18365,13 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glTexStorage3DMultisample = (PFNGLTEXSTORAGE3DMULTISAMPLEPROC) glewGetProcAddress ("glTexStorage3DMultisample");
   }
 
+  // GL_AMD_framebuffer_multisample_advanced
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_AMD_framebuffer_multisample_advanced])
+  {
+    s_deviceConfig.m_glRenderbufferStorageMultisampleAdvancedAMD = (PFNGLRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC) glewGetProcAddress ("glRenderbufferStorageMultisampleAdvancedAMD");
+    s_deviceConfig.m_glNamedRenderbufferStorageMultisampleAdvancedAMD = (PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEADVANCEDAMDPROC) glewGetProcAddress ("glNamedRenderbufferStorageMultisampleAdvancedAMD");
+  }
+
   // GL_AMD_performance_monitor
   if (s_deviceConfig.m_featureSupported [GLEW_GL_AMD_performance_monitor])
   {
@@ -14999,6 +18439,13 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glGetSyncivAPPLE = (PFNGLGETSYNCIVAPPLEPROC) glewGetProcAddress ("glGetSyncivAPPLE");
   }
 
+  // GL_EXT_EGL_image_storage
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_EGL_image_storage])
+  {
+    s_deviceConfig.m_glEGLImageTargetTexStorageEXT = (PFNGLEGLIMAGETARGETTEXSTORAGEEXTPROC) glewGetProcAddress ("glEGLImageTargetTexStorageEXT");
+    s_deviceConfig.m_glEGLImageTargetTextureStorageEXT = (PFNGLEGLIMAGETARGETTEXTURESTORAGEEXTPROC) glewGetProcAddress ("glEGLImageTargetTextureStorageEXT");
+  }
+
   // GL_EXT_base_instance
   if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_base_instance])
   {
@@ -15020,6 +18467,19 @@ void glew::gles::Initialise ()
   if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_buffer_storage])
   {
     s_deviceConfig.m_glBufferStorageEXT = (PFNGLBUFFERSTORAGEEXTPROC) glewGetProcAddress ("glBufferStorageEXT");
+  }
+
+  // GL_EXT_clear_texture
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_clear_texture])
+  {
+    s_deviceConfig.m_glClearTexImageEXT = (PFNGLCLEARTEXIMAGEEXTPROC) glewGetProcAddress ("glClearTexImageEXT");
+    s_deviceConfig.m_glClearTexSubImageEXT = (PFNGLCLEARTEXSUBIMAGEEXTPROC) glewGetProcAddress ("glClearTexSubImageEXT");
+  }
+
+  // GL_EXT_clip_control
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_clip_control])
+  {
+    s_deviceConfig.m_glClipControlEXT = (PFNGLCLIPCONTROLEXTPROC) glewGetProcAddress ("glClipControlEXT");
   }
 
   // GL_EXT_copy_image
@@ -15063,6 +18523,7 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glGetQueryObjectuivEXT = (PFNGLGETQUERYOBJECTUIVEXTPROC) glewGetProcAddress ("glGetQueryObjectuivEXT");
     s_deviceConfig.m_glGetQueryObjecti64vEXT = (PFNGLGETQUERYOBJECTI64VEXTPROC) glewGetProcAddress ("glGetQueryObjecti64vEXT");
     s_deviceConfig.m_glGetQueryObjectui64vEXT = (PFNGLGETQUERYOBJECTUI64VEXTPROC) glewGetProcAddress ("glGetQueryObjectui64vEXT");
+    s_deviceConfig.m_glGetInteger64vEXT = (PFNGLGETINTEGER64VEXTPROC) glewGetProcAddress ("glGetInteger64vEXT");
   }
 
   // GL_EXT_draw_buffers
@@ -15100,6 +18561,20 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glDrawElementsInstancedEXT = (PFNGLDRAWELEMENTSINSTANCEDEXTPROC) glewGetProcAddress ("glDrawElementsInstancedEXT");
   }
 
+  // GL_EXT_draw_transform_feedback
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_draw_transform_feedback])
+  {
+    s_deviceConfig.m_glDrawTransformFeedbackEXT = (PFNGLDRAWTRANSFORMFEEDBACKEXTPROC) glewGetProcAddress ("glDrawTransformFeedbackEXT");
+    s_deviceConfig.m_glDrawTransformFeedbackInstancedEXT = (PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDEXTPROC) glewGetProcAddress ("glDrawTransformFeedbackInstancedEXT");
+  }
+
+  // GL_EXT_external_buffer
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_external_buffer])
+  {
+    s_deviceConfig.m_glBufferStorageExternalEXT = (PFNGLBUFFERSTORAGEEXTERNALEXTPROC) glewGetProcAddress ("glBufferStorageExternalEXT");
+    s_deviceConfig.m_glNamedBufferStorageExternalEXT = (PFNGLNAMEDBUFFERSTORAGEEXTERNALEXTPROC) glewGetProcAddress ("glNamedBufferStorageExternalEXT");
+  }
+
   // GL_EXT_geometry_shader
   if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_geometry_shader])
   {
@@ -15117,6 +18592,41 @@ void glew::gles::Initialise ()
   {
     s_deviceConfig.m_glMapBufferRangeEXT = (PFNGLMAPBUFFERRANGEEXTPROC) glewGetProcAddress ("glMapBufferRangeEXT");
     s_deviceConfig.m_glFlushMappedBufferRangeEXT = (PFNGLFLUSHMAPPEDBUFFERRANGEEXTPROC) glewGetProcAddress ("glFlushMappedBufferRangeEXT");
+  }
+
+  // GL_EXT_memory_object
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_memory_object])
+  {
+    s_deviceConfig.m_glGetUnsignedBytevEXT = (PFNGLGETUNSIGNEDBYTEVEXTPROC) glewGetProcAddress ("glGetUnsignedBytevEXT");
+    s_deviceConfig.m_glGetUnsignedBytei_vEXT = (PFNGLGETUNSIGNEDBYTEI_VEXTPROC) glewGetProcAddress ("glGetUnsignedBytei_vEXT");
+    s_deviceConfig.m_glDeleteMemoryObjectsEXT = (PFNGLDELETEMEMORYOBJECTSEXTPROC) glewGetProcAddress ("glDeleteMemoryObjectsEXT");
+    s_deviceConfig.m_glIsMemoryObjectEXT = (PFNGLISMEMORYOBJECTEXTPROC) glewGetProcAddress ("glIsMemoryObjectEXT");
+    s_deviceConfig.m_glCreateMemoryObjectsEXT = (PFNGLCREATEMEMORYOBJECTSEXTPROC) glewGetProcAddress ("glCreateMemoryObjectsEXT");
+    s_deviceConfig.m_glMemoryObjectParameterivEXT = (PFNGLMEMORYOBJECTPARAMETERIVEXTPROC) glewGetProcAddress ("glMemoryObjectParameterivEXT");
+    s_deviceConfig.m_glGetMemoryObjectParameterivEXT = (PFNGLGETMEMORYOBJECTPARAMETERIVEXTPROC) glewGetProcAddress ("glGetMemoryObjectParameterivEXT");
+    s_deviceConfig.m_glTexStorageMem2DEXT = (PFNGLTEXSTORAGEMEM2DEXTPROC) glewGetProcAddress ("glTexStorageMem2DEXT");
+    s_deviceConfig.m_glTexStorageMem2DMultisampleEXT = (PFNGLTEXSTORAGEMEM2DMULTISAMPLEEXTPROC) glewGetProcAddress ("glTexStorageMem2DMultisampleEXT");
+    s_deviceConfig.m_glTexStorageMem3DEXT = (PFNGLTEXSTORAGEMEM3DEXTPROC) glewGetProcAddress ("glTexStorageMem3DEXT");
+    s_deviceConfig.m_glTexStorageMem3DMultisampleEXT = (PFNGLTEXSTORAGEMEM3DMULTISAMPLEEXTPROC) glewGetProcAddress ("glTexStorageMem3DMultisampleEXT");
+    s_deviceConfig.m_glBufferStorageMemEXT = (PFNGLBUFFERSTORAGEMEMEXTPROC) glewGetProcAddress ("glBufferStorageMemEXT");
+    s_deviceConfig.m_glTextureStorageMem2DEXT = (PFNGLTEXTURESTORAGEMEM2DEXTPROC) glewGetProcAddress ("glTextureStorageMem2DEXT");
+    s_deviceConfig.m_glTextureStorageMem2DMultisampleEXT = (PFNGLTEXTURESTORAGEMEM2DMULTISAMPLEEXTPROC) glewGetProcAddress ("glTextureStorageMem2DMultisampleEXT");
+    s_deviceConfig.m_glTextureStorageMem3DEXT = (PFNGLTEXTURESTORAGEMEM3DEXTPROC) glewGetProcAddress ("glTextureStorageMem3DEXT");
+    s_deviceConfig.m_glTextureStorageMem3DMultisampleEXT = (PFNGLTEXTURESTORAGEMEM3DMULTISAMPLEEXTPROC) glewGetProcAddress ("glTextureStorageMem3DMultisampleEXT");
+    s_deviceConfig.m_glNamedBufferStorageMemEXT = (PFNGLNAMEDBUFFERSTORAGEMEMEXTPROC) glewGetProcAddress ("glNamedBufferStorageMemEXT");
+  }
+
+  // GL_EXT_memory_object_fd
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_memory_object_fd])
+  {
+    s_deviceConfig.m_glImportMemoryFdEXT = (PFNGLIMPORTMEMORYFDEXTPROC) glewGetProcAddress ("glImportMemoryFdEXT");
+  }
+
+  // GL_EXT_memory_object_win32
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_memory_object_win32])
+  {
+    s_deviceConfig.m_glImportMemoryWin32HandleEXT = (PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC) glewGetProcAddress ("glImportMemoryWin32HandleEXT");
+    s_deviceConfig.m_glImportMemoryWin32NameEXT = (PFNGLIMPORTMEMORYWIN32NAMEEXTPROC) glewGetProcAddress ("glImportMemoryWin32NameEXT");
   }
 
   // GL_EXT_multi_draw_arrays
@@ -15148,6 +18658,12 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glGetIntegeri_vEXT = (PFNGLGETINTEGERI_VEXTPROC) glewGetProcAddress ("glGetIntegeri_vEXT");
   }
 
+  // GL_EXT_polygon_offset_clamp
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_polygon_offset_clamp])
+  {
+    s_deviceConfig.m_glPolygonOffsetClampEXT = (PFNGLPOLYGONOFFSETCLAMPEXTPROC) glewGetProcAddress ("glPolygonOffsetClampEXT");
+  }
+
   // GL_EXT_primitive_bounding_box
   if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_primitive_bounding_box])
   {
@@ -15167,6 +18683,31 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glReadnPixelsEXT = (PFNGLREADNPIXELSEXTPROC) glewGetProcAddress ("glReadnPixelsEXT");
     s_deviceConfig.m_glGetnUniformfvEXT = (PFNGLGETNUNIFORMFVEXTPROC) glewGetProcAddress ("glGetnUniformfvEXT");
     s_deviceConfig.m_glGetnUniformivEXT = (PFNGLGETNUNIFORMIVEXTPROC) glewGetProcAddress ("glGetnUniformivEXT");
+  }
+
+  // GL_EXT_semaphore
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_semaphore])
+  {
+    s_deviceConfig.m_glGenSemaphoresEXT = (PFNGLGENSEMAPHORESEXTPROC) glewGetProcAddress ("glGenSemaphoresEXT");
+    s_deviceConfig.m_glDeleteSemaphoresEXT = (PFNGLDELETESEMAPHORESEXTPROC) glewGetProcAddress ("glDeleteSemaphoresEXT");
+    s_deviceConfig.m_glIsSemaphoreEXT = (PFNGLISSEMAPHOREEXTPROC) glewGetProcAddress ("glIsSemaphoreEXT");
+    s_deviceConfig.m_glSemaphoreParameterui64vEXT = (PFNGLSEMAPHOREPARAMETERUI64VEXTPROC) glewGetProcAddress ("glSemaphoreParameterui64vEXT");
+    s_deviceConfig.m_glGetSemaphoreParameterui64vEXT = (PFNGLGETSEMAPHOREPARAMETERUI64VEXTPROC) glewGetProcAddress ("glGetSemaphoreParameterui64vEXT");
+    s_deviceConfig.m_glWaitSemaphoreEXT = (PFNGLWAITSEMAPHOREEXTPROC) glewGetProcAddress ("glWaitSemaphoreEXT");
+    s_deviceConfig.m_glSignalSemaphoreEXT = (PFNGLSIGNALSEMAPHOREEXTPROC) glewGetProcAddress ("glSignalSemaphoreEXT");
+  }
+
+  // GL_EXT_semaphore_fd
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_semaphore_fd])
+  {
+    s_deviceConfig.m_glImportSemaphoreFdEXT = (PFNGLIMPORTSEMAPHOREFDEXTPROC) glewGetProcAddress ("glImportSemaphoreFdEXT");
+  }
+
+  // GL_EXT_semaphore_win32
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_semaphore_win32])
+  {
+    s_deviceConfig.m_glImportSemaphoreWin32HandleEXT = (PFNGLIMPORTSEMAPHOREWIN32HANDLEEXTPROC) glewGetProcAddress ("glImportSemaphoreWin32HandleEXT");
+    s_deviceConfig.m_glImportSemaphoreWin32NameEXT = (PFNGLIMPORTSEMAPHOREWIN32NAMEEXTPROC) glewGetProcAddress ("glImportSemaphoreWin32NameEXT");
   }
 
   // GL_EXT_separate_shader_objects
@@ -15218,6 +18759,20 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glProgramUniformMatrix4x3fvEXT = (PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC) glewGetProcAddress ("glProgramUniformMatrix4x3fvEXT");
   }
 
+  // GL_EXT_shader_framebuffer_fetch_non_coherent
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_framebuffer_fetch_non_coherent])
+  {
+    s_deviceConfig.m_glFramebufferFetchBarrierEXT = (PFNGLFRAMEBUFFERFETCHBARRIEREXTPROC) glewGetProcAddress ("glFramebufferFetchBarrierEXT");
+  }
+
+  // GL_EXT_shader_pixel_local_storage2
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_pixel_local_storage2])
+  {
+    s_deviceConfig.m_glFramebufferPixelLocalStorageSizeEXT = (PFNGLFRAMEBUFFERPIXELLOCALSTORAGESIZEEXTPROC) glewGetProcAddress ("glFramebufferPixelLocalStorageSizeEXT");
+    s_deviceConfig.m_glGetFramebufferPixelLocalStorageSizeEXT = (PFNGLGETFRAMEBUFFERPIXELLOCALSTORAGESIZEEXTPROC) glewGetProcAddress ("glGetFramebufferPixelLocalStorageSizeEXT");
+    s_deviceConfig.m_glClearPixelLocalStorageuiEXT = (PFNGLCLEARPIXELLOCALSTORAGEUIEXTPROC) glewGetProcAddress ("glClearPixelLocalStorageuiEXT");
+  }
+
   // GL_EXT_sparse_texture
   if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_sparse_texture])
   {
@@ -15265,6 +18820,45 @@ void glew::gles::Initialise ()
   if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_texture_view])
   {
     s_deviceConfig.m_glTextureViewEXT = (PFNGLTEXTUREVIEWEXTPROC) glewGetProcAddress ("glTextureViewEXT");
+  }
+
+  // GL_NV_timeline_semaphore
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_timeline_semaphore])
+  {
+    s_deviceConfig.m_glCreateSemaphoresNV = (PFNGLCREATESEMAPHORESNVPROC) glewGetProcAddress ("glCreateSemaphoresNV");
+    s_deviceConfig.m_glSemaphoreParameterivNV = (PFNGLSEMAPHOREPARAMETERIVNVPROC) glewGetProcAddress ("glSemaphoreParameterivNV");
+    s_deviceConfig.m_glGetSemaphoreParameterivNV = (PFNGLGETSEMAPHOREPARAMETERIVNVPROC) glewGetProcAddress ("glGetSemaphoreParameterivNV");
+  }
+
+  // GL_EXT_win32_keyed_mutex
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_win32_keyed_mutex])
+  {
+    s_deviceConfig.m_glAcquireKeyedMutexWin32EXT = (PFNGLACQUIREKEYEDMUTEXWIN32EXTPROC) glewGetProcAddress ("glAcquireKeyedMutexWin32EXT");
+    s_deviceConfig.m_glReleaseKeyedMutexWin32EXT = (PFNGLRELEASEKEYEDMUTEXWIN32EXTPROC) glewGetProcAddress ("glReleaseKeyedMutexWin32EXT");
+  }
+
+  // GL_EXT_window_rectangles
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_window_rectangles])
+  {
+    s_deviceConfig.m_glWindowRectanglesEXT = (PFNGLWINDOWRECTANGLESEXTPROC) glewGetProcAddress ("glWindowRectanglesEXT");
+  }
+
+  // GL_IMG_bindless_texture
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_IMG_bindless_texture])
+  {
+    s_deviceConfig.m_glGetTextureHandleIMG = (PFNGLGETTEXTUREHANDLEIMGPROC) glewGetProcAddress ("glGetTextureHandleIMG");
+    s_deviceConfig.m_glGetTextureSamplerHandleIMG = (PFNGLGETTEXTURESAMPLERHANDLEIMGPROC) glewGetProcAddress ("glGetTextureSamplerHandleIMG");
+    s_deviceConfig.m_glUniformHandleui64IMG = (PFNGLUNIFORMHANDLEUI64IMGPROC) glewGetProcAddress ("glUniformHandleui64IMG");
+    s_deviceConfig.m_glUniformHandleui64vIMG = (PFNGLUNIFORMHANDLEUI64VIMGPROC) glewGetProcAddress ("glUniformHandleui64vIMG");
+    s_deviceConfig.m_glProgramUniformHandleui64IMG = (PFNGLPROGRAMUNIFORMHANDLEUI64IMGPROC) glewGetProcAddress ("glProgramUniformHandleui64IMG");
+    s_deviceConfig.m_glProgramUniformHandleui64vIMG = (PFNGLPROGRAMUNIFORMHANDLEUI64VIMGPROC) glewGetProcAddress ("glProgramUniformHandleui64vIMG");
+  }
+
+  // GL_IMG_framebuffer_downsample
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_IMG_framebuffer_downsample])
+  {
+    s_deviceConfig.m_glFramebufferTexture2DDownsampleIMG = (PFNGLFRAMEBUFFERTEXTURE2DDOWNSAMPLEIMGPROC) glewGetProcAddress ("glFramebufferTexture2DDownsampleIMG");
+    s_deviceConfig.m_glFramebufferTextureLayerDownsampleIMG = (PFNGLFRAMEBUFFERTEXTURELAYERDOWNSAMPLEIMGPROC) glewGetProcAddress ("glFramebufferTextureLayerDownsampleIMG");
   }
 
   // GL_IMG_multisampled_render_to_texture
@@ -15327,6 +18921,19 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glGetnUniformuivKHR = (PFNGLGETNUNIFORMUIVKHRPROC) glewGetProcAddress ("glGetnUniformuivKHR");
   }
 
+  // GL_KHR_parallel_shader_compile
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_KHR_parallel_shader_compile])
+  {
+    s_deviceConfig.m_glMaxShaderCompilerThreadsKHR = (PFNGLMAXSHADERCOMPILERTHREADSKHRPROC) glewGetProcAddress ("glMaxShaderCompilerThreadsKHR");
+  }
+
+  // GL_MESA_framebuffer_flip_y
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_MESA_framebuffer_flip_y])
+  {
+    s_deviceConfig.m_glFramebufferParameteriMESA = (PFNGLFRAMEBUFFERPARAMETERIMESAPROC) glewGetProcAddress ("glFramebufferParameteriMESA");
+    s_deviceConfig.m_glGetFramebufferParameterivMESA = (PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC) glewGetProcAddress ("glGetFramebufferParameterivMESA");
+  }
+
   // GL_NV_bindless_texture
   if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_bindless_texture])
   {
@@ -15352,6 +18959,12 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glBlendBarrierNV = (PFNGLBLENDBARRIERNVPROC) glewGetProcAddress ("glBlendBarrierNV");
   }
 
+  // GL_NV_clip_space_w_scaling
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_clip_space_w_scaling])
+  {
+    s_deviceConfig.m_glViewportPositionWScaleNV = (PFNGLVIEWPORTPOSITIONWSCALENVPROC) glewGetProcAddress ("glViewportPositionWScaleNV");
+  }
+
   // GL_NV_conditional_render
   if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_conditional_render])
   {
@@ -15363,6 +18976,12 @@ void glew::gles::Initialise ()
   if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_conservative_raster])
   {
     s_deviceConfig.m_glSubpixelPrecisionBiasNV = (PFNGLSUBPIXELPRECISIONBIASNVPROC) glewGetProcAddress ("glSubpixelPrecisionBiasNV");
+  }
+
+  // GL_NV_conservative_raster_pre_snap_triangles
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_conservative_raster_pre_snap_triangles])
+  {
+    s_deviceConfig.m_glConservativeRasterParameteriNV = (PFNGLCONSERVATIVERASTERPARAMETERINVPROC) glewGetProcAddress ("glConservativeRasterParameteriNV");
   }
 
   // GL_NV_copy_buffer
@@ -15389,6 +19008,16 @@ void glew::gles::Initialise ()
   {
     s_deviceConfig.m_glDrawArraysInstancedNV = (PFNGLDRAWARRAYSINSTANCEDNVPROC) glewGetProcAddress ("glDrawArraysInstancedNV");
     s_deviceConfig.m_glDrawElementsInstancedNV = (PFNGLDRAWELEMENTSINSTANCEDNVPROC) glewGetProcAddress ("glDrawElementsInstancedNV");
+  }
+
+  // GL_NV_draw_vulkan_image
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_draw_vulkan_image])
+  {
+    s_deviceConfig.m_glDrawVkImageNV = (PFNGLDRAWVKIMAGENVPROC) glewGetProcAddress ("glDrawVkImageNV");
+    s_deviceConfig.m_glGetVkProcAddrNV = (PFNGLGETVKPROCADDRNVPROC) glewGetProcAddress ("glGetVkProcAddrNV");
+    s_deviceConfig.m_glWaitVkSemaphoreNV = (PFNGLWAITVKSEMAPHORENVPROC) glewGetProcAddress ("glWaitVkSemaphoreNV");
+    s_deviceConfig.m_glSignalVkSemaphoreNV = (PFNGLSIGNALVKSEMAPHORENVPROC) glewGetProcAddress ("glSignalVkSemaphoreNV");
+    s_deviceConfig.m_glSignalVkFenceNV = (PFNGLSIGNALVKFENCENVPROC) glewGetProcAddress ("glSignalVkFenceNV");
   }
 
   // GL_NV_fence
@@ -15429,6 +19058,44 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glRenderbufferStorageMultisampleNV = (PFNGLRENDERBUFFERSTORAGEMULTISAMPLENVPROC) glewGetProcAddress ("glRenderbufferStorageMultisampleNV");
   }
 
+  // GL_NV_gpu_shader5
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_gpu_shader5])
+  {
+    s_deviceConfig.m_glUniform1i64NV = (PFNGLUNIFORM1I64NVPROC) glewGetProcAddress ("glUniform1i64NV");
+    s_deviceConfig.m_glUniform2i64NV = (PFNGLUNIFORM2I64NVPROC) glewGetProcAddress ("glUniform2i64NV");
+    s_deviceConfig.m_glUniform3i64NV = (PFNGLUNIFORM3I64NVPROC) glewGetProcAddress ("glUniform3i64NV");
+    s_deviceConfig.m_glUniform4i64NV = (PFNGLUNIFORM4I64NVPROC) glewGetProcAddress ("glUniform4i64NV");
+    s_deviceConfig.m_glUniform1i64vNV = (PFNGLUNIFORM1I64VNVPROC) glewGetProcAddress ("glUniform1i64vNV");
+    s_deviceConfig.m_glUniform2i64vNV = (PFNGLUNIFORM2I64VNVPROC) glewGetProcAddress ("glUniform2i64vNV");
+    s_deviceConfig.m_glUniform3i64vNV = (PFNGLUNIFORM3I64VNVPROC) glewGetProcAddress ("glUniform3i64vNV");
+    s_deviceConfig.m_glUniform4i64vNV = (PFNGLUNIFORM4I64VNVPROC) glewGetProcAddress ("glUniform4i64vNV");
+    s_deviceConfig.m_glUniform1ui64NV = (PFNGLUNIFORM1UI64NVPROC) glewGetProcAddress ("glUniform1ui64NV");
+    s_deviceConfig.m_glUniform2ui64NV = (PFNGLUNIFORM2UI64NVPROC) glewGetProcAddress ("glUniform2ui64NV");
+    s_deviceConfig.m_glUniform3ui64NV = (PFNGLUNIFORM3UI64NVPROC) glewGetProcAddress ("glUniform3ui64NV");
+    s_deviceConfig.m_glUniform4ui64NV = (PFNGLUNIFORM4UI64NVPROC) glewGetProcAddress ("glUniform4ui64NV");
+    s_deviceConfig.m_glUniform1ui64vNV = (PFNGLUNIFORM1UI64VNVPROC) glewGetProcAddress ("glUniform1ui64vNV");
+    s_deviceConfig.m_glUniform2ui64vNV = (PFNGLUNIFORM2UI64VNVPROC) glewGetProcAddress ("glUniform2ui64vNV");
+    s_deviceConfig.m_glUniform3ui64vNV = (PFNGLUNIFORM3UI64VNVPROC) glewGetProcAddress ("glUniform3ui64vNV");
+    s_deviceConfig.m_glUniform4ui64vNV = (PFNGLUNIFORM4UI64VNVPROC) glewGetProcAddress ("glUniform4ui64vNV");
+    s_deviceConfig.m_glGetUniformi64vNV = (PFNGLGETUNIFORMI64VNVPROC) glewGetProcAddress ("glGetUniformi64vNV");
+    s_deviceConfig.m_glProgramUniform1i64NV = (PFNGLPROGRAMUNIFORM1I64NVPROC) glewGetProcAddress ("glProgramUniform1i64NV");
+    s_deviceConfig.m_glProgramUniform2i64NV = (PFNGLPROGRAMUNIFORM2I64NVPROC) glewGetProcAddress ("glProgramUniform2i64NV");
+    s_deviceConfig.m_glProgramUniform3i64NV = (PFNGLPROGRAMUNIFORM3I64NVPROC) glewGetProcAddress ("glProgramUniform3i64NV");
+    s_deviceConfig.m_glProgramUniform4i64NV = (PFNGLPROGRAMUNIFORM4I64NVPROC) glewGetProcAddress ("glProgramUniform4i64NV");
+    s_deviceConfig.m_glProgramUniform1i64vNV = (PFNGLPROGRAMUNIFORM1I64VNVPROC) glewGetProcAddress ("glProgramUniform1i64vNV");
+    s_deviceConfig.m_glProgramUniform2i64vNV = (PFNGLPROGRAMUNIFORM2I64VNVPROC) glewGetProcAddress ("glProgramUniform2i64vNV");
+    s_deviceConfig.m_glProgramUniform3i64vNV = (PFNGLPROGRAMUNIFORM3I64VNVPROC) glewGetProcAddress ("glProgramUniform3i64vNV");
+    s_deviceConfig.m_glProgramUniform4i64vNV = (PFNGLPROGRAMUNIFORM4I64VNVPROC) glewGetProcAddress ("glProgramUniform4i64vNV");
+    s_deviceConfig.m_glProgramUniform1ui64NV = (PFNGLPROGRAMUNIFORM1UI64NVPROC) glewGetProcAddress ("glProgramUniform1ui64NV");
+    s_deviceConfig.m_glProgramUniform2ui64NV = (PFNGLPROGRAMUNIFORM2UI64NVPROC) glewGetProcAddress ("glProgramUniform2ui64NV");
+    s_deviceConfig.m_glProgramUniform3ui64NV = (PFNGLPROGRAMUNIFORM3UI64NVPROC) glewGetProcAddress ("glProgramUniform3ui64NV");
+    s_deviceConfig.m_glProgramUniform4ui64NV = (PFNGLPROGRAMUNIFORM4UI64NVPROC) glewGetProcAddress ("glProgramUniform4ui64NV");
+    s_deviceConfig.m_glProgramUniform1ui64vNV = (PFNGLPROGRAMUNIFORM1UI64VNVPROC) glewGetProcAddress ("glProgramUniform1ui64vNV");
+    s_deviceConfig.m_glProgramUniform2ui64vNV = (PFNGLPROGRAMUNIFORM2UI64VNVPROC) glewGetProcAddress ("glProgramUniform2ui64vNV");
+    s_deviceConfig.m_glProgramUniform3ui64vNV = (PFNGLPROGRAMUNIFORM3UI64VNVPROC) glewGetProcAddress ("glProgramUniform3ui64vNV");
+    s_deviceConfig.m_glProgramUniform4ui64vNV = (PFNGLPROGRAMUNIFORM4UI64VNVPROC) glewGetProcAddress ("glProgramUniform4ui64vNV");
+  }
+
   // GL_NV_instanced_arrays
   if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_instanced_arrays])
   {
@@ -15439,6 +19106,35 @@ void glew::gles::Initialise ()
   if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_internalformat_sample_query])
   {
     s_deviceConfig.m_glGetInternalformatSampleivNV = (PFNGLGETINTERNALFORMATSAMPLEIVNVPROC) glewGetProcAddress ("glGetInternalformatSampleivNV");
+  }
+
+  // GL_NV_memory_attachment
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_memory_attachment])
+  {
+    s_deviceConfig.m_glGetMemoryObjectDetachedResourcesuivNV = (PFNGLGETMEMORYOBJECTDETACHEDRESOURCESUIVNVPROC) glewGetProcAddress ("glGetMemoryObjectDetachedResourcesuivNV");
+    s_deviceConfig.m_glResetMemoryObjectParameterNV = (PFNGLRESETMEMORYOBJECTPARAMETERNVPROC) glewGetProcAddress ("glResetMemoryObjectParameterNV");
+    s_deviceConfig.m_glTexAttachMemoryNV = (PFNGLTEXATTACHMEMORYNVPROC) glewGetProcAddress ("glTexAttachMemoryNV");
+    s_deviceConfig.m_glBufferAttachMemoryNV = (PFNGLBUFFERATTACHMEMORYNVPROC) glewGetProcAddress ("glBufferAttachMemoryNV");
+    s_deviceConfig.m_glTextureAttachMemoryNV = (PFNGLTEXTUREATTACHMEMORYNVPROC) glewGetProcAddress ("glTextureAttachMemoryNV");
+    s_deviceConfig.m_glNamedBufferAttachMemoryNV = (PFNGLNAMEDBUFFERATTACHMEMORYNVPROC) glewGetProcAddress ("glNamedBufferAttachMemoryNV");
+  }
+
+  // GL_NV_memory_object_sparse
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_memory_object_sparse])
+  {
+    s_deviceConfig.m_glBufferPageCommitmentMemNV = (PFNGLBUFFERPAGECOMMITMENTMEMNVPROC) glewGetProcAddress ("glBufferPageCommitmentMemNV");
+    s_deviceConfig.m_glTexPageCommitmentMemNV = (PFNGLTEXPAGECOMMITMENTMEMNVPROC) glewGetProcAddress ("glTexPageCommitmentMemNV");
+    s_deviceConfig.m_glNamedBufferPageCommitmentMemNV = (PFNGLNAMEDBUFFERPAGECOMMITMENTMEMNVPROC) glewGetProcAddress ("glNamedBufferPageCommitmentMemNV");
+    s_deviceConfig.m_glTexturePageCommitmentMemNV = (PFNGLTEXTUREPAGECOMMITMENTMEMNVPROC) glewGetProcAddress ("glTexturePageCommitmentMemNV");
+  }
+
+  // GL_NV_mesh_shader
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_mesh_shader])
+  {
+    s_deviceConfig.m_glDrawMeshTasksNV = (PFNGLDRAWMESHTASKSNVPROC) glewGetProcAddress ("glDrawMeshTasksNV");
+    s_deviceConfig.m_glDrawMeshTasksIndirectNV = (PFNGLDRAWMESHTASKSINDIRECTNVPROC) glewGetProcAddress ("glDrawMeshTasksIndirectNV");
+    s_deviceConfig.m_glMultiDrawMeshTasksIndirectNV = (PFNGLMULTIDRAWMESHTASKSINDIRECTNVPROC) glewGetProcAddress ("glMultiDrawMeshTasksIndirectNV");
+    s_deviceConfig.m_glMultiDrawMeshTasksIndirectCountNV = (PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTNVPROC) glewGetProcAddress ("glMultiDrawMeshTasksIndirectCountNV");
   }
 
   // GL_NV_non_square_matrices
@@ -15534,6 +19230,25 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glResolveDepthValuesNV = (PFNGLRESOLVEDEPTHVALUESNVPROC) glewGetProcAddress ("glResolveDepthValuesNV");
   }
 
+  // GL_NV_scissor_exclusive
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_scissor_exclusive])
+  {
+    s_deviceConfig.m_glScissorExclusiveNV = (PFNGLSCISSOREXCLUSIVENVPROC) glewGetProcAddress ("glScissorExclusiveNV");
+    s_deviceConfig.m_glScissorExclusiveArrayvNV = (PFNGLSCISSOREXCLUSIVEARRAYVNVPROC) glewGetProcAddress ("glScissorExclusiveArrayvNV");
+  }
+
+  // GL_NV_shading_rate_image
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_shading_rate_image])
+  {
+    s_deviceConfig.m_glBindShadingRateImageNV = (PFNGLBINDSHADINGRATEIMAGENVPROC) glewGetProcAddress ("glBindShadingRateImageNV");
+    s_deviceConfig.m_glGetShadingRateImagePaletteNV = (PFNGLGETSHADINGRATEIMAGEPALETTENVPROC) glewGetProcAddress ("glGetShadingRateImagePaletteNV");
+    s_deviceConfig.m_glGetShadingRateSampleLocationivNV = (PFNGLGETSHADINGRATESAMPLELOCATIONIVNVPROC) glewGetProcAddress ("glGetShadingRateSampleLocationivNV");
+    s_deviceConfig.m_glShadingRateImageBarrierNV = (PFNGLSHADINGRATEIMAGEBARRIERNVPROC) glewGetProcAddress ("glShadingRateImageBarrierNV");
+    s_deviceConfig.m_glShadingRateImagePaletteNV = (PFNGLSHADINGRATEIMAGEPALETTENVPROC) glewGetProcAddress ("glShadingRateImagePaletteNV");
+    s_deviceConfig.m_glShadingRateSampleOrderNV = (PFNGLSHADINGRATESAMPLEORDERNVPROC) glewGetProcAddress ("glShadingRateSampleOrderNV");
+    s_deviceConfig.m_glShadingRateSampleOrderCustomNV = (PFNGLSHADINGRATESAMPLEORDERCUSTOMNVPROC) glewGetProcAddress ("glShadingRateSampleOrderCustomNV");
+  }
+
   // GL_NV_viewport_array
   if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_viewport_array])
   {
@@ -15549,6 +19264,12 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glEnableiNV = (PFNGLENABLEINVPROC) glewGetProcAddress ("glEnableiNV");
     s_deviceConfig.m_glDisableiNV = (PFNGLDISABLEINVPROC) glewGetProcAddress ("glDisableiNV");
     s_deviceConfig.m_glIsEnablediNV = (PFNGLISENABLEDINVPROC) glewGetProcAddress ("glIsEnablediNV");
+  }
+
+  // GL_NV_viewport_swizzle
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_NV_viewport_swizzle])
+  {
+    s_deviceConfig.m_glViewportSwizzleNV = (PFNGLVIEWPORTSWIZZLENVPROC) glewGetProcAddress ("glViewportSwizzleNV");
   }
 
   // GL_OES_EGL_image
@@ -15583,7 +19304,6 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glDrawElementsBaseVertexOES = (PFNGLDRAWELEMENTSBASEVERTEXOESPROC) glewGetProcAddress ("glDrawElementsBaseVertexOES");
     s_deviceConfig.m_glDrawRangeElementsBaseVertexOES = (PFNGLDRAWRANGEELEMENTSBASEVERTEXOESPROC) glewGetProcAddress ("glDrawRangeElementsBaseVertexOES");
     s_deviceConfig.m_glDrawElementsInstancedBaseVertexOES = (PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXOESPROC) glewGetProcAddress ("glDrawElementsInstancedBaseVertexOES");
-    s_deviceConfig.m_glMultiDrawElementsBaseVertexOES = (PFNGLMULTIDRAWELEMENTSBASEVERTEXOESPROC) glewGetProcAddress ("glMultiDrawElementsBaseVertexOES");
   }
 
   // GL_OES_geometry_shader
@@ -15677,6 +19397,20 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glIsVertexArrayOES = (PFNGLISVERTEXARRAYOESPROC) glewGetProcAddress ("glIsVertexArrayOES");
   }
 
+  // GL_OES_viewport_array
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_OES_viewport_array])
+  {
+    s_deviceConfig.m_glViewportArrayvOES = (PFNGLVIEWPORTARRAYVOESPROC) glewGetProcAddress ("glViewportArrayvOES");
+    s_deviceConfig.m_glViewportIndexedfOES = (PFNGLVIEWPORTINDEXEDFOESPROC) glewGetProcAddress ("glViewportIndexedfOES");
+    s_deviceConfig.m_glViewportIndexedfvOES = (PFNGLVIEWPORTINDEXEDFVOESPROC) glewGetProcAddress ("glViewportIndexedfvOES");
+    s_deviceConfig.m_glScissorArrayvOES = (PFNGLSCISSORARRAYVOESPROC) glewGetProcAddress ("glScissorArrayvOES");
+    s_deviceConfig.m_glScissorIndexedOES = (PFNGLSCISSORINDEXEDOESPROC) glewGetProcAddress ("glScissorIndexedOES");
+    s_deviceConfig.m_glScissorIndexedvOES = (PFNGLSCISSORINDEXEDVOESPROC) glewGetProcAddress ("glScissorIndexedvOES");
+    s_deviceConfig.m_glDepthRangeArrayfvOES = (PFNGLDEPTHRANGEARRAYFVOESPROC) glewGetProcAddress ("glDepthRangeArrayfvOES");
+    s_deviceConfig.m_glDepthRangeIndexedfOES = (PFNGLDEPTHRANGEINDEXEDFOESPROC) glewGetProcAddress ("glDepthRangeIndexedfOES");
+    s_deviceConfig.m_glGetFloati_vOES = (PFNGLGETFLOATI_VOESPROC) glewGetProcAddress ("glGetFloati_vOES");
+  }
+
   // GL_OVR_multiview
   if (s_deviceConfig.m_featureSupported [GLEW_GL_OVR_multiview])
   {
@@ -15724,6 +19458,44 @@ void glew::gles::Initialise ()
     s_deviceConfig.m_glExtGetProgramsQCOM = (PFNGLEXTGETPROGRAMSQCOMPROC) glewGetProcAddress ("glExtGetProgramsQCOM");
     s_deviceConfig.m_glExtIsProgramBinaryQCOM = (PFNGLEXTISPROGRAMBINARYQCOMPROC) glewGetProcAddress ("glExtIsProgramBinaryQCOM");
     s_deviceConfig.m_glExtGetProgramBinarySourceQCOM = (PFNGLEXTGETPROGRAMBINARYSOURCEQCOMPROC) glewGetProcAddress ("glExtGetProgramBinarySourceQCOM");
+  }
+
+  // GL_QCOM_framebuffer_foveated
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_framebuffer_foveated])
+  {
+    s_deviceConfig.m_glFramebufferFoveationConfigQCOM = (PFNGLFRAMEBUFFERFOVEATIONCONFIGQCOMPROC) glewGetProcAddress ("glFramebufferFoveationConfigQCOM");
+    s_deviceConfig.m_glFramebufferFoveationParametersQCOM = (PFNGLFRAMEBUFFERFOVEATIONPARAMETERSQCOMPROC) glewGetProcAddress ("glFramebufferFoveationParametersQCOM");
+  }
+
+  // GL_QCOM_motion_estimation
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_motion_estimation])
+  {
+    s_deviceConfig.m_glTexEstimateMotionQCOM = (PFNGLTEXESTIMATEMOTIONQCOMPROC) glewGetProcAddress ("glTexEstimateMotionQCOM");
+    s_deviceConfig.m_glTexEstimateMotionRegionsQCOM = (PFNGLTEXESTIMATEMOTIONREGIONSQCOMPROC) glewGetProcAddress ("glTexEstimateMotionRegionsQCOM");
+  }
+
+  // GL_QCOM_frame_extrapolation
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_frame_extrapolation])
+  {
+    s_deviceConfig.m_glExtrapolateTex2DQCOM = (PFNGLEXTRAPOLATETEX2DQCOMPROC) glewGetProcAddress ("glExtrapolateTex2DQCOM");
+  }
+
+  // GL_QCOM_texture_foveated
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_texture_foveated])
+  {
+    s_deviceConfig.m_glTextureFoveationParametersQCOM = (PFNGLTEXTUREFOVEATIONPARAMETERSQCOMPROC) glewGetProcAddress ("glTextureFoveationParametersQCOM");
+  }
+
+  // GL_QCOM_shader_framebuffer_fetch_noncoherent
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_shader_framebuffer_fetch_noncoherent])
+  {
+    s_deviceConfig.m_glFramebufferFetchBarrierQCOM = (PFNGLFRAMEBUFFERFETCHBARRIERQCOMPROC) glewGetProcAddress ("glFramebufferFetchBarrierQCOM");
+  }
+
+  // GL_QCOM_shading_rate
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_QCOM_shading_rate])
+  {
+    s_deviceConfig.m_glShadingRateQCOM = (PFNGLSHADINGRATEQCOMPROC) glewGetProcAddress ("glShadingRateQCOM");
   }
 
   // GL_QCOM_tiled_rendering

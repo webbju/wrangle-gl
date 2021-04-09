@@ -120,9 +120,9 @@ namespace wrangle_gl_generator
 
       m_extensionNodes = SelectNodes ("//registry/extensions/extension");
 
-      // 
+      //
       // Generate fast-lookup of 'enums' nodes.
-      // 
+      //
 
       if (m_enumsNodes.Count > 0)
       {
@@ -147,9 +147,9 @@ namespace wrangle_gl_generator
         }
       }
 
-      // 
+      //
       // Generate fast-lookup of 'feature' nodes.
-      // 
+      //
 
       if (m_featureNodes.Count > 0)
       {
@@ -173,9 +173,9 @@ namespace wrangle_gl_generator
         }
       }
 
-      // 
+      //
       // Generate fast-lookup of 'commands' nodes.
-      // 
+      //
 
       if (m_commandsNodes.Count > 0)
       {
@@ -194,10 +194,10 @@ namespace wrangle_gl_generator
 
             m_commandsNodesLookup.Add (commandProtoNameNode.InnerText, commandNode);
 
-            // 
+            //
             // Some commands are listed as aliases for other commands;
             // I.e. glDrawArraysInstancedANGLE is an alias of glDrawArraysInstanced
-            // 
+            //
 
             XmlNodeList commandAliasNode = commandNode.SelectNodes ("alias");
 
@@ -223,9 +223,9 @@ namespace wrangle_gl_generator
         }
       }
 
-      // 
+      //
       // Generate fast-lookup of 'extensions' nodes.
-      // 
+      //
 
       if (m_extensionNodes.Count > 0)
       {
@@ -249,9 +249,9 @@ namespace wrangle_gl_generator
         }
       }
 
-      // 
+      //
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
-      // 
+      //
 
       foreach (var keypair in m_featureNodesLookup)
       {
@@ -269,9 +269,9 @@ namespace wrangle_gl_generator
         }
       }
 
-      // 
+      //
       // Generate fast-lookup of 'enums' and 'command' nodes required by supported APIs.
-      // 
+      //
 
       if (m_featureAndExtensionNodes.Count > 0)
       {
@@ -279,9 +279,9 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -306,9 +306,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
@@ -324,9 +324,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Collate 'enums' listed by required features/extensions.
-            // 
+            //
 
             {
               XmlNodeList requireEnumNodes = requireNode.SelectNodes ("enum");
@@ -349,9 +349,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Collate 'commands' listed by required features/extensions.
-            // 
+            //
 
             {
               XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
@@ -384,15 +384,15 @@ namespace wrangle_gl_generator
 
     public virtual void ExportHpp (ref StreamWriter writer)
     {
-      // 
+      //
       // 'FeatureSet' class; wraps 'features' and 'extension' identifiers.
-      // 
+      //
 
       WriteCommentDivider (ref writer);
 
       writer.Write (@"
 #if defined(__GNUC__)
-#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600 
+#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600
 #pragma GCC diagnostic push // push/pop not available before GCC 4.6
 #endif
 #pragma GCC diagnostic ignored ""-Wunused-function""
@@ -420,9 +420,9 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n");
 
-      // 
+      //
       // Define function pointers to feature and extension functions (these are usually just exposed via pre-linked functions).
-      // 
+      //
 
       if (m_featureAndExtensionNodes.Count > 0)
       {
@@ -443,9 +443,9 @@ namespace wrangle_gl_generator
             }
           }
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -468,9 +468,9 @@ namespace wrangle_gl_generator
               continue; // Skip non-supported APIs.
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             bool baseSpecFeatureSet = false;
 
@@ -486,9 +486,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Export code for defining available function/commands.
-            // 
+            //
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -566,9 +566,9 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
-      // 
+      //
       // 'DeviceConfig' class: Default API.
-      // 
+      //
 
       writer.Write (string.Format ("\nnamespace glew\n{{\n\n", m_api [0]));
 
@@ -584,9 +584,9 @@ namespace wrangle_gl_generator
 
       writer.Write (string.Format ("      bool m_featureSupported [{0}{1}_{2}];\n\n", "GLEW_", m_api [0].ToUpperInvariant (), "FeatureSetCount"));
 
-      // 
+      //
       // 'DeviceConfig' class: Feature and extension function prototypes.
-      // 
+      //
 
       if (m_featureAndExtensionNodes.Count > 0)
       {
@@ -607,9 +607,9 @@ namespace wrangle_gl_generator
             }
           }
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -632,9 +632,9 @@ namespace wrangle_gl_generator
               continue; // Skip non-supported APIs.
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
@@ -650,9 +650,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Export code for defining local function/command cached address storage.
-            // 
+            //
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -689,9 +689,9 @@ namespace wrangle_gl_generator
 
       writer.Write ("    };\n\n");
 
-      // 
+      //
       // Standard GLEW header API.
-      // 
+      //
 
       WriteCommentDivider (ref writer, 4);
 
@@ -699,9 +699,9 @@ namespace wrangle_gl_generator
 
       //WriteCommentDivider (ref writer, 4);
 
-      // 
+      //
       // Internal GLEW-managed API functions (seeded from features and extension specifications).
-      // 
+      //
 
 #if false
       writer.Write (string.Format ("\n  public:\n\n"));
@@ -714,9 +714,9 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -741,9 +741,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
@@ -759,9 +759,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Export code for defining local pass-through prototypes.
-            // 
+            //
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -816,9 +816,9 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer, 0);
 
-      // 
+      //
       // Pre-processor pass-through defines for redirecting functions to glew alternatives.
-      // 
+      //
 
       /*writer.Write ("\n");
 
@@ -842,9 +842,9 @@ namespace wrangle_gl_generator
         {
           XmlNode featureNode = keypair.Value;
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -869,9 +869,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
@@ -887,9 +887,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Export code to #define pass-through prototypes to non-base spec functions.
-            // 
+            //
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -948,9 +948,9 @@ namespace wrangle_gl_generator
               writer.Write (string.Format ("{0};\n", commandFunc));
 
 
-              // 
+              //
               // If the prototype contains non-Khronos standard 'const GLchar **', add a passthrough to accept 'const GLchar *const*'.
-              // 
+              //
 #if false
               if (commandFunc.Contains ("const GLchar **"))
               {
@@ -982,8 +982,8 @@ namespace wrangle_gl_generator
       WriteCommentDivider (ref writer);
 
       writer.Write (@"
-#ifdef __GNUC__
-#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600 
+#if defined(__GNUC__)
+#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600
 #pragma GCC diagnostic pop // push/pop not available before GCC 4.6
 #endif
 #endif
@@ -1028,9 +1028,9 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
-      // 
+      //
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
-      // 
+      //
 
       Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
 
@@ -1050,9 +1050,9 @@ namespace wrangle_gl_generator
         }
       }
 
-      // 
+      //
       // Feature and extension function definitions.
-      // 
+      //
 
       if (featureAndExtensionNodes.Count > 0)
       {
@@ -1073,9 +1073,9 @@ namespace wrangle_gl_generator
             }
           }
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -1098,9 +1098,9 @@ namespace wrangle_gl_generator
               continue; // Skip non-supported APIs.
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
@@ -1116,9 +1116,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Export code for defining the pass-through local-scope GL functions.
-            // 
+            //
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -1171,16 +1171,16 @@ namespace wrangle_gl_generator
 
               string prototypeParameters = paramBuilder.ToString ();
 
-              // 
+              //
               // If the prototype contains non-Khronos standard 'const GLchar **', add a passthrough to accept 'const GLchar *const*'.
-              // 
+              //
 
 #if false
               if (prototypeParameters.Contains ("const GLchar **"))
               {
-                // 
+                //
                 // Clear and re-evaluate pass-through parameters.
-                // 
+                //
 
                 paramBuilder.Clear ();
 
@@ -1223,9 +1223,9 @@ namespace wrangle_gl_generator
               }
 #endif
 
-              // 
+              //
               // Clear and re-evaluate pass-through parameters.
-              // 
+              //
 
               paramBuilder.Clear ();
 
@@ -1269,9 +1269,9 @@ namespace wrangle_gl_generator
 
               writer.Write (string.Format ("{0}Config.m_{1} ({2});\n  }}\n", m_api [0], commandPrototype.functionName, paramBuilder.ToString ()));
 
-              // 
+              //
               // Aliases
-              // 
+              //
 
               List <XmlNode> aliasCommandNodes;
 
@@ -1299,9 +1299,9 @@ namespace wrangle_gl_generator
 
                     writer.Write (string.Format ("    {0}", (voidFunction ? "" : "return ")));
 
-                    // 
+                    //
                     // Sometimes aliases use slightly modified prototypes, so we need to manage casts.
-                    // 
+                    //
 
                     CommandPrototype aliasPrototype = GetCommandPrototype (aliasCommand);
 
@@ -1363,9 +1363,9 @@ namespace wrangle_gl_generator
         {
           string command = prototypeRequireNodes.Key;
 
-          // 
+          //
           // Evaluate whether this feature should be included, as isn't part of the 'base spec'.
-          // 
+          //
 
           string api = m_api [0];
 
@@ -1402,9 +1402,9 @@ namespace wrangle_gl_generator
             continue; // Skip any base spec versions.
           }
 
-          // 
+          //
           // Begin prototype definition.
-          // 
+          //
 
           CommandPrototype commandPrototype = GetCommandPrototype (command);
 
@@ -1638,9 +1638,9 @@ namespace wrangle_gl_generator
 
       StringBuilder prototypeBuilder = new StringBuilder ();
 
-      // 
+      //
       // Make an identical copy of the XML contents of component of the prototype/params.
-      // 
+      //
 
       XmlNode protoNode = commandNode.SelectSingleNode ("proto");
 

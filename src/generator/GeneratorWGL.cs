@@ -92,17 +92,15 @@ typedef void GLvoid;
     {
       WriteCommentDivider (ref writer);
 
-      writer.Write ("\n#include <string>\n");
-
-      writer.Write ("\n#include <unordered_set>\n\n");
+      writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <unordered_set>\n\n");
 
       base.ExportCpp (ref writer);
 
       writer.Write ("\n");
 
-      // 
+      //
       // glew::wgl::Initialise
-      // 
+      //
 
       writer.Write ("bool glew::wgl::s_initialised = false;\n\n");
 
@@ -114,15 +112,15 @@ typedef void GLvoid;
 
       writer.Write ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));\n\n");
 
-      writer.Write (@"  // 
+      writer.Write (@"  //
   // Determine current driver's feature reporting.
-  // 
+  //
 
   s_deviceConfig.m_featureSupported [GLEW_WGL_VERSION_1_0] = true;
 
-  // 
+  //
   // Evaluate extension support.
-  // 
+  //
 
 
   std::unordered_set <std::string> supportedExtensions;
@@ -159,7 +157,7 @@ typedef void GLvoid;
 
     memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
 
-    do 
+    do
     {
       const char * seperator = strchr ((const char *) thisExtStart, ' ');
 
@@ -169,7 +167,7 @@ typedef void GLvoid;
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -183,7 +181,7 @@ typedef void GLvoid;
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -213,9 +211,9 @@ typedef void GLvoid;
 
       writer.Write ("\n");
 
-      // 
+      //
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
-      // 
+      //
 
       Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
 
@@ -256,9 +254,9 @@ typedef void GLvoid;
             }
           }
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -281,9 +279,9 @@ typedef void GLvoid;
               continue; // Skip non-supported APIs.
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
@@ -299,9 +297,9 @@ typedef void GLvoid;
               }
             }
 
-            // 
+            //
             // Export code for seeding available function/command addresses.
-            // 
+            //
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -340,9 +338,9 @@ typedef void GLvoid;
           }
         }
 
-        // 
+        //
         // Output condensed feature organised prototypes.
-        // 
+        //
 
         if (featureBasedPrototypes.Count > 0)
         {
@@ -375,9 +373,9 @@ typedef void GLvoid;
 
       WriteCommentDivider (ref writer);
 
-      // 
+      //
       // glew::wgl::Deinitialise
-      // 
+      //
 
       writer.Write ("\nvoid glew::wgl::Deinitialise ()\n{\n");
 

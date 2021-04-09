@@ -29,17 +29,17 @@ namespace wrangle_gl_generator
 
     static int Main (string [] args)
     {
-      // 
+      //
       // EGL
-      // 
+      //
 
       try
       {
-        string api = @"khronos\repository\api\egl.xml";
+        string api = @"egl.xml";
 
-        string hpp = @"include\wrangle-egl.h";
+        string hpp = @"wrangle-egl.h";
 
-        string cpp = @"src\wrangle-egl.cpp";
+        string cpp = @"wrangle-egl.cpp";
 
         GeneratorEGL generator = new GeneratorEGL (api);
 
@@ -68,17 +68,17 @@ namespace wrangle_gl_generator
         Trace.WriteLine (exception);
       }
 
-      // 
+      //
       // WGL
-      // 
+      //
 
       try
       {
-        string api = @"khronos\repository\api\wgl.xml";
+        string api = @"wgl.xml";
 
-        string hpp = @"include\wrangle-wgl.h";
+        string hpp = @"wrangle-wgl.h";
 
-        string cpp = @"src\wrangle-wgl.cpp";
+        string cpp = @"wrangle-wgl.cpp";
 
         GeneratorWGL generator = new GeneratorWGL (api);
 
@@ -107,17 +107,17 @@ namespace wrangle_gl_generator
         Trace.WriteLine (exception);
       }
 
-      // 
+      //
       // GLX
-      // 
+      //
 
       try
       {
-        string api = @"khronos\repository\api\glx.xml";
+        string api = @"glx.xml";
 
-        string hpp = @"include\wrangle-glx.h";
+        string hpp = @"wrangle-glx.h";
 
-        string cpp = @"src\wrangle-glx.cpp";
+        string cpp = @"wrangle-glx.cpp";
 
         GeneratorGLX generator = new GeneratorGLX (api);
 
@@ -146,17 +146,17 @@ namespace wrangle_gl_generator
         Trace.WriteLine (exception);
       }
 
-      // 
+      //
       // GL Core ARB
-      // 
+      //
 
       try
       {
-        string api = @"khronos\repository\api\gl.xml";
+        string api = @"gl.xml";
 
-        string hpp = @"include\wrangle-gl.h";
+        string hpp = @"wrangle-gl.h";
 
-        string cpp = @"src\wrangle-gl.cpp";
+        string cpp = @"wrangle-gl.cpp";
 
         GeneratorGL generator = new GeneratorGL (api);
 
@@ -185,17 +185,17 @@ namespace wrangle_gl_generator
         Trace.WriteLine (exception);
       }
 
-      // 
+      //
       // GLES 1.x/2.x/3.x
-      // 
+      //
 
       try
       {
-        string api = @"khronos\repository\api\gl.xml";
+        string api = @"gl.xml";
 
-        string hpp = @"include\wrangle-gles.h";
+        string hpp = @"wrangle-gles.h";
 
-        string cpp = @"src\wrangle-gles.cpp";
+        string cpp = @"wrangle-gles.cpp";
 
         GeneratorGLES generator = new GeneratorGLES (api);
 

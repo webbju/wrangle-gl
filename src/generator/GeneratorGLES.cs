@@ -119,15 +119,15 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
-      writer.Write ("\n#include <string>\n\n#include <unordered_set>\n\n");
+      writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <string>\n\n#include <unordered_set>\n\n");
 
       base.ExportCpp (ref writer);
 
       writer.Write ("\n");
 
-      // 
+      //
       // glew::gles::Initialise
-      // 
+      //
 
       writer.Write ("bool glew::gles::s_initialised = false;\n\n");
 
@@ -139,9 +139,9 @@ namespace wrangle_gl_generator
 
       writer.Write ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));\n\n");
 
-      writer.Write (@"  // 
+      writer.Write (@"  //
   // Determine current driver's feature reporting.
-  // 
+  //
 
   const unsigned char *glVersion = glGetString (GL_VERSION);
 
@@ -179,9 +179,9 @@ namespace wrangle_gl_generator
     }
   }
 
-  // 
+  //
   // Evaluate extension support.
-  // 
+  //
 
   std::unordered_set <std::string> supportedExtensions;
 
@@ -204,7 +204,7 @@ namespace wrangle_gl_generator
 
     memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
 
-    do 
+    do
     {
       const char * seperator = strchr ((const char *) thisExtStart, ' ');
 
@@ -214,7 +214,7 @@ namespace wrangle_gl_generator
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -228,7 +228,7 @@ namespace wrangle_gl_generator
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -258,9 +258,9 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n");
 
-      // 
+      //
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
-      // 
+      //
 
       Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
 
@@ -301,9 +301,9 @@ namespace wrangle_gl_generator
             }
           }
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -326,9 +326,9 @@ namespace wrangle_gl_generator
               continue; // Skip non-supported APIs.
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
@@ -344,9 +344,9 @@ namespace wrangle_gl_generator
               }
             }
 
-            // 
+            //
             // Export code for seeding available function/command addresses.
-            // 
+            //
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -385,9 +385,9 @@ namespace wrangle_gl_generator
           }
         }
 
-        // 
+        //
         // Output condensed feature organised prototypes.
-        // 
+        //
 
         if (featureBasedPrototypes.Count > 0)
         {
@@ -420,9 +420,9 @@ namespace wrangle_gl_generator
 
       WriteCommentDivider (ref writer);
 
-      // 
+      //
       // glew::gles::Deinitialise
-      // 
+      //
 
       writer.Write ("\nvoid glew::gles::Deinitialise ()\n{\n");
 

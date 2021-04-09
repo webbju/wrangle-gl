@@ -100,15 +100,15 @@ namespace wrangle_gl_generator
     {
       WriteCommentDivider (ref writer);
 
-      writer.Write ("\n#include <string>\n\n#include <unordered_set>\n\n");
+      writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <unordered_set>\n\n");
 
       base.ExportCpp (ref writer);
 
       writer.Write ("\n");
 
-      // 
+      //
       // glew::egl::Initialise
-      // 
+      //
 
       writer.Write ("bool glew::egl::s_initialised = false;\n\n");
 
@@ -130,9 +130,9 @@ void glew::egl::Initialise (EGLDisplay display)
 
   memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));
 
-  // 
+  //
   // Determine current driver's feature reporting.
-  // 
+  //
 
   const unsigned char *eglVersion = (const unsigned char *) eglQueryString (s_display, EGL_VERSION);
 
@@ -163,9 +163,9 @@ void glew::egl::Initialise (EGLDisplay display)
     s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] = ((major >= 1) && (minor >= 5));
   }
 
-  // 
+  //
   // Evaluate extension support.
-  // 
+  //
 
   std::unordered_set <std::string> supportedExtensions;
 
@@ -188,7 +188,7 @@ void glew::egl::Initialise (EGLDisplay display)
 
     memset (thisExtBuffer, 0, sizeof (thisExtBuffer));
 
-    do 
+    do
     {
       const char * seperator = strchr ((const char *) thisExtStart, ' ');
 
@@ -198,7 +198,7 @@ void glew::egl::Initialise (EGLDisplay display)
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -212,7 +212,7 @@ void glew::egl::Initialise (EGLDisplay display)
 
       #if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else 
+      #else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
       #endif
 
@@ -242,9 +242,9 @@ void glew::egl::Initialise (EGLDisplay display)
 
       writer.Write ("\n");
 
-      // 
+      //
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
-      // 
+      //
 
       Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
 
@@ -285,9 +285,9 @@ void glew::egl::Initialise (EGLDisplay display)
             }
           }
 
-          // 
+          //
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
-          // 
+          //
 
           XmlNodeList requireNodes = featureNode.SelectNodes ("require");
 
@@ -310,9 +310,9 @@ void glew::egl::Initialise (EGLDisplay display)
               continue; // Skip non-supported APIs.
             }
 
-            // 
+            //
             // Evaluate whether this feature is part of the 'base spec'.
-            // 
+            //
 
             XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
 
@@ -328,9 +328,9 @@ void glew::egl::Initialise (EGLDisplay display)
               }
             }
 
-            // 
+            //
             // Export code for seeding available function/command addresses.
-            // 
+            //
 
             XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
@@ -369,9 +369,9 @@ void glew::egl::Initialise (EGLDisplay display)
           }
         }
 
-        // 
+        //
         // Output condensed feature organised prototypes.
-        // 
+        //
 
         if (featureBasedPrototypes.Count > 0)
         {
@@ -404,9 +404,9 @@ void glew::egl::Initialise (EGLDisplay display)
 
       WriteCommentDivider (ref writer);
 
-      // 
+      //
       // glew::egl::Deinitialise
-      // 
+      //
 
       writer.Write ("\nvoid glew::egl::Deinitialise ()\n{\n");
 

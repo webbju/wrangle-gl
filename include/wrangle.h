@@ -50,7 +50,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if (_WIN32 || GLEW_USE_WGL)
+#if GLEW_USE_WGL
   #if !defined (GLEW_USE_WGL)
     #define GLEW_USE_WGL 1
   #endif
@@ -60,11 +60,11 @@
   #if !defined (glewGetProcAddress)
     #define glewGetProcAddress(proc) wglGetProcAddress((LPCSTR)proc)
   #endif
-#elif __ANDROID__ || GLEW_USE_EGL
+#elif GLEW_USE_EGL
   #if !defined (GLEW_USE_EGL)
     #define GLEW_USE_EGL 1
   #endif
-  #include <EGL\egl.h>
+  #include <EGL/egl.h>
   #define EGL_SHARED_LIBRARY "libEGL.so"
   GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
   #if !defined (glewGetProcAddress)
@@ -81,7 +81,7 @@
       #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
     #else
       #error Unrecognised Apple target.
-  #endif
+    #endif
   #endif
 #endif
 
@@ -93,12 +93,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// /System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL
-// /System/Library/Frameworks/OpenGLES.framework/OpenGLES
-
-#if defined(__APPLE__) || GLEW_USE_EGL
+#if defined(__APPLE__) || defined(__linux__)
 #include <dlfcn.h>
-static inline void *dlGetProcAddress (const char *library, const char *symbol)
+static void *dlGetProcAddress (const char *library, const char *symbol)
 {
   static void *image = NULL;
   void *addr = NULL;
@@ -119,7 +116,7 @@ static inline void *dlGetProcAddress (const char *library, const char *symbol)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if GLEW_USE_EGL
-static inline __eglMustCastToProperFunctionPointerType _eglGetProcAddress (const char *procname)
+static __eglMustCastToProperFunctionPointerType EGLAPIENTRY _eglGetProcAddress (const char *procname)
 {
   __eglMustCastToProperFunctionPointerType fp = NULL;
 
@@ -128,12 +125,12 @@ static inline __eglMustCastToProperFunctionPointerType _eglGetProcAddress (const
     fp = eglGetProcAddress (procname);
   }
 
-  // 
+  //
   // Sometimes we don't even receive valid addresses for base spec functions using eglGetProcAddress.
   // It seems this is isolated to early PowerVR and Mali drivers, but we workaround it by probing the EGL library directly.
-  // 
+  //
 
-  if (procname && !fp && (memcmp (procname, "egl", sizeof (char) * 3) == 0))
+  if (procname && !fp && (procname[0] == 'e' && procname[1] == 'g' && procname[2] == 'l'))
   {
     fp = (__eglMustCastToProperFunctionPointerType) dlGetProcAddress (EGL_SHARED_LIBRARY, procname);
   }
@@ -161,7 +158,7 @@ static inline __eglMustCastToProperFunctionPointerType _eglGetProcAddress (const
 #if !defined(GLEW_ASSERT) && (defined(_DEBUG) || defined(DEBUG))
 #if defined(__GNUC__) || defined(__clang__)
 #define GLEW_ASSERT(X) if(!(X)) { __builtin_trap (); }
-#elif WIN32
+#elif defined(_MSC_VER)
 #define GLEW_ASSERT(X) if(!(X)) { __debugbreak (); }
 #endif
 #endif

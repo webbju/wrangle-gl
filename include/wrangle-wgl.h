@@ -36,7 +36,7 @@ typedef void GLvoid;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if defined(__GNUC__)
-#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600 
+#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600
 #pragma GCC diagnostic push // push/pop not available before GCC 4.6
 #endif
 #pragma GCC diagnostic ignored "-Wunused-function"
@@ -55,6 +55,7 @@ enum GLEW_WGL_FeatureSet
   GLEW_WGL_ARB_buffer_region,
   GLEW_WGL_ARB_context_flush_control,
   GLEW_WGL_ARB_create_context,
+  GLEW_WGL_ARB_create_context_no_error,
   GLEW_WGL_ARB_create_context_profile,
   GLEW_WGL_ARB_create_context_robustness,
   GLEW_WGL_ARB_extensions_string,
@@ -68,6 +69,8 @@ enum GLEW_WGL_FeatureSet
   GLEW_WGL_ARB_robustness_application_isolation,
   GLEW_WGL_ARB_robustness_share_group_isolation,
   GLEW_WGL_ATI_pixel_format_float,
+  GLEW_WGL_ATI_render_texture_rectangle,
+  GLEW_WGL_EXT_colorspace,
   GLEW_WGL_EXT_create_context_es_profile,
   GLEW_WGL_EXT_create_context_es2_profile,
   GLEW_WGL_EXT_depth_float,
@@ -102,6 +105,7 @@ enum GLEW_WGL_FeatureSet
   GLEW_WGL_NV_video_output,
   GLEW_WGL_NV_vertex_array_range,
   GLEW_WGL_OML_sync_control,
+  GLEW_WGL_NV_multigpu_context,
   GLEW_WGL_FeatureSetCount
 };
 
@@ -137,7 +141,7 @@ GLEW_EXTERN WINGDIAPI BOOL WINAPI wglUseFontOutlinesA (HDC hDC, DWORD first, DWO
 GLEW_EXTERN WINGDIAPI BOOL WINAPI wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
 typedef BOOL (WINAPI * PFNWGLSETSTEREOEMITTERSTATE3DLPROC) /* wglSetStereoEmitterState3DL */ (HDC hDC, UINT uState);
 typedef UINT (WINAPI * PFNWGLGETGPUIDSAMDPROC) /* wglGetGPUIDsAMD */ (UINT maxCount, UINT * ids);
-typedef INT (WINAPI * PFNWGLGETGPUINFOAMDPROC) /* wglGetGPUInfoAMD */ (UINT id, int property, GLenum dataType, UINT size, void * data);
+typedef INT (WINAPI * PFNWGLGETGPUINFOAMDPROC) /* wglGetGPUInfoAMD */ (UINT id, INT property, GLenum dataType, UINT size, void * data);
 typedef UINT (WINAPI * PFNWGLGETCONTEXTGPUIDAMDPROC) /* wglGetContextGPUIDAMD */ (HGLRC hglrc);
 typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC) /* wglCreateAssociatedContextAMD */ (UINT id);
 typedef HGLRC (WINAPI * PFNWGLCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) /* wglCreateAssociatedContextAttribsAMD */ (UINT id, HGLRC hShareContext, const int * attribList);
@@ -226,8 +230,8 @@ typedef BOOL (WINAPI * PFNWGLENUMGPUDEVICESNVPROC) /* wglEnumGpuDevicesNV */ (HG
 typedef HDC (WINAPI * PFNWGLCREATEAFFINITYDCNVPROC) /* wglCreateAffinityDCNV */ (const HGPUNV * phGpuList);
 typedef BOOL (WINAPI * PFNWGLENUMGPUSFROMAFFINITYDCNVPROC) /* wglEnumGpusFromAffinityDCNV */ (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu);
 typedef BOOL (WINAPI * PFNWGLDELETEDCNVPROC) /* wglDeleteDCNV */ (HDC hdc);
-typedef int (WINAPI * PFNWGLENUMERATEVIDEODEVICESNVPROC) /* wglEnumerateVideoDevicesNV */ (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList);
-typedef BOOL (WINAPI * PFNWGLBINDVIDEODEVICENVPROC) /* wglBindVideoDeviceNV */ (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList);
+typedef int (WINAPI * PFNWGLENUMERATEVIDEODEVICESNVPROC) /* wglEnumerateVideoDevicesNV */ (HDC hDc, HVIDEOOUTPUTDEVICENV * phDeviceList);
+typedef BOOL (WINAPI * PFNWGLBINDVIDEODEVICENVPROC) /* wglBindVideoDeviceNV */ (HDC hDc, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList);
 typedef BOOL (WINAPI * PFNWGLQUERYCURRENTCONTEXTNVPROC) /* wglQueryCurrentContextNV */ (int iAttribute, int * piValue);
 typedef BOOL (WINAPI * PFNWGLJOINSWAPGROUPNVPROC) /* wglJoinSwapGroupNV */ (HDC hDC, GLuint group);
 typedef BOOL (WINAPI * PFNWGLBINDSWAPBARRIERNVPROC) /* wglBindSwapBarrierNV */ (GLuint group, GLuint barrier);
@@ -251,7 +255,7 @@ typedef void (WINAPI * PFNWGLFREEMEMORYNVPROC) /* wglFreeMemoryNV */ (void * poi
 typedef BOOL (WINAPI * PFNWGLGETSYNCVALUESOMLPROC) /* wglGetSyncValuesOML */ (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc);
 typedef BOOL (WINAPI * PFNWGLGETMSCRATEOMLPROC) /* wglGetMscRateOML */ (HDC hdc, INT32 * numerator, INT32 * denominator);
 typedef INT64 (WINAPI * PFNWGLSWAPBUFFERSMSCOMLPROC) /* wglSwapBuffersMscOML */ (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder);
-typedef INT64 (WINAPI * PFNWGLSWAPLAYERBUFFERSMSCOMLPROC) /* wglSwapLayerBuffersMscOML */ (HDC hdc, int fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder);
+typedef INT64 (WINAPI * PFNWGLSWAPLAYERBUFFERSMSCOMLPROC) /* wglSwapLayerBuffersMscOML */ (HDC hdc, INT fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder);
 typedef BOOL (WINAPI * PFNWGLWAITFORMSCOMLPROC) /* wglWaitForMscOML */ (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder, INT64 * ust, INT64 * msc, INT64 * sbc);
 typedef BOOL (WINAPI * PFNWGLWAITFORSBCOMLPROC) /* wglWaitForSbcOML */ (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT64 * sbc);
 
@@ -458,7 +462,7 @@ namespace glew
 
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglSetStereoEmitterState3DL (HDC hDC, UINT uState);
 GLEW_API UINT GLEW_APIENTRY _glew_wgl_wglGetGPUIDsAMD (UINT maxCount, UINT * ids);
-GLEW_API INT GLEW_APIENTRY _glew_wgl_wglGetGPUInfoAMD (UINT id, int property, GLenum dataType, UINT size, void * data);
+GLEW_API INT GLEW_APIENTRY _glew_wgl_wglGetGPUInfoAMD (UINT id, INT property, GLenum dataType, UINT size, void * data);
 GLEW_API UINT GLEW_APIENTRY _glew_wgl_wglGetContextGPUIDAMD (HGLRC hglrc);
 GLEW_API HGLRC GLEW_APIENTRY _glew_wgl_wglCreateAssociatedContextAMD (UINT id);
 GLEW_API HGLRC GLEW_APIENTRY _glew_wgl_wglCreateAssociatedContextAttribsAMD (UINT id, HGLRC hShareContext, const int * attribList);
@@ -547,8 +551,8 @@ GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglEnumGpuDevicesNV (HGPUNV hGpu, UINT iDe
 GLEW_API HDC GLEW_APIENTRY _glew_wgl_wglCreateAffinityDCNV (const HGPUNV * phGpuList);
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglEnumGpusFromAffinityDCNV (HDC hAffinityDC, UINT iGpuIndex, HGPUNV * hGpu);
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglDeleteDCNV (HDC hdc);
-GLEW_API int GLEW_APIENTRY _glew_wgl_wglEnumerateVideoDevicesNV (HDC hDC, HVIDEOOUTPUTDEVICENV * phDeviceList);
-GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglBindVideoDeviceNV (HDC hDC, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList);
+GLEW_API int GLEW_APIENTRY _glew_wgl_wglEnumerateVideoDevicesNV (HDC hDc, HVIDEOOUTPUTDEVICENV * phDeviceList);
+GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglBindVideoDeviceNV (HDC hDc, unsigned int uVideoSlot, HVIDEOOUTPUTDEVICENV hVideoDevice, const int * piAttribList);
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglQueryCurrentContextNV (int iAttribute, int * piValue);
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglJoinSwapGroupNV (HDC hDC, GLuint group);
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglBindSwapBarrierNV (GLuint group, GLuint barrier);
@@ -572,7 +576,7 @@ GLEW_API void GLEW_APIENTRY _glew_wgl_wglFreeMemoryNV (void * pointer);
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglGetSyncValuesOML (HDC hdc, INT64 * ust, INT64 * msc, INT64 * sbc);
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglGetMscRateOML (HDC hdc, INT32 * numerator, INT32 * denominator);
 GLEW_API INT64 GLEW_APIENTRY _glew_wgl_wglSwapBuffersMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder);
-GLEW_API INT64 GLEW_APIENTRY _glew_wgl_wglSwapLayerBuffersMscOML (HDC hdc, int fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder);
+GLEW_API INT64 GLEW_APIENTRY _glew_wgl_wglSwapLayerBuffersMscOML (HDC hdc, INT fuPlanes, INT64 target_msc, INT64 divisor, INT64 remainder);
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglWaitForMscOML (HDC hdc, INT64 target_msc, INT64 divisor, INT64 remainder, INT64 * ust, INT64 * msc, INT64 * sbc);
 GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglWaitForSbcOML (HDC hdc, INT64 target_sbc, INT64 * ust, INT64 * msc, INT64 * sbc);
 
@@ -704,8 +708,8 @@ GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglWaitForSbcOML (HDC hdc, INT64 target_sb
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifdef __GNUC__
-#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600 
+#if defined(__GNUC__)
+#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600
 #pragma GCC diagnostic pop // push/pop not available before GCC 4.6
 #endif
 #endif

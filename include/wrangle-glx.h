@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if defined(__GNUC__)
-#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600 
+#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600
 #pragma GCC diagnostic push // push/pop not available before GCC 4.6
 #endif
 #pragma GCC diagnostic ignored "-Wunused-function"
@@ -41,6 +41,7 @@ enum GLEW_GLX_FeatureSet
   GLEW_GLX_AMD_gpu_association,
   GLEW_GLX_ARB_context_flush_control,
   GLEW_GLX_ARB_create_context,
+  GLEW_GLX_ARB_create_context_no_error,
   GLEW_GLX_ARB_create_context_profile,
   GLEW_GLX_ARB_create_context_robustness,
   GLEW_GLX_ARB_fbconfig_float,
@@ -51,11 +52,15 @@ enum GLEW_GLX_FeatureSet
   GLEW_GLX_ARB_robustness_share_group_isolation,
   GLEW_GLX_ARB_vertex_buffer_object,
   GLEW_GLX_EXT_buffer_age,
+  GLEW_GLX_EXT_context_priority,
   GLEW_GLX_EXT_create_context_es_profile,
   GLEW_GLX_EXT_create_context_es2_profile,
   GLEW_GLX_EXT_fbconfig_packed_float,
   GLEW_GLX_EXT_framebuffer_sRGB,
+  GLEW_GLX_EXT_get_drawable_type,
   GLEW_GLX_EXT_import_context,
+  GLEW_GLX_EXT_libglvnd,
+  GLEW_GLX_EXT_no_config_context,
   GLEW_GLX_EXT_stereo_tree,
   GLEW_GLX_EXT_swap_control,
   GLEW_GLX_EXT_swap_control_tear,
@@ -69,12 +74,14 @@ enum GLEW_GLX_FeatureSet
   GLEW_GLX_MESA_query_renderer,
   GLEW_GLX_MESA_release_buffers,
   GLEW_GLX_MESA_set_3dfx_mode,
+  GLEW_GLX_MESA_swap_control,
   GLEW_GLX_NV_copy_buffer,
   GLEW_GLX_NV_copy_image,
   GLEW_GLX_NV_delay_before_swap,
   GLEW_GLX_NV_float_buffer,
   GLEW_GLX_NV_multisample_coverage,
   GLEW_GLX_NV_present_video,
+  GLEW_GLX_NV_robustness_video_memory_purge,
   GLEW_GLX_NV_swap_group,
   GLEW_GLX_NV_video_capture,
   GLEW_GLX_NV_video_out,
@@ -97,6 +104,7 @@ enum GLEW_GLX_FeatureSet
   GLEW_GLX_SGIX_video_source,
   GLEW_GLX_SGIX_visual_select_group,
   GLEW_GLX_SUN_get_transparent_index,
+  GLEW_GLX_NV_multigpu_context,
   GLEW_GLX_FeatureSetCount
 };
 
@@ -170,7 +178,9 @@ typedef const char * ( PFNGLXQUERYCURRENTRENDERERSTRINGMESAPROC) /* glXQueryCurr
 typedef Bool ( PFNGLXQUERYRENDERERINTEGERMESAPROC) /* glXQueryRendererIntegerMESA */ (Display * dpy, int screen, int renderer, int attribute, unsigned int * value);
 typedef const char * ( PFNGLXQUERYRENDERERSTRINGMESAPROC) /* glXQueryRendererStringMESA */ (Display * dpy, int screen, int renderer, int attribute);
 typedef Bool ( PFNGLXRELEASEBUFFERSMESAPROC) /* glXReleaseBuffersMESA */ (Display * dpy, GLXDrawable drawable);
-typedef Bool ( PFNGLXSET3DFXMODEMESAPROC) /* glXSet3DfxModeMESA */ (int mode);
+typedef GLboolean ( PFNGLXSET3DFXMODEMESAPROC) /* glXSet3DfxModeMESA */ (GLint mode);
+typedef int ( PFNGLXGETSWAPINTERVALMESAPROC) /* glXGetSwapIntervalMESA */ ();
+typedef int ( PFNGLXSWAPINTERVALMESAPROC) /* glXSwapIntervalMESA */ (unsigned int interval);
 typedef void ( PFNGLXCOPYBUFFERSUBDATANVPROC) /* glXCopyBufferSubDataNV */ (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
 typedef void ( PFNGLXNAMEDCOPYBUFFERSUBDATANVPROC) /* glXNamedCopyBufferSubDataNV */ (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
 typedef void ( PFNGLXCOPYIMAGESUBDATANVPROC) /* glXCopyImageSubDataNV */ (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
@@ -222,7 +232,7 @@ typedef int ( PFNGLXHYPERPIPEATTRIBSGIXPROC) /* glXHyperpipeAttribSGIX */ (Displ
 typedef int ( PFNGLXQUERYHYPERPIPEATTRIBSGIXPROC) /* glXQueryHyperpipeAttribSGIX */ (Display * dpy, int timeSlice, int attrib, int size, void * returnAttribList);
 typedef GLXPbufferSGIX ( PFNGLXCREATEGLXPBUFFERSGIXPROC) /* glXCreateGLXPbufferSGIX */ (Display * dpy, GLXFBConfigSGIX config, unsigned int width, unsigned int height, int * attrib_list);
 typedef void ( PFNGLXDESTROYGLXPBUFFERSGIXPROC) /* glXDestroyGLXPbufferSGIX */ (Display * dpy, GLXPbufferSGIX pbuf);
-typedef int ( PFNGLXQUERYGLXPBUFFERSGIXPROC) /* glXQueryGLXPbufferSGIX */ (Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value);
+typedef void ( PFNGLXQUERYGLXPBUFFERSGIXPROC) /* glXQueryGLXPbufferSGIX */ (Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value);
 typedef void ( PFNGLXSELECTEVENTSGIXPROC) /* glXSelectEventSGIX */ (Display * dpy, GLXDrawable drawable, unsigned long mask);
 typedef void ( PFNGLXGETSELECTEDEVENTSGIXPROC) /* glXGetSelectedEventSGIX */ (Display * dpy, GLXDrawable drawable, unsigned long * mask);
 typedef void ( PFNGLXBINDSWAPBARRIERSGIXPROC) /* glXBindSwapBarrierSGIX */ (Display * dpy, GLXDrawable drawable, int barrier);
@@ -235,7 +245,7 @@ typedef int ( PFNGLXQUERYCHANNELDELTASSGIXPROC) /* glXQueryChannelDeltasSGIX */ 
 typedef int ( PFNGLXCHANNELRECTSYNCSGIXPROC) /* glXChannelRectSyncSGIX */ (Display * display, int screen, int channel, GLenum synctype);
 typedef GLXVideoSourceSGIX ( PFNGLXCREATEGLXVIDEOSOURCESGIXPROC) /* glXCreateGLXVideoSourceSGIX */ (Display * display, int screen, VLServer server, VLPath path, int nodeClass, VLNode drainNode);
 typedef void ( PFNGLXDESTROYGLXVIDEOSOURCESGIXPROC) /* glXDestroyGLXVideoSourceSGIX */ (Display * dpy, GLXVideoSourceSGIX glxvideosource);
-typedef Status ( PFNGLXGETTRANSPARENTINDEXSUNPROC) /* glXGetTransparentIndexSUN */ (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex);
+typedef Status ( PFNGLXGETTRANSPARENTINDEXSUNPROC) /* glXGetTransparentIndexSUN */ (Display * dpy, Window overlay, Window underlay, unsigned long * pTransparentIndex);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -312,6 +322,8 @@ namespace glew
       PFNGLXQUERYRENDERERSTRINGMESAPROC m_glXQueryRendererStringMESA;
       PFNGLXRELEASEBUFFERSMESAPROC m_glXReleaseBuffersMESA;
       PFNGLXSET3DFXMODEMESAPROC m_glXSet3DfxModeMESA;
+      PFNGLXGETSWAPINTERVALMESAPROC m_glXGetSwapIntervalMESA;
+      PFNGLXSWAPINTERVALMESAPROC m_glXSwapIntervalMESA;
       PFNGLXCOPYBUFFERSUBDATANVPROC m_glXCopyBufferSubDataNV;
       PFNGLXNAMEDCOPYBUFFERSUBDATANVPROC m_glXNamedCopyBufferSubDataNV;
       PFNGLXCOPYIMAGESUBDATANVPROC m_glXCopyImageSubDataNV;
@@ -483,7 +495,9 @@ GLEW_API const char * GLEW_APIENTRY _glew_glx_glXQueryCurrentRendererStringMESA 
 GLEW_API Bool GLEW_APIENTRY _glew_glx_glXQueryRendererIntegerMESA (Display * dpy, int screen, int renderer, int attribute, unsigned int * value);
 GLEW_API const char * GLEW_APIENTRY _glew_glx_glXQueryRendererStringMESA (Display * dpy, int screen, int renderer, int attribute);
 GLEW_API Bool GLEW_APIENTRY _glew_glx_glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable);
-GLEW_API Bool GLEW_APIENTRY _glew_glx_glXSet3DfxModeMESA (int mode);
+GLEW_API GLboolean GLEW_APIENTRY _glew_glx_glXSet3DfxModeMESA (GLint mode);
+GLEW_API int GLEW_APIENTRY _glew_glx_glXGetSwapIntervalMESA ();
+GLEW_API int GLEW_APIENTRY _glew_glx_glXSwapIntervalMESA (unsigned int interval);
 GLEW_API void GLEW_APIENTRY _glew_glx_glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
 GLEW_API void GLEW_APIENTRY _glew_glx_glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size);
 GLEW_API void GLEW_APIENTRY _glew_glx_glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
@@ -535,7 +549,7 @@ GLEW_API int GLEW_APIENTRY _glew_glx_glXHyperpipeAttribSGIX (Display * dpy, int 
 GLEW_API int GLEW_APIENTRY _glew_glx_glXQueryHyperpipeAttribSGIX (Display * dpy, int timeSlice, int attrib, int size, void * returnAttribList);
 GLEW_API GLXPbufferSGIX GLEW_APIENTRY _glew_glx_glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, unsigned int width, unsigned int height, int * attrib_list);
 GLEW_API void GLEW_APIENTRY _glew_glx_glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf);
-GLEW_API int GLEW_APIENTRY _glew_glx_glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value);
+GLEW_API void GLEW_APIENTRY _glew_glx_glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value);
 GLEW_API void GLEW_APIENTRY _glew_glx_glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long mask);
 GLEW_API void GLEW_APIENTRY _glew_glx_glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long * mask);
 GLEW_API void GLEW_APIENTRY _glew_glx_glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int barrier);
@@ -548,7 +562,7 @@ GLEW_API int GLEW_APIENTRY _glew_glx_glXQueryChannelDeltasSGIX (Display * displa
 GLEW_API int GLEW_APIENTRY _glew_glx_glXChannelRectSyncSGIX (Display * display, int screen, int channel, GLenum synctype);
 GLEW_API GLXVideoSourceSGIX GLEW_APIENTRY _glew_glx_glXCreateGLXVideoSourceSGIX (Display * display, int screen, VLServer server, VLPath path, int nodeClass, VLNode drainNode);
 GLEW_API void GLEW_APIENTRY _glew_glx_glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosource);
-GLEW_API Status GLEW_APIENTRY _glew_glx_glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, long * pTransparentIndex);
+GLEW_API Status GLEW_APIENTRY _glew_glx_glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, unsigned long * pTransparentIndex);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -604,6 +618,8 @@ GLEW_API Status GLEW_APIENTRY _glew_glx_glXGetTransparentIndexSUN (Display * dpy
 #define glXQueryRendererStringMESA _glew_glx_glXQueryRendererStringMESA
 #define glXReleaseBuffersMESA _glew_glx_glXReleaseBuffersMESA
 #define glXSet3DfxModeMESA _glew_glx_glXSet3DfxModeMESA
+#define glXGetSwapIntervalMESA _glew_glx_glXGetSwapIntervalMESA
+#define glXSwapIntervalMESA _glew_glx_glXSwapIntervalMESA
 #define glXCopyBufferSubDataNV _glew_glx_glXCopyBufferSubDataNV
 #define glXNamedCopyBufferSubDataNV _glew_glx_glXNamedCopyBufferSubDataNV
 #define glXCopyImageSubDataNV _glew_glx_glXCopyImageSubDataNV
@@ -674,8 +690,8 @@ GLEW_API Status GLEW_APIENTRY _glew_glx_glXGetTransparentIndexSUN (Display * dpy
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifdef __GNUC__
-#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600 
+#if defined(__GNUC__)
+#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600
 #pragma GCC diagnostic pop // push/pop not available before GCC 4.6
 #endif
 #endif
