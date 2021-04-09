@@ -19,13 +19,13 @@ cp -R egl-registry/api/KHR include
 cp -R egl-registry/api/*.xml .
 rm -Rf egl-registry
 
-# Generate wrangle-gl headers/sources.
+# Generate headers/sources.
 rm -f include/wrangle-*.h
 rm -f src/wrangle-*.cpp
-pushd src/generator
+pushd generator
 dotnet build
 popd
-src/generator/bin/Debug/netcoreapp3.1/wrangle-gl-generator.exe
+./generator/bin/Debug/netcoreapp3.1/wrangle-gl-generator
 cp ./wrangle-*.h include/
 cp ./wrangle-*.cpp src/
 rm -f ./wrangle-*.h ./wrangle-*.cpp ./*.xml
