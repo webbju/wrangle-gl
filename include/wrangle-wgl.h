@@ -2,15 +2,30 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef __GLEW_WGL_H__
-#define __GLEW_WGL_H__
+#pragma once
+
+#if defined(__GNUC__)
+#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600
+#pragma GCC diagnostic push // push/pop not available before GCC 4.6
+#endif
+#pragma GCC diagnostic ignored "-Wunused-function"
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#define GLEW_USE_WGL 1
 
 #include <wrangle.h>
 
+#include <cstring>
+
+#include <string>
+
+#include <unordered_set>
+
+// Support standalone inclusion without GL headers.
 typedef unsigned int GLenum;
 typedef unsigned char GLboolean;
 typedef unsigned int GLbitfield;
@@ -30,17 +45,6 @@ typedef void GLvoid;
 #include <GL/wgl.h>
 
 #include <GL/wglext.h>
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#if defined(__GNUC__)
-#if ((__GNUC__ * 10000) + (__GNUC_MINOR__ * 100) + __GNUC_PATCHLEVEL__) >= 40600
-#pragma GCC diagnostic push // push/pop not available before GCC 4.6
-#endif
-#pragma GCC diagnostic ignored "-Wunused-function"
-#endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,32 +117,165 @@ enum GLEW_WGL_FeatureSet
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLEW_EXTERN WINGDIAPI int WINAPI ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd);
-GLEW_EXTERN WINGDIAPI int WINAPI DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd);
-GLEW_EXTERN WINGDIAPI UINT WINAPI GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd);
-GLEW_EXTERN WINGDIAPI int WINAPI GetPixelFormat (HDC hdc);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI SwapBuffers (HDC hdc);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask);
-GLEW_EXTERN WINGDIAPI HGLRC WINAPI wglCreateContext (HDC hDc);
-GLEW_EXTERN WINGDIAPI HGLRC WINAPI wglCreateLayerContext (HDC hDc, int level);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglDeleteContext (HGLRC oldContext);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, const LAYERPLANEDESCRIPTOR * plpd);
-GLEW_EXTERN WINGDIAPI HGLRC WINAPI wglGetCurrentContext ();
-GLEW_EXTERN WINGDIAPI HDC WINAPI wglGetCurrentDC ();
-GLEW_EXTERN WINGDIAPI int WINAPI wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
-GLEW_EXTERN WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglMakeCurrent (HDC hDc, HGLRC newContext);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize);
-GLEW_EXTERN WINGDIAPI int WINAPI wglSetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglShareLists (HGLRC hrcSrvShare, HGLRC hrcSrvSource);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglSwapLayerBuffers (HDC hdc, UINT fuFlags);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglUseFontBitmaps (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglUseFontBitmapsA (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglUseFontBitmapsW (HDC hDC, DWORD first, DWORD count, DWORD listBase);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglUseFontOutlines (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglUseFontOutlinesA (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
+enum GLEW_WGL_ProcDelegate
+{
+  GLEW_WGL_wglSetStereoEmitterState3DL,
+  GLEW_WGL_wglGetGPUIDsAMD,
+  GLEW_WGL_wglGetGPUInfoAMD,
+  GLEW_WGL_wglGetContextGPUIDAMD,
+  GLEW_WGL_wglCreateAssociatedContextAMD,
+  GLEW_WGL_wglCreateAssociatedContextAttribsAMD,
+  GLEW_WGL_wglDeleteAssociatedContextAMD,
+  GLEW_WGL_wglMakeAssociatedContextCurrentAMD,
+  GLEW_WGL_wglGetCurrentAssociatedContextAMD,
+  GLEW_WGL_wglBlitContextFramebufferAMD,
+  GLEW_WGL_wglCreateBufferRegionARB,
+  GLEW_WGL_wglDeleteBufferRegionARB,
+  GLEW_WGL_wglSaveBufferRegionARB,
+  GLEW_WGL_wglRestoreBufferRegionARB,
+  GLEW_WGL_wglCreateContextAttribsARB,
+  GLEW_WGL_wglGetExtensionsStringARB,
+  GLEW_WGL_wglMakeContextCurrentARB,
+  GLEW_WGL_wglGetCurrentReadDCARB,
+  GLEW_WGL_wglCreatePbufferARB,
+  GLEW_WGL_wglGetPbufferDCARB,
+  GLEW_WGL_wglReleasePbufferDCARB,
+  GLEW_WGL_wglDestroyPbufferARB,
+  GLEW_WGL_wglQueryPbufferARB,
+  GLEW_WGL_wglGetPixelFormatAttribivARB,
+  GLEW_WGL_wglGetPixelFormatAttribfvARB,
+  GLEW_WGL_wglChoosePixelFormatARB,
+  GLEW_WGL_wglBindTexImageARB,
+  GLEW_WGL_wglReleaseTexImageARB,
+  GLEW_WGL_wglSetPbufferAttribARB,
+  GLEW_WGL_wglCreateDisplayColorTableEXT,
+  GLEW_WGL_wglLoadDisplayColorTableEXT,
+  GLEW_WGL_wglBindDisplayColorTableEXT,
+  GLEW_WGL_wglDestroyDisplayColorTableEXT,
+  GLEW_WGL_wglGetExtensionsStringEXT,
+  GLEW_WGL_wglMakeContextCurrentEXT,
+  GLEW_WGL_wglGetCurrentReadDCEXT,
+  GLEW_WGL_wglCreatePbufferEXT,
+  GLEW_WGL_wglGetPbufferDCEXT,
+  GLEW_WGL_wglReleasePbufferDCEXT,
+  GLEW_WGL_wglDestroyPbufferEXT,
+  GLEW_WGL_wglQueryPbufferEXT,
+  GLEW_WGL_wglGetPixelFormatAttribivEXT,
+  GLEW_WGL_wglGetPixelFormatAttribfvEXT,
+  GLEW_WGL_wglChoosePixelFormatEXT,
+  GLEW_WGL_wglSwapIntervalEXT,
+  GLEW_WGL_wglGetSwapIntervalEXT,
+  GLEW_WGL_wglGetDigitalVideoParametersI3D,
+  GLEW_WGL_wglSetDigitalVideoParametersI3D,
+  GLEW_WGL_wglGetGammaTableParametersI3D,
+  GLEW_WGL_wglSetGammaTableParametersI3D,
+  GLEW_WGL_wglGetGammaTableI3D,
+  GLEW_WGL_wglSetGammaTableI3D,
+  GLEW_WGL_wglEnableGenlockI3D,
+  GLEW_WGL_wglDisableGenlockI3D,
+  GLEW_WGL_wglIsEnabledGenlockI3D,
+  GLEW_WGL_wglGenlockSourceI3D,
+  GLEW_WGL_wglGetGenlockSourceI3D,
+  GLEW_WGL_wglGenlockSourceEdgeI3D,
+  GLEW_WGL_wglGetGenlockSourceEdgeI3D,
+  GLEW_WGL_wglGenlockSampleRateI3D,
+  GLEW_WGL_wglGetGenlockSampleRateI3D,
+  GLEW_WGL_wglGenlockSourceDelayI3D,
+  GLEW_WGL_wglGetGenlockSourceDelayI3D,
+  GLEW_WGL_wglQueryGenlockMaxSourceDelayI3D,
+  GLEW_WGL_wglCreateImageBufferI3D,
+  GLEW_WGL_wglDestroyImageBufferI3D,
+  GLEW_WGL_wglAssociateImageBufferEventsI3D,
+  GLEW_WGL_wglReleaseImageBufferEventsI3D,
+  GLEW_WGL_wglEnableFrameLockI3D,
+  GLEW_WGL_wglDisableFrameLockI3D,
+  GLEW_WGL_wglIsEnabledFrameLockI3D,
+  GLEW_WGL_wglQueryFrameLockMasterI3D,
+  GLEW_WGL_wglGetFrameUsageI3D,
+  GLEW_WGL_wglBeginFrameTrackingI3D,
+  GLEW_WGL_wglEndFrameTrackingI3D,
+  GLEW_WGL_wglQueryFrameTrackingI3D,
+  GLEW_WGL_wglCopyImageSubDataNV,
+  GLEW_WGL_wglDelayBeforeSwapNV,
+  GLEW_WGL_wglDXSetResourceShareHandleNV,
+  GLEW_WGL_wglDXOpenDeviceNV,
+  GLEW_WGL_wglDXCloseDeviceNV,
+  GLEW_WGL_wglDXRegisterObjectNV,
+  GLEW_WGL_wglDXUnregisterObjectNV,
+  GLEW_WGL_wglDXObjectAccessNV,
+  GLEW_WGL_wglDXLockObjectsNV,
+  GLEW_WGL_wglDXUnlockObjectsNV,
+  GLEW_WGL_wglEnumGpusNV,
+  GLEW_WGL_wglEnumGpuDevicesNV,
+  GLEW_WGL_wglCreateAffinityDCNV,
+  GLEW_WGL_wglEnumGpusFromAffinityDCNV,
+  GLEW_WGL_wglDeleteDCNV,
+  GLEW_WGL_wglEnumerateVideoDevicesNV,
+  GLEW_WGL_wglBindVideoDeviceNV,
+  GLEW_WGL_wglQueryCurrentContextNV,
+  GLEW_WGL_wglJoinSwapGroupNV,
+  GLEW_WGL_wglBindSwapBarrierNV,
+  GLEW_WGL_wglQuerySwapGroupNV,
+  GLEW_WGL_wglQueryMaxSwapGroupsNV,
+  GLEW_WGL_wglQueryFrameCountNV,
+  GLEW_WGL_wglResetFrameCountNV,
+  GLEW_WGL_wglBindVideoCaptureDeviceNV,
+  GLEW_WGL_wglEnumerateVideoCaptureDevicesNV,
+  GLEW_WGL_wglLockVideoCaptureDeviceNV,
+  GLEW_WGL_wglQueryVideoCaptureDeviceNV,
+  GLEW_WGL_wglReleaseVideoCaptureDeviceNV,
+  GLEW_WGL_wglGetVideoDeviceNV,
+  GLEW_WGL_wglReleaseVideoDeviceNV,
+  GLEW_WGL_wglBindVideoImageNV,
+  GLEW_WGL_wglReleaseVideoImageNV,
+  GLEW_WGL_wglSendPbufferToVideoNV,
+  GLEW_WGL_wglGetVideoInfoNV,
+  GLEW_WGL_wglAllocateMemoryNV,
+  GLEW_WGL_wglFreeMemoryNV,
+  GLEW_WGL_wglGetSyncValuesOML,
+  GLEW_WGL_wglGetMscRateOML,
+  GLEW_WGL_wglSwapBuffersMscOML,
+  GLEW_WGL_wglSwapLayerBuffersMscOML,
+  GLEW_WGL_wglWaitForMscOML,
+  GLEW_WGL_wglWaitForSbcOML,
+  GLEW_WGL_ProcDelegateCount
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+WINGDIAPI int WINAPI ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd);
+WINGDIAPI int WINAPI DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd);
+WINGDIAPI UINT WINAPI GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd);
+WINGDIAPI int WINAPI GetPixelFormat (HDC hdc);
+WINGDIAPI BOOL WINAPI SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd);
+WINGDIAPI BOOL WINAPI SwapBuffers (HDC hdc);
+WINGDIAPI BOOL WINAPI wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask);
+WINGDIAPI HGLRC WINAPI wglCreateContext (HDC hDc);
+WINGDIAPI HGLRC WINAPI wglCreateLayerContext (HDC hDc, int level);
+WINGDIAPI BOOL WINAPI wglDeleteContext (HGLRC oldContext);
+WINGDIAPI BOOL WINAPI wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, const LAYERPLANEDESCRIPTOR * plpd);
+WINGDIAPI HGLRC WINAPI wglGetCurrentContext ();
+WINGDIAPI HDC WINAPI wglGetCurrentDC ();
+WINGDIAPI int WINAPI wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
+WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
+WINGDIAPI BOOL WINAPI wglMakeCurrent (HDC hDc, HGLRC newContext);
+WINGDIAPI BOOL WINAPI wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize);
+WINGDIAPI int WINAPI wglSetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
+WINGDIAPI BOOL WINAPI wglShareLists (HGLRC hrcSrvShare, HGLRC hrcSrvSource);
+WINGDIAPI BOOL WINAPI wglSwapLayerBuffers (HDC hdc, UINT fuFlags);
+WINGDIAPI BOOL WINAPI wglUseFontBitmaps (HDC hDC, DWORD first, DWORD count, DWORD listBase);
+WINGDIAPI BOOL WINAPI wglUseFontBitmapsA (HDC hDC, DWORD first, DWORD count, DWORD listBase);
+WINGDIAPI BOOL WINAPI wglUseFontBitmapsW (HDC hDC, DWORD first, DWORD count, DWORD listBase);
+WINGDIAPI BOOL WINAPI wglUseFontOutlines (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
+WINGDIAPI BOOL WINAPI wglUseFontOutlinesA (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
+WINGDIAPI BOOL WINAPI wglUseFontOutlinesW (HDC hDC, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 typedef BOOL (WINAPI * PFNWGLSETSTEREOEMITTERSTATE3DLPROC) /* wglSetStereoEmitterState3DL */ (HDC hDC, UINT uState);
 typedef UINT (WINAPI * PFNWGLGETGPUIDSAMDPROC) /* wglGetGPUIDsAMD */ (UINT maxCount, UINT * ids);
 typedef INT (WINAPI * PFNWGLGETGPUINFOAMDPROC) /* wglGetGPUInfoAMD */ (UINT id, INT property, GLenum dataType, UINT size, void * data);
@@ -263,26 +400,325 @@ typedef BOOL (WINAPI * PFNWGLWAITFORSBCOMLPROC) /* wglWaitForSbcOML */ (HDC hdc,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-namespace glew
-{
+namespace glew {
+  namespace wgl {
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  class wgl
-  {
-  public:
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    class DeviceConfig
-    {
+    class Context {
     public:
 
-      bool m_featureSupported [GLEW_WGL_FeatureSetCount];
+      Context(std::unordered_set<std::string> &supportedExtensions, void* (*wglGetProcAddressFunc)(const char*)) {
+        m_featureSupported[GLEW_WGL_3DFX_multisample] = (supportedExtensions.find("WGL_3DFX_multisample") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_3DL_stereo_control] = (supportedExtensions.find("WGL_3DL_stereo_control") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_AMD_gpu_association] = (supportedExtensions.find("WGL_AMD_gpu_association") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_buffer_region] = (supportedExtensions.find("WGL_ARB_buffer_region") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_context_flush_control] = (supportedExtensions.find("WGL_ARB_context_flush_control") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_create_context] = (supportedExtensions.find("WGL_ARB_create_context") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_create_context_no_error] = (supportedExtensions.find("WGL_ARB_create_context_no_error") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_create_context_profile] = (supportedExtensions.find("WGL_ARB_create_context_profile") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_create_context_robustness] = (supportedExtensions.find("WGL_ARB_create_context_robustness") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_extensions_string] = (supportedExtensions.find("WGL_ARB_extensions_string") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_framebuffer_sRGB] = (supportedExtensions.find("WGL_ARB_framebuffer_sRGB") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_make_current_read] = (supportedExtensions.find("WGL_ARB_make_current_read") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_multisample] = (supportedExtensions.find("WGL_ARB_multisample") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_pbuffer] = (supportedExtensions.find("WGL_ARB_pbuffer") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_pixel_format] = (supportedExtensions.find("WGL_ARB_pixel_format") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_pixel_format_float] = (supportedExtensions.find("WGL_ARB_pixel_format_float") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_render_texture] = (supportedExtensions.find("WGL_ARB_render_texture") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_robustness_application_isolation] = (supportedExtensions.find("WGL_ARB_robustness_application_isolation") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ARB_robustness_share_group_isolation] = (supportedExtensions.find("WGL_ARB_robustness_share_group_isolation") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ATI_pixel_format_float] = (supportedExtensions.find("WGL_ATI_pixel_format_float") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_ATI_render_texture_rectangle] = (supportedExtensions.find("WGL_ATI_render_texture_rectangle") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_colorspace] = (supportedExtensions.find("WGL_EXT_colorspace") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_create_context_es_profile] = (supportedExtensions.find("WGL_EXT_create_context_es_profile") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_create_context_es2_profile] = (supportedExtensions.find("WGL_EXT_create_context_es2_profile") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_depth_float] = (supportedExtensions.find("WGL_EXT_depth_float") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_display_color_table] = (supportedExtensions.find("WGL_EXT_display_color_table") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_extensions_string] = (supportedExtensions.find("WGL_EXT_extensions_string") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_framebuffer_sRGB] = (supportedExtensions.find("WGL_EXT_framebuffer_sRGB") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_make_current_read] = (supportedExtensions.find("WGL_EXT_make_current_read") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_multisample] = (supportedExtensions.find("WGL_EXT_multisample") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_pbuffer] = (supportedExtensions.find("WGL_EXT_pbuffer") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_pixel_format] = (supportedExtensions.find("WGL_EXT_pixel_format") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_pixel_format_packed_float] = (supportedExtensions.find("WGL_EXT_pixel_format_packed_float") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_swap_control] = (supportedExtensions.find("WGL_EXT_swap_control") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_EXT_swap_control_tear] = (supportedExtensions.find("WGL_EXT_swap_control_tear") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_I3D_digital_video_control] = (supportedExtensions.find("WGL_I3D_digital_video_control") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_I3D_gamma] = (supportedExtensions.find("WGL_I3D_gamma") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_I3D_genlock] = (supportedExtensions.find("WGL_I3D_genlock") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_I3D_image_buffer] = (supportedExtensions.find("WGL_I3D_image_buffer") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_I3D_swap_frame_lock] = (supportedExtensions.find("WGL_I3D_swap_frame_lock") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_I3D_swap_frame_usage] = (supportedExtensions.find("WGL_I3D_swap_frame_usage") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_copy_image] = (supportedExtensions.find("WGL_NV_copy_image") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_delay_before_swap] = (supportedExtensions.find("WGL_NV_delay_before_swap") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_DX_interop] = (supportedExtensions.find("WGL_NV_DX_interop") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_DX_interop2] = (supportedExtensions.find("WGL_NV_DX_interop2") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_float_buffer] = (supportedExtensions.find("WGL_NV_float_buffer") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_gpu_affinity] = (supportedExtensions.find("WGL_NV_gpu_affinity") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_multisample_coverage] = (supportedExtensions.find("WGL_NV_multisample_coverage") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_present_video] = (supportedExtensions.find("WGL_NV_present_video") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_render_depth_texture] = (supportedExtensions.find("WGL_NV_render_depth_texture") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_render_texture_rectangle] = (supportedExtensions.find("WGL_NV_render_texture_rectangle") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_swap_group] = (supportedExtensions.find("WGL_NV_swap_group") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_video_capture] = (supportedExtensions.find("WGL_NV_video_capture") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_video_output] = (supportedExtensions.find("WGL_NV_video_output") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_vertex_array_range] = (supportedExtensions.find("WGL_NV_vertex_array_range") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_OML_sync_control] = (supportedExtensions.find("WGL_OML_sync_control") != supportedExtensions.end());
+        m_featureSupported[GLEW_WGL_NV_multigpu_context] = (supportedExtensions.find("WGL_NV_multigpu_context") != supportedExtensions.end());
+
+
+        // WGL_3DL_stereo_control
+        if (m_featureSupported[GLEW_WGL_3DL_stereo_control]) {
+          m_wglSetStereoEmitterState3DL = (PFNWGLSETSTEREOEMITTERSTATE3DLPROC) wglGetProcAddressFunc("wglSetStereoEmitterState3DL");
+        }
+
+        // WGL_AMD_gpu_association
+        if (m_featureSupported[GLEW_WGL_AMD_gpu_association]) {
+          m_wglGetGPUIDsAMD = (PFNWGLGETGPUIDSAMDPROC) wglGetProcAddressFunc("wglGetGPUIDsAMD");
+          m_wglGetGPUInfoAMD = (PFNWGLGETGPUINFOAMDPROC) wglGetProcAddressFunc("wglGetGPUInfoAMD");
+          m_wglGetContextGPUIDAMD = (PFNWGLGETCONTEXTGPUIDAMDPROC) wglGetProcAddressFunc("wglGetContextGPUIDAMD");
+          m_wglCreateAssociatedContextAMD = (PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC) wglGetProcAddressFunc("wglCreateAssociatedContextAMD");
+          m_wglCreateAssociatedContextAttribsAMD = (PFNWGLCREATEASSOCIATEDCONTEXTATTRIBSAMDPROC) wglGetProcAddressFunc("wglCreateAssociatedContextAttribsAMD");
+          m_wglDeleteAssociatedContextAMD = (PFNWGLDELETEASSOCIATEDCONTEXTAMDPROC) wglGetProcAddressFunc("wglDeleteAssociatedContextAMD");
+          m_wglMakeAssociatedContextCurrentAMD = (PFNWGLMAKEASSOCIATEDCONTEXTCURRENTAMDPROC) wglGetProcAddressFunc("wglMakeAssociatedContextCurrentAMD");
+          m_wglGetCurrentAssociatedContextAMD = (PFNWGLGETCURRENTASSOCIATEDCONTEXTAMDPROC) wglGetProcAddressFunc("wglGetCurrentAssociatedContextAMD");
+          m_wglBlitContextFramebufferAMD = (PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC) wglGetProcAddressFunc("wglBlitContextFramebufferAMD");
+        }
+
+        // WGL_ARB_buffer_region
+        if (m_featureSupported[GLEW_WGL_ARB_buffer_region]) {
+          m_wglCreateBufferRegionARB = (PFNWGLCREATEBUFFERREGIONARBPROC) wglGetProcAddressFunc("wglCreateBufferRegionARB");
+          m_wglDeleteBufferRegionARB = (PFNWGLDELETEBUFFERREGIONARBPROC) wglGetProcAddressFunc("wglDeleteBufferRegionARB");
+          m_wglSaveBufferRegionARB = (PFNWGLSAVEBUFFERREGIONARBPROC) wglGetProcAddressFunc("wglSaveBufferRegionARB");
+          m_wglRestoreBufferRegionARB = (PFNWGLRESTOREBUFFERREGIONARBPROC) wglGetProcAddressFunc("wglRestoreBufferRegionARB");
+        }
+
+        // WGL_ARB_create_context
+        if (m_featureSupported[GLEW_WGL_ARB_create_context]) {
+          m_wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC) wglGetProcAddressFunc("wglCreateContextAttribsARB");
+        }
+
+        // WGL_ARB_extensions_string
+        if (m_featureSupported[GLEW_WGL_ARB_extensions_string]) {
+          m_wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC) wglGetProcAddressFunc("wglGetExtensionsStringARB");
+        }
+
+        // WGL_ARB_make_current_read
+        if (m_featureSupported[GLEW_WGL_ARB_make_current_read]) {
+          m_wglMakeContextCurrentARB = (PFNWGLMAKECONTEXTCURRENTARBPROC) wglGetProcAddressFunc("wglMakeContextCurrentARB");
+          m_wglGetCurrentReadDCARB = (PFNWGLGETCURRENTREADDCARBPROC) wglGetProcAddressFunc("wglGetCurrentReadDCARB");
+        }
+
+        // WGL_ARB_pbuffer
+        if (m_featureSupported[GLEW_WGL_ARB_pbuffer]) {
+          m_wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC) wglGetProcAddressFunc("wglCreatePbufferARB");
+          m_wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC) wglGetProcAddressFunc("wglGetPbufferDCARB");
+          m_wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC) wglGetProcAddressFunc("wglReleasePbufferDCARB");
+          m_wglDestroyPbufferARB = (PFNWGLDESTROYPBUFFERARBPROC) wglGetProcAddressFunc("wglDestroyPbufferARB");
+          m_wglQueryPbufferARB = (PFNWGLQUERYPBUFFERARBPROC) wglGetProcAddressFunc("wglQueryPbufferARB");
+        }
+
+        // WGL_ARB_pixel_format
+        if (m_featureSupported[GLEW_WGL_ARB_pixel_format]) {
+          m_wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC) wglGetProcAddressFunc("wglGetPixelFormatAttribivARB");
+          m_wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC) wglGetProcAddressFunc("wglGetPixelFormatAttribfvARB");
+          m_wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC) wglGetProcAddressFunc("wglChoosePixelFormatARB");
+        }
+
+        // WGL_ARB_render_texture
+        if (m_featureSupported[GLEW_WGL_ARB_render_texture]) {
+          m_wglBindTexImageARB = (PFNWGLBINDTEXIMAGEARBPROC) wglGetProcAddressFunc("wglBindTexImageARB");
+          m_wglReleaseTexImageARB = (PFNWGLRELEASETEXIMAGEARBPROC) wglGetProcAddressFunc("wglReleaseTexImageARB");
+          m_wglSetPbufferAttribARB = (PFNWGLSETPBUFFERATTRIBARBPROC) wglGetProcAddressFunc("wglSetPbufferAttribARB");
+        }
+
+        // WGL_EXT_display_color_table
+        if (m_featureSupported[GLEW_WGL_EXT_display_color_table]) {
+          m_wglCreateDisplayColorTableEXT = (PFNWGLCREATEDISPLAYCOLORTABLEEXTPROC) wglGetProcAddressFunc("wglCreateDisplayColorTableEXT");
+          m_wglLoadDisplayColorTableEXT = (PFNWGLLOADDISPLAYCOLORTABLEEXTPROC) wglGetProcAddressFunc("wglLoadDisplayColorTableEXT");
+          m_wglBindDisplayColorTableEXT = (PFNWGLBINDDISPLAYCOLORTABLEEXTPROC) wglGetProcAddressFunc("wglBindDisplayColorTableEXT");
+          m_wglDestroyDisplayColorTableEXT = (PFNWGLDESTROYDISPLAYCOLORTABLEEXTPROC) wglGetProcAddressFunc("wglDestroyDisplayColorTableEXT");
+        }
+
+        // WGL_EXT_extensions_string
+        if (m_featureSupported[GLEW_WGL_EXT_extensions_string]) {
+          m_wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC) wglGetProcAddressFunc("wglGetExtensionsStringEXT");
+        }
+
+        // WGL_EXT_make_current_read
+        if (m_featureSupported[GLEW_WGL_EXT_make_current_read]) {
+          m_wglMakeContextCurrentEXT = (PFNWGLMAKECONTEXTCURRENTEXTPROC) wglGetProcAddressFunc("wglMakeContextCurrentEXT");
+          m_wglGetCurrentReadDCEXT = (PFNWGLGETCURRENTREADDCEXTPROC) wglGetProcAddressFunc("wglGetCurrentReadDCEXT");
+        }
+
+        // WGL_EXT_pbuffer
+        if (m_featureSupported[GLEW_WGL_EXT_pbuffer]) {
+          m_wglCreatePbufferEXT = (PFNWGLCREATEPBUFFEREXTPROC) wglGetProcAddressFunc("wglCreatePbufferEXT");
+          m_wglGetPbufferDCEXT = (PFNWGLGETPBUFFERDCEXTPROC) wglGetProcAddressFunc("wglGetPbufferDCEXT");
+          m_wglReleasePbufferDCEXT = (PFNWGLRELEASEPBUFFERDCEXTPROC) wglGetProcAddressFunc("wglReleasePbufferDCEXT");
+          m_wglDestroyPbufferEXT = (PFNWGLDESTROYPBUFFEREXTPROC) wglGetProcAddressFunc("wglDestroyPbufferEXT");
+          m_wglQueryPbufferEXT = (PFNWGLQUERYPBUFFEREXTPROC) wglGetProcAddressFunc("wglQueryPbufferEXT");
+        }
+
+        // WGL_EXT_pixel_format
+        if (m_featureSupported[GLEW_WGL_EXT_pixel_format]) {
+          m_wglGetPixelFormatAttribivEXT = (PFNWGLGETPIXELFORMATATTRIBIVEXTPROC) wglGetProcAddressFunc("wglGetPixelFormatAttribivEXT");
+          m_wglGetPixelFormatAttribfvEXT = (PFNWGLGETPIXELFORMATATTRIBFVEXTPROC) wglGetProcAddressFunc("wglGetPixelFormatAttribfvEXT");
+          m_wglChoosePixelFormatEXT = (PFNWGLCHOOSEPIXELFORMATEXTPROC) wglGetProcAddressFunc("wglChoosePixelFormatEXT");
+        }
+
+        // WGL_EXT_swap_control
+        if (m_featureSupported[GLEW_WGL_EXT_swap_control]) {
+          m_wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC) wglGetProcAddressFunc("wglSwapIntervalEXT");
+          m_wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC) wglGetProcAddressFunc("wglGetSwapIntervalEXT");
+        }
+
+        // WGL_I3D_digital_video_control
+        if (m_featureSupported[GLEW_WGL_I3D_digital_video_control]) {
+          m_wglGetDigitalVideoParametersI3D = (PFNWGLGETDIGITALVIDEOPARAMETERSI3DPROC) wglGetProcAddressFunc("wglGetDigitalVideoParametersI3D");
+          m_wglSetDigitalVideoParametersI3D = (PFNWGLSETDIGITALVIDEOPARAMETERSI3DPROC) wglGetProcAddressFunc("wglSetDigitalVideoParametersI3D");
+        }
+
+        // WGL_I3D_gamma
+        if (m_featureSupported[GLEW_WGL_I3D_gamma]) {
+          m_wglGetGammaTableParametersI3D = (PFNWGLGETGAMMATABLEPARAMETERSI3DPROC) wglGetProcAddressFunc("wglGetGammaTableParametersI3D");
+          m_wglSetGammaTableParametersI3D = (PFNWGLSETGAMMATABLEPARAMETERSI3DPROC) wglGetProcAddressFunc("wglSetGammaTableParametersI3D");
+          m_wglGetGammaTableI3D = (PFNWGLGETGAMMATABLEI3DPROC) wglGetProcAddressFunc("wglGetGammaTableI3D");
+          m_wglSetGammaTableI3D = (PFNWGLSETGAMMATABLEI3DPROC) wglGetProcAddressFunc("wglSetGammaTableI3D");
+        }
+
+        // WGL_I3D_genlock
+        if (m_featureSupported[GLEW_WGL_I3D_genlock]) {
+          m_wglEnableGenlockI3D = (PFNWGLENABLEGENLOCKI3DPROC) wglGetProcAddressFunc("wglEnableGenlockI3D");
+          m_wglDisableGenlockI3D = (PFNWGLDISABLEGENLOCKI3DPROC) wglGetProcAddressFunc("wglDisableGenlockI3D");
+          m_wglIsEnabledGenlockI3D = (PFNWGLISENABLEDGENLOCKI3DPROC) wglGetProcAddressFunc("wglIsEnabledGenlockI3D");
+          m_wglGenlockSourceI3D = (PFNWGLGENLOCKSOURCEI3DPROC) wglGetProcAddressFunc("wglGenlockSourceI3D");
+          m_wglGetGenlockSourceI3D = (PFNWGLGETGENLOCKSOURCEI3DPROC) wglGetProcAddressFunc("wglGetGenlockSourceI3D");
+          m_wglGenlockSourceEdgeI3D = (PFNWGLGENLOCKSOURCEEDGEI3DPROC) wglGetProcAddressFunc("wglGenlockSourceEdgeI3D");
+          m_wglGetGenlockSourceEdgeI3D = (PFNWGLGETGENLOCKSOURCEEDGEI3DPROC) wglGetProcAddressFunc("wglGetGenlockSourceEdgeI3D");
+          m_wglGenlockSampleRateI3D = (PFNWGLGENLOCKSAMPLERATEI3DPROC) wglGetProcAddressFunc("wglGenlockSampleRateI3D");
+          m_wglGetGenlockSampleRateI3D = (PFNWGLGETGENLOCKSAMPLERATEI3DPROC) wglGetProcAddressFunc("wglGetGenlockSampleRateI3D");
+          m_wglGenlockSourceDelayI3D = (PFNWGLGENLOCKSOURCEDELAYI3DPROC) wglGetProcAddressFunc("wglGenlockSourceDelayI3D");
+          m_wglGetGenlockSourceDelayI3D = (PFNWGLGETGENLOCKSOURCEDELAYI3DPROC) wglGetProcAddressFunc("wglGetGenlockSourceDelayI3D");
+          m_wglQueryGenlockMaxSourceDelayI3D = (PFNWGLQUERYGENLOCKMAXSOURCEDELAYI3DPROC) wglGetProcAddressFunc("wglQueryGenlockMaxSourceDelayI3D");
+        }
+
+        // WGL_I3D_image_buffer
+        if (m_featureSupported[GLEW_WGL_I3D_image_buffer]) {
+          m_wglCreateImageBufferI3D = (PFNWGLCREATEIMAGEBUFFERI3DPROC) wglGetProcAddressFunc("wglCreateImageBufferI3D");
+          m_wglDestroyImageBufferI3D = (PFNWGLDESTROYIMAGEBUFFERI3DPROC) wglGetProcAddressFunc("wglDestroyImageBufferI3D");
+          m_wglAssociateImageBufferEventsI3D = (PFNWGLASSOCIATEIMAGEBUFFEREVENTSI3DPROC) wglGetProcAddressFunc("wglAssociateImageBufferEventsI3D");
+          m_wglReleaseImageBufferEventsI3D = (PFNWGLRELEASEIMAGEBUFFEREVENTSI3DPROC) wglGetProcAddressFunc("wglReleaseImageBufferEventsI3D");
+        }
+
+        // WGL_I3D_swap_frame_lock
+        if (m_featureSupported[GLEW_WGL_I3D_swap_frame_lock]) {
+          m_wglEnableFrameLockI3D = (PFNWGLENABLEFRAMELOCKI3DPROC) wglGetProcAddressFunc("wglEnableFrameLockI3D");
+          m_wglDisableFrameLockI3D = (PFNWGLDISABLEFRAMELOCKI3DPROC) wglGetProcAddressFunc("wglDisableFrameLockI3D");
+          m_wglIsEnabledFrameLockI3D = (PFNWGLISENABLEDFRAMELOCKI3DPROC) wglGetProcAddressFunc("wglIsEnabledFrameLockI3D");
+          m_wglQueryFrameLockMasterI3D = (PFNWGLQUERYFRAMELOCKMASTERI3DPROC) wglGetProcAddressFunc("wglQueryFrameLockMasterI3D");
+        }
+
+        // WGL_I3D_swap_frame_usage
+        if (m_featureSupported[GLEW_WGL_I3D_swap_frame_usage]) {
+          m_wglGetFrameUsageI3D = (PFNWGLGETFRAMEUSAGEI3DPROC) wglGetProcAddressFunc("wglGetFrameUsageI3D");
+          m_wglBeginFrameTrackingI3D = (PFNWGLBEGINFRAMETRACKINGI3DPROC) wglGetProcAddressFunc("wglBeginFrameTrackingI3D");
+          m_wglEndFrameTrackingI3D = (PFNWGLENDFRAMETRACKINGI3DPROC) wglGetProcAddressFunc("wglEndFrameTrackingI3D");
+          m_wglQueryFrameTrackingI3D = (PFNWGLQUERYFRAMETRACKINGI3DPROC) wglGetProcAddressFunc("wglQueryFrameTrackingI3D");
+        }
+
+        // WGL_NV_copy_image
+        if (m_featureSupported[GLEW_WGL_NV_copy_image]) {
+          m_wglCopyImageSubDataNV = (PFNWGLCOPYIMAGESUBDATANVPROC) wglGetProcAddressFunc("wglCopyImageSubDataNV");
+        }
+
+        // WGL_NV_delay_before_swap
+        if (m_featureSupported[GLEW_WGL_NV_delay_before_swap]) {
+          m_wglDelayBeforeSwapNV = (PFNWGLDELAYBEFORESWAPNVPROC) wglGetProcAddressFunc("wglDelayBeforeSwapNV");
+        }
+
+        // WGL_NV_DX_interop
+        if (m_featureSupported[GLEW_WGL_NV_DX_interop]) {
+          m_wglDXSetResourceShareHandleNV = (PFNWGLDXSETRESOURCESHAREHANDLENVPROC) wglGetProcAddressFunc("wglDXSetResourceShareHandleNV");
+          m_wglDXOpenDeviceNV = (PFNWGLDXOPENDEVICENVPROC) wglGetProcAddressFunc("wglDXOpenDeviceNV");
+          m_wglDXCloseDeviceNV = (PFNWGLDXCLOSEDEVICENVPROC) wglGetProcAddressFunc("wglDXCloseDeviceNV");
+          m_wglDXRegisterObjectNV = (PFNWGLDXREGISTEROBJECTNVPROC) wglGetProcAddressFunc("wglDXRegisterObjectNV");
+          m_wglDXUnregisterObjectNV = (PFNWGLDXUNREGISTEROBJECTNVPROC) wglGetProcAddressFunc("wglDXUnregisterObjectNV");
+          m_wglDXObjectAccessNV = (PFNWGLDXOBJECTACCESSNVPROC) wglGetProcAddressFunc("wglDXObjectAccessNV");
+          m_wglDXLockObjectsNV = (PFNWGLDXLOCKOBJECTSNVPROC) wglGetProcAddressFunc("wglDXLockObjectsNV");
+          m_wglDXUnlockObjectsNV = (PFNWGLDXUNLOCKOBJECTSNVPROC) wglGetProcAddressFunc("wglDXUnlockObjectsNV");
+        }
+
+        // WGL_NV_gpu_affinity
+        if (m_featureSupported[GLEW_WGL_NV_gpu_affinity]) {
+          m_wglEnumGpusNV = (PFNWGLENUMGPUSNVPROC) wglGetProcAddressFunc("wglEnumGpusNV");
+          m_wglEnumGpuDevicesNV = (PFNWGLENUMGPUDEVICESNVPROC) wglGetProcAddressFunc("wglEnumGpuDevicesNV");
+          m_wglCreateAffinityDCNV = (PFNWGLCREATEAFFINITYDCNVPROC) wglGetProcAddressFunc("wglCreateAffinityDCNV");
+          m_wglEnumGpusFromAffinityDCNV = (PFNWGLENUMGPUSFROMAFFINITYDCNVPROC) wglGetProcAddressFunc("wglEnumGpusFromAffinityDCNV");
+          m_wglDeleteDCNV = (PFNWGLDELETEDCNVPROC) wglGetProcAddressFunc("wglDeleteDCNV");
+        }
+
+        // WGL_NV_present_video
+        if (m_featureSupported[GLEW_WGL_NV_present_video]) {
+          m_wglEnumerateVideoDevicesNV = (PFNWGLENUMERATEVIDEODEVICESNVPROC) wglGetProcAddressFunc("wglEnumerateVideoDevicesNV");
+          m_wglBindVideoDeviceNV = (PFNWGLBINDVIDEODEVICENVPROC) wglGetProcAddressFunc("wglBindVideoDeviceNV");
+          m_wglQueryCurrentContextNV = (PFNWGLQUERYCURRENTCONTEXTNVPROC) wglGetProcAddressFunc("wglQueryCurrentContextNV");
+        }
+
+        // WGL_NV_swap_group
+        if (m_featureSupported[GLEW_WGL_NV_swap_group]) {
+          m_wglJoinSwapGroupNV = (PFNWGLJOINSWAPGROUPNVPROC) wglGetProcAddressFunc("wglJoinSwapGroupNV");
+          m_wglBindSwapBarrierNV = (PFNWGLBINDSWAPBARRIERNVPROC) wglGetProcAddressFunc("wglBindSwapBarrierNV");
+          m_wglQuerySwapGroupNV = (PFNWGLQUERYSWAPGROUPNVPROC) wglGetProcAddressFunc("wglQuerySwapGroupNV");
+          m_wglQueryMaxSwapGroupsNV = (PFNWGLQUERYMAXSWAPGROUPSNVPROC) wglGetProcAddressFunc("wglQueryMaxSwapGroupsNV");
+          m_wglQueryFrameCountNV = (PFNWGLQUERYFRAMECOUNTNVPROC) wglGetProcAddressFunc("wglQueryFrameCountNV");
+          m_wglResetFrameCountNV = (PFNWGLRESETFRAMECOUNTNVPROC) wglGetProcAddressFunc("wglResetFrameCountNV");
+        }
+
+        // WGL_NV_video_capture
+        if (m_featureSupported[GLEW_WGL_NV_video_capture]) {
+          m_wglBindVideoCaptureDeviceNV = (PFNWGLBINDVIDEOCAPTUREDEVICENVPROC) wglGetProcAddressFunc("wglBindVideoCaptureDeviceNV");
+          m_wglEnumerateVideoCaptureDevicesNV = (PFNWGLENUMERATEVIDEOCAPTUREDEVICESNVPROC) wglGetProcAddressFunc("wglEnumerateVideoCaptureDevicesNV");
+          m_wglLockVideoCaptureDeviceNV = (PFNWGLLOCKVIDEOCAPTUREDEVICENVPROC) wglGetProcAddressFunc("wglLockVideoCaptureDeviceNV");
+          m_wglQueryVideoCaptureDeviceNV = (PFNWGLQUERYVIDEOCAPTUREDEVICENVPROC) wglGetProcAddressFunc("wglQueryVideoCaptureDeviceNV");
+          m_wglReleaseVideoCaptureDeviceNV = (PFNWGLRELEASEVIDEOCAPTUREDEVICENVPROC) wglGetProcAddressFunc("wglReleaseVideoCaptureDeviceNV");
+        }
+
+        // WGL_NV_video_output
+        if (m_featureSupported[GLEW_WGL_NV_video_output]) {
+          m_wglGetVideoDeviceNV = (PFNWGLGETVIDEODEVICENVPROC) wglGetProcAddressFunc("wglGetVideoDeviceNV");
+          m_wglReleaseVideoDeviceNV = (PFNWGLRELEASEVIDEODEVICENVPROC) wglGetProcAddressFunc("wglReleaseVideoDeviceNV");
+          m_wglBindVideoImageNV = (PFNWGLBINDVIDEOIMAGENVPROC) wglGetProcAddressFunc("wglBindVideoImageNV");
+          m_wglReleaseVideoImageNV = (PFNWGLRELEASEVIDEOIMAGENVPROC) wglGetProcAddressFunc("wglReleaseVideoImageNV");
+          m_wglSendPbufferToVideoNV = (PFNWGLSENDPBUFFERTOVIDEONVPROC) wglGetProcAddressFunc("wglSendPbufferToVideoNV");
+          m_wglGetVideoInfoNV = (PFNWGLGETVIDEOINFONVPROC) wglGetProcAddressFunc("wglGetVideoInfoNV");
+        }
+
+        // WGL_NV_vertex_array_range
+        if (m_featureSupported[GLEW_WGL_NV_vertex_array_range]) {
+          m_wglAllocateMemoryNV = (PFNWGLALLOCATEMEMORYNVPROC) wglGetProcAddressFunc("wglAllocateMemoryNV");
+          m_wglFreeMemoryNV = (PFNWGLFREEMEMORYNVPROC) wglGetProcAddressFunc("wglFreeMemoryNV");
+        }
+
+        // WGL_OML_sync_control
+        if (m_featureSupported[GLEW_WGL_OML_sync_control]) {
+          m_wglGetSyncValuesOML = (PFNWGLGETSYNCVALUESOMLPROC) wglGetProcAddressFunc("wglGetSyncValuesOML");
+          m_wglGetMscRateOML = (PFNWGLGETMSCRATEOMLPROC) wglGetProcAddressFunc("wglGetMscRateOML");
+          m_wglSwapBuffersMscOML = (PFNWGLSWAPBUFFERSMSCOMLPROC) wglGetProcAddressFunc("wglSwapBuffersMscOML");
+          m_wglSwapLayerBuffersMscOML = (PFNWGLSWAPLAYERBUFFERSMSCOMLPROC) wglGetProcAddressFunc("wglSwapLayerBuffersMscOML");
+          m_wglWaitForMscOML = (PFNWGLWAITFORMSCOMLPROC) wglGetProcAddressFunc("wglWaitForMscOML");
+          m_wglWaitForSbcOML = (PFNWGLWAITFORSBCOMLPROC) wglGetProcAddressFunc("wglWaitForSbcOML");
+        }
+      }
+
+      bool IsSupported(GLEW_WGL_FeatureSet feature) const {
+        return m_featureSupported[feature];
+      }
+
+      void SetSupported(GLEW_WGL_FeatureSet feature, bool supported) {
+        m_featureSupported[feature] = supported;
+      }
+
+      bool m_featureSupported[GLEW_WGL_FeatureSetCount];
 
       PFNWGLSETSTEREOEMITTERSTATE3DLPROC m_wglSetStereoEmitterState3DL;
       PFNWGLGETGPUIDSAMDPROC m_wglGetGPUIDsAMD;
@@ -405,56 +841,10 @@ namespace glew
       PFNWGLWAITFORSBCOMLPROC m_wglWaitForSbcOML;
     };
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    static Context* s_wglContext = nullptr;
 
-  public:
-
-    static void Initialise ();
-
-    static void Deinitialise ();
-
-    static bool IsSupported (GLEW_WGL_FeatureSet feature)
-    {
-      GLEW_ASSERT (s_initialised);
-
-      return s_deviceConfig.m_featureSupported [feature];
-    }
-
-    static void SetConfig (glew::wgl::DeviceConfig &deviceConfig)
-    {
-      GLEW_ASSERT (s_initialised);
-
-      s_deviceConfig = deviceConfig;
-    }
-
-    static glew::wgl::DeviceConfig &GetConfig ()
-    {
-      GLEW_ASSERT (s_initialised);
-
-      return s_deviceConfig;
-    }
-
-  protected:
-
-    static bool s_initialised;
-
-    static glew::wgl::DeviceConfig s_deviceConfig;
-
-  };
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  bool IsSupported (GLEW_WGL_FeatureSet feature);
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-}
+  }  // namespace wgl
+}  // namespace glew
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -713,12 +1103,6 @@ GLEW_API BOOL GLEW_APIENTRY _glew_wgl_wglWaitForSbcOML (HDC hdc, INT64 target_sb
 #pragma GCC diagnostic pop // push/pop not available before GCC 4.6
 #endif
 #endif
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#endif // __GLEW_WGL_H__
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

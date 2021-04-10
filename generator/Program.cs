@@ -2,12 +2,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+using CommandLine;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,202 +25,60 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    static int Main (string [] args)
+    class Options
     {
-      //
-      // EGL
-      //
+      [Option('s', "api-spec", Required = true, HelpText = "Path to Registery specification (.xml).")]
+      public string ApiSpec { get; set; }
 
-      try
-      {
-        string api = @"egl.xml";
+      [Option('i', "api-type", Required = true, HelpText = "")]
+      public string ApiType { get; set; }
 
-        string hpp = @"wrangle-egl.h";
+      [Option('o', "output-dir", Required = true, HelpText = "Base output directory.")]
+      public string OutputDir { get; set; }
 
-        string cpp = @"wrangle-egl.cpp";
+      [Option('v', "verbose", Required = false, HelpText = "Set output to verbose messages.")]
+      public bool Verbose { get; set; }
+    }
 
-        GeneratorEGL generator = new GeneratorEGL (api);
-
-        StreamWriter writer;
-
-        using (writer = new StreamWriter (hpp, false))
+    static int Main(string[] args)
+    {
+      Parser.Default.ParseArguments<Options>(args)
+        .WithParsed<Options>(o =>
         {
-          generator.ExportHpp (ref writer);
+          Generator generator;
 
-          writer.Close ();
-        }
+          switch (o.ApiType)
+          {
+            case "egl":
+              generator = new GeneratorEGL(o.ApiSpec);
+              break;
 
-        using (writer = new StreamWriter (cpp, false))
-        {
-          generator.ExportCpp (ref writer);
+            case "gl":
+              generator = new GeneratorGL(o.ApiSpec);
+              break;
 
-          writer.Close ();
-        }
-      }
-      catch (Exception e)
-      {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
+            case "gles":
+              generator = new GeneratorGLES(o.ApiSpec);
+              break;
 
-        Console.WriteLine (exception);
+            case "glx":
+              generator = new GeneratorGLX(o.ApiSpec);
+              break;
 
-        Trace.WriteLine (exception);
-      }
+            case "vulkan":
+              generator = new GeneratorVulkan(o.ApiSpec);
+              break;
 
-      //
-      // WGL
-      //
+            case "wgl":
+              generator = new GeneratorWGL(o.ApiSpec);
+              break;
 
-      try
-      {
-        string api = @"wgl.xml";
+            default:
+              throw new ArgumentException("ApiType");
+          }
 
-        string hpp = @"wrangle-wgl.h";
-
-        string cpp = @"wrangle-wgl.cpp";
-
-        GeneratorWGL generator = new GeneratorWGL (api);
-
-        StreamWriter writer;
-
-        using (writer = new StreamWriter (hpp, false))
-        {
-          generator.ExportHpp (ref writer);
-
-          writer.Close ();
-        }
-
-        using (writer = new StreamWriter (cpp, false))
-        {
-          generator.ExportCpp (ref writer);
-
-          writer.Close ();
-        }
-      }
-      catch (Exception e)
-      {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
-
-        Console.WriteLine (exception);
-
-        Trace.WriteLine (exception);
-      }
-
-      //
-      // GLX
-      //
-
-      try
-      {
-        string api = @"glx.xml";
-
-        string hpp = @"wrangle-glx.h";
-
-        string cpp = @"wrangle-glx.cpp";
-
-        GeneratorGLX generator = new GeneratorGLX (api);
-
-        StreamWriter writer;
-
-        using (writer = new StreamWriter (hpp, false))
-        {
-          generator.ExportHpp (ref writer);
-
-          writer.Close ();
-        }
-
-        using (writer = new StreamWriter (cpp, false))
-        {
-          generator.ExportCpp (ref writer);
-
-          writer.Close ();
-        }
-      }
-      catch (Exception e)
-      {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
-
-        Console.WriteLine (exception);
-
-        Trace.WriteLine (exception);
-      }
-
-      //
-      // GL Core ARB
-      //
-
-      try
-      {
-        string api = @"gl.xml";
-
-        string hpp = @"wrangle-gl.h";
-
-        string cpp = @"wrangle-gl.cpp";
-
-        GeneratorGL generator = new GeneratorGL (api);
-
-        StreamWriter writer;
-
-        using (writer = new StreamWriter (hpp, false))
-        {
-          generator.ExportHpp (ref writer);
-
-          writer.Close ();
-        }
-
-        using (writer = new StreamWriter (cpp, false))
-        {
-          generator.ExportCpp (ref writer);
-
-          writer.Close ();
-        }
-      }
-      catch (Exception e)
-      {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
-
-        Console.WriteLine (exception);
-
-        Trace.WriteLine (exception);
-      }
-
-      //
-      // GLES 1.x/2.x/3.x
-      //
-
-      try
-      {
-        string api = @"gl.xml";
-
-        string hpp = @"wrangle-gles.h";
-
-        string cpp = @"wrangle-gles.cpp";
-
-        GeneratorGLES generator = new GeneratorGLES (api);
-
-        StreamWriter writer;
-
-        using (writer = new StreamWriter (hpp, false))
-        {
-          generator.ExportHpp (ref writer);
-
-          writer.Close ();
-        }
-
-        using (writer = new StreamWriter (cpp, false))
-        {
-          generator.ExportCpp (ref writer);
-
-          writer.Close ();
-        }
-      }
-      catch (Exception e)
-      {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
-
-        Console.WriteLine (exception);
-
-        Trace.WriteLine (exception);
-      }
+          generator.Export(o.OutputDir);
+        });
 
       return 0;
     }
