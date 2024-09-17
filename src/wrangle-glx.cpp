@@ -8,16 +8,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * _glew_glx_glXQueryExtensionsString (Display * dpy, int  screen)
-{
+const char * _glew_glx_glXQueryExtensionsString(Display * dpy, int screen) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   const char * result = ((const char *)0);
-  // GLX_VERSION_1_1 - glXQueryExtensionsString
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_1] && glxConfig.m_glXQueryExtensionsString)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryExtensionsString) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryExtensionsString (dpy, screen);
+    result = glxContext->m_glXQueryExtensionsString(dpy, screen);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -27,16 +24,13 @@ const char * _glew_glx_glXQueryExtensionsString (Display * dpy, int  screen)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * _glew_glx_glXQueryServerString (Display * dpy, int  screen, int  name)
-{
+const char * _glew_glx_glXQueryServerString(Display * dpy, int screen, int name) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   const char * result = ((const char *)0);
-  // GLX_VERSION_1_1 - glXQueryServerString
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_1] && glxConfig.m_glXQueryServerString)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryServerString) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryServerString (dpy, screen, name);
+    result = glxContext->m_glXQueryServerString(dpy, screen, name);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -46,16 +40,13 @@ const char * _glew_glx_glXQueryServerString (Display * dpy, int  screen, int  na
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * _glew_glx_glXGetClientString (Display * dpy, int  name)
-{
+const char * _glew_glx_glXGetClientString(Display * dpy, int name) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   const char * result = ((const char *)0);
-  // GLX_VERSION_1_1 - glXGetClientString
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_1] && glxConfig.m_glXGetClientString)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetClientString) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetClientString (dpy, name);
+    result = glxContext->m_glXGetClientString(dpy, name);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -65,16 +56,13 @@ const char * _glew_glx_glXGetClientString (Display * dpy, int  name)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Display * _glew_glx_glXGetCurrentDisplay ()
-{
+Display * _glew_glx_glXGetCurrentDisplay() {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Display * result = ((Display *)0);
-  // GLX_VERSION_1_2 - glXGetCurrentDisplay
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_2] && glxConfig.m_glXGetCurrentDisplay)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetCurrentDisplay) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetCurrentDisplay ();
+    result = glxContext->m_glXGetCurrentDisplay();
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -84,16 +72,13 @@ Display * _glew_glx_glXGetCurrentDisplay ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXFBConfig * _glew_glx_glXGetFBConfigs (Display * dpy, int  screen, int * nelements)
-{
+GLXFBConfig * _glew_glx_glXGetFBConfigs(Display * dpy, int screen, int * nelements) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXFBConfig * result = ((GLXFBConfig *)0);
-  // GLX_VERSION_1_3 - glXGetFBConfigs
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetFBConfigs)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetFBConfigs) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetFBConfigs (dpy, screen, nelements);
+    result = glxContext->m_glXGetFBConfigs(dpy, screen, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -103,16 +88,13 @@ GLXFBConfig * _glew_glx_glXGetFBConfigs (Display * dpy, int  screen, int * nelem
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXFBConfig * _glew_glx_glXChooseFBConfig (Display * dpy, int  screen, const int * attrib_list, int * nelements)
-{
+GLXFBConfig * _glew_glx_glXChooseFBConfig(Display * dpy, int screen, const int * attrib_list, int * nelements) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXFBConfig * result = ((GLXFBConfig *)0);
-  // GLX_VERSION_1_3 - glXChooseFBConfig
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXChooseFBConfig)
-  {
+  if (!prototypeCalled && glxContext->m_glXChooseFBConfig) {
     prototypeCalled = true;
-    result = glxConfig.m_glXChooseFBConfig (dpy, screen, attrib_list, nelements);
+    result = glxContext->m_glXChooseFBConfig(dpy, screen, attrib_list, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -122,16 +104,13 @@ GLXFBConfig * _glew_glx_glXChooseFBConfig (Display * dpy, int  screen, const int
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int  attribute, int * value)
-{
+int _glew_glx_glXGetFBConfigAttrib(Display * dpy, GLXFBConfig config, int attribute, int * value) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_VERSION_1_3 - glXGetFBConfigAttrib
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetFBConfigAttrib)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetFBConfigAttrib) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetFBConfigAttrib (dpy, config, attribute, value);
+    result = glxContext->m_glXGetFBConfigAttrib(dpy, config, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -141,16 +120,13 @@ int _glew_glx_glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int  attr
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-XVisualInfo * _glew_glx_glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig config)
-{
+XVisualInfo * _glew_glx_glXGetVisualFromFBConfig(Display * dpy, GLXFBConfig config) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   XVisualInfo * result = ((XVisualInfo *)0);
-  // GLX_VERSION_1_3 - glXGetVisualFromFBConfig
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetVisualFromFBConfig)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetVisualFromFBConfig) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetVisualFromFBConfig (dpy, config);
+    result = glxContext->m_glXGetVisualFromFBConfig(dpy, config);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -160,16 +136,13 @@ XVisualInfo * _glew_glx_glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig con
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXWindow _glew_glx_glXCreateWindow (Display * dpy, GLXFBConfig config, Window win, const int * attrib_list)
-{
+GLXWindow _glew_glx_glXCreateWindow(Display * dpy, GLXFBConfig config, Window win, const int * attrib_list) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXWindow result = ((GLXWindow)0);
-  // GLX_VERSION_1_3 - glXCreateWindow
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXCreateWindow)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateWindow) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateWindow (dpy, config, win, attrib_list);
+    result = glxContext->m_glXCreateWindow(dpy, config, win, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -179,15 +152,12 @@ GLXWindow _glew_glx_glXCreateWindow (Display * dpy, GLXFBConfig config, Window w
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXDestroyWindow (Display * dpy, GLXWindow win)
-{
+void _glew_glx_glXDestroyWindow(Display * dpy, GLXWindow win) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_VERSION_1_3 - glXDestroyWindow
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXDestroyWindow)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXDestroyWindow) {
     prototypeCalled = true;
-    glxConfig.m_glXDestroyWindow (dpy, win);
+    glxContext->m_glXDestroyWindow(dpy, win);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -196,16 +166,13 @@ void _glew_glx_glXDestroyWindow (Display * dpy, GLXWindow win)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPixmap _glew_glx_glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attrib_list)
-{
+GLXPixmap _glew_glx_glXCreatePixmap(Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attrib_list) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXPixmap result = ((GLXPixmap)0);
-  // GLX_VERSION_1_3 - glXCreatePixmap
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXCreatePixmap)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreatePixmap) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreatePixmap (dpy, config, pixmap, attrib_list);
+    result = glxContext->m_glXCreatePixmap(dpy, config, pixmap, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -215,15 +182,12 @@ GLXPixmap _glew_glx_glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap p
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
-{
+void _glew_glx_glXDestroyPixmap(Display * dpy, GLXPixmap pixmap) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_VERSION_1_3 - glXDestroyPixmap
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXDestroyPixmap)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXDestroyPixmap) {
     prototypeCalled = true;
-    glxConfig.m_glXDestroyPixmap (dpy, pixmap);
+    glxContext->m_glXDestroyPixmap(dpy, pixmap);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -232,16 +196,13 @@ void _glew_glx_glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPbuffer _glew_glx_glXCreatePbuffer (Display * dpy, GLXFBConfig config, const int * attrib_list)
-{
+GLXPbuffer _glew_glx_glXCreatePbuffer(Display * dpy, GLXFBConfig config, const int * attrib_list) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXPbuffer result = ((GLXPbuffer)0);
-  // GLX_VERSION_1_3 - glXCreatePbuffer
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXCreatePbuffer)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreatePbuffer) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreatePbuffer (dpy, config, attrib_list);
+    result = glxContext->m_glXCreatePbuffer(dpy, config, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -251,15 +212,12 @@ GLXPbuffer _glew_glx_glXCreatePbuffer (Display * dpy, GLXFBConfig config, const 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
-{
+void _glew_glx_glXDestroyPbuffer(Display * dpy, GLXPbuffer pbuf) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_VERSION_1_3 - glXDestroyPbuffer
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXDestroyPbuffer)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXDestroyPbuffer) {
     prototypeCalled = true;
-    glxConfig.m_glXDestroyPbuffer (dpy, pbuf);
+    glxContext->m_glXDestroyPbuffer(dpy, pbuf);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -268,15 +226,12 @@ void _glew_glx_glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXQueryDrawable (Display * dpy, GLXDrawable draw, int  attribute, unsigned int * value)
-{
+void _glew_glx_glXQueryDrawable(Display * dpy, GLXDrawable draw, int attribute, unsigned int * value) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_VERSION_1_3 - glXQueryDrawable
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXQueryDrawable)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXQueryDrawable) {
     prototypeCalled = true;
-    glxConfig.m_glXQueryDrawable (dpy, draw, attribute, value);
+    glxContext->m_glXQueryDrawable(dpy, draw, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -285,16 +240,13 @@ void _glew_glx_glXQueryDrawable (Display * dpy, GLXDrawable draw, int  attribute
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext _glew_glx_glXCreateNewContext (Display * dpy, GLXFBConfig config, int  render_type, GLXContext share_list, Bool direct)
-{
+GLXContext _glew_glx_glXCreateNewContext(Display * dpy, GLXFBConfig config, int render_type, GLXContext share_list, Bool direct) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXContext result = ((GLXContext)0);
-  // GLX_VERSION_1_3 - glXCreateNewContext
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXCreateNewContext)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateNewContext) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateNewContext (dpy, config, render_type, share_list, direct);
+    result = glxContext->m_glXCreateNewContext(dpy, config, render_type, share_list, direct);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -304,16 +256,13 @@ GLXContext _glew_glx_glXCreateNewContext (Display * dpy, GLXFBConfig config, int
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
-{
+Bool _glew_glx_glXMakeContextCurrent(Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_VERSION_1_3 - glXMakeContextCurrent
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXMakeContextCurrent)
-  {
+  if (!prototypeCalled && glxContext->m_glXMakeContextCurrent) {
     prototypeCalled = true;
-    result = glxConfig.m_glXMakeContextCurrent (dpy, draw, read, ctx);
+    result = glxContext->m_glXMakeContextCurrent(dpy, draw, read, ctx);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -323,16 +272,13 @@ Bool _glew_glx_glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawab
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXDrawable _glew_glx_glXGetCurrentReadDrawable ()
-{
+GLXDrawable _glew_glx_glXGetCurrentReadDrawable() {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXDrawable result = ((GLXDrawable)0);
-  // GLX_VERSION_1_3 - glXGetCurrentReadDrawable
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetCurrentReadDrawable)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetCurrentReadDrawable) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetCurrentReadDrawable ();
+    result = glxContext->m_glXGetCurrentReadDrawable();
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -342,16 +288,13 @@ GLXDrawable _glew_glx_glXGetCurrentReadDrawable ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXQueryContext (Display * dpy, GLXContext ctx, int  attribute, int * value)
-{
+int _glew_glx_glXQueryContext(Display * dpy, GLXContext ctx, int attribute, int * value) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_VERSION_1_3 - glXQueryContext
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXQueryContext)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryContext) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryContext (dpy, ctx, attribute, value);
+    result = glxContext->m_glXQueryContext(dpy, ctx, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -361,15 +304,12 @@ int _glew_glx_glXQueryContext (Display * dpy, GLXContext ctx, int  attribute, in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long  event_mask)
-{
+void _glew_glx_glXSelectEvent(Display * dpy, GLXDrawable draw, unsigned long event_mask) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_VERSION_1_3 - glXSelectEvent
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXSelectEvent)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXSelectEvent) {
     prototypeCalled = true;
-    glxConfig.m_glXSelectEvent (dpy, draw, event_mask);
+    glxContext->m_glXSelectEvent(dpy, draw, event_mask);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -378,15 +318,12 @@ void _glew_glx_glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long  e
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned long * event_mask)
-{
+void _glew_glx_glXGetSelectedEvent(Display * dpy, GLXDrawable draw, unsigned long * event_mask) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_VERSION_1_3 - glXGetSelectedEvent
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetSelectedEvent)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXGetSelectedEvent) {
     prototypeCalled = true;
-    glxConfig.m_glXGetSelectedEvent (dpy, draw, event_mask);
+    glxContext->m_glXGetSelectedEvent(dpy, draw, event_mask);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -395,16 +332,13 @@ void _glew_glx_glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned lo
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-__GLXextFuncPtr _glew_glx_glXGetProcAddress (const GLubyte * procName)
-{
+__GLXextFuncPtr _glew_glx_glXGetProcAddress(const GLubyte * procName) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   __GLXextFuncPtr result = ((__GLXextFuncPtr)0);
-  // GLX_VERSION_1_4 - glXGetProcAddress
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_4] && glxConfig.m_glXGetProcAddress)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetProcAddress) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetProcAddress (procName);
+    result = glxContext->m_glXGetProcAddress(procName);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -414,16 +348,13 @@ __GLXextFuncPtr _glew_glx_glXGetProcAddress (const GLubyte * procName)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned int _glew_glx_glXGetGPUIDsAMD (unsigned int  maxCount, unsigned int * ids)
-{
+unsigned int _glew_glx_glXGetGPUIDsAMD(unsigned int maxCount, unsigned int * ids) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   unsigned int result = ((unsigned int)0);
-  // GLX_AMD_gpu_association - glXGetGPUIDsAMD
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXGetGPUIDsAMD)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetGPUIDsAMD) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetGPUIDsAMD (maxCount, ids);
+    result = glxContext->m_glXGetGPUIDsAMD(maxCount, ids);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -433,16 +364,13 @@ unsigned int _glew_glx_glXGetGPUIDsAMD (unsigned int  maxCount, unsigned int * i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXGetGPUInfoAMD (unsigned int  id, int  property, GLenum dataType, unsigned int  size, void * data)
-{
+int _glew_glx_glXGetGPUInfoAMD(unsigned int id, int property, GLenum dataType, unsigned int size, void * data) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_AMD_gpu_association - glXGetGPUInfoAMD
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXGetGPUInfoAMD)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetGPUInfoAMD) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetGPUInfoAMD (id, property, dataType, size, data);
+    result = glxContext->m_glXGetGPUInfoAMD(id, property, dataType, size, data);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -452,16 +380,13 @@ int _glew_glx_glXGetGPUInfoAMD (unsigned int  id, int  property, GLenum dataType
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned int _glew_glx_glXGetContextGPUIDAMD (GLXContext ctx)
-{
+unsigned int _glew_glx_glXGetContextGPUIDAMD(GLXContext ctx) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   unsigned int result = ((unsigned int)0);
-  // GLX_AMD_gpu_association - glXGetContextGPUIDAMD
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXGetContextGPUIDAMD)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetContextGPUIDAMD) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetContextGPUIDAMD (ctx);
+    result = glxContext->m_glXGetContextGPUIDAMD(ctx);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -471,16 +396,13 @@ unsigned int _glew_glx_glXGetContextGPUIDAMD (GLXContext ctx)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext _glew_glx_glXCreateAssociatedContextAMD (unsigned int  id, GLXContext share_list)
-{
+GLXContext _glew_glx_glXCreateAssociatedContextAMD(unsigned int id, GLXContext share_list) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXContext result = ((GLXContext)0);
-  // GLX_AMD_gpu_association - glXCreateAssociatedContextAMD
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXCreateAssociatedContextAMD)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateAssociatedContextAMD) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateAssociatedContextAMD (id, share_list);
+    result = glxContext->m_glXCreateAssociatedContextAMD(id, share_list);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -490,16 +412,13 @@ GLXContext _glew_glx_glXCreateAssociatedContextAMD (unsigned int  id, GLXContext
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext _glew_glx_glXCreateAssociatedContextAttribsAMD (unsigned int  id, GLXContext share_context, const int * attribList)
-{
+GLXContext _glew_glx_glXCreateAssociatedContextAttribsAMD(unsigned int id, GLXContext share_context, const int * attribList) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXContext result = ((GLXContext)0);
-  // GLX_AMD_gpu_association - glXCreateAssociatedContextAttribsAMD
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXCreateAssociatedContextAttribsAMD)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateAssociatedContextAttribsAMD) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateAssociatedContextAttribsAMD (id, share_context, attribList);
+    result = glxContext->m_glXCreateAssociatedContextAttribsAMD(id, share_context, attribList);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -509,16 +428,13 @@ GLXContext _glew_glx_glXCreateAssociatedContextAttribsAMD (unsigned int  id, GLX
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXDeleteAssociatedContextAMD (GLXContext ctx)
-{
+Bool _glew_glx_glXDeleteAssociatedContextAMD(GLXContext ctx) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_AMD_gpu_association - glXDeleteAssociatedContextAMD
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXDeleteAssociatedContextAMD)
-  {
+  if (!prototypeCalled && glxContext->m_glXDeleteAssociatedContextAMD) {
     prototypeCalled = true;
-    result = glxConfig.m_glXDeleteAssociatedContextAMD (ctx);
+    result = glxContext->m_glXDeleteAssociatedContextAMD(ctx);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -528,16 +444,13 @@ Bool _glew_glx_glXDeleteAssociatedContextAMD (GLXContext ctx)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
-{
+Bool _glew_glx_glXMakeAssociatedContextCurrentAMD(GLXContext ctx) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_AMD_gpu_association - glXMakeAssociatedContextCurrentAMD
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXMakeAssociatedContextCurrentAMD)
-  {
+  if (!prototypeCalled && glxContext->m_glXMakeAssociatedContextCurrentAMD) {
     prototypeCalled = true;
-    result = glxConfig.m_glXMakeAssociatedContextCurrentAMD (ctx);
+    result = glxContext->m_glXMakeAssociatedContextCurrentAMD(ctx);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -547,16 +460,13 @@ Bool _glew_glx_glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext _glew_glx_glXGetCurrentAssociatedContextAMD ()
-{
+GLXContext _glew_glx_glXGetCurrentAssociatedContextAMD() {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXContext result = ((GLXContext)0);
-  // GLX_AMD_gpu_association - glXGetCurrentAssociatedContextAMD
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXGetCurrentAssociatedContextAMD)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetCurrentAssociatedContextAMD) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetCurrentAssociatedContextAMD ();
+    result = glxContext->m_glXGetCurrentAssociatedContextAMD();
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -566,15 +476,12 @@ GLXContext _glew_glx_glXGetCurrentAssociatedContextAMD ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)
-{
+void _glew_glx_glXBlitContextFramebufferAMD(GLXContext dstCtx, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_AMD_gpu_association - glXBlitContextFramebufferAMD
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXBlitContextFramebufferAMD)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXBlitContextFramebufferAMD) {
     prototypeCalled = true;
-    glxConfig.m_glXBlitContextFramebufferAMD (dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+    glxContext->m_glXBlitContextFramebufferAMD(dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -583,16 +490,13 @@ void _glew_glx_glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext _glew_glx_glXCreateContextAttribsARB (Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list)
-{
+GLXContext _glew_glx_glXCreateContextAttribsARB(Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXContext result = ((GLXContext)0);
-  // GLX_ARB_create_context - glXCreateContextAttribsARB
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_ARB_create_context] && glxConfig.m_glXCreateContextAttribsARB)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateContextAttribsARB) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateContextAttribsARB (dpy, config, share_context, direct, attrib_list);
+    result = glxContext->m_glXCreateContextAttribsARB(dpy, config, share_context, direct, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -602,16 +506,13 @@ GLXContext _glew_glx_glXCreateContextAttribsARB (Display * dpy, GLXFBConfig conf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-__GLXextFuncPtr _glew_glx_glXGetProcAddressARB (const GLubyte * procName)
-{
+__GLXextFuncPtr _glew_glx_glXGetProcAddressARB(const GLubyte * procName) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   __GLXextFuncPtr result = ((__GLXextFuncPtr)0);
-  // GLX_ARB_get_proc_address - glXGetProcAddressARB
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_ARB_get_proc_address] && glxConfig.m_glXGetProcAddressARB)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetProcAddressARB) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetProcAddressARB (procName);
+    result = glxContext->m_glXGetProcAddressARB(procName);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -621,16 +522,13 @@ __GLXextFuncPtr _glew_glx_glXGetProcAddressARB (const GLubyte * procName)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Display * _glew_glx_glXGetCurrentDisplayEXT ()
-{
+Display * _glew_glx_glXGetCurrentDisplayEXT() {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Display * result = ((Display *)0);
-  // GLX_EXT_import_context - glXGetCurrentDisplayEXT
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXGetCurrentDisplayEXT)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetCurrentDisplayEXT) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetCurrentDisplayEXT ();
+    result = glxContext->m_glXGetCurrentDisplayEXT();
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -640,16 +538,13 @@ Display * _glew_glx_glXGetCurrentDisplayEXT ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXQueryContextInfoEXT (Display * dpy, GLXContext context, int  attribute, int * value)
-{
+int _glew_glx_glXQueryContextInfoEXT(Display * dpy, GLXContext context, int attribute, int * value) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_EXT_import_context - glXQueryContextInfoEXT
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXQueryContextInfoEXT)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryContextInfoEXT) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryContextInfoEXT (dpy, context, attribute, value);
+    result = glxContext->m_glXQueryContextInfoEXT(dpy, context, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -659,16 +554,13 @@ int _glew_glx_glXQueryContextInfoEXT (Display * dpy, GLXContext context, int  at
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContextID _glew_glx_glXGetContextIDEXT (const GLXContext context)
-{
+GLXContextID _glew_glx_glXGetContextIDEXT(const GLXContext context) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXContextID result = ((GLXContextID)0);
-  // GLX_EXT_import_context - glXGetContextIDEXT
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXGetContextIDEXT)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetContextIDEXT) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetContextIDEXT (context);
+    result = glxContext->m_glXGetContextIDEXT(context);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -678,16 +570,13 @@ GLXContextID _glew_glx_glXGetContextIDEXT (const GLXContext context)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext _glew_glx_glXImportContextEXT (Display * dpy, GLXContextID contextID)
-{
+GLXContext _glew_glx_glXImportContextEXT(Display * dpy, GLXContextID contextID) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXContext result = ((GLXContext)0);
-  // GLX_EXT_import_context - glXImportContextEXT
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXImportContextEXT)
-  {
+  if (!prototypeCalled && glxContext->m_glXImportContextEXT) {
     prototypeCalled = true;
-    result = glxConfig.m_glXImportContextEXT (dpy, contextID);
+    result = glxContext->m_glXImportContextEXT(dpy, contextID);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -697,15 +586,12 @@ GLXContext _glew_glx_glXImportContextEXT (Display * dpy, GLXContextID contextID)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXFreeContextEXT (Display * dpy, GLXContext context)
-{
+void _glew_glx_glXFreeContextEXT(Display * dpy, GLXContext context) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_EXT_import_context - glXFreeContextEXT
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXFreeContextEXT)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXFreeContextEXT) {
     prototypeCalled = true;
-    glxConfig.m_glXFreeContextEXT (dpy, context);
+    glxContext->m_glXFreeContextEXT(dpy, context);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -714,15 +600,12 @@ void _glew_glx_glXFreeContextEXT (Display * dpy, GLXContext context)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int  interval)
-{
+void _glew_glx_glXSwapIntervalEXT(Display * dpy, GLXDrawable drawable, int interval) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_EXT_swap_control - glXSwapIntervalEXT
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_swap_control] && glxConfig.m_glXSwapIntervalEXT)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXSwapIntervalEXT) {
     prototypeCalled = true;
-    glxConfig.m_glXSwapIntervalEXT (dpy, drawable, interval);
+    glxContext->m_glXSwapIntervalEXT(dpy, drawable, interval);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -731,15 +614,12 @@ void _glew_glx_glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int  int
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int  buffer, const int * attrib_list)
-{
+void _glew_glx_glXBindTexImageEXT(Display * dpy, GLXDrawable drawable, int buffer, const int * attrib_list) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_EXT_texture_from_pixmap - glXBindTexImageEXT
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_texture_from_pixmap] && glxConfig.m_glXBindTexImageEXT)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXBindTexImageEXT) {
     prototypeCalled = true;
-    glxConfig.m_glXBindTexImageEXT (dpy, drawable, buffer, attrib_list);
+    glxContext->m_glXBindTexImageEXT(dpy, drawable, buffer, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -748,15 +628,12 @@ void _glew_glx_glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int  buf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int  buffer)
-{
+void _glew_glx_glXReleaseTexImageEXT(Display * dpy, GLXDrawable drawable, int buffer) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_EXT_texture_from_pixmap - glXReleaseTexImageEXT
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_texture_from_pixmap] && glxConfig.m_glXReleaseTexImageEXT)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXReleaseTexImageEXT) {
     prototypeCalled = true;
-    glxConfig.m_glXReleaseTexImageEXT (dpy, drawable, buffer);
+    glxContext->m_glXReleaseTexImageEXT(dpy, drawable, buffer);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -765,16 +642,13 @@ void _glew_glx_glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int  
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned int _glew_glx_glXGetAGPOffsetMESA (const void * pointer)
-{
+unsigned int _glew_glx_glXGetAGPOffsetMESA(const void * pointer) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   unsigned int result = ((unsigned int)0);
-  // GLX_MESA_agp_offset - glXGetAGPOffsetMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_agp_offset] && glxConfig.m_glXGetAGPOffsetMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetAGPOffsetMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetAGPOffsetMESA (pointer);
+    result = glxContext->m_glXGetAGPOffsetMESA(pointer);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -784,15 +658,12 @@ unsigned int _glew_glx_glXGetAGPOffsetMESA (const void * pointer)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int  x, int  y, int  width, int  height)
-{
+void _glew_glx_glXCopySubBufferMESA(Display * dpy, GLXDrawable drawable, int x, int y, int width, int height) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_MESA_copy_sub_buffer - glXCopySubBufferMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_copy_sub_buffer] && glxConfig.m_glXCopySubBufferMESA)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXCopySubBufferMESA) {
     prototypeCalled = true;
-    glxConfig.m_glXCopySubBufferMESA (dpy, drawable, x, y, width, height);
+    glxContext->m_glXCopySubBufferMESA(dpy, drawable, x, y, width, height);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -801,16 +672,13 @@ void _glew_glx_glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int  x
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPixmap _glew_glx_glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap)
-{
+GLXPixmap _glew_glx_glXCreateGLXPixmapMESA(Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXPixmap result = ((GLXPixmap)0);
-  // GLX_MESA_pixmap_colormap - glXCreateGLXPixmapMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_pixmap_colormap] && glxConfig.m_glXCreateGLXPixmapMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateGLXPixmapMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateGLXPixmapMESA (dpy, visual, pixmap, cmap);
+    result = glxContext->m_glXCreateGLXPixmapMESA(dpy, visual, pixmap, cmap);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -820,16 +688,13 @@ GLXPixmap _glew_glx_glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXQueryCurrentRendererIntegerMESA (int  attribute, unsigned int * value)
-{
+Bool _glew_glx_glXQueryCurrentRendererIntegerMESA(int attribute, unsigned int * value) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_MESA_query_renderer - glXQueryCurrentRendererIntegerMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_query_renderer] && glxConfig.m_glXQueryCurrentRendererIntegerMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryCurrentRendererIntegerMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryCurrentRendererIntegerMESA (attribute, value);
+    result = glxContext->m_glXQueryCurrentRendererIntegerMESA(attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -839,16 +704,13 @@ Bool _glew_glx_glXQueryCurrentRendererIntegerMESA (int  attribute, unsigned int 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * _glew_glx_glXQueryCurrentRendererStringMESA (int  attribute)
-{
+const char * _glew_glx_glXQueryCurrentRendererStringMESA(int attribute) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   const char * result = ((const char *)0);
-  // GLX_MESA_query_renderer - glXQueryCurrentRendererStringMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_query_renderer] && glxConfig.m_glXQueryCurrentRendererStringMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryCurrentRendererStringMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryCurrentRendererStringMESA (attribute);
+    result = glxContext->m_glXQueryCurrentRendererStringMESA(attribute);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -858,16 +720,13 @@ const char * _glew_glx_glXQueryCurrentRendererStringMESA (int  attribute)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXQueryRendererIntegerMESA (Display * dpy, int  screen, int  renderer, int  attribute, unsigned int * value)
-{
+Bool _glew_glx_glXQueryRendererIntegerMESA(Display * dpy, int screen, int renderer, int attribute, unsigned int * value) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_MESA_query_renderer - glXQueryRendererIntegerMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_query_renderer] && glxConfig.m_glXQueryRendererIntegerMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryRendererIntegerMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryRendererIntegerMESA (dpy, screen, renderer, attribute, value);
+    result = glxContext->m_glXQueryRendererIntegerMESA(dpy, screen, renderer, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -877,16 +736,13 @@ Bool _glew_glx_glXQueryRendererIntegerMESA (Display * dpy, int  screen, int  ren
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char * _glew_glx_glXQueryRendererStringMESA (Display * dpy, int  screen, int  renderer, int  attribute)
-{
+const char * _glew_glx_glXQueryRendererStringMESA(Display * dpy, int screen, int renderer, int attribute) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   const char * result = ((const char *)0);
-  // GLX_MESA_query_renderer - glXQueryRendererStringMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_query_renderer] && glxConfig.m_glXQueryRendererStringMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryRendererStringMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryRendererStringMESA (dpy, screen, renderer, attribute);
+    result = glxContext->m_glXQueryRendererStringMESA(dpy, screen, renderer, attribute);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -896,16 +752,13 @@ const char * _glew_glx_glXQueryRendererStringMESA (Display * dpy, int  screen, i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
-{
+Bool _glew_glx_glXReleaseBuffersMESA(Display * dpy, GLXDrawable drawable) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_MESA_release_buffers - glXReleaseBuffersMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_release_buffers] && glxConfig.m_glXReleaseBuffersMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXReleaseBuffersMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXReleaseBuffersMESA (dpy, drawable);
+    result = glxContext->m_glXReleaseBuffersMESA(dpy, drawable);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -915,16 +768,13 @@ Bool _glew_glx_glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLboolean _glew_glx_glXSet3DfxModeMESA (GLint mode)
-{
+GLboolean _glew_glx_glXSet3DfxModeMESA(GLint mode) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLboolean result = ((GLboolean)0);
-  // GLX_MESA_set_3dfx_mode - glXSet3DfxModeMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_set_3dfx_mode] && glxConfig.m_glXSet3DfxModeMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXSet3DfxModeMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXSet3DfxModeMESA (mode);
+    result = glxContext->m_glXSet3DfxModeMESA(mode);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -934,16 +784,13 @@ GLboolean _glew_glx_glXSet3DfxModeMESA (GLint mode)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXGetSwapIntervalMESA ()
-{
+int _glew_glx_glXGetSwapIntervalMESA() {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_MESA_swap_control - glXGetSwapIntervalMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_swap_control] && glxConfig.m_glXGetSwapIntervalMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetSwapIntervalMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetSwapIntervalMESA ();
+    result = glxContext->m_glXGetSwapIntervalMESA();
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -953,16 +800,13 @@ int _glew_glx_glXGetSwapIntervalMESA ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXSwapIntervalMESA (unsigned int  interval)
-{
+int _glew_glx_glXSwapIntervalMESA(unsigned int interval) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_MESA_swap_control - glXSwapIntervalMESA
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_swap_control] && glxConfig.m_glXSwapIntervalMESA)
-  {
+  if (!prototypeCalled && glxContext->m_glXSwapIntervalMESA) {
     prototypeCalled = true;
-    result = glxConfig.m_glXSwapIntervalMESA (interval);
+    result = glxContext->m_glXSwapIntervalMESA(interval);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -972,15 +816,12 @@ int _glew_glx_glXSwapIntervalMESA (unsigned int  interval)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
-{
+void _glew_glx_glXCopyBufferSubDataNV(Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_NV_copy_buffer - glXCopyBufferSubDataNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_copy_buffer] && glxConfig.m_glXCopyBufferSubDataNV)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXCopyBufferSubDataNV) {
     prototypeCalled = true;
-    glxConfig.m_glXCopyBufferSubDataNV (dpy, readCtx, writeCtx, readTarget, writeTarget, readOffset, writeOffset, size);
+    glxContext->m_glXCopyBufferSubDataNV(dpy, readCtx, writeCtx, readTarget, writeTarget, readOffset, writeOffset, size);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -989,15 +830,12 @@ void _glew_glx_glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXCon
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size)
-{
+void _glew_glx_glXNamedCopyBufferSubDataNV(Display * dpy, GLXContext readCtx, GLXContext writeCtx, GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_NV_copy_buffer - glXNamedCopyBufferSubDataNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_copy_buffer] && glxConfig.m_glXNamedCopyBufferSubDataNV)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXNamedCopyBufferSubDataNV) {
     prototypeCalled = true;
-    glxConfig.m_glXNamedCopyBufferSubDataNV (dpy, readCtx, writeCtx, readBuffer, writeBuffer, readOffset, writeOffset, size);
+    glxContext->m_glXNamedCopyBufferSubDataNV(dpy, readCtx, writeCtx, readBuffer, writeBuffer, readOffset, writeOffset, size);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1006,15 +844,12 @@ void _glew_glx_glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, G
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth)
-{
+void _glew_glx_glXCopyImageSubDataNV(Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_NV_copy_image - glXCopyImageSubDataNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_copy_image] && glxConfig.m_glXCopyImageSubDataNV)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXCopyImageSubDataNV) {
     prototypeCalled = true;
-    glxConfig.m_glXCopyImageSubDataNV (dpy, srcCtx, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstCtx, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
+    glxContext->m_glXCopyImageSubDataNV(dpy, srcCtx, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstCtx, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1023,16 +858,13 @@ void _glew_glx_glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint s
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloat seconds)
-{
+Bool _glew_glx_glXDelayBeforeSwapNV(Display * dpy, GLXDrawable drawable, GLfloat seconds) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_NV_delay_before_swap - glXDelayBeforeSwapNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_delay_before_swap] && glxConfig.m_glXDelayBeforeSwapNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXDelayBeforeSwapNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXDelayBeforeSwapNV (dpy, drawable, seconds);
+    result = glxContext->m_glXDelayBeforeSwapNV(dpy, drawable, seconds);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1042,16 +874,13 @@ Bool _glew_glx_glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-unsigned int * _glew_glx_glXEnumerateVideoDevicesNV (Display * dpy, int  screen, int * nelements)
-{
+unsigned int * _glew_glx_glXEnumerateVideoDevicesNV(Display * dpy, int screen, int * nelements) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   unsigned int * result = ((unsigned int *)0);
-  // GLX_NV_present_video - glXEnumerateVideoDevicesNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_present_video] && glxConfig.m_glXEnumerateVideoDevicesNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXEnumerateVideoDevicesNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXEnumerateVideoDevicesNV (dpy, screen, nelements);
+    result = glxContext->m_glXEnumerateVideoDevicesNV(dpy, screen, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1061,16 +890,13 @@ unsigned int * _glew_glx_glXEnumerateVideoDevicesNV (Display * dpy, int  screen,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXBindVideoDeviceNV (Display * dpy, unsigned int  video_slot, unsigned int  video_device, const int * attrib_list)
-{
+int _glew_glx_glXBindVideoDeviceNV(Display * dpy, unsigned int video_slot, unsigned int video_device, const int * attrib_list) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_NV_present_video - glXBindVideoDeviceNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_present_video] && glxConfig.m_glXBindVideoDeviceNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXBindVideoDeviceNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXBindVideoDeviceNV (dpy, video_slot, video_device, attrib_list);
+    result = glxContext->m_glXBindVideoDeviceNV(dpy, video_slot, video_device, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1080,16 +906,13 @@ int _glew_glx_glXBindVideoDeviceNV (Display * dpy, unsigned int  video_slot, uns
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint group)
-{
+Bool _glew_glx_glXJoinSwapGroupNV(Display * dpy, GLXDrawable drawable, GLuint group) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_NV_swap_group - glXJoinSwapGroupNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXJoinSwapGroupNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXJoinSwapGroupNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXJoinSwapGroupNV (dpy, drawable, group);
+    result = glxContext->m_glXJoinSwapGroupNV(dpy, drawable, group);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1099,16 +922,13 @@ Bool _glew_glx_glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint g
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier)
-{
+Bool _glew_glx_glXBindSwapBarrierNV(Display * dpy, GLuint group, GLuint barrier) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_NV_swap_group - glXBindSwapBarrierNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXBindSwapBarrierNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXBindSwapBarrierNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXBindSwapBarrierNV (dpy, group, barrier);
+    result = glxContext->m_glXBindSwapBarrierNV(dpy, group, barrier);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1118,16 +938,13 @@ Bool _glew_glx_glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier)
-{
+Bool _glew_glx_glXQuerySwapGroupNV(Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_NV_swap_group - glXQuerySwapGroupNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXQuerySwapGroupNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXQuerySwapGroupNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQuerySwapGroupNV (dpy, drawable, group, barrier);
+    result = glxContext->m_glXQuerySwapGroupNV(dpy, drawable, group, barrier);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1137,16 +954,13 @@ Bool _glew_glx_glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXQueryMaxSwapGroupsNV (Display * dpy, int  screen, GLuint * maxGroups, GLuint * maxBarriers)
-{
+Bool _glew_glx_glXQueryMaxSwapGroupsNV(Display * dpy, int screen, GLuint * maxGroups, GLuint * maxBarriers) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_NV_swap_group - glXQueryMaxSwapGroupsNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXQueryMaxSwapGroupsNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryMaxSwapGroupsNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryMaxSwapGroupsNV (dpy, screen, maxGroups, maxBarriers);
+    result = glxContext->m_glXQueryMaxSwapGroupsNV(dpy, screen, maxGroups, maxBarriers);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1156,16 +970,13 @@ Bool _glew_glx_glXQueryMaxSwapGroupsNV (Display * dpy, int  screen, GLuint * max
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXQueryFrameCountNV (Display * dpy, int  screen, GLuint * count)
-{
+Bool _glew_glx_glXQueryFrameCountNV(Display * dpy, int screen, GLuint * count) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_NV_swap_group - glXQueryFrameCountNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXQueryFrameCountNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryFrameCountNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryFrameCountNV (dpy, screen, count);
+    result = glxContext->m_glXQueryFrameCountNV(dpy, screen, count);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1175,16 +986,13 @@ Bool _glew_glx_glXQueryFrameCountNV (Display * dpy, int  screen, GLuint * count)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXResetFrameCountNV (Display * dpy, int  screen)
-{
+Bool _glew_glx_glXResetFrameCountNV(Display * dpy, int screen) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_NV_swap_group - glXResetFrameCountNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXResetFrameCountNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXResetFrameCountNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXResetFrameCountNV (dpy, screen);
+    result = glxContext->m_glXResetFrameCountNV(dpy, screen);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1194,16 +1002,13 @@ Bool _glew_glx_glXResetFrameCountNV (Display * dpy, int  screen)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int  video_capture_slot, GLXVideoCaptureDeviceNV device)
-{
+int _glew_glx_glXBindVideoCaptureDeviceNV(Display * dpy, unsigned int video_capture_slot, GLXVideoCaptureDeviceNV device) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_NV_video_capture - glXBindVideoCaptureDeviceNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXBindVideoCaptureDeviceNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXBindVideoCaptureDeviceNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXBindVideoCaptureDeviceNV (dpy, video_capture_slot, device);
+    result = glxContext->m_glXBindVideoCaptureDeviceNV(dpy, video_capture_slot, device);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1213,16 +1018,13 @@ int _glew_glx_glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int  video_ca
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXVideoCaptureDeviceNV * _glew_glx_glXEnumerateVideoCaptureDevicesNV (Display * dpy, int  screen, int * nelements)
-{
+GLXVideoCaptureDeviceNV * _glew_glx_glXEnumerateVideoCaptureDevicesNV(Display * dpy, int screen, int * nelements) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXVideoCaptureDeviceNV * result = ((GLXVideoCaptureDeviceNV *)0);
-  // GLX_NV_video_capture - glXEnumerateVideoCaptureDevicesNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXEnumerateVideoCaptureDevicesNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXEnumerateVideoCaptureDevicesNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXEnumerateVideoCaptureDevicesNV (dpy, screen, nelements);
+    result = glxContext->m_glXEnumerateVideoCaptureDevicesNV(dpy, screen, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1232,15 +1034,12 @@ GLXVideoCaptureDeviceNV * _glew_glx_glXEnumerateVideoCaptureDevicesNV (Display *
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
-{
+void _glew_glx_glXLockVideoCaptureDeviceNV(Display * dpy, GLXVideoCaptureDeviceNV device) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_NV_video_capture - glXLockVideoCaptureDeviceNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXLockVideoCaptureDeviceNV)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXLockVideoCaptureDeviceNV) {
     prototypeCalled = true;
-    glxConfig.m_glXLockVideoCaptureDeviceNV (dpy, device);
+    glxContext->m_glXLockVideoCaptureDeviceNV(dpy, device);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1249,16 +1048,13 @@ void _glew_glx_glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDevice
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device, int  attribute, int * value)
-{
+int _glew_glx_glXQueryVideoCaptureDeviceNV(Display * dpy, GLXVideoCaptureDeviceNV device, int attribute, int * value) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_NV_video_capture - glXQueryVideoCaptureDeviceNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXQueryVideoCaptureDeviceNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryVideoCaptureDeviceNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryVideoCaptureDeviceNV (dpy, device, attribute, value);
+    result = glxContext->m_glXQueryVideoCaptureDeviceNV(dpy, device, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1268,15 +1064,12 @@ int _glew_glx_glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDevice
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDeviceNV device)
-{
+void _glew_glx_glXReleaseVideoCaptureDeviceNV(Display * dpy, GLXVideoCaptureDeviceNV device) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_NV_video_capture - glXReleaseVideoCaptureDeviceNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXReleaseVideoCaptureDeviceNV)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXReleaseVideoCaptureDeviceNV) {
     prototypeCalled = true;
-    glxConfig.m_glXReleaseVideoCaptureDeviceNV (dpy, device);
+    glxContext->m_glXReleaseVideoCaptureDeviceNV(dpy, device);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1285,16 +1078,13 @@ void _glew_glx_glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDev
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXGetVideoDeviceNV (Display * dpy, int  screen, int  numVideoDevices, GLXVideoDeviceNV * pVideoDevice)
-{
+int _glew_glx_glXGetVideoDeviceNV(Display * dpy, int screen, int numVideoDevices, GLXVideoDeviceNV * pVideoDevice) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_NV_video_out - glXGetVideoDeviceNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXGetVideoDeviceNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetVideoDeviceNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetVideoDeviceNV (dpy, screen, numVideoDevices, pVideoDevice);
+    result = glxContext->m_glXGetVideoDeviceNV(dpy, screen, numVideoDevices, pVideoDevice);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1304,16 +1094,13 @@ int _glew_glx_glXGetVideoDeviceNV (Display * dpy, int  screen, int  numVideoDevi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXReleaseVideoDeviceNV (Display * dpy, int  screen, GLXVideoDeviceNV VideoDevice)
-{
+int _glew_glx_glXReleaseVideoDeviceNV(Display * dpy, int screen, GLXVideoDeviceNV VideoDevice) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_NV_video_out - glXReleaseVideoDeviceNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXReleaseVideoDeviceNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXReleaseVideoDeviceNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXReleaseVideoDeviceNV (dpy, screen, VideoDevice);
+    result = glxContext->m_glXReleaseVideoDeviceNV(dpy, screen, VideoDevice);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1323,16 +1110,13 @@ int _glew_glx_glXReleaseVideoDeviceNV (Display * dpy, int  screen, GLXVideoDevic
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int  iVideoBuffer)
-{
+int _glew_glx_glXBindVideoImageNV(Display * dpy, GLXVideoDeviceNV VideoDevice, GLXPbuffer pbuf, int iVideoBuffer) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_NV_video_out - glXBindVideoImageNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXBindVideoImageNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXBindVideoImageNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXBindVideoImageNV (dpy, VideoDevice, pbuf, iVideoBuffer);
+    result = glxContext->m_glXBindVideoImageNV(dpy, VideoDevice, pbuf, iVideoBuffer);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1342,16 +1126,13 @@ int _glew_glx_glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
-{
+int _glew_glx_glXReleaseVideoImageNV(Display * dpy, GLXPbuffer pbuf) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_NV_video_out - glXReleaseVideoImageNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXReleaseVideoImageNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXReleaseVideoImageNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXReleaseVideoImageNV (dpy, pbuf);
+    result = glxContext->m_glXReleaseVideoImageNV(dpy, pbuf);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1361,16 +1142,13 @@ int _glew_glx_glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int  iBufferType, unsigned long * pulCounterPbuffer, GLboolean bBlock)
-{
+int _glew_glx_glXSendPbufferToVideoNV(Display * dpy, GLXPbuffer pbuf, int iBufferType, unsigned long * pulCounterPbuffer, GLboolean bBlock) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_NV_video_out - glXSendPbufferToVideoNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXSendPbufferToVideoNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXSendPbufferToVideoNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXSendPbufferToVideoNV (dpy, pbuf, iBufferType, pulCounterPbuffer, bBlock);
+    result = glxContext->m_glXSendPbufferToVideoNV(dpy, pbuf, iBufferType, pulCounterPbuffer, bBlock);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1380,16 +1158,13 @@ int _glew_glx_glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int  iBuf
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXGetVideoInfoNV (Display * dpy, int  screen, GLXVideoDeviceNV VideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo)
-{
+int _glew_glx_glXGetVideoInfoNV(Display * dpy, int screen, GLXVideoDeviceNV VideoDevice, unsigned long * pulCounterOutputPbuffer, unsigned long * pulCounterOutputVideo) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_NV_video_out - glXGetVideoInfoNV
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXGetVideoInfoNV)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetVideoInfoNV) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetVideoInfoNV (dpy, screen, VideoDevice, pulCounterOutputPbuffer, pulCounterOutputVideo);
+    result = glxContext->m_glXGetVideoInfoNV(dpy, screen, VideoDevice, pulCounterOutputPbuffer, pulCounterOutputVideo);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1399,16 +1174,13 @@ int _glew_glx_glXGetVideoInfoNV (Display * dpy, int  screen, GLXVideoDeviceNV Vi
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc)
-{
+Bool _glew_glx_glXGetSyncValuesOML(Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_OML_sync_control - glXGetSyncValuesOML
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXGetSyncValuesOML)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetSyncValuesOML) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetSyncValuesOML (dpy, drawable, ust, msc, sbc);
+    result = glxContext->m_glXGetSyncValuesOML(dpy, drawable, ust, msc, sbc);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1418,16 +1190,13 @@ Bool _glew_glx_glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator)
-{
+Bool _glew_glx_glXGetMscRateOML(Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_OML_sync_control - glXGetMscRateOML
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXGetMscRateOML)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetMscRateOML) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetMscRateOML (dpy, drawable, numerator, denominator);
+    result = glxContext->m_glXGetMscRateOML(dpy, drawable, numerator, denominator);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1437,16 +1206,13 @@ Bool _glew_glx_glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int64_t _glew_glx_glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder)
-{
+int64_t _glew_glx_glXSwapBuffersMscOML(Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int64_t result = ((int64_t)0);
-  // GLX_OML_sync_control - glXSwapBuffersMscOML
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXSwapBuffersMscOML)
-  {
+  if (!prototypeCalled && glxContext->m_glXSwapBuffersMscOML) {
     prototypeCalled = true;
-    result = glxConfig.m_glXSwapBuffersMscOML (dpy, drawable, target_msc, divisor, remainder);
+    result = glxContext->m_glXSwapBuffersMscOML(dpy, drawable, target_msc, divisor, remainder);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1456,16 +1222,13 @@ int64_t _glew_glx_glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc)
-{
+Bool _glew_glx_glXWaitForMscOML(Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_OML_sync_control - glXWaitForMscOML
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXWaitForMscOML)
-  {
+  if (!prototypeCalled && glxContext->m_glXWaitForMscOML) {
     prototypeCalled = true;
-    result = glxConfig.m_glXWaitForMscOML (dpy, drawable, target_msc, divisor, remainder, ust, msc, sbc);
+    result = glxContext->m_glXWaitForMscOML(dpy, drawable, target_msc, divisor, remainder, ust, msc, sbc);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1475,16 +1238,13 @@ Bool _glew_glx_glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t ta
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc)
-{
+Bool _glew_glx_glXWaitForSbcOML(Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_OML_sync_control - glXWaitForSbcOML
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXWaitForSbcOML)
-  {
+  if (!prototypeCalled && glxContext->m_glXWaitForSbcOML) {
     prototypeCalled = true;
-    result = glxConfig.m_glXWaitForSbcOML (dpy, drawable, target_sbc, ust, msc, sbc);
+    result = glxContext->m_glXWaitForSbcOML(dpy, drawable, target_sbc, ust, msc, sbc);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1494,15 +1254,12 @@ Bool _glew_glx_glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t ta
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXCushionSGI (Display * dpy, Window window, float  cushion)
-{
+void _glew_glx_glXCushionSGI(Display * dpy, Window window, float cushion) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_SGI_cushion - glXCushionSGI
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_cushion] && glxConfig.m_glXCushionSGI)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXCushionSGI) {
     prototypeCalled = true;
-    glxConfig.m_glXCushionSGI (dpy, window, cushion);
+    glxContext->m_glXCushionSGI(dpy, window, cushion);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1511,16 +1268,13 @@ void _glew_glx_glXCushionSGI (Display * dpy, Window window, float  cushion)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx)
-{
+Bool _glew_glx_glXMakeCurrentReadSGI(Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_SGI_make_current_read - glXMakeCurrentReadSGI
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_make_current_read] && glxConfig.m_glXMakeCurrentReadSGI)
-  {
+  if (!prototypeCalled && glxContext->m_glXMakeCurrentReadSGI) {
     prototypeCalled = true;
-    result = glxConfig.m_glXMakeCurrentReadSGI (dpy, draw, read, ctx);
+    result = glxContext->m_glXMakeCurrentReadSGI(dpy, draw, read, ctx);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1530,16 +1284,13 @@ Bool _glew_glx_glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawab
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXDrawable _glew_glx_glXGetCurrentReadDrawableSGI ()
-{
+GLXDrawable _glew_glx_glXGetCurrentReadDrawableSGI() {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXDrawable result = ((GLXDrawable)0);
-  // GLX_SGI_make_current_read - glXGetCurrentReadDrawableSGI
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_make_current_read] && glxConfig.m_glXGetCurrentReadDrawableSGI)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetCurrentReadDrawableSGI) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetCurrentReadDrawableSGI ();
+    result = glxContext->m_glXGetCurrentReadDrawableSGI();
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1549,16 +1300,13 @@ GLXDrawable _glew_glx_glXGetCurrentReadDrawableSGI ()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXSwapIntervalSGI (int  interval)
-{
+int _glew_glx_glXSwapIntervalSGI(int interval) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGI_swap_control - glXSwapIntervalSGI
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_swap_control] && glxConfig.m_glXSwapIntervalSGI)
-  {
+  if (!prototypeCalled && glxContext->m_glXSwapIntervalSGI) {
     prototypeCalled = true;
-    result = glxConfig.m_glXSwapIntervalSGI (interval);
+    result = glxContext->m_glXSwapIntervalSGI(interval);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1568,16 +1316,13 @@ int _glew_glx_glXSwapIntervalSGI (int  interval)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXGetVideoSyncSGI (unsigned int * count)
-{
+int _glew_glx_glXGetVideoSyncSGI(unsigned int * count) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGI_video_sync - glXGetVideoSyncSGI
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_video_sync] && glxConfig.m_glXGetVideoSyncSGI)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetVideoSyncSGI) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetVideoSyncSGI (count);
+    result = glxContext->m_glXGetVideoSyncSGI(count);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1587,16 +1332,13 @@ int _glew_glx_glXGetVideoSyncSGI (unsigned int * count)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXWaitVideoSyncSGI (int  divisor, int  remainder, unsigned int * count)
-{
+int _glew_glx_glXWaitVideoSyncSGI(int divisor, int remainder, unsigned int * count) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGI_video_sync - glXWaitVideoSyncSGI
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_video_sync] && glxConfig.m_glXWaitVideoSyncSGI)
-  {
+  if (!prototypeCalled && glxContext->m_glXWaitVideoSyncSGI) {
     prototypeCalled = true;
-    result = glxConfig.m_glXWaitVideoSyncSGI (divisor, remainder, count);
+    result = glxContext->m_glXWaitVideoSyncSGI(divisor, remainder, count);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1606,16 +1348,13 @@ int _glew_glx_glXWaitVideoSyncSGI (int  divisor, int  remainder, unsigned int * 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer, DMparams * params, DMbuffer dmbuffer)
-{
+Bool _glew_glx_glXAssociateDMPbufferSGIX(Display * dpy, GLXPbufferSGIX pbuffer, DMparams * params, DMbuffer dmbuffer) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_SGIX_dmbuffer - glXAssociateDMPbufferSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_dmbuffer] && glxConfig.m_glXAssociateDMPbufferSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXAssociateDMPbufferSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXAssociateDMPbufferSGIX (dpy, pbuffer, params, dmbuffer);
+    result = glxContext->m_glXAssociateDMPbufferSGIX(dpy, pbuffer, params, dmbuffer);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1625,16 +1364,13 @@ Bool _glew_glx_glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, int  attribute, int * value)
-{
+int _glew_glx_glXGetFBConfigAttribSGIX(Display * dpy, GLXFBConfigSGIX config, int attribute, int * value) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_fbconfig - glXGetFBConfigAttribSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXGetFBConfigAttribSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetFBConfigAttribSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetFBConfigAttribSGIX (dpy, config, attribute, value);
+    result = glxContext->m_glXGetFBConfigAttribSGIX(dpy, config, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1644,16 +1380,13 @@ int _glew_glx_glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXFBConfigSGIX * _glew_glx_glXChooseFBConfigSGIX (Display * dpy, int  screen, int * attrib_list, int * nelements)
-{
+GLXFBConfigSGIX * _glew_glx_glXChooseFBConfigSGIX(Display * dpy, int screen, int * attrib_list, int * nelements) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXFBConfigSGIX * result = ((GLXFBConfigSGIX *)0);
-  // GLX_SGIX_fbconfig - glXChooseFBConfigSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXChooseFBConfigSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXChooseFBConfigSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXChooseFBConfigSGIX (dpy, screen, attrib_list, nelements);
+    result = glxContext->m_glXChooseFBConfigSGIX(dpy, screen, attrib_list, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1663,16 +1396,13 @@ GLXFBConfigSGIX * _glew_glx_glXChooseFBConfigSGIX (Display * dpy, int  screen, i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPixmap _glew_glx_glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap)
-{
+GLXPixmap _glew_glx_glXCreateGLXPixmapWithConfigSGIX(Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXPixmap result = ((GLXPixmap)0);
-  // GLX_SGIX_fbconfig - glXCreateGLXPixmapWithConfigSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXCreateGLXPixmapWithConfigSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateGLXPixmapWithConfigSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateGLXPixmapWithConfigSGIX (dpy, config, pixmap);
+    result = glxContext->m_glXCreateGLXPixmapWithConfigSGIX(dpy, config, pixmap);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1682,16 +1412,13 @@ GLXPixmap _glew_glx_glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfig
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXContext _glew_glx_glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigSGIX config, int  render_type, GLXContext share_list, Bool direct)
-{
+GLXContext _glew_glx_glXCreateContextWithConfigSGIX(Display * dpy, GLXFBConfigSGIX config, int render_type, GLXContext share_list, Bool direct) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXContext result = ((GLXContext)0);
-  // GLX_SGIX_fbconfig - glXCreateContextWithConfigSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXCreateContextWithConfigSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateContextWithConfigSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateContextWithConfigSGIX (dpy, config, render_type, share_list, direct);
+    result = glxContext->m_glXCreateContextWithConfigSGIX(dpy, config, render_type, share_list, direct);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1701,16 +1428,13 @@ GLXContext _glew_glx_glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-XVisualInfo * _glew_glx_glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfigSGIX config)
-{
+XVisualInfo * _glew_glx_glXGetVisualFromFBConfigSGIX(Display * dpy, GLXFBConfigSGIX config) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   XVisualInfo * result = ((XVisualInfo *)0);
-  // GLX_SGIX_fbconfig - glXGetVisualFromFBConfigSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXGetVisualFromFBConfigSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetVisualFromFBConfigSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetVisualFromFBConfigSGIX (dpy, config);
+    result = glxContext->m_glXGetVisualFromFBConfigSGIX(dpy, config);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1720,16 +1444,13 @@ XVisualInfo * _glew_glx_glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfig
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXFBConfigSGIX _glew_glx_glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualInfo * vis)
-{
+GLXFBConfigSGIX _glew_glx_glXGetFBConfigFromVisualSGIX(Display * dpy, XVisualInfo * vis) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXFBConfigSGIX result = ((GLXFBConfigSGIX)0);
-  // GLX_SGIX_fbconfig - glXGetFBConfigFromVisualSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXGetFBConfigFromVisualSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetFBConfigFromVisualSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetFBConfigFromVisualSGIX (dpy, vis);
+    result = glxContext->m_glXGetFBConfigFromVisualSGIX(dpy, vis);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1739,16 +1460,13 @@ GLXFBConfigSGIX _glew_glx_glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualIn
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXHyperpipeNetworkSGIX * _glew_glx_glXQueryHyperpipeNetworkSGIX (Display * dpy, int * npipes)
-{
+GLXHyperpipeNetworkSGIX * _glew_glx_glXQueryHyperpipeNetworkSGIX(Display * dpy, int * npipes) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXHyperpipeNetworkSGIX * result = ((GLXHyperpipeNetworkSGIX *)0);
-  // GLX_SGIX_hyperpipe - glXQueryHyperpipeNetworkSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXQueryHyperpipeNetworkSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryHyperpipeNetworkSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryHyperpipeNetworkSGIX (dpy, npipes);
+    result = glxContext->m_glXQueryHyperpipeNetworkSGIX(dpy, npipes);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1758,16 +1476,13 @@ GLXHyperpipeNetworkSGIX * _glew_glx_glXQueryHyperpipeNetworkSGIX (Display * dpy,
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXHyperpipeConfigSGIX (Display * dpy, int  networkId, int  npipes, GLXHyperpipeConfigSGIX * cfg, int * hpId)
-{
+int _glew_glx_glXHyperpipeConfigSGIX(Display * dpy, int networkId, int npipes, GLXHyperpipeConfigSGIX * cfg, int * hpId) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_hyperpipe - glXHyperpipeConfigSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXHyperpipeConfigSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXHyperpipeConfigSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXHyperpipeConfigSGIX (dpy, networkId, npipes, cfg, hpId);
+    result = glxContext->m_glXHyperpipeConfigSGIX(dpy, networkId, npipes, cfg, hpId);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1777,16 +1492,13 @@ int _glew_glx_glXHyperpipeConfigSGIX (Display * dpy, int  networkId, int  npipes
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXHyperpipeConfigSGIX * _glew_glx_glXQueryHyperpipeConfigSGIX (Display * dpy, int  hpId, int * npipes)
-{
+GLXHyperpipeConfigSGIX * _glew_glx_glXQueryHyperpipeConfigSGIX(Display * dpy, int hpId, int * npipes) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXHyperpipeConfigSGIX * result = ((GLXHyperpipeConfigSGIX *)0);
-  // GLX_SGIX_hyperpipe - glXQueryHyperpipeConfigSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXQueryHyperpipeConfigSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryHyperpipeConfigSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryHyperpipeConfigSGIX (dpy, hpId, npipes);
+    result = glxContext->m_glXQueryHyperpipeConfigSGIX(dpy, hpId, npipes);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1796,16 +1508,13 @@ GLXHyperpipeConfigSGIX * _glew_glx_glXQueryHyperpipeConfigSGIX (Display * dpy, i
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXDestroyHyperpipeConfigSGIX (Display * dpy, int  hpId)
-{
+int _glew_glx_glXDestroyHyperpipeConfigSGIX(Display * dpy, int hpId) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_hyperpipe - glXDestroyHyperpipeConfigSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXDestroyHyperpipeConfigSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXDestroyHyperpipeConfigSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXDestroyHyperpipeConfigSGIX (dpy, hpId);
+    result = glxContext->m_glXDestroyHyperpipeConfigSGIX(dpy, hpId);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1815,16 +1524,13 @@ int _glew_glx_glXDestroyHyperpipeConfigSGIX (Display * dpy, int  hpId)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXBindHyperpipeSGIX (Display * dpy, int  hpId)
-{
+int _glew_glx_glXBindHyperpipeSGIX(Display * dpy, int hpId) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_hyperpipe - glXBindHyperpipeSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXBindHyperpipeSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXBindHyperpipeSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXBindHyperpipeSGIX (dpy, hpId);
+    result = glxContext->m_glXBindHyperpipeSGIX(dpy, hpId);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1834,16 +1540,13 @@ int _glew_glx_glXBindHyperpipeSGIX (Display * dpy, int  hpId)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXQueryHyperpipeBestAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * attribList, void * returnAttribList)
-{
+int _glew_glx_glXQueryHyperpipeBestAttribSGIX(Display * dpy, int timeSlice, int attrib, int size, void * attribList, void * returnAttribList) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_hyperpipe - glXQueryHyperpipeBestAttribSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXQueryHyperpipeBestAttribSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryHyperpipeBestAttribSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryHyperpipeBestAttribSGIX (dpy, timeSlice, attrib, size, attribList, returnAttribList);
+    result = glxContext->m_glXQueryHyperpipeBestAttribSGIX(dpy, timeSlice, attrib, size, attribList, returnAttribList);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1853,16 +1556,13 @@ int _glew_glx_glXQueryHyperpipeBestAttribSGIX (Display * dpy, int  timeSlice, in
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * attribList)
-{
+int _glew_glx_glXHyperpipeAttribSGIX(Display * dpy, int timeSlice, int attrib, int size, void * attribList) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_hyperpipe - glXHyperpipeAttribSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXHyperpipeAttribSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXHyperpipeAttribSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, attribList);
+    result = glxContext->m_glXHyperpipeAttribSGIX(dpy, timeSlice, attrib, size, attribList);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1872,16 +1572,13 @@ int _glew_glx_glXHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXQueryHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib, int  size, void * returnAttribList)
-{
+int _glew_glx_glXQueryHyperpipeAttribSGIX(Display * dpy, int timeSlice, int attrib, int size, void * returnAttribList) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_hyperpipe - glXQueryHyperpipeAttribSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXQueryHyperpipeAttribSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryHyperpipeAttribSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, returnAttribList);
+    result = glxContext->m_glXQueryHyperpipeAttribSGIX(dpy, timeSlice, attrib, size, returnAttribList);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1891,16 +1588,13 @@ int _glew_glx_glXQueryHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  a
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXPbufferSGIX _glew_glx_glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX config, unsigned int  width, unsigned int  height, int * attrib_list)
-{
+GLXPbufferSGIX _glew_glx_glXCreateGLXPbufferSGIX(Display * dpy, GLXFBConfigSGIX config, unsigned int width, unsigned int height, int * attrib_list) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXPbufferSGIX result = ((GLXPbufferSGIX)0);
-  // GLX_SGIX_pbuffer - glXCreateGLXPbufferSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXCreateGLXPbufferSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateGLXPbufferSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateGLXPbufferSGIX (dpy, config, width, height, attrib_list);
+    result = glxContext->m_glXCreateGLXPbufferSGIX(dpy, config, width, height, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -1910,15 +1604,12 @@ GLXPbufferSGIX _glew_glx_glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
-{
+void _glew_glx_glXDestroyGLXPbufferSGIX(Display * dpy, GLXPbufferSGIX pbuf) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_SGIX_pbuffer - glXDestroyGLXPbufferSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXDestroyGLXPbufferSGIX)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXDestroyGLXPbufferSGIX) {
     prototypeCalled = true;
-    glxConfig.m_glXDestroyGLXPbufferSGIX (dpy, pbuf);
+    glxContext->m_glXDestroyGLXPbufferSGIX(dpy, pbuf);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1927,15 +1618,12 @@ void _glew_glx_glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int  attribute, unsigned int * value)
-{
+void _glew_glx_glXQueryGLXPbufferSGIX(Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_SGIX_pbuffer - glXQueryGLXPbufferSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXQueryGLXPbufferSGIX)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXQueryGLXPbufferSGIX) {
     prototypeCalled = true;
-    glxConfig.m_glXQueryGLXPbufferSGIX (dpy, pbuf, attribute, value);
+    glxContext->m_glXQueryGLXPbufferSGIX(dpy, pbuf, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1944,15 +1632,12 @@ void _glew_glx_glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int  
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long  mask)
-{
+void _glew_glx_glXSelectEventSGIX(Display * dpy, GLXDrawable drawable, unsigned long mask) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_SGIX_pbuffer - glXSelectEventSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXSelectEventSGIX)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXSelectEventSGIX) {
     prototypeCalled = true;
-    glxConfig.m_glXSelectEventSGIX (dpy, drawable, mask);
+    glxContext->m_glXSelectEventSGIX(dpy, drawable, mask);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1961,15 +1646,12 @@ void _glew_glx_glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, unsigned long * mask)
-{
+void _glew_glx_glXGetSelectedEventSGIX(Display * dpy, GLXDrawable drawable, unsigned long * mask) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_SGIX_pbuffer - glXGetSelectedEventSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXGetSelectedEventSGIX)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXGetSelectedEventSGIX) {
     prototypeCalled = true;
-    glxConfig.m_glXGetSelectedEventSGIX (dpy, drawable, mask);
+    glxContext->m_glXGetSelectedEventSGIX(dpy, drawable, mask);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1978,15 +1660,12 @@ void _glew_glx_glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, uns
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int  barrier)
-{
+void _glew_glx_glXBindSwapBarrierSGIX(Display * dpy, GLXDrawable drawable, int barrier) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_SGIX_swap_barrier - glXBindSwapBarrierSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_swap_barrier] && glxConfig.m_glXBindSwapBarrierSGIX)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXBindSwapBarrierSGIX) {
     prototypeCalled = true;
-    glxConfig.m_glXBindSwapBarrierSGIX (dpy, drawable, barrier);
+    glxContext->m_glXBindSwapBarrierSGIX(dpy, drawable, barrier);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -1995,16 +1674,13 @@ void _glew_glx_glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Bool _glew_glx_glXQueryMaxSwapBarriersSGIX (Display * dpy, int  screen, int * max)
-{
+Bool _glew_glx_glXQueryMaxSwapBarriersSGIX(Display * dpy, int screen, int * max) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Bool result = ((Bool)0);
-  // GLX_SGIX_swap_barrier - glXQueryMaxSwapBarriersSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_swap_barrier] && glxConfig.m_glXQueryMaxSwapBarriersSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryMaxSwapBarriersSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryMaxSwapBarriersSGIX (dpy, screen, max);
+    result = glxContext->m_glXQueryMaxSwapBarriersSGIX(dpy, screen, max);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -2014,15 +1690,12 @@ Bool _glew_glx_glXQueryMaxSwapBarriersSGIX (Display * dpy, int  screen, int * ma
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDrawable member)
-{
+void _glew_glx_glXJoinSwapGroupSGIX(Display * dpy, GLXDrawable drawable, GLXDrawable member) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_SGIX_swap_group - glXJoinSwapGroupSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_swap_group] && glxConfig.m_glXJoinSwapGroupSGIX)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXJoinSwapGroupSGIX) {
     prototypeCalled = true;
-    glxConfig.m_glXJoinSwapGroupSGIX (dpy, drawable, member);
+    glxContext->m_glXJoinSwapGroupSGIX(dpy, drawable, member);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -2031,16 +1704,13 @@ void _glew_glx_glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDra
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXBindChannelToWindowSGIX (Display * display, int  screen, int  channel, Window window)
-{
+int _glew_glx_glXBindChannelToWindowSGIX(Display * display, int screen, int channel, Window window) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_video_resize - glXBindChannelToWindowSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXBindChannelToWindowSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXBindChannelToWindowSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXBindChannelToWindowSGIX (display, screen, channel, window);
+    result = glxContext->m_glXBindChannelToWindowSGIX(display, screen, channel, window);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -2050,16 +1720,13 @@ int _glew_glx_glXBindChannelToWindowSGIX (Display * display, int  screen, int  c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXChannelRectSGIX (Display * display, int  screen, int  channel, int  x, int  y, int  w, int  h)
-{
+int _glew_glx_glXChannelRectSGIX(Display * display, int screen, int channel, int x, int y, int w, int h) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_video_resize - glXChannelRectSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXChannelRectSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXChannelRectSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXChannelRectSGIX (display, screen, channel, x, y, w, h);
+    result = glxContext->m_glXChannelRectSGIX(display, screen, channel, x, y, w, h);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -2069,16 +1736,13 @@ int _glew_glx_glXChannelRectSGIX (Display * display, int  screen, int  channel, 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXQueryChannelRectSGIX (Display * display, int  screen, int  channel, int * dx, int * dy, int * dw, int * dh)
-{
+int _glew_glx_glXQueryChannelRectSGIX(Display * display, int screen, int channel, int * dx, int * dy, int * dw, int * dh) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_video_resize - glXQueryChannelRectSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXQueryChannelRectSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryChannelRectSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryChannelRectSGIX (display, screen, channel, dx, dy, dw, dh);
+    result = glxContext->m_glXQueryChannelRectSGIX(display, screen, channel, dx, dy, dw, dh);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -2088,16 +1752,13 @@ int _glew_glx_glXQueryChannelRectSGIX (Display * display, int  screen, int  chan
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXQueryChannelDeltasSGIX (Display * display, int  screen, int  channel, int * x, int * y, int * w, int * h)
-{
+int _glew_glx_glXQueryChannelDeltasSGIX(Display * display, int screen, int channel, int * x, int * y, int * w, int * h) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_video_resize - glXQueryChannelDeltasSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXQueryChannelDeltasSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXQueryChannelDeltasSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXQueryChannelDeltasSGIX (display, screen, channel, x, y, w, h);
+    result = glxContext->m_glXQueryChannelDeltasSGIX(display, screen, channel, x, y, w, h);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -2107,16 +1768,13 @@ int _glew_glx_glXQueryChannelDeltasSGIX (Display * display, int  screen, int  ch
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int _glew_glx_glXChannelRectSyncSGIX (Display * display, int  screen, int  channel, GLenum synctype)
-{
+int _glew_glx_glXChannelRectSyncSGIX(Display * display, int screen, int channel, GLenum synctype) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   int result = ((int)0);
-  // GLX_SGIX_video_resize - glXChannelRectSyncSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXChannelRectSyncSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXChannelRectSyncSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXChannelRectSyncSGIX (display, screen, channel, synctype);
+    result = glxContext->m_glXChannelRectSyncSGIX(display, screen, channel, synctype);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -2126,16 +1784,13 @@ int _glew_glx_glXChannelRectSyncSGIX (Display * display, int  screen, int  chann
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLXVideoSourceSGIX _glew_glx_glXCreateGLXVideoSourceSGIX (Display * display, int  screen, VLServer server, VLPath path, int  nodeClass, VLNode drainNode)
-{
+GLXVideoSourceSGIX _glew_glx_glXCreateGLXVideoSourceSGIX(Display * display, int screen, VLServer server, VLPath path, int nodeClass, VLNode drainNode) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   GLXVideoSourceSGIX result = ((GLXVideoSourceSGIX)0);
-  // GLX_SGIX_video_source - glXCreateGLXVideoSourceSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_source] && glxConfig.m_glXCreateGLXVideoSourceSGIX)
-  {
+  if (!prototypeCalled && glxContext->m_glXCreateGLXVideoSourceSGIX) {
     prototypeCalled = true;
-    result = glxConfig.m_glXCreateGLXVideoSourceSGIX (display, screen, server, path, nodeClass, drainNode);
+    result = glxContext->m_glXCreateGLXVideoSourceSGIX(display, screen, server, path, nodeClass, drainNode);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
@@ -2145,15 +1800,12 @@ GLXVideoSourceSGIX _glew_glx_glXCreateGLXVideoSourceSGIX (Display * display, int
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void _glew_glx_glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX glxvideosource)
-{
+void _glew_glx_glXDestroyGLXVideoSourceSGIX(Display * dpy, GLXVideoSourceSGIX glxvideosource) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
-  // GLX_SGIX_video_source - glXDestroyGLXVideoSourceSGIX
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_source] && glxConfig.m_glXDestroyGLXVideoSourceSGIX)
-  {
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
+  if (!prototypeCalled && glxContext->m_glXDestroyGLXVideoSourceSGIX) {
     prototypeCalled = true;
-    glxConfig.m_glXDestroyGLXVideoSourceSGIX (dpy, glxvideosource);
+    glxContext->m_glXDestroyGLXVideoSourceSGIX(dpy, glxvideosource);
   }
   GLEW_ASSERT (prototypeCalled);
 }
@@ -2162,28 +1814,16 @@ void _glew_glx_glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX g
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Status _glew_glx_glXGetTransparentIndexSUN (Display * dpy, Window overlay, Window underlay, unsigned long * pTransparentIndex)
-{
+Status _glew_glx_glXGetTransparentIndexSUN(Display * dpy, Window overlay, Window underlay, unsigned long * pTransparentIndex) {
   bool prototypeCalled = false;
-  const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+  const glew::glx::Context *glxContext = glew::glx::s_glxContext;
   Status result = ((Status)0);
-  // GLX_SUN_get_transparent_index - glXGetTransparentIndexSUN
-  if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SUN_get_transparent_index] && glxConfig.m_glXGetTransparentIndexSUN)
-  {
+  if (!prototypeCalled && glxContext->m_glXGetTransparentIndexSUN) {
     prototypeCalled = true;
-    result = glxConfig.m_glXGetTransparentIndexSUN (dpy, overlay, underlay, pTransparentIndex);
+    result = glxContext->m_glXGetTransparentIndexSUN(dpy, overlay, underlay, pTransparentIndex);
   }
   GLEW_ASSERT (prototypeCalled);
   return result;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-bool glew::IsSupported (GLEW_GLX_FeatureSet feature)
-{
-  return glew::glx::IsSupported (feature);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

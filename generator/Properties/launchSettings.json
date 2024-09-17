@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "wrangle-gl-generator": {
+      "commandName": "Project",
+      "commandLineArgs": "--api-spec C:\\Users\\Justin\\Downloads\\egl.xml --api-type egl --output-dir . "
+    }
+  }
+}

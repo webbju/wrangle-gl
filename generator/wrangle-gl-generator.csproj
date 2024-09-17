@@ -6,4 +6,9 @@
     <RootNamespace>wrangle_gl_generator</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" />
+  </ItemGroup>
+
 </Project>

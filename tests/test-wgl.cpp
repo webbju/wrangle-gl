@@ -2,13 +2,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if defined(GLEW_USE_OPENGL)
+#include <wrangle-wgl.h>
+
+#define TEST_USE_OPENGL_ES 1
+
+#if defined(TEST_USE_OPENGL)
 #include <wrangle-gl.h>
-#elif defined(GLEW_USE_OPENGL_ES)
+#elif defined(TEST_USE_OPENGL_ES)
 #include <wrangle-gles.h>
 #endif
-
-#include <wrangle-wgl.h>
 
 #include <cstdio>
 
@@ -132,14 +134,17 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       wglMakeCurrent (deviceContext, deviceRenderContext);
 
-      glew::wgl::Initialise ();
+      std::unordered_set<std::string> supportedFeatures;
 
-  #if 1 && WGL_ARB_create_context
-      const glew::wgl::DeviceConfig &wglConfig = glew::wgl::GetConfig ();
+      glew::wgl::Context* wglContext = new glew::wgl::Context(supportedFeatures, _glew_wglGetProcAddress);
 
-      if (wglConfig.m_featureSupported [GLEW_WGL_ARB_create_context]
-    #if GLEW_USE_OPENGL_ES && WGL_ARB_create_context_profile
-        && wglConfig.m_featureSupported [GLEW_WGL_ARB_create_context_profile]
+      glew::wgl::s_wglContext = wglContext;
+
+      GLEW_ASSERT(wglContext != nullptr);
+
+      if (wglContext->IsSupported(GLEW_WGL_ARB_create_context)
+    #if TEST_USE_OPENGL_ES
+        && wglContext->IsSupported(GLEW_WGL_ARB_create_context_profile)
     #endif
         )
       {
@@ -147,7 +152,7 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
           WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
           WGL_CONTEXT_MINOR_VERSION_ARB, 1,
-        #if GLEW_USE_OPENGL_ES && WGL_ARB_create_context_profile
+        #if TEST_USE_OPENGL_ES
           WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_ES2_PROFILE_BIT_EXT,
         #endif
           WGL_CONTEXT_FLAGS_ARB, 0,
@@ -164,12 +169,13 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         wglMakeCurrent (deviceContext, deviceRenderContext);
       }
-  #endif
 
-#if defined(GLEW_USE_OPENGL)
+#if 0
+#if defined(TEST_USE_OPENGL)
       glew::gl::Initialise ();
-#elif defined(GLEW_USE_OPENGL_ES)
+#elif defined(TEST_USE_OPENGL_ES)
       glew::gles::Initialise ();
+#endif
 #endif
 
       AssertNoGLErrors ();
@@ -192,15 +198,15 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       fprintf(stdout, "Extensions: %s", extensions);
 
-#if defined(GLEW_USE_OPENGL)
+#if 0
+#if defined(TEST_USE_OPENGL)
       glew::gl::Deinitialise ();
-#elif defined(GLEW_USE_OPENGL_ES)
+#elif defined(TEST_USE_OPENGL_ES)
       glew::gles::Deinitialise ();
+#endif
 #endif
 
       AssertNoGLErrors ();
-
-      glew::wgl::Deinitialise ();
 
       wglDeleteContext (deviceRenderContext);
 

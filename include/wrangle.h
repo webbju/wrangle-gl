@@ -2,24 +2,33 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef __GLEW_API_H__
-#define __GLEW_API_H__
+#pragma once
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if defined (_WIN32)
-  #ifndef WIN32_LEAN_AND_MEAN
+#if defined(__APPLE__) || defined(__linux__)
+#include <dlfcn.h>
+#define _glew_has_dlfcn_h_ 1
+#endif
+
+// Availability of TARGET_IOS_IPHONE, TARGET_IPHONE_SIMULATOR, etc.
+#if defined(__APPLE__)
+#include "TargetConditionals.h"
+#endif
+
+// Redefine GLEW_ASSERT to your own preference.
+#ifndef GLEW_ASSERT
+#include <assert.h>
+#define GLEW_ASSERT assert
+#endif
+
+#if defined(_WIN32)
+  #if !defined(WIN32_LEAN_AND_MEAN)
     #define WIN32_LEAN_AND_MEAN 1
-    #define _WIN32_LEAN_AND_MEAN 1
   #endif
   #include <windows.h>
-  #pragma comment (lib, "opengl32.lib")
-  #ifdef _WIN32_LEAN_AND_MEAN
-    #undef WIN32_LEAN_AND_MEAN
-    #undef _WIN32_LEAN_AND_MEAN
-  #endif
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,99 +59,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if GLEW_USE_WGL
-  #if !defined (GLEW_USE_WGL)
-    #define GLEW_USE_WGL 1
-  #endif
-  GLEW_EXTERN WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
-  #undef wglUseFontBitmaps
-  #undef wglUseFontOutlines
-  #if !defined (glewGetProcAddress)
-    #define glewGetProcAddress(proc) wglGetProcAddress((LPCSTR)proc)
-  #endif
-#elif GLEW_USE_EGL
-  #if !defined (GLEW_USE_EGL)
-    #define GLEW_USE_EGL 1
-  #endif
-  #include <EGL/egl.h>
-  #define EGL_SHARED_LIBRARY "libEGL.so"
-  GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
-  #if !defined (glewGetProcAddress)
-  #define glewGetProcAddress(proc) _eglGetProcAddress((const char *)proc)
-  #endif
-#elif defined(__APPLE__)
-  #include "TargetConditionals.h"
-  #define OPENGL_FRAMEWORK "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
-  #define OPENGL_ES_FRAMEWORK "/System/Library/Frameworks/OpenGLES.framework/OpenGLES"
-  #if !defined (glewGetProcAddress)
-    #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_ES_FRAMEWORK,(const char *)proc)
-    #elif TARGET_OS_MAC
-      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
-    #else
-      #error Unrecognised Apple target.
-    #endif
-  #endif
-#endif
-
-#if !defined (glewGetProcAddress)
-#error glewGetProcAddress definition required.
-#endif
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#if defined(__APPLE__) || defined(__linux__)
-#include <dlfcn.h>
-static void *dlGetProcAddress (const char *library, const char *symbol)
-{
-  static void *image = NULL;
-  void *addr = NULL;
-  if (image == NULL)
-  {
-    image = dlopen (library, RTLD_LAZY);
-  }
-  if (image != NULL)
-  {
-    addr = dlsym (image, symbol);
-  }
-  return addr;
-}
-#endif
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#if GLEW_USE_EGL
-static __eglMustCastToProperFunctionPointerType EGLAPIENTRY _eglGetProcAddress (const char *procname)
-{
-  __eglMustCastToProperFunctionPointerType fp = NULL;
-
-  if (procname && !fp)
-  {
-    fp = eglGetProcAddress (procname);
-  }
-
-  //
-  // Sometimes we don't even receive valid addresses for base spec functions using eglGetProcAddress.
-  // It seems this is isolated to early PowerVR and Mali drivers, but we workaround it by probing the EGL library directly.
-  //
-
-  if (procname && !fp && (procname[0] == 'e' && procname[1] == 'g' && procname[2] == 'l'))
-  {
-    fp = (__eglMustCastToProperFunctionPointerType) dlGetProcAddress (EGL_SHARED_LIBRARY, procname);
-  }
-
-  return fp;
-}
-#endif
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 #ifndef GLEW_MIN
 #define GLEW_MIN(a,b) ((a < b) ? a : b)
 #endif
@@ -155,36 +71,131 @@ static __eglMustCastToProperFunctionPointerType EGLAPIENTRY _eglGetProcAddress (
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if !defined(GLEW_ASSERT) && (defined(_DEBUG) || defined(DEBUG))
-#if defined(__GNUC__) || defined(__clang__)
-#define GLEW_ASSERT(X) if(!(X)) { __builtin_trap (); }
-#elif defined(_MSC_VER)
-#define GLEW_ASSERT(X) if(!(X)) { __debugbreak (); }
+// Sometimes we don't even receive valid addresses for base spec functions using eglGetProcAddress.
+// It seems this is isolated to early PowerVR and Mali drivers, but we workaround it by probing the EGL library directly.
+#if defined(GLEW_USE_EGL)
+static void* GLEW_APIENTRY _glew_eglGetProcAddress(const char* procname) {
+  void* fp = nullptr;
+#if defined(__egl_h_)
+  if (procname && !fp) {
+    fp = eglGetProcAddress(procname);
+  }
 #endif
+#if defined(_glew_has_dlfcn_h_)
+  if (procname && !fp) {
+    static void *image = nullptr;
+    if (image == nullptr) {
+      image = dlopen("libEGL.so", RTLD_LAZY);
+    }
+    if (image != nullptr) {
+      fp = (void*) dlsym(image, procname);
+    }
+  }
 #endif
-
-#if !defined(GLEW_ASSERT)
-#if WIN32
-#define GLEW_ASSERT(X) \
-  do { \
-  __pragma(warning(push)) \
-  __pragma(warning (disable:4127)) \
-    (void)(true ? 0 : ((X), void(), 0)); \
-  } while (0) \
-  __pragma(warning(pop))
-#else
-#define GLEW_ASSERT(X) \
-  do { \
-    (void)(true ? 0 : ((X), void(), 0)); \
-  } while (0)
+#if defined(_WIN32)
+  // Hopeful last attempt for anyone running GLES/EGL emulation.
+  if (procname && !fp) {
+    static HMODULE module = nullptr;
+    if (module == nullptr) {
+      module = LoadLibraryA("libEGL.dll");
+    }
+    if (module != nullptr) {
+      fp = (void*) GetProcAddress(module, procname);
+    }
+  }
 #endif
+  return fp;
+}
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#endif // __GLEW_API_H__
+#if defined(GLEW_USE_WGL) && defined(_WIN32)
+static void* GLEW_APIENTRY _glew_wglGetProcAddress(const char* procname) {
+  void* fp = nullptr;
+#if defined(__wgl_wgl_h_)
+  // MSDN documentation says that wglGetProcAddress returns NULL on failure, some implementations will return other values. 1, 2, and 3 are used, as well as -1.
+  if (procname && !fp) {
+#error fdsafsd
+    fp = (void*) wglGetProcAddress(procname);
+    if ((fp == (void*)0x1) || (fp == (void*)0x2) || (fp == (void*)0x3) || (fp == (void*)-1)) {
+      fp = nullptr;
+    }
+  }
+#endif
+  if (procname && !fp) {
+    static HMODULE module = nullptr;
+    if (module == nullptr) {
+      module = LoadLibraryA("opengl32.dll");
+    }
+    if (module != nullptr) {
+      fp = (void*) GetProcAddress(module, procname);
+    }
+  }
+  return fp;
+}
+#endif
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#if defined(__linux__) && defined(GLEW_USE_GLX)
+static void* GLEW_APIENTRY _glew_glXGetProcAddress(const char* procname) {
+  void* fp = nullptr;
+#if defined(__glx_glxext_h_)
+  if (procname && !fp) {
+    fp = glXGetProcAddress(procname);
+  }
+#endif
+#if defined(_glew_has_dlfcn_h_)
+  if (procname && !fp) {
+    static void *image = nullptr;
+    if (image == nullptr) {
+      image = dlopen("libOpenGL.so", RTLD_LAZY);
+    }
+    if (image != nullptr) {
+      fp = (void*) dlsym(image, procname);
+    }
+  }
+#endif
+  return fp;
+}
+#endif
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#if defined(__APPLE__) && (defined(GLEW_USE_GL) || defined(GLEW_USE_GLES))
+static void* GLEW_APIENTRY _glew_aglGetProcAddress(const char* procname) {
+  void* fp = nullptr;
+#if (TARGET_IOS_IPHONE || TARGET_IPHONE_SIMULATOR)
+  if (procname && !fp) {
+    static void *image = nullptr;
+    if (image == nullptr) {
+      image = dlopen("/System/Library/Frameworks/OpenGLES.framework/OpenGLES", RTLD_LAZY);
+    }
+    if (image != nullptr) {
+      fp = (void*) dlsym(image, procname);
+    }
+  }
+#elif (TARGET_OS_MAC)
+  if (procname && !fp) {
+    static void *image = nullptr;
+    if (image == nullptr) {
+      image = dlopen("/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL", RTLD_LAZY);
+    }
+    if (image != nullptr) {
+      fp = (void*) dlsym(image, procname);
+    }
+  }
+#endif
+  return fp;
+}
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

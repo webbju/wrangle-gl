@@ -39,38 +39,42 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportHpp (ref StreamWriter writer)
+    public override void ExportHppIncludes (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      base.ExportHppIncludes(writer);
 
-      writer.Write (string.Format ("\n#ifndef __{0}_{1}_H__\n#define __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
+      //
+      // This include ordering mimics <GL/glx.h> which is a third-party dependency.
+      //
 
-      WriteCommentDivider (ref writer);
+      writer.Write ("\n#include <X11/Xlib.h>\n");
 
-      writer.Write ("\n#include <wrangle.h>\n");
+      writer.Write ("\n#include <X11/Xutil.h>\n");
 
-      writer.Write ("\n#include <GL/glx.h>\n");
+      writer.Write ("\n#include <GL/glcorearb.h>\n");
+
+      WriteCommentDivider (writer);
+
+      writer.Write (@"
+typedef struct __GLXcontextRec *GLXContext;
+typedef XID GLXPixmap;
+typedef XID GLXDrawable;
+
+typedef struct __GLXFBConfigRec *GLXFBConfig;
+typedef XID GLXFBConfigID;
+typedef XID GLXContextID;
+typedef XID GLXWindow;
+typedef XID GLXPbuffer;
+
+// SGIX extension dummy types.
+typedef void* DMbuffer;
+typedef void* DMparams;
+typedef void* VLServer;
+typedef void* VLPath;
+typedef void* VLNode;
+");
 
       writer.Write ("\n#include <GL/glxext.h>\n\n");
-
-      base.ExportHpp (ref writer);
-
-      writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
-
-      WriteCommentDivider (ref writer);
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public override void ExportCpp (ref StreamWriter writer)
-    {
-      WriteCommentDivider (ref writer);
-
-      writer.Write ("\n");
-
-      base.ExportCpp (ref writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

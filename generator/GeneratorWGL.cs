@@ -46,17 +46,13 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportHpp (ref StreamWriter writer)
+    public override void ExportHppIncludes (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      base.ExportHppIncludes(writer);
 
-      writer.Write (string.Format ("\n#ifndef __{0}_{1}_H__\n#define __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
-
-      WriteCommentDivider (ref writer);
-
-      writer.Write ("\n#include <wrangle.h>\n\n");
-
-      writer.Write (@"typedef unsigned int GLenum;
+      writer.Write (@"
+// Support standalone inclusion without GL headers.
+typedef unsigned int GLenum;
 typedef unsigned char GLboolean;
 typedef unsigned int GLbitfield;
 typedef signed char GLbyte;
@@ -76,28 +72,15 @@ typedef void GLvoid;
       writer.Write ("\n#include <GL/wgl.h>\n");
 
       writer.Write ("\n#include <GL/wglext.h>\n\n");
-
-      base.ExportHpp (ref writer);
-
-      writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
-
-      WriteCommentDivider (ref writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportCpp (ref StreamWriter writer)
+#if false
+    protected override void ExportCppBoilerplate ( StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
-
-      writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <unordered_set>\n\n");
-
-      base.ExportCpp (ref writer);
-
-      writer.Write ("\n");
-
       //
       // glew::wgl::Initialise
       //
@@ -106,9 +89,9 @@ typedef void GLvoid;
 
       writer.Write ("glew::wgl::DeviceConfig glew::wgl::s_deviceConfig;\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
-      writer.Write ("\nvoid glew::wgl::Initialise ()\n{\n");
+      writer.Write ("\nvoid glew::wgl::Initialise()\n{\n");
 
       writer.Write ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));\n\n");
 
@@ -116,12 +99,11 @@ typedef void GLvoid;
   // Determine current driver's feature reporting.
   //
 
-  s_deviceConfig.m_featureSupported [GLEW_WGL_VERSION_1_0] = true;
+  s_deviceConfig.m_featureSupported[GLEW_WGL_VERSION_1_0] = true;
 
   //
   // Evaluate extension support.
   //
-
 
   std::unordered_set <std::string> supportedExtensions;
 
@@ -165,11 +147,11 @@ typedef void GLvoid;
       {
         const size_t len = (((uintptr_t) seperator - (uintptr_t) thisExtStart) / sizeof (unsigned char));
 
-      #if _WIN32
+#if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else
+#else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
-      #endif
+#endif
 
         thisExtBuffer [GLEW_MIN (len, 127)] = '\0';
 
@@ -179,11 +161,11 @@ typedef void GLvoid;
       {
         const size_t len = strlen ((const char *) thisExtStart);
 
-      #if _WIN32
+#if _WIN32
         strncpy_s (thisExtBuffer, 128, (const char *)thisExtStart, len);
-      #else
+#else
         strncpy (thisExtBuffer, (const char *)thisExtStart, len);
-      #endif
+#endif
 
         thisExtBuffer [GLEW_MIN (len + 1, 127)] = '\0';
 
@@ -204,9 +186,9 @@ typedef void GLvoid;
 
 ");
 
-      foreach (var keypair in m_extensionNodesLookup)
+      foreach (var keypair in Extensions)
       {
-        writer.Write (string.Format ("  s_deviceConfig.m_featureSupported [GLEW_{0}] = (supportedExtensions.find (\"{0}\") != supportedExtensions.end ());\n", keypair.Key));
+        writer.Write (string.Format ("  s_deviceConfig.m_featureSupported[GLEW_{0}] = (supportedExtensions.find (\"{0}\") != supportedExtensions.end ());\n", keypair.Key));
       }
 
       writer.Write ("\n");
@@ -214,24 +196,6 @@ typedef void GLvoid;
       //
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
       //
-
-      Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
-
-      foreach (var keypair in m_featureNodesLookup)
-      {
-        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
-        {
-          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
-        }
-      }
-
-      foreach (var keypair in m_extensionNodesLookup)
-      {
-        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
-        {
-          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
-        }
-      }
 
       if (featureAndExtensionNodes.Count > 0)
       {
@@ -287,14 +251,9 @@ typedef void GLvoid;
 
             bool baseSpecFeatureSet = false;
 
-            if (featureNumberNode != null)
+            if (featureNumberNode != null && float.TryParse(featureNumberNode.Value, out float version))
             {
-              float version = m_apiBaseSpecVersion [api];
-
-              if (float.TryParse (featureNumberNode.Value, out version))
-              {
-                baseSpecFeatureSet = version <= m_apiBaseSpecVersion [api];
-              }
+              baseSpecFeatureSet = version <= m_apiBaseSpecVersion[api];
             }
 
             //
@@ -308,9 +267,7 @@ typedef void GLvoid;
               continue;
             }
 
-            HashSet<string> requiredCommands;
-
-            if (!featureBasedPrototypes.TryGetValue (keypair.Key, out requiredCommands))
+            if (!featureBasedPrototypes.TryGetValue (keypair.Key, out HashSet<string> requiredCommands))
             {
               requiredCommands = new HashSet<string> ();
             }
@@ -353,7 +310,7 @@ typedef void GLvoid;
 
             writer.Write (string.Format ("  // {0}\n", keypair.Key));
 
-            writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
+            writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported[GLEW_{0}])\n  {{\n", keypair.Key));
 
             foreach (string command in keypair.Value)
             {
@@ -371,20 +328,21 @@ typedef void GLvoid;
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       //
       // glew::wgl::Deinitialise
       //
 
-      writer.Write ("\nvoid glew::wgl::Deinitialise ()\n{\n");
+      writer.Write ("\nvoid glew::wgl::Deinitialise()\n{\n");
 
       writer.Write ("  s_initialised = false;\n");
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
+#endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
