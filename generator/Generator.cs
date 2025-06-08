@@ -46,8 +46,6 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected readonly string m_filename;
-
     protected readonly string [] m_api;
 
     protected readonly Dictionary <string, float> m_apiBaseSpecVersion = new Dictionary<string,float> ();
@@ -90,35 +88,32 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public Generator (string filename, string [] [] apiSpec)
-      : base ()
+    public Generator(Stream stream, string[][] apiSpec)
     {
-      m_filename = filename;
-
-      m_api = new string [apiSpec.Length];
+      m_api = new string[apiSpec.Length];
 
       for (int i = 0; i < apiSpec.Length; ++i)
       {
-        m_api [i] = apiSpec [i] [0];
+        m_api[i] = apiSpec[i][0];
 
         float baseApiVersion;
 
-        float.TryParse (apiSpec [i] [1], out baseApiVersion);
+        float.TryParse(apiSpec[i][1], out baseApiVersion);
 
-        m_apiBaseSpecVersion.Add (m_api [i], baseApiVersion);
+        m_apiBaseSpecVersion.Add(m_api[i], baseApiVersion);
       }
 
-      Load (filename);
+      Load(stream);
 
-      m_typesNodes = SelectNodes ("//registry/types");
+      m_typesNodes = SelectNodes("//registry/types");
 
-      m_enumsNodes = SelectNodes ("//registry/enums");
+      m_enumsNodes = SelectNodes("//registry/enums");
 
-      m_featureNodes = SelectNodes ("//registry/feature");
+      m_featureNodes = SelectNodes("//registry/feature");
 
-      m_commandsNodes = SelectNodes ("//registry/commands");
+      m_commandsNodes = SelectNodes("//registry/commands");
 
-      m_extensionNodes = SelectNodes ("//registry/extensions/extension");
+      m_extensionNodes = SelectNodes("//registry/extensions/extension");
 
       //
       // Generate fast-lookup of 'enums' nodes.
@@ -128,7 +123,7 @@ namespace wrangle_gl_generator
       {
         foreach (XmlNode enumsNode in m_enumsNodes)
         {
-          XmlNodeList childEnumNodes = enumsNode.SelectNodes ("enum");
+          XmlNodeList childEnumNodes = enumsNode.SelectNodes("enum");
 
           if (childEnumNodes.Count == 0)
           {
@@ -137,11 +132,11 @@ namespace wrangle_gl_generator
 
           foreach (XmlNode enumNode in childEnumNodes)
           {
-            string enumNodeName = enumNode.Attributes ["name"].Value;
+            string enumNodeName = enumNode.Attributes["name"].Value;
 
-            if (!m_enumsNodesLookup.ContainsKey (enumNodeName))
+            if (!m_enumsNodesLookup.ContainsKey(enumNodeName))
             {
-              m_enumsNodesLookup.Add (enumNodeName, enumNode);
+              m_enumsNodesLookup.Add(enumNodeName, enumNode);
             }
           }
         }
@@ -155,21 +150,21 @@ namespace wrangle_gl_generator
       {
         foreach (XmlNode featureNode in m_featureNodes)
         {
-          XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+          XmlNode featureApiNode = featureNode.Attributes.GetNamedItem("api");
 
-          if ((featureApiNode != null) && (!IsApiSupported (featureApiNode.Value)))
+          if ((featureApiNode != null) && (!IsApiSupported(featureApiNode.Value)))
           {
             continue; // Skip non-supported APIs.
           }
 
-          string featureNodeName = featureNode.Attributes ["name"].Value;
+          string featureNodeName = featureNode.Attributes["name"].Value;
 
-          if (m_featureNodesLookup.ContainsKey (featureNodeName))
+          if (m_featureNodesLookup.ContainsKey(featureNodeName))
           {
             continue;
           }
 
-          m_featureNodesLookup.Add (featureNodeName, featureNode);
+          m_featureNodesLookup.Add(featureNodeName, featureNode);
         }
       }
 
@@ -181,7 +176,7 @@ namespace wrangle_gl_generator
       {
         foreach (XmlNode commandsNode in m_commandsNodes)
         {
-          XmlNodeList childCommandNodes = commandsNode.SelectNodes ("command");
+          XmlNodeList childCommandNodes = commandsNode.SelectNodes("command");
 
           if (childCommandNodes.Count == 0)
           {
@@ -190,16 +185,16 @@ namespace wrangle_gl_generator
 
           foreach (XmlNode commandNode in childCommandNodes)
           {
-            XmlNode commandProtoNameNode = commandNode.SelectSingleNode ("proto/name");
+            XmlNode commandProtoNameNode = commandNode.SelectSingleNode("proto/name");
 
-            m_commandsNodesLookup.Add (commandProtoNameNode.InnerText, commandNode);
+            m_commandsNodesLookup.Add(commandProtoNameNode.InnerText, commandNode);
 
             //
             // Some commands are listed as aliases for other commands;
             // I.e. glDrawArraysInstancedANGLE is an alias of glDrawArraysInstanced
             //
 
-            XmlNodeList commandAliasNode = commandNode.SelectNodes ("alias");
+            XmlNodeList commandAliasNode = commandNode.SelectNodes("alias");
 
             if ((commandAliasNode != null) && (commandAliasNode.Count > 0))
             {
@@ -207,16 +202,16 @@ namespace wrangle_gl_generator
               {
                 List<XmlNode> aliases = null;
 
-                string aliasKey = aliasNode.Attributes ["name"].Value;
+                string aliasKey = aliasNode.Attributes["name"].Value;
 
-                if (!m_commandsAliasNodesLookup.TryGetValue (aliasKey, out aliases))
+                if (!m_commandsAliasNodesLookup.TryGetValue(aliasKey, out aliases))
                 {
-                  aliases = new List<XmlNode> ();
+                  aliases = new List<XmlNode>();
                 }
 
-                aliases.Add (commandNode);
+                aliases.Add(commandNode);
 
-                m_commandsAliasNodesLookup [aliasKey] = aliases;
+                m_commandsAliasNodesLookup[aliasKey] = aliases;
               }
             }
           }
@@ -231,21 +226,21 @@ namespace wrangle_gl_generator
       {
         foreach (XmlNode extensionNode in m_extensionNodes)
         {
-          XmlNode extensionSupportedNode = extensionNode.Attributes.GetNamedItem ("supported");
+          XmlNode extensionSupportedNode = extensionNode.Attributes.GetNamedItem("supported");
 
-          if ((extensionSupportedNode != null) && (!IsApiSupported (extensionSupportedNode.Value)))
+          if ((extensionSupportedNode != null) && (!IsApiSupported(extensionSupportedNode.Value)))
           {
             continue;
           }
 
-          string extensionNodeName = extensionNode.Attributes ["name"].Value;
+          string extensionNodeName = extensionNode.Attributes["name"].Value;
 
-          if (m_extensionNodesLookup.ContainsKey (extensionNodeName))
+          if (m_extensionNodesLookup.ContainsKey(extensionNodeName))
           {
             continue;
           }
 
-          m_extensionNodesLookup.Add (extensionNodeName, extensionNode);
+          m_extensionNodesLookup.Add(extensionNodeName, extensionNode);
         }
       }
 
@@ -255,17 +250,17 @@ namespace wrangle_gl_generator
 
       foreach (var keypair in m_featureNodesLookup)
       {
-        if (!m_featureAndExtensionNodes.ContainsKey (keypair.Key))
+        if (!m_featureAndExtensionNodes.ContainsKey(keypair.Key))
         {
-          m_featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
+          m_featureAndExtensionNodes.Add(keypair.Key, keypair.Value);
         }
       }
 
       foreach (var keypair in m_extensionNodesLookup)
       {
-        if (!m_featureAndExtensionNodes.ContainsKey (keypair.Key))
+        if (!m_featureAndExtensionNodes.ContainsKey(keypair.Key))
         {
-          m_featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
+          m_featureAndExtensionNodes.Add(keypair.Key, keypair.Value);
         }
       }
 
@@ -283,7 +278,7 @@ namespace wrangle_gl_generator
           // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
           //
 
-          XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+          XmlNodeList requireNodes = featureNode.SelectNodes("require");
 
           if (requireNodes.Count == 0)
           {
@@ -292,15 +287,15 @@ namespace wrangle_gl_generator
 
           foreach (XmlNode requireNode in requireNodes)
           {
-            string api = m_api [0];
+            string api = m_api[0];
 
-            XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
+            XmlNode requireApiNode = requireNode.Attributes.GetNamedItem("api");
 
             if (requireApiNode != null)
             {
               api = requireApiNode.Value;
 
-              if (!IsApiSupported (requireApiNode.Value))
+              if (!IsApiSupported(requireApiNode.Value))
               {
                 continue; // Skip non-supported APIs.
               }
@@ -310,17 +305,17 @@ namespace wrangle_gl_generator
             // Evaluate whether this feature is part of the 'base spec'.
             //
 
-            XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+            XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem("number");
 
             bool baseSpecFeatureSet = false;
 
             if (featureNumberNode != null)
             {
-              float version = m_apiBaseSpecVersion [api];
+              float version = m_apiBaseSpecVersion[api];
 
-              if (float.TryParse (featureNumberNode.Value, out version))
+              if (float.TryParse(featureNumberNode.Value, out version))
               {
-                baseSpecFeatureSet = version <= m_apiBaseSpecVersion [api];
+                baseSpecFeatureSet = version <= m_apiBaseSpecVersion[api];
               }
             }
 
@@ -329,7 +324,7 @@ namespace wrangle_gl_generator
             //
 
             {
-              XmlNodeList requireEnumNodes = requireNode.SelectNodes ("enum");
+              XmlNodeList requireEnumNodes = requireNode.SelectNodes("enum");
 
               if (requireEnumNodes.Count == 0)
               {
@@ -338,14 +333,14 @@ namespace wrangle_gl_generator
 
               foreach (XmlNode enumNode in requireEnumNodes)
               {
-                string enumNodeName = enumNode.Attributes ["name"].Value;
+                string enumNodeName = enumNode.Attributes["name"].Value;
 
-                if (m_featureEnumNodesLookup.ContainsKey (enumNodeName))
+                if (m_featureEnumNodesLookup.ContainsKey(enumNodeName))
                 {
                   continue;
                 }
 
-                m_featureEnumNodesLookup.Add (enumNodeName, enumNode);
+                m_featureEnumNodesLookup.Add(enumNodeName, enumNode);
               }
             }
 
@@ -354,7 +349,7 @@ namespace wrangle_gl_generator
             //
 
             {
-              XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
+              XmlNodeList requireCommandNodes = requireNode.SelectNodes("command");
 
               if (requireCommandNodes.Count == 0)
               {
@@ -363,14 +358,14 @@ namespace wrangle_gl_generator
 
               foreach (XmlNode commandNode in requireCommandNodes)
               {
-                string commandNodeName = commandNode.Attributes ["name"].Value;
+                string commandNodeName = commandNode.Attributes["name"].Value;
 
-                if (m_featureCommandNodesLookup.ContainsKey (commandNodeName))
+                if (m_featureCommandNodesLookup.ContainsKey(commandNodeName))
                 {
                   continue;
                 }
 
-                m_featureCommandNodesLookup.Add (commandNodeName, commandNode);
+                m_featureCommandNodesLookup.Add(commandNodeName, commandNode);
               }
             }
           }
@@ -382,13 +377,13 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public virtual void ExportHpp (ref StreamWriter writer)
+    public virtual void ExportHpp (StreamWriter writer)
     {
       //
       // 'FeatureSet' class; wraps 'features' and 'extension' identifiers.
       //
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (@"
 #if defined(__GNUC__)
@@ -400,7 +395,7 @@ namespace wrangle_gl_generator
 
 ");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (string.Format ("\nenum GLEW_{0}_FeatureSet\n{{\n", m_api [0].ToUpperInvariant ()));
 
@@ -416,7 +411,7 @@ namespace wrangle_gl_generator
 
       writer.Write ("};\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\n");
 
@@ -564,7 +559,7 @@ namespace wrangle_gl_generator
         writer.Write ("\n");
       }
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       //
       // 'DeviceConfig' class: Default API.
@@ -572,11 +567,11 @@ namespace wrangle_gl_generator
 
       writer.Write (string.Format ("\nnamespace glew\n{{\n\n", m_api [0]));
 
-      WriteCommentDivider (ref writer, 2);
+      WriteCommentDivider (writer, 2);
 
       writer.Write (string.Format ("\n  class {0}\n  {{\n  public:\n\n", m_api [0]));
 
-      WriteCommentDivider (ref writer, 4);
+      WriteCommentDivider (writer, 4);
 
       writer.Write (string.Format ("\n    class DeviceConfig\n    {{\n"));
 
@@ -693,11 +688,11 @@ namespace wrangle_gl_generator
       // Standard GLEW header API.
       //
 
-      WriteCommentDivider (ref writer, 4);
+      WriteCommentDivider (writer, 4);
 
-      ExportHppPublicGlewApi (ref writer);
+      ExportHppPublicGlewApi (writer);
 
-      //WriteCommentDivider (ref writer, 4);
+      //WriteCommentDivider (writer, 4);
 
       //
       // Internal GLEW-managed API functions (seeded from features and extension specifications).
@@ -806,15 +801,15 @@ namespace wrangle_gl_generator
 
       writer.Write (string.Format ("  }};\n\n"));
 
-      WriteCommentDivider (ref writer, 2);
+      WriteCommentDivider (writer, 2);
 
       writer.Write (string.Format ("\n  bool IsSupported (GLEW_{1}_FeatureSet feature);\n\n", m_api [0], m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer, 2);
+      WriteCommentDivider (writer, 2);
 
       writer.Write (string.Format ("\n}}\n\n"));
 
-      WriteCommentDivider (ref writer, 0);
+      WriteCommentDivider (writer, 0);
 
       //
       // Pre-processor pass-through defines for redirecting functions to glew alternatives.
@@ -967,7 +962,7 @@ namespace wrangle_gl_generator
 
         writer.Write ("\n");
 
-        WriteCommentDivider (ref writer, 0);
+        WriteCommentDivider (writer, 0);
 
         writer.Write ("\n");
 
@@ -979,7 +974,7 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (@"
 #if defined(__GNUC__)
@@ -990,14 +985,14 @@ namespace wrangle_gl_generator
 
 ");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public virtual void ExportHppPublicGlewApi (ref StreamWriter writer)
+    public virtual void ExportHppPublicGlewApi (StreamWriter writer)
     {
       writer.Write (string.Format ("\n  public:\n\n"));
 
@@ -1022,11 +1017,11 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public virtual void ExportCpp (ref StreamWriter writer)
+    public virtual void ExportCpp (StreamWriter writer)
     {
       writer.Write (string.Format ("#include <wrangle-{0}.h>\n\n", m_api [0]));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       //
       // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
@@ -1219,7 +1214,7 @@ namespace wrangle_gl_generator
 
                 writer.Write (string.Format ("_glew_{1}_{2} ({3});\n}}\n\n", commandPrototype.returnType, m_api [0], commandPrototype.functionName, paramBuilder.ToString ()));
 
-                WriteCommentDivider (ref writer);
+                WriteCommentDivider (writer);
               }
 #endif
 
@@ -1353,7 +1348,7 @@ namespace wrangle_gl_generator
 
               writer.Write ("}\n\n");
 
-              WriteCommentDivider (ref writer);
+              WriteCommentDivider (writer);
 #endif
             }
           }
@@ -1575,13 +1570,13 @@ namespace wrangle_gl_generator
 
           writer.Write ("}\n\n");
 
-          WriteCommentDivider (ref writer);
+          WriteCommentDivider (writer);
         }
       }
 
       writer.Write (string.Format ("\nbool glew::IsSupported (GLEW_{1}_FeatureSet feature)\n{{\n  return glew::{0}::IsSupported (feature);\n}}\n\n", m_api [0], m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1724,7 +1719,7 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected void WriteCommentDivider (ref StreamWriter writer, int whitespacePadding = 0)
+    protected void WriteCommentDivider (StreamWriter writer, int whitespacePadding = 0)
     {
       string divider = string.Format ("{0," + whitespacePadding + "}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////", "");
 

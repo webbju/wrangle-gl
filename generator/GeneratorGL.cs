@@ -27,8 +27,8 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public GeneratorGL (string filename)
-      : base (filename, new string [] []
+    public GeneratorGL (Stream stream)
+      : base (stream, new string [] []
       {
         new string [] { "gl", "1.0" },
         new string [] { "gles2", "1.0"},
@@ -47,13 +47,13 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportHpp (ref StreamWriter writer)
+    public override void ExportHpp (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (string.Format ("\n#ifndef __{0}_{1}_H__\n#define __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (@"
 #if defined (_WIN32)
@@ -85,7 +85,7 @@ namespace wrangle_gl_generator
 
 ");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\n#include <wrangle.h>\n");
 
@@ -93,7 +93,7 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n#include <GL/glext.h>\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (@"
 // Prevent including duplicate <GL/gl.h> headers.
@@ -113,24 +113,24 @@ typedef void* GLeglImageOES;
 
 ");
 
-      base.ExportHpp (ref writer);
+      base.ExportHpp (writer);
 
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportCpp (ref StreamWriter writer)
+    public override void ExportCpp (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <unordered_set>\n\n");
 
-      base.ExportCpp (ref writer);
+      base.ExportCpp (writer);
 
       writer.Write ("\n");
 
@@ -142,7 +142,7 @@ typedef void* GLeglImageOES;
 
       writer.Write ("glew::gl::DeviceConfig glew::gl::s_deviceConfig;\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\nvoid glew::gl::Initialise ()\n{\n");
 
@@ -445,7 +445,7 @@ typedef void* GLeglImageOES;
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       //
       // glew::gl::Deinitialise
@@ -457,7 +457,7 @@ typedef void* GLeglImageOES;
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

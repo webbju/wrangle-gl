@@ -1,1 +1,16 @@
-/build
+build/
+bin/
+obj/
+packages/
+Debug/
+Release/
+TestResults/
+MigrationBackup/
+ipch/
+vs*/
+.vs/
+*.vcxproj.user
+*.sdf
+*.suo
+*.opendb
+*.log

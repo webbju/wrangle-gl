@@ -7,7 +7,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using Serilog;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,45 +30,61 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    static int Main (string [] args)
+    static async Task<int> Main (string [] args)
     {
+      Log.Logger = new LoggerConfiguration()
+        .WriteTo.Debug()
+        .WriteTo.Console()
+        .CreateLogger();
+
+      using HttpClient httpClient = new HttpClient();
+
+      //
+      // KHR
+      //
+
+      try
+      {
+        Directory.CreateDirectory("KHR");
+
+        await File.WriteAllBytesAsync("KHR/khrplatform.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/EGL-Registry/refs/heads/main/api/KHR/khrplatform.h"));
+      }
+      catch (Exception e)
+      {
+        Log.Error(e, "Failed KHR export");
+      }
+
       //
       // EGL
       //
 
       try
       {
-        string api = @"egl.xml";
+        Directory.CreateDirectory("EGL");
 
-        string hpp = @"wrangle-egl.h";
+        await File.WriteAllBytesAsync("EGL/egl.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/EGL-Registry/refs/heads/main/api/EGL/egl.h"));
 
-        string cpp = @"wrangle-egl.cpp";
+        await File.WriteAllBytesAsync("EGL/eglext.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/EGL-Registry/refs/heads/main/api/EGL/eglext.h"));
 
-        GeneratorEGL generator = new GeneratorEGL (api);
+        await File.WriteAllBytesAsync("EGL/eglplatform.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/EGL-Registry/refs/heads/main/api/EGL/eglplatform.h"));
 
-        StreamWriter writer;
+        using Stream stream = await httpClient.GetStreamAsync("https://raw.githubusercontent.com/KhronosGroup/EGL-Registry/refs/heads/main/api/egl.xml");
 
-        using (writer = new StreamWriter (hpp, false))
+        GeneratorEGL generator = new GeneratorEGL(stream);
+
+        using (var writer = new StreamWriter("wrangle-egl.h"))
         {
-          generator.ExportHpp (ref writer);
-
-          writer.Close ();
+          generator.ExportHpp(writer);
         }
 
-        using (writer = new StreamWriter (cpp, false))
+        using (var writer = new StreamWriter("wrangle-egl.cpp"))
         {
-          generator.ExportCpp (ref writer);
-
-          writer.Close ();
+          generator.ExportCpp(writer);
         }
       }
       catch (Exception e)
       {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
-
-        Console.WriteLine (exception);
-
-        Trace.WriteLine (exception);
+        Log.Error(e, "Failed EGL export");
       }
 
       //
@@ -74,37 +93,29 @@ namespace wrangle_gl_generator
 
       try
       {
-        string api = @"wgl.xml";
+        Directory.CreateDirectory("GL");
 
-        string hpp = @"wrangle-wgl.h";
+        await File.WriteAllBytesAsync("GL/wgl.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GL/wgl.h"));
 
-        string cpp = @"wrangle-wgl.cpp";
+        await File.WriteAllBytesAsync("GL/wglext.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GL/wglext.h"));
 
-        GeneratorWGL generator = new GeneratorWGL (api);
+        using Stream stream = await httpClient.GetStreamAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/xml/wgl.xml");
 
-        StreamWriter writer;
+        GeneratorWGL generator = new GeneratorWGL(stream);
 
-        using (writer = new StreamWriter (hpp, false))
+        using (var writer = new StreamWriter("wrangle-wgl.h"))
         {
-          generator.ExportHpp (ref writer);
-
-          writer.Close ();
+          generator.ExportHpp(writer);
         }
 
-        using (writer = new StreamWriter (cpp, false))
+        using (var writer = new StreamWriter("wrangle-wgl.cpp"))
         {
-          generator.ExportCpp (ref writer);
-
-          writer.Close ();
+          generator.ExportCpp(writer);
         }
       }
       catch (Exception e)
       {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
-
-        Console.WriteLine (exception);
-
-        Trace.WriteLine (exception);
+        Log.Error(e, "Failed WGL export");
       }
 
       //
@@ -113,37 +124,27 @@ namespace wrangle_gl_generator
 
       try
       {
-        string api = @"glx.xml";
+        Directory.CreateDirectory("GL");
 
-        string hpp = @"wrangle-glx.h";
+        await File.WriteAllBytesAsync("GL/glxext.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GL/glxext.h"));
 
-        string cpp = @"wrangle-glx.cpp";
+        using Stream stream = await httpClient.GetStreamAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/xml/glx.xml");
 
-        GeneratorGLX generator = new GeneratorGLX (api);
+        GeneratorGLX generator = new GeneratorGLX(stream);
 
-        StreamWriter writer;
-
-        using (writer = new StreamWriter (hpp, false))
+        using (var writer = new StreamWriter("wrangle-glx.h"))
         {
-          generator.ExportHpp (ref writer);
-
-          writer.Close ();
+          generator.ExportHpp(writer);
         }
 
-        using (writer = new StreamWriter (cpp, false))
+        using (var writer = new StreamWriter("wrangle-glx.cpp"))
         {
-          generator.ExportCpp (ref writer);
-
-          writer.Close ();
+          generator.ExportCpp(writer);
         }
       }
       catch (Exception e)
       {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
-
-        Console.WriteLine (exception);
-
-        Trace.WriteLine (exception);
+        Log.Error(e, "Failed GLX export");
       }
 
       //
@@ -152,37 +153,29 @@ namespace wrangle_gl_generator
 
       try
       {
-        string api = @"gl.xml";
+        Directory.CreateDirectory("GL");
 
-        string hpp = @"wrangle-gl.h";
+        await File.WriteAllBytesAsync("GL/glcorearb.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GL/glcorearb.h"));
 
-        string cpp = @"wrangle-gl.cpp";
+        await File.WriteAllBytesAsync("GL/glext.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GL/glext.h"));
 
-        GeneratorGL generator = new GeneratorGL (api);
+        using Stream stream = await httpClient.GetStreamAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/xml/gl.xml");
 
-        StreamWriter writer;
+        GeneratorGL generator = new GeneratorGL(stream);
 
-        using (writer = new StreamWriter (hpp, false))
+        using (var writer = new StreamWriter("wrangle-gl.h"))
         {
-          generator.ExportHpp (ref writer);
-
-          writer.Close ();
+          generator.ExportHpp(writer);
         }
 
-        using (writer = new StreamWriter (cpp, false))
+        using (var writer = new StreamWriter("wrangle-gl.cpp"))
         {
-          generator.ExportCpp (ref writer);
-
-          writer.Close ();
+          generator.ExportCpp(writer);
         }
       }
       catch (Exception e)
       {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
-
-        Console.WriteLine (exception);
-
-        Trace.WriteLine (exception);
+        Log.Error(e, "Failed GL export");
       }
 
       //
@@ -191,37 +184,53 @@ namespace wrangle_gl_generator
 
       try
       {
-        string api = @"gl.xml";
+        Directory.CreateDirectory(Path.Combine("GLES", "1.0"));
 
-        string hpp = @"wrangle-gles.h";
+        await File.WriteAllBytesAsync("GLES/1.0/gl.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES/1.0/gl.h"));
 
-        string cpp = @"wrangle-gles.cpp";
+        await File.WriteAllBytesAsync("GLES/egl.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES/egl.h"));
 
-        GeneratorGLES generator = new GeneratorGLES (api);
+        await File.WriteAllBytesAsync("GLES/gl.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES/gl.h"));
 
-        StreamWriter writer;
+        await File.WriteAllBytesAsync("GLES/glext.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES/glext.h"));
 
-        using (writer = new StreamWriter (hpp, false))
+        await File.WriteAllBytesAsync("GLES/glplatform.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES/glplatform.h"));
+
+        Directory.CreateDirectory("GLES2");
+
+        await File.WriteAllBytesAsync("GLES2/gl2.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES2/gl2.h"));
+
+        await File.WriteAllBytesAsync("GLES2/gl2ext.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES2/gl2ext.h"));
+
+        await File.WriteAllBytesAsync("GLES2/gl2platform.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES2/gl2platform.h"));
+
+        Directory.CreateDirectory("GLES3");
+
+        await File.WriteAllBytesAsync("GLES3/gl3.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES3/gl3.h"));
+
+        await File.WriteAllBytesAsync("GLES3/gl3platform.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES3/gl3platform.h"));
+
+        await File.WriteAllBytesAsync("GLES3/gl31.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES3/gl31.h"));
+
+        await File.WriteAllBytesAsync("GLES3/gl32.h", await httpClient.GetByteArrayAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/api/GLES3/gl32.h"));
+
+        using Stream stream = await httpClient.GetStreamAsync("https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/refs/heads/main/xml/gl.xml");
+
+        GeneratorGLES generator = new GeneratorGLES(stream);
+
+        using (var writer = new StreamWriter("wrangle-gles.h"))
         {
-          generator.ExportHpp (ref writer);
-
-          writer.Close ();
+          generator.ExportHpp(writer);
         }
 
-        using (writer = new StreamWriter (cpp, false))
+        using (var writer = new StreamWriter("wrangle-gles.cpp"))
         {
-          generator.ExportCpp (ref writer);
-
-          writer.Close ();
+          generator.ExportCpp(writer);
         }
       }
       catch (Exception e)
       {
-        string exception = string.Format ("Exception: {0}\nStack trace:\n{1}", e.Message, e.StackTrace);
-
-        Console.WriteLine (exception);
-
-        Trace.WriteLine (exception);
+        Log.Error(e, "Failed GLEX export");
       }
 
       return 0;

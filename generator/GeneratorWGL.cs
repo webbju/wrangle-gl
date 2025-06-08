@@ -27,8 +27,8 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public GeneratorWGL (string filename)
-      : base (filename, new string [] []
+    public GeneratorWGL (Stream stream)
+      : base (stream, new string [] []
       {
         new string []{ "wgl", "1.0" }
       })
@@ -46,13 +46,13 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportHpp (ref StreamWriter writer)
+    public override void ExportHpp (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (string.Format ("\n#ifndef __{0}_{1}_H__\n#define __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\n#include <wrangle.h>\n\n");
 
@@ -77,24 +77,24 @@ typedef void GLvoid;
 
       writer.Write ("\n#include <GL/wglext.h>\n\n");
 
-      base.ExportHpp (ref writer);
+      base.ExportHpp (writer);
 
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportCpp (ref StreamWriter writer)
+    public override void ExportCpp (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <unordered_set>\n\n");
 
-      base.ExportCpp (ref writer);
+      base.ExportCpp (writer);
 
       writer.Write ("\n");
 
@@ -106,7 +106,7 @@ typedef void GLvoid;
 
       writer.Write ("glew::wgl::DeviceConfig glew::wgl::s_deviceConfig;\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\nvoid glew::wgl::Initialise ()\n{\n");
 
@@ -308,9 +308,7 @@ typedef void GLvoid;
               continue;
             }
 
-            HashSet<string> requiredCommands;
-
-            if (!featureBasedPrototypes.TryGetValue (keypair.Key, out requiredCommands))
+            if (!featureBasedPrototypes.TryGetValue (keypair.Key, out var requiredCommands))
             {
               requiredCommands = new HashSet<string> ();
             }
@@ -371,7 +369,7 @@ typedef void GLvoid;
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       //
       // glew::wgl::Deinitialise
@@ -383,7 +381,7 @@ typedef void GLvoid;
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

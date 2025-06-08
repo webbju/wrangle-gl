@@ -27,8 +27,8 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public GeneratorEGL (string filename)
-      : base (filename, new string [] []
+    public GeneratorEGL (Stream stream)
+      : base (stream, new string [] []
       {
         new string []{ "egl", "1.0" }
       })
@@ -46,13 +46,13 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportHpp (ref StreamWriter writer)
+    public override void ExportHpp (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (string.Format ("\n#ifndef __{0}_{1}_H__\n#define __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\n#include <wrangle.h>\n");
 
@@ -60,18 +60,18 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n#include <EGL/eglext.h>\n\n");
 
-      base.ExportHpp (ref writer);
+      base.ExportHpp (writer);
 
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportHppPublicGlewApi (ref StreamWriter writer)
+    public override void ExportHppPublicGlewApi (StreamWriter writer)
     {
       writer.Write (string.Format ("\n  public:\n\n    static void Initialise (EGLDisplay display);\n\n", m_api [0]));
 
@@ -96,13 +96,13 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportCpp (ref StreamWriter writer)
+    public override void ExportCpp (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <unordered_set>\n\n");
 
-      base.ExportCpp (ref writer);
+      base.ExportCpp (writer);
 
       writer.Write ("\n");
 
@@ -116,7 +116,7 @@ namespace wrangle_gl_generator
 
       writer.Write ("glew::egl::DeviceConfig glew::egl::s_deviceConfig;\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (@"
 void glew::egl::Initialise (EGLDisplay display)
@@ -402,7 +402,7 @@ void glew::egl::Initialise (EGLDisplay display)
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       //
       // glew::egl::Deinitialise
@@ -414,7 +414,7 @@ void glew::egl::Initialise (EGLDisplay display)
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

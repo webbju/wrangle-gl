@@ -2,8 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>wrangle_gl_generator</RootNamespace>
+    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="4.3.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
+  </ItemGroup>
 
 </Project>

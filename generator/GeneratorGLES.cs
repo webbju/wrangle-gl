@@ -27,8 +27,8 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public GeneratorGLES (string filename)
-      : base (filename, new string [] []
+    public GeneratorGLES (Stream stream)
+      : base (stream, new string [] []
       {
         new string [] {"gles", "2.0"},
         //new string [] {"gles1", "2.0"},
@@ -48,13 +48,13 @@ namespace wrangle_gl_generator
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportHpp (ref StreamWriter writer)
+    public override void ExportHpp (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (string.Format ("\n#ifndef __{0}_{1}_H__\n#define __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (@"
 #if defined (_WIN32)
@@ -65,7 +65,7 @@ namespace wrangle_gl_generator
 
 ");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\n#include <wrangle.h>\n");
 
@@ -73,7 +73,7 @@ namespace wrangle_gl_generator
 
       writer.Write ("\n#include <GLES2/gl2ext.h>\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write (@"
 // iOS/OSX frameworks use a slightly different style of header guard.
@@ -104,24 +104,24 @@ namespace wrangle_gl_generator
 
 ");
 
-      base.ExportHpp (ref writer);
+      base.ExportHpp (writer);
 
       writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public override void ExportCpp (ref StreamWriter writer)
+    public override void ExportCpp (StreamWriter writer)
     {
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <string>\n\n#include <unordered_set>\n\n");
 
-      base.ExportCpp (ref writer);
+      base.ExportCpp (writer);
 
       writer.Write ("\n");
 
@@ -133,7 +133,7 @@ namespace wrangle_gl_generator
 
       writer.Write ("glew::gles::DeviceConfig glew::gles::s_deviceConfig;\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       writer.Write ("\nvoid glew::gles::Initialise ()\n{\n");
 
@@ -418,7 +418,7 @@ namespace wrangle_gl_generator
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
 
       //
       // glew::gles::Deinitialise
@@ -430,7 +430,7 @@ namespace wrangle_gl_generator
 
       writer.Write ("}\n\n");
 
-      WriteCommentDivider (ref writer);
+      WriteCommentDivider (writer);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
