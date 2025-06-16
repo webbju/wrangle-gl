@@ -207,6 +207,7 @@ typedef void* GLeglImageOES;
       s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_3] = ((major >= 4) && (minor >= 3));
       s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_4] = ((major >= 4) && (minor >= 4));
       s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_5] = ((major >= 4) && (minor >= 5));
+      s_deviceConfig.m_featureSupported [GLEW_GL_VERSION_4_6] = ((major >= 4) && (minor >= 6));
     }
   }
 
