@@ -8,6 +8,8 @@ endif()
 
 project (wrangle-gl)
 
+enable_testing ()
+
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories ("include")
@@ -41,64 +43,55 @@ else()
   find_package(OpenGL REQUIRED COMPONENTS EGL)
 endif()
 
-# test-egl-glcore
+# egl_glcore
 
-add_executable ("test-egl-glcore"
+add_executable (egl_glcore
+  WIN32
   "include/wrangle-gl.h"
   "include/wrangle-egl.h"
   "src/wrangle-gl.cpp"
   "src/wrangle-egl.cpp"
   "tests/test-egl.cpp")
 
-target_compile_options ("test-egl-glcore"
+target_compile_options (egl_glcore
   PUBLIC "-DGLEW_USE_EGL"
   PUBLIC "-DGLEW_USE_OPENGL")
 
-target_link_libraries ("test-egl-glcore"
+target_link_libraries (egl_glcore
     "${OPENGL_egl_LIBRARY}")
 
-if(WIN32)
-set_target_properties("test-egl-glcore" PROPERTIES
-  LINK_FLAGS_DEBUG  "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_RELWITHDEBINFO "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_MINSIZEREL "/SUBSYSTEM:WINDOWS")
-endif()
+add_test(NAME run_egl_glcore COMMAND $<TARGET_FILE:egl_glcore>)
 
-# test-egl-gles
+# egl_gles
 
-add_executable ("test-egl-gles"
+add_executable (egl_gles
+  WIN32
   "include/wrangle-egl.h"
   "include/wrangle-gles.h"
   "src/wrangle-egl.cpp"
   "src/wrangle-gles.cpp"
   "tests/test-egl.cpp")
 
-target_compile_options ("test-egl-gles"
+target_compile_options (egl_gles
   PUBLIC "-DGLEW_USE_EGL"
   PUBLIC "-DGLEW_USE_OPENGL_ES")
 
-target_link_libraries ("test-egl-gles"
+target_link_libraries (egl_gles
     "${OPENGL_egl_LIBRARY}"
     "${OPENGL_opengl_LIBRARY}")
 
 if(LINUX)
-target_link_libraries ("test-egl-gles" dl)
+target_link_libraries (egl_gles dl)
 endif()
 
-if(WIN32)
-set_target_properties("test-egl-gles" PROPERTIES
-  LINK_FLAGS_DEBUG  "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_RELWITHDEBINFO "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_MINSIZEREL "/SUBSYSTEM:WINDOWS")
-endif()
+add_test(NAME run_egl_gles COMMAND $<TARGET_FILE:egl_gles>)
 
-# test-wgl-glcore (Windows only)
+# wgl_glcore (Windows only)
 
 if(WIN32)
 
-add_executable ("test-wgl-glcore"
+add_executable (wgl_glcore
+  WIN32
   "include/wrangle-gl.h"
   "include/wrangle-wgl.h"
   "src/wrangle-gl.cpp"
@@ -106,23 +99,20 @@ add_executable ("test-wgl-glcore"
   "tests/test-wgl.cpp"
 )
 
-target_compile_options ("test-wgl-glcore"
+target_compile_options (wgl_glcore
   PUBLIC "-DGLEW_USE_WGL"
   PUBLIC "-DGLEW_USE_OPENGL")
 
-set_target_properties("test-wgl-glcore" PROPERTIES
-  LINK_FLAGS_DEBUG  "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_RELWITHDEBINFO "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_MINSIZEREL "/SUBSYSTEM:WINDOWS")
+add_test(NAME run_wgl_glcore COMMAND $<TARGET_FILE:wgl_glcore>)
 
 endif()
 
-# test-wgl-gles (Windows only)
+# wgl_gles (Windows only)
 
 if(WIN32)
 
-add_executable ("test-wgl-gles"
+add_executable (wgl_gles
+  WIN32
   "include/wrangle-wgl.h"
   "include/wrangle-gles.h"
   "src/wrangle-wgl.cpp"
@@ -130,14 +120,10 @@ add_executable ("test-wgl-gles"
   "tests/test-wgl.cpp"
 )
 
-target_compile_options ("test-wgl-gles"
+target_compile_options (wgl_gles
   PUBLIC "-DGLEW_USE_WGL"
   PUBLIC "-DGLEW_USE_OPENGL_ES")
 
-set_target_properties("test-wgl-gles" PROPERTIES
-  LINK_FLAGS_DEBUG  "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_RELWITHDEBINFO "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS"
-  LINK_FLAGS_MINSIZEREL "/SUBSYSTEM:WINDOWS")
+add_test(NAME run_wgl_gles COMMAND $<TARGET_FILE:wgl_gles>)
 
 endif()
