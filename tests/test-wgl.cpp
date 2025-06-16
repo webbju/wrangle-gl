@@ -30,7 +30,7 @@ static void CheckGLError (const bool shouldAssert, const char* file, const int l
   {
     char buffer [512];
 
-    sprintf (buffer, "[%s:%d] glGetError returned 0x%x\n", file, line, err);
+    snprintf (buffer, 512, "[%s:%d] glGetError returned 0x%x\n", file, line, err);
 
 #if WIN32
     OutputDebugString (buffer);
@@ -57,7 +57,7 @@ static void CheckGLError (const bool shouldAssert, const char* file, const int l
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int WINAPI WinMain (__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd)
+int WINAPI WinMain (__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in LPSTR lpCmdLine, __in int nShowCmd)
 {
   (void) hPrevInstance;
   (void) lpCmdLine;
@@ -134,7 +134,7 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       glew::wgl::Initialise ();
 
-  #if 1 && WGL_ARB_create_context
+#if 1 && WGL_ARB_create_context
       const glew::wgl::DeviceConfig &wglConfig = glew::wgl::GetConfig ();
 
       if (wglConfig.m_featureSupported [GLEW_WGL_ARB_create_context]
@@ -164,7 +164,7 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         wglMakeCurrent (deviceContext, deviceRenderContext);
       }
-  #endif
+#endif
 
 #if defined(GLEW_USE_OPENGL)
       glew::gl::Initialise ();
@@ -173,6 +173,12 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 #endif
 
       AssertNoGLErrors ();
+
+      const char* vendor = (const char*)glGetString(GL_VENDOR);
+
+      AssertNoGLErrors();
+
+      fprintf(stdout, "Vendor: %s", vendor);
 
       const char *renderer = (const char *) glGetString (GL_RENDERER);
 
@@ -185,6 +191,12 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
       AssertNoGLErrors ();
 
       fprintf(stdout, "Version: %s", version);
+
+      const char* glslVersion = (const char*)glGetString (GL_SHADING_LANGUAGE_VERSION);
+
+      AssertNoGLErrors();
+
+      fprintf(stdout, "GLSL Version: %s", glslVersion);
 
       const char *extensions = (const char *) glGetString (GL_EXTENSIONS);
 

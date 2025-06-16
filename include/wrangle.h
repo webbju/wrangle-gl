@@ -130,10 +130,12 @@ static __eglMustCastToProperFunctionPointerType EGLAPIENTRY _eglGetProcAddress (
   // It seems this is isolated to early PowerVR and Mali drivers, but we workaround it by probing the EGL library directly.
   //
 
+#if defined(__APPLE__) || defined(__linux__)
   if (procname && !fp && (procname[0] == 'e' && procname[1] == 'g' && procname[2] == 'l'))
   {
     fp = (__eglMustCastToProperFunctionPointerType) dlGetProcAddress (EGL_SHARED_LIBRARY, procname);
   }
+#endif
 
   return fp;
 }
