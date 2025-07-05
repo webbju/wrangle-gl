@@ -1560,7 +1560,7 @@ namespace wrangle_gl_generator
           }
           else if (m_api [0].Equals ("egl"))
           {
-            writer.Write ("#if GLEW_GL_POST_ERROR_CHECK\n  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);\n#endif\n");
+            writer.Write ("#if GLEW_EGL_POST_ERROR_CHECK\n  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);\n#endif\n");
           }
 
           if (!voidFunction)

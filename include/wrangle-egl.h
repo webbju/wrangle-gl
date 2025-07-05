@@ -49,6 +49,7 @@ enum GLEW_EGL_FeatureSet
   GLEW_EGL_ANDROID_get_frame_timestamps,
   GLEW_EGL_ANDROID_recordable,
   GLEW_EGL_ANDROID_GLES_layers,
+  GLEW_EGL_ANDROID_telemetry_hint,
   GLEW_EGL_ANGLE_d3d_share_handle_client_buffer,
   GLEW_EGL_ANGLE_device_d3d,
   GLEW_EGL_ANGLE_query_surface_pointer,
@@ -60,12 +61,14 @@ enum GLEW_EGL_FeatureSet
   GLEW_EGL_EXT_buffer_age,
   GLEW_EGL_EXT_client_extensions,
   GLEW_EGL_EXT_client_sync,
+  GLEW_EGL_EXT_config_select_group,
   GLEW_EGL_EXT_create_context_robustness,
   GLEW_EGL_EXT_device_base,
   GLEW_EGL_EXT_device_drm,
   GLEW_EGL_EXT_device_enumeration,
   GLEW_EGL_EXT_device_openwf,
   GLEW_EGL_EXT_device_query,
+  GLEW_EGL_EXT_gl_colorspace_bt2020_hlg,
   GLEW_EGL_EXT_gl_colorspace_bt2020_linear,
   GLEW_EGL_EXT_gl_colorspace_bt2020_pq,
   GLEW_EGL_EXT_gl_colorspace_scrgb,
@@ -86,8 +89,10 @@ enum GLEW_EGL_FeatureSet
   GLEW_EGL_EXT_platform_wayland,
   GLEW_EGL_EXT_platform_x11,
   GLEW_EGL_EXT_platform_xcb,
+  GLEW_EGL_EXT_present_opaque,
   GLEW_EGL_EXT_protected_content,
   GLEW_EGL_EXT_protected_surface,
+  GLEW_EGL_EXT_query_reset_notification_strategy,
   GLEW_EGL_EXT_stream_consumer_egloutput,
   GLEW_EGL_EXT_surface_SMPTE2086_metadata,
   GLEW_EGL_EXT_swap_buffers_with_damage,
@@ -184,6 +189,7 @@ enum GLEW_EGL_FeatureSet
   GLEW_EGL_TIZEN_image_native_surface,
   GLEW_EGL_EXT_compositor,
   GLEW_EGL_EXT_surface_CTA861_3_metadata,
+  GLEW_EGL_EXT_surface_compression,
   GLEW_EGL_EXT_image_implicit_sync_control,
   GLEW_EGL_EXT_bind_to_front,
   GLEW_EGL_NV_stream_origin,
@@ -191,6 +197,13 @@ enum GLEW_EGL_FeatureSet
   GLEW_EGL_WL_create_wayland_buffer_from_image,
   GLEW_EGL_ARM_image_format,
   GLEW_EGL_EXT_device_query_name,
+  GLEW_EGL_EXT_device_persistent_id,
+  GLEW_EGL_EXT_device_drm_render_node,
+  GLEW_EGL_EXT_explicit_device,
+  GLEW_EGL_NV_stream_consumer_eglimage_use_scanout_attrib,
+  GLEW_EGL_QNX_platform_screen,
+  GLEW_EGL_QNX_image_native_buffer,
+  GLEW_EGL_EXT_display_alloc,
   GLEW_EGL_FeatureSetCount
 };
 
@@ -336,7 +349,7 @@ typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYNATIVEWINDOWNVPROC) /* eglQueryNativ
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYNATIVEPIXMAPNVPROC) /* eglQueryNativePixmapNV */ (EGLDisplay dpy, EGLSurface surf, EGLNativePixmapType * pixmap);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLPOSTSUBBUFFERNVPROC) /* eglPostSubBufferNV */ (EGLDisplay dpy, EGLSurface surface, EGLint x, EGLint y, EGLint width, EGLint height);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLSTREAMCONSUMERGLTEXTUREEXTERNALATTRIBSNVPROC) /* eglStreamConsumerGLTextureExternalAttribsNV */ (EGLDisplay dpy, EGLStreamKHR stream, const EGLAttrib * attrib_list);
-typedef EGLBoolean (EGLAPIENTRYP PFNEGLSTREAMIMAGECONSUMERCONNECTNVPROC) /* eglStreamImageConsumerConnectNV */ (EGLDisplay dpy, EGLStreamKHR stream, EGLint num_modifiers, EGLuint64KHR * modifiers, EGLAttrib * attrib_list);
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLSTREAMIMAGECONSUMERCONNECTNVPROC) /* eglStreamImageConsumerConnectNV */ (EGLDisplay dpy, EGLStreamKHR stream, EGLint num_modifiers, const EGLuint64KHR * modifiers, const EGLAttrib * attrib_list);
 typedef EGLint (EGLAPIENTRYP PFNEGLQUERYSTREAMCONSUMEREVENTNVPROC) /* eglQueryStreamConsumerEventNV */ (EGLDisplay dpy, EGLStreamKHR stream, EGLTime timeout, EGLenum * event, EGLAttrib * aux);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLSTREAMACQUIREIMAGENVPROC) /* eglStreamAcquireImageNV */ (EGLDisplay dpy, EGLStreamKHR stream, EGLImage * pImage, EGLSync sync);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLSTREAMRELEASEIMAGENVPROC) /* eglStreamReleaseImageNV */ (EGLDisplay dpy, EGLStreamKHR stream, EGLImage image, EGLSync sync);
@@ -361,10 +374,13 @@ typedef EGLBoolean (EGLAPIENTRYP PFNEGLCOMPOSITORSETWINDOWATTRIBUTESEXTPROC) /* 
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLCOMPOSITORBINDTEXWINDOWEXTPROC) /* eglCompositorBindTexWindowEXT */ (EGLint external_win_id);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLCOMPOSITORSETSIZEEXTPROC) /* eglCompositorSetSizeEXT */ (EGLint external_win_id, EGLint width, EGLint height);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLCOMPOSITORSWAPPOLICYEXTPROC) /* eglCompositorSwapPolicyEXT */ (EGLint external_win_id, EGLint policy);
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYSUPPORTEDCOMPRESSIONRATESEXTPROC) /* eglQuerySupportedCompressionRatesEXT */ (EGLDisplay dpy, EGLConfig config, const EGLAttrib * attrib_list, EGLint * rates, EGLint rate_size, EGLint * num_rates);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLBINDWAYLANDDISPLAYWLPROC) /* eglBindWaylandDisplayWL */ (EGLDisplay dpy, struct wl_display * display);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLUNBINDWAYLANDDISPLAYWLPROC) /* eglUnbindWaylandDisplayWL */ (EGLDisplay dpy, struct wl_display * display);
 typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYWAYLANDBUFFERWLPROC) /* eglQueryWaylandBufferWL */ (EGLDisplay dpy, struct wl_resource * buffer, EGLint attribute, EGLint * value);
 typedef struct wl_buffer * (EGLAPIENTRYP PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWLPROC) /* eglCreateWaylandBufferFromImageWL */ (EGLDisplay dpy, EGLImageKHR image);
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLQUERYDEVICEBINARYEXTPROC) /* eglQueryDeviceBinaryEXT */ (EGLDeviceEXT device, EGLint name, EGLint max_size, void * value, EGLint * size);
+typedef EGLBoolean (EGLAPIENTRYP PFNEGLDESTROYDISPLAYEXTPROC) /* eglDestroyDisplayEXT */ (EGLDisplay dpy);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -518,10 +534,13 @@ namespace glew
       PFNEGLCOMPOSITORBINDTEXWINDOWEXTPROC m_eglCompositorBindTexWindowEXT;
       PFNEGLCOMPOSITORSETSIZEEXTPROC m_eglCompositorSetSizeEXT;
       PFNEGLCOMPOSITORSWAPPOLICYEXTPROC m_eglCompositorSwapPolicyEXT;
+      PFNEGLQUERYSUPPORTEDCOMPRESSIONRATESEXTPROC m_eglQuerySupportedCompressionRatesEXT;
       PFNEGLBINDWAYLANDDISPLAYWLPROC m_eglBindWaylandDisplayWL;
       PFNEGLUNBINDWAYLANDDISPLAYWLPROC m_eglUnbindWaylandDisplayWL;
       PFNEGLQUERYWAYLANDBUFFERWLPROC m_eglQueryWaylandBufferWL;
       PFNEGLCREATEWAYLANDBUFFERFROMIMAGEWLPROC m_eglCreateWaylandBufferFromImageWL;
+      PFNEGLQUERYDEVICEBINARYEXTPROC m_eglQueryDeviceBinaryEXT;
+      PFNEGLDESTROYDISPLAYEXTPROC m_eglDestroyDisplayEXT;
     };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -683,7 +702,7 @@ GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglQueryNativeWindowNV (EGLDisplay d
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglQueryNativePixmapNV (EGLDisplay dpy, EGLSurface surf, EGLNativePixmapType * pixmap);
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglPostSubBufferNV (EGLDisplay dpy, EGLSurface surface, EGLint x, EGLint y, EGLint width, EGLint height);
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglStreamConsumerGLTextureExternalAttribsNV (EGLDisplay dpy, EGLStreamKHR stream, const EGLAttrib * attrib_list);
-GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglStreamImageConsumerConnectNV (EGLDisplay dpy, EGLStreamKHR stream, EGLint num_modifiers, EGLuint64KHR * modifiers, EGLAttrib * attrib_list);
+GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglStreamImageConsumerConnectNV (EGLDisplay dpy, EGLStreamKHR stream, EGLint num_modifiers, const EGLuint64KHR * modifiers, const EGLAttrib * attrib_list);
 GLEW_API EGLint GLEW_APIENTRY _glew_egl_eglQueryStreamConsumerEventNV (EGLDisplay dpy, EGLStreamKHR stream, EGLTime timeout, EGLenum * event, EGLAttrib * aux);
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglStreamAcquireImageNV (EGLDisplay dpy, EGLStreamKHR stream, EGLImage * pImage, EGLSync sync);
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglStreamReleaseImageNV (EGLDisplay dpy, EGLStreamKHR stream, EGLImage image, EGLSync sync);
@@ -708,10 +727,13 @@ GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglCompositorSetWindowAttributesEXT 
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglCompositorBindTexWindowEXT (EGLint external_win_id);
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglCompositorSetSizeEXT (EGLint external_win_id, EGLint width, EGLint height);
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglCompositorSwapPolicyEXT (EGLint external_win_id, EGLint policy);
+GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglQuerySupportedCompressionRatesEXT (EGLDisplay dpy, EGLConfig config, const EGLAttrib * attrib_list, EGLint * rates, EGLint rate_size, EGLint * num_rates);
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglBindWaylandDisplayWL (EGLDisplay dpy, struct wl_display * display);
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglUnbindWaylandDisplayWL (EGLDisplay dpy, struct wl_display * display);
 GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglQueryWaylandBufferWL (EGLDisplay dpy, struct wl_resource * buffer, EGLint attribute, EGLint * value);
 GLEW_API struct wl_buffer * GLEW_APIENTRY _glew_egl_eglCreateWaylandBufferFromImageWL (EGLDisplay dpy, EGLImageKHR image);
+GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglQueryDeviceBinaryEXT (EGLDeviceEXT device, EGLint name, EGLint max_size, void * value, EGLint * size);
+GLEW_API EGLBoolean GLEW_APIENTRY _glew_egl_eglDestroyDisplayEXT (EGLDisplay dpy);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -844,10 +866,13 @@ GLEW_API struct wl_buffer * GLEW_APIENTRY _glew_egl_eglCreateWaylandBufferFromIm
 #define eglCompositorBindTexWindowEXT _glew_egl_eglCompositorBindTexWindowEXT
 #define eglCompositorSetSizeEXT _glew_egl_eglCompositorSetSizeEXT
 #define eglCompositorSwapPolicyEXT _glew_egl_eglCompositorSwapPolicyEXT
+#define eglQuerySupportedCompressionRatesEXT _glew_egl_eglQuerySupportedCompressionRatesEXT
 #define eglBindWaylandDisplayWL _glew_egl_eglBindWaylandDisplayWL
 #define eglUnbindWaylandDisplayWL _glew_egl_eglUnbindWaylandDisplayWL
 #define eglQueryWaylandBufferWL _glew_egl_eglQueryWaylandBufferWL
 #define eglCreateWaylandBufferFromImageWL _glew_egl_eglCreateWaylandBufferFromImageWL
+#define eglQueryDeviceBinaryEXT _glew_egl_eglQueryDeviceBinaryEXT
+#define eglDestroyDisplayEXT _glew_egl_eglDestroyDisplayEXT
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
