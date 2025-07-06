@@ -9,54 +9,59 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
+namespace wrangle_gl_generator;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-namespace wrangle_gl_generator
+public class GeneratorWGL : Generator
 {
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  public class GeneratorWGL : Generator
+  public GeneratorWGL (Stream stream)
+    : base (stream, new string[][]
+    {
+    new string []{ "wgl", "1.0" }
+    })
   {
+    m_funcApiEntryPrefix = "WINGDIAPI";
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    m_funcApiEntryPostfix = "WINAPI";
 
-    public GeneratorWGL (Stream stream)
-      : base (stream, new string [] []
-      {
-        new string []{ "wgl", "1.0" }
-      })
-    {
-      m_funcApiEntryPrefix = "WINGDIAPI";
+    m_funcPointerApiEntryPrefix = "";
 
-      m_funcApiEntryPostfix = "WINAPI";
+    m_funcPointerApiEntryPostfix = "WINAPI *";
+  }
 
-      m_funcPointerApiEntryPrefix = "";
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      m_funcPointerApiEntryPostfix = "WINAPI *";
-    }
+  public override void ExportHpp (StreamWriter writer)
+  {
+    WriteCommentDivider (writer);
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    writer.Write (Environment.NewLine);
 
-    public override void ExportHpp (StreamWriter writer)
-    {
-      WriteCommentDivider (writer);
+    writer.WriteLine (string.Format ("#ifndef __{0}_{1}_H__", "GLEW", m_api[0].ToUpperInvariant ()));
 
-      writer.Write (string.Format ("\n#ifndef __{0}_{1}_H__\n#define __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
+    writer.WriteLine (string.Format ("#define __{0}_{1}_H__", "GLEW", m_api[0].ToUpperInvariant ()));
 
-      WriteCommentDivider (writer);
+    writer.Write (Environment.NewLine);
 
-      writer.Write ("\n#include <wrangle.h>\n\n");
+    WriteCommentDivider (writer);
 
-      writer.Write (@"typedef unsigned int GLenum;
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ("#include <wrangle.h>");
+
+    writer.Write (Environment.NewLine);
+
+    writer.Write (@"typedef unsigned int GLenum;
 typedef unsigned char GLboolean;
 typedef unsigned int GLbitfield;
 typedef signed char GLbyte;
@@ -73,46 +78,72 @@ typedef double GLclampd;
 typedef void GLvoid;
 ");
 
-      writer.Write ("\n#include <GL/wgl.h>\n");
+    writer.Write (Environment.NewLine);
 
-      writer.Write ("\n#include <GL/wglext.h>\n\n");
+    writer.WriteLine ("#include <GL/wgl.h>");
 
-      base.ExportHpp (writer);
+    writer.WriteLine ("#include <GL/wglext.h>");
 
-      writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
+    writer.Write (Environment.NewLine);
 
-      WriteCommentDivider (writer);
-    }
+    base.ExportHpp (writer);
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    writer.Write (Environment.NewLine);
 
-    public override void ExportCpp (StreamWriter writer)
-    {
-      WriteCommentDivider (writer);
+    writer.WriteLine (string.Format ("#endif // __{0}_{1}_H__", "GLEW", m_api[0].ToUpperInvariant ()));
 
-      writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <unordered_set>\n\n");
+    writer.Write (Environment.NewLine);
 
-      base.ExportCpp (writer);
+    WriteCommentDivider (writer);
+  }
 
-      writer.Write ("\n");
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      //
-      // glew::wgl::Initialise
-      //
+  public override void ExportCpp (StreamWriter writer)
+  {
+    WriteCommentDivider (writer);
 
-      writer.Write ("bool glew::wgl::s_initialised = false;\n\n");
+    writer.Write (Environment.NewLine);
 
-      writer.Write ("glew::wgl::DeviceConfig glew::wgl::s_deviceConfig;\n\n");
+    writer.WriteLine ("#include <cstring>");
 
-      WriteCommentDivider (writer);
+    writer.WriteLine ("#include <string>");
 
-      writer.Write ("\nvoid glew::wgl::Initialise ()\n{\n");
+    writer.WriteLine ("#include <unordered_set>");
 
-      writer.Write ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));\n\n");
+    writer.Write (Environment.NewLine);
 
-      writer.Write (@"  //
+    base.ExportCpp (writer);
+
+    writer.Write (Environment.NewLine);
+
+    //
+    // glew::wgl::Initialise
+    //
+
+    writer.WriteLine ("bool glew::wgl::s_initialised = false;");
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ("glew::wgl::DeviceConfig glew::wgl::s_deviceConfig;");
+
+    writer.Write (Environment.NewLine);
+
+    WriteCommentDivider (writer);
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ("void glew::wgl::Initialise ()");
+
+    writer.WriteLine ("{");
+
+    writer.WriteLine ("  memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));");
+
+    writer.Write (Environment.NewLine);
+
+    writer.Write (@"  //
   // Determine current driver's feature reporting.
   //
 
@@ -204,190 +235,194 @@ typedef void GLvoid;
 
 ");
 
-      foreach (var keypair in m_extensionNodesLookup)
+    foreach (var keypair in m_extensionNodesLookup)
+    {
+      writer.WriteLine (string.Format ("  s_deviceConfig.m_featureSupported [GLEW_{0}] = (supportedExtensions.find (\"{0}\") != supportedExtensions.end ());", keypair.Key));
+    }
+
+    writer.Write (Environment.NewLine);
+
+    //
+    // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
+    //
+
+    Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
+
+    foreach (var keypair in m_featureNodesLookup)
+    {
+      if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
       {
-        writer.Write (string.Format ("  s_deviceConfig.m_featureSupported [GLEW_{0}] = (supportedExtensions.find (\"{0}\") != supportedExtensions.end ());\n", keypair.Key));
+        featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
       }
+    }
 
-      writer.Write ("\n");
-
-      //
-      // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
-      //
-
-      Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
-
-      foreach (var keypair in m_featureNodesLookup)
+    foreach (var keypair in m_extensionNodesLookup)
+    {
+      if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
       {
-        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
-        {
-          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
-        }
+        featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
       }
+    }
 
-      foreach (var keypair in m_extensionNodesLookup)
+    if (featureAndExtensionNodes.Count > 0)
+    {
+      HashSet<string> definedPrototypes = new HashSet<string> ();
+
+      Dictionary<string, HashSet<string>> featureBasedPrototypes = new Dictionary<string, HashSet<string>> ();
+
+      foreach (var keypair in featureAndExtensionNodes)
       {
-        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
+        XmlNode featureNode = keypair.Value;
+
+        string api = m_api[0];
+
         {
-          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
-        }
-      }
+          XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
 
-      if (featureAndExtensionNodes.Count > 0)
-      {
-        HashSet<string> definedPrototypes = new HashSet<string> ();
-
-        Dictionary<string, HashSet<string>> featureBasedPrototypes = new Dictionary<string, HashSet<string>> ();
-
-        foreach (var keypair in featureAndExtensionNodes)
-        {
-          XmlNode featureNode = keypair.Value;
-
-          string api = m_api [0];
-
+          if (featureApiNode != null)
           {
-            XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+            api = featureApiNode.Value;
+          }
+        }
 
-            if (featureApiNode != null)
+        //
+        // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+        //
+
+        XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+
+        if (requireNodes.Count == 0)
+        {
+          continue;
+        }
+
+        foreach (XmlNode requireNode in requireNodes)
+        {
+          XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
+
+          if (requireApiNode != null)
+          {
+            api = requireApiNode.Value;
+          }
+
+          if (!IsApiSupported (api))
+          {
+            continue; // Skip non-supported APIs.
+          }
+
+          //
+          // Evaluate whether this feature is part of the 'base spec'.
+          //
+
+          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+          bool baseSpecFeatureSet = false;
+
+          if (featureNumberNode != null)
+          {
+            float version = m_apiBaseSpecVersion[api];
+
+            if (float.TryParse (featureNumberNode.Value, out version))
             {
-              api = featureApiNode.Value;
+              baseSpecFeatureSet = version <= m_apiBaseSpecVersion[api];
             }
           }
 
           //
-          // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+          // Export code for seeding available function/command addresses.
           //
 
-          XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+          XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
-          if (requireNodes.Count == 0)
+          if (requireCommandNodes.Count == 0)
           {
             continue;
           }
 
-          foreach (XmlNode requireNode in requireNodes)
+          if (!featureBasedPrototypes.TryGetValue (keypair.Key, out var requiredCommands))
           {
-            XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
+            requiredCommands = new HashSet<string> ();
+          }
 
-            if (requireApiNode != null)
-            {
-              api = requireApiNode.Value;
-            }
+          foreach (XmlNode commandNode in requireCommandNodes)
+          {
+            string command = commandNode.Attributes["name"].Value;
 
-            if (!IsApiSupported (api))
-            {
-              continue; // Skip non-supported APIs.
-            }
-
-            //
-            // Evaluate whether this feature is part of the 'base spec'.
-            //
-
-            XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
-
-            bool baseSpecFeatureSet = false;
-
-            if (featureNumberNode != null)
-            {
-              float version = m_apiBaseSpecVersion [api];
-
-              if (float.TryParse (featureNumberNode.Value, out version))
-              {
-                baseSpecFeatureSet = version <= m_apiBaseSpecVersion [api];
-              }
-            }
-
-            //
-            // Export code for seeding available function/command addresses.
-            //
-
-            XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
-
-            if (requireCommandNodes.Count == 0)
+            if (definedPrototypes.Contains (command))
             {
               continue;
             }
 
-            if (!featureBasedPrototypes.TryGetValue (keypair.Key, out var requiredCommands))
+            definedPrototypes.Add (command);
+
+            if (baseSpecFeatureSet)
             {
-              requiredCommands = new HashSet<string> ();
+              continue; // Skip any base spec versions.
             }
 
-            foreach (XmlNode commandNode in requireCommandNodes)
-            {
-              string command = commandNode.Attributes ["name"].Value;
-
-              if (definedPrototypes.Contains (command))
-              {
-                continue;
-              }
-
-              definedPrototypes.Add (command);
-
-              if (baseSpecFeatureSet)
-              {
-                continue; // Skip any base spec versions.
-              }
-
-              requiredCommands.Add (command);
-            }
-
-            featureBasedPrototypes [keypair.Key] = requiredCommands;
+            requiredCommands.Add (command);
           }
-        }
 
-        //
-        // Output condensed feature organised prototypes.
-        //
-
-        if (featureBasedPrototypes.Count > 0)
-        {
-          foreach (var keypair in featureBasedPrototypes)
-          {
-            if (keypair.Value.Count == 0)
-            {
-              continue;
-            }
-
-            writer.Write (string.Format ("  // {0}\n", keypair.Key));
-
-            writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
-
-            foreach (string command in keypair.Value)
-            {
-              string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
-
-              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
-            }
-
-            writer.Write ("  }\n\n");
-          }
+          featureBasedPrototypes[keypair.Key] = requiredCommands;
         }
       }
 
-      writer.Write ("  s_initialised = true;\n");
-
-      writer.Write ("}\n\n");
-
-      WriteCommentDivider (writer);
-
       //
-      // glew::wgl::Deinitialise
+      // Output condensed feature organised prototypes.
       //
 
-      writer.Write ("\nvoid glew::wgl::Deinitialise ()\n{\n");
+      if (featureBasedPrototypes.Count > 0)
+      {
+        foreach (var keypair in featureBasedPrototypes)
+        {
+          if (keypair.Value.Count == 0)
+          {
+            continue;
+          }
 
-      writer.Write ("  s_initialised = false;\n");
+          writer.WriteLine (string.Format ("  // {0}", keypair.Key));
 
-      writer.Write ("}\n\n");
+          writer.WriteLine (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])", keypair.Key));
 
-      WriteCommentDivider (writer);
+          writer.WriteLine ("  {");
+
+          foreach (string command in keypair.Value)
+          {
+            string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+            writer.WriteLine (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");", command, mangedFunctionPointer));
+          }
+
+          writer.WriteLine ("  }");
+
+          writer.Write (Environment.NewLine);
+        }
+      }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    writer.WriteLine ("  s_initialised = true;");
 
+    writer.WriteLine ("}");
+
+    writer.Write (Environment.NewLine);
+
+    WriteCommentDivider (writer);
+
+    writer.Write (Environment.NewLine);
+
+    //
+    // glew::wgl::Deinitialise
+    //
+
+    writer.WriteLine ("void glew::wgl::Deinitialise ()");
+
+    writer.WriteLine ("{");
+
+    writer.WriteLine ("  s_initialised = false;");
+
+    writer.WriteLine ("}");
+
+    WriteCommentDivider (writer);
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

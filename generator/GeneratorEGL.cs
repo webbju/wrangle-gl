@@ -9,117 +9,185 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
+namespace wrangle_gl_generator;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-namespace wrangle_gl_generator
+public class GeneratorEGL : Generator
 {
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  public class GeneratorEGL : Generator
+  public GeneratorEGL (Stream stream)
+    : base (stream, new string[][]
+    {
+    new string []{ "egl", "1.0" }
+    })
   {
+    m_funcApiEntryPrefix = "EGLAPI";
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    m_funcApiEntryPostfix = "EGLAPIENTRY";
 
-    public GeneratorEGL (Stream stream)
-      : base (stream, new string [] []
-      {
-        new string []{ "egl", "1.0" }
-      })
-    {
-      m_funcApiEntryPrefix = "EGLAPI";
+    m_funcPointerApiEntryPrefix = "";
 
-      m_funcApiEntryPostfix = "EGLAPIENTRY";
+    m_funcPointerApiEntryPostfix = "EGLAPIENTRYP";
+  }
 
-      m_funcPointerApiEntryPrefix = "";
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      m_funcPointerApiEntryPostfix = "EGLAPIENTRYP";
-    }
+  public override void ExportHpp (StreamWriter writer)
+  {
+    WriteCommentDivider (writer);
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    writer.Write (Environment.NewLine);
 
-    public override void ExportHpp (StreamWriter writer)
-    {
-      WriteCommentDivider (writer);
+    writer.WriteLine (string.Format ("#ifndef __{0}_{1}_H__", "GLEW", m_api[0].ToUpperInvariant ()));
 
-      writer.Write (string.Format ("\n#ifndef __{0}_{1}_H__\n#define __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
+    writer.WriteLine (string.Format ("#define __{0}_{1}_H__", "GLEW", m_api[0].ToUpperInvariant ()));
 
-      WriteCommentDivider (writer);
+    writer.Write (Environment.NewLine);
 
-      writer.Write ("\n#include <wrangle.h>\n");
+    WriteCommentDivider (writer);
 
-      writer.Write ("\n#include <EGL/egl.h>\n");
+    writer.Write (Environment.NewLine);
 
-      writer.Write ("\n#include <EGL/eglext.h>\n\n");
+    writer.WriteLine ("#include <wrangle.h>");
 
-      base.ExportHpp (writer);
+    writer.WriteLine ("#include <EGL/egl.h>");
 
-      writer.Write (string.Format ("\n#endif // __{0}_{1}_H__\n\n", "GLEW", m_api [0].ToUpperInvariant ()));
+    writer.WriteLine ("#include <EGL/eglext.h>");
 
-      WriteCommentDivider (writer);
-    }
+    writer.Write (Environment.NewLine);
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    base.ExportHpp (writer);
 
-    public override void ExportHppPublicGlewApi (StreamWriter writer)
-    {
-      writer.Write (string.Format ("\n  public:\n\n    static void Initialise (EGLDisplay display);\n\n", m_api [0]));
+    writer.Write (Environment.NewLine);
 
-      writer.Write (string.Format ("    static void Deinitialise ();\n\n"));
+    writer.WriteLine (string.Format ("#endif // __{0}_{1}_H__", "GLEW", m_api[0].ToUpperInvariant ()));
 
-      writer.Write (string.Format ("    static bool IsSupported (GLEW_{0}_FeatureSet feature)\n    {{\n      GLEW_ASSERT (s_initialised);\n\n      return s_deviceConfig.m_featureSupported [feature];\n    }}\n\n", m_api [0].ToUpperInvariant ()));
+    writer.Write (Environment.NewLine);
 
-      writer.Write (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig)\n    {{\n      GLEW_ASSERT (s_initialised);\n\n      s_deviceConfig = deviceConfig;\n    }}\n\n", m_api [0]));
+    WriteCommentDivider (writer);
+  }
 
-      writer.Write (string.Format ("    static glew::{0}::DeviceConfig &GetConfig ()\n    {{\n      GLEW_ASSERT (s_initialised);\n\n      return s_deviceConfig;\n    }}\n", m_api [0]));
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      writer.Write (string.Format ("\n  protected:\n\n", m_api [0]));
+  public override void ExportHppPublicGlewApi (StreamWriter writer)
+  {
+    writer.Write ("  public:");
 
-      writer.Write (string.Format ("    static bool s_initialised;\n\n"));
+    writer.Write (Environment.NewLine);
 
-      writer.Write (string.Format ("    static EGLDisplay s_display;\n\n"));
+    writer.WriteLine ("    static void Initialise (EGLDisplay display);");
 
-      writer.Write (string.Format ("    static glew::{0}::DeviceConfig s_deviceConfig;\n\n", m_api [0]));
-    }
+    writer.Write (Environment.NewLine);
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    writer.WriteLine ("    static void Deinitialise ();");
 
-    public override void ExportCpp (StreamWriter writer)
-    {
-      WriteCommentDivider (writer);
+    writer.Write (Environment.NewLine);
 
-      writer.Write ("\n#include <cstring>\n\n#include <string>\n\n#include <unordered_set>\n\n");
+    writer.WriteLine (string.Format ("    static bool IsSupported (GLEW_{0}_FeatureSet feature)", m_api[0].ToUpperInvariant ()));
 
-      base.ExportCpp (writer);
+    writer.WriteLine ("    {");
 
-      writer.Write ("\n");
+    writer.WriteLine ("      GLEW_ASSERT (s_initialised);");
 
-      //
-      // glew::egl::Initialise
-      //
+    writer.WriteLine ("      return s_deviceConfig.m_featureSupported [feature];");
 
-      writer.Write ("bool glew::egl::s_initialised = false;\n\n");
+    writer.WriteLine ("    }");
 
-      writer.Write ("EGLDisplay glew::egl::s_display = EGL_NO_DISPLAY;\n\n");
+    writer.Write (Environment.NewLine);
 
-      writer.Write ("glew::egl::DeviceConfig glew::egl::s_deviceConfig;\n\n");
+    writer.WriteLine (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig)", m_api[0]));
 
-      WriteCommentDivider (writer);
+    writer.WriteLine ("    {");
 
-      writer.Write (@"
-void glew::egl::Initialise (EGLDisplay display)
+    writer.WriteLine ("      GLEW_ASSERT (s_initialised);");
+
+    writer.WriteLine ("      s_deviceConfig = deviceConfig;");
+
+    writer.WriteLine ("    }");
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine (string.Format ("    static glew::{0}::DeviceConfig &GetConfig ()", m_api[0]));
+
+    writer.WriteLine ("    {");
+
+    writer.WriteLine ("      GLEW_ASSERT (s_initialised);");
+
+    writer.WriteLine ("      return s_deviceConfig;");
+
+    writer.WriteLine ("    }");
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ("  protected:");
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ("    static bool s_initialised;");
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ("    static EGLDisplay s_display;");
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ($"    static glew::{m_api[0]}::DeviceConfig s_deviceConfig;");
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public override void ExportCpp (StreamWriter writer)
+  {
+    WriteCommentDivider (writer);
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ("#include <cstring>");
+
+    writer.WriteLine ("#include <string>");
+
+    writer.WriteLine ("#include <unordered_set>");
+
+    writer.Write (Environment.NewLine);
+
+    base.ExportCpp (writer);
+
+    writer.Write (Environment.NewLine);
+
+    //
+    // glew::egl::Initialise
+    //
+
+    writer.WriteLine ("bool glew::egl::s_initialised = false;");
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ("EGLDisplay glew::egl::s_display = EGL_NO_DISPLAY;");
+
+    writer.Write (Environment.NewLine);
+
+    writer.WriteLine ("glew::egl::DeviceConfig glew::egl::s_deviceConfig;");
+
+    writer.Write (Environment.NewLine);
+
+    WriteCommentDivider (writer);
+
+    writer.Write (Environment.NewLine);
+
+    writer.Write (@"void glew::egl::Initialise (EGLDisplay display)
 {
   s_display = display;
 
@@ -235,192 +303,198 @@ void glew::egl::Initialise (EGLDisplay display)
 
 ");
 
-      foreach (var keypair in m_extensionNodesLookup)
+    foreach (var keypair in m_extensionNodesLookup)
+    {
+      writer.WriteLine (string.Format ("  s_deviceConfig.m_featureSupported [GLEW_{0}] = (supportedExtensions.find (\"{0}\") != supportedExtensions.end ());", keypair.Key));
+    }
+
+    writer.Write (Environment.NewLine);
+
+    //
+    // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
+    //
+
+    Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
+
+    foreach (var keypair in m_featureNodesLookup)
+    {
+      if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
       {
-        writer.Write (string.Format ("  s_deviceConfig.m_featureSupported [GLEW_{0}] = (supportedExtensions.find (\"{0}\") != supportedExtensions.end ());\n", keypair.Key));
+        featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
       }
+    }
 
-      writer.Write ("\n");
-
-      //
-      // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
-      //
-
-      Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
-
-      foreach (var keypair in m_featureNodesLookup)
+    foreach (var keypair in m_extensionNodesLookup)
+    {
+      if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
       {
-        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
-        {
-          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
-        }
+        featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
       }
+    }
 
-      foreach (var keypair in m_extensionNodesLookup)
+    if (featureAndExtensionNodes.Count > 0)
+    {
+      HashSet<string> definedPrototypes = new HashSet<string> ();
+
+      Dictionary<string, HashSet<string>> featureBasedPrototypes = new Dictionary<string, HashSet<string>> ();
+
+      foreach (var keypair in featureAndExtensionNodes)
       {
-        if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
+        XmlNode featureNode = keypair.Value;
+
+        string api = m_api[0];
+
         {
-          featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
-        }
-      }
+          XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
 
-      if (featureAndExtensionNodes.Count > 0)
-      {
-        HashSet<string> definedPrototypes = new HashSet<string> ();
-
-        Dictionary <string, HashSet <string>> featureBasedPrototypes = new Dictionary<string,HashSet<string>> ();
-
-        foreach (var keypair in featureAndExtensionNodes)
-        {
-          XmlNode featureNode = keypair.Value;
-
-          string api = m_api [0];
-
+          if (featureApiNode != null)
           {
-            XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+            api = featureApiNode.Value;
+          }
+        }
 
-            if (featureApiNode != null)
+        //
+        // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+        //
+
+        XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+
+        if (requireNodes.Count == 0)
+        {
+          continue;
+        }
+
+        foreach (XmlNode requireNode in requireNodes)
+        {
+          XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
+
+          if (requireApiNode != null)
+          {
+            api = requireApiNode.Value;
+          }
+
+          if (!IsApiSupported (api))
+          {
+            continue; // Skip non-supported APIs.
+          }
+
+          //
+          // Evaluate whether this feature is part of the 'base spec'.
+          //
+
+          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
+
+          bool baseSpecFeatureSet = false;
+
+          if (featureNumberNode != null)
+          {
+            float version = m_apiBaseSpecVersion[api];
+
+            if (float.TryParse (featureNumberNode.Value, out version))
             {
-              api = featureApiNode.Value;
+              baseSpecFeatureSet = version <= m_apiBaseSpecVersion[api];
             }
           }
 
           //
-          // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+          // Export code for seeding available function/command addresses.
           //
 
-          XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+          XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
 
-          if (requireNodes.Count == 0)
+          if (requireCommandNodes.Count == 0)
           {
             continue;
           }
 
-          foreach (XmlNode requireNode in requireNodes)
+          HashSet<string> requiredCommands;
+
+          if (!featureBasedPrototypes.TryGetValue (keypair.Key, out requiredCommands))
           {
-            XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
+            requiredCommands = new HashSet<string> ();
+          }
 
-            if (requireApiNode != null)
-            {
-              api = requireApiNode.Value;
-            }
+          foreach (XmlNode commandNode in requireCommandNodes)
+          {
+            string command = commandNode.Attributes["name"].Value;
 
-            if (!IsApiSupported (api))
-            {
-              continue; // Skip non-supported APIs.
-            }
-
-            //
-            // Evaluate whether this feature is part of the 'base spec'.
-            //
-
-            XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
-
-            bool baseSpecFeatureSet = false;
-
-            if (featureNumberNode != null)
-            {
-              float version = m_apiBaseSpecVersion [api];
-
-              if (float.TryParse (featureNumberNode.Value, out version))
-              {
-                baseSpecFeatureSet = version <= m_apiBaseSpecVersion [api];
-              }
-            }
-
-            //
-            // Export code for seeding available function/command addresses.
-            //
-
-            XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
-
-            if (requireCommandNodes.Count == 0)
+            if (definedPrototypes.Contains (command))
             {
               continue;
             }
 
-            HashSet<string> requiredCommands;
+            definedPrototypes.Add (command);
 
-            if (!featureBasedPrototypes.TryGetValue (keypair.Key, out requiredCommands))
+            if (baseSpecFeatureSet)
             {
-              requiredCommands = new HashSet<string> ();
+              continue; // Skip any base spec versions.
             }
 
-            foreach (XmlNode commandNode in requireCommandNodes)
-            {
-              string command = commandNode.Attributes ["name"].Value;
-
-              if (definedPrototypes.Contains (command))
-              {
-                continue;
-              }
-
-              definedPrototypes.Add (command);
-
-              if (baseSpecFeatureSet)
-              {
-                continue; // Skip any base spec versions.
-              }
-
-              requiredCommands.Add (command);
-            }
-
-            featureBasedPrototypes [keypair.Key] = requiredCommands;
+            requiredCommands.Add (command);
           }
-        }
 
-        //
-        // Output condensed feature organised prototypes.
-        //
-
-        if (featureBasedPrototypes.Count > 0)
-        {
-          foreach (var keypair in featureBasedPrototypes)
-          {
-            if (keypair.Value.Count == 0)
-            {
-              continue;
-            }
-
-            writer.Write (string.Format ("  // {0}\n", keypair.Key));
-
-            writer.Write (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])\n  {{\n", keypair.Key));
-
-            foreach (string command in keypair.Value)
-            {
-              string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
-
-              writer.Write (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");\n", command, mangedFunctionPointer));
-            }
-
-            writer.Write ("  }\n\n");
-          }
+          featureBasedPrototypes[keypair.Key] = requiredCommands;
         }
       }
 
-      writer.Write ("  s_initialised = true;\n");
-
-      writer.Write ("}\n\n");
-
-      WriteCommentDivider (writer);
-
       //
-      // glew::egl::Deinitialise
+      // Output condensed feature organised prototypes.
       //
 
-      writer.Write ("\nvoid glew::egl::Deinitialise ()\n{\n");
+      if (featureBasedPrototypes.Count > 0)
+      {
+        foreach (var keypair in featureBasedPrototypes)
+        {
+          if (keypair.Value.Count == 0)
+          {
+            continue;
+          }
 
-      writer.Write ("  s_initialised = false;\n");
+          writer.WriteLine ($"  // {keypair.Key}");
 
-      writer.Write ("}\n\n");
+          writer.WriteLine ($"  if (s_deviceConfig.m_featureSupported [GLEW_{keypair.Key}])");
 
-      WriteCommentDivider (writer);
+          writer.WriteLine ($"  {{");
+
+          foreach (string command in keypair.Value)
+          {
+            string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+            writer.WriteLine (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");", command, mangedFunctionPointer));
+          }
+
+          writer.WriteLine ($"  }}");
+
+          writer.Write (Environment.NewLine);
+        }
+      }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    writer.WriteLine ("  s_initialised = true;");
 
+    writer.WriteLine ("}");
+
+    writer.Write (Environment.NewLine);
+
+    WriteCommentDivider (writer);
+
+    writer.Write (Environment.NewLine);
+
+    //
+    // glew::egl::Deinitialise
+    //
+
+    writer.WriteLine ("void glew::egl::Deinitialise ()");
+
+    writer.WriteLine ("{");
+
+    writer.WriteLine ("  s_initialised = false;");
+
+    writer.WriteLine ("}");
+
+    writer.Write (Environment.NewLine);
+
+    WriteCommentDivider (writer);
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

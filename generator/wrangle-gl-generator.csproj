@@ -11,4 +11,12 @@
     <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\webbju\wrangle-gl\generator\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\webbju\wrangle-gl\generator\.editorconfig" />
+  </ItemGroup>
+
 </Project>
