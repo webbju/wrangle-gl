@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "wrangle-gl-generator": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\webbju\\wrangle-gl"
+    }
+  }
+}

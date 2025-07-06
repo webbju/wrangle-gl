@@ -28,7 +28,6 @@ typedef double GLclampd;
 typedef void GLvoid;
 
 #include <GL/wgl.h>
-
 #include <GL/wglext.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,8 +113,8 @@ enum GLEW_WGL_FeatureSet
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 GLEW_EXTERN WINGDIAPI int WINAPI ChoosePixelFormat (HDC hDc, const PIXELFORMATDESCRIPTOR * pPfd);
-GLEW_EXTERN WINGDIAPI int WINAPI DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, const PIXELFORMATDESCRIPTOR * ppfd);
-GLEW_EXTERN WINGDIAPI UINT WINAPI GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, const PIXELFORMATDESCRIPTOR * ppfd);
+GLEW_EXTERN WINGDIAPI int WINAPI DescribePixelFormat (HDC hdc, int ipfd, UINT cjpfd, PIXELFORMATDESCRIPTOR * ppfd);
+GLEW_EXTERN WINGDIAPI UINT WINAPI GetEnhMetaFilePixelFormat (HENHMETAFILE hemf, UINT cbBuffer, PIXELFORMATDESCRIPTOR * ppfd);
 GLEW_EXTERN WINGDIAPI int WINAPI GetPixelFormat (HDC hdc);
 GLEW_EXTERN WINGDIAPI BOOL WINAPI SetPixelFormat (HDC hdc, int ipfd, const PIXELFORMATDESCRIPTOR * ppfd);
 GLEW_EXTERN WINGDIAPI BOOL WINAPI SwapBuffers (HDC hdc);
@@ -123,10 +122,10 @@ GLEW_EXTERN WINGDIAPI BOOL WINAPI wglCopyContext (HGLRC hglrcSrc, HGLRC hglrcDst
 GLEW_EXTERN WINGDIAPI HGLRC WINAPI wglCreateContext (HDC hDc);
 GLEW_EXTERN WINGDIAPI HGLRC WINAPI wglCreateLayerContext (HDC hDc, int level);
 GLEW_EXTERN WINGDIAPI BOOL WINAPI wglDeleteContext (HGLRC oldContext);
-GLEW_EXTERN WINGDIAPI BOOL WINAPI wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, const LAYERPLANEDESCRIPTOR * plpd);
+GLEW_EXTERN WINGDIAPI BOOL WINAPI wglDescribeLayerPlane (HDC hDc, int pixelFormat, int layerPlane, UINT nBytes, LAYERPLANEDESCRIPTOR * plpd);
 GLEW_EXTERN WINGDIAPI HGLRC WINAPI wglGetCurrentContext ();
 GLEW_EXTERN WINGDIAPI HDC WINAPI wglGetCurrentDC ();
-GLEW_EXTERN WINGDIAPI int WINAPI wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr);
+GLEW_EXTERN WINGDIAPI int WINAPI wglGetLayerPaletteEntries (HDC hdc, int iLayerPlane, int iStart, int cEntries, COLORREF * pcr);
 GLEW_EXTERN WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
 GLEW_EXTERN WINGDIAPI BOOL WINAPI wglMakeCurrent (HDC hDc, HGLRC newContext);
 GLEW_EXTERN WINGDIAPI BOOL WINAPI wglRealizeLayerPalette (HDC hdc, int iLayerPlane, BOOL bRealize);
@@ -265,11 +264,6 @@ typedef BOOL (WINAPI * PFNWGLWAITFORSBCOMLPROC) /* wglWaitForSbcOML */ (HDC hdc,
 
 namespace glew
 {
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
   class wgl
   {
   public:
@@ -405,10 +399,6 @@ namespace glew
       PFNWGLWAITFORSBCOMLPROC m_wglWaitForSbcOML;
     };
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
   public:
 
     static void Initialise ();
@@ -418,21 +408,18 @@ namespace glew
     static bool IsSupported (GLEW_WGL_FeatureSet feature)
     {
       GLEW_ASSERT (s_initialised);
-
       return s_deviceConfig.m_featureSupported [feature];
     }
 
     static void SetConfig (glew::wgl::DeviceConfig &deviceConfig)
     {
       GLEW_ASSERT (s_initialised);
-
       s_deviceConfig = deviceConfig;
     }
 
     static glew::wgl::DeviceConfig &GetConfig ()
     {
       GLEW_ASSERT (s_initialised);
-
       return s_deviceConfig;
     }
 
