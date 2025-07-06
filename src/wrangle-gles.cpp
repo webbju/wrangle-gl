@@ -3,11 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <cstring>
-
 #include <string>
-
-#include <string>
-
 #include <unordered_set>
 
 #include <wrangle-gles.h>
@@ -18035,7 +18031,6 @@ glew::gles::DeviceConfig glew::gles::s_deviceConfig;
 void glew::gles::Initialise ()
 {
   memset (&s_deviceConfig, 0, sizeof (s_deviceConfig));
-
   //
   // Determine current driver's feature reporting.
   //
