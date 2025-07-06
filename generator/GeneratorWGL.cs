@@ -422,6 +422,8 @@ typedef void GLvoid;
 
     writer.WriteLine ("}");
 
+    writer.Write (Environment.NewLine);
+
     WriteCommentDivider (writer);
   }
 
