@@ -145,6 +145,7 @@ enum GLEW_GLES_FeatureSet
   GLEW_GL_EXT_memory_object,
   GLEW_GL_EXT_memory_object_fd,
   GLEW_GL_EXT_memory_object_win32,
+  GLEW_GL_EXT_mesh_shader,
   GLEW_GL_EXT_multi_draw_arrays,
   GLEW_GL_EXT_multi_draw_indirect,
   GLEW_GL_EXT_multisampled_compatibility,
@@ -182,6 +183,7 @@ enum GLEW_GLES_FeatureSet
   GLEW_GL_EXT_shader_pixel_local_storage2,
   GLEW_GL_EXT_shader_samples_identical,
   GLEW_GL_EXT_shader_texture_lod,
+  GLEW_GL_EXT_shader_texture_samples,
   GLEW_GL_EXT_shadow_samplers,
   GLEW_GL_EXT_sparse_texture,
   GLEW_GL_EXT_sparse_texture2,
@@ -217,6 +219,8 @@ enum GLEW_GLES_FeatureSet
   GLEW_GL_EXT_win32_keyed_mutex,
   GLEW_GL_EXT_window_rectangles,
   GLEW_GL_FJ_shader_binary_GCCSO,
+  GLEW_GL_HUAWEI_program_binary,
+  GLEW_GL_HUAWEI_shader_binary,
   GLEW_GL_IMG_bindless_texture,
   GLEW_GL_IMG_framebuffer_downsample,
   GLEW_GL_IMG_multisampled_render_to_texture,
@@ -874,6 +878,10 @@ typedef void (GL_APIENTRYP PFNGLNAMEDBUFFERSTORAGEMEMEXTPROC) /* glNamedBufferSt
 typedef void (GL_APIENTRYP PFNGLIMPORTMEMORYFDEXTPROC) /* glImportMemoryFdEXT */ (GLuint memory, GLuint64 size, GLenum handleType, GLint fd);
 typedef void (GL_APIENTRYP PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC) /* glImportMemoryWin32HandleEXT */ (GLuint memory, GLuint64 size, GLenum handleType, void * handle);
 typedef void (GL_APIENTRYP PFNGLIMPORTMEMORYWIN32NAMEEXTPROC) /* glImportMemoryWin32NameEXT */ (GLuint memory, GLuint64 size, GLenum handleType, const void * name);
+typedef void (GL_APIENTRYP PFNGLDRAWMESHTASKSEXTPROC) /* glDrawMeshTasksEXT */ (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z);
+typedef void (GL_APIENTRYP PFNGLDRAWMESHTASKSINDIRECTEXTPROC) /* glDrawMeshTasksIndirectEXT */ (GLintptr indirect);
+typedef void (GL_APIENTRYP PFNGLMULTIDRAWMESHTASKSINDIRECTEXTPROC) /* glMultiDrawMeshTasksIndirectEXT */ (GLintptr indirect, GLsizei drawcount, GLsizei stride);
+typedef void (GL_APIENTRYP PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTEXTPROC) /* glMultiDrawMeshTasksIndirectCountEXT */ (GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
 typedef void (GL_APIENTRYP PFNGLMULTIDRAWARRAYSEXTPROC) /* glMultiDrawArraysEXT */ (GLenum mode, const GLint * first, const GLsizei * count, GLsizei primcount);
 typedef void (GL_APIENTRYP PFNGLMULTIDRAWELEMENTSEXTPROC) /* glMultiDrawElementsEXT */ (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount);
 typedef void (GL_APIENTRYP PFNGLMULTIDRAWARRAYSINDIRECTEXTPROC) /* glMultiDrawArraysIndirectEXT */ (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride);
@@ -1657,6 +1665,10 @@ namespace glew
       PFNGLIMPORTMEMORYFDEXTPROC m_glImportMemoryFdEXT;
       PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC m_glImportMemoryWin32HandleEXT;
       PFNGLIMPORTMEMORYWIN32NAMEEXTPROC m_glImportMemoryWin32NameEXT;
+      PFNGLDRAWMESHTASKSEXTPROC m_glDrawMeshTasksEXT;
+      PFNGLDRAWMESHTASKSINDIRECTEXTPROC m_glDrawMeshTasksIndirectEXT;
+      PFNGLMULTIDRAWMESHTASKSINDIRECTEXTPROC m_glMultiDrawMeshTasksIndirectEXT;
+      PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTEXTPROC m_glMultiDrawMeshTasksIndirectCountEXT;
       PFNGLMULTIDRAWARRAYSEXTPROC m_glMultiDrawArraysEXT;
       PFNGLMULTIDRAWELEMENTSEXTPROC m_glMultiDrawElementsEXT;
       PFNGLMULTIDRAWARRAYSINDIRECTEXTPROC m_glMultiDrawArraysIndirectEXT;
@@ -2081,7 +2093,7 @@ namespace glew
       return s_deviceConfig.m_featureSupported [feature];
     }
 
-    static void SetConfig (glew::gles::DeviceConfig &deviceConfig)
+    static void SetConfig (const glew::gles::DeviceConfig &deviceConfig)
     {
       GLEW_ASSERT (s_initialised);
       s_deviceConfig = deviceConfig;
@@ -2444,6 +2456,10 @@ GLEW_API void GLEW_APIENTRY _glew_gles_glNamedBufferStorageMemEXT (GLuint buffer
 GLEW_API void GLEW_APIENTRY _glew_gles_glImportMemoryFdEXT (GLuint memory, GLuint64 size, GLenum handleType, GLint fd);
 GLEW_API void GLEW_APIENTRY _glew_gles_glImportMemoryWin32HandleEXT (GLuint memory, GLuint64 size, GLenum handleType, void * handle);
 GLEW_API void GLEW_APIENTRY _glew_gles_glImportMemoryWin32NameEXT (GLuint memory, GLuint64 size, GLenum handleType, const void * name);
+GLEW_API void GLEW_APIENTRY _glew_gles_glDrawMeshTasksEXT (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z);
+GLEW_API void GLEW_APIENTRY _glew_gles_glDrawMeshTasksIndirectEXT (GLintptr indirect);
+GLEW_API void GLEW_APIENTRY _glew_gles_glMultiDrawMeshTasksIndirectEXT (GLintptr indirect, GLsizei drawcount, GLsizei stride);
+GLEW_API void GLEW_APIENTRY _glew_gles_glMultiDrawMeshTasksIndirectCountEXT (GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
 GLEW_API void GLEW_APIENTRY _glew_gles_glMultiDrawArraysEXT (GLenum mode, const GLint * first, const GLsizei * count, GLsizei primcount);
 GLEW_API void GLEW_APIENTRY _glew_gles_glMultiDrawElementsEXT (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount);
 GLEW_API void GLEW_APIENTRY _glew_gles_glMultiDrawArraysIndirectEXT (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride);
@@ -3205,6 +3221,10 @@ GLEW_API void GLEW_APIENTRY _glew_gles_glEndTilingQCOM (GLbitfield preserveMask)
 #define glImportMemoryFdEXT _glew_gles_glImportMemoryFdEXT
 #define glImportMemoryWin32HandleEXT _glew_gles_glImportMemoryWin32HandleEXT
 #define glImportMemoryWin32NameEXT _glew_gles_glImportMemoryWin32NameEXT
+#define glDrawMeshTasksEXT _glew_gles_glDrawMeshTasksEXT
+#define glDrawMeshTasksIndirectEXT _glew_gles_glDrawMeshTasksIndirectEXT
+#define glMultiDrawMeshTasksIndirectEXT _glew_gles_glMultiDrawMeshTasksIndirectEXT
+#define glMultiDrawMeshTasksIndirectCountEXT _glew_gles_glMultiDrawMeshTasksIndirectCountEXT
 #define glMultiDrawArraysEXT _glew_gles_glMultiDrawArraysEXT
 #define glMultiDrawElementsEXT _glew_gles_glMultiDrawElementsEXT
 #define glMultiDrawArraysIndirectEXT _glew_gles_glMultiDrawArraysIndirectEXT

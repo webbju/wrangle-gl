@@ -450,6 +450,7 @@ enum GLEW_GL_FeatureSet
   GLEW_GL_EXT_memory_object,
   GLEW_GL_EXT_memory_object_fd,
   GLEW_GL_EXT_memory_object_win32,
+  GLEW_GL_EXT_mesh_shader,
   GLEW_GL_EXT_misc_attribute,
   GLEW_GL_EXT_multi_draw_arrays,
   GLEW_GL_EXT_multi_draw_indirect,
@@ -504,6 +505,7 @@ enum GLEW_GL_FeatureSet
   GLEW_GL_EXT_shader_pixel_local_storage2,
   GLEW_GL_EXT_shader_samples_identical,
   GLEW_GL_EXT_shader_texture_lod,
+  GLEW_GL_EXT_shader_texture_samples,
   GLEW_GL_EXT_shadow_funcs,
   GLEW_GL_EXT_shadow_samplers,
   GLEW_GL_EXT_shared_texture_palette,
@@ -577,6 +579,8 @@ enum GLEW_GL_FeatureSet
   GLEW_GL_HP_image_transform,
   GLEW_GL_HP_occlusion_test,
   GLEW_GL_HP_texture_lighting,
+  GLEW_GL_HUAWEI_program_binary,
+  GLEW_GL_HUAWEI_shader_binary,
   GLEW_GL_IBM_cull_vertex,
   GLEW_GL_IBM_multimode_draw_arrays,
   GLEW_GL_IBM_rasterpos_clip,
@@ -619,6 +623,7 @@ enum GLEW_GL_FeatureSet
   GLEW_GL_MESA_framebuffer_flip_x,
   GLEW_GL_MESA_framebuffer_flip_y,
   GLEW_GL_MESA_framebuffer_swap_xy,
+  GLEW_GL_MESA_map_buffer_client_pointer,
   GLEW_GL_MESA_pack_invert,
   GLEW_GL_MESA_program_binary_formats,
   GLEW_GL_MESA_resize_buffers,
@@ -3817,6 +3822,10 @@ typedef void (APIENTRYP PFNGLTEXTURESTORAGEMEM1DEXTPROC) /* glTextureStorageMem1
 typedef void (APIENTRYP PFNGLIMPORTMEMORYFDEXTPROC) /* glImportMemoryFdEXT */ (GLuint memory, GLuint64 size, GLenum handleType, GLint fd);
 typedef void (APIENTRYP PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC) /* glImportMemoryWin32HandleEXT */ (GLuint memory, GLuint64 size, GLenum handleType, void * handle);
 typedef void (APIENTRYP PFNGLIMPORTMEMORYWIN32NAMEEXTPROC) /* glImportMemoryWin32NameEXT */ (GLuint memory, GLuint64 size, GLenum handleType, const void * name);
+typedef void (APIENTRYP PFNGLDRAWMESHTASKSEXTPROC) /* glDrawMeshTasksEXT */ (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z);
+typedef void (APIENTRYP PFNGLDRAWMESHTASKSINDIRECTEXTPROC) /* glDrawMeshTasksIndirectEXT */ (GLintptr indirect);
+typedef void (APIENTRYP PFNGLMULTIDRAWMESHTASKSINDIRECTEXTPROC) /* glMultiDrawMeshTasksIndirectEXT */ (GLintptr indirect, GLsizei drawcount, GLsizei stride);
+typedef void (APIENTRYP PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTEXTPROC) /* glMultiDrawMeshTasksIndirectCountEXT */ (GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
 typedef void (APIENTRYP PFNGLMULTIDRAWARRAYSEXTPROC) /* glMultiDrawArraysEXT */ (GLenum mode, const GLint * first, const GLsizei * count, GLsizei primcount);
 typedef void (APIENTRYP PFNGLMULTIDRAWELEMENTSEXTPROC) /* glMultiDrawElementsEXT */ (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount);
 typedef void (APIENTRYP PFNGLMULTIDRAWARRAYSINDIRECTEXTPROC) /* glMultiDrawArraysIndirectEXT */ (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride);
@@ -4144,6 +4153,8 @@ typedef void (APIENTRYP PFNGLGETNUNIFORMUIVKHRPROC) /* glGetnUniformuivKHR */ (G
 typedef void (APIENTRYP PFNGLMAXSHADERCOMPILERTHREADSKHRPROC) /* glMaxShaderCompilerThreadsKHR */ (GLuint count);
 typedef void (APIENTRYP PFNGLFRAMEBUFFERPARAMETERIMESAPROC) /* glFramebufferParameteriMESA */ (GLenum target, GLenum pname, GLint param);
 typedef void (APIENTRYP PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC) /* glGetFramebufferParameterivMESA */ (GLenum target, GLenum pname, GLint * params);
+typedef void (APIENTRYP PFNGLADDCLIENTPOINTERRANGEMESAPROC) /* glAddClientPointerRangeMESA */ (void * addr, GLsizeiptr size);
+typedef void* (APIENTRYP PFNGLRELEASECLIENTPOINTERRANGEMESAPROC) /* glReleaseClientPointerRangeMESA */ (GLbitfield flags, GLsizeiptr * size);
 typedef void (APIENTRYP PFNGLRESIZEBUFFERSMESAPROC) /* glResizeBuffersMESA */ ();
 typedef void (APIENTRYP PFNGLGENSAMPLERSPROC) /* glGenSamplers */ (GLsizei count, GLuint * samplers);
 typedef void (APIENTRYP PFNGLDELETESAMPLERSPROC) /* glDeleteSamplers */ (GLsizei count, const GLuint * samplers);
@@ -6943,6 +6954,10 @@ namespace glew
       PFNGLIMPORTMEMORYFDEXTPROC m_glImportMemoryFdEXT;
       PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC m_glImportMemoryWin32HandleEXT;
       PFNGLIMPORTMEMORYWIN32NAMEEXTPROC m_glImportMemoryWin32NameEXT;
+      PFNGLDRAWMESHTASKSEXTPROC m_glDrawMeshTasksEXT;
+      PFNGLDRAWMESHTASKSINDIRECTEXTPROC m_glDrawMeshTasksIndirectEXT;
+      PFNGLMULTIDRAWMESHTASKSINDIRECTEXTPROC m_glMultiDrawMeshTasksIndirectEXT;
+      PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTEXTPROC m_glMultiDrawMeshTasksIndirectCountEXT;
       PFNGLMULTIDRAWARRAYSEXTPROC m_glMultiDrawArraysEXT;
       PFNGLMULTIDRAWELEMENTSEXTPROC m_glMultiDrawElementsEXT;
       PFNGLMULTIDRAWARRAYSINDIRECTEXTPROC m_glMultiDrawArraysIndirectEXT;
@@ -7200,6 +7215,8 @@ namespace glew
       PFNGLMAXSHADERCOMPILERTHREADSKHRPROC m_glMaxShaderCompilerThreadsKHR;
       PFNGLFRAMEBUFFERPARAMETERIMESAPROC m_glFramebufferParameteriMESA;
       PFNGLGETFRAMEBUFFERPARAMETERIVMESAPROC m_glGetFramebufferParameterivMESA;
+      PFNGLADDCLIENTPOINTERRANGEMESAPROC m_glAddClientPointerRangeMESA;
+      PFNGLRELEASECLIENTPOINTERRANGEMESAPROC m_glReleaseClientPointerRangeMESA;
       PFNGLRESIZEBUFFERSMESAPROC m_glResizeBuffersMESA;
       PFNGLWINDOWPOS2DMESAPROC m_glWindowPos2dMESA;
       PFNGLWINDOWPOS2DVMESAPROC m_glWindowPos2dvMESA;
@@ -8088,7 +8105,7 @@ namespace glew
       return s_deviceConfig.m_featureSupported [feature];
     }
 
-    static void SetConfig (glew::gl::DeviceConfig &deviceConfig)
+    static void SetConfig (const glew::gl::DeviceConfig &deviceConfig)
     {
       GLEW_ASSERT (s_initialised);
       s_deviceConfig = deviceConfig;
@@ -9896,6 +9913,10 @@ GLEW_API void GLEW_APIENTRY _glew_gl_glTextureStorageMem1DEXT (GLuint texture, G
 GLEW_API void GLEW_APIENTRY _glew_gl_glImportMemoryFdEXT (GLuint memory, GLuint64 size, GLenum handleType, GLint fd);
 GLEW_API void GLEW_APIENTRY _glew_gl_glImportMemoryWin32HandleEXT (GLuint memory, GLuint64 size, GLenum handleType, void * handle);
 GLEW_API void GLEW_APIENTRY _glew_gl_glImportMemoryWin32NameEXT (GLuint memory, GLuint64 size, GLenum handleType, const void * name);
+GLEW_API void GLEW_APIENTRY _glew_gl_glDrawMeshTasksEXT (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z);
+GLEW_API void GLEW_APIENTRY _glew_gl_glDrawMeshTasksIndirectEXT (GLintptr indirect);
+GLEW_API void GLEW_APIENTRY _glew_gl_glMultiDrawMeshTasksIndirectEXT (GLintptr indirect, GLsizei drawcount, GLsizei stride);
+GLEW_API void GLEW_APIENTRY _glew_gl_glMultiDrawMeshTasksIndirectCountEXT (GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
 GLEW_API void GLEW_APIENTRY _glew_gl_glMultiDrawArraysEXT (GLenum mode, const GLint * first, const GLsizei * count, GLsizei primcount);
 GLEW_API void GLEW_APIENTRY _glew_gl_glMultiDrawElementsEXT (GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei primcount);
 GLEW_API void GLEW_APIENTRY _glew_gl_glMultiDrawArraysIndirectEXT (GLenum mode, const void * indirect, GLsizei drawcount, GLsizei stride);
@@ -10153,6 +10174,8 @@ GLEW_API void GLEW_APIENTRY _glew_gl_glGetnUniformuivKHR (GLuint program, GLint 
 GLEW_API void GLEW_APIENTRY _glew_gl_glMaxShaderCompilerThreadsKHR (GLuint count);
 GLEW_API void GLEW_APIENTRY _glew_gl_glFramebufferParameteriMESA (GLenum target, GLenum pname, GLint param);
 GLEW_API void GLEW_APIENTRY _glew_gl_glGetFramebufferParameterivMESA (GLenum target, GLenum pname, GLint * params);
+GLEW_API void GLEW_APIENTRY _glew_gl_glAddClientPointerRangeMESA (void * addr, GLsizeiptr size);
+GLEW_API void* GLEW_APIENTRY _glew_gl_glReleaseClientPointerRangeMESA (GLbitfield flags, GLsizeiptr * size);
 GLEW_API void GLEW_APIENTRY _glew_gl_glResizeBuffersMESA ();
 GLEW_API void GLEW_APIENTRY _glew_gl_glWindowPos2dMESA (GLdouble x, GLdouble y);
 GLEW_API void GLEW_APIENTRY _glew_gl_glWindowPos2dvMESA (const GLdouble * v);
@@ -12804,6 +12827,10 @@ GLEW_API void GLEW_APIENTRY _glew_gl_glReplacementCodeuiTexCoord2fColor4fNormal3
 #define glImportMemoryFdEXT _glew_gl_glImportMemoryFdEXT
 #define glImportMemoryWin32HandleEXT _glew_gl_glImportMemoryWin32HandleEXT
 #define glImportMemoryWin32NameEXT _glew_gl_glImportMemoryWin32NameEXT
+#define glDrawMeshTasksEXT _glew_gl_glDrawMeshTasksEXT
+#define glDrawMeshTasksIndirectEXT _glew_gl_glDrawMeshTasksIndirectEXT
+#define glMultiDrawMeshTasksIndirectEXT _glew_gl_glMultiDrawMeshTasksIndirectEXT
+#define glMultiDrawMeshTasksIndirectCountEXT _glew_gl_glMultiDrawMeshTasksIndirectCountEXT
 #define glMultiDrawArraysEXT _glew_gl_glMultiDrawArraysEXT
 #define glMultiDrawElementsEXT _glew_gl_glMultiDrawElementsEXT
 #define glMultiDrawArraysIndirectEXT _glew_gl_glMultiDrawArraysIndirectEXT
@@ -13061,6 +13088,8 @@ GLEW_API void GLEW_APIENTRY _glew_gl_glReplacementCodeuiTexCoord2fColor4fNormal3
 #define glMaxShaderCompilerThreadsKHR _glew_gl_glMaxShaderCompilerThreadsKHR
 #define glFramebufferParameteriMESA _glew_gl_glFramebufferParameteriMESA
 #define glGetFramebufferParameterivMESA _glew_gl_glGetFramebufferParameterivMESA
+#define glAddClientPointerRangeMESA _glew_gl_glAddClientPointerRangeMESA
+#define glReleaseClientPointerRangeMESA _glew_gl_glReleaseClientPointerRangeMESA
 #define glResizeBuffersMESA _glew_gl_glResizeBuffersMESA
 #define glWindowPos2dMESA _glew_gl_glWindowPos2dMESA
 #define glWindowPos2dvMESA _glew_gl_glWindowPos2dvMESA
