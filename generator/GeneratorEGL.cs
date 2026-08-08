@@ -106,7 +106,7 @@ public class GeneratorEGL : Generator
 
     writer.Write (Environment.NewLine);
 
-    writer.WriteLine (string.Format ("    static void SetConfig (glew::{0}::DeviceConfig &deviceConfig)", m_api[0]));
+    writer.WriteLine (string.Format ("    static void SetConfig (const glew::{0}::DeviceConfig &deviceConfig)", m_api[0]));
 
     writer.WriteLine ("    {");
 
