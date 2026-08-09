@@ -24,14 +24,7 @@ rm -Rf build
 # Generate headers/sources.
 rm -Rf include/GL include/GLES include/GLES2 include/GLES3 include/EGL include/KHR
 rm -f include/wrangle-*.h src/wrangle-*.cpp
-dotnet run --project generator/wrangle-gl-generator.csproj --configuration Debug --framework net9.0 --no-launch-profile
+dotnet run --project generator/wrangle-gl-generator.csproj --configuration Release --no-launch-profile
 
-#BUILD_DIR=build/ninja
-#mkdir -p $BUILD_DIR
-#cmake -S . -B $BUILD_DIR -G "Ninja"
-#cmake --build $BUILD_DIR --config Release
-
-BUILD_DIR=build/vstudio-x64
-mkdir -p $BUILD_DIR
-cmake -S . -B $BUILD_DIR -G "Visual Studio 17 2022" -A x64
-cmake --build $BUILD_DIR --config Release
+cmake --preset windows-vs-msvc-x64
+cmake --build --preset windows-vs-msvc-x64-release

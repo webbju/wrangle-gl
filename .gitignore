@@ -1,6 +1,7 @@
 build/
 bin/
 obj/
+out/
 packages/
 Debug/
 Release/
