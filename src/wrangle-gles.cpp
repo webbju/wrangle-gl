@@ -8483,6 +8483,98 @@ void _glew_gles_glImportMemoryWin32NameEXT (GLuint memory, GLuint64 size, GLenum
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void _glew_gles_glDrawMeshTasksEXT (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_mesh_shader - glDrawMeshTasksEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_mesh_shader] && glesConfig.m_glDrawMeshTasksEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawMeshTasksEXT (num_groups_x, num_groups_y, num_groups_z);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glDrawMeshTasksIndirectEXT (GLintptr indirect)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_mesh_shader - glDrawMeshTasksIndirectEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_mesh_shader] && glesConfig.m_glDrawMeshTasksIndirectEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glDrawMeshTasksIndirectEXT (indirect);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glMultiDrawMeshTasksIndirectEXT (GLintptr indirect, GLsizei drawcount, GLsizei stride)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_mesh_shader - glMultiDrawMeshTasksIndirectEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_mesh_shader] && glesConfig.m_glMultiDrawMeshTasksIndirectEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawMeshTasksIndirectEXT (indirect, drawcount, stride);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void _glew_gles_glMultiDrawMeshTasksIndirectCountEXT (GLintptr indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride)
+{
+  bool prototypeCalled = false;
+  const glew::gles::DeviceConfig &glesConfig = glew::gles::GetConfig ();
+#if GLEW_GL_PRE_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+  // GL_EXT_mesh_shader - glMultiDrawMeshTasksIndirectCountEXT
+  if (!prototypeCalled && glesConfig.m_featureSupported [GLEW_GL_EXT_mesh_shader] && glesConfig.m_glMultiDrawMeshTasksIndirectCountEXT)
+  {
+    prototypeCalled = true;
+    glesConfig.m_glMultiDrawMeshTasksIndirectCountEXT (indirect, drawcount, maxdrawcount, stride);
+  }
+  GLEW_ASSERT (prototypeCalled);
+#if GLEW_GL_POST_ERROR_CHECK
+  GLEW_ASSERT (glGetError () == GL_NO_ERROR);
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void _glew_gles_glMultiDrawArraysEXT (GLenum mode, const GLint * first, const GLsizei * count, GLsizei primcount)
 {
   bool prototypeCalled = false;
@@ -18212,6 +18304,7 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_memory_object] = (supportedExtensions.find ("GL_EXT_memory_object") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_memory_object_fd] = (supportedExtensions.find ("GL_EXT_memory_object_fd") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_memory_object_win32] = (supportedExtensions.find ("GL_EXT_memory_object_win32") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_mesh_shader] = (supportedExtensions.find ("GL_EXT_mesh_shader") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_arrays] = (supportedExtensions.find ("GL_EXT_multi_draw_arrays") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multi_draw_indirect] = (supportedExtensions.find ("GL_EXT_multi_draw_indirect") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_multisampled_compatibility] = (supportedExtensions.find ("GL_EXT_multisampled_compatibility") != supportedExtensions.end ());
@@ -18249,6 +18342,7 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_pixel_local_storage2] = (supportedExtensions.find ("GL_EXT_shader_pixel_local_storage2") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_samples_identical] = (supportedExtensions.find ("GL_EXT_shader_samples_identical") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_texture_lod] = (supportedExtensions.find ("GL_EXT_shader_texture_lod") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shader_texture_samples] = (supportedExtensions.find ("GL_EXT_shader_texture_samples") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_shadow_samplers] = (supportedExtensions.find ("GL_EXT_shadow_samplers") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_sparse_texture] = (supportedExtensions.find ("GL_EXT_sparse_texture") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_sparse_texture2] = (supportedExtensions.find ("GL_EXT_sparse_texture2") != supportedExtensions.end ());
@@ -18284,6 +18378,8 @@ void glew::gles::Initialise ()
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_win32_keyed_mutex] = (supportedExtensions.find ("GL_EXT_win32_keyed_mutex") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_EXT_window_rectangles] = (supportedExtensions.find ("GL_EXT_window_rectangles") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_FJ_shader_binary_GCCSO] = (supportedExtensions.find ("GL_FJ_shader_binary_GCCSO") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_HUAWEI_program_binary] = (supportedExtensions.find ("GL_HUAWEI_program_binary") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_GL_HUAWEI_shader_binary] = (supportedExtensions.find ("GL_HUAWEI_shader_binary") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_IMG_bindless_texture] = (supportedExtensions.find ("GL_IMG_bindless_texture") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_IMG_framebuffer_downsample] = (supportedExtensions.find ("GL_IMG_framebuffer_downsample") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_GL_IMG_multisampled_render_to_texture] = (supportedExtensions.find ("GL_IMG_multisampled_render_to_texture") != supportedExtensions.end ());
@@ -18979,6 +19075,15 @@ void glew::gles::Initialise ()
   {
     s_deviceConfig.m_glImportMemoryWin32HandleEXT = (PFNGLIMPORTMEMORYWIN32HANDLEEXTPROC) glewGetProcAddress ("glImportMemoryWin32HandleEXT");
     s_deviceConfig.m_glImportMemoryWin32NameEXT = (PFNGLIMPORTMEMORYWIN32NAMEEXTPROC) glewGetProcAddress ("glImportMemoryWin32NameEXT");
+  }
+
+  // GL_EXT_mesh_shader
+  if (s_deviceConfig.m_featureSupported [GLEW_GL_EXT_mesh_shader])
+  {
+    s_deviceConfig.m_glDrawMeshTasksEXT = (PFNGLDRAWMESHTASKSEXTPROC) glewGetProcAddress ("glDrawMeshTasksEXT");
+    s_deviceConfig.m_glDrawMeshTasksIndirectEXT = (PFNGLDRAWMESHTASKSINDIRECTEXTPROC) glewGetProcAddress ("glDrawMeshTasksIndirectEXT");
+    s_deviceConfig.m_glMultiDrawMeshTasksIndirectEXT = (PFNGLMULTIDRAWMESHTASKSINDIRECTEXTPROC) glewGetProcAddress ("glMultiDrawMeshTasksIndirectEXT");
+    s_deviceConfig.m_glMultiDrawMeshTasksIndirectCountEXT = (PFNGLMULTIDRAWMESHTASKSINDIRECTCOUNTEXTPROC) glewGetProcAddress ("glMultiDrawMeshTasksIndirectCountEXT");
   }
 
   // GL_EXT_multi_draw_arrays

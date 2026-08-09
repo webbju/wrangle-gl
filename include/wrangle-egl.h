@@ -202,6 +202,7 @@ enum GLEW_EGL_FeatureSet
   GLEW_EGL_QNX_platform_screen,
   GLEW_EGL_QNX_image_native_buffer,
   GLEW_EGL_EXT_display_alloc,
+  GLEW_EGL_EXT_device_type,
   GLEW_EGL_FeatureSetCount
 };
 
@@ -547,7 +548,7 @@ namespace glew
       return s_deviceConfig.m_featureSupported [feature];
     }
 
-    static void SetConfig (glew::egl::DeviceConfig &deviceConfig)
+    static void SetConfig (const glew::egl::DeviceConfig &deviceConfig)
     {
       GLEW_ASSERT (s_initialised);
       s_deviceConfig = deviceConfig;

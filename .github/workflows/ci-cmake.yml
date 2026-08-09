@@ -1,0 +1,17 @@
+name: CI [cmake]
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v7
+      - run: cmake --preset windows-vs-msvc-x64
+      - run: cmake --build --preset windows-vs-msvc-x64-release

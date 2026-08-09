@@ -3767,6 +3767,7 @@ void glew::egl::Initialise (EGLDisplay display)
   s_deviceConfig.m_featureSupported [GLEW_EGL_QNX_platform_screen] = (supportedExtensions.find ("EGL_QNX_platform_screen") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_EGL_QNX_image_native_buffer] = (supportedExtensions.find ("EGL_QNX_image_native_buffer") != supportedExtensions.end ());
   s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_display_alloc] = (supportedExtensions.find ("EGL_EXT_display_alloc") != supportedExtensions.end ());
+  s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_type] = (supportedExtensions.find ("EGL_EXT_device_type") != supportedExtensions.end ());
 
   // EGL_VERSION_1_1
   if (s_deviceConfig.m_featureSupported [GLEW_EGL_VERSION_1_1])

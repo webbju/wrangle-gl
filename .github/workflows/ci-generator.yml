@@ -1,0 +1,39 @@
+name: CI [generator]
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+
+jobs:
+  lint:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./generator
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 9.x
+      - run: dotnet format --verify-no-changes --verbosity diagnostic
+
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./generator
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 9.x
+      - run: dotnet build --configuration Debug
+      - run: dotnet build --configuration Release

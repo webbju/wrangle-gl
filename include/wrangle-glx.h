@@ -395,7 +395,7 @@ namespace glew
       return s_deviceConfig.m_featureSupported [feature];
     }
 
-    static void SetConfig (glew::glx::DeviceConfig &deviceConfig)
+    static void SetConfig (const glew::glx::DeviceConfig &deviceConfig)
     {
       GLEW_ASSERT (s_initialised);
       s_deviceConfig = deviceConfig;
