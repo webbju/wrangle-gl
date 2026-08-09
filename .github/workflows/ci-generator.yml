@@ -15,6 +15,9 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./generator
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-dotnet@v6
@@ -24,6 +27,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./generator
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-dotnet@v6
