@@ -58,11 +58,8 @@ public class GeneratorGL : Generator
 
     writer.Write (Environment.NewLine);
 
-    writer.Write (@"#if defined (_WIN32)
-  #ifndef WIN32_LEAN_AND_MEAN
-    #define WIN32_LEAN_AND_MEAN 1
-    #define _WIN32_LEAN_AND_MEAN 1
-  #endif
+    writer.Write (@"#if defined(_WIN32)
+  #define WIN32_LEAN_AND_MEAN 1
   #include <windows.h>
   #ifndef GLAPI
     #define GLAPI __declspec(dllimport)
@@ -72,10 +69,6 @@ public class GeneratorGL : Generator
   #endif
   #ifndef APIENTRYP
     #define APIENTRYP WINAPI*
-  #endif
-  #ifdef _WIN32_LEAN_AND_MEAN
-    #undef WIN32_LEAN_AND_MEAN
-    #undef _WIN32_LEAN_AND_MEAN
   #endif
 #endif
 

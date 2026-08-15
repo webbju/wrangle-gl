@@ -153,7 +153,6 @@ typedef void GLvoid;
   // Evaluate extension support.
   //
 
-
   std::unordered_set <std::string> supportedExtensions;
 
   const unsigned char *wglExtensions = NULL;

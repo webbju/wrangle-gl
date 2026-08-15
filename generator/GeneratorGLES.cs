@@ -59,7 +59,7 @@ public class GeneratorGLES : Generator
 
     writer.Write (Environment.NewLine);
 
-    writer.Write (@"#if defined (_WIN32)
+    writer.Write (@"#if defined(_WIN32)
 #define GL_APICALL WINGDIAPI
 #define GL_APIENTRY WINAPI
 #define GL_APIENTRYP WINAPI*
