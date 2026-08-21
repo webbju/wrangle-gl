@@ -11,60 +11,30 @@
 #include <wrangle-wgl.h>
 
 #include <cstdio>
+#include <stdarg.h>
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-enum LogLevel
-{
-	LOG_LEVEL_DEBUG = 0,
-	LOG_LEVEL_ERROR = 1,
-};
-
-static void Log(LogLevel level, const char* format, ...)
-{
-  char buffer[1024];
-
-  va_list args;
-  va_start(args, format);
-  vsnprintf(buffer, sizeof(buffer), format, args);
-  va_end(args);
-
-#if WIN32
-  OutputDebugString(buffer);
+#ifdef _MSC_VER
+#define strtok_r strtok_s
 #endif
 
-  switch (level)
-  {
-    case LOG_LEVEL_DEBUG:
-      fputs(buffer, stdout);
-      fflush(stdout);
-      break;
-    case LOG_LEVEL_ERROR:
-      fputs(buffer, stderr);
-      fflush(stderr);
-      break;
-  }
-}
+#define eprintf(...) fprintf(stderr, __VA_ARGS__)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-static void CheckGLError(const bool shouldAssert, const char* file, const int line)
+static GLenum CheckGLError(const bool shouldAssert, const char* file, const int line)
 {
   GLenum err = glGetError();
 
   if (err != GL_NO_ERROR)
   {
-      Log(LOG_LEVEL_ERROR, "[%s:%d] glGetError returned 0x%x\n", file, line, err);
+      eprintf("[%s:%d] glGetError returned 0x%x\n", file, line, err);
   }
 
-  if (shouldAssert)
-  {
-      GLEW_ASSERT(err == GL_NO_ERROR);
-  }
+  GLEW_ASSERT_IF(shouldAssert, err == GL_NO_ERROR);
+
+  return err;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,12 +53,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+int main()
+{
+  // Support a /SUBSYSTEM:CONSOLE application to simplify stdout/stderr output.
+  return WinMain(GetModuleHandle(NULL), NULL, GetCommandLineA(), SW_HIDE);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 int WINAPI WinMain(__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in LPSTR lpCmdLine, __in int nShowCmd)
 {
-  (void) hPrevInstance;
-  (void) lpCmdLine;
-  (void) nShowCmd;
-
   MSG msg = {0};
   WNDCLASS wc = {0};
   wc.lpfnWndProc = WndProc;
@@ -162,7 +138,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       glew::wgl::Initialise();
 
-#if 1 && WGL_ARB_create_context
+#if WGL_ARB_create_context
       const glew::wgl::DeviceConfig &wglConfig = glew::wgl::GetConfig();
 
       if (wglConfig.m_featureSupported [GLEW_WGL_ARB_create_context]
@@ -208,35 +184,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       AssertNoGLErrors();
 
-      const char* vendor = (const char*)glGetString(GL_VENDOR);
+      printf("GL_VENDOR: %s\n", (const char*)glGetString(GL_VENDOR));
+
+      printf("GL_RENDERER: %s\n", (const char *)glGetString(GL_RENDERER));
+
+      printf("GL_VERSION: %s\n", (const char *)glGetString(GL_VERSION));
+
+      printf("GL_SHADING_LANGUAGE_VERSION: %s\n", (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+      printf("GL_EXTENSIONS:\n");
+
+      {
+        int i = 0;
+
+        char* token;
+
+        char* glExtensions = (char*)glGetString(GL_EXTENSIONS);
+
+        while ((token = strtok_r(glExtensions, " ", &glExtensions)))
+        {
+          printf("[%d] %s\n", i++, token);
+        }
+      }
 
       AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "Vendor: %s\n", vendor);
-
-      const char *renderer = (const char *) glGetString (GL_RENDERER);
-
-      AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "Renderer: %s\n", renderer);
-
-      const char *version = (const char *) glGetString (GL_VERSION);
-
-      AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "Version: %s\n", version);
-
-      const char* extensions = (const char*)glGetString(GL_EXTENSIONS);
-
-      AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "Extensions: %s\n", extensions);
-
-      const char* glslVersion = (const char*)glGetString (GL_SHADING_LANGUAGE_VERSION);
-
-      AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "GLSL Version: %s\n", glslVersion);
 
 #if defined(GLEW_USE_OPENGL)
       glew::gl::Deinitialise();

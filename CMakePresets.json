@@ -23,18 +23,22 @@
     {
       "name": "windows-x64",
       "hidden": true,
-      "inherits": "base",
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      },
+      "inherits": "windows-only",
       "architecture": {
         "value": "x64",
         "strategy": "external"
       },
       "toolset": {
         "value": "v143,host=x64",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "linux-x64",
+      "hidden": true,
+      "inherits": "base",
+      "architecture": {
+        "value": "x64",
         "strategy": "external"
       }
     },
@@ -54,11 +58,31 @@
       }
     },
     {
+      "name": "windows-vs-x64",
+      "hidden": true,
+      "inherits": "windows-x64",
+      "generator": "Visual Studio 17 2022"
+    },
+    {
       "name": "windows-vs-msvc-x64",
       "displayName": "Windows VS MSVC x64",
       "description": "Generates Visual Studio solution and project files. Slower build than ninja.",
-      "inherits": "windows-x64",
-      "generator": "Visual Studio 17 2022"
+      "inherits": "windows-vs-x64"
+    },
+    {
+      "name": "linux-ninja-x64",
+      "hidden": true,
+      "inherits": "linux-x64",
+      "generator": "Ninja Multi-Config"
+    },
+    {
+      "name": "linux-ninja-clang-x64",
+      "displayName": "Linux Ninja Clang x64",
+      "inherits": "linux-ninja-x64",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang"
+      }
     }
   ],
   "buildPresets": [
@@ -84,6 +108,18 @@
       "name": "windows-vs-msvc-x64-release",
       "displayName": "Windows VS MSVC x64 Release",
       "configurePreset": "windows-vs-msvc-x64",
+      "configuration": "Release"
+    },
+    {
+      "name": "linux-ninja-clang-x64-debug",
+      "displayName": "Linux Ninja Clang x64 Debug",
+      "configurePreset": "linux-ninja-clang-x64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "linux-ninja-clang-x64-release",
+      "displayName": "Linux Ninja Clang x64 Release",
+      "configurePreset": "linux-ninja-clang-x64",
       "configuration": "Release"
     }
   ]

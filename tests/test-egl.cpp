@@ -11,44 +11,16 @@
 #include <wrangle-egl.h>
 
 #include <cstdio>
+#include <stdarg.h>
 #include <string>
+#include <string.h>
 #include <unordered_set>
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-enum LogLevel
-{
-	LOG_LEVEL_DEBUG = 0,
-	LOG_LEVEL_ERROR = 1,
-};
-
-static void Log(LogLevel level, const char* format, ...)
-{
-  char buffer[1024];
-
-  va_list args;
-  va_start(args, format);
-  vsnprintf(buffer, sizeof(buffer), format, args);
-  va_end(args);
-
-#if WIN32
-  OutputDebugString(buffer);
+#ifdef _MSC_VER
+#define strtok_r strtok_s
 #endif
 
-  switch (level)
-  {
-    case LOG_LEVEL_DEBUG:
-      fputs(buffer, stdout);
-      fflush(stdout);
-      break;
-    case LOG_LEVEL_ERROR:
-      fputs(buffer, stderr);
-      fflush(stderr);
-      break;
-  }
-}
+#define eprintf(...) fprintf(stderr, __VA_ARGS__)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,13 +62,10 @@ static void CheckEGLError(const bool shouldAssert, const char* file, const int l
 
   if (err != EGL_SUCCESS)
   {
-    Log(LOG_LEVEL_ERROR, "[%s:%d] eglGetError returned 0x%x (%s)\n", file, line, err, DescribeEGLError(err));
+    eprintf("[%s:%d] eglGetError returned 0x%x (%s)\n", file, line, err, DescribeEGLError(err));
   }
 
-  if (shouldAssert)
-  {
-    GLEW_ASSERT(err == EGL_SUCCESS);
-  }
+  GLEW_ASSERT_IF(shouldAssert, err == EGL_SUCCESS);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,13 +78,10 @@ static void CheckGLError(const bool shouldAssert, const char* file, const int li
 
   if (err != GL_NO_ERROR)
   {
-      Log(LOG_LEVEL_ERROR, "[%s:%d] glGetError returned 0x%x\n", file, line, err);
+      eprintf("[%s:%d] glGetError returned 0x%x\n", file, line, err);
   }
 
-  if (shouldAssert)
-  {
-      GLEW_ASSERT(err == GL_NO_ERROR);
-  }
+  GLEW_ASSERT_IF(shouldAssert, err == GL_NO_ERROR);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,18 +159,47 @@ static bool SelectBestFitConfig(EGLDisplay display, EGLConfig *bestFitConfig)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#ifndef _WIN32
+typedef unsigned long LPARAM;
+typedef unsigned long LRESULT;
+typedef unsigned long UINT;
+typedef unsigned long WPARAM;
+typedef EGLNativeDisplayType HWND;
+#define CALLBACK
+#define WM_CREATE 0x0001
+#define WM_QUIT 0x0012
+static LRESULT CALLBACK DefWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+  return 0;
+}
+#endif
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+int main()
+{
+#ifdef _WIN32
+  // Support a /SUBSYSTEM:CONSOLE application to simplify stdout/stderr output.
+  return WinMain(GetModuleHandle(NULL), NULL, GetCommandLineA(), SW_HIDE);
+#else
+  HWND hWnd = NULL;
+  WndProc(hWnd, WM_CREATE, 0, 0);
+  WndProc(hWnd, WM_QUIT, 0, 0);
+  return 0;
+#endif
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#ifdef _WIN32
 int WINAPI WinMain(__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in LPSTR lpCmdLine, __in int nShowCmd)
 {
-  (void)hPrevInstance;
-  (void)lpCmdLine;
-  (void)nShowCmd;
-
   MSG msg = { 0 };
   WNDCLASS wc = { 0 };
   wc.lpfnWndProc = WndProc;
@@ -215,18 +210,19 @@ int WINAPI WinMain(__in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, _
 
   if (!RegisterClass(&wc))
   {
-      return 1;
+    return 1;
   }
 
   CreateWindow(wc.lpszClassName, "openglversioncheck", WS_OVERLAPPEDWINDOW | WS_VISIBLE, 0, 0, 640, 480, 0, 0, hInstance, 0);
 
   while (GetMessage(&msg, NULL, 0, 0) > 0)
   {
-      DispatchMessage(&msg);
+    DispatchMessage(&msg);
   }
 
   return 0;
 }
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -238,6 +234,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
   {
     case WM_CREATE:
     {
+      //
+      // Context creation and tear-down.
+      //
+
+#ifdef _WIN32
       PIXELFORMATDESCRIPTOR pfd =
       {
         sizeof(PIXELFORMATDESCRIPTOR),
@@ -262,11 +263,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       int windowsPixelFormat = ChoosePixelFormat(deviceContext, &pfd);
 
-      SetPixelFormat(deviceContext, windowsPixelFormat, &pfd);
+      bool success = SetPixelFormat(deviceContext, windowsPixelFormat, &pfd);
 
-      EGLBoolean success = EGL_FALSE;
+      GLEW_ASSERT(success);
 
       EGLDisplay display = eglGetDisplay((EGLNativeDisplayType)deviceContext);
+#else
+      EGLDisplay display = EGL_NO_DISPLAY;
+
+      EGLBoolean success = EGL_FALSE;
+#endif
 
       if (display == EGL_NO_DISPLAY)
       {
@@ -283,42 +289,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       GLEW_ASSERT(success == EGL_TRUE);
 
-      const char* eglVendor = (const char*)eglQueryString(display, EGL_VENDOR);
+      char* eglClientApis = (char*)eglQueryString(display, EGL_CLIENT_APIS);
 
       AssertNoEGLErrors();
 
-      Log(LOG_LEVEL_DEBUG, "EGL Vendor: %s\n", eglVendor);
-
-      const char* eglVersion = (const char*)eglQueryString(display, EGL_VERSION);
-
-      AssertNoEGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "EGL Version: %s\n", eglVersion);
-
-      const char* eglExtensions = (const char*)eglQueryString(display, EGL_EXTENSIONS);
-
-      AssertNoEGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "EGL Extensions: %s\n", eglExtensions);
-
-      const char* eglClientApis = (const char*)eglQueryString(display, EGL_CLIENT_APIS);
-
-      AssertNoEGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "EGL Client APIs: %s\n", eglClientApis);
+      printf("EGL_CLIENT_APIS:\n");
 
       {
         std::unordered_set <std::string> supportedClientApis;
 
-        char* token = strtok((char*)eglClientApis, " ");
+        int i = 0;
 
-        while (token)
+        char* token;
+
+        while ((token = strtok_r(eglClientApis, " ", &eglClientApis)))
         {
+          printf("[%d] %s\n", i++, token);
+
           std::string thisApi(token);
 
           supportedClientApis.insert(thisApi);
-
-          token = strtok(NULL, " ");
         }
 
 #if defined(GLEW_USE_OPENGL)
@@ -329,11 +319,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         if (supportedClientApis.find(targetClientApi) == supportedClientApis.end())
         {
-          Log(LOG_LEVEL_ERROR, "EGL Client API \"%s\" is not supported. Exiting early.\n", targetClientApi);
+          eprintf("\"%s\" is not supported. Exiting early.\n", targetClientApi);
+#ifdef _WIN32
+          PostQuitMessage(1);
+#endif
+          return 1;
+        }
+      }
 
-          PostQuitMessage(0);
+      const char* eglVendor = (const char*)eglQueryString(display, EGL_VENDOR);
 
-          return 0;
+      AssertNoEGLErrors();
+
+      printf("EGL_VENDOR: %s\n", eglVendor);
+
+      const char* eglVersion = (const char*)eglQueryString(display, EGL_VERSION);
+
+      AssertNoEGLErrors();
+
+      printf("EGL_VERSION: %s\n", eglVersion);
+
+      char* eglExtensions = (char*)eglQueryString(display, EGL_EXTENSIONS);
+
+      AssertNoEGLErrors();
+
+      printf("EGL_EXTENSIONS:\n");
+
+      {
+        int i = 0;
+
+        char* token;
+
+        while ((token = strtok_r(eglExtensions, " ", &eglExtensions)))
+        {
+          printf("[%d] %s\n", i++, token);
         }
       }
 
@@ -341,10 +360,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       AssertNoEGLErrors();
 
+      printf("GLEW_EGL_VERSION_1_0: %d\n", glew::egl::IsSupported(GLEW_EGL_VERSION_1_0));
+      printf("GLEW_EGL_VERSION_1_1: %d\n", glew::egl::IsSupported(GLEW_EGL_VERSION_1_1));
+      printf("GLEW_EGL_VERSION_1_2: %d\n", glew::egl::IsSupported(GLEW_EGL_VERSION_1_2));
+      printf("GLEW_EGL_VERSION_1_3: %d\n", glew::egl::IsSupported(GLEW_EGL_VERSION_1_3));
+      printf("GLEW_EGL_VERSION_1_4: %d\n", glew::egl::IsSupported(GLEW_EGL_VERSION_1_4));
+      printf("GLEW_EGL_VERSION_1_5: %d\n", glew::egl::IsSupported(GLEW_EGL_VERSION_1_5));
+
 #if defined(GLEW_USE_OPENGL)
       success = eglBindAPI(EGL_OPENGL_API);
 #elif defined(GLEW_USE_OPENGL_ES)
       success = eglBindAPI(EGL_OPENGL_ES_API);
+#else
+      success = EGL_FALSE;
 #endif
 
       AssertNoEGLErrors();
@@ -361,9 +389,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       EGLint surfaceType;
 
-      eglGetConfigAttrib(display, config, EGL_SURFACE_TYPE, &surfaceType);
+      success = eglGetConfigAttrib(display, config, EGL_SURFACE_TYPE, &surfaceType);
 
       AssertNoEGLErrors();
+
+      GLEW_ASSERT(success == EGL_TRUE);
 
       if (surfaceType & EGL_PBUFFER_BIT)
       {
@@ -386,7 +416,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             eglGetError(); // Clear error
 
-            surface = eglCreateWindowSurface(display, config, NULL, NULL);
+            surface = eglCreateWindowSurface(display, config, EGL_CAST(EGLNativeWindowType,0), NULL);
         }
 
         AssertNoEGLErrors();
@@ -416,35 +446,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       AssertNoGLErrors();
 
-      const char* glVendor = (const char*)glGetString(GL_VENDOR);
+      printf("GL_VENDOR: %s\n", (const char*)glGetString(GL_VENDOR));
+
+      printf("GL_RENDERER: %s\n", (const char *) glGetString(GL_RENDERER));
+
+      printf("GL_VERSION: %s\n", (const char*)glGetString(GL_VERSION));
+
+      printf("GL_SHADING_LANGUAGE_VERSION: %s\n", (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+      printf("GL_EXTENSIONS:\n");
+
+      {
+        int i = 0;
+
+        char* token;
+
+        char* glExtensions = (char*)glGetString(GL_EXTENSIONS);
+
+        while ((token = strtok_r(glExtensions, " ", &glExtensions)))
+        {
+          printf("[%d] %s\n", i++, token);
+        }
+      }
 
       AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "Vendor: %s\n", glVendor);
-
-      const char* glRenderer = (const char*)glGetString(GL_RENDERER);
-
-      AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "Renderer: %s\n", glRenderer);
-
-      const char* glVersion = (const char*)glGetString(GL_VERSION);
-
-      AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "Version: %s\n", glVersion);
-
-      const char* glExtensions = (const char*)glGetString(GL_EXTENSIONS);
-
-      AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "Extensions: %s\n", glExtensions);
-
-      const char* glslVersion = (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
-
-      AssertNoGLErrors();
-
-      Log(LOG_LEVEL_DEBUG, "GLSL Version: %s\n", glslVersion);
 
 #if defined(GLEW_USE_OPENGL)
       glew::gl::Deinitialise();
@@ -460,7 +485,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
       glew::egl::Deinitialise();
 
+#ifdef _WIN32
       PostQuitMessage(0);
+#endif
 
       break;
     }

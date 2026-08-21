@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.30)
+cmake_minimum_required (VERSION 3.28)
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -46,7 +46,6 @@ endif()
 # egl_glcore
 
 add_executable (egl_glcore
-  WIN32
   "include/wrangle-gl.h"
   "include/wrangle-egl.h"
   "src/wrangle-gl.cpp"
@@ -58,14 +57,18 @@ target_compile_options (egl_glcore
   PUBLIC "-DGLEW_USE_OPENGL")
 
 target_link_libraries (egl_glcore
-    "${OPENGL_egl_LIBRARY}")
+    "${OPENGL_egl_LIBRARY}"
+    "${OPENGL_opengl_LIBRARY}")
+
+if(LINUX)
+target_link_libraries (egl_glcore dl stdc++)
+endif()
 
 add_test(NAME run_egl_glcore COMMAND $<TARGET_FILE:egl_glcore>)
 
 # egl_gles
 
 add_executable (egl_gles
-  WIN32
   "include/wrangle-egl.h"
   "include/wrangle-gles.h"
   "src/wrangle-egl.cpp"
@@ -81,7 +84,7 @@ target_link_libraries (egl_gles
     "${OPENGL_opengl_LIBRARY}")
 
 if(LINUX)
-target_link_libraries (egl_gles dl)
+target_link_libraries (egl_gles dl stdc++)
 endif()
 
 add_test(NAME run_egl_gles COMMAND $<TARGET_FILE:egl_gles>)
@@ -91,7 +94,6 @@ add_test(NAME run_egl_gles COMMAND $<TARGET_FILE:egl_gles>)
 if(WIN32)
 
 add_executable (wgl_glcore
-  WIN32
   "include/wrangle-gl.h"
   "include/wrangle-wgl.h"
   "src/wrangle-gl.cpp"
@@ -112,7 +114,6 @@ endif()
 if(WIN32)
 
 add_executable (wgl_gles
-  WIN32
   "include/wrangle-wgl.h"
   "include/wrangle-gles.h"
   "src/wrangle-wgl.cpp"

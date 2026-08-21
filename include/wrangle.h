@@ -9,17 +9,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if defined (_WIN32)
-  #ifndef WIN32_LEAN_AND_MEAN
-    #define WIN32_LEAN_AND_MEAN 1
-    #define _WIN32_LEAN_AND_MEAN 1
-  #endif
+#if defined(_WIN32)
+  #define WIN32_LEAN_AND_MEAN 1
   #include <windows.h>
   #pragma comment (lib, "opengl32.lib")
-  #ifdef _WIN32_LEAN_AND_MEAN
-    #undef WIN32_LEAN_AND_MEAN
-    #undef _WIN32_LEAN_AND_MEAN
-  #endif
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,59 +44,32 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if GLEW_USE_WGL
-  #if !defined (GLEW_USE_WGL)
-    #define GLEW_USE_WGL 1
-  #endif
   GLEW_EXTERN WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
   #undef wglUseFontBitmaps
   #undef wglUseFontOutlines
-  #if !defined (glewGetProcAddress)
-    #define glewGetProcAddress(proc) wglGetProcAddress((LPCSTR)proc)
-  #endif
 #elif GLEW_USE_EGL
-  #if !defined (GLEW_USE_EGL)
-    #define GLEW_USE_EGL 1
-  #endif
   #include <EGL/egl.h>
-  #define EGL_SHARED_LIBRARY "libEGL.so"
-  GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char *procname);
-  #if !defined (glewGetProcAddress)
-  #define glewGetProcAddress(proc) _eglGetProcAddress((const char *)proc)
-  #endif
-#elif defined(__APPLE__)
-  #include "TargetConditionals.h"
-  #define OPENGL_FRAMEWORK "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
-  #define OPENGL_ES_FRAMEWORK "/System/Library/Frameworks/OpenGLES.framework/OpenGLES"
-  #if !defined (glewGetProcAddress)
-    #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_ES_FRAMEWORK,(const char *)proc)
-    #elif TARGET_OS_MAC
-      #define glewGetProcAddress(proc) dlGetProcAddress(OPENGL_FRAMEWORK,(const char *)proc)
-    #else
-      #error Unrecognised Apple target.
-    #endif
-  #endif
-#endif
-
-#if !defined (glewGetProcAddress)
-#error glewGetProcAddress definition required.
+  GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char * procname);
+  static __eglMustCastToProperFunctionPointerType EGLAPIENTRY glewGetProcAddress (const char *procname);
+#else
+  #error "Platform not recognized"
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if defined(__APPLE__) || defined(__linux__)
+#if defined(__linux__)
 #include <dlfcn.h>
 static void *dlGetProcAddress (const char *library, const char *symbol)
 {
-  static void *image = NULL;
-  void *addr = NULL;
-  if (image == NULL)
+  static void *image = nullptr;
+  void *addr = nullptr;
+  if (image == nullptr)
   {
     image = dlopen (library, RTLD_LAZY);
   }
-  if (image != NULL)
+  if (image != nullptr)
   {
     addr = dlsym (image, symbol);
   }
@@ -116,9 +82,9 @@ static void *dlGetProcAddress (const char *library, const char *symbol)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if GLEW_USE_EGL
-static __eglMustCastToProperFunctionPointerType EGLAPIENTRY _eglGetProcAddress (const char *procname)
+static __eglMustCastToProperFunctionPointerType EGLAPIENTRY glewGetProcAddress (const char *procname)
 {
-  __eglMustCastToProperFunctionPointerType fp = NULL;
+  __eglMustCastToProperFunctionPointerType fp = nullptr;
 
   if (procname && !fp)
   {
@@ -130,13 +96,30 @@ static __eglMustCastToProperFunctionPointerType EGLAPIENTRY _eglGetProcAddress (
   // It seems this is isolated to early PowerVR and Mali drivers, but we workaround it by probing the EGL library directly.
   //
 
-#if defined(__APPLE__) || defined(__linux__)
+#if defined(__linux__)
+  const char* EGL_SHARED_LIBRARY = "libEGL.so";
+
   if (procname && !fp && (procname[0] == 'e' && procname[1] == 'g' && procname[2] == 'l'))
   {
     fp = (__eglMustCastToProperFunctionPointerType) dlGetProcAddress (EGL_SHARED_LIBRARY, procname);
   }
 #endif
 
+  return fp;
+}
+#endif
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#if GLEW_USE_WGL
+static PROC glewGetProcAddress (const char *procname)
+{
+  PROC fp = nullptr;
+
+  fp = wglGetProcAddress(procname);
+  
   return fp;
 }
 #endif
@@ -157,30 +140,34 @@ static __eglMustCastToProperFunctionPointerType EGLAPIENTRY _eglGetProcAddress (
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#if !defined(GLEW_ASSERT) && (defined(_DEBUG) || defined(DEBUG))
-#if defined(__GNUC__) || defined(__clang__)
-#define GLEW_ASSERT(X) if(!(X)) { __builtin_trap (); }
-#elif defined(_MSC_VER)
-#define GLEW_ASSERT(X) if(!(X)) { __debugbreak (); }
-#endif
-#endif
-
 #if !defined(GLEW_ASSERT)
-#if WIN32
-#define GLEW_ASSERT(X) \
-  do { \
-  __pragma(warning(push)) \
-  __pragma(warning (disable:4127)) \
-    (void)(true ? 0 : ((X), void(), 0)); \
-  } while (0) \
-  __pragma(warning(pop))
-#else
-#define GLEW_ASSERT(X) \
-  do { \
-    (void)(true ? 0 : ((X), void(), 0)); \
-  } while (0)
-#endif
-#endif
+  #if defined(__GNUC__) || defined(__clang__)
+    #if defined(_DEBUG) || defined(DEBUG)
+      #define GLEW_ASSERT(X) if(!(X)) { __builtin_trap (); }
+    #else
+      #define GLEW_ASSERT(X) \
+        do { \
+          (void)(true ? 0 : ((X), void(), 0)); \
+        } while (0)
+    #endif
+  #elif defined(_MSC_VER)
+    #if defined(_DEBUG) || defined(DEBUG)
+      #define GLEW_ASSERT(X) if(!(X)) { __debugbreak (); }
+    #else
+      #define GLEW_ASSERT(X) \
+        do { \
+        __pragma(warning(push)) \
+        __pragma(warning (disable:4127)) \
+          (void)(true ? 0 : ((X), void(), 0)); \
+        } while (0) \
+        __pragma(warning(pop))
+    #endif
+  #else
+    #error "Platform not recognized"
+  #endif
+#endif // !defined(GLEW_ASSERT)
+
+#define GLEW_ASSERT_IF(C,X) if(C) GLEW_ASSERT(X)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
