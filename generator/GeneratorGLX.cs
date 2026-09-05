@@ -3,10 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace wrangle_gl_generator;
 
@@ -16,7 +13,8 @@ namespace wrangle_gl_generator;
 
 public class GeneratorGLX : Generator
 {
-  private static readonly string[][] apiSpec = [
+  private static readonly string[][] apiSpec =
+  [
     ["glx", "1.0"]
   ];
 
@@ -46,8 +44,6 @@ public class GeneratorGLX : Generator
     WriteCommentDivider (writer);
 
     writer.Write (Environment.NewLine);
-
-    writer.WriteLine ("#include <wrangle.h>");
 
     writer.WriteLine ("#include <GL/glx.h>");
 

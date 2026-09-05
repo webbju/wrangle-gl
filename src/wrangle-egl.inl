@@ -7,8 +7,8 @@ EGLBoolean _glew_egl_eglBindTexImage (EGLDisplay dpy, EGLSurface surface, EGLint
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_1 - eglBindTexImage
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_1] && eglConfig.m_eglBindTexImage)
@@ -17,8 +17,8 @@ EGLBoolean _glew_egl_eglBindTexImage (EGLDisplay dpy, EGLSurface surface, EGLint
     result = eglConfig.m_eglBindTexImage (dpy, surface, buffer);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -32,8 +32,8 @@ EGLBoolean _glew_egl_eglReleaseTexImage (EGLDisplay dpy, EGLSurface surface, EGL
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_1 - eglReleaseTexImage
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_1] && eglConfig.m_eglReleaseTexImage)
@@ -42,8 +42,8 @@ EGLBoolean _glew_egl_eglReleaseTexImage (EGLDisplay dpy, EGLSurface surface, EGL
     result = eglConfig.m_eglReleaseTexImage (dpy, surface, buffer);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -57,8 +57,8 @@ EGLBoolean _glew_egl_eglSurfaceAttrib (EGLDisplay dpy, EGLSurface surface, EGLin
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_1 - eglSurfaceAttrib
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_1] && eglConfig.m_eglSurfaceAttrib)
@@ -67,8 +67,8 @@ EGLBoolean _glew_egl_eglSurfaceAttrib (EGLDisplay dpy, EGLSurface surface, EGLin
     result = eglConfig.m_eglSurfaceAttrib (dpy, surface, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -82,8 +82,8 @@ EGLBoolean _glew_egl_eglSwapInterval (EGLDisplay dpy, EGLint interval)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_1 - eglSwapInterval
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_1] && eglConfig.m_eglSwapInterval)
@@ -92,8 +92,8 @@ EGLBoolean _glew_egl_eglSwapInterval (EGLDisplay dpy, EGLint interval)
     result = eglConfig.m_eglSwapInterval (dpy, interval);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -107,8 +107,8 @@ EGLBoolean _glew_egl_eglBindAPI (EGLenum api)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_2 - eglBindAPI
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_2] && eglConfig.m_eglBindAPI)
@@ -117,8 +117,8 @@ EGLBoolean _glew_egl_eglBindAPI (EGLenum api)
     result = eglConfig.m_eglBindAPI (api);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -132,8 +132,8 @@ EGLenum _glew_egl_eglQueryAPI ()
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLenum result = ((EGLenum)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_2 - eglQueryAPI
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_2] && eglConfig.m_eglQueryAPI)
@@ -142,8 +142,8 @@ EGLenum _glew_egl_eglQueryAPI ()
     result = eglConfig.m_eglQueryAPI ();
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -157,8 +157,8 @@ EGLSurface _glew_egl_eglCreatePbufferFromClientBuffer (EGLDisplay dpy, EGLenum b
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSurface result = ((EGLSurface)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_2 - eglCreatePbufferFromClientBuffer
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_2] && eglConfig.m_eglCreatePbufferFromClientBuffer)
@@ -167,8 +167,8 @@ EGLSurface _glew_egl_eglCreatePbufferFromClientBuffer (EGLDisplay dpy, EGLenum b
     result = eglConfig.m_eglCreatePbufferFromClientBuffer (dpy, buftype, buffer, config, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -182,8 +182,8 @@ EGLBoolean _glew_egl_eglReleaseThread ()
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_2 - eglReleaseThread
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_2] && eglConfig.m_eglReleaseThread)
@@ -192,8 +192,8 @@ EGLBoolean _glew_egl_eglReleaseThread ()
     result = eglConfig.m_eglReleaseThread ();
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -207,8 +207,8 @@ EGLBoolean _glew_egl_eglWaitClient ()
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_2 - eglWaitClient
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_2] && eglConfig.m_eglWaitClient)
@@ -217,8 +217,8 @@ EGLBoolean _glew_egl_eglWaitClient ()
     result = eglConfig.m_eglWaitClient ();
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -232,8 +232,8 @@ EGLContext _glew_egl_eglGetCurrentContext ()
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLContext result = ((EGLContext)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_4 - eglGetCurrentContext
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_4] && eglConfig.m_eglGetCurrentContext)
@@ -242,8 +242,8 @@ EGLContext _glew_egl_eglGetCurrentContext ()
     result = eglConfig.m_eglGetCurrentContext ();
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -257,8 +257,8 @@ EGLSync _glew_egl_eglCreateSync (EGLDisplay dpy, EGLenum type, const EGLAttrib *
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSync result = ((EGLSync)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglCreateSync
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglCreateSync)
@@ -273,8 +273,8 @@ EGLSync _glew_egl_eglCreateSync (EGLDisplay dpy, EGLenum type, const EGLAttrib *
     result = eglConfig.m_eglCreateSync64KHR (dpy, type, (const EGLAttribKHR *) attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -288,8 +288,8 @@ EGLBoolean _glew_egl_eglDestroySync (EGLDisplay dpy, EGLSync sync)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglDestroySync
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglDestroySync)
@@ -304,8 +304,8 @@ EGLBoolean _glew_egl_eglDestroySync (EGLDisplay dpy, EGLSync sync)
     result = eglConfig.m_eglDestroySyncKHR (dpy, (EGLSyncKHR) sync);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -319,8 +319,8 @@ EGLint _glew_egl_eglClientWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags, 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLint result = ((EGLint)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglClientWaitSync
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglClientWaitSync)
@@ -335,8 +335,8 @@ EGLint _glew_egl_eglClientWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags, 
     result = eglConfig.m_eglClientWaitSyncKHR (dpy, (EGLSyncKHR) sync, flags, (EGLTimeKHR) timeout);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -350,8 +350,8 @@ EGLBoolean _glew_egl_eglGetSyncAttrib (EGLDisplay dpy, EGLSync sync, EGLint attr
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglGetSyncAttrib
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglGetSyncAttrib)
@@ -360,8 +360,8 @@ EGLBoolean _glew_egl_eglGetSyncAttrib (EGLDisplay dpy, EGLSync sync, EGLint attr
     result = eglConfig.m_eglGetSyncAttrib (dpy, sync, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -375,8 +375,8 @@ EGLImage _glew_egl_eglCreateImage (EGLDisplay dpy, EGLContext ctx, EGLenum targe
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLImage result = ((EGLImage)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglCreateImage
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglCreateImage)
@@ -385,8 +385,8 @@ EGLImage _glew_egl_eglCreateImage (EGLDisplay dpy, EGLContext ctx, EGLenum targe
     result = eglConfig.m_eglCreateImage (dpy, ctx, target, buffer, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -400,8 +400,8 @@ EGLBoolean _glew_egl_eglDestroyImage (EGLDisplay dpy, EGLImage image)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglDestroyImage
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglDestroyImage)
@@ -416,8 +416,8 @@ EGLBoolean _glew_egl_eglDestroyImage (EGLDisplay dpy, EGLImage image)
     result = eglConfig.m_eglDestroyImageKHR (dpy, (EGLImageKHR) image);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -431,8 +431,8 @@ EGLDisplay _glew_egl_eglGetPlatformDisplay (EGLenum platform, void * native_disp
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLDisplay result = ((EGLDisplay)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglGetPlatformDisplay
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglGetPlatformDisplay)
@@ -441,8 +441,8 @@ EGLDisplay _glew_egl_eglGetPlatformDisplay (EGLenum platform, void * native_disp
     result = eglConfig.m_eglGetPlatformDisplay (platform, native_display, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -456,8 +456,8 @@ EGLSurface _glew_egl_eglCreatePlatformWindowSurface (EGLDisplay dpy, EGLConfig c
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSurface result = ((EGLSurface)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglCreatePlatformWindowSurface
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglCreatePlatformWindowSurface)
@@ -466,8 +466,8 @@ EGLSurface _glew_egl_eglCreatePlatformWindowSurface (EGLDisplay dpy, EGLConfig c
     result = eglConfig.m_eglCreatePlatformWindowSurface (dpy, config, native_window, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -481,8 +481,8 @@ EGLSurface _glew_egl_eglCreatePlatformPixmapSurface (EGLDisplay dpy, EGLConfig c
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSurface result = ((EGLSurface)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglCreatePlatformPixmapSurface
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglCreatePlatformPixmapSurface)
@@ -491,8 +491,8 @@ EGLSurface _glew_egl_eglCreatePlatformPixmapSurface (EGLDisplay dpy, EGLConfig c
     result = eglConfig.m_eglCreatePlatformPixmapSurface (dpy, config, native_pixmap, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -506,8 +506,8 @@ EGLBoolean _glew_egl_eglWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_VERSION_1_5 - eglWaitSync
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_VERSION_1_5] && eglConfig.m_eglWaitSync)
@@ -516,8 +516,8 @@ EGLBoolean _glew_egl_eglWaitSync (EGLDisplay dpy, EGLSync sync, EGLint flags)
     result = eglConfig.m_eglWaitSync (dpy, sync, flags);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -530,8 +530,8 @@ void _glew_egl_eglSetBlobCacheFuncsANDROID (EGLDisplay dpy, EGLSetBlobFuncANDROI
 {
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_blob_cache - eglSetBlobCacheFuncsANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_blob_cache] && eglConfig.m_eglSetBlobCacheFuncsANDROID)
@@ -540,8 +540,8 @@ void _glew_egl_eglSetBlobCacheFuncsANDROID (EGLDisplay dpy, EGLSetBlobFuncANDROI
     eglConfig.m_eglSetBlobCacheFuncsANDROID (dpy, set, get);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
 }
 
@@ -554,8 +554,8 @@ EGLClientBuffer _glew_egl_eglCreateNativeClientBufferANDROID (const EGLint * att
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLClientBuffer result = ((EGLClientBuffer)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_create_native_client_buffer - eglCreateNativeClientBufferANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_create_native_client_buffer] && eglConfig.m_eglCreateNativeClientBufferANDROID)
@@ -564,8 +564,8 @@ EGLClientBuffer _glew_egl_eglCreateNativeClientBufferANDROID (const EGLint * att
     result = eglConfig.m_eglCreateNativeClientBufferANDROID (attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -579,8 +579,8 @@ EGLClientBuffer _glew_egl_eglGetNativeClientBufferANDROID (const struct AHardwar
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLClientBuffer result = ((EGLClientBuffer)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_get_native_client_buffer - eglGetNativeClientBufferANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_get_native_client_buffer] && eglConfig.m_eglGetNativeClientBufferANDROID)
@@ -589,8 +589,8 @@ EGLClientBuffer _glew_egl_eglGetNativeClientBufferANDROID (const struct AHardwar
     result = eglConfig.m_eglGetNativeClientBufferANDROID (buffer);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -604,8 +604,8 @@ EGLint _glew_egl_eglDupNativeFenceFDANDROID (EGLDisplay dpy, EGLSyncKHR sync)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLint result = ((EGLint)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_native_fence_sync - eglDupNativeFenceFDANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_native_fence_sync] && eglConfig.m_eglDupNativeFenceFDANDROID)
@@ -614,8 +614,8 @@ EGLint _glew_egl_eglDupNativeFenceFDANDROID (EGLDisplay dpy, EGLSyncKHR sync)
     result = eglConfig.m_eglDupNativeFenceFDANDROID (dpy, sync);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -629,8 +629,8 @@ EGLBoolean _glew_egl_eglPresentationTimeANDROID (EGLDisplay dpy, EGLSurface surf
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_presentation_time - eglPresentationTimeANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_presentation_time] && eglConfig.m_eglPresentationTimeANDROID)
@@ -639,8 +639,8 @@ EGLBoolean _glew_egl_eglPresentationTimeANDROID (EGLDisplay dpy, EGLSurface surf
     result = eglConfig.m_eglPresentationTimeANDROID (dpy, surface, time);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -654,8 +654,8 @@ EGLBoolean _glew_egl_eglGetCompositorTimingSupportedANDROID (EGLDisplay dpy, EGL
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_get_frame_timestamps - eglGetCompositorTimingSupportedANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_get_frame_timestamps] && eglConfig.m_eglGetCompositorTimingSupportedANDROID)
@@ -664,8 +664,8 @@ EGLBoolean _glew_egl_eglGetCompositorTimingSupportedANDROID (EGLDisplay dpy, EGL
     result = eglConfig.m_eglGetCompositorTimingSupportedANDROID (dpy, surface, name);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -679,8 +679,8 @@ EGLBoolean _glew_egl_eglGetCompositorTimingANDROID (EGLDisplay dpy, EGLSurface s
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_get_frame_timestamps - eglGetCompositorTimingANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_get_frame_timestamps] && eglConfig.m_eglGetCompositorTimingANDROID)
@@ -689,8 +689,8 @@ EGLBoolean _glew_egl_eglGetCompositorTimingANDROID (EGLDisplay dpy, EGLSurface s
     result = eglConfig.m_eglGetCompositorTimingANDROID (dpy, surface, numTimestamps, names, values);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -704,8 +704,8 @@ EGLBoolean _glew_egl_eglGetNextFrameIdANDROID (EGLDisplay dpy, EGLSurface surfac
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_get_frame_timestamps - eglGetNextFrameIdANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_get_frame_timestamps] && eglConfig.m_eglGetNextFrameIdANDROID)
@@ -714,8 +714,8 @@ EGLBoolean _glew_egl_eglGetNextFrameIdANDROID (EGLDisplay dpy, EGLSurface surfac
     result = eglConfig.m_eglGetNextFrameIdANDROID (dpy, surface, frameId);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -729,8 +729,8 @@ EGLBoolean _glew_egl_eglGetFrameTimestampSupportedANDROID (EGLDisplay dpy, EGLSu
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_get_frame_timestamps - eglGetFrameTimestampSupportedANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_get_frame_timestamps] && eglConfig.m_eglGetFrameTimestampSupportedANDROID)
@@ -739,8 +739,8 @@ EGLBoolean _glew_egl_eglGetFrameTimestampSupportedANDROID (EGLDisplay dpy, EGLSu
     result = eglConfig.m_eglGetFrameTimestampSupportedANDROID (dpy, surface, timestamp);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -754,8 +754,8 @@ EGLBoolean _glew_egl_eglGetFrameTimestampsANDROID (EGLDisplay dpy, EGLSurface su
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANDROID_get_frame_timestamps - eglGetFrameTimestampsANDROID
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANDROID_get_frame_timestamps] && eglConfig.m_eglGetFrameTimestampsANDROID)
@@ -764,8 +764,8 @@ EGLBoolean _glew_egl_eglGetFrameTimestampsANDROID (EGLDisplay dpy, EGLSurface su
     result = eglConfig.m_eglGetFrameTimestampsANDROID (dpy, surface, frameId, numTimestamps, timestamps, values);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -779,8 +779,8 @@ EGLBoolean _glew_egl_eglQuerySurfacePointerANGLE (EGLDisplay dpy, EGLSurface sur
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANGLE_query_surface_pointer - eglQuerySurfacePointerANGLE
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANGLE_query_surface_pointer] && eglConfig.m_eglQuerySurfacePointerANGLE)
@@ -789,8 +789,8 @@ EGLBoolean _glew_egl_eglQuerySurfacePointerANGLE (EGLDisplay dpy, EGLSurface sur
     result = eglConfig.m_eglQuerySurfacePointerANGLE (dpy, surface, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -804,8 +804,8 @@ EGLBoolean _glew_egl_eglGetMscRateANGLE (EGLDisplay dpy, EGLSurface surface, EGL
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_ANGLE_sync_control_rate - eglGetMscRateANGLE
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_ANGLE_sync_control_rate] && eglConfig.m_eglGetMscRateANGLE)
@@ -814,8 +814,8 @@ EGLBoolean _glew_egl_eglGetMscRateANGLE (EGLDisplay dpy, EGLSurface surface, EGL
     result = eglConfig.m_eglGetMscRateANGLE (dpy, surface, numerator, denominator);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -829,8 +829,8 @@ EGLBoolean _glew_egl_eglClientSignalSyncEXT (EGLDisplay dpy, EGLSync sync, const
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_client_sync - eglClientSignalSyncEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_client_sync] && eglConfig.m_eglClientSignalSyncEXT)
@@ -839,8 +839,8 @@ EGLBoolean _glew_egl_eglClientSignalSyncEXT (EGLDisplay dpy, EGLSync sync, const
     result = eglConfig.m_eglClientSignalSyncEXT (dpy, sync, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -854,8 +854,8 @@ EGLBoolean _glew_egl_eglQueryDeviceAttribEXT (EGLDeviceEXT device, EGLint attrib
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_device_base - eglQueryDeviceAttribEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_device_base] && eglConfig.m_eglQueryDeviceAttribEXT)
@@ -870,8 +870,8 @@ EGLBoolean _glew_egl_eglQueryDeviceAttribEXT (EGLDeviceEXT device, EGLint attrib
     result = eglConfig.m_eglQueryDeviceAttribEXT (device, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -885,8 +885,8 @@ const char * _glew_egl_eglQueryDeviceStringEXT (EGLDeviceEXT device, EGLint name
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   const char * result = ((const char *)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_device_base - eglQueryDeviceStringEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_device_base] && eglConfig.m_eglQueryDeviceStringEXT)
@@ -901,8 +901,8 @@ const char * _glew_egl_eglQueryDeviceStringEXT (EGLDeviceEXT device, EGLint name
     result = eglConfig.m_eglQueryDeviceStringEXT (device, name);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -916,8 +916,8 @@ EGLBoolean _glew_egl_eglQueryDevicesEXT (EGLint max_devices, EGLDeviceEXT * devi
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_device_base - eglQueryDevicesEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_device_base] && eglConfig.m_eglQueryDevicesEXT)
@@ -932,8 +932,8 @@ EGLBoolean _glew_egl_eglQueryDevicesEXT (EGLint max_devices, EGLDeviceEXT * devi
     result = eglConfig.m_eglQueryDevicesEXT (max_devices, devices, num_devices);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -947,8 +947,8 @@ EGLBoolean _glew_egl_eglQueryDisplayAttribEXT (EGLDisplay dpy, EGLint attribute,
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_device_base - eglQueryDisplayAttribEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_device_base] && eglConfig.m_eglQueryDisplayAttribEXT)
@@ -963,8 +963,8 @@ EGLBoolean _glew_egl_eglQueryDisplayAttribEXT (EGLDisplay dpy, EGLint attribute,
     result = eglConfig.m_eglQueryDisplayAttribEXT (dpy, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -978,8 +978,8 @@ EGLBoolean _glew_egl_eglQueryDmaBufFormatsEXT (EGLDisplay dpy, EGLint max_format
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_image_dma_buf_import_modifiers - eglQueryDmaBufFormatsEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_image_dma_buf_import_modifiers] && eglConfig.m_eglQueryDmaBufFormatsEXT)
@@ -988,8 +988,8 @@ EGLBoolean _glew_egl_eglQueryDmaBufFormatsEXT (EGLDisplay dpy, EGLint max_format
     result = eglConfig.m_eglQueryDmaBufFormatsEXT (dpy, max_formats, formats, num_formats);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1003,8 +1003,8 @@ EGLBoolean _glew_egl_eglQueryDmaBufModifiersEXT (EGLDisplay dpy, EGLint format, 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_image_dma_buf_import_modifiers - eglQueryDmaBufModifiersEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_image_dma_buf_import_modifiers] && eglConfig.m_eglQueryDmaBufModifiersEXT)
@@ -1013,8 +1013,8 @@ EGLBoolean _glew_egl_eglQueryDmaBufModifiersEXT (EGLDisplay dpy, EGLint format, 
     result = eglConfig.m_eglQueryDmaBufModifiersEXT (dpy, format, max_modifiers, modifiers, external_only, num_modifiers);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1028,8 +1028,8 @@ EGLBoolean _glew_egl_eglGetOutputLayersEXT (EGLDisplay dpy, const EGLAttrib * at
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_output_base - eglGetOutputLayersEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_output_base] && eglConfig.m_eglGetOutputLayersEXT)
@@ -1038,8 +1038,8 @@ EGLBoolean _glew_egl_eglGetOutputLayersEXT (EGLDisplay dpy, const EGLAttrib * at
     result = eglConfig.m_eglGetOutputLayersEXT (dpy, attrib_list, layers, max_layers, num_layers);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1053,8 +1053,8 @@ EGLBoolean _glew_egl_eglGetOutputPortsEXT (EGLDisplay dpy, const EGLAttrib * att
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_output_base - eglGetOutputPortsEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_output_base] && eglConfig.m_eglGetOutputPortsEXT)
@@ -1063,8 +1063,8 @@ EGLBoolean _glew_egl_eglGetOutputPortsEXT (EGLDisplay dpy, const EGLAttrib * att
     result = eglConfig.m_eglGetOutputPortsEXT (dpy, attrib_list, ports, max_ports, num_ports);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1078,8 +1078,8 @@ EGLBoolean _glew_egl_eglOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_output_base - eglOutputLayerAttribEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_output_base] && eglConfig.m_eglOutputLayerAttribEXT)
@@ -1088,8 +1088,8 @@ EGLBoolean _glew_egl_eglOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLayerEXT 
     result = eglConfig.m_eglOutputLayerAttribEXT (dpy, layer, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1103,8 +1103,8 @@ EGLBoolean _glew_egl_eglQueryOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLaye
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_output_base - eglQueryOutputLayerAttribEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_output_base] && eglConfig.m_eglQueryOutputLayerAttribEXT)
@@ -1113,8 +1113,8 @@ EGLBoolean _glew_egl_eglQueryOutputLayerAttribEXT (EGLDisplay dpy, EGLOutputLaye
     result = eglConfig.m_eglQueryOutputLayerAttribEXT (dpy, layer, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1128,8 +1128,8 @@ const char * _glew_egl_eglQueryOutputLayerStringEXT (EGLDisplay dpy, EGLOutputLa
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   const char * result = ((const char *)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_output_base - eglQueryOutputLayerStringEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_output_base] && eglConfig.m_eglQueryOutputLayerStringEXT)
@@ -1138,8 +1138,8 @@ const char * _glew_egl_eglQueryOutputLayerStringEXT (EGLDisplay dpy, EGLOutputLa
     result = eglConfig.m_eglQueryOutputLayerStringEXT (dpy, layer, name);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1153,8 +1153,8 @@ EGLBoolean _glew_egl_eglOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT po
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_output_base - eglOutputPortAttribEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_output_base] && eglConfig.m_eglOutputPortAttribEXT)
@@ -1163,8 +1163,8 @@ EGLBoolean _glew_egl_eglOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortEXT po
     result = eglConfig.m_eglOutputPortAttribEXT (dpy, port, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1178,8 +1178,8 @@ EGLBoolean _glew_egl_eglQueryOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortE
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_output_base - eglQueryOutputPortAttribEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_output_base] && eglConfig.m_eglQueryOutputPortAttribEXT)
@@ -1188,8 +1188,8 @@ EGLBoolean _glew_egl_eglQueryOutputPortAttribEXT (EGLDisplay dpy, EGLOutputPortE
     result = eglConfig.m_eglQueryOutputPortAttribEXT (dpy, port, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1203,8 +1203,8 @@ const char * _glew_egl_eglQueryOutputPortStringEXT (EGLDisplay dpy, EGLOutputPor
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   const char * result = ((const char *)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_output_base - eglQueryOutputPortStringEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_output_base] && eglConfig.m_eglQueryOutputPortStringEXT)
@@ -1213,8 +1213,8 @@ const char * _glew_egl_eglQueryOutputPortStringEXT (EGLDisplay dpy, EGLOutputPor
     result = eglConfig.m_eglQueryOutputPortStringEXT (dpy, port, name);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1228,8 +1228,8 @@ EGLDisplay _glew_egl_eglGetPlatformDisplayEXT (EGLenum platform, void * native_d
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLDisplay result = ((EGLDisplay)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_platform_base - eglGetPlatformDisplayEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_platform_base] && eglConfig.m_eglGetPlatformDisplayEXT)
@@ -1238,8 +1238,8 @@ EGLDisplay _glew_egl_eglGetPlatformDisplayEXT (EGLenum platform, void * native_d
     result = eglConfig.m_eglGetPlatformDisplayEXT (platform, native_display, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1253,8 +1253,8 @@ EGLSurface _glew_egl_eglCreatePlatformWindowSurfaceEXT (EGLDisplay dpy, EGLConfi
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSurface result = ((EGLSurface)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_platform_base - eglCreatePlatformWindowSurfaceEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_platform_base] && eglConfig.m_eglCreatePlatformWindowSurfaceEXT)
@@ -1263,8 +1263,8 @@ EGLSurface _glew_egl_eglCreatePlatformWindowSurfaceEXT (EGLDisplay dpy, EGLConfi
     result = eglConfig.m_eglCreatePlatformWindowSurfaceEXT (dpy, config, native_window, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1278,8 +1278,8 @@ EGLSurface _glew_egl_eglCreatePlatformPixmapSurfaceEXT (EGLDisplay dpy, EGLConfi
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSurface result = ((EGLSurface)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_platform_base - eglCreatePlatformPixmapSurfaceEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_platform_base] && eglConfig.m_eglCreatePlatformPixmapSurfaceEXT)
@@ -1288,8 +1288,8 @@ EGLSurface _glew_egl_eglCreatePlatformPixmapSurfaceEXT (EGLDisplay dpy, EGLConfi
     result = eglConfig.m_eglCreatePlatformPixmapSurfaceEXT (dpy, config, native_pixmap, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1303,8 +1303,8 @@ EGLBoolean _glew_egl_eglStreamConsumerOutputEXT (EGLDisplay dpy, EGLStreamKHR st
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_stream_consumer_egloutput - eglStreamConsumerOutputEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_stream_consumer_egloutput] && eglConfig.m_eglStreamConsumerOutputEXT)
@@ -1313,8 +1313,8 @@ EGLBoolean _glew_egl_eglStreamConsumerOutputEXT (EGLDisplay dpy, EGLStreamKHR st
     result = eglConfig.m_eglStreamConsumerOutputEXT (dpy, stream, layer);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1328,8 +1328,8 @@ EGLBoolean _glew_egl_eglSwapBuffersWithDamageEXT (EGLDisplay dpy, EGLSurface sur
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_swap_buffers_with_damage - eglSwapBuffersWithDamageEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_swap_buffers_with_damage] && eglConfig.m_eglSwapBuffersWithDamageEXT)
@@ -1338,8 +1338,8 @@ EGLBoolean _glew_egl_eglSwapBuffersWithDamageEXT (EGLDisplay dpy, EGLSurface sur
     result = eglConfig.m_eglSwapBuffersWithDamageEXT (dpy, surface, rects, n_rects);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1353,8 +1353,8 @@ EGLBoolean _glew_egl_eglUnsignalSyncEXT (EGLDisplay dpy, EGLSync sync, const EGL
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_sync_reuse - eglUnsignalSyncEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_sync_reuse] && eglConfig.m_eglUnsignalSyncEXT)
@@ -1363,8 +1363,8 @@ EGLBoolean _glew_egl_eglUnsignalSyncEXT (EGLDisplay dpy, EGLSync sync, const EGL
     result = eglConfig.m_eglUnsignalSyncEXT (dpy, sync, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1378,8 +1378,8 @@ EGLSurface _glew_egl_eglCreatePixmapSurfaceHI (EGLDisplay dpy, EGLConfig config,
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSurface result = ((EGLSurface)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_HI_clientpixmap - eglCreatePixmapSurfaceHI
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_HI_clientpixmap] && eglConfig.m_eglCreatePixmapSurfaceHI)
@@ -1388,8 +1388,8 @@ EGLSurface _glew_egl_eglCreatePixmapSurfaceHI (EGLDisplay dpy, EGLConfig config,
     result = eglConfig.m_eglCreatePixmapSurfaceHI (dpy, config, pixmap);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1403,8 +1403,8 @@ EGLSyncKHR _glew_egl_eglCreateSync64KHR (EGLDisplay dpy, EGLenum type, const EGL
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSyncKHR result = ((EGLSyncKHR)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_cl_event2 - eglCreateSync64KHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_cl_event2] && eglConfig.m_eglCreateSync64KHR)
@@ -1413,8 +1413,8 @@ EGLSyncKHR _glew_egl_eglCreateSync64KHR (EGLDisplay dpy, EGLenum type, const EGL
     result = eglConfig.m_eglCreateSync64KHR (dpy, type, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1428,8 +1428,8 @@ EGLint _glew_egl_eglDebugMessageControlKHR (EGLDEBUGPROCKHR callback, const EGLA
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLint result = ((EGLint)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_debug - eglDebugMessageControlKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_debug] && eglConfig.m_eglDebugMessageControlKHR)
@@ -1438,8 +1438,8 @@ EGLint _glew_egl_eglDebugMessageControlKHR (EGLDEBUGPROCKHR callback, const EGLA
     result = eglConfig.m_eglDebugMessageControlKHR (callback, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1453,8 +1453,8 @@ EGLBoolean _glew_egl_eglQueryDebugKHR (EGLint attribute, EGLAttrib * value)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_debug - eglQueryDebugKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_debug] && eglConfig.m_eglQueryDebugKHR)
@@ -1463,8 +1463,8 @@ EGLBoolean _glew_egl_eglQueryDebugKHR (EGLint attribute, EGLAttrib * value)
     result = eglConfig.m_eglQueryDebugKHR (attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1478,8 +1478,8 @@ EGLint _glew_egl_eglLabelObjectKHR (EGLDisplay display, EGLenum objectType, EGLO
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLint result = ((EGLint)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_debug - eglLabelObjectKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_debug] && eglConfig.m_eglLabelObjectKHR)
@@ -1488,8 +1488,8 @@ EGLint _glew_egl_eglLabelObjectKHR (EGLDisplay display, EGLenum objectType, EGLO
     result = eglConfig.m_eglLabelObjectKHR (display, objectType, object, label);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1503,8 +1503,8 @@ EGLBoolean _glew_egl_eglQueryDisplayAttribKHR (EGLDisplay dpy, EGLint name, EGLA
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_display_reference - eglQueryDisplayAttribKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_display_reference] && eglConfig.m_eglQueryDisplayAttribKHR)
@@ -1525,8 +1525,8 @@ EGLBoolean _glew_egl_eglQueryDisplayAttribKHR (EGLDisplay dpy, EGLint name, EGLA
     result = eglConfig.m_eglQueryDisplayAttribNV (dpy, name, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1540,8 +1540,8 @@ EGLSyncKHR _glew_egl_eglCreateSyncKHR (EGLDisplay dpy, EGLenum type, const EGLin
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSyncKHR result = ((EGLSyncKHR)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_fence_sync - eglCreateSyncKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_fence_sync] && eglConfig.m_eglCreateSyncKHR)
@@ -1556,8 +1556,8 @@ EGLSyncKHR _glew_egl_eglCreateSyncKHR (EGLDisplay dpy, EGLenum type, const EGLin
     result = eglConfig.m_eglCreateSyncKHR (dpy, type, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1571,8 +1571,8 @@ EGLBoolean _glew_egl_eglDestroySyncKHR (EGLDisplay dpy, EGLSyncKHR sync)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_fence_sync - eglDestroySyncKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_fence_sync] && eglConfig.m_eglDestroySyncKHR)
@@ -1587,8 +1587,8 @@ EGLBoolean _glew_egl_eglDestroySyncKHR (EGLDisplay dpy, EGLSyncKHR sync)
     result = eglConfig.m_eglDestroySyncKHR (dpy, sync);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1602,8 +1602,8 @@ EGLint _glew_egl_eglClientWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint f
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLint result = ((EGLint)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_fence_sync - eglClientWaitSyncKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_fence_sync] && eglConfig.m_eglClientWaitSyncKHR)
@@ -1618,8 +1618,8 @@ EGLint _glew_egl_eglClientWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint f
     result = eglConfig.m_eglClientWaitSyncKHR (dpy, sync, flags, timeout);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1633,8 +1633,8 @@ EGLBoolean _glew_egl_eglGetSyncAttribKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLin
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_fence_sync - eglGetSyncAttribKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_fence_sync] && eglConfig.m_eglGetSyncAttribKHR)
@@ -1649,8 +1649,8 @@ EGLBoolean _glew_egl_eglGetSyncAttribKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLin
     result = eglConfig.m_eglGetSyncAttribKHR (dpy, sync, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1664,8 +1664,8 @@ EGLImageKHR _glew_egl_eglCreateImageKHR (EGLDisplay dpy, EGLContext ctx, EGLenum
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLImageKHR result = ((EGLImageKHR)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_image - eglCreateImageKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_image] && eglConfig.m_eglCreateImageKHR)
@@ -1680,8 +1680,8 @@ EGLImageKHR _glew_egl_eglCreateImageKHR (EGLDisplay dpy, EGLContext ctx, EGLenum
     result = eglConfig.m_eglCreateImageKHR (dpy, ctx, target, buffer, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1695,8 +1695,8 @@ EGLBoolean _glew_egl_eglDestroyImageKHR (EGLDisplay dpy, EGLImageKHR image)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_image - eglDestroyImageKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_image] && eglConfig.m_eglDestroyImageKHR)
@@ -1711,8 +1711,8 @@ EGLBoolean _glew_egl_eglDestroyImageKHR (EGLDisplay dpy, EGLImageKHR image)
     result = eglConfig.m_eglDestroyImageKHR (dpy, image);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1726,8 +1726,8 @@ EGLBoolean _glew_egl_eglLockSurfaceKHR (EGLDisplay dpy, EGLSurface surface, cons
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_lock_surface - eglLockSurfaceKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface] && eglConfig.m_eglLockSurfaceKHR)
@@ -1742,8 +1742,8 @@ EGLBoolean _glew_egl_eglLockSurfaceKHR (EGLDisplay dpy, EGLSurface surface, cons
     result = eglConfig.m_eglLockSurfaceKHR (dpy, surface, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1757,8 +1757,8 @@ EGLBoolean _glew_egl_eglUnlockSurfaceKHR (EGLDisplay dpy, EGLSurface surface)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_lock_surface - eglUnlockSurfaceKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface] && eglConfig.m_eglUnlockSurfaceKHR)
@@ -1773,8 +1773,8 @@ EGLBoolean _glew_egl_eglUnlockSurfaceKHR (EGLDisplay dpy, EGLSurface surface)
     result = eglConfig.m_eglUnlockSurfaceKHR (dpy, surface);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1788,8 +1788,8 @@ EGLBoolean _glew_egl_eglQuerySurface64KHR (EGLDisplay dpy, EGLSurface surface, E
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_lock_surface3 - eglQuerySurface64KHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface3] && eglConfig.m_eglQuerySurface64KHR)
@@ -1798,8 +1798,8 @@ EGLBoolean _glew_egl_eglQuerySurface64KHR (EGLDisplay dpy, EGLSurface surface, E
     result = eglConfig.m_eglQuerySurface64KHR (dpy, surface, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1813,8 +1813,8 @@ EGLBoolean _glew_egl_eglSetDamageRegionKHR (EGLDisplay dpy, EGLSurface surface, 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_partial_update - eglSetDamageRegionKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_partial_update] && eglConfig.m_eglSetDamageRegionKHR)
@@ -1823,8 +1823,8 @@ EGLBoolean _glew_egl_eglSetDamageRegionKHR (EGLDisplay dpy, EGLSurface surface, 
     result = eglConfig.m_eglSetDamageRegionKHR (dpy, surface, rects, n_rects);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1838,8 +1838,8 @@ EGLBoolean _glew_egl_eglSignalSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLenum 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_reusable_sync - eglSignalSyncKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_reusable_sync] && eglConfig.m_eglSignalSyncKHR)
@@ -1848,8 +1848,8 @@ EGLBoolean _glew_egl_eglSignalSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLenum 
     result = eglConfig.m_eglSignalSyncKHR (dpy, sync, mode);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1863,8 +1863,8 @@ EGLStreamKHR _glew_egl_eglCreateStreamKHR (EGLDisplay dpy, const EGLint * attrib
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLStreamKHR result = ((EGLStreamKHR)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream - eglCreateStreamKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream] && eglConfig.m_eglCreateStreamKHR)
@@ -1873,8 +1873,8 @@ EGLStreamKHR _glew_egl_eglCreateStreamKHR (EGLDisplay dpy, const EGLint * attrib
     result = eglConfig.m_eglCreateStreamKHR (dpy, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1888,8 +1888,8 @@ EGLBoolean _glew_egl_eglDestroyStreamKHR (EGLDisplay dpy, EGLStreamKHR stream)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream - eglDestroyStreamKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream] && eglConfig.m_eglDestroyStreamKHR)
@@ -1898,8 +1898,8 @@ EGLBoolean _glew_egl_eglDestroyStreamKHR (EGLDisplay dpy, EGLStreamKHR stream)
     result = eglConfig.m_eglDestroyStreamKHR (dpy, stream);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1913,8 +1913,8 @@ EGLBoolean _glew_egl_eglStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR stream, EG
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream - eglStreamAttribKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream] && eglConfig.m_eglStreamAttribKHR)
@@ -1923,8 +1923,8 @@ EGLBoolean _glew_egl_eglStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR stream, EG
     result = eglConfig.m_eglStreamAttribKHR (dpy, stream, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1938,8 +1938,8 @@ EGLBoolean _glew_egl_eglQueryStreamKHR (EGLDisplay dpy, EGLStreamKHR stream, EGL
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream - eglQueryStreamKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream] && eglConfig.m_eglQueryStreamKHR)
@@ -1948,8 +1948,8 @@ EGLBoolean _glew_egl_eglQueryStreamKHR (EGLDisplay dpy, EGLStreamKHR stream, EGL
     result = eglConfig.m_eglQueryStreamKHR (dpy, stream, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1963,8 +1963,8 @@ EGLBoolean _glew_egl_eglQueryStreamu64KHR (EGLDisplay dpy, EGLStreamKHR stream, 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream - eglQueryStreamu64KHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream] && eglConfig.m_eglQueryStreamu64KHR)
@@ -1973,8 +1973,8 @@ EGLBoolean _glew_egl_eglQueryStreamu64KHR (EGLDisplay dpy, EGLStreamKHR stream, 
     result = eglConfig.m_eglQueryStreamu64KHR (dpy, stream, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -1988,8 +1988,8 @@ EGLStreamKHR _glew_egl_eglCreateStreamAttribKHR (EGLDisplay dpy, const EGLAttrib
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLStreamKHR result = ((EGLStreamKHR)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_attrib - eglCreateStreamAttribKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_attrib] && eglConfig.m_eglCreateStreamAttribKHR)
@@ -1998,8 +1998,8 @@ EGLStreamKHR _glew_egl_eglCreateStreamAttribKHR (EGLDisplay dpy, const EGLAttrib
     result = eglConfig.m_eglCreateStreamAttribKHR (dpy, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2013,8 +2013,8 @@ EGLBoolean _glew_egl_eglSetStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR stream,
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_attrib - eglSetStreamAttribKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_attrib] && eglConfig.m_eglSetStreamAttribKHR)
@@ -2023,8 +2023,8 @@ EGLBoolean _glew_egl_eglSetStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR stream,
     result = eglConfig.m_eglSetStreamAttribKHR (dpy, stream, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2038,8 +2038,8 @@ EGLBoolean _glew_egl_eglQueryStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR strea
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_attrib - eglQueryStreamAttribKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_attrib] && eglConfig.m_eglQueryStreamAttribKHR)
@@ -2048,8 +2048,8 @@ EGLBoolean _glew_egl_eglQueryStreamAttribKHR (EGLDisplay dpy, EGLStreamKHR strea
     result = eglConfig.m_eglQueryStreamAttribKHR (dpy, stream, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2063,8 +2063,8 @@ EGLBoolean _glew_egl_eglStreamConsumerAcquireAttribKHR (EGLDisplay dpy, EGLStrea
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_attrib - eglStreamConsumerAcquireAttribKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_attrib] && eglConfig.m_eglStreamConsumerAcquireAttribKHR)
@@ -2073,8 +2073,8 @@ EGLBoolean _glew_egl_eglStreamConsumerAcquireAttribKHR (EGLDisplay dpy, EGLStrea
     result = eglConfig.m_eglStreamConsumerAcquireAttribKHR (dpy, stream, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2088,8 +2088,8 @@ EGLBoolean _glew_egl_eglStreamConsumerReleaseAttribKHR (EGLDisplay dpy, EGLStrea
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_attrib - eglStreamConsumerReleaseAttribKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_attrib] && eglConfig.m_eglStreamConsumerReleaseAttribKHR)
@@ -2098,8 +2098,8 @@ EGLBoolean _glew_egl_eglStreamConsumerReleaseAttribKHR (EGLDisplay dpy, EGLStrea
     result = eglConfig.m_eglStreamConsumerReleaseAttribKHR (dpy, stream, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2113,8 +2113,8 @@ EGLBoolean _glew_egl_eglStreamConsumerGLTextureExternalKHR (EGLDisplay dpy, EGLS
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_consumer_gltexture - eglStreamConsumerGLTextureExternalKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_consumer_gltexture] && eglConfig.m_eglStreamConsumerGLTextureExternalKHR)
@@ -2123,8 +2123,8 @@ EGLBoolean _glew_egl_eglStreamConsumerGLTextureExternalKHR (EGLDisplay dpy, EGLS
     result = eglConfig.m_eglStreamConsumerGLTextureExternalKHR (dpy, stream);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2138,8 +2138,8 @@ EGLBoolean _glew_egl_eglStreamConsumerAcquireKHR (EGLDisplay dpy, EGLStreamKHR s
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_consumer_gltexture - eglStreamConsumerAcquireKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_consumer_gltexture] && eglConfig.m_eglStreamConsumerAcquireKHR)
@@ -2148,8 +2148,8 @@ EGLBoolean _glew_egl_eglStreamConsumerAcquireKHR (EGLDisplay dpy, EGLStreamKHR s
     result = eglConfig.m_eglStreamConsumerAcquireKHR (dpy, stream);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2163,8 +2163,8 @@ EGLBoolean _glew_egl_eglStreamConsumerReleaseKHR (EGLDisplay dpy, EGLStreamKHR s
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_consumer_gltexture - eglStreamConsumerReleaseKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_consumer_gltexture] && eglConfig.m_eglStreamConsumerReleaseKHR)
@@ -2173,8 +2173,8 @@ EGLBoolean _glew_egl_eglStreamConsumerReleaseKHR (EGLDisplay dpy, EGLStreamKHR s
     result = eglConfig.m_eglStreamConsumerReleaseKHR (dpy, stream);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2188,8 +2188,8 @@ EGLNativeFileDescriptorKHR _glew_egl_eglGetStreamFileDescriptorKHR (EGLDisplay d
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLNativeFileDescriptorKHR result = ((EGLNativeFileDescriptorKHR)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_cross_process_fd - eglGetStreamFileDescriptorKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_cross_process_fd] && eglConfig.m_eglGetStreamFileDescriptorKHR)
@@ -2198,8 +2198,8 @@ EGLNativeFileDescriptorKHR _glew_egl_eglGetStreamFileDescriptorKHR (EGLDisplay d
     result = eglConfig.m_eglGetStreamFileDescriptorKHR (dpy, stream);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2213,8 +2213,8 @@ EGLStreamKHR _glew_egl_eglCreateStreamFromFileDescriptorKHR (EGLDisplay dpy, EGL
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLStreamKHR result = ((EGLStreamKHR)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_cross_process_fd - eglCreateStreamFromFileDescriptorKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_cross_process_fd] && eglConfig.m_eglCreateStreamFromFileDescriptorKHR)
@@ -2223,8 +2223,8 @@ EGLStreamKHR _glew_egl_eglCreateStreamFromFileDescriptorKHR (EGLDisplay dpy, EGL
     result = eglConfig.m_eglCreateStreamFromFileDescriptorKHR (dpy, file_descriptor);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2238,8 +2238,8 @@ EGLBoolean _glew_egl_eglQueryStreamTimeKHR (EGLDisplay dpy, EGLStreamKHR stream,
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_fifo - eglQueryStreamTimeKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_fifo] && eglConfig.m_eglQueryStreamTimeKHR)
@@ -2248,8 +2248,8 @@ EGLBoolean _glew_egl_eglQueryStreamTimeKHR (EGLDisplay dpy, EGLStreamKHR stream,
     result = eglConfig.m_eglQueryStreamTimeKHR (dpy, stream, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2263,8 +2263,8 @@ EGLSurface _glew_egl_eglCreateStreamProducerSurfaceKHR (EGLDisplay dpy, EGLConfi
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSurface result = ((EGLSurface)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_stream_producer_eglsurface - eglCreateStreamProducerSurfaceKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_stream_producer_eglsurface] && eglConfig.m_eglCreateStreamProducerSurfaceKHR)
@@ -2273,8 +2273,8 @@ EGLSurface _glew_egl_eglCreateStreamProducerSurfaceKHR (EGLDisplay dpy, EGLConfi
     result = eglConfig.m_eglCreateStreamProducerSurfaceKHR (dpy, config, stream, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2288,8 +2288,8 @@ EGLBoolean _glew_egl_eglSwapBuffersWithDamageKHR (EGLDisplay dpy, EGLSurface sur
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_swap_buffers_with_damage - eglSwapBuffersWithDamageKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_swap_buffers_with_damage] && eglConfig.m_eglSwapBuffersWithDamageKHR)
@@ -2298,8 +2298,8 @@ EGLBoolean _glew_egl_eglSwapBuffersWithDamageKHR (EGLDisplay dpy, EGLSurface sur
     result = eglConfig.m_eglSwapBuffersWithDamageKHR (dpy, surface, rects, n_rects);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2313,8 +2313,8 @@ EGLint _glew_egl_eglWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLint result = ((EGLint)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_KHR_wait_sync - eglWaitSyncKHR
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_KHR_wait_sync] && eglConfig.m_eglWaitSyncKHR)
@@ -2323,8 +2323,8 @@ EGLint _glew_egl_eglWaitSyncKHR (EGLDisplay dpy, EGLSyncKHR sync, EGLint flags)
     result = eglConfig.m_eglWaitSyncKHR (dpy, sync, flags);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2338,8 +2338,8 @@ EGLImageKHR _glew_egl_eglCreateDRMImageMESA (EGLDisplay dpy, const EGLint * attr
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLImageKHR result = ((EGLImageKHR)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_MESA_drm_image - eglCreateDRMImageMESA
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_MESA_drm_image] && eglConfig.m_eglCreateDRMImageMESA)
@@ -2348,8 +2348,8 @@ EGLImageKHR _glew_egl_eglCreateDRMImageMESA (EGLDisplay dpy, const EGLint * attr
     result = eglConfig.m_eglCreateDRMImageMESA (dpy, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2363,8 +2363,8 @@ EGLBoolean _glew_egl_eglExportDRMImageMESA (EGLDisplay dpy, EGLImageKHR image, E
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_MESA_drm_image - eglExportDRMImageMESA
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_MESA_drm_image] && eglConfig.m_eglExportDRMImageMESA)
@@ -2373,8 +2373,8 @@ EGLBoolean _glew_egl_eglExportDRMImageMESA (EGLDisplay dpy, EGLImageKHR image, E
     result = eglConfig.m_eglExportDRMImageMESA (dpy, image, name, handle, stride);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2388,8 +2388,8 @@ EGLBoolean _glew_egl_eglExportDMABUFImageQueryMESA (EGLDisplay dpy, EGLImageKHR 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_MESA_image_dma_buf_export - eglExportDMABUFImageQueryMESA
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_MESA_image_dma_buf_export] && eglConfig.m_eglExportDMABUFImageQueryMESA)
@@ -2398,8 +2398,8 @@ EGLBoolean _glew_egl_eglExportDMABUFImageQueryMESA (EGLDisplay dpy, EGLImageKHR 
     result = eglConfig.m_eglExportDMABUFImageQueryMESA (dpy, image, fourcc, num_planes, modifiers);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2413,8 +2413,8 @@ EGLBoolean _glew_egl_eglExportDMABUFImageMESA (EGLDisplay dpy, EGLImageKHR image
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_MESA_image_dma_buf_export - eglExportDMABUFImageMESA
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_MESA_image_dma_buf_export] && eglConfig.m_eglExportDMABUFImageMESA)
@@ -2423,8 +2423,8 @@ EGLBoolean _glew_egl_eglExportDMABUFImageMESA (EGLDisplay dpy, EGLImageKHR image
     result = eglConfig.m_eglExportDMABUFImageMESA (dpy, image, fds, strides, offsets);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2438,8 +2438,8 @@ char * _glew_egl_eglGetDisplayDriverConfig (EGLDisplay dpy)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   char * result = ((char *)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_MESA_query_driver - eglGetDisplayDriverConfig
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_MESA_query_driver] && eglConfig.m_eglGetDisplayDriverConfig)
@@ -2448,8 +2448,8 @@ char * _glew_egl_eglGetDisplayDriverConfig (EGLDisplay dpy)
     result = eglConfig.m_eglGetDisplayDriverConfig (dpy);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2463,8 +2463,8 @@ const char * _glew_egl_eglGetDisplayDriverName (EGLDisplay dpy)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   const char * result = ((const char *)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_MESA_query_driver - eglGetDisplayDriverName
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_MESA_query_driver] && eglConfig.m_eglGetDisplayDriverName)
@@ -2473,8 +2473,8 @@ const char * _glew_egl_eglGetDisplayDriverName (EGLDisplay dpy)
     result = eglConfig.m_eglGetDisplayDriverName (dpy);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2488,8 +2488,8 @@ EGLBoolean _glew_egl_eglSwapBuffersRegionNOK (EGLDisplay dpy, EGLSurface surface
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NOK_swap_region - eglSwapBuffersRegionNOK
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NOK_swap_region] && eglConfig.m_eglSwapBuffersRegionNOK)
@@ -2498,8 +2498,8 @@ EGLBoolean _glew_egl_eglSwapBuffersRegionNOK (EGLDisplay dpy, EGLSurface surface
     result = eglConfig.m_eglSwapBuffersRegionNOK (dpy, surface, numRects, rects);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2513,8 +2513,8 @@ EGLBoolean _glew_egl_eglSwapBuffersRegion2NOK (EGLDisplay dpy, EGLSurface surfac
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NOK_swap_region2 - eglSwapBuffersRegion2NOK
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NOK_swap_region2] && eglConfig.m_eglSwapBuffersRegion2NOK)
@@ -2523,8 +2523,8 @@ EGLBoolean _glew_egl_eglSwapBuffersRegion2NOK (EGLDisplay dpy, EGLSurface surfac
     result = eglConfig.m_eglSwapBuffersRegion2NOK (dpy, surface, numRects, rects);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2538,8 +2538,8 @@ EGLBoolean _glew_egl_eglQueryNativeDisplayNV (EGLDisplay dpy, EGLNativeDisplayTy
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_native_query - eglQueryNativeDisplayNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_native_query] && eglConfig.m_eglQueryNativeDisplayNV)
@@ -2548,8 +2548,8 @@ EGLBoolean _glew_egl_eglQueryNativeDisplayNV (EGLDisplay dpy, EGLNativeDisplayTy
     result = eglConfig.m_eglQueryNativeDisplayNV (dpy, display_id);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2563,8 +2563,8 @@ EGLBoolean _glew_egl_eglQueryNativeWindowNV (EGLDisplay dpy, EGLSurface surf, EG
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_native_query - eglQueryNativeWindowNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_native_query] && eglConfig.m_eglQueryNativeWindowNV)
@@ -2573,8 +2573,8 @@ EGLBoolean _glew_egl_eglQueryNativeWindowNV (EGLDisplay dpy, EGLSurface surf, EG
     result = eglConfig.m_eglQueryNativeWindowNV (dpy, surf, window);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2588,8 +2588,8 @@ EGLBoolean _glew_egl_eglQueryNativePixmapNV (EGLDisplay dpy, EGLSurface surf, EG
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_native_query - eglQueryNativePixmapNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_native_query] && eglConfig.m_eglQueryNativePixmapNV)
@@ -2598,8 +2598,8 @@ EGLBoolean _glew_egl_eglQueryNativePixmapNV (EGLDisplay dpy, EGLSurface surf, EG
     result = eglConfig.m_eglQueryNativePixmapNV (dpy, surf, pixmap);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2613,8 +2613,8 @@ EGLBoolean _glew_egl_eglPostSubBufferNV (EGLDisplay dpy, EGLSurface surface, EGL
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_post_sub_buffer - eglPostSubBufferNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_post_sub_buffer] && eglConfig.m_eglPostSubBufferNV)
@@ -2623,8 +2623,8 @@ EGLBoolean _glew_egl_eglPostSubBufferNV (EGLDisplay dpy, EGLSurface surface, EGL
     result = eglConfig.m_eglPostSubBufferNV (dpy, surface, x, y, width, height);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2638,8 +2638,8 @@ EGLBoolean _glew_egl_eglStreamConsumerGLTextureExternalAttribsNV (EGLDisplay dpy
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_consumer_gltexture_yuv - eglStreamConsumerGLTextureExternalAttribsNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_consumer_gltexture_yuv] && eglConfig.m_eglStreamConsumerGLTextureExternalAttribsNV)
@@ -2648,8 +2648,8 @@ EGLBoolean _glew_egl_eglStreamConsumerGLTextureExternalAttribsNV (EGLDisplay dpy
     result = eglConfig.m_eglStreamConsumerGLTextureExternalAttribsNV (dpy, stream, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2663,8 +2663,8 @@ EGLBoolean _glew_egl_eglStreamImageConsumerConnectNV (EGLDisplay dpy, EGLStreamK
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_consumer_eglimage - eglStreamImageConsumerConnectNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_consumer_eglimage] && eglConfig.m_eglStreamImageConsumerConnectNV)
@@ -2673,8 +2673,8 @@ EGLBoolean _glew_egl_eglStreamImageConsumerConnectNV (EGLDisplay dpy, EGLStreamK
     result = eglConfig.m_eglStreamImageConsumerConnectNV (dpy, stream, num_modifiers, modifiers, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2688,8 +2688,8 @@ EGLint _glew_egl_eglQueryStreamConsumerEventNV (EGLDisplay dpy, EGLStreamKHR str
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLint result = ((EGLint)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_consumer_eglimage - eglQueryStreamConsumerEventNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_consumer_eglimage] && eglConfig.m_eglQueryStreamConsumerEventNV)
@@ -2698,8 +2698,8 @@ EGLint _glew_egl_eglQueryStreamConsumerEventNV (EGLDisplay dpy, EGLStreamKHR str
     result = eglConfig.m_eglQueryStreamConsumerEventNV (dpy, stream, timeout, event, aux);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2713,8 +2713,8 @@ EGLBoolean _glew_egl_eglStreamAcquireImageNV (EGLDisplay dpy, EGLStreamKHR strea
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_consumer_eglimage - eglStreamAcquireImageNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_consumer_eglimage] && eglConfig.m_eglStreamAcquireImageNV)
@@ -2723,8 +2723,8 @@ EGLBoolean _glew_egl_eglStreamAcquireImageNV (EGLDisplay dpy, EGLStreamKHR strea
     result = eglConfig.m_eglStreamAcquireImageNV (dpy, stream, pImage, sync);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2738,8 +2738,8 @@ EGLBoolean _glew_egl_eglStreamReleaseImageNV (EGLDisplay dpy, EGLStreamKHR strea
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_consumer_eglimage - eglStreamReleaseImageNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_consumer_eglimage] && eglConfig.m_eglStreamReleaseImageNV)
@@ -2748,8 +2748,8 @@ EGLBoolean _glew_egl_eglStreamReleaseImageNV (EGLDisplay dpy, EGLStreamKHR strea
     result = eglConfig.m_eglStreamReleaseImageNV (dpy, stream, image, sync);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2763,8 +2763,8 @@ EGLBoolean _glew_egl_eglStreamFlushNV (EGLDisplay dpy, EGLStreamKHR stream)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_flush - eglStreamFlushNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_flush] && eglConfig.m_eglStreamFlushNV)
@@ -2773,8 +2773,8 @@ EGLBoolean _glew_egl_eglStreamFlushNV (EGLDisplay dpy, EGLStreamKHR stream)
     result = eglConfig.m_eglStreamFlushNV (dpy, stream);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2788,8 +2788,8 @@ EGLBoolean _glew_egl_eglQueryDisplayAttribNV (EGLDisplay dpy, EGLint attribute, 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_metadata - eglQueryDisplayAttribNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_metadata] && eglConfig.m_eglQueryDisplayAttribNV)
@@ -2798,8 +2798,8 @@ EGLBoolean _glew_egl_eglQueryDisplayAttribNV (EGLDisplay dpy, EGLint attribute, 
     result = eglConfig.m_eglQueryDisplayAttribNV (dpy, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2813,8 +2813,8 @@ EGLBoolean _glew_egl_eglSetStreamMetadataNV (EGLDisplay dpy, EGLStreamKHR stream
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_metadata - eglSetStreamMetadataNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_metadata] && eglConfig.m_eglSetStreamMetadataNV)
@@ -2823,8 +2823,8 @@ EGLBoolean _glew_egl_eglSetStreamMetadataNV (EGLDisplay dpy, EGLStreamKHR stream
     result = eglConfig.m_eglSetStreamMetadataNV (dpy, stream, n, offset, size, data);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2838,8 +2838,8 @@ EGLBoolean _glew_egl_eglQueryStreamMetadataNV (EGLDisplay dpy, EGLStreamKHR stre
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_metadata - eglQueryStreamMetadataNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_metadata] && eglConfig.m_eglQueryStreamMetadataNV)
@@ -2848,8 +2848,8 @@ EGLBoolean _glew_egl_eglQueryStreamMetadataNV (EGLDisplay dpy, EGLStreamKHR stre
     result = eglConfig.m_eglQueryStreamMetadataNV (dpy, stream, name, n, offset, size, data);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2863,8 +2863,8 @@ EGLBoolean _glew_egl_eglResetStreamNV (EGLDisplay dpy, EGLStreamKHR stream)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_reset - eglResetStreamNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_reset] && eglConfig.m_eglResetStreamNV)
@@ -2873,8 +2873,8 @@ EGLBoolean _glew_egl_eglResetStreamNV (EGLDisplay dpy, EGLStreamKHR stream)
     result = eglConfig.m_eglResetStreamNV (dpy, stream);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2888,8 +2888,8 @@ EGLSyncKHR _glew_egl_eglCreateStreamSyncNV (EGLDisplay dpy, EGLStreamKHR stream,
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSyncKHR result = ((EGLSyncKHR)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_stream_sync - eglCreateStreamSyncNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_stream_sync] && eglConfig.m_eglCreateStreamSyncNV)
@@ -2898,8 +2898,8 @@ EGLSyncKHR _glew_egl_eglCreateStreamSyncNV (EGLDisplay dpy, EGLStreamKHR stream,
     result = eglConfig.m_eglCreateStreamSyncNV (dpy, stream, type, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2913,8 +2913,8 @@ EGLSyncNV _glew_egl_eglCreateFenceSyncNV (EGLDisplay dpy, EGLenum condition, con
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLSyncNV result = ((EGLSyncNV)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_sync - eglCreateFenceSyncNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_sync] && eglConfig.m_eglCreateFenceSyncNV)
@@ -2923,8 +2923,8 @@ EGLSyncNV _glew_egl_eglCreateFenceSyncNV (EGLDisplay dpy, EGLenum condition, con
     result = eglConfig.m_eglCreateFenceSyncNV (dpy, condition, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2938,8 +2938,8 @@ EGLBoolean _glew_egl_eglDestroySyncNV (EGLSyncNV sync)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_sync - eglDestroySyncNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_sync] && eglConfig.m_eglDestroySyncNV)
@@ -2948,8 +2948,8 @@ EGLBoolean _glew_egl_eglDestroySyncNV (EGLSyncNV sync)
     result = eglConfig.m_eglDestroySyncNV (sync);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2963,8 +2963,8 @@ EGLBoolean _glew_egl_eglFenceNV (EGLSyncNV sync)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_sync - eglFenceNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_sync] && eglConfig.m_eglFenceNV)
@@ -2973,8 +2973,8 @@ EGLBoolean _glew_egl_eglFenceNV (EGLSyncNV sync)
     result = eglConfig.m_eglFenceNV (sync);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -2988,8 +2988,8 @@ EGLint _glew_egl_eglClientWaitSyncNV (EGLSyncNV sync, EGLint flags, EGLTimeNV ti
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLint result = ((EGLint)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_sync - eglClientWaitSyncNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_sync] && eglConfig.m_eglClientWaitSyncNV)
@@ -2998,8 +2998,8 @@ EGLint _glew_egl_eglClientWaitSyncNV (EGLSyncNV sync, EGLint flags, EGLTimeNV ti
     result = eglConfig.m_eglClientWaitSyncNV (sync, flags, timeout);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3013,8 +3013,8 @@ EGLBoolean _glew_egl_eglSignalSyncNV (EGLSyncNV sync, EGLenum mode)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_sync - eglSignalSyncNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_sync] && eglConfig.m_eglSignalSyncNV)
@@ -3023,8 +3023,8 @@ EGLBoolean _glew_egl_eglSignalSyncNV (EGLSyncNV sync, EGLenum mode)
     result = eglConfig.m_eglSignalSyncNV (sync, mode);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3038,8 +3038,8 @@ EGLBoolean _glew_egl_eglGetSyncAttribNV (EGLSyncNV sync, EGLint attribute, EGLin
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_sync - eglGetSyncAttribNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_sync] && eglConfig.m_eglGetSyncAttribNV)
@@ -3048,8 +3048,8 @@ EGLBoolean _glew_egl_eglGetSyncAttribNV (EGLSyncNV sync, EGLint attribute, EGLin
     result = eglConfig.m_eglGetSyncAttribNV (sync, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3063,8 +3063,8 @@ EGLuint64NV _glew_egl_eglGetSystemTimeFrequencyNV ()
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLuint64NV result = ((EGLuint64NV)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_system_time - eglGetSystemTimeFrequencyNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_system_time] && eglConfig.m_eglGetSystemTimeFrequencyNV)
@@ -3073,8 +3073,8 @@ EGLuint64NV _glew_egl_eglGetSystemTimeFrequencyNV ()
     result = eglConfig.m_eglGetSystemTimeFrequencyNV ();
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3088,8 +3088,8 @@ EGLuint64NV _glew_egl_eglGetSystemTimeNV ()
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLuint64NV result = ((EGLuint64NV)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_NV_system_time - eglGetSystemTimeNV
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_NV_system_time] && eglConfig.m_eglGetSystemTimeNV)
@@ -3098,8 +3098,8 @@ EGLuint64NV _glew_egl_eglGetSystemTimeNV ()
     result = eglConfig.m_eglGetSystemTimeNV ();
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3113,8 +3113,8 @@ EGLBoolean _glew_egl_eglCompositorSetContextListEXT (const EGLint * external_ref
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_compositor - eglCompositorSetContextListEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_compositor] && eglConfig.m_eglCompositorSetContextListEXT)
@@ -3123,8 +3123,8 @@ EGLBoolean _glew_egl_eglCompositorSetContextListEXT (const EGLint * external_ref
     result = eglConfig.m_eglCompositorSetContextListEXT (external_ref_ids, num_entries);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3138,8 +3138,8 @@ EGLBoolean _glew_egl_eglCompositorSetContextAttributesEXT (EGLint external_ref_i
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_compositor - eglCompositorSetContextAttributesEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_compositor] && eglConfig.m_eglCompositorSetContextAttributesEXT)
@@ -3148,8 +3148,8 @@ EGLBoolean _glew_egl_eglCompositorSetContextAttributesEXT (EGLint external_ref_i
     result = eglConfig.m_eglCompositorSetContextAttributesEXT (external_ref_id, context_attributes, num_entries);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3163,8 +3163,8 @@ EGLBoolean _glew_egl_eglCompositorSetWindowListEXT (EGLint external_ref_id, cons
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_compositor - eglCompositorSetWindowListEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_compositor] && eglConfig.m_eglCompositorSetWindowListEXT)
@@ -3173,8 +3173,8 @@ EGLBoolean _glew_egl_eglCompositorSetWindowListEXT (EGLint external_ref_id, cons
     result = eglConfig.m_eglCompositorSetWindowListEXT (external_ref_id, external_win_ids, num_entries);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3188,8 +3188,8 @@ EGLBoolean _glew_egl_eglCompositorSetWindowAttributesEXT (EGLint external_win_id
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_compositor - eglCompositorSetWindowAttributesEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_compositor] && eglConfig.m_eglCompositorSetWindowAttributesEXT)
@@ -3198,8 +3198,8 @@ EGLBoolean _glew_egl_eglCompositorSetWindowAttributesEXT (EGLint external_win_id
     result = eglConfig.m_eglCompositorSetWindowAttributesEXT (external_win_id, window_attributes, num_entries);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3213,8 +3213,8 @@ EGLBoolean _glew_egl_eglCompositorBindTexWindowEXT (EGLint external_win_id)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_compositor - eglCompositorBindTexWindowEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_compositor] && eglConfig.m_eglCompositorBindTexWindowEXT)
@@ -3223,8 +3223,8 @@ EGLBoolean _glew_egl_eglCompositorBindTexWindowEXT (EGLint external_win_id)
     result = eglConfig.m_eglCompositorBindTexWindowEXT (external_win_id);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3238,8 +3238,8 @@ EGLBoolean _glew_egl_eglCompositorSetSizeEXT (EGLint external_win_id, EGLint wid
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_compositor - eglCompositorSetSizeEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_compositor] && eglConfig.m_eglCompositorSetSizeEXT)
@@ -3248,8 +3248,8 @@ EGLBoolean _glew_egl_eglCompositorSetSizeEXT (EGLint external_win_id, EGLint wid
     result = eglConfig.m_eglCompositorSetSizeEXT (external_win_id, width, height);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3263,8 +3263,8 @@ EGLBoolean _glew_egl_eglCompositorSwapPolicyEXT (EGLint external_win_id, EGLint 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_compositor - eglCompositorSwapPolicyEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_compositor] && eglConfig.m_eglCompositorSwapPolicyEXT)
@@ -3273,8 +3273,8 @@ EGLBoolean _glew_egl_eglCompositorSwapPolicyEXT (EGLint external_win_id, EGLint 
     result = eglConfig.m_eglCompositorSwapPolicyEXT (external_win_id, policy);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3288,8 +3288,8 @@ EGLBoolean _glew_egl_eglQuerySupportedCompressionRatesEXT (EGLDisplay dpy, EGLCo
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_surface_compression - eglQuerySupportedCompressionRatesEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_surface_compression] && eglConfig.m_eglQuerySupportedCompressionRatesEXT)
@@ -3298,8 +3298,8 @@ EGLBoolean _glew_egl_eglQuerySupportedCompressionRatesEXT (EGLDisplay dpy, EGLCo
     result = eglConfig.m_eglQuerySupportedCompressionRatesEXT (dpy, config, attrib_list, rates, rate_size, num_rates);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3313,8 +3313,8 @@ EGLBoolean _glew_egl_eglBindWaylandDisplayWL (EGLDisplay dpy, struct wl_display 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_WL_bind_wayland_display - eglBindWaylandDisplayWL
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_WL_bind_wayland_display] && eglConfig.m_eglBindWaylandDisplayWL)
@@ -3323,8 +3323,8 @@ EGLBoolean _glew_egl_eglBindWaylandDisplayWL (EGLDisplay dpy, struct wl_display 
     result = eglConfig.m_eglBindWaylandDisplayWL (dpy, display);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3338,8 +3338,8 @@ EGLBoolean _glew_egl_eglUnbindWaylandDisplayWL (EGLDisplay dpy, struct wl_displa
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_WL_bind_wayland_display - eglUnbindWaylandDisplayWL
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_WL_bind_wayland_display] && eglConfig.m_eglUnbindWaylandDisplayWL)
@@ -3348,8 +3348,8 @@ EGLBoolean _glew_egl_eglUnbindWaylandDisplayWL (EGLDisplay dpy, struct wl_displa
     result = eglConfig.m_eglUnbindWaylandDisplayWL (dpy, display);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3363,8 +3363,8 @@ EGLBoolean _glew_egl_eglQueryWaylandBufferWL (EGLDisplay dpy, struct wl_resource
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_WL_bind_wayland_display - eglQueryWaylandBufferWL
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_WL_bind_wayland_display] && eglConfig.m_eglQueryWaylandBufferWL)
@@ -3373,8 +3373,8 @@ EGLBoolean _glew_egl_eglQueryWaylandBufferWL (EGLDisplay dpy, struct wl_resource
     result = eglConfig.m_eglQueryWaylandBufferWL (dpy, buffer, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3388,8 +3388,8 @@ struct wl_buffer * _glew_egl_eglCreateWaylandBufferFromImageWL (EGLDisplay dpy, 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   struct wl_buffer * result = ((struct wl_buffer *)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_WL_create_wayland_buffer_from_image - eglCreateWaylandBufferFromImageWL
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_WL_create_wayland_buffer_from_image] && eglConfig.m_eglCreateWaylandBufferFromImageWL)
@@ -3398,8 +3398,8 @@ struct wl_buffer * _glew_egl_eglCreateWaylandBufferFromImageWL (EGLDisplay dpy, 
     result = eglConfig.m_eglCreateWaylandBufferFromImageWL (dpy, image);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3413,8 +3413,8 @@ EGLBoolean _glew_egl_eglQueryDeviceBinaryEXT (EGLDeviceEXT device, EGLint name, 
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_device_persistent_id - eglQueryDeviceBinaryEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_device_persistent_id] && eglConfig.m_eglQueryDeviceBinaryEXT)
@@ -3423,8 +3423,8 @@ EGLBoolean _glew_egl_eglQueryDeviceBinaryEXT (EGLDeviceEXT device, EGLint name, 
     result = eglConfig.m_eglQueryDeviceBinaryEXT (device, name, max_size, value, size);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }
@@ -3438,8 +3438,8 @@ EGLBoolean _glew_egl_eglDestroyDisplayEXT (EGLDisplay dpy)
   bool prototypeCalled = false;
   const glew::egl::DeviceConfig &eglConfig = glew::egl::GetConfig ();
   EGLBoolean result = ((EGLBoolean)0);
-#if GLEW_EGL_PRE_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_PRE_ERROR_CHECK)
+  GLEW_EGL_PRE_ERROR_CHECK();
 #endif
   // EGL_EXT_display_alloc - eglDestroyDisplayEXT
   if (!prototypeCalled && eglConfig.m_featureSupported [GLEW_EGL_EXT_display_alloc] && eglConfig.m_eglDestroyDisplayEXT)
@@ -3448,8 +3448,8 @@ EGLBoolean _glew_egl_eglDestroyDisplayEXT (EGLDisplay dpy)
     result = eglConfig.m_eglDestroyDisplayEXT (dpy);
   }
   GLEW_ASSERT (prototypeCalled);
-#if GLEW_EGL_POST_ERROR_CHECK
-  GLEW_ASSERT (eglGetError () == EGL_SUCCESS);
+#if defined (GLEW_EGL_POST_ERROR_CHECK)
+  GLEW_EGL_POST_ERROR_CHECK();
 #endif
   return result;
 }

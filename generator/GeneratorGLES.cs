@@ -5,8 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace wrangle_gl_generator;
@@ -20,7 +18,6 @@ public class GeneratorGLES : Generator
   private static readonly string[][] apiSpec =
   [
     ["gles", "2.0"],
-    //["gles1", "2.0"],
     ["gles2", "2.0"]
   ];
 
@@ -60,28 +57,13 @@ public class GeneratorGLES : Generator
 
     writer.Write (Environment.NewLine);
 
-    writer.Write (@"#if defined(_WIN32)
-#define GL_APICALL WINGDIAPI
-#define GL_APIENTRY WINAPI
-#define GL_APIENTRYP WINAPI*
-#endif
-");
-
-    writer.Write (Environment.NewLine);
-
     WriteCommentDivider (writer);
 
     writer.Write (Environment.NewLine);
-
-    writer.WriteLine ("#include <wrangle.h>");
 
     writer.WriteLine ("#include <GLES3/gl32.h>");
 
     writer.WriteLine ("#include <GLES2/gl2ext.h>");
-
-    writer.Write (Environment.NewLine);
-
-    WriteCommentDivider (writer);
 
     writer.Write (Environment.NewLine);
 
@@ -288,163 +270,102 @@ public class GeneratorGLES : Generator
     writer.Write (Environment.NewLine);
 
     //
-    // Collate feature and extension nodes together; as this can signifantly improve code re-use later.
+    // Feature and extension function definitions.
     //
 
-    Dictionary<string, XmlNode> featureAndExtensionNodes = new Dictionary<string, XmlNode> ();
+    Dictionary<string, HashSet<string>> featureBasedPrototypes = new Dictionary<string, HashSet<string>> ();
 
-    foreach (var keypair in m_featureNodesLookup)
+    foreach (var keypair in m_featureAndExtensionNodes)
     {
-      if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
+      XmlNode featureNode = keypair.Value;
+
+      string api = (featureNode.Attributes.GetNamedItem ("api") is XmlNode featureApiNode) ? featureApiNode.Value : m_api[0];
+
+      //
+      // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+      //
+
+      XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+
+      foreach (XmlNode requireNode in requireNodes)
       {
-        featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
-      }
-    }
-
-    foreach (var keypair in m_extensionNodesLookup)
-    {
-      if (!featureAndExtensionNodes.ContainsKey (keypair.Key))
-      {
-        featureAndExtensionNodes.Add (keypair.Key, keypair.Value);
-      }
-    }
-
-    if (featureAndExtensionNodes.Count > 0)
-    {
-      HashSet<string> definedPrototypes = new HashSet<string> ();
-
-      Dictionary<string, HashSet<string>> featureBasedPrototypes = new Dictionary<string, HashSet<string>> ();
-
-      foreach (var keypair in featureAndExtensionNodes)
-      {
-        XmlNode featureNode = keypair.Value;
-
-        string api = m_api[0];
-
+        if (requireNode.Attributes.GetNamedItem ("api") is XmlNode requireApiNode)
         {
-          XmlNode featureApiNode = featureNode.Attributes.GetNamedItem ("api");
+          api = requireApiNode.Value;
+        }
 
-          if (featureApiNode != null)
-          {
-            api = featureApiNode.Value;
-          }
+        if (!IsApiSupported (api))
+        {
+          continue; // Skip non-supported APIs.
         }
 
         //
-        // Multiple <require> tags can be nested in a feature/extension definition.  It's possible for these to also be api specific.
+        // Evaluate whether this feature is part of the 'base spec'.
         //
 
-        XmlNodeList requireNodes = featureNode.SelectNodes ("require");
+        bool baseSpecFeatureSet = false;
 
-        if (requireNodes.Count == 0)
+        if (featureNode.Attributes.GetNamedItem ("number") is XmlNode featureNumberNode)
         {
-          continue;
+          float version = float.Parse (featureNumberNode.Value);
+
+          baseSpecFeatureSet = version <= m_apiBaseSpecVersion[api];
         }
 
-        foreach (XmlNode requireNode in requireNodes)
+        if (baseSpecFeatureSet)
         {
-          XmlNode requireApiNode = requireNode.Attributes.GetNamedItem ("api");
-
-          if (requireApiNode != null)
-          {
-            api = requireApiNode.Value;
-          }
-
-          if (!IsApiSupported (api))
-          {
-            continue; // Skip non-supported APIs.
-          }
-
-          //
-          // Evaluate whether this feature is part of the 'base spec'.
-          //
-
-          XmlNode featureNumberNode = featureNode.Attributes.GetNamedItem ("number");
-
-          bool baseSpecFeatureSet = false;
-
-          if (featureNumberNode != null)
-          {
-            float version = m_apiBaseSpecVersion[api];
-
-            if (float.TryParse (featureNumberNode.Value, out version))
-            {
-              baseSpecFeatureSet = version <= m_apiBaseSpecVersion[api];
-            }
-          }
-
-          //
-          // Export code for seeding available function/command addresses.
-          //
-
-          XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
-
-          if (requireCommandNodes.Count == 0)
-          {
-            continue;
-          }
-
-          HashSet<string> requiredCommands;
-
-          if (!featureBasedPrototypes.TryGetValue (keypair.Key, out requiredCommands))
-          {
-            requiredCommands = new HashSet<string> ();
-          }
-
-          foreach (XmlNode commandNode in requireCommandNodes)
-          {
-            string command = commandNode.Attributes["name"].Value;
-
-            if (definedPrototypes.Contains (command))
-            {
-              continue;
-            }
-
-            definedPrototypes.Add (command);
-
-            if (baseSpecFeatureSet)
-            {
-              continue; // Skip any base spec versions.
-            }
-
-            requiredCommands.Add (command);
-          }
-
-          featureBasedPrototypes[keypair.Key] = requiredCommands;
+          continue; // Skip any base spec versions.
         }
+
+        //
+        // Export code for seeding available function/command addresses.
+        //
+
+        XmlNodeList requireCommandNodes = requireNode.SelectNodes ("command");
+
+        if (!featureBasedPrototypes.TryGetValue (keypair.Key, out HashSet<string> requiredCommands))
+        {
+          requiredCommands = new HashSet<string> ();
+        }
+
+        foreach (XmlNode commandNode in requireCommandNodes)
+        {
+          string command = commandNode.Attributes["name"].Value;
+
+          requiredCommands.Add (command);
+        }
+
+        featureBasedPrototypes[keypair.Key] = requiredCommands;
       }
+    }
 
-      //
-      // Output condensed feature organised prototypes.
-      //
+    //
+    // Output condensed feature organised prototypes.
+    //
 
-      if (featureBasedPrototypes.Count > 0)
+    foreach (var keypair in featureBasedPrototypes)
+    {
+      if (keypair.Value.Count == 0)
       {
-        foreach (var keypair in featureBasedPrototypes)
-        {
-          if (keypair.Value.Count == 0)
-          {
-            continue;
-          }
-
-          writer.WriteLine (string.Format ("  // {0}", keypair.Key));
-
-          writer.WriteLine (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])", keypair.Key));
-
-          writer.WriteLine ("  {");
-
-          foreach (string command in keypair.Value)
-          {
-            string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
-
-            writer.WriteLine (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");", command, mangedFunctionPointer));
-          }
-
-          writer.WriteLine ("  }");
-
-          writer.Write (Environment.NewLine);
-        }
+        continue;
       }
+
+      writer.WriteLine (string.Format ("  // {0}", keypair.Key));
+
+      writer.WriteLine (string.Format ("  if (s_deviceConfig.m_featureSupported [GLEW_{0}])", keypair.Key));
+
+      writer.WriteLine ("  {");
+
+      foreach (string command in keypair.Value)
+      {
+        string mangedFunctionPointer = string.Format ("PFN{0}PROC", command.ToUpperInvariant ());
+
+        writer.WriteLine (string.Format ("    s_deviceConfig.m_{0} = ({1}) glewGetProcAddress (\"{0}\");", command, mangedFunctionPointer));
+      }
+
+      writer.WriteLine ("  }");
+
+      writer.Write (Environment.NewLine);
     }
 
     writer.WriteLine ("  s_initialised = true;");

@@ -7,6 +7,9 @@ const char * _glew_glx_glXQueryExtensionsString (Display * dpy, int  screen)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   const char * result = ((const char *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_1 - glXQueryExtensionsString
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_1] && glxConfig.m_glXQueryExtensionsString)
   {
@@ -14,6 +17,9 @@ const char * _glew_glx_glXQueryExtensionsString (Display * dpy, int  screen)
     result = glxConfig.m_glXQueryExtensionsString (dpy, screen);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -26,6 +32,9 @@ const char * _glew_glx_glXQueryServerString (Display * dpy, int  screen, int  na
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   const char * result = ((const char *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_1 - glXQueryServerString
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_1] && glxConfig.m_glXQueryServerString)
   {
@@ -33,6 +42,9 @@ const char * _glew_glx_glXQueryServerString (Display * dpy, int  screen, int  na
     result = glxConfig.m_glXQueryServerString (dpy, screen, name);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -45,6 +57,9 @@ const char * _glew_glx_glXGetClientString (Display * dpy, int  name)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   const char * result = ((const char *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_1 - glXGetClientString
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_1] && glxConfig.m_glXGetClientString)
   {
@@ -52,6 +67,9 @@ const char * _glew_glx_glXGetClientString (Display * dpy, int  name)
     result = glxConfig.m_glXGetClientString (dpy, name);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -64,6 +82,9 @@ Display * _glew_glx_glXGetCurrentDisplay ()
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Display * result = ((Display *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_2 - glXGetCurrentDisplay
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_2] && glxConfig.m_glXGetCurrentDisplay)
   {
@@ -71,6 +92,9 @@ Display * _glew_glx_glXGetCurrentDisplay ()
     result = glxConfig.m_glXGetCurrentDisplay ();
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -83,6 +107,9 @@ GLXFBConfig * _glew_glx_glXGetFBConfigs (Display * dpy, int  screen, int * nelem
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXFBConfig * result = ((GLXFBConfig *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXGetFBConfigs
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetFBConfigs)
   {
@@ -90,6 +117,9 @@ GLXFBConfig * _glew_glx_glXGetFBConfigs (Display * dpy, int  screen, int * nelem
     result = glxConfig.m_glXGetFBConfigs (dpy, screen, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -102,6 +132,9 @@ GLXFBConfig * _glew_glx_glXChooseFBConfig (Display * dpy, int  screen, const int
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXFBConfig * result = ((GLXFBConfig *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXChooseFBConfig
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXChooseFBConfig)
   {
@@ -109,6 +142,9 @@ GLXFBConfig * _glew_glx_glXChooseFBConfig (Display * dpy, int  screen, const int
     result = glxConfig.m_glXChooseFBConfig (dpy, screen, attrib_list, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -121,6 +157,9 @@ int _glew_glx_glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int  attr
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXGetFBConfigAttrib
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetFBConfigAttrib)
   {
@@ -128,6 +167,9 @@ int _glew_glx_glXGetFBConfigAttrib (Display * dpy, GLXFBConfig config, int  attr
     result = glxConfig.m_glXGetFBConfigAttrib (dpy, config, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -140,6 +182,9 @@ XVisualInfo * _glew_glx_glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig con
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   XVisualInfo * result = ((XVisualInfo *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXGetVisualFromFBConfig
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetVisualFromFBConfig)
   {
@@ -147,6 +192,9 @@ XVisualInfo * _glew_glx_glXGetVisualFromFBConfig (Display * dpy, GLXFBConfig con
     result = glxConfig.m_glXGetVisualFromFBConfig (dpy, config);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -159,6 +207,9 @@ GLXWindow _glew_glx_glXCreateWindow (Display * dpy, GLXFBConfig config, Window w
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXWindow result = ((GLXWindow)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXCreateWindow
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXCreateWindow)
   {
@@ -166,6 +217,9 @@ GLXWindow _glew_glx_glXCreateWindow (Display * dpy, GLXFBConfig config, Window w
     result = glxConfig.m_glXCreateWindow (dpy, config, win, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -177,6 +231,9 @@ void _glew_glx_glXDestroyWindow (Display * dpy, GLXWindow win)
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXDestroyWindow
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXDestroyWindow)
   {
@@ -184,6 +241,9 @@ void _glew_glx_glXDestroyWindow (Display * dpy, GLXWindow win)
     glxConfig.m_glXDestroyWindow (dpy, win);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -195,6 +255,9 @@ GLXPixmap _glew_glx_glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap p
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXPixmap result = ((GLXPixmap)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXCreatePixmap
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXCreatePixmap)
   {
@@ -202,6 +265,9 @@ GLXPixmap _glew_glx_glXCreatePixmap (Display * dpy, GLXFBConfig config, Pixmap p
     result = glxConfig.m_glXCreatePixmap (dpy, config, pixmap, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -213,6 +279,9 @@ void _glew_glx_glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXDestroyPixmap
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXDestroyPixmap)
   {
@@ -220,6 +289,9 @@ void _glew_glx_glXDestroyPixmap (Display * dpy, GLXPixmap pixmap)
     glxConfig.m_glXDestroyPixmap (dpy, pixmap);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,6 +303,9 @@ GLXPbuffer _glew_glx_glXCreatePbuffer (Display * dpy, GLXFBConfig config, const 
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXPbuffer result = ((GLXPbuffer)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXCreatePbuffer
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXCreatePbuffer)
   {
@@ -238,6 +313,9 @@ GLXPbuffer _glew_glx_glXCreatePbuffer (Display * dpy, GLXFBConfig config, const 
     result = glxConfig.m_glXCreatePbuffer (dpy, config, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -249,6 +327,9 @@ void _glew_glx_glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXDestroyPbuffer
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXDestroyPbuffer)
   {
@@ -256,6 +337,9 @@ void _glew_glx_glXDestroyPbuffer (Display * dpy, GLXPbuffer pbuf)
     glxConfig.m_glXDestroyPbuffer (dpy, pbuf);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -266,6 +350,9 @@ void _glew_glx_glXQueryDrawable (Display * dpy, GLXDrawable draw, int  attribute
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXQueryDrawable
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXQueryDrawable)
   {
@@ -273,6 +360,9 @@ void _glew_glx_glXQueryDrawable (Display * dpy, GLXDrawable draw, int  attribute
     glxConfig.m_glXQueryDrawable (dpy, draw, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -284,6 +374,9 @@ GLXContext _glew_glx_glXCreateNewContext (Display * dpy, GLXFBConfig config, int
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXContext result = ((GLXContext)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXCreateNewContext
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXCreateNewContext)
   {
@@ -291,6 +384,9 @@ GLXContext _glew_glx_glXCreateNewContext (Display * dpy, GLXFBConfig config, int
     result = glxConfig.m_glXCreateNewContext (dpy, config, render_type, share_list, direct);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -303,6 +399,9 @@ Bool _glew_glx_glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawab
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXMakeContextCurrent
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXMakeContextCurrent)
   {
@@ -310,6 +409,9 @@ Bool _glew_glx_glXMakeContextCurrent (Display * dpy, GLXDrawable draw, GLXDrawab
     result = glxConfig.m_glXMakeContextCurrent (dpy, draw, read, ctx);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -322,6 +424,9 @@ GLXDrawable _glew_glx_glXGetCurrentReadDrawable ()
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXDrawable result = ((GLXDrawable)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXGetCurrentReadDrawable
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetCurrentReadDrawable)
   {
@@ -329,6 +434,9 @@ GLXDrawable _glew_glx_glXGetCurrentReadDrawable ()
     result = glxConfig.m_glXGetCurrentReadDrawable ();
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -341,6 +449,9 @@ int _glew_glx_glXQueryContext (Display * dpy, GLXContext ctx, int  attribute, in
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXQueryContext
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXQueryContext)
   {
@@ -348,6 +459,9 @@ int _glew_glx_glXQueryContext (Display * dpy, GLXContext ctx, int  attribute, in
     result = glxConfig.m_glXQueryContext (dpy, ctx, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -359,6 +473,9 @@ void _glew_glx_glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long  e
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXSelectEvent
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXSelectEvent)
   {
@@ -366,6 +483,9 @@ void _glew_glx_glXSelectEvent (Display * dpy, GLXDrawable draw, unsigned long  e
     glxConfig.m_glXSelectEvent (dpy, draw, event_mask);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -376,6 +496,9 @@ void _glew_glx_glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned lo
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_3 - glXGetSelectedEvent
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_3] && glxConfig.m_glXGetSelectedEvent)
   {
@@ -383,6 +506,9 @@ void _glew_glx_glXGetSelectedEvent (Display * dpy, GLXDrawable draw, unsigned lo
     glxConfig.m_glXGetSelectedEvent (dpy, draw, event_mask);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -394,6 +520,9 @@ __GLXextFuncPtr _glew_glx_glXGetProcAddress (const GLubyte * procName)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   __GLXextFuncPtr result = ((__GLXextFuncPtr)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_VERSION_1_4 - glXGetProcAddress
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_VERSION_1_4] && glxConfig.m_glXGetProcAddress)
   {
@@ -401,6 +530,9 @@ __GLXextFuncPtr _glew_glx_glXGetProcAddress (const GLubyte * procName)
     result = glxConfig.m_glXGetProcAddress (procName);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -413,6 +545,9 @@ unsigned int _glew_glx_glXGetGPUIDsAMD (unsigned int  maxCount, unsigned int * i
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   unsigned int result = ((unsigned int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_AMD_gpu_association - glXGetGPUIDsAMD
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXGetGPUIDsAMD)
   {
@@ -420,6 +555,9 @@ unsigned int _glew_glx_glXGetGPUIDsAMD (unsigned int  maxCount, unsigned int * i
     result = glxConfig.m_glXGetGPUIDsAMD (maxCount, ids);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -432,6 +570,9 @@ int _glew_glx_glXGetGPUInfoAMD (unsigned int  id, int  property, GLenum dataType
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_AMD_gpu_association - glXGetGPUInfoAMD
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXGetGPUInfoAMD)
   {
@@ -439,6 +580,9 @@ int _glew_glx_glXGetGPUInfoAMD (unsigned int  id, int  property, GLenum dataType
     result = glxConfig.m_glXGetGPUInfoAMD (id, property, dataType, size, data);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -451,6 +595,9 @@ unsigned int _glew_glx_glXGetContextGPUIDAMD (GLXContext ctx)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   unsigned int result = ((unsigned int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_AMD_gpu_association - glXGetContextGPUIDAMD
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXGetContextGPUIDAMD)
   {
@@ -458,6 +605,9 @@ unsigned int _glew_glx_glXGetContextGPUIDAMD (GLXContext ctx)
     result = glxConfig.m_glXGetContextGPUIDAMD (ctx);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -470,6 +620,9 @@ GLXContext _glew_glx_glXCreateAssociatedContextAMD (unsigned int  id, GLXContext
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXContext result = ((GLXContext)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_AMD_gpu_association - glXCreateAssociatedContextAMD
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXCreateAssociatedContextAMD)
   {
@@ -477,6 +630,9 @@ GLXContext _glew_glx_glXCreateAssociatedContextAMD (unsigned int  id, GLXContext
     result = glxConfig.m_glXCreateAssociatedContextAMD (id, share_list);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -489,6 +645,9 @@ GLXContext _glew_glx_glXCreateAssociatedContextAttribsAMD (unsigned int  id, GLX
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXContext result = ((GLXContext)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_AMD_gpu_association - glXCreateAssociatedContextAttribsAMD
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXCreateAssociatedContextAttribsAMD)
   {
@@ -496,6 +655,9 @@ GLXContext _glew_glx_glXCreateAssociatedContextAttribsAMD (unsigned int  id, GLX
     result = glxConfig.m_glXCreateAssociatedContextAttribsAMD (id, share_context, attribList);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -508,6 +670,9 @@ Bool _glew_glx_glXDeleteAssociatedContextAMD (GLXContext ctx)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_AMD_gpu_association - glXDeleteAssociatedContextAMD
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXDeleteAssociatedContextAMD)
   {
@@ -515,6 +680,9 @@ Bool _glew_glx_glXDeleteAssociatedContextAMD (GLXContext ctx)
     result = glxConfig.m_glXDeleteAssociatedContextAMD (ctx);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -527,6 +695,9 @@ Bool _glew_glx_glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_AMD_gpu_association - glXMakeAssociatedContextCurrentAMD
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXMakeAssociatedContextCurrentAMD)
   {
@@ -534,6 +705,9 @@ Bool _glew_glx_glXMakeAssociatedContextCurrentAMD (GLXContext ctx)
     result = glxConfig.m_glXMakeAssociatedContextCurrentAMD (ctx);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -546,6 +720,9 @@ GLXContext _glew_glx_glXGetCurrentAssociatedContextAMD ()
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXContext result = ((GLXContext)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_AMD_gpu_association - glXGetCurrentAssociatedContextAMD
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXGetCurrentAssociatedContextAMD)
   {
@@ -553,6 +730,9 @@ GLXContext _glew_glx_glXGetCurrentAssociatedContextAMD ()
     result = glxConfig.m_glXGetCurrentAssociatedContextAMD ();
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -564,6 +744,9 @@ void _glew_glx_glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLi
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_AMD_gpu_association - glXBlitContextFramebufferAMD
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_AMD_gpu_association] && glxConfig.m_glXBlitContextFramebufferAMD)
   {
@@ -571,6 +754,9 @@ void _glew_glx_glXBlitContextFramebufferAMD (GLXContext dstCtx, GLint srcX0, GLi
     glxConfig.m_glXBlitContextFramebufferAMD (dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -582,6 +768,9 @@ GLXContext _glew_glx_glXCreateContextAttribsARB (Display * dpy, GLXFBConfig conf
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXContext result = ((GLXContext)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_ARB_create_context - glXCreateContextAttribsARB
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_ARB_create_context] && glxConfig.m_glXCreateContextAttribsARB)
   {
@@ -589,6 +778,9 @@ GLXContext _glew_glx_glXCreateContextAttribsARB (Display * dpy, GLXFBConfig conf
     result = glxConfig.m_glXCreateContextAttribsARB (dpy, config, share_context, direct, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -601,6 +793,9 @@ __GLXextFuncPtr _glew_glx_glXGetProcAddressARB (const GLubyte * procName)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   __GLXextFuncPtr result = ((__GLXextFuncPtr)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_ARB_get_proc_address - glXGetProcAddressARB
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_ARB_get_proc_address] && glxConfig.m_glXGetProcAddressARB)
   {
@@ -608,6 +803,9 @@ __GLXextFuncPtr _glew_glx_glXGetProcAddressARB (const GLubyte * procName)
     result = glxConfig.m_glXGetProcAddressARB (procName);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -620,6 +818,9 @@ Display * _glew_glx_glXGetCurrentDisplayEXT ()
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Display * result = ((Display *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_EXT_import_context - glXGetCurrentDisplayEXT
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXGetCurrentDisplayEXT)
   {
@@ -627,6 +828,9 @@ Display * _glew_glx_glXGetCurrentDisplayEXT ()
     result = glxConfig.m_glXGetCurrentDisplayEXT ();
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -639,6 +843,9 @@ int _glew_glx_glXQueryContextInfoEXT (Display * dpy, GLXContext context, int  at
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_EXT_import_context - glXQueryContextInfoEXT
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXQueryContextInfoEXT)
   {
@@ -646,6 +853,9 @@ int _glew_glx_glXQueryContextInfoEXT (Display * dpy, GLXContext context, int  at
     result = glxConfig.m_glXQueryContextInfoEXT (dpy, context, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -658,6 +868,9 @@ GLXContextID _glew_glx_glXGetContextIDEXT (const GLXContext context)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXContextID result = ((GLXContextID)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_EXT_import_context - glXGetContextIDEXT
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXGetContextIDEXT)
   {
@@ -665,6 +878,9 @@ GLXContextID _glew_glx_glXGetContextIDEXT (const GLXContext context)
     result = glxConfig.m_glXGetContextIDEXT (context);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -677,6 +893,9 @@ GLXContext _glew_glx_glXImportContextEXT (Display * dpy, GLXContextID contextID)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXContext result = ((GLXContext)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_EXT_import_context - glXImportContextEXT
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXImportContextEXT)
   {
@@ -684,6 +903,9 @@ GLXContext _glew_glx_glXImportContextEXT (Display * dpy, GLXContextID contextID)
     result = glxConfig.m_glXImportContextEXT (dpy, contextID);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -695,6 +917,9 @@ void _glew_glx_glXFreeContextEXT (Display * dpy, GLXContext context)
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_EXT_import_context - glXFreeContextEXT
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_import_context] && glxConfig.m_glXFreeContextEXT)
   {
@@ -702,6 +927,9 @@ void _glew_glx_glXFreeContextEXT (Display * dpy, GLXContext context)
     glxConfig.m_glXFreeContextEXT (dpy, context);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -712,6 +940,9 @@ void _glew_glx_glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int  int
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_EXT_swap_control - glXSwapIntervalEXT
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_swap_control] && glxConfig.m_glXSwapIntervalEXT)
   {
@@ -719,6 +950,9 @@ void _glew_glx_glXSwapIntervalEXT (Display * dpy, GLXDrawable drawable, int  int
     glxConfig.m_glXSwapIntervalEXT (dpy, drawable, interval);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -729,6 +963,9 @@ void _glew_glx_glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int  buf
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_EXT_texture_from_pixmap - glXBindTexImageEXT
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_texture_from_pixmap] && glxConfig.m_glXBindTexImageEXT)
   {
@@ -736,6 +973,9 @@ void _glew_glx_glXBindTexImageEXT (Display * dpy, GLXDrawable drawable, int  buf
     glxConfig.m_glXBindTexImageEXT (dpy, drawable, buffer, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -746,6 +986,9 @@ void _glew_glx_glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int  
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_EXT_texture_from_pixmap - glXReleaseTexImageEXT
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_EXT_texture_from_pixmap] && glxConfig.m_glXReleaseTexImageEXT)
   {
@@ -753,6 +996,9 @@ void _glew_glx_glXReleaseTexImageEXT (Display * dpy, GLXDrawable drawable, int  
     glxConfig.m_glXReleaseTexImageEXT (dpy, drawable, buffer);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -764,6 +1010,9 @@ unsigned int _glew_glx_glXGetAGPOffsetMESA (const void * pointer)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   unsigned int result = ((unsigned int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_agp_offset - glXGetAGPOffsetMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_agp_offset] && glxConfig.m_glXGetAGPOffsetMESA)
   {
@@ -771,6 +1020,9 @@ unsigned int _glew_glx_glXGetAGPOffsetMESA (const void * pointer)
     result = glxConfig.m_glXGetAGPOffsetMESA (pointer);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -782,6 +1034,9 @@ void _glew_glx_glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int  x
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_copy_sub_buffer - glXCopySubBufferMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_copy_sub_buffer] && glxConfig.m_glXCopySubBufferMESA)
   {
@@ -789,6 +1044,9 @@ void _glew_glx_glXCopySubBufferMESA (Display * dpy, GLXDrawable drawable, int  x
     glxConfig.m_glXCopySubBufferMESA (dpy, drawable, x, y, width, height);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -800,6 +1058,9 @@ GLXPixmap _glew_glx_glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual,
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXPixmap result = ((GLXPixmap)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_pixmap_colormap - glXCreateGLXPixmapMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_pixmap_colormap] && glxConfig.m_glXCreateGLXPixmapMESA)
   {
@@ -807,6 +1068,9 @@ GLXPixmap _glew_glx_glXCreateGLXPixmapMESA (Display * dpy, XVisualInfo * visual,
     result = glxConfig.m_glXCreateGLXPixmapMESA (dpy, visual, pixmap, cmap);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -819,6 +1083,9 @@ Bool _glew_glx_glXQueryCurrentRendererIntegerMESA (int  attribute, unsigned int 
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_query_renderer - glXQueryCurrentRendererIntegerMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_query_renderer] && glxConfig.m_glXQueryCurrentRendererIntegerMESA)
   {
@@ -826,6 +1093,9 @@ Bool _glew_glx_glXQueryCurrentRendererIntegerMESA (int  attribute, unsigned int 
     result = glxConfig.m_glXQueryCurrentRendererIntegerMESA (attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -838,6 +1108,9 @@ const char * _glew_glx_glXQueryCurrentRendererStringMESA (int  attribute)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   const char * result = ((const char *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_query_renderer - glXQueryCurrentRendererStringMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_query_renderer] && glxConfig.m_glXQueryCurrentRendererStringMESA)
   {
@@ -845,6 +1118,9 @@ const char * _glew_glx_glXQueryCurrentRendererStringMESA (int  attribute)
     result = glxConfig.m_glXQueryCurrentRendererStringMESA (attribute);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -857,6 +1133,9 @@ Bool _glew_glx_glXQueryRendererIntegerMESA (Display * dpy, int  screen, int  ren
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_query_renderer - glXQueryRendererIntegerMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_query_renderer] && glxConfig.m_glXQueryRendererIntegerMESA)
   {
@@ -864,6 +1143,9 @@ Bool _glew_glx_glXQueryRendererIntegerMESA (Display * dpy, int  screen, int  ren
     result = glxConfig.m_glXQueryRendererIntegerMESA (dpy, screen, renderer, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -876,6 +1158,9 @@ const char * _glew_glx_glXQueryRendererStringMESA (Display * dpy, int  screen, i
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   const char * result = ((const char *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_query_renderer - glXQueryRendererStringMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_query_renderer] && glxConfig.m_glXQueryRendererStringMESA)
   {
@@ -883,6 +1168,9 @@ const char * _glew_glx_glXQueryRendererStringMESA (Display * dpy, int  screen, i
     result = glxConfig.m_glXQueryRendererStringMESA (dpy, screen, renderer, attribute);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -895,6 +1183,9 @@ Bool _glew_glx_glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_release_buffers - glXReleaseBuffersMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_release_buffers] && glxConfig.m_glXReleaseBuffersMESA)
   {
@@ -902,6 +1193,9 @@ Bool _glew_glx_glXReleaseBuffersMESA (Display * dpy, GLXDrawable drawable)
     result = glxConfig.m_glXReleaseBuffersMESA (dpy, drawable);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -914,6 +1208,9 @@ GLboolean _glew_glx_glXSet3DfxModeMESA (GLint mode)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLboolean result = ((GLboolean)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_set_3dfx_mode - glXSet3DfxModeMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_set_3dfx_mode] && glxConfig.m_glXSet3DfxModeMESA)
   {
@@ -921,6 +1218,9 @@ GLboolean _glew_glx_glXSet3DfxModeMESA (GLint mode)
     result = glxConfig.m_glXSet3DfxModeMESA (mode);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -933,6 +1233,9 @@ int _glew_glx_glXGetSwapIntervalMESA ()
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_swap_control - glXGetSwapIntervalMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_swap_control] && glxConfig.m_glXGetSwapIntervalMESA)
   {
@@ -940,6 +1243,9 @@ int _glew_glx_glXGetSwapIntervalMESA ()
     result = glxConfig.m_glXGetSwapIntervalMESA ();
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -952,6 +1258,9 @@ int _glew_glx_glXSwapIntervalMESA (unsigned int  interval)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_MESA_swap_control - glXSwapIntervalMESA
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_MESA_swap_control] && glxConfig.m_glXSwapIntervalMESA)
   {
@@ -959,6 +1268,9 @@ int _glew_glx_glXSwapIntervalMESA (unsigned int  interval)
     result = glxConfig.m_glXSwapIntervalMESA (interval);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -970,6 +1282,9 @@ void _glew_glx_glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXCon
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_copy_buffer - glXCopyBufferSubDataNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_copy_buffer] && glxConfig.m_glXCopyBufferSubDataNV)
   {
@@ -977,6 +1292,9 @@ void _glew_glx_glXCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, GLXCon
     glxConfig.m_glXCopyBufferSubDataNV (dpy, readCtx, writeCtx, readTarget, writeTarget, readOffset, writeOffset, size);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -987,6 +1305,9 @@ void _glew_glx_glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, G
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_copy_buffer - glXNamedCopyBufferSubDataNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_copy_buffer] && glxConfig.m_glXNamedCopyBufferSubDataNV)
   {
@@ -994,6 +1315,9 @@ void _glew_glx_glXNamedCopyBufferSubDataNV (Display * dpy, GLXContext readCtx, G
     glxConfig.m_glXNamedCopyBufferSubDataNV (dpy, readCtx, writeCtx, readBuffer, writeBuffer, readOffset, writeOffset, size);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1004,6 +1328,9 @@ void _glew_glx_glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint s
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_copy_image - glXCopyImageSubDataNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_copy_image] && glxConfig.m_glXCopyImageSubDataNV)
   {
@@ -1011,6 +1338,9 @@ void _glew_glx_glXCopyImageSubDataNV (Display * dpy, GLXContext srcCtx, GLuint s
     glxConfig.m_glXCopyImageSubDataNV (dpy, srcCtx, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstCtx, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1022,6 +1352,9 @@ Bool _glew_glx_glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloa
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_delay_before_swap - glXDelayBeforeSwapNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_delay_before_swap] && glxConfig.m_glXDelayBeforeSwapNV)
   {
@@ -1029,6 +1362,9 @@ Bool _glew_glx_glXDelayBeforeSwapNV (Display * dpy, GLXDrawable drawable, GLfloa
     result = glxConfig.m_glXDelayBeforeSwapNV (dpy, drawable, seconds);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1041,6 +1377,9 @@ unsigned int * _glew_glx_glXEnumerateVideoDevicesNV (Display * dpy, int  screen,
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   unsigned int * result = ((unsigned int *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_present_video - glXEnumerateVideoDevicesNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_present_video] && glxConfig.m_glXEnumerateVideoDevicesNV)
   {
@@ -1048,6 +1387,9 @@ unsigned int * _glew_glx_glXEnumerateVideoDevicesNV (Display * dpy, int  screen,
     result = glxConfig.m_glXEnumerateVideoDevicesNV (dpy, screen, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1060,6 +1402,9 @@ int _glew_glx_glXBindVideoDeviceNV (Display * dpy, unsigned int  video_slot, uns
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_present_video - glXBindVideoDeviceNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_present_video] && glxConfig.m_glXBindVideoDeviceNV)
   {
@@ -1067,6 +1412,9 @@ int _glew_glx_glXBindVideoDeviceNV (Display * dpy, unsigned int  video_slot, uns
     result = glxConfig.m_glXBindVideoDeviceNV (dpy, video_slot, video_device, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1079,6 +1427,9 @@ Bool _glew_glx_glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint g
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_swap_group - glXJoinSwapGroupNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXJoinSwapGroupNV)
   {
@@ -1086,6 +1437,9 @@ Bool _glew_glx_glXJoinSwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint g
     result = glxConfig.m_glXJoinSwapGroupNV (dpy, drawable, group);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1098,6 +1452,9 @@ Bool _glew_glx_glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_swap_group - glXBindSwapBarrierNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXBindSwapBarrierNV)
   {
@@ -1105,6 +1462,9 @@ Bool _glew_glx_glXBindSwapBarrierNV (Display * dpy, GLuint group, GLuint barrier
     result = glxConfig.m_glXBindSwapBarrierNV (dpy, group, barrier);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1117,6 +1477,9 @@ Bool _glew_glx_glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint 
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_swap_group - glXQuerySwapGroupNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXQuerySwapGroupNV)
   {
@@ -1124,6 +1487,9 @@ Bool _glew_glx_glXQuerySwapGroupNV (Display * dpy, GLXDrawable drawable, GLuint 
     result = glxConfig.m_glXQuerySwapGroupNV (dpy, drawable, group, barrier);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1136,6 +1502,9 @@ Bool _glew_glx_glXQueryMaxSwapGroupsNV (Display * dpy, int  screen, GLuint * max
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_swap_group - glXQueryMaxSwapGroupsNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXQueryMaxSwapGroupsNV)
   {
@@ -1143,6 +1512,9 @@ Bool _glew_glx_glXQueryMaxSwapGroupsNV (Display * dpy, int  screen, GLuint * max
     result = glxConfig.m_glXQueryMaxSwapGroupsNV (dpy, screen, maxGroups, maxBarriers);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1155,6 +1527,9 @@ Bool _glew_glx_glXQueryFrameCountNV (Display * dpy, int  screen, GLuint * count)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_swap_group - glXQueryFrameCountNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXQueryFrameCountNV)
   {
@@ -1162,6 +1537,9 @@ Bool _glew_glx_glXQueryFrameCountNV (Display * dpy, int  screen, GLuint * count)
     result = glxConfig.m_glXQueryFrameCountNV (dpy, screen, count);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1174,6 +1552,9 @@ Bool _glew_glx_glXResetFrameCountNV (Display * dpy, int  screen)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_swap_group - glXResetFrameCountNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_swap_group] && glxConfig.m_glXResetFrameCountNV)
   {
@@ -1181,6 +1562,9 @@ Bool _glew_glx_glXResetFrameCountNV (Display * dpy, int  screen)
     result = glxConfig.m_glXResetFrameCountNV (dpy, screen);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1193,6 +1577,9 @@ int _glew_glx_glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int  video_ca
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_capture - glXBindVideoCaptureDeviceNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXBindVideoCaptureDeviceNV)
   {
@@ -1200,6 +1587,9 @@ int _glew_glx_glXBindVideoCaptureDeviceNV (Display * dpy, unsigned int  video_ca
     result = glxConfig.m_glXBindVideoCaptureDeviceNV (dpy, video_capture_slot, device);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1212,6 +1602,9 @@ GLXVideoCaptureDeviceNV * _glew_glx_glXEnumerateVideoCaptureDevicesNV (Display *
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXVideoCaptureDeviceNV * result = ((GLXVideoCaptureDeviceNV *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_capture - glXEnumerateVideoCaptureDevicesNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXEnumerateVideoCaptureDevicesNV)
   {
@@ -1219,6 +1612,9 @@ GLXVideoCaptureDeviceNV * _glew_glx_glXEnumerateVideoCaptureDevicesNV (Display *
     result = glxConfig.m_glXEnumerateVideoCaptureDevicesNV (dpy, screen, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1230,6 +1626,9 @@ void _glew_glx_glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDevice
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_capture - glXLockVideoCaptureDeviceNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXLockVideoCaptureDeviceNV)
   {
@@ -1237,6 +1636,9 @@ void _glew_glx_glXLockVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDevice
     glxConfig.m_glXLockVideoCaptureDeviceNV (dpy, device);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1248,6 +1650,9 @@ int _glew_glx_glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDevice
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_capture - glXQueryVideoCaptureDeviceNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXQueryVideoCaptureDeviceNV)
   {
@@ -1255,6 +1660,9 @@ int _glew_glx_glXQueryVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDevice
     result = glxConfig.m_glXQueryVideoCaptureDeviceNV (dpy, device, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1266,6 +1674,9 @@ void _glew_glx_glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDev
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_capture - glXReleaseVideoCaptureDeviceNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_capture] && glxConfig.m_glXReleaseVideoCaptureDeviceNV)
   {
@@ -1273,6 +1684,9 @@ void _glew_glx_glXReleaseVideoCaptureDeviceNV (Display * dpy, GLXVideoCaptureDev
     glxConfig.m_glXReleaseVideoCaptureDeviceNV (dpy, device);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1284,6 +1698,9 @@ int _glew_glx_glXGetVideoDeviceNV (Display * dpy, int  screen, int  numVideoDevi
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_out - glXGetVideoDeviceNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXGetVideoDeviceNV)
   {
@@ -1291,6 +1708,9 @@ int _glew_glx_glXGetVideoDeviceNV (Display * dpy, int  screen, int  numVideoDevi
     result = glxConfig.m_glXGetVideoDeviceNV (dpy, screen, numVideoDevices, pVideoDevice);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1303,6 +1723,9 @@ int _glew_glx_glXReleaseVideoDeviceNV (Display * dpy, int  screen, GLXVideoDevic
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_out - glXReleaseVideoDeviceNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXReleaseVideoDeviceNV)
   {
@@ -1310,6 +1733,9 @@ int _glew_glx_glXReleaseVideoDeviceNV (Display * dpy, int  screen, GLXVideoDevic
     result = glxConfig.m_glXReleaseVideoDeviceNV (dpy, screen, VideoDevice);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1322,6 +1748,9 @@ int _glew_glx_glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, 
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_out - glXBindVideoImageNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXBindVideoImageNV)
   {
@@ -1329,6 +1758,9 @@ int _glew_glx_glXBindVideoImageNV (Display * dpy, GLXVideoDeviceNV VideoDevice, 
     result = glxConfig.m_glXBindVideoImageNV (dpy, VideoDevice, pbuf, iVideoBuffer);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1341,6 +1773,9 @@ int _glew_glx_glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_out - glXReleaseVideoImageNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXReleaseVideoImageNV)
   {
@@ -1348,6 +1783,9 @@ int _glew_glx_glXReleaseVideoImageNV (Display * dpy, GLXPbuffer pbuf)
     result = glxConfig.m_glXReleaseVideoImageNV (dpy, pbuf);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1360,6 +1798,9 @@ int _glew_glx_glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int  iBuf
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_out - glXSendPbufferToVideoNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXSendPbufferToVideoNV)
   {
@@ -1367,6 +1808,9 @@ int _glew_glx_glXSendPbufferToVideoNV (Display * dpy, GLXPbuffer pbuf, int  iBuf
     result = glxConfig.m_glXSendPbufferToVideoNV (dpy, pbuf, iBufferType, pulCounterPbuffer, bBlock);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1379,6 +1823,9 @@ int _glew_glx_glXGetVideoInfoNV (Display * dpy, int  screen, GLXVideoDeviceNV Vi
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_NV_video_out - glXGetVideoInfoNV
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_NV_video_out] && glxConfig.m_glXGetVideoInfoNV)
   {
@@ -1386,6 +1833,9 @@ int _glew_glx_glXGetVideoInfoNV (Display * dpy, int  screen, GLXVideoDeviceNV Vi
     result = glxConfig.m_glXGetVideoInfoNV (dpy, screen, VideoDevice, pulCounterOutputPbuffer, pulCounterOutputVideo);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1398,6 +1848,9 @@ Bool _glew_glx_glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_OML_sync_control - glXGetSyncValuesOML
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXGetSyncValuesOML)
   {
@@ -1405,6 +1858,9 @@ Bool _glew_glx_glXGetSyncValuesOML (Display * dpy, GLXDrawable drawable, int64_t
     result = glxConfig.m_glXGetSyncValuesOML (dpy, drawable, ust, msc, sbc);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1417,6 +1873,9 @@ Bool _glew_glx_glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * 
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_OML_sync_control - glXGetMscRateOML
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXGetMscRateOML)
   {
@@ -1424,6 +1883,9 @@ Bool _glew_glx_glXGetMscRateOML (Display * dpy, GLXDrawable drawable, int32_t * 
     result = glxConfig.m_glXGetMscRateOML (dpy, drawable, numerator, denominator);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1436,6 +1898,9 @@ int64_t _glew_glx_glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int64_t result = ((int64_t)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_OML_sync_control - glXSwapBuffersMscOML
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXSwapBuffersMscOML)
   {
@@ -1443,6 +1908,9 @@ int64_t _glew_glx_glXSwapBuffersMscOML (Display * dpy, GLXDrawable drawable, int
     result = glxConfig.m_glXSwapBuffersMscOML (dpy, drawable, target_msc, divisor, remainder);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1455,6 +1923,9 @@ Bool _glew_glx_glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t ta
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_OML_sync_control - glXWaitForMscOML
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXWaitForMscOML)
   {
@@ -1462,6 +1933,9 @@ Bool _glew_glx_glXWaitForMscOML (Display * dpy, GLXDrawable drawable, int64_t ta
     result = glxConfig.m_glXWaitForMscOML (dpy, drawable, target_msc, divisor, remainder, ust, msc, sbc);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1474,6 +1948,9 @@ Bool _glew_glx_glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t ta
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_OML_sync_control - glXWaitForSbcOML
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_OML_sync_control] && glxConfig.m_glXWaitForSbcOML)
   {
@@ -1481,6 +1958,9 @@ Bool _glew_glx_glXWaitForSbcOML (Display * dpy, GLXDrawable drawable, int64_t ta
     result = glxConfig.m_glXWaitForSbcOML (dpy, drawable, target_sbc, ust, msc, sbc);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1492,6 +1972,9 @@ void _glew_glx_glXCushionSGI (Display * dpy, Window window, float  cushion)
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGI_cushion - glXCushionSGI
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_cushion] && glxConfig.m_glXCushionSGI)
   {
@@ -1499,6 +1982,9 @@ void _glew_glx_glXCushionSGI (Display * dpy, Window window, float  cushion)
     glxConfig.m_glXCushionSGI (dpy, window, cushion);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1510,6 +1996,9 @@ Bool _glew_glx_glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawab
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGI_make_current_read - glXMakeCurrentReadSGI
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_make_current_read] && glxConfig.m_glXMakeCurrentReadSGI)
   {
@@ -1517,6 +2006,9 @@ Bool _glew_glx_glXMakeCurrentReadSGI (Display * dpy, GLXDrawable draw, GLXDrawab
     result = glxConfig.m_glXMakeCurrentReadSGI (dpy, draw, read, ctx);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1529,6 +2021,9 @@ GLXDrawable _glew_glx_glXGetCurrentReadDrawableSGI ()
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXDrawable result = ((GLXDrawable)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGI_make_current_read - glXGetCurrentReadDrawableSGI
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_make_current_read] && glxConfig.m_glXGetCurrentReadDrawableSGI)
   {
@@ -1536,6 +2031,9 @@ GLXDrawable _glew_glx_glXGetCurrentReadDrawableSGI ()
     result = glxConfig.m_glXGetCurrentReadDrawableSGI ();
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1548,6 +2046,9 @@ int _glew_glx_glXSwapIntervalSGI (int  interval)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGI_swap_control - glXSwapIntervalSGI
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_swap_control] && glxConfig.m_glXSwapIntervalSGI)
   {
@@ -1555,6 +2056,9 @@ int _glew_glx_glXSwapIntervalSGI (int  interval)
     result = glxConfig.m_glXSwapIntervalSGI (interval);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1567,6 +2071,9 @@ int _glew_glx_glXGetVideoSyncSGI (unsigned int * count)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGI_video_sync - glXGetVideoSyncSGI
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_video_sync] && glxConfig.m_glXGetVideoSyncSGI)
   {
@@ -1574,6 +2081,9 @@ int _glew_glx_glXGetVideoSyncSGI (unsigned int * count)
     result = glxConfig.m_glXGetVideoSyncSGI (count);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1586,6 +2096,9 @@ int _glew_glx_glXWaitVideoSyncSGI (int  divisor, int  remainder, unsigned int * 
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGI_video_sync - glXWaitVideoSyncSGI
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGI_video_sync] && glxConfig.m_glXWaitVideoSyncSGI)
   {
@@ -1593,6 +2106,9 @@ int _glew_glx_glXWaitVideoSyncSGI (int  divisor, int  remainder, unsigned int * 
     result = glxConfig.m_glXWaitVideoSyncSGI (divisor, remainder, count);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1605,6 +2121,9 @@ Bool _glew_glx_glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer,
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_dmbuffer - glXAssociateDMPbufferSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_dmbuffer] && glxConfig.m_glXAssociateDMPbufferSGIX)
   {
@@ -1612,6 +2131,9 @@ Bool _glew_glx_glXAssociateDMPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuffer,
     result = glxConfig.m_glXAssociateDMPbufferSGIX (dpy, pbuffer, params, dmbuffer);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1624,6 +2146,9 @@ int _glew_glx_glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, i
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_fbconfig - glXGetFBConfigAttribSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXGetFBConfigAttribSGIX)
   {
@@ -1631,6 +2156,9 @@ int _glew_glx_glXGetFBConfigAttribSGIX (Display * dpy, GLXFBConfigSGIX config, i
     result = glxConfig.m_glXGetFBConfigAttribSGIX (dpy, config, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1643,6 +2171,9 @@ GLXFBConfigSGIX * _glew_glx_glXChooseFBConfigSGIX (Display * dpy, int  screen, i
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXFBConfigSGIX * result = ((GLXFBConfigSGIX *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_fbconfig - glXChooseFBConfigSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXChooseFBConfigSGIX)
   {
@@ -1650,6 +2181,9 @@ GLXFBConfigSGIX * _glew_glx_glXChooseFBConfigSGIX (Display * dpy, int  screen, i
     result = glxConfig.m_glXChooseFBConfigSGIX (dpy, screen, attrib_list, nelements);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1662,6 +2196,9 @@ GLXPixmap _glew_glx_glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfig
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXPixmap result = ((GLXPixmap)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_fbconfig - glXCreateGLXPixmapWithConfigSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXCreateGLXPixmapWithConfigSGIX)
   {
@@ -1669,6 +2206,9 @@ GLXPixmap _glew_glx_glXCreateGLXPixmapWithConfigSGIX (Display * dpy, GLXFBConfig
     result = glxConfig.m_glXCreateGLXPixmapWithConfigSGIX (dpy, config, pixmap);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1681,6 +2221,9 @@ GLXContext _glew_glx_glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigS
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXContext result = ((GLXContext)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_fbconfig - glXCreateContextWithConfigSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXCreateContextWithConfigSGIX)
   {
@@ -1688,6 +2231,9 @@ GLXContext _glew_glx_glXCreateContextWithConfigSGIX (Display * dpy, GLXFBConfigS
     result = glxConfig.m_glXCreateContextWithConfigSGIX (dpy, config, render_type, share_list, direct);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1700,6 +2246,9 @@ XVisualInfo * _glew_glx_glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfig
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   XVisualInfo * result = ((XVisualInfo *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_fbconfig - glXGetVisualFromFBConfigSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXGetVisualFromFBConfigSGIX)
   {
@@ -1707,6 +2256,9 @@ XVisualInfo * _glew_glx_glXGetVisualFromFBConfigSGIX (Display * dpy, GLXFBConfig
     result = glxConfig.m_glXGetVisualFromFBConfigSGIX (dpy, config);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1719,6 +2271,9 @@ GLXFBConfigSGIX _glew_glx_glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualIn
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXFBConfigSGIX result = ((GLXFBConfigSGIX)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_fbconfig - glXGetFBConfigFromVisualSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_fbconfig] && glxConfig.m_glXGetFBConfigFromVisualSGIX)
   {
@@ -1726,6 +2281,9 @@ GLXFBConfigSGIX _glew_glx_glXGetFBConfigFromVisualSGIX (Display * dpy, XVisualIn
     result = glxConfig.m_glXGetFBConfigFromVisualSGIX (dpy, vis);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1738,6 +2296,9 @@ GLXHyperpipeNetworkSGIX * _glew_glx_glXQueryHyperpipeNetworkSGIX (Display * dpy,
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXHyperpipeNetworkSGIX * result = ((GLXHyperpipeNetworkSGIX *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeNetworkSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXQueryHyperpipeNetworkSGIX)
   {
@@ -1745,6 +2306,9 @@ GLXHyperpipeNetworkSGIX * _glew_glx_glXQueryHyperpipeNetworkSGIX (Display * dpy,
     result = glxConfig.m_glXQueryHyperpipeNetworkSGIX (dpy, npipes);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1757,6 +2321,9 @@ int _glew_glx_glXHyperpipeConfigSGIX (Display * dpy, int  networkId, int  npipes
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_hyperpipe - glXHyperpipeConfigSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXHyperpipeConfigSGIX)
   {
@@ -1764,6 +2331,9 @@ int _glew_glx_glXHyperpipeConfigSGIX (Display * dpy, int  networkId, int  npipes
     result = glxConfig.m_glXHyperpipeConfigSGIX (dpy, networkId, npipes, cfg, hpId);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1776,6 +2346,9 @@ GLXHyperpipeConfigSGIX * _glew_glx_glXQueryHyperpipeConfigSGIX (Display * dpy, i
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXHyperpipeConfigSGIX * result = ((GLXHyperpipeConfigSGIX *)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeConfigSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXQueryHyperpipeConfigSGIX)
   {
@@ -1783,6 +2356,9 @@ GLXHyperpipeConfigSGIX * _glew_glx_glXQueryHyperpipeConfigSGIX (Display * dpy, i
     result = glxConfig.m_glXQueryHyperpipeConfigSGIX (dpy, hpId, npipes);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1795,6 +2371,9 @@ int _glew_glx_glXDestroyHyperpipeConfigSGIX (Display * dpy, int  hpId)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_hyperpipe - glXDestroyHyperpipeConfigSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXDestroyHyperpipeConfigSGIX)
   {
@@ -1802,6 +2381,9 @@ int _glew_glx_glXDestroyHyperpipeConfigSGIX (Display * dpy, int  hpId)
     result = glxConfig.m_glXDestroyHyperpipeConfigSGIX (dpy, hpId);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1814,6 +2396,9 @@ int _glew_glx_glXBindHyperpipeSGIX (Display * dpy, int  hpId)
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_hyperpipe - glXBindHyperpipeSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXBindHyperpipeSGIX)
   {
@@ -1821,6 +2406,9 @@ int _glew_glx_glXBindHyperpipeSGIX (Display * dpy, int  hpId)
     result = glxConfig.m_glXBindHyperpipeSGIX (dpy, hpId);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1833,6 +2421,9 @@ int _glew_glx_glXQueryHyperpipeBestAttribSGIX (Display * dpy, int  timeSlice, in
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeBestAttribSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXQueryHyperpipeBestAttribSGIX)
   {
@@ -1840,6 +2431,9 @@ int _glew_glx_glXQueryHyperpipeBestAttribSGIX (Display * dpy, int  timeSlice, in
     result = glxConfig.m_glXQueryHyperpipeBestAttribSGIX (dpy, timeSlice, attrib, size, attribList, returnAttribList);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1852,6 +2446,9 @@ int _glew_glx_glXHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_hyperpipe - glXHyperpipeAttribSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXHyperpipeAttribSGIX)
   {
@@ -1859,6 +2456,9 @@ int _glew_glx_glXHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  attrib
     result = glxConfig.m_glXHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, attribList);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1871,6 +2471,9 @@ int _glew_glx_glXQueryHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  a
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_hyperpipe - glXQueryHyperpipeAttribSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_hyperpipe] && glxConfig.m_glXQueryHyperpipeAttribSGIX)
   {
@@ -1878,6 +2481,9 @@ int _glew_glx_glXQueryHyperpipeAttribSGIX (Display * dpy, int  timeSlice, int  a
     result = glxConfig.m_glXQueryHyperpipeAttribSGIX (dpy, timeSlice, attrib, size, returnAttribList);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1890,6 +2496,9 @@ GLXPbufferSGIX _glew_glx_glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXPbufferSGIX result = ((GLXPbufferSGIX)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_pbuffer - glXCreateGLXPbufferSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXCreateGLXPbufferSGIX)
   {
@@ -1897,6 +2506,9 @@ GLXPbufferSGIX _glew_glx_glXCreateGLXPbufferSGIX (Display * dpy, GLXFBConfigSGIX
     result = glxConfig.m_glXCreateGLXPbufferSGIX (dpy, config, width, height, attrib_list);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -1908,6 +2520,9 @@ void _glew_glx_glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_pbuffer - glXDestroyGLXPbufferSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXDestroyGLXPbufferSGIX)
   {
@@ -1915,6 +2530,9 @@ void _glew_glx_glXDestroyGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf)
     glxConfig.m_glXDestroyGLXPbufferSGIX (dpy, pbuf);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1925,6 +2543,9 @@ void _glew_glx_glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int  
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_pbuffer - glXQueryGLXPbufferSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXQueryGLXPbufferSGIX)
   {
@@ -1932,6 +2553,9 @@ void _glew_glx_glXQueryGLXPbufferSGIX (Display * dpy, GLXPbufferSGIX pbuf, int  
     glxConfig.m_glXQueryGLXPbufferSGIX (dpy, pbuf, attribute, value);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1942,6 +2566,9 @@ void _glew_glx_glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_pbuffer - glXSelectEventSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXSelectEventSGIX)
   {
@@ -1949,6 +2576,9 @@ void _glew_glx_glXSelectEventSGIX (Display * dpy, GLXDrawable drawable, unsigned
     glxConfig.m_glXSelectEventSGIX (dpy, drawable, mask);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1959,6 +2589,9 @@ void _glew_glx_glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, uns
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_pbuffer - glXGetSelectedEventSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_pbuffer] && glxConfig.m_glXGetSelectedEventSGIX)
   {
@@ -1966,6 +2599,9 @@ void _glew_glx_glXGetSelectedEventSGIX (Display * dpy, GLXDrawable drawable, uns
     glxConfig.m_glXGetSelectedEventSGIX (dpy, drawable, mask);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1976,6 +2612,9 @@ void _glew_glx_glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int 
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_swap_barrier - glXBindSwapBarrierSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_swap_barrier] && glxConfig.m_glXBindSwapBarrierSGIX)
   {
@@ -1983,6 +2622,9 @@ void _glew_glx_glXBindSwapBarrierSGIX (Display * dpy, GLXDrawable drawable, int 
     glxConfig.m_glXBindSwapBarrierSGIX (dpy, drawable, barrier);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1994,6 +2636,9 @@ Bool _glew_glx_glXQueryMaxSwapBarriersSGIX (Display * dpy, int  screen, int * ma
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Bool result = ((Bool)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_swap_barrier - glXQueryMaxSwapBarriersSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_swap_barrier] && glxConfig.m_glXQueryMaxSwapBarriersSGIX)
   {
@@ -2001,6 +2646,9 @@ Bool _glew_glx_glXQueryMaxSwapBarriersSGIX (Display * dpy, int  screen, int * ma
     result = glxConfig.m_glXQueryMaxSwapBarriersSGIX (dpy, screen, max);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -2012,6 +2660,9 @@ void _glew_glx_glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDra
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_swap_group - glXJoinSwapGroupSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_swap_group] && glxConfig.m_glXJoinSwapGroupSGIX)
   {
@@ -2019,6 +2670,9 @@ void _glew_glx_glXJoinSwapGroupSGIX (Display * dpy, GLXDrawable drawable, GLXDra
     glxConfig.m_glXJoinSwapGroupSGIX (dpy, drawable, member);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2030,6 +2684,9 @@ int _glew_glx_glXBindChannelToWindowSGIX (Display * display, int  screen, int  c
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_video_resize - glXBindChannelToWindowSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXBindChannelToWindowSGIX)
   {
@@ -2037,6 +2694,9 @@ int _glew_glx_glXBindChannelToWindowSGIX (Display * display, int  screen, int  c
     result = glxConfig.m_glXBindChannelToWindowSGIX (display, screen, channel, window);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -2049,6 +2709,9 @@ int _glew_glx_glXChannelRectSGIX (Display * display, int  screen, int  channel, 
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_video_resize - glXChannelRectSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXChannelRectSGIX)
   {
@@ -2056,6 +2719,9 @@ int _glew_glx_glXChannelRectSGIX (Display * display, int  screen, int  channel, 
     result = glxConfig.m_glXChannelRectSGIX (display, screen, channel, x, y, w, h);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -2068,6 +2734,9 @@ int _glew_glx_glXQueryChannelRectSGIX (Display * display, int  screen, int  chan
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_video_resize - glXQueryChannelRectSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXQueryChannelRectSGIX)
   {
@@ -2075,6 +2744,9 @@ int _glew_glx_glXQueryChannelRectSGIX (Display * display, int  screen, int  chan
     result = glxConfig.m_glXQueryChannelRectSGIX (display, screen, channel, dx, dy, dw, dh);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -2087,6 +2759,9 @@ int _glew_glx_glXQueryChannelDeltasSGIX (Display * display, int  screen, int  ch
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_video_resize - glXQueryChannelDeltasSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXQueryChannelDeltasSGIX)
   {
@@ -2094,6 +2769,9 @@ int _glew_glx_glXQueryChannelDeltasSGIX (Display * display, int  screen, int  ch
     result = glxConfig.m_glXQueryChannelDeltasSGIX (display, screen, channel, x, y, w, h);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -2106,6 +2784,9 @@ int _glew_glx_glXChannelRectSyncSGIX (Display * display, int  screen, int  chann
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   int result = ((int)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_video_resize - glXChannelRectSyncSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_resize] && glxConfig.m_glXChannelRectSyncSGIX)
   {
@@ -2113,6 +2794,9 @@ int _glew_glx_glXChannelRectSyncSGIX (Display * display, int  screen, int  chann
     result = glxConfig.m_glXChannelRectSyncSGIX (display, screen, channel, synctype);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -2125,6 +2809,9 @@ GLXVideoSourceSGIX _glew_glx_glXCreateGLXVideoSourceSGIX (Display * display, int
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   GLXVideoSourceSGIX result = ((GLXVideoSourceSGIX)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_video_source - glXCreateGLXVideoSourceSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_source] && glxConfig.m_glXCreateGLXVideoSourceSGIX)
   {
@@ -2132,6 +2819,9 @@ GLXVideoSourceSGIX _glew_glx_glXCreateGLXVideoSourceSGIX (Display * display, int
     result = glxConfig.m_glXCreateGLXVideoSourceSGIX (display, screen, server, path, nodeClass, drainNode);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
@@ -2143,6 +2833,9 @@ void _glew_glx_glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX g
 {
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SGIX_video_source - glXDestroyGLXVideoSourceSGIX
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SGIX_video_source] && glxConfig.m_glXDestroyGLXVideoSourceSGIX)
   {
@@ -2150,6 +2843,9 @@ void _glew_glx_glXDestroyGLXVideoSourceSGIX (Display * dpy, GLXVideoSourceSGIX g
     glxConfig.m_glXDestroyGLXVideoSourceSGIX (dpy, glxvideosource);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2161,6 +2857,9 @@ Status _glew_glx_glXGetTransparentIndexSUN (Display * dpy, Window overlay, Windo
   bool prototypeCalled = false;
   const glew::glx::DeviceConfig &glxConfig = glew::glx::GetConfig ();
   Status result = ((Status)0);
+#if defined (GLEW_GLX_PRE_ERROR_CHECK)
+  GLEW_GLX_PRE_ERROR_CHECK();
+#endif
   // GLX_SUN_get_transparent_index - glXGetTransparentIndexSUN
   if (!prototypeCalled && glxConfig.m_featureSupported [GLEW_GLX_SUN_get_transparent_index] && glxConfig.m_glXGetTransparentIndexSUN)
   {
@@ -2168,6 +2867,9 @@ Status _glew_glx_glXGetTransparentIndexSUN (Display * dpy, Window overlay, Windo
     result = glxConfig.m_glXGetTransparentIndexSUN (dpy, overlay, underlay, pTransparentIndex);
   }
   GLEW_ASSERT (prototypeCalled);
+#if defined (GLEW_GLX_POST_ERROR_CHECK)
+  GLEW_GLX_POST_ERROR_CHECK();
+#endif
   return result;
 }
 
