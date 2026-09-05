@@ -4,12 +4,8 @@
 
 using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace wrangle_gl_generator;
@@ -47,6 +43,8 @@ class Program
       var khrDir = Directory.CreateDirectory (Path.Combine (includeDir.FullName, "KHR"));
 
       await File.WriteAllBytesAsync (Path.Combine (khrDir.FullName, "khrplatform.h"), await httpClient.GetByteArrayAsync ("https://raw.githubusercontent.com/KhronosGroup/EGL-Registry/refs/heads/main/api/KHR/khrplatform.h"));
+
+      Log.Information ("Exported KHR");
     }
     catch (Exception e)
     {
@@ -80,6 +78,13 @@ class Program
       {
         generator.ExportCpp (writer);
       }
+
+      using (var writer = new StreamWriter (Path.Combine (srcDir.FullName, "wrangle-egl.inl")))
+      {
+        generator.ExportCppInl (writer);
+      }
+
+      Log.Information ("Exported EGL");
     }
     catch (Exception e)
     {
@@ -111,6 +116,13 @@ class Program
       {
         generator.ExportCpp (writer);
       }
+
+      using (var writer = new StreamWriter (Path.Combine (srcDir.FullName, "wrangle-wgl.inl")))
+      {
+        generator.ExportCppInl (writer);
+      }
+
+      Log.Information ("Exported WGL");
     }
     catch (Exception e)
     {
@@ -140,6 +152,13 @@ class Program
       {
         generator.ExportCpp (writer);
       }
+
+      using (var writer = new StreamWriter (Path.Combine (srcDir.FullName, "wrangle-glx.inl")))
+      {
+        generator.ExportCppInl (writer);
+      }
+
+      Log.Information ("Exported GLX");
     }
     catch (Exception e)
     {
@@ -171,6 +190,13 @@ class Program
       {
         generator.ExportCpp (writer);
       }
+
+      using (var writer = new StreamWriter (Path.Combine (srcDir.FullName, "wrangle-gl.inl")))
+      {
+        generator.ExportCppInl (writer);
+      }
+
+      Log.Information ("Exported OpenGL Core ARB");
     }
     catch (Exception e)
     {
@@ -228,6 +254,13 @@ class Program
       {
         generator.ExportCpp (writer);
       }
+
+      using (var writer = new StreamWriter (Path.Combine (srcDir.FullName, "wrangle-gles.inl")))
+      {
+        generator.ExportCppInl (writer);
+      }
+
+      Log.Information ("Exported OpenGL ES");
     }
     catch (Exception e)
     {
