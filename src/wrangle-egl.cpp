@@ -412,6 +412,20 @@ void glew::egl::Initialise (EGLDisplay display)
     s_deviceConfig.m_eglQueryDisplayAttribEXT = (PFNEGLQUERYDISPLAYATTRIBEXTPROC) glewGetProcAddress ("eglQueryDisplayAttribEXT");
   }
 
+  // EGL_EXT_device_enumeration
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_enumeration])
+  {
+    s_deviceConfig.m_eglQueryDevicesEXT = (PFNEGLQUERYDEVICESEXTPROC) glewGetProcAddress ("eglQueryDevicesEXT");
+  }
+
+  // EGL_EXT_device_query
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_device_query])
+  {
+    s_deviceConfig.m_eglQueryDeviceAttribEXT = (PFNEGLQUERYDEVICEATTRIBEXTPROC) glewGetProcAddress ("eglQueryDeviceAttribEXT");
+    s_deviceConfig.m_eglQueryDeviceStringEXT = (PFNEGLQUERYDEVICESTRINGEXTPROC) glewGetProcAddress ("eglQueryDeviceStringEXT");
+    s_deviceConfig.m_eglQueryDisplayAttribEXT = (PFNEGLQUERYDISPLAYATTRIBEXTPROC) glewGetProcAddress ("eglQueryDisplayAttribEXT");
+  }
+
   // EGL_EXT_image_dma_buf_import_modifiers
   if (s_deviceConfig.m_featureSupported [GLEW_EGL_EXT_image_dma_buf_import_modifiers])
   {
@@ -500,6 +514,13 @@ void glew::egl::Initialise (EGLDisplay display)
     s_deviceConfig.m_eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC) glewGetProcAddress ("eglDestroyImageKHR");
   }
 
+  // EGL_KHR_image_base
+  if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_image_base])
+  {
+    s_deviceConfig.m_eglCreateImageKHR = (PFNEGLCREATEIMAGEKHRPROC) glewGetProcAddress ("eglCreateImageKHR");
+    s_deviceConfig.m_eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC) glewGetProcAddress ("eglDestroyImageKHR");
+  }
+
   // EGL_KHR_lock_surface
   if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface])
   {
@@ -510,6 +531,8 @@ void glew::egl::Initialise (EGLDisplay display)
   // EGL_KHR_lock_surface3
   if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_lock_surface3])
   {
+    s_deviceConfig.m_eglLockSurfaceKHR = (PFNEGLLOCKSURFACEKHRPROC) glewGetProcAddress ("eglLockSurfaceKHR");
+    s_deviceConfig.m_eglUnlockSurfaceKHR = (PFNEGLUNLOCKSURFACEKHRPROC) glewGetProcAddress ("eglUnlockSurfaceKHR");
     s_deviceConfig.m_eglQuerySurface64KHR = (PFNEGLQUERYSURFACE64KHRPROC) glewGetProcAddress ("eglQuerySurface64KHR");
   }
 
@@ -522,7 +545,11 @@ void glew::egl::Initialise (EGLDisplay display)
   // EGL_KHR_reusable_sync
   if (s_deviceConfig.m_featureSupported [GLEW_EGL_KHR_reusable_sync])
   {
+    s_deviceConfig.m_eglCreateSyncKHR = (PFNEGLCREATESYNCKHRPROC) glewGetProcAddress ("eglCreateSyncKHR");
+    s_deviceConfig.m_eglDestroySyncKHR = (PFNEGLDESTROYSYNCKHRPROC) glewGetProcAddress ("eglDestroySyncKHR");
+    s_deviceConfig.m_eglClientWaitSyncKHR = (PFNEGLCLIENTWAITSYNCKHRPROC) glewGetProcAddress ("eglClientWaitSyncKHR");
     s_deviceConfig.m_eglSignalSyncKHR = (PFNEGLSIGNALSYNCKHRPROC) glewGetProcAddress ("eglSignalSyncKHR");
+    s_deviceConfig.m_eglGetSyncAttribKHR = (PFNEGLGETSYNCATTRIBKHRPROC) glewGetProcAddress ("eglGetSyncAttribKHR");
   }
 
   // EGL_KHR_stream

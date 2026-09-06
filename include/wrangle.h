@@ -12,7 +12,6 @@
 #if defined(_WIN32)
   #define WIN32_LEAN_AND_MEAN 1
   #include <windows.h>
-  #pragma comment (lib, "opengl32.lib")
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,8 +44,6 @@
 
 #if GLEW_USE_WGL
   GLEW_EXTERN WINGDIAPI PROC WINAPI wglGetProcAddress (LPCSTR lpszProc);
-  #undef wglUseFontBitmaps
-  #undef wglUseFontOutlines
 #elif GLEW_USE_EGL
   #include <EGL/egl.h>
   GLEW_EXTERN_C EGLAPI __eglMustCastToProperFunctionPointerType EGLAPIENTRY eglGetProcAddress (const char * procname);

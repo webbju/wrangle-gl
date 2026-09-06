@@ -10,6 +10,10 @@
 
 #include <wrangle-wgl.h>
 
+#ifdef _WIN32
+#pragma comment (lib, "opengl32.lib")
+#endif
+
 #include <cstdio>
 #include <stdarg.h>
 
@@ -29,7 +33,7 @@ static GLenum CheckGLError(const bool shouldAssert, const char* file, const int 
 
   if (err != GL_NO_ERROR)
   {
-      eprintf("[%s:%d] glGetError returned 0x%x\n", file, line, err);
+    eprintf("[%s:%d] glGetError returned 0x%x\n", file, line, err);
   }
 
   GLEW_ASSERT_IF(shouldAssert, err == GL_NO_ERROR);
